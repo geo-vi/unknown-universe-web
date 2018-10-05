@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0"?>
 <translation>
-	<!-- Navigation -->
-	<translate ID="TEXT_LOGIN">GİRİŞ YAP</translate>
-	<translate ID="TEXT_REGISTER">KAYIT OL</translate>
-	
-	<!-- Boxes -->
-	<translate ID="BODY_TEXT_USERNAME">Kullanıcı Adı</translate>
-	<translate ID="BODY_TEXT_PASSWORD">Şifre</translate>
-	<translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
-	<translate ID="BODY_TEXT_INVITATIONCODE">Davetiye Kodu</translate>
-	<translate ID="BODY_TEXT_TOC_NOTE">By registering you agree upon the ToC</translate>
-	
-	<!-- Buttons -->
-	<translate ID="BUTTON_FORGOT_PW">Şifreni mi unuttun?</translate>
+    <!-- Navigation -->
+    <translate ID="TEXT_LOGIN">GİRİŞ YAP</translate>
+    <translate ID="TEXT_REGISTER">KAYIT OL</translate>
+
+    <!-- Boxes -->
+    <translate ID="BODY_TEXT_USERNAME">Kullanıcı Adı</translate>
+    <translate ID="BODY_TEXT_PASSWORD">Şifre</translate>
+    <translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
+    <translate ID="BODY_TEXT_INVITATIONCODE">Davetiye Kodu</translate>
+    <translate ID="BODY_TEXT_TOC_NOTE">By registering you agree upon the ToC</translate>
+
+    <!-- Buttons -->
+    <translate ID="BUTTON_FORGOT_PW">Şifreni mi unuttun?</translate>
 </translation>

@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation is here basically -->
+    <!-- Navigation is here basically -->
     <translate ID="NAV_TEXT_HANGAR">Hangar</translate>
-	<translate ID="NAV_TEXT_CLAN">Clan</translate>
+    <translate ID="NAV_TEXT_CLAN">Clan</translate>
     <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
     <translate ID="NAV_TEXT_UPGRADES">Upgrades</translate>
-	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <!-- Premium is for goods such as Premium / Rebate / Boosters-->
     <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
-	<translate ID="NAV_TEXT_GALAXYGATES">Galaxy Gates</translate>
+    <translate ID="NAV_TEXT_GALAXYGATES">Galaxy Gates</translate>
     <translate ID="NAV_TEXT_SHOP">Shop</translate>
     <translate ID="NAV_TEXT_AUCTION">Auction</translate>
     <translate ID="NAV_TEXT_SETTINGS">Settings</translate>
     <translate ID="NAV_TEXT_LOGOUT">Logout</translate>
-	
-	<!-- Names used more than once -->
+
+    <!-- Names used more than once -->
     <translate ID="BODY_TEXT_DAMAGE">Damage</translate>
-	<translate ID="BODY_TEXT_SHIELD">Shield</translate>
-	<translate ID="BODY_TEXT_SPEED">Speed</translate>
-	<translate ID="BODY_TEXT_HP">HP</translate>
-	<translate ID="CANCEL">Cancel</translate>
+    <translate ID="BODY_TEXT_SHIELD">Shield</translate>
+    <translate ID="BODY_TEXT_SPEED">Speed</translate>
+    <translate ID="BODY_TEXT_HP">HP</translate>
+    <translate ID="CANCEL">Cancel</translate>
 </translation>

@@ -12,15 +12,15 @@ abstract class AbstractHandler
     function __construct()
     {
 
-        if(isset($_POST['action']) && !empty($_POST['action'])){
-            $this->action = (string) $_POST['action'];
-        }else{
+        if (isset($_POST['action']) && !empty($_POST['action'])) {
+            $this->action = (string)$_POST['action'];
+        } else {
             die(json_encode(['error' => true, "error_msg" => "Empty ajax action requested!"]));
         }
 
         //$this->action = "load";
 
-        if(isset($_POST['params'])){
+        if (isset($_POST['params'])) {
             $this->params = json_decode($_POST['params'], true);
         }
     }
@@ -33,27 +33,32 @@ abstract class AbstractHandler
      * @return bool
      *
      */
-    public function isValidAction(){
-        if(isset($this->actions[$this->action])){
+    public function isValidAction()
+    {
+        if (isset($this->actions[$this->action])) {
 
             $action = $this->actions[$this->action];
 
-            if(isset($action['params'])){
+            if (isset($action['params'])) {
 
-                if(empty($this->params) && $this->params != 0) {
-                    die(json_encode(['error' => true, "error_msg" => 'This action requires parameters, which arent given']));
+                if (empty($this->params) && $this->params != 0) {
+                    die(json_encode(['error'     => true,
+                                     "error_msg" => 'This action requires parameters, which arent given',
+                    ]));
                 }
 
-                foreach ($action['params'] as $param){
-                    if(!isset($this->params[$param])){
-                        die(json_encode(['error' => true, "error_msg" => 'This action requires parameters, which arent given']));
+                foreach ($action['params'] as $param) {
+                    if (!isset($this->params[$param])) {
+                        die(json_encode(['error'     => true,
+                                         "error_msg" => 'This action requires parameters, which arent given',
+                        ]));
                     }
                 }
             }
 
             return true;
 
-        }else{
+        } else {
             die(json_encode(['error' => true, "error_msg" => 'Requested Action doesnt exists!']));
         }
     }
@@ -62,13 +67,14 @@ abstract class AbstractHandler
      * addAction Functions
      * register new Action
      *
-     * @param $action
+     * @param       $action
      * @param array $params
      */
-    public function addAction($action, $params = []){
+    public function addAction($action, $params = [])
+    {
         $this->actions[$action] = [];
 
-        if(!empty($params)){
+        if (!empty($params)) {
             $this->actions[$action]['params'] = $params;
         }
     }
@@ -77,7 +83,8 @@ abstract class AbstractHandler
      * handle Function
      * handles current action
      */
-    public function handle(){
+    public function handle()
+    {
         $this->isValidAction();
     }
 }

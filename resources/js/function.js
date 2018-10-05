@@ -6,53 +6,43 @@ if (typeof console == "undefined") {
     };
 }
 
-function redirect(destination, newWindow, target)
-{
-    if (destination)
-    {
-        if (newWindow && target === undefined)
-        {
+function redirect(destination, newWindow, target) {
+    if (destination) {
+        if (newWindow && target === undefined) {
             window.open(destination, '_blank');
         }
         else if (target !== undefined) {
             window.open(destination, target);
         }
-        else
-        {
+        else {
             window.open(destination, '_self');
         }
 
 
     }
-    else
-    {
+    else {
         return false;
     }
 }
 
 
-function redirectToExternalHome()
-{
+function redirectToExternalHome() {
     redirect('/index.es?action=externalHome&loginError=99');
 }
 
-function openShopCategory(category)
-{
+function openShopCategory(category) {
     redirect('/indexInternal.es?action=internalDock&category=' + category);
 }
 
-function redirectToEquipment()
-{
+function redirectToEquipment() {
     redirect('/indexInternal.es?action=internalDock&tpl=internalDockEquipment');
 }
 
-function redirectToItemUpgradeSystem()
-{
+function redirectToItemUpgradeSystem() {
     redirect('/indexInternal.es?action=internalItemUpgradeSystem');
 }
 
-function translate(s)
-{
+function translate(s) {
     return s;
 }
 
@@ -66,9 +56,7 @@ if (navigator.userAgent.match(/Opera/)) {
 }
 
 
-function domGet(id)
-
-{
+function domGet(id) {
 
     if (typeof(id) != 'string') {
 
@@ -82,11 +70,9 @@ function domGet(id)
 
 }
 
-function domGetChild(obj, id)
+function domGetChild(obj, id) {
 
-{
-
-    for (var i=0; i<obj.childNodes.length; i++) {
+    for (var i = 0; i < obj.childNodes.length; i++) {
 
         var n = obj.childNodes[i];
 
@@ -105,10 +91,7 @@ function domGetChild(obj, id)
 }
 
 
-
-function domGetBody()
-
-{
+function domGetBody() {
 
     var tmp = document.getElementsByTagName('BODY');
 
@@ -117,21 +100,18 @@ function domGetBody()
 }
 
 
-
-function domGetOffset(obj)
-
-{
+function domGetOffset(obj) {
 
     obj = domGet(obj);
 
     var offset = {
-        x:0,
-        y:0
+        x: 0,
+        y: 0
     };
 
     if (obj.offsetX) return {
-        x:obj.offsetX,
-        y:obj.offsetY
+        x: obj.offsetX,
+        y: obj.offsetY
     };
 
     while (obj) {
@@ -149,10 +129,7 @@ function domGetOffset(obj)
 }
 
 
-
-function domFireEvent(obj, name)
-
-{
+function domFireEvent(obj, name) {
 
     if (browserType == 'ns') {
 
@@ -191,10 +168,7 @@ function domFireEvent(obj, name)
 }
 
 
-
-function domAttachEvent(obj, name, handler)
-
-{
+function domAttachEvent(obj, name, handler) {
 
     if (browserType == 'ns') {
 
@@ -209,10 +183,7 @@ function domAttachEvent(obj, name, handler)
 }
 
 
-
-function domDetachEvent(obj, name, handler)
-
-{
+function domDetachEvent(obj, name, handler) {
 
     if (browserType == 'ns') {
 
@@ -227,33 +198,27 @@ function domDetachEvent(obj, name, handler)
 }
 
 
-
-function domOnLoad(handler)
-
-{
+function domOnLoad(handler) {
 
     domAttachEvent(window, 'onload', handler);
 
 }
 
 
-
-function domEventGetCoords()
-
-{
+function domEventGetCoords() {
 
     if (window.event) {
 
         return {
-            x:window.event.clientX,
-            y:window.event.clientY
+            x: window.event.clientX,
+            y: window.event.clientY
         };
 
     } else {
 
         return {
-            x:window.nsevent.pageX,
-            y:window.nsevent.pageY
+            x: window.nsevent.pageX,
+            y: window.nsevent.pageY
         };
 
     }
@@ -261,10 +226,7 @@ function domEventGetCoords()
 }
 
 
-
-function domEventGetTarget()
-
-{
+function domEventGetTarget() {
 
     if (window.event) {
 
@@ -279,10 +241,7 @@ function domEventGetTarget()
 }
 
 
-
-function domEventPreventDefault()
-
-{
+function domEventPreventDefault() {
 
     if (window.event) {
 
@@ -297,10 +256,7 @@ function domEventPreventDefault()
 }
 
 
-
-function domEventCancelBubble()
-
-{
+function domEventCancelBubble() {
 
     if (window.event) {
 
@@ -315,10 +271,7 @@ function domEventCancelBubble()
 }
 
 
-
-function domGetParent(obj, tagName)
-
-{
+function domGetParent(obj, tagName) {
 
     if (!tagName) {
 
@@ -335,10 +288,7 @@ function domGetParent(obj, tagName)
 }
 
 
-
-function domGetPrevious(obj, tagName)
-
-{
+function domGetPrevious(obj, tagName) {
 
     obj = domGet(obj);
 
@@ -348,7 +298,7 @@ function domGetPrevious(obj, tagName)
 
             if (typeof(tagName) == 'object') {
 
-                for (var i=0; i<tagName.length; i++) if (tagName[i].toLowerCase() == obj.tagName.toLowerCase()) return obj;
+                for (var i = 0; i < tagName.length; i++) if (tagName[i].toLowerCase() == obj.tagName.toLowerCase()) return obj;
 
             } else if (typeof(tagName) == 'string') {
 
@@ -381,10 +331,7 @@ function domGetPrevious(obj, tagName)
 }
 
 
-
-function domGetNext(obj, tagName)
-
-{
+function domGetNext(obj, tagName) {
 
     obj = domGet(obj);
 
@@ -394,7 +341,7 @@ function domGetNext(obj, tagName)
 
             if (typeof(tagName) == 'object') {
 
-                for (var i=0; i<tagName.length; i++) if (tagName[i].toLowerCase() == obj.tagName.toLowerCase()) return obj;
+                for (var i = 0; i < tagName.length; i++) if (tagName[i].toLowerCase() == obj.tagName.toLowerCase()) return obj;
 
             } else if (typeof(tagName) == 'string') {
 
@@ -427,30 +374,24 @@ function domGetNext(obj, tagName)
 }
 
 
-
-function domSetAlpha(obj, alpha)
-
-{
+function domSetAlpha(obj, alpha) {
 
     obj = domGet(obj);
 
     if (document.addEventListener) {
 
-        obj.style.MozOpacity = parseInt(alpha)/100;
+        obj.style.MozOpacity = parseInt(alpha) / 100;
 
     } else {
 
-        obj.style.filter = 'alpha(opacity='+parseInt(alpha)+', finishopacity=0, style=0)';
+        obj.style.filter = 'alpha(opacity=' + parseInt(alpha) + ', finishopacity=0, style=0)';
 
     }
 
 }
 
 
-
-function domRemove(obj)
-
-{
+function domRemove(obj) {
 
     obj = domGet(obj);
 
@@ -459,24 +400,12 @@ function domRemove(obj)
 }
 
 
-
-
-
-
-
-
-
-
-
 var gDomSetFlashVarQueue = new Array();
 
 var gDomSetFlashVarTimer = false;
 
 
-
-function domSetFlashVarTimer()
-
-{
+function domSetFlashVarTimer() {
 
     if (gDomSetFlashVarQueue.length == 0) {
 
@@ -500,7 +429,7 @@ function domSetFlashVarTimer()
 
     try {
 
-        queueItem.obj.SetVariable('c.'+queueItem.name, queueItem.value);
+        queueItem.obj.SetVariable('c.' + queueItem.name, queueItem.value);
 
     } catch (e) {
 
@@ -517,10 +446,7 @@ function domSetFlashVarTimer()
 }
 
 
-
-function domSetFlashVar(id, name, value)
-
-{
+function domSetFlashVar(id, name, value) {
 
     var obj = false;
 
@@ -549,9 +475,10 @@ function domSetFlashVar(id, name, value)
     }
 
 }
+
 /**
  * DEPRECATED! ~ wtimme
-function setShopdetailsText(textfieldName, textfieldValue){
+ function setShopdetailsText(textfieldName, textfieldValue){
     var flashMovieName = "shopdetails";
     var obj = false;
     obj = document.getElementById(flashMovieName);
@@ -565,65 +492,60 @@ function setShopdetailsText(textfieldName, textfieldValue){
     obj.setProperties(textfieldName, textfieldValue);
 
 }
-*/
-
-
-
+ */
 
 
 if (browserType == 'ns') {
 
-    document.addEventListener('mousedown', function(e) {
-        window.nsevent=e;
+    document.addEventListener('mousedown', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('mouseup', function(e) {
-        window.nsevent=e;
+    document.addEventListener('mouseup', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('mousemove', function(e) {
-        window.nsevent=e;
+    document.addEventListener('mousemove', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('click', function(e) {
-        window.nsevent=e;
+    document.addEventListener('click', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('keyup', function(e) {
-        window.nsevent=e;
+    document.addEventListener('keyup', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('keydown', function(e) {
-        window.nsevent=e;
+    document.addEventListener('keydown', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('keypressed', function(e) {
-        window.nsevent=e;
+    document.addEventListener('keypressed', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('blur', function(e) {
-        window.nsevent=e;
+    document.addEventListener('blur', function (e) {
+        window.nsevent = e;
     }, true);
 
-    document.addEventListener('focus', function(e) {
-        window.nsevent=e;
+    document.addEventListener('focus', function (e) {
+        window.nsevent = e;
     }, true);
 
 }
 
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
-function popup(width, height, name, url)
-{
+function popup(width, height, name, url) {
     if (!url) {
         var a = domGetParent(domEventGetTarget(), 'A');
         if (a) url = a.href;
     }
     if (url) {
         if (!name) name = '';
-        var w = window.open(url, name, 'width='+width+',height='+height+',menubar=no,location=no,status=yes,toolbar=no');
+        var w = window.open(url, name, 'width=' + width + ',height=' + height + ',menubar=no,location=no,status=yes,toolbar=no');
         if (w) {
             w.focus();
             if (window.event || window.nsevent) {
@@ -635,15 +557,15 @@ function popup(width, height, name, url)
     }
     return false;
 }
-function popupAbo(width, height, name, url)
-{
+
+function popupAbo(width, height, name, url) {
     if (!url) {
         var a = domGetParent(domEventGetTarget(), 'A');
         if (a) url = a.href;
     }
     if (url) {
         if (!name) name = '';
-        var w = window.open(url, name, 'width='+width+',height='+height+',menubar=no,location=no,status=yes,toolbar=no');
+        var w = window.open(url, name, 'width=' + width + ',height=' + height + ',menubar=no,location=no,status=yes,toolbar=no');
         if (w) {
             w.focus();
             if (window.event || window.nsevent) {
@@ -655,8 +577,7 @@ function popupAbo(width, height, name, url)
     }
 }
 
-function popupClose(reload)
-{
+function popupClose(reload) {
     if (window.opener) {
         if (reload) if (window.opener.location) window.opener.location.reload();
         window.close();
@@ -666,17 +587,17 @@ function popupClose(reload)
 }
 
 
-
 ////////////////////////////////////////////////////////////////////////////////
 
 function changeButtons(welchen) {
     var image = welchen.src;
-    var endung = (image.substr(image.length-3,3));
-    if((image.substr(image.length-5,1)) == 0)  var teil = 1;
+    var endung = (image.substr(image.length - 3, 3));
+    if ((image.substr(image.length - 5, 1)) == 0) var teil = 1;
     else teil = 0;
-    var newImage = (image.substring(0,image.length-5)) + teil + "." +endung;
+    var newImage = (image.substring(0, image.length - 5)) + teil + "." + endung;
     welchen.src = newImage;
 }
+
 /*
 var F1;
 function popup(ziel,breite,hoehe) {
@@ -690,23 +611,22 @@ function popup(ziel,breite,hoehe) {
 
 function bilderVorladen() {
     document.Vorladen = new Array();
-    if(document.images) {
-        for(var i = 0; i < bilderVorladen.arguments.length; i++) {
+    if (document.images) {
+        for (var i = 0; i < bilderVorladen.arguments.length; i++) {
             document.Vorladen[i] = new Image();
             document.Vorladen[i].src = bilderVorladen.arguments[i];
         }
     }
 }
 
-function popMap(width, height, name, url)
-{
+function popMap(width, height, name, url) {
     if (!url) {
         var a = domGetParent(domEventGetTarget(), 'A');
         if (a) url = a.href;
     }
     if (url) {
         if (!name) name = '';
-        var w = window.open(url, name, 'width='+width+',height='+height+',menubar=no,location=no,status=yes,toolbar=no');
+        var w = window.open(url, name, 'width=' + width + ',height=' + height + ',menubar=no,location=no,status=yes,toolbar=no');
         if (w) {
             w.focus();
             if (window.event || window.nsevent) {
@@ -715,10 +635,9 @@ function popMap(width, height, name, url)
             }
             return false;
         }
-        else
-        {
-            nextpage =confirm('Bitte Deaktiviere bei deinem Browser den Popupblocker. Dieser verhindert das die Karte geladen wird. Soll nun die Karte ohne Popup angezeigt werden');
-            if (nextpage) window.location.href=url;
+        else {
+            nextpage = confirm('Bitte Deaktiviere bei deinem Browser den Popupblocker. Dieser verhindert das die Karte geladen wird. Soll nun die Karte ohne Popup angezeigt werden');
+            if (nextpage) window.location.href = url;
         }
     }
 }
@@ -738,8 +657,8 @@ function showBusyLayer() {
     var busyLayer = jQuery("#busy_layer");
 
     if (busyLayer != null) {
-        busyLayer.css("visibility","visible");
-        busyLayer.css("display","block");
+        busyLayer.css("visibility", "visible");
+        busyLayer.css("display", "block");
 
     }
 }
@@ -749,8 +668,8 @@ function showBusyLayer() {
 function hideBusyLayer() {
     var busyLayer = jQuery("#busy_layer");
     if (busyLayer != null) {
-        busyLayer.css("visibility","hidden");
-        busyLayer.css("display","none");
+        busyLayer.css("visibility", "hidden");
+        busyLayer.css("display", "none");
     }
 }
 
@@ -760,65 +679,58 @@ function hideBusyLayer() {
  * This notice MUST stay intact for legal use
  * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
  ***********************************************/
-function bookmarkDO(title,url){
+function bookmarkDO(title, url) {
     if (window.sidebar) {// firefoxwww/js/function.js
         window.sidebar.addPanel(title, url, "");
-    } else if(window.opera && window.print) { // opera
+    } else if (window.opera && window.print) { // opera
         var elem = document.createElement('a');
-        elem.setAttribute('href',url);
-        elem.setAttribute('title',title);
-        elem.setAttribute('rel','sidebar');
+        elem.setAttribute('href', url);
+        elem.setAttribute('title', title);
+        elem.setAttribute('rel', 'sidebar');
         elem.click();
-    } else if(document.all) {// ie
+    } else if (document.all) {// ie
         window.external.AddFavorite(url, title);
     }
 }
 
-function hideQuestDetails()
-{
-    $('questDetails').innerHTML = '<img src="'+CDN+'do_img/global/intro/loader_anim.gif" alt="" style="position: absolute; left: -118px; top: 28px;" />';
+function hideQuestDetails() {
+    $('questDetails').innerHTML = '<img src="' + CDN + 'do_img/global/intro/loader_anim.gif" alt="" style="position: absolute; left: -118px; top: 28px;" />';
 };
 
-function toggleQuestChildrenVisibility(idToToggle, idOfImage, type)
-{
+function toggleQuestChildrenVisibility(idToToggle, idOfImage, type) {
     $('list_' + idToToggle).toggle();
-    if ($('list_' + idToToggle).style.display == 'none')
-    {
-        $(type + '_' + idOfImage).src = CDN+'do_img/global/quests/condition_closed.gif';
+    if ($('list_' + idToToggle).style.display == 'none') {
+        $(type + '_' + idOfImage).src = CDN + 'do_img/global/quests/condition_closed.gif';
     }
-    else
-    {
-        $(type + '_' + idOfImage).src = CDN+'do_img/global/quests/condition_open.gif';
+    else {
+        $(type + '_' + idOfImage).src = CDN + 'do_img/global/quests/condition_open.gif';
     }
 }
 
 function preloadImg() {
     document.Vorladen = new Array();
 
-    if(document.images) {
-        for(var i = 0; i < preloadImg.arguments.length; i++) {
+    if (document.images) {
+        for (var i = 0; i < preloadImg.arguments.length; i++) {
             document.Vorladen[i] = new Image();
             document.Vorladen[i].src = preloadImg.arguments[i];
         }
     }
 }
 
-function questDetailToggle()
-{
+function questDetailToggle() {
     $('questDetailTasks').toggle();
     $('questDetailDescription').toggle();
-    if (!$('questDetailTasks').visible())
-    {
+    if (!$('questDetailTasks').visible()) {
         $('questDetailToggle').style.backgroundImage = 'url(' + CDN + '../do_img/global/quests/toggle_list.png)';
     }
-    else
-    {
+    else {
         $('questDetailToggle').style.backgroundImage = 'url(' + CDN + '../do_img/global/quests/toggle_text.png)';
     }
 }
 
 
-function closeLayer (layer) {
+function closeLayer(layer) {
     jQuery('#' + layer).hide();
     hideBusyLayer();
 }
@@ -833,15 +745,14 @@ function closeLayer (layer) {
  *
  * @param webURL
  */
-function referToURL(webURL)
-{
-    if(webURL.indexOf("//") == 0) {
-        webURL = webURL.substr(1,webURL.length);
+function referToURL(webURL) {
+    if (webURL.indexOf("//") == 0) {
+        webURL = webURL.substr(1, webURL.length);
     }
 
     if (window.opener) {
-		referOpenerToUrl(webURL);
-    } else if(document.isOpenSocial) {
+        referOpenerToUrl(webURL);
+    } else if (document.isOpenSocial) {
         showGame(document.webHost + '/' + webURL + "&openSocial=1");
     }
 }
@@ -858,40 +769,38 @@ function referToURL(webURL)
  */
 
 var windowWebpage;
-function referOpenerToUrl(webURL)
-{
-	if(window.opener.name == "do_webpage") {
-		if(windowWebpage == null) {
-			windowWebpage = window.open("", "do_webpage");
-			if (windowWebpage.location != webURL) {
-				windowWebpage.location = webURL;
-			}
-		} else if(windowWebpage.closed) {
-			windowWebpage = window.open(webURL, "do_webpage");
-		} else {
-			if (windowWebpage.location != webURL) {
-				windowWebpage.location = webURL;
-			}
-		}
-		windowWebpage.focus();
-	} else {
+
+function referOpenerToUrl(webURL) {
+    if (window.opener.name == "do_webpage") {
+        if (windowWebpage == null) {
+            windowWebpage = window.open("", "do_webpage");
+            if (windowWebpage.location != webURL) {
+                windowWebpage.location = webURL;
+            }
+        } else if (windowWebpage.closed) {
+            windowWebpage = window.open(webURL, "do_webpage");
+        } else {
+            if (windowWebpage.location != webURL) {
+                windowWebpage.location = webURL;
+            }
+        }
+        windowWebpage.focus();
+    } else {
         window.opener.location.href = webURL;
         window.opener.focus();
-	}
+    }
 }
 
-function referToExternalURLInNewWindow(webURL, focus)
-{
-	if(typeof(focus)==='undefined') focus = true;
+function referToExternalURLInNewWindow(webURL, focus) {
+    if (typeof(focus) === 'undefined') focus = true;
     if (window.opener && !focus) {
-		window.opener.open(webURL, '_blank');
-	} else {
-		window.open(webURL, '_blank');
-	}
+        window.opener.open(webURL, '_blank');
+    } else {
+        window.open(webURL, '_blank');
+    }
 }
 
-function referToShopItem(lootId, focus, inSameTab)
-{
+function referToShopItem(lootId, focus, inSameTab) {
     var webURL = '/indexInternal.es?action=internalDock&shopItem=';
     webURL += lootId;
 
@@ -906,22 +815,20 @@ function referToShopItem(lootId, focus, inSameTab)
     }
 }
 
-function openPaymentFromExternal(section)
-{
+function openPaymentFromExternal(section) {
     webURL = '/flashAPI/openPayment.php?section=' + section;
 
     var external = window.open(
-        webURL.replace(/\+/g,"%2B"), "paymentglobal", "width=1000,height=535,left=100,top=200,scrollbars=no"
+        webURL.replace(/\+/g, "%2B"), "paymentglobal", "width=1000,height=535,left=100,top=200,scrollbars=no"
     );
     external.focus();
 }
 
-function openPaymentLinkFromExternal(link)
-{
+function openPaymentLinkFromExternal(link) {
     webURL = link;
 
     var external = window.open(
-        webURL.replace(/\+/g,"%2B"), "paymentglobal", "width=1000,height=535,left=100,top=200,scrollbars=no"
+        webURL.replace(/\+/g, "%2B"), "paymentglobal", "width=1000,height=535,left=100,top=200,scrollbars=no"
     );
     external.focus();
 }
@@ -934,8 +841,7 @@ function openPaymentLinkFromExternal(link)
  */
 
 
-function referToExternalURL(webURL)
-{
+function referToExternalURL(webURL) {
     if (window.opener) {
         window.opener.location.href = webURL;
         window.opener.focus();
@@ -955,13 +861,13 @@ function openContextHelp() {
  */
 
 
-function showHangar () {
+function showHangar() {
     if (window.opener) {
         window.opener.location.href = 'indexInternal.es?action=internalDock';
         window.opener.focus();
     } else {
 // todo: öffne neue seite mit dock-startseite
-}
+    }
 }
 
 /**
@@ -972,19 +878,19 @@ function showHangar () {
  */
 
 
-function showPetFuel () {
+function showPetFuel() {
     if (window.opener) {
         window.opener.location.href = 'indexInternal.es?action=internalDock&category=petGear&itemId=PET_FUEL';
         window.opener.focus();
     } else {
 // todo: öffne neue seite mit dock-startseite
-}
+    }
 }
 
-function Evoucher(){
-    if(jQuery('.evoucherInputField').val() != '' ){
+function Evoucher() {
+    if (jQuery('.evoucherInputField').val() != '') {
         jQuery('.evoucherInputField').val('');
-        if(jQuery('.evoucherInputField').hasClass('redText') || jQuery('.evoucherInputField').hasClass('greenText')){
+        if (jQuery('.evoucherInputField').hasClass('redText') || jQuery('.evoucherInputField').hasClass('greenText')) {
             jQuery('.evoucherInputField').removeClass('greenText');
             jQuery('.evoucherInputField').removeClass('redText');
             jQuery('.evoucherInputField').addClass('whiteText');
@@ -993,76 +899,65 @@ function Evoucher(){
 }
 
 /* Breaking News */
-function BreakingNews()
-{
+function BreakingNews() {
     this.breakingNewsInterval = false;
-    this.currentIconID        = 0;
-    this.maxIconID            = 0;
-    this.keys                 = false;
-    this.images               = false;
-    this.titles               = false;
-    this.links                = false;
-    this.durations            = false;
-    this.secondsCounter       = 0;
-    this.titlePosition        = 12;
+    this.currentIconID = 0;
+    this.maxIconID = 0;
+    this.keys = false;
+    this.images = false;
+    this.titles = false;
+    this.links = false;
+    this.durations = false;
+    this.secondsCounter = 0;
+    this.titlePosition = 12;
 
     breakingNewsObject = this;
 
-    this.setMaxIconID = function(iconCount)
-    {
+    this.setMaxIconID = function (iconCount) {
         this.maxIconID = iconCount - 1;
         if (this.maxIconID == 0) {
             $('breakingNewsIconContainer').hide();
         }
     };
 
-    this.setKeys = function(array)
-    {
+    this.setKeys = function (array) {
         this.keys = array;
     };
 
-    this.setImages = function(array)
-    {
+    this.setImages = function (array) {
         this.images = array;
     };
 
-    this.setTitles = function(array)
-    {
+    this.setTitles = function (array) {
         this.titles = array;
     };
 
-    this.setLinks = function(array)
-    {
+    this.setLinks = function (array) {
         this.links = array;
     };
 
-    this.setDurations = function(array)
-    {
+    this.setDurations = function (array) {
         this.durations = array;
     };
 
-    this.init = function()
-    {
+    this.init = function () {
         this.currentIconID = this.maxIconID;
         this.hardRedraw();
         window.setInterval('breakingNewsObject.scrollTitle()', 50);
     };
 
-    this.start = function()
-    {
+    this.start = function () {
         if (this.breakingNewsInterval == false && this.maxIconID > 0) {
             this.breakingNewsInterval = window.setInterval('breakingNewsObject.changeHighlight()', 1000);
         }
     };
 
-    this.stop = function()
-    {
+    this.stop = function () {
         window.clearInterval(this.breakingNewsInterval);
         this.breakingNewsInterval = false;
     };
 
-    this.changeHighlight = function()
-    {
+    this.changeHighlight = function () {
         this.secondsCounter++;
         if (this.durations[this.currentIconID] <= this.secondsCounter) {
             this.secondsCounter = 0;
@@ -1073,8 +968,7 @@ function BreakingNews()
         }
     };
 
-    this.smoothRedraw = function()
-    {
+    this.smoothRedraw = function () {
         var myArray = $$('.breakingNewsTitle');
         for (var i = 0; i < myArray.length; i++) {
             myArray[i].innerHTML = ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ';
@@ -1089,22 +983,21 @@ function BreakingNews()
 
         Effect.Fade('breakingNewsContainer', {
             duration: 0.5
-        } );
+        });
         Effect.Appear('breakingNewsContainerHelper', {
             duration: 0.5
-        } );
+        });
         window.setTimeout('$(\'breakingNewsContainer\').remove(); $(\'breakingNewsContainerHelper\').setAttribute(\'id\', \'breakingNewsContainer\');', 1100);
 
         $('currentIconID').value = this.keys[this.currentIconID];
-        $('breakingNewsContainerFrame').onclick = function() {
+        $('breakingNewsContainerFrame').onclick = function () {
             showNews($('currentIconID').value)
         }
 
         this.redrawIcons();
     };
 
-    this.hardRedraw = function()
-    {
+    this.hardRedraw = function () {
         var myArray = $$('.breakingNewsTitle');
         for (var i = 0; i < myArray.length; i++) {
             myArray[i].innerHTML = ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ' + this.titles[this.currentIconID] + ' --- ';
@@ -1114,7 +1007,7 @@ function BreakingNews()
         if ($('breakingNewsContainerHelper')) $('breakingNewsContainerHelper').style.backgroundImage = 'url(do_img/global/events/' + this.images[this.currentIconID] + ')';
 
         $('currentIconID').value = this.keys[this.currentIconID];
-        $('breakingNewsContainerFrame').onclick = function() {
+        $('breakingNewsContainerFrame').onclick = function () {
             showNews($('currentIconID').value)
         }
 
@@ -1122,38 +1015,33 @@ function BreakingNews()
         this.titlePosition = 12;
     };
 
-    this.redrawIcons = function()
-    {
+    this.redrawIcons = function () {
         $$('.breakingNewsIcon').each(
-            function(e)
-            {
+            function (e) {
                 e.style.border = '1px solid black';
             }
-            );
+        );
         $('breakingNewsIcon' + (this.currentIconID + 1)).style.border = '1px solid #dcdcdc';
     };
 
-    this.scrollTitle = function()
-    {
+    this.scrollTitle = function () {
         this.titlePosition -= 2;
 
         var titles = $$('.breakingNewsTitle');
         for (var i = 0; i < titles.length; i++) {
-            titles[i].setStyle( {
+            titles[i].setStyle({
                 left: this.titlePosition + 'px'
-            } );
+            });
         }
     };
 
-    this.over = function(id)
-    {
+    this.over = function (id) {
         this.currentIconID = id - 1;
         this.stop();
         this.hardRedraw();
     };
 
-    this.out = function()
-    {
+    this.out = function () {
         this.start();
     };
 }
@@ -1184,32 +1072,32 @@ function getCancelButtonText(key) {
 
 function openConfirm(myURI, text) {
     Dialog.confirm(text,
-    {
-        height: 100,
-        width:300,
-        //className: "alphacube",
-        okLabel: getConfirmButtonText('confirmText'),
-        cancelLabel: getCancelButtonText('cancelText'),
-        ok:function(win) {
-            location.href=myURI;
-            return true;
-        }
-    });
+        {
+            height: 100,
+            width: 300,
+            //className: "alphacube",
+            okLabel: getConfirmButtonText('confirmText'),
+            cancelLabel: getCancelButtonText('cancelText'),
+            ok: function (win) {
+                location.href = myURI;
+                return true;
+            }
+        });
 }
 
 function openConfirmSkillTreeReset(text) {
     Dialog.confirm(text,
-    {
-        height: 100,
-        width:300,
-        //className: "alphacube",
-        okLabel: getConfirmButtonText('confirmText'),
-        cancelLabel: getCancelButtonText('cancelText'),
-        ok:function(win) {
-            Main.resetSkillTree();
-            return true;
-        }
-    });
+        {
+            height: 100,
+            width: 300,
+            //className: "alphacube",
+            okLabel: getConfirmButtonText('confirmText'),
+            cancelLabel: getCancelButtonText('cancelText'),
+            ok: function (win) {
+                Main.resetSkillTree();
+                return true;
+            }
+        });
 }
 
 function showFooterLayer(layer) {
@@ -1239,13 +1127,13 @@ function checkTransportTime(value, isPremium) {
 
     // premium users has the half transport time.
     if (isPremium == true) {
-        countElements = countElements/2;
+        countElements = countElements / 2;
     }
 
     time = (countElements * value);
 
-    var h = Math.floor(time/60);
-    var m = Math.round(time%60);
+    var h = Math.floor(time / 60);
+    var m = Math.round(time % 60);
 
     if (m < 10) {
         m = "0" + m;
@@ -1257,12 +1145,12 @@ function checkTransportTime(value, isPremium) {
     }
 
     // if you send less then 5 item the time would be 0.
-    if ( countElements > 0 && h == 0 && m == 0) {
+    if (countElements > 0 && h == 0 && m == 0) {
         m = "01";
     }
 
-    if ( countElements > 0) {
-        $('timeForTransport').innerHTML = h +":"+ m;
+    if (countElements > 0) {
+        $('timeForTransport').innerHTML = h + ":" + m;
     } else {
         $('timeForTransport').innerHTML = "?";
     }
@@ -1281,7 +1169,8 @@ function do_redirect(destination, newWindow) {
 }
 
 var openSocial = 0;
-function bpCloseWindow () {
+
+function bpCloseWindow() {
     if (openSocial == 1) {
         document.location.reload();
     } else {
@@ -1289,7 +1178,7 @@ function bpCloseWindow () {
     }
 }
 
-function bpReloadOpener () {
+function bpReloadOpener() {
     opener.document.location.reload();
 }
 
@@ -1320,18 +1209,17 @@ function changeView4July(divID) {
  *
  * and Dont use function.js anymore!! is deprecated!
  */
-function showFeedbackForm(){
+function showFeedbackForm() {
     window.opener.FeedBackForm.Events.onFeedBackLayerClick();
     window.opener.focus();
 
 }
 
-function refreshPage(pageId){
+function refreshPage(pageId) {
     if (window.opener) {
-        if(pageId == 0){
+        if (pageId == 0) {
             window.opener.location.href = "indexInternal.es?action=internalNanoTechFactory";
         }
-
 
 
     }
@@ -1352,7 +1240,7 @@ function getImgUrl(key) {
 var pilotSheet = new PilotSheet();
 var skillId = false;
 
-function PilotSheet(){
+function PilotSheet() {
     var checkedIn = false;
     this.friendRequest = new Array();
     this.arrayLength = 0;
@@ -1388,7 +1276,7 @@ function PilotSheet(){
 //          }
 //    };
 
-    this.answerFriendRequest = function(type, userFriendID, text) {
+    this.answerFriendRequest = function (type, userFriendID, text) {
         var requestRow = jQuery('#friend_' + userFriendID);
         var rowToChange = jQuery('#friend_' + userFriendID + '_accepted');
         var rowToDelete = jQuery('#friend_' + userFriendID + '_denied');
@@ -1419,10 +1307,10 @@ function PilotSheet(){
 //        xajax_pilotSheet(formValues);
 //    };
 
-    this.hideInviteButton = function(flag){
+    this.hideInviteButton = function (flag) {
         var element = $('inviteButt');
-        if(element){
-            switch(flag){
+        if (element) {
+            switch (flag) {
                 case 'show':
                     element.style.display = 'block';
                     break;
@@ -1433,23 +1321,23 @@ function PilotSheet(){
         }
     };
 
-    this.setSkilltreeNavigationTabActive = function(){
-        if(jQuery('#tabButton1')){
-            if(jQuery('#tabButton1').hasClass('tabButtonActive')){
+    this.setSkilltreeNavigationTabActive = function () {
+        if (jQuery('#tabButton1')) {
+            if (jQuery('#tabButton1').hasClass('tabButtonActive')) {
                 jQuery('#tabButton1').removeClass('tabButtonActive');
                 jQuery('#tabLabel1').removeClass('tabLabel1Active');
                 jQuery('#tabButton1').addClass('tabButtonInActive');
                 jQuery('#tabLabel1').addClass('tabLabel1InActive');
             }
-        } else if(jQuery('#tabButton2')){
-            if(jQuery('#tabButton2').hasClass('tabButtonActive2')){
+        } else if (jQuery('#tabButton2')) {
+            if (jQuery('#tabButton2').hasClass('tabButtonActive2')) {
                 jQuery('#tabButton2').removeClass('tabButtonActive2');
                 jQuery('#tabLabel2').removeClass('tabLabel2Active');
                 jQuery('#tabButton2').addClass('tabButtonInActive');
                 jQuery('#tabLabel2').addClass('tabLabe21InActive');
             }
-        } else if(jQuery('#tabButton4')){
-            if(jQuery('#tabButton4').hasClass('tabButtonActive1')){
+        } else if (jQuery('#tabButton4')) {
+            if (jQuery('#tabButton4').hasClass('tabButtonActive1')) {
                 jQuery('#tabButton4').removeClass('tabButtonActive1');
                 jQuery('#tabLabel4').removeClass('tabLabel4Active');
                 jQuery('#tabButton4').addClass('tabButtonInActive');
@@ -1457,8 +1345,8 @@ function PilotSheet(){
             }
         }
 
-        if(jQuery('#tabButton3')){
-            if(jQuery('#tabButton3').hasClass('tabButtonInActive')){
+        if (jQuery('#tabButton3')) {
+            if (jQuery('#tabButton3').hasClass('tabButtonInActive')) {
                 jQuery('#tabButton3').removeClass('tabButtonInActive');
                 jQuery('#tabLabel3').removeClass('tabLabel3InActive');
                 jQuery('#tabButton3').addClass('tabButtonActive');
@@ -1468,10 +1356,10 @@ function PilotSheet(){
         jQuery('#pppAjaxLoaderMask').css('left', -33);
     }
 
-    this.ajaxLoader = function(flag){
+    this.ajaxLoader = function (flag) {
         var mask = jQuery('#pppAjaxLoaderMask');
         var loader = jQuery('#pppAjaxLoader');
-        switch(flag){
+        switch (flag) {
             case 'show':
                 mask.css('display', 'block');
                 loader.css('display', 'block');
@@ -1483,9 +1371,9 @@ function PilotSheet(){
         }
     }
 
-    this.bgMask = function(flag){
+    this.bgMask = function (flag) {
         var mask = $('pppAjaxLoaderMask');
-        switch(flag){
+        switch (flag) {
             case 'show':
                 mask.style.display = 'block';
                 break;
@@ -1497,132 +1385,132 @@ function PilotSheet(){
 
     this.successTimer = null;
     this.failureTimer = null;
-    this.editMessage = function(flag, stat, type){
+    this.editMessage = function (flag, stat, type) {
         var statDivSucess;
         var statDivFailed;
         var miscDiv;
         var delay = 5000;
-        if(type == 'profile'){
+        if (type == 'profile') {
             statDivSucess = jQuery('#editStatsSuccessProfile');
             statDivFailed = jQuery('#editStatsFailedProfile');
-            miscDiv= jQuery('#externalPPPLinkDialog');
-        }else if(type == 'statusMessage'){
+            miscDiv = jQuery('#externalPPPLinkDialog');
+        } else if (type == 'statusMessage') {
             statDivSucess = jQuery('#editStatsSuccessMess');
             statDivFailed = jQuery('#editStatsFailedMess');
-        }else if(type == 'imgUpload'){
+        } else if (type == 'imgUpload') {
             statDivSucess = jQuery('#imgUploadSuccess');
             statDivFailed = jQuery('#imgUploadError');
             delay = 10000;
-        }else if(type == 'bonusLog'){
+        } else if (type == 'bonusLog') {
             statDivFailed = jQuery('#bonuslogBookStatus');
         }
 
-        switch(flag){
+        switch (flag) {
             case 'show':
-                switch(stat){
+                switch (stat) {
                     case 'success':
-                        if(statDivFailed){
-                            if(statDivFailed.hasClass('showStatus')){
+                        if (statDivFailed) {
+                            if (statDivFailed.hasClass('showStatus')) {
                                 statDivFailed.removeClass('showStatus');
                                 statDivFailed.addClass('hideStatus');
                             }
-                            if(miscDiv){
-                                if(miscDiv.hasClass('hideStatus')){
+                            if (miscDiv) {
+                                if (miscDiv.hasClass('hideStatus')) {
                                     miscDiv.removeClass('hideStatus')
                                     miscDiv.addClass('showStatus')
                                 }
                             }
                         }
-                        if(statDivSucess){
-                            if(statDivSucess.hasClass('hideStatus')){
+                        if (statDivSucess) {
+                            if (statDivSucess.hasClass('hideStatus')) {
                                 statDivSucess.removeClass('hideStatus');
                                 statDivSucess.addClass('showStatus');
                             }
-                            if(miscDiv){
-                                if(miscDiv.hasClass('showStatus')){
+                            if (miscDiv) {
+                                if (miscDiv.hasClass('showStatus')) {
                                     miscDiv.removeClass('showStatus')
                                     miscDiv.addClass('hideStatus')
                                 }
                             }
                         }
-                        pilotSheet.successTimer = window.setTimeout(function(){
+                        pilotSheet.successTimer = window.setTimeout(function () {
                             pilotSheet.editMessage('hide', 'success', type);
                         }, delay);
                         break;
                     case 'failed':
-                        if(statDivSucess){
-                            if(statDivSucess.hasClass('showStatus')){
+                        if (statDivSucess) {
+                            if (statDivSucess.hasClass('showStatus')) {
                                 statDivSucess.removeClass('showStatus');
                                 statDivSucess.addClass('hideStatus');
                             }
-                            if(miscDiv){
-                                if(miscDiv.hasClass('hideStatus')){
+                            if (miscDiv) {
+                                if (miscDiv.hasClass('hideStatus')) {
                                     miscDiv.removeClass('hideStatus')
                                     miscDiv.addClass('showStatus')
                                 }
                             }
                         }
 
-                        if(statDivFailed){
-                            if(statDivFailed.hasClass('hideStatus')){
+                        if (statDivFailed) {
+                            if (statDivFailed.hasClass('hideStatus')) {
                                 statDivFailed.removeClass('hideStatus');
                                 statDivFailed.addClass('showStatus');
                             }
-                            if(miscDiv){
-                                if(miscDiv.hasClass('showStatus')){
+                            if (miscDiv) {
+                                if (miscDiv.hasClass('showStatus')) {
                                     miscDiv.removeClass('showStatus')
                                     miscDiv.addClass('hideStatus')
                                 }
                             }
                         }
-                        pilotSheet.failureTimer = window.setTimeout(function(){
+                        pilotSheet.failureTimer = window.setTimeout(function () {
                             pilotSheet.editMessage('hide', 'failed', type);
                         }, delay);
                         break;
                 }
                 break;
             case 'hide':
-                if(stat == 'success'){
-                    if(statDivSucess){
-                        if(statDivSucess.hasClass('hideStatus')){
+                if (stat == 'success') {
+                    if (statDivSucess) {
+                        if (statDivSucess.hasClass('hideStatus')) {
                             return;
                         }
                     }
-                }else if(stat == 'failed'){
-                    if(statDivFailed){
-                        if(statDivFailed.hasClass('hideStatus')){
+                } else if (stat == 'failed') {
+                    if (statDivFailed) {
+                        if (statDivFailed.hasClass('hideStatus')) {
                             return;
                         }
                     }
                 }
-                if(statDivFailed){
-                    if(statDivFailed.hasClass('showStatus')){
+                if (statDivFailed) {
+                    if (statDivFailed.hasClass('showStatus')) {
                         statDivFailed.removeClass('showStatus');
                         statDivFailed.addClass('hideStatus');
                     }
                     clearTimeout(pilotSheet.failureTimer);
                 }
-                if(statDivSucess){
-                    if(statDivSucess.hasClass('showStatus')){
+                if (statDivSucess) {
+                    if (statDivSucess.hasClass('showStatus')) {
                         statDivSucess.removeClass('showStatus');
                         statDivSucess.addClass('hideStatus');
                     }
                     clearTimeout(pilotSheet.successTimer);
                 }
-                if(miscDiv){
-                    if(miscDiv.hasClass('hideStatus')){
+                if (miscDiv) {
+                    if (miscDiv.hasClass('hideStatus')) {
                         miscDiv.removeClass('hideStatus')
                         miscDiv.addClass('showStatus')
                     }
                 }
-                if(jQuery('#optimalSizeHint').is(':hidden')){
+                if (jQuery('#optimalSizeHint').is(':hidden')) {
                     jQuery('#optimalSizeHint').css('display', 'block');
                 }
                 break;
         }
     }
 
-    this.initialiseCustomSelectElements = function(){
+    this.initialiseCustomSelectElements = function () {
         this.checkedIn = false;
         this.checkedIn = false;
         this.checkedIn = false;
@@ -1637,8 +1525,8 @@ function PilotSheet(){
 //        xajax_pilotSheet(formValues);
 //    }
 
-    this.handleProfileEditForm = function(id, id1, className, type){
-        var element = jQuery('#'+id);
+    this.handleProfileEditForm = function (id, id1, className, type) {
+        var element = jQuery('#' + id);
         var editElement = jQuery('#editFormProfileAll');
         var formElement = jQuery('#editFormProfile');
         var closeElement = jQuery('#closeButtonEdit');
@@ -1647,7 +1535,7 @@ function PilotSheet(){
         var mask = jQuery('#pppAjaxLoaderMask');
         var formValues = new Array();
         formValues['type'] = 'editProfileForm';
-        switch(type){
+        switch (type) {
             case 'show':
                 pilotSheet.initCustomInputElements();
                 pilotSheet.editMessage("hide", "failed", "profile");
@@ -1655,7 +1543,7 @@ function PilotSheet(){
                 pilotSheet.editMessage("hide", "success", "imgUpload");
                 pilotSheet.editMessage("hide", "failed", "imgUpload");
 
-                if(!jQuery.browser.msie ){
+                if (!jQuery.browser.msie) {
                     jQuery('#privacySettingsTitle').addClass('privacySettingsHint');
                     jQuery('#privacySettingsHint').addClass('privacySettingsHint');
                 }
@@ -1679,21 +1567,21 @@ function PilotSheet(){
 
     this.imageUpload == false;
 
-    this.resetImageUpload = function(){
+    this.resetImageUpload = function () {
         this.imageUpload = false;
     }
 
     this.radiod = false;
 
-    this.initCustomInputElements = function(){
-        if(!checkedIn){
+    this.initCustomInputElements = function () {
+        if (!checkedIn) {
             Custom.init();
             checkedIn = true;
         }
     };
 
-    this.unInitCustomInputElements = function(){
-        if(checkedIn){
+    this.unInitCustomInputElements = function () {
+        if (checkedIn) {
             Custom.clear();
             checkedIn = false;
         }
@@ -1729,7 +1617,7 @@ function PilotSheet(){
 //        }
 //    };
 
-    this.handleFormUpload = function(type, error, misc) {
+    this.handleFormUpload = function (type, error, misc) {
         switch (type) {
             case 'imgUpload':
                 var img_00 = jQuery('#img_00').val();
@@ -1789,7 +1677,7 @@ function PilotSheet(){
         }
     }
 
-    this.handleProfilePage = function(id, type, imgName) {
+    this.handleProfilePage = function (id, type, imgName) {
         var formValues = new Array();
         formValues['type'] = type;
         var element = jQuery('#' + id);
@@ -1821,7 +1709,7 @@ function PilotSheet(){
                 /*hideBusyLayer();*/
                 break;
             case 'closeEditProfile':
-                if(id == 'closeButton'){
+                if (id == 'closeButton') {
                     jQuery('#img_00').val('no_change');
                 }
                 if (jQuery('#editFormProfileAll')) {
@@ -1840,10 +1728,11 @@ function PilotSheet(){
         }
     };
 
-    this.performProfileSearch = function() {
-        if(jQuery('#searchProfileField').val().length == 0){
+    this.performProfileSearch = function () {
+        if (jQuery('#searchProfileField').val().length == 0) {
             return;
-        };
+        }
+        ;
 
         if (jQuery('#searchProfileFieldStatus')) {
             if (jQuery('#searchProfileFieldStatus').hasClass('hideElement')) {
@@ -1863,12 +1752,12 @@ function PilotSheet(){
         jQuery('#searchProfileForm').submit();
     }
 
-    this.upLoadStatusMessage = function() {
+    this.upLoadStatusMessage = function () {
         jQuery('#changeStatusMessage').val('yes');
         jQuery('#statusMessageForm').submit();
     }
 
-    this.handleAchievementPage = function(id, type, imgName){
+    this.handleAchievementPage = function (id, type, imgName) {
         switch (type) {
             case 'achievementPage':
                 //tooltip.destroyEventListerners();
@@ -1882,7 +1771,7 @@ function PilotSheet(){
         }
     };
 
-    this.handlePilotSheetAjax = function(formValues) {
+    this.handlePilotSheetAjax = function (formValues) {
         var type = formValues.type;
         var imgUrl = formValues.imgUrl;
         var actionType = formValues.actionType;
@@ -1894,11 +1783,13 @@ function PilotSheet(){
             type: 'POST',
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
-            data: {command: "getInternalProfilPage", type: type, imgUrl: imgUrl, actionType: actionType,
-                    label: label, key: key, status: status},
-            success: function(response) {
+            data: {
+                command: "getInternalProfilPage", type: type, imgUrl: imgUrl, actionType: actionType,
+                label: label, key: key, status: status
+            },
+            success: function (response) {
                 if (response.result == 'OK') {
-                    if(type == 'showSkilltree') {
+                    if (type == 'showSkilltree') {
                         jQuery('#pageContent').html(response.code);
                         pilotSheet.hideInviteButton('hide');
                         tooltip.init();
@@ -1916,7 +1807,7 @@ function PilotSheet(){
                         jQuery('#logFileUpdated').html(response.logFileUpdated);
                         jQuery('#requiredForNextPoints').html(response.requiredForNextPoints);
                         jQuery('#researchpoints').html(response.researchpoints);
-                        if(response.hasEnoughLogfiles == 'no') {
+                        if (response.hasEnoughLogfiles == 'no') {
 // @ TODO for Ronny: Equipment in Client (pilotSheet = SkillTree + kill ajax loader
                             pilotSheet.handleSkilltree("deactivateLogButton", label);
                         }
@@ -1931,12 +1822,12 @@ function PilotSheet(){
 
     }
 
-    this.handleSkilltree = function(type, flag){
+    this.handleSkilltree = function (type, flag) {
         var formValues = new Array();
         formValues['type'] = type;
         formValues['imgUrl'] = getImgUrl('imgUrl');
         var tag = 'new cv';
-        switch(type){
+        switch (type) {
             case 'showSkilltree':
                 tooltip.destroyEventListerners();
                 pilotSheet.ajaxLoader('show');
@@ -1960,20 +1851,20 @@ function PilotSheet(){
                 logButton.innerHTML = '';
 
                 var logSpan = new Element('span', {
-                    'class':'font_inactive'
+                    'class': 'font_inactive'
                 });
 
                 logButton.appendChild(logSpan);
 
                 var strongEle = new Element('strong', {});
                 logSpan.appendChild(strongEle);
-                strongEle.innerHTML= flag;
+                strongEle.innerHTML = flag;
                 logButton.id = 'researchPoints_button_0';
                 break;
         }
     }
 
-    this.sendSkillTreeUpdate = function(skill, e) {
+    this.sendSkillTreeUpdate = function (skill, e) {
         skillId = jQuery(e).attr("id");
         // deactivate pointerevent on skill to prevent sending several times
         document.getElementById(skillId).style.pointerEvents = 'none';
@@ -1981,24 +1872,24 @@ function PilotSheet(){
 
     }
 
-    this.updateSkillHasFinished = function() {
+    this.updateSkillHasFinished = function () {
         // activate pointerevent after success from skill update
         document.getElementById(skillId).style.pointerEvents = 'auto';
     }
 
-    this.setSkilltreeScrollbar = function(){
+    this.setSkilltreeScrollbar = function () {
         jQuery('#skillTreeHorScrollable').jScrollPane();
     }
 
     // scroll the element horizontally based on its width and the slider maximum value
-    this.scrollHorizontal = function(value, element, slider){
-        element.scrollLeft = Math.round(value/slider.maximum*(element.scrollWidth-element.offsetWidth));
+    this.scrollHorizontal = function (value, element, slider) {
+        element.scrollLeft = Math.round(value / slider.maximum * (element.scrollWidth - element.offsetWidth));
     }
 
     // show the link to the external PPP
-    this.handleShowExternalPPPLink = function(){
+    this.handleShowExternalPPPLink = function () {
         /*inviteIncentives.handleIncentives('showIncentivePage');*/
-        if(jQuery('#userProfileInfoPopup').hasClass('hideinviteInfoPopup')){
+        if (jQuery('#userProfileInfoPopup').hasClass('hideinviteInfoPopup')) {
             jQuery('#userProfileInfoPopup').removeClass('hideinviteInfoPopup');
             jQuery('#userProfileInfoPopup').addClass('showinviteInfoPopup');
         }
@@ -2006,93 +1897,94 @@ function PilotSheet(){
 }
 
 var achievement = new Achievements();
-function Achievements(){
-    this.saveUserTitleChange = function(){
+
+function Achievements() {
+    this.saveUserTitleChange = function () {
         jQuery('#editTitleForm').submit();
     };
 
-    this.changeTitleDisplay = function(action, title, oldTitle, newTitle){
+    this.changeTitleDisplay = function (action, title, oldTitle, newTitle) {
         jQuery('#achievementCurrentTitleLabel').html(title);
         jQuery('#' + oldTitle).removeClass('titleAchievementBoxSelected');
         jQuery('#' + newTitle).addClass('titleAchievementBoxSelected');
     };
 
-    this.showFilter = function(){
+    this.showFilter = function () {
         jQuery('#filter_dropdownLayer').toggle();
     }
 
-    this.onMouseOver = function(id){
+    this.onMouseOver = function (id) {
         jQuery('#' + id).addClass('filter_onMouseOver');
     }
 
-    this.onMouseOut = function(id){
+    this.onMouseOut = function (id) {
         jQuery('#' + id).removeClass('filter_onMouseOver');
     }
 
-    this.selectedCategory = function(id){
+    this.selectedCategory = function (id) {
         jQuery('.selectedCategory').removeClass('selectedCategory');
         jQuery('.selectedSubCategory').removeClass('selectedSubCategory');
-        if(id.indexOf('activity') != -1){
+        if (id.indexOf('activity') != -1) {
             jQuery('#achievement_activity').addClass('selectedCategory');
             jQuery('#' + id).addClass('selectedSubCategory');
-        }else if(id.indexOf('event') != -1){
+        } else if (id.indexOf('event') != -1) {
             jQuery('#achievement_event').addClass('selectedCategory');
             jQuery('#' + id).addClass('selectedSubCategory');
-        }else{
+        } else {
             jQuery('#' + id).addClass('selectedCategory');
         }
     }
 }
 
 var inviteIncentives = new PilotInviteIncentives();
-function PilotInviteIncentives(){
-    this.initialiseScrollBar = function(){
+
+function PilotInviteIncentives() {
+    this.initialiseScrollBar = function () {
         jQuery('.scroll-pane').jScrollPane({showArrows: true});
     };
 
 
-    this.busyLayer = function(flag) {
+    this.busyLayer = function (flag) {
         var busyLayer = jQuery('#busyLayerPilotSheet');
         switch (flag) {
             case 'show':
-                    busyLayer.css('display', 'block');
-                    busyLayer.css('height', 1180);
-                    busyLayer.css('width', 2000);
-                    busyLayer.css('top', -500);
-                    busyLayer.css('left', -500);
+                busyLayer.css('display', 'block');
+                busyLayer.css('height', 1180);
+                busyLayer.css('width', 2000);
+                busyLayer.css('top', -500);
+                busyLayer.css('left', -500);
                 break
             case 'hide':
-                    busyLayer.css('display', 'none');
-                    busyLayer.css('height', 0);
-                    busyLayer.css('width', 0);
-                    busyLayer.css('top', 0);
-                    busyLayer.css('left', 0);
+                busyLayer.css('display', 'none');
+                busyLayer.css('height', 0);
+                busyLayer.css('width', 0);
+                busyLayer.css('top', 0);
+                busyLayer.css('left', 0);
                 break;
         }
 
 
     }
 
-    this.hideInfoLayerPermanently = function(id){
+    this.hideInfoLayerPermanently = function (id) {
         var val = document.inviteInfoDisplayOpton.inviteInfoCheckbox.checked;
-        if(val){
+        if (val) {
             var formValues = new Array();
             formValues['type'] = 'hideInviteInfo';
             this.handleAjax(formValues);
-            inviteIncentives.handleIncentives("setInfoValue", '',  1);
-        }else{
+            inviteIncentives.handleIncentives("setInfoValue", '', 1);
+        } else {
             return;
         }
     }
 
-    this.redirectToBonusPage = function()
-    {
+    this.redirectToBonusPage = function () {
         redirect('/indexInternal.es?action=internalBonus');
     }
 
-    this.handleIncentives = function(type, id, flag){
-        if(id && id != ''){
-           var element = jQuery('#' + id);
+    this.handleIncentives = function (type, id, flag) {
+        if (id && id != '') {
+            var element = jQuery('#' + id);
         }
 
         var inviteInfo = null;
@@ -2102,17 +1994,17 @@ function PilotInviteIncentives(){
         formValues['type'] = type;
 
         var inputs = jQuery('#inviteInfoForm :input');
-        jQuery.each(inputs, function(){
-            if(this.name == 'inviteInfo'){
+        jQuery.each(inputs, function () {
+            if (this.name == 'inviteInfo') {
                 inviteInfo = jQuery(this).val();
             }
         });
-        switch(type){
+        switch (type) {
             case 'showIncentivePage':
                 formValues['inviteType'] = 'Email';
                 formValues['flag'] = flag;
-                if(flag != 'callback'){
-                    if(inviteInfo != 1 || inviteInfo ==''){
+                if (flag != 'callback') {
+                    if (inviteInfo != 1 || inviteInfo == '') {
                         this.checkedIn = true;
                         //pilotSheet.initCustomInputElements();
                         inviteIncentives.handleIncentives('showInfoLayer', id);
@@ -2127,8 +2019,8 @@ function PilotInviteIncentives(){
                 break;
             case 'closeInfoLayer':
                 inviteIncentives.hideInfoLayerPermanently('inviteInfoDisplayOpton');
-                if(element != null){
-                    if(element.hasClass('showinviteInfoPopup')){
+                if (element != null) {
+                    if (element.hasClass('showinviteInfoPopup')) {
                         element.removeClass('showinviteInfoPopup');
                         element.addClass('hideinviteInfoPopup');
                     }
@@ -2140,60 +2032,60 @@ function PilotInviteIncentives(){
             case 'showInfoLayer':
                 /*showBusyLayer();*/
                 inviteIncentives.busyLayer('show');
-                if(element != null){
-                    if(element.hasClass('hideinviteInfoPopup')){
+                if (element != null) {
+                    if (element.hasClass('hideinviteInfoPopup')) {
                         element.removeClass('hideinviteInfoPopup');
                         element.addClass('showinviteInfoPopup');
                     }
                 }
                 break;
             case 'setInfoValue':
-                   jQuery.each(inputs, function(){
-                        if(this.name == 'inviteInfo'){
-                            inviteInfo = jQuery(this).val(flag);
-                        }
-                    });
+                jQuery.each(inputs, function () {
+                    if (this.name == 'inviteInfo') {
+                        inviteInfo = jQuery(this).val(flag);
+                    }
+                });
                 break;
         }
     };
 
-    this.handleRemoveInvitee = function(id, type, flag){
+    this.handleRemoveInvitee = function (id, type, flag) {
         var element = $(id);
         var formValues = new Array();
         formValues['type'] = type;
-        switch(type){
+        switch (type) {
             case 'handleImage':
-                if(element.hasClassName('hideRemoveInvitee')){
+                if (element.hasClassName('hideRemoveInvitee')) {
                     element.removeClassName('hideRemoveInvitee');
                     element.addClassName('showRemoveInvitee');
-                }else if(element.hasClassName('showRemoveInvitee')){
+                } else if (element.hasClassName('showRemoveInvitee')) {
                     element.removeClassName('showRemoveInvitee');
                     element.addClassName('hideRemoveInvitee');
                 }
                 break;
             case 'imageEffect':
-                switch(flag){
+                switch (flag) {
                     case 'rollin':
-                        if(element.hasClassName('hideRemoveInvitee')){
+                        if (element.hasClassName('hideRemoveInvitee')) {
                             element.removeClassName('hideRemoveInvitee');
                             element.addClassName('showRemoveInvitee');
                         }
-                        if(element.hasClassName('removeInviteeInActive')){
+                        if (element.hasClassName('removeInviteeInActive')) {
                             element.removeClassName('removeInviteeInActive');
                             element.addClassName('removeInviteeActive');
-                        }else if(element.hasClassName('removeInviteeActive')){
+                        } else if (element.hasClassName('removeInviteeActive')) {
                             return;
                         }
                         break;
                     case 'rollout':
-                        if(element.hasClassName('showRemoveInvitee')){
+                        if (element.hasClassName('showRemoveInvitee')) {
                             element.removeClassName('showRemoveInvitee');
                             element.addClassName('hideRemoveInvitee');
                         }
-                        if(element.hasClassName('removeInviteeActive')){
+                        if (element.hasClassName('removeInviteeActive')) {
                             element.removeClassName('removeInviteeActive');
                             element.addClassName('removeInviteeInActive');
-                        }else if(element.hasClassName('removeInviteeInActive')){
+                        } else if (element.hasClassName('removeInviteeInActive')) {
                             return;
                         }
                         break;
@@ -2204,7 +2096,7 @@ function PilotInviteIncentives(){
                 var inviteeID = parts[1];
                 var rightEle = $('middleRight_' + parts[1]);
                 formValues['inviteeID'] = inviteeID;
-                if(element && rightEle){
+                if (element && rightEle) {
                     element.addClassName('hideListElement');
                     rightEle.addClassName('hideListElement');
                 }
@@ -2213,7 +2105,7 @@ function PilotInviteIncentives(){
         }
     };
 
-    this.handleAjax = function(formValues) {
+    this.handleAjax = function (formValues) {
         var type = formValues['type'];
         var inviteeId = formValues['inviteeID'];
 
@@ -2222,7 +2114,7 @@ function PilotInviteIncentives(){
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
             data: {command: "handle", type: type, inviteeId: inviteeId, inviteType: inviteType, flag: flag},
-            success: function(response) {
+            success: function (response) {
                 if (response.result == 'OK') {
 
                 }
@@ -2231,35 +2123,35 @@ function PilotInviteIncentives(){
         });
     };
 
-    this.handleLogBook = function(id, type, no){
+    this.handleLogBook = function (id, type, no) {
         var logElementDiv = jQuery('#bonusLogBook');
         var logElementClose = jQuery('#closeButtonBonusLog');
 
-        switch(type){
+        switch (type) {
             case 'toggleLink':
-                var logLink = jQuery('#'+id);
-                if(logLink.hasClass('bonusLogBookLinkActive')){
+                var logLink = jQuery('#' + id);
+                if (logLink.hasClass('bonusLogBookLinkActive')) {
                     logLink.removeClass('bonusLogBookLinkActive');
                     logLink.addClass('bonusLogBookLinkInActive');
-                }else if(logLink.hasClass('bonusLogBookLinkInActive')){
+                } else if (logLink.hasClass('bonusLogBookLinkInActive')) {
                     logLink.removeClass('bonusLogBookLinkInActive');
                     logLink.addClass('bonusLogBookLinkActive');
                 }
                 break;
             case 'showLog':
-                if(jQuery('#inviteLogCount').val() <= 0){
+                if (jQuery('#inviteLogCount').val() <= 0) {
                     pilotSheet.editMessage('show', 'failed', 'bonusLog');
-                }else{
+                } else {
                     jQuery('.jspVerticalBar').css('z-index', 1);
                     showBusyLayer();
-                    if(logElementDiv.hasClass('hideBonusLogBook')){
+                    if (logElementDiv.hasClass('hideBonusLogBook')) {
                         logElementDiv.removeClass('hideBonusLogBook');
                         logElementDiv.removeClass('removeForm');
                         logElementDiv.addClass('showBonusLogBook');
                         logElementDiv.addClass('elevateForm');
                     }
-                    if(logElementClose){
-                        if(logElementClose.hasClass('removeForm')){
+                    if (logElementClose) {
+                        if (logElementClose.hasClass('removeForm')) {
                             logElementClose.removeClass('removeForm');
                             logElementClose.removeClass('hideBonusLogBook');
                             logElementClose.addClass('showBonusLogBook');
@@ -2270,14 +2162,14 @@ function PilotInviteIncentives(){
                 }
                 break;
             case 'closeLogBook':
-                if(logElementDiv){
-                    if(logElementDiv.hasClass('showBonusLogBook')){
+                if (logElementDiv) {
+                    if (logElementDiv.hasClass('showBonusLogBook')) {
                         logElementDiv.removeClass('showBonusLogBook');
                         logElementDiv.addClass('hideBonusLogBook');
                         logElementDiv.addClass('removeForm');
                     }
-                    if(logElementClose){
-                        if(logElementClose.hasClass('elevateForm')){
+                    if (logElementClose) {
+                        if (logElementClose.hasClass('elevateForm')) {
                             logElementClose.removeClass('elevateForm');
                             logElementClose.removeClass('showBonusLogBook');
                             logElementClose.addClass('hideBonusLogBook');
@@ -2294,17 +2186,17 @@ function PilotInviteIncentives(){
 var pilotInvites = new PilotInvites();
 
 function PilotInvites() {
-    this.handleInvites = function(type, flag) {
-        var formValues        = new Array();
-        var element           = $('pilotInvitePage');
-        var inviteTab         = $('inviteTab');
-        var dailyLoginTab     = $('loginBonusTab');
-        var subTabInvite      = $('subTabInvite');
-        var invitePageDiv     = $('inviteContent')
+    this.handleInvites = function (type, flag) {
+        var formValues = new Array();
+        var element = $('pilotInvitePage');
+        var inviteTab = $('inviteTab');
+        var dailyLoginTab = $('loginBonusTab');
+        var subTabInvite = $('subTabInvite');
+        var invitePageDiv = $('inviteContent')
         var dailyLoginPageDiv = $('loginBonus');
-        
+
         formValues['type'] = type;
-        
+
         if (type == 'hideInvitePage') {
             element.removeClassName('pilotInvitePageShow');
             subTabInvite.removeClassName('subTabLabelActive');
@@ -2315,7 +2207,7 @@ function PilotInvites() {
         }
     }
 
-    this.handleShowInviteMask = function(messLabel, lang) {
+    this.handleShowInviteMask = function (messLabel, lang) {
         jQuery('#exposeMask').css('display', 'block');
         jQuery('#exposeMask').addClass('changeBGColor');
 
@@ -2344,12 +2236,12 @@ function PilotInvites() {
             .appendTo(spanEleNew);
     }
 
-    this.showEmailInviteDialog = function(messLabel, lang, flag) {
-        if(flag == 'external'){
+    this.showEmailInviteDialog = function (messLabel, lang, flag) {
+        if (flag == 'external') {
             jQuery('#exposeMask').css('display', 'block');
             jQuery('#exposeMask').addClass('changeBGColor');
-        }else{
-           showBusyLayer();
+        } else {
+            showBusyLayer();
         }
 
         var inviteDialog = jQuery('#invite-dialog');
@@ -2383,12 +2275,13 @@ function PilotInvites() {
 }
 
 var buttonHandler = new ButtonHandler();
-function ButtonHandler(){
-    this.toggleButtons = function(buttonId, buttonClass, labelId){
-        if(!$(buttonId).hasClassName(buttonClass + 'Active')){
-            if($(labelId)){
+
+function ButtonHandler() {
+    this.toggleButtons = function (buttonId, buttonClass, labelId) {
+        if (!$(buttonId).hasClassName(buttonClass + 'Active')) {
+            if ($(labelId)) {
                 $(labelId).classNames().each(
-                    function(name, index) {
+                    function (name, index) {
                         if (name.endsWith('InActive')) {
                             $(labelId).removeClassName(name);
                             $(labelId).addClassName(name.sub("InActive", "Active"));
@@ -2401,7 +2294,7 @@ function ButtonHandler(){
             }
 
             $(buttonId).classNames().each(
-                function(name, index) {
+                function (name, index) {
                     if (name.endsWith('InActive')) {
                         $(buttonId).removeClassName(name);
                         $(buttonId).addClassName(name.sub("InActive", "RollOver"));
@@ -2414,30 +2307,30 @@ function ButtonHandler(){
         }
     }
 
-    this.toggleCloseButton = function(id, className){
+    this.toggleCloseButton = function (id, className) {
         var element = $(id);
         element.cleanWhitespace(element);
-        if(!element.hasClassName(className + 'RollOver')){
+        if (!element.hasClassName(className + 'RollOver')) {
             element.removeClassName(className + 'InActive');
             element.addClassName(className + 'RollOver');
-        }else{
+        } else {
             element.removeClassName(className + 'RollOver');
             element.addClassName(className + 'InActive');
         }
     }
 
-    this.clickedTabButton = function(id, number, className, labelID, classNameLabel, classNameLabelClicked){
+    this.clickedTabButton = function (id, number, className, labelID, classNameLabel, classNameLabelClicked) {
         var tabArray = new Array();
         var tabLabelArray = new Array();
 
-        while(number != 0){
+        while (number != 0) {
             tabArray.push(className + number);
             tabLabelArray.push(classNameLabel + number);
             number--;
         }
-        tabArray.each(function(item){
-            if(item != id){
-                if(jQuery('#' + item).hasClass('deactivateCursor')){
+        tabArray.each(function (item) {
+            if (item != id) {
+                if (jQuery('#' + item).hasClass('deactivateCursor')) {
                     jQuery('#' + item).removeClass('deactivateCursor');
                     jQuery('#' + item).addClass('activateCursor');
                 }
@@ -2451,9 +2344,9 @@ function ButtonHandler(){
             }
         });
 
-        tabLabelArray.each(function(item){
-            if(item != labelID){
-                if(jQuery('#' + item)){
+        tabLabelArray.each(function (item) {
+            if (item != labelID) {
+                if (jQuery('#' + item)) {
                     jQuery('#' + item).removeClass(item + 'Active');
                     jQuery('#' + item).addClass(item + 'InActive');
                 }
@@ -2466,13 +2359,14 @@ function ButtonHandler(){
 }
 
 var handleButtons = new HandleButtons();
-function HandleButtons(){
-    this.toggleCloseButton = function(id, className){
+
+function HandleButtons() {
+    this.toggleCloseButton = function (id, className) {
         var element = jQuery('#' + id);
-        if(!element.hasClass(className + 'RollOver')){
+        if (!element.hasClass(className + 'RollOver')) {
             element.removeClass(className + 'InActive');
             element.addClass(className + 'RollOver');
-        }else{
+        } else {
             element.removeClass(className + 'RollOver');
             element.addClass(className + 'InActive');
         }
@@ -2485,7 +2379,7 @@ function HandleButtons(){
 var externalPPP = new ExternalPilotProfilePage();
 
 function ExternalPilotProfilePage() {
-    this.toggleField = function(id) {
+    this.toggleField = function (id) {
         var element = $(id);
         if (element.hasClassName('hideSection')) {
             element.removeClassName('hideSection');
@@ -2497,7 +2391,7 @@ function ExternalPilotProfilePage() {
         Scroller.updateAll();
     };
 
-    this.busyLayer = function(flag) {
+    this.busyLayer = function (flag) {
         var busyLayer = jQuery('#busyLayer');
         switch (flag) {
             case 'show':
@@ -2521,10 +2415,11 @@ function ExternalPilotProfilePage() {
 
     }
 
-    this.handleProfileSearch = function(type) {
-        if(jQuery('#searchProfileField').val().length == 0){
+    this.handleProfileSearch = function (type) {
+        if (jQuery('#searchProfileField').val().length == 0) {
             return;
-        };
+        }
+        ;
 
         if (jQuery('#searchProfileFieldStatus')) {
             if (jQuery('#searchProfileFieldStatus').hasClass('hideElement')) {
@@ -2548,7 +2443,7 @@ function ExternalPilotProfilePage() {
         }
 
         var inputs = jQuery('#profileForm :input');
-        jQuery.each(inputs, function() {
+        jQuery.each(inputs, function () {
             if (this.name == 'profileID') {
                 formValues['profileID'] = jQuery(this).val();
             }
@@ -2565,7 +2460,7 @@ function ExternalPilotProfilePage() {
         }
     }
 
-    this.handleExternalPilotSheetAjax = function(formValues) {
+    this.handleExternalPilotSheetAjax = function (formValues) {
 
         var jsonArr = {};
         jsonArr['command'] = 'checkPrivacySetting';
@@ -2578,7 +2473,7 @@ function ExternalPilotProfilePage() {
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
             data: jsonArr,
-            success: function(response) {
+            success: function (response) {
                 if (response.result == 'OK') {
 
                     if (response.status == 'forbidden') {
@@ -2608,7 +2503,7 @@ function ExternalPilotProfilePage() {
             }
         });
     }
-    this.inviteAsFriend = function(formValues) {
+    this.inviteAsFriend = function (formValues) {
         var jsonArr = {};
         jsonArr['command'] = 'inviteAsFriend';
         for (key in formValues) {
@@ -2619,14 +2514,14 @@ function ExternalPilotProfilePage() {
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
             data: jsonArr,
-            success: function(response) {
+            success: function (response) {
                 if (response.result == 'ERROR') {
                     externalPPP.updateInviteButton("declined");
                 }
             }
         });
     }
-    this.answerFriendshipSL = function(formValues) {
+    this.answerFriendshipSL = function (formValues) {
         var jsonArr = {};
         jsonArr['command'] = 'answerFriendshipSL';
         for (key in formValues) {
@@ -2637,14 +2532,14 @@ function ExternalPilotProfilePage() {
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
             data: jsonArr,
-            success: function(response) {
+            success: function (response) {
                 if (response.result == 'OK') {
                 }
             }
         });
     }
 
-    this.searchProfileFromExternalPPP = function(formValues) {
+    this.searchProfileFromExternalPPP = function (formValues) {
         var jsonArr = {};
         jsonArr['command'] = 'searchProfileFromExternalPPP';
         for (key in formValues) {
@@ -2655,7 +2550,7 @@ function ExternalPilotProfilePage() {
             url: '/ajax/pilotprofil.php',
             dataType: 'json',
             data: jsonArr,
-            success: function(response) {
+            success: function (response) {
                 if (response.result == 'OK') {
                     externalPPP.handleProfileSearchReturn(response.url, response.status);
                 }
@@ -2663,7 +2558,7 @@ function ExternalPilotProfilePage() {
         });
     }
 
-    this.handleProfileSearchReturn = function(type, status) {
+    this.handleProfileSearchReturn = function (type, status) {
         if (type) {
             if (jQuery('#searchProfileFieldStatus')) {
                 if (jQuery('#searchProfileFieldStatus').hasClass('searchProfileAjaxLoader')) {
@@ -2685,7 +2580,7 @@ function ExternalPilotProfilePage() {
         }
     }
 
-    this.handleLanguageSelection = function() {
+    this.handleLanguageSelection = function () {
         if (jQuery.browser.msie) {
             jQuery('#languageBoxBody').css('padding-left', 0);
             jQuery('#languageBoxBody').css('width', 160);
@@ -2697,14 +2592,14 @@ function ExternalPilotProfilePage() {
 
     this.checked = false;
 
-    this.switchConfigView = function(showId, hideId) {
+    this.switchConfigView = function (showId, hideId) {
         var showElement = jQuery('#' + showId);
         var hideElement = jQuery('#' + hideId);
         hideElement.removeClass('configBarClicked');
         showElement.addClass('configBarClicked');
     };
 
-    this.handleFriendRequest = function(status, keyId) {
+    this.handleFriendRequest = function (status, keyId) {
         var formValues = new Array();
         formValues['profileOwner'] = jQuery('#profileOwner').val();
         var openRequest = jQuery('#openRequest');
@@ -2725,7 +2620,7 @@ function ExternalPilotProfilePage() {
         this.answerFriendshipSL(formValues);
     }
 
-    this.handleFriendShipRequest = function() {
+    this.handleFriendShipRequest = function () {
         var formValues = new Array();
         formValues['sessionOwner'] = jQuery('#sessionOwner').val();
         formValues['profileOwner'] = jQuery('#profileOwner').val();
@@ -2765,24 +2660,24 @@ function ExternalPilotProfilePage() {
     }
 
 
-    this.handleStatusMessage = function(show, hide) {
+    this.handleStatusMessage = function (show, hide) {
         var elementShow = jQuery('#' + show);
         var elementHide = jQuery('#' + hide).css('display', 'none');
     };
 
     this.ajaxRequestSent = false;
 
-    this.resetAjaxRequestFlag = function() {
+    this.resetAjaxRequestFlag = function () {
         this.ajaxRequestSent = false;
     }
-    this.updateInviteButton = function(status) {
-        if('declined' == status) {
+    this.updateInviteButton = function (status) {
+        if ('declined' == status) {
             message = Tools.Text.get('userInfo_userBlockContacts_text');
             jQuery('#profileInfoLeft').find('#friendshipStatus').text(message);
         }
     }
 
-    this.handleDetailInfo = function(type, configID) {
+    this.handleDetailInfo = function (type, configID) {
         if (!this.ajaxRequestSent) {
             var formValues = {};
 
@@ -2811,13 +2706,13 @@ function ExternalPilotProfilePage() {
                 jQuery('#privacyError').hide('slow');
             }
 
-            jQuery.each(tabsArray, function() {
+            jQuery.each(tabsArray, function () {
                 if (jQuery('#' + this).hasClass('infoTabsClicked')) {
                     jQuery('#' + this).removeClass('infoTabsClicked');
                     jQuery('#' + this).addClass('infoTabsEffect');
                 }
             });
-            jQuery.each(tabsLabel, function() {
+            jQuery.each(tabsLabel, function () {
                 if (jQuery('#' + this).hasClass(this + 'Active')) {
                     jQuery('#' + this).removeClass(this + 'Active');
                     jQuery('#' + this).addClass(this + 'InActive');
@@ -2862,7 +2757,7 @@ function ExternalPilotProfilePage() {
         }
     }
 
-    this.showAccessForbidden = function() {
+    this.showAccessForbidden = function () {
         jQuery('#mainInfo').hide('slow');
         jQuery('#mainInfo').children(':first').removeClass('showElement');
         jQuery('#mainInfo').children(':first').addClass('hideElement');
@@ -2872,7 +2767,7 @@ function ExternalPilotProfilePage() {
         return;
     }
 
-    this.repositionFooter = function() {
+    this.repositionFooter = function () {
         var footer = jQuery('#bottomSection');
         if (footer) {
             if (!footer.hasClass('bottomSectionRollOut')) {
@@ -2881,7 +2776,7 @@ function ExternalPilotProfilePage() {
         }
     }
 
-    this.openShareContainer = function(id, flag) {
+    this.openShareContainer = function (id, flag) {
         var elementShow = jQuery('#' + id);
         if (flag == 'show') {
             externalPPP.busyLayer('show');
@@ -2902,11 +2797,11 @@ function ExternalPilotProfilePage() {
         }
     };
 
-    this.showInfoArea = function() {
+    this.showInfoArea = function () {
         jQuery('#mainInfo').show('slow');
     }
 
-    this.hideShowLoader = function(type) {
+    this.hideShowLoader = function (type) {
         if (type == 'show') {
             jQuery('#loadAnimation').show('slow');
         } else if (type == 'hide') {
@@ -2914,7 +2809,7 @@ function ExternalPilotProfilePage() {
         }
     }
 
-    this.toggleImprint = function(flag) {
+    this.toggleImprint = function (flag) {
         switch (flag) {
             case 'show':
                 if (jQuery('#imprintContainer').hasClass('hideElement')) {
@@ -2935,67 +2830,60 @@ function ExternalPilotProfilePage() {
 }
 
 var externalPPPAdvert = new PPPAdvert();
-function PPPAdvert(){
-    this.breakingNewsInterval = false;
-    this.currentIconID        = 0;
-    this.textSwitch        = 0;
-    this.imageSwitch        = 0;
-    this.titleSwitch        = 0;
-    this.durationSwitch        = 0;
-    this.maxIconID            = 0;
-    this.ids                  = false;
-    this.keys                 = false;
-    this.textIcons            = false;
-    this.images               = false;
-    this.titles               = false;
-    this.links                = false;
-    this.durations            = false;
-    this.language            = false;
-    this.secondsCounter       = 0;
-    this.titlePosition        = 12;
 
-    this.setLanguage = function(language){
+function PPPAdvert() {
+    this.breakingNewsInterval = false;
+    this.currentIconID = 0;
+    this.textSwitch = 0;
+    this.imageSwitch = 0;
+    this.titleSwitch = 0;
+    this.durationSwitch = 0;
+    this.maxIconID = 0;
+    this.ids = false;
+    this.keys = false;
+    this.textIcons = false;
+    this.images = false;
+    this.titles = false;
+    this.links = false;
+    this.durations = false;
+    this.language = false;
+    this.secondsCounter = 0;
+    this.titlePosition = 12;
+
+    this.setLanguage = function (language) {
         this.language = language;
     }
 
-    this.setMaxIconID = function(iconCount)
-    {
+    this.setMaxIconID = function (iconCount) {
         this.maxIconID = iconCount;
     };
 
-     this.setIds = function(array)
-    {
+    this.setIds = function (array) {
         this.ids = array;
     };
 
-    this.setKeys = function(array)
-    {
+    this.setKeys = function (array) {
         this.keys = array;
     };
 
 
-    this.setTextIcons = function(array)
-    {
+    this.setTextIcons = function (array) {
         this.textIcons = array;
     }
 
-    this.setImages = function(array)
-    {
+    this.setImages = function (array) {
         this.images = array;
     };
 
-    this.setTitles = function(array)
-    {
+    this.setTitles = function (array) {
         this.titles = array;
     };
 
-    this.setLinks = function(array)
-    {
+    this.setLinks = function (array) {
         this.links = array;
     };
 
-    this.setDurations = function(array)
-    {
+    this.setDurations = function (array) {
         this.durations = array;
     };
 
@@ -3007,8 +2895,7 @@ function PPPAdvert(){
     this.leftArrow = null;
     this.rightArrow = null;
 
-    this.init = function()
-    {
+    this.init = function () {
         this.advertCon = jQuery('#externalPPPHeaderLeftAd');
         this.mainCon = jQuery(document.createElement('div')).attr('id', 'mainCon').appendTo(this.advertCon);
         this.textImg = jQuery(document.createElement('img')).attr('id', 'textImg').appendTo(this.mainCon);
@@ -3019,19 +2906,19 @@ function PPPAdvert(){
     };
 
     this.switchInterval = null;
-    this.start = function(){
+    this.start = function () {
         setInterval(function () {
             externalPPPAdvert.textImg.attr('src', externalPPPAdvert.textIcons[++externalPPPAdvert.textSwitch % externalPPPAdvert.maxIconID]);
             externalPPPAdvert.imgCon.attr('src', externalPPPAdvert.images[++externalPPPAdvert.imageSwitch % externalPPPAdvert.maxIconID]);
             externalPPPAdvert.imgCon.attr('title', externalPPPAdvert.titles[++externalPPPAdvert.titleSwitch % externalPPPAdvert.maxIconID]);
-            }, externalPPPAdvert.durations[++externalPPPAdvert.durationSwitch % externalPPPAdvert.maxIconID]);
+        }, externalPPPAdvert.durations[++externalPPPAdvert.durationSwitch % externalPPPAdvert.maxIconID]);
     }
 
-    this.showAdvert = function(){
+    this.showAdvert = function () {
         this.imgCon.attr('src', 'yes');
     }
 
-    this.showArrows = function(){
+    this.showArrows = function () {
 
     }
 }
@@ -3039,59 +2926,59 @@ function PPPAdvert(){
 var misc = new Miscellaneous();
 
 
-function Miscellaneous(){
-    this.initialiseScrollBar = function(){
+function Miscellaneous() {
+    this.initialiseScrollBar = function () {
         jQuery('.scroll-pane').jScrollPane({showArrows: true});
     };
 
-    this.testForScrollbar = function(id){
-        if($(id)){
+    this.testForScrollbar = function (id) {
+        if ($(id)) {
             var element = $(id).childElements();
-            if(!$(element[0]).hasClassName('scroll-innerBox')){
+            if (!$(element[0]).hasClassName('scroll-innerBox')) {
                 Scroller.reset(id);
             }
         }
     };
 
-    this.testToolie = function(){
+    this.testToolie = function () {
         /*alert('hhhh');*/
     }
 
-    this.handleTooltip= function(selector){
+    this.handleTooltip = function (selector) {
         var offsetEle
         var targetEle = null;
         var tooltipEle = null;
-        jQuery('.' + selector).each(function(){
+        jQuery('.' + selector).each(function () {
             var id = this.id;
-            if(id == 'skill_23b' || id == 'skill_21b' || id == 'skill_16b' || id == 'skill_15'){
+            if (id == 'skill_23b' || id == 'skill_21b' || id == 'skill_16b' || id == 'skill_15') {
                 targetEle = 'leftMiddle';
                 tooltipEle = 'rightMiddle';
-            }else if(id == 'skill_19' || id == 'skill_22b'){
+            } else if (id == 'skill_19' || id == 'skill_22b') {
                 targetEle = 'leftBottom';
                 tooltipEle = 'rightBottom';
-            }else if(id == 'skill_1' || id == 'skill_5' || id == 'skill_5a' || id == 'skill_5b' || id == 'skill_6' || id == 'skill_11' || id == 'skill_20' || id == 'skill_22a'){
+            } else if (id == 'skill_1' || id == 'skill_5' || id == 'skill_5a' || id == 'skill_5b' || id == 'skill_6' || id == 'skill_11' || id == 'skill_20' || id == 'skill_22a') {
                 targetEle = 'rightBottom';
                 tooltipEle = 'leftBottom';
-            }else{
+            } else {
                 targetEle = 'rightMiddle';
                 tooltipEle = 'leftMiddle';
             }
-            var content = jQuery('#'+id+'_info').html();
+            var content = jQuery('#' + id + '_info').html();
             jQuery(this).qtip({
                 content: content,
-                position:{
-                  target: 'mouse',
-                  corner:{
-                      target:targetEle,
-                      tooltip: tooltipEle
-                  },
-                  adjust:{
-                      mouse: true
-                  }
+                position: {
+                    target: 'mouse',
+                    corner: {
+                        target: targetEle,
+                        tooltip: tooltipEle
+                    },
+                    adjust: {
+                        mouse: true
+                    }
                 },
-                style:{
-                    width:265,
-                    background:'none',
+                style: {
+                    width: 265,
+                    background: 'none',
                     border: 'none'
                 }
             })
@@ -3099,28 +2986,28 @@ function Miscellaneous(){
     };
 
     this.eventMouseOver = null;
-    this.handleInviteButton = function(){
+    this.handleInviteButton = function () {
         var element = $('social-invite-default-container').getElementsBySelector('span');
-        element.observe('mouseover', function(){
+        element.observe('mouseover', function () {
         })
     };
 
-    this.limitTextSize = function(field, limit){
-           if(field.value.length > limit){
-               field.value = field.value.substring(0, limit);
-           }
+    this.limitTextSize = function (field, limit) {
+        if (field.value.length > limit) {
+            field.value = field.value.substring(0, limit);
+        }
     };
 
-    this.createJsCssElement = function(filename, filetype){
+    this.createJsCssElement = function (filename, filetype) {
         var fileref;
-        switch(filetype){
+        switch (filetype) {
             case 'js':
-                fileref=document.createElement('script')
-                fileref.setAttribute("type","text/javascript")
+                fileref = document.createElement('script')
+                fileref.setAttribute("type", "text/javascript")
                 fileref.setAttribute("src", filename)
                 break;
             case'css':
-                fileref=document.createElement("link")
+                fileref = document.createElement("link")
                 fileref.setAttribute("rel", "stylesheet")
                 fileref.setAttribute("type", "text/css")
                 fileref.setAttribute("href", filename)
@@ -3129,12 +3016,12 @@ function Miscellaneous(){
         return fileref;
     };
 
-    this.replaceJsCssFile = function(oldFilename, newFilename, filetype){
+    this.replaceJsCssFile = function (oldFilename, newFilename, filetype) {
         var targetAttribute;
         var elementsOfInterest;
         var newElement;
 
-        switch(filetype){
+        switch (filetype) {
             case 'js':
                 targetAttribute = 'src';
                 elementsOfInterest = $$('script');
@@ -3145,22 +3032,22 @@ function Miscellaneous(){
                 break;
         }
 
-        elementsOfInterest.each(function(item){
+        elementsOfInterest.each(function (item) {
             var itemElement = $(item);
-            if(itemElement && itemElement.getAttribute(targetAttribute) != null && itemElement.getAttribute(targetAttribute).indexOf(oldFilename) != -1){
+            if (itemElement && itemElement.getAttribute(targetAttribute) != null && itemElement.getAttribute(targetAttribute).indexOf(oldFilename) != -1) {
                 newElement = misc.createJsCssElement(newFilename, filetype);
                 itemElement.parentNode.replaceChild(newElement, itemElement);
             }
         });
     }
 
-    this.addJsCssFile = function(newFilename, filetype){
+    this.addJsCssFile = function (newFilename, filetype) {
 
         var targetAttribute;
         var elementsOfInterest;
         var newElement;
 
-        switch(filetype){
+        switch (filetype) {
             case 'js':
                 targetAttribute = 'src';
                 elementsOfInterest = $$('script');
@@ -3176,11 +3063,11 @@ function Miscellaneous(){
     }
 
 
-    this.removeJsCssFile = function(filename, filetype){
+    this.removeJsCssFile = function (filename, filetype) {
         var targetAttribute;
         var elementsOfInterest;
         var newElement;
-        switch(filetype){
+        switch (filetype) {
             case 'js':
                 targetAttribute = 'src';
                 elementsOfInterest = $$('script');
@@ -3191,27 +3078,27 @@ function Miscellaneous(){
                 break;
         }
 
-        elementsOfInterest.each(function(item){
+        elementsOfInterest.each(function (item) {
             var itemElement = $(item);
-            if(itemElement && itemElement.getAttribute(targetAttribute) != null && itemElement.getAttribute(targetAttribute).indexOf(filename) != -1){
+            if (itemElement && itemElement.getAttribute(targetAttribute) != null && itemElement.getAttribute(targetAttribute).indexOf(filename) != -1) {
                 itemElement.parentNode.removeChild(itemElement);
             }
         });
     }
 
-    this.customScrollbar = function(){
-        var scrollbar = new Control.ScrollBar('scrollbar_content','scrollbar_track');
+    this.customScrollbar = function () {
+        var scrollbar = new Control.ScrollBar('scrollbar_content', 'scrollbar_track');
     }
 
-    this.customScrollbarLog = function(){
-        var scrollbarLogBook = new Control.ScrollBar('scrollbar_content_logBook','scrollbar_track_logBook');
+    this.customScrollbarLog = function () {
+        var scrollbarLogBook = new Control.ScrollBar('scrollbar_content_logBook', 'scrollbar_track_logBook');
     }
 }
 
 // DEPRECATED - use Shop.openPaymentWindow instead!
-function openExternal (address) {
+function openExternal(address) {
     //alert('openExternal is a deprecated function!');
-    var external = window.open(address.replace(/\+/g,"%2B"), "paymentglobal", "width=1000,height=680,left=100,top=200");
+    var external = window.open(address.replace(/\+/g, "%2B"), "paymentglobal", "width=1000,height=680,left=100,top=200");
     external.focus();
 }
 
@@ -3221,7 +3108,7 @@ function schliessen(layerID) {
 }
 
 function checkKey(code) {
-    if (code==27) {
+    if (code == 27) {
         if ($("infoPopup").style.display = "block") {
             $("infoPopup").style.display = "none";
             hideBusyLayer();
@@ -3233,7 +3120,7 @@ function showMessageDeleteOtherQuests(text) {
     alert(text);
 }
 
-function number_format( number, decimals, dec_point, thousands_sep ) {
+function number_format(number, decimals, dec_point, thousands_sep) {
 
     var n = number, prec = decimals, dec = dec_point, sep = thousands_sep;
     n = !isFinite(+n) ? 0 : +n;
@@ -3248,8 +3135,8 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
         _ = abs.split(/\D/);
         i = _[0].length % 3 || 3;
 
-        _[0] = s.slice(0,i + (n < 0)) +
-              _[0].slice(i).replace(/(\d{3})/g, sep+'$1');
+        _[0] = s.slice(0, i + (n < 0)) +
+            _[0].slice(i).replace(/(\d{3})/g, sep + '$1');
 
         s = _.join(dec || '.');
     } else {
@@ -3260,18 +3147,18 @@ function number_format( number, decimals, dec_point, thousands_sep ) {
 }
 
 function isChrome() {
-    return  navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
 }
 
 function showAchievementTooltip(tooltip, toolttipId) {
-    var pos = jQuery('#'+toolttipId).position();
+    var pos = jQuery('#' + toolttipId).position();
 
     if (tooltip == 'general') {
         offsetLeft = 65;
         offsetTop = 15;
     }
 
-    toolTipElement = jQuery('#tooltip_'+toolttipId);
+    toolTipElement = jQuery('#tooltip_' + toolttipId);
     toolTipElement.css({
         position: 'absolute',
         top: (pos.top + offsetTop) + 'px',
@@ -3282,7 +3169,7 @@ function showAchievementTooltip(tooltip, toolttipId) {
 }
 
 function hideAchievementTooltip(toolttipId) {
-    jQuery('#tooltip_'+toolttipId).hide();
+    jQuery('#tooltip_' + toolttipId).hide();
 }
 
 function showUserInfo(userID) {
@@ -3290,8 +3177,8 @@ function showUserInfo(userID) {
 }
 
 // Quick fix to reduce the number of HTTP calls
-var hangarTooltipCache      = {},
-    tooltipsLoading         = {};
+var hangarTooltipCache = {},
+    tooltipsLoading = {};
 
 /**
  * Queries the server for hangar tooltip HTML.
@@ -3310,14 +3197,16 @@ function showHangarInfo(hangarId) {
             tooltipsLoading[hangarId] = true;
             // Get tooltip HTML from server
             User.loadHangarInfo(hangarId);
-        };
+        }
+        ;
     } else {
         // Get tooltip HTML from cache
         tooltipHtml = hangarTooltipCache[hangarId];
 
         // Call callback function that XAJAX would call
         hangarInfoLayerLoaded(hangarId, tooltipHtml, false);
-    };
+    }
+    ;
 }
 
 function showClanInfo(clanID) {
@@ -3325,26 +3214,28 @@ function showClanInfo(clanID) {
 }
 
 
-function hangarInfoLayerLoaded (hangarId, tooltipHtml, storeInCache) {
-    var tooltipContainer    = jQuery('#hangarInfoLayer'),
-        storeInCache        = ('undefined' === typeof storeInCache || true === storeInCache) ? true : false;
+function hangarInfoLayerLoaded(hangarId, tooltipHtml, storeInCache) {
+    var tooltipContainer = jQuery('#hangarInfoLayer'),
+        storeInCache = ('undefined' === typeof storeInCache || true === storeInCache) ? true : false;
 
     if ('undefined' !== typeof tooltipHtml) {
         tooltipContainer.html(tooltipHtml);
 
         if (storeInCache) {
             hangarTooltipCache[hangarId] = tooltipHtml;
-        };
-    };
+        }
+        ;
+    }
+    ;
 
-    tooltipContainer.css({'top': m.y-15 + 'px', 'left': m.x-150 + 'px'}) //.show();
+    tooltipContainer.css({'top': m.y - 15 + 'px', 'left': m.x - 150 + 'px'}) //.show();
 
-    if(tooltipContainer.attr("parent") == "hangarSlots"){
+    if (tooltipContainer.attr("parent") == "hangarSlots") {
 
         jQuery('#switchActiveHangar').hide();
         jQuery('#viewActiveHangar').show();
 
-    } else if (tooltipContainer.attr("parent") == "header_hangar_slots"){
+    } else if (tooltipContainer.attr("parent") == "header_hangar_slots") {
 
         jQuery('#switchActiveHangar').show();
         jQuery('#viewActiveHangar').hide();
@@ -3357,34 +3248,36 @@ var m = {x: 0, y: 0};
  * Only interact with jQuery if it is loaded.
  */
 if ('undefined' !== typeof jQuery) {
-    jQuery(document).ready(function(){
+    jQuery(document).ready(function () {
         executeDocumentReadyFunctions();
     });
-};
+}
+;
 
-function executeDocumentReadyFunctions () {
-    jQuery("*[showUser]").live('click', function(e) {
-	   if(e) {
-		   m.x = e.pageX;
-		   m.y = e.pageY;
-	   }
-	   showUserInfo(jQuery(this).attr('showUser'));
-	   jQuery('.qtip-active').hide();
-   });
+function executeDocumentReadyFunctions() {
+    jQuery("*[showUser]").live('click', function (e) {
+        if (e) {
+            m.x = e.pageX;
+            m.y = e.pageY;
+        }
+        showUserInfo(jQuery(this).attr('showUser'));
+        jQuery('.qtip-active').hide();
+    });
 
     // Only use jQuery 'livequery' plugin if it is loaded.
     if ('function' === typeof jQuery.livequery) {
-        jQuery("*[showUser]").livequery(function() {
-    		var title = jQuery(this).find('.userInfoName').attr('title');
-            if(title != '') {
-                jQuery(this).qtip({content: title,style: 'dohdr',position: {target: 'mouse'}});
+        jQuery("*[showUser]").livequery(function () {
+            var title = jQuery(this).find('.userInfoName').attr('title');
+            if (title != '') {
+                jQuery(this).qtip({content: title, style: 'dohdr', position: {target: 'mouse'}});
                 jQuery(this).find('.userInfoName').attr('title', '');
             }
         });
-    };
+    }
+    ;
 
-    jQuery("*[showHangarInfo]").live('mouseover', function(e) {
-        if(e) {
+    jQuery("*[showHangarInfo]").live('mouseover', function (e) {
+        if (e) {
             m.x = e.pageX;
             m.y = e.pageY;
         }
@@ -3395,8 +3288,8 @@ function executeDocumentReadyFunctions () {
 
     });
 
-    jQuery("*[showClanInfo]").live('click', function(e) {
-        if(e) {
+    jQuery("*[showClanInfo]").live('click', function (e) {
+        if (e) {
             m.x = e.pageX;
             m.y = e.pageY;
         }
@@ -3415,7 +3308,7 @@ function executeDocumentReadyFunctions () {
      *
      */
 
-        // Initialize Tools.Popup
+    // Initialize Tools.Popup
     Tools.Popup.Initialize();
 
 
@@ -3423,9 +3316,9 @@ function executeDocumentReadyFunctions () {
 
 
 function gotoWriteMessage(recipient, type) {
-	if(recipient.constructor == Array) recipient = recipient.join('_');
-	typeID = (type=='user')?'recipientID':'clanID';
-    do_redirect('indexInternal.es?action=internalMessaging&subaction=writeMessage&'+typeID+'='+recipient);
+    if (recipient.constructor == Array) recipient = recipient.join('_');
+    typeID = (type == 'user') ? 'recipientID' : 'clanID';
+    do_redirect('indexInternal.es?action=internalMessaging&subaction=writeMessage&' + typeID + '=' + recipient);
 }
 
 //function userInfoLayerInvite(invitedID)
@@ -3442,22 +3335,42 @@ function gotoWriteMessage(recipient, type) {
 
 function userInfoLayerLoad(userName, userIsBlocked) {
 
-    jQuery("#userInfoUsername").attr("title",decodeURIComponent(userName));
-    jQuery("#userInfoUsername").text((decodeURIComponent(userName).substring(0,28)));
+    jQuery("#userInfoUsername").attr("title", decodeURIComponent(userName));
+    jQuery("#userInfoUsername").text((decodeURIComponent(userName).substring(0, 28)));
 
     //Set tooltips
-    jQuery('#userInfoButtonAddToFriends').qtip({content: header_ttips.userInfo_addFriend,style: 'dohdr',position: {target: 'mouse'}});
-    jQuery('#userInfoButtonSendMessage').qtip({content: header_ttips.userInfo_sendMessage,style: 'dohdr',position: {target: 'mouse'}});
-    jQuery('#userInfoButtonShowProfil').qtip({content: header_ttips.userInfo_showProfile,style: 'dohdr',position: {target: 'mouse'}});
-    if(userIsBlocked) {
-        jQuery('#userInfoButtonBlacklistUser').qtip({content: header_ttips.userInfo_blacklistUserListed,style: 'dohdr',position: {target: 'mouse'}});
+    jQuery('#userInfoButtonAddToFriends').qtip({
+        content: header_ttips.userInfo_addFriend,
+        style: 'dohdr',
+        position: {target: 'mouse'}
+    });
+    jQuery('#userInfoButtonSendMessage').qtip({
+        content: header_ttips.userInfo_sendMessage,
+        style: 'dohdr',
+        position: {target: 'mouse'}
+    });
+    jQuery('#userInfoButtonShowProfil').qtip({
+        content: header_ttips.userInfo_showProfile,
+        style: 'dohdr',
+        position: {target: 'mouse'}
+    });
+    if (userIsBlocked) {
+        jQuery('#userInfoButtonBlacklistUser').qtip({
+            content: header_ttips.userInfo_blacklistUserListed,
+            style: 'dohdr',
+            position: {target: 'mouse'}
+        });
     } else {
-        jQuery('#userInfoButtonBlacklistUser').qtip({content: header_ttips.userInfo_blacklistUser,style: 'dohdr',position: {target: 'mouse'}});
+        jQuery('#userInfoButtonBlacklistUser').qtip({
+            content: header_ttips.userInfo_blacklistUser,
+            style: 'dohdr',
+            position: {target: 'mouse'}
+        });
     }
     jQuery('.userInfoFriendRequested').qtip('destroy');
 
     //position layer
-    jQuery('#userInfoLayer').css({'top': m.y-15 + 'px', 'left': m.x-150 + 'px'}).show();
+    jQuery('#userInfoLayer').css({'top': m.y - 15 + 'px', 'left': m.x - 150 + 'px'}).show();
 
     //delay 6 seconds prior fadeOut
     jQuery('#userInfoBox').delay(6000).fadeOut();
@@ -3472,15 +3385,19 @@ function userInfoLayerLoad(userName, userIsBlocked) {
  */
 function clanInfoLayerLoaded(clanName) {
 
-    jQuery("#clanInfoClanName").attr("title",decodeURIComponent(clanName));
-    jQuery("#clanInfoClanName").text((decodeURIComponent(clanName).substring(0,28)));
+    jQuery("#clanInfoClanName").attr("title", decodeURIComponent(clanName));
+    jQuery("#clanInfoClanName").text((decodeURIComponent(clanName).substring(0, 28)));
 
     //Set tooltips
-    jQuery('#clanInfoButtonApplyMembership').qtip({content: header_ttips.clanInfo_contactClan,style: 'dohdr',position: {target: 'mouse'}});
+    jQuery('#clanInfoButtonApplyMembership').qtip({
+        content: header_ttips.clanInfo_contactClan,
+        style: 'dohdr',
+        position: {target: 'mouse'}
+    });
     //jQuery('.userInfoFriendRequested').qtip('destroy');
 
     //position layer
-    jQuery('#clanInfoLayer').css({'top': m.y-15 + 'px', 'left': m.x-150 + 'px'}).show();
+    jQuery('#clanInfoLayer').css({'top': m.y - 15 + 'px', 'left': m.x - 150 + 'px'}).show();
 
     //delay 3 seconds prior fadeOut
     jQuery('#clanInfoBox').delay(3000).fadeOut();
@@ -3489,12 +3406,12 @@ function clanInfoLayerLoaded(clanName) {
 }
 
 var PepsiPromotion = {
-    validateCode: function(errMsg) {
+    validateCode: function (errMsg) {
         var code = jQuery('#pepsiPromoCode').val();
         if (code.length < 8 || code.length > 10) {
             jQuery('#pepsiPromoInfoIcon').addClass('promo_pepsi_icon_error');
             jQuery('#pepsiPromoCodeMessage').addClass('promo_pepsi_font_error');
-            jQuery('#pepsiPromoCode').css('color','#ff0000');
+            jQuery('#pepsiPromoCode').css('color', '#ff0000');
             jQuery('#pepsiPromoCodeMessage').html(errMsg);
             return false;
         }
@@ -3509,46 +3426,46 @@ var PepsiPromotion = {
             url: '/ajax/promo.php',
             dataType: 'json',
             data: {'command': 'validateCode', 'code': code},
-            success: function(response) {
-                jQuery('#pepsiPromoCode').css('color','white');
+            success: function (response) {
+                jQuery('#pepsiPromoCode').css('color', 'white');
                 if (response.result == 'OK') {
                     jQuery('#pepsiPromoInfoIcon').addClass('promo_pepsi_icon_success');
                     jQuery('#pepsiPromoCodeMessage').addClass('promo_pepsi_font_success');
-                    jQuery('#pepsiPromoCode').css('color','#3CE800');
+                    jQuery('#pepsiPromoCode').css('color', '#3CE800');
                 } else {
                     jQuery('#pepsiPromoInfoIcon').addClass('promo_pepsi_icon_error');
                     jQuery('#pepsiPromoCodeMessage').addClass('promo_pepsi_font_error');
-                    jQuery('#pepsiPromoCode').css('color','#ff0000');
+                    jQuery('#pepsiPromoCode').css('color', '#ff0000');
                 }
                 jQuery('#pepsiPromoCodeMessage').html(response.message);
                 Main.hideSpinner();
                 hideBusyLayer();
             },
-            error: function(){}//'' //DoMessaging.getInstance().systemError
+            error: function () {
+            }//'' //DoMessaging.getInstance().systemError
         });
     }
 }
 
 var arenaHandler = new ArenaHandler();
-function ArenaHandler()
-{
-    this.signup = function(userId, arenaId)
-    {
+
+function ArenaHandler() {
+    this.signup = function (userId, arenaId) {
         var firstname = jQuery('#firstname').val();
-        if(firstname == "") {
+        if (firstname == "") {
             jQuery('#firstname').addClass('error');
             return;
         }
         jQuery('#firstname').removeClass('error');
 
         var lastname = jQuery('#lastname').val();
-        if(lastname == "") {
+        if (lastname == "") {
             jQuery('#lastname').addClass('error');
             return;
         }
         jQuery('#lastname').removeClass('error');
 
-        if(!jQuery('#tcs').attr('checked')) {
+        if (!jQuery('#tcs').attr('checked')) {
             jQuery('#tcsContainer').addClass('error');
             return;
         }
@@ -3557,14 +3474,19 @@ function ArenaHandler()
         this.saveSignup(userId, arenaId, firstname, lastname);
     }
 
-    this.saveSignup = function(userId, arenaId, firstName, lastName)
-    {
+    this.saveSignup = function (userId, arenaId, firstName, lastName) {
         jQuery.ajax({
             type: 'POST',
             url: '/ajax/system.php',
             dataType: 'json',
-            data: {'command': 'signupArena', 'userId': userId, 'arenaId': arenaId, 'firstName': firstName, 'lastName' : lastName},
-            success: function(response) {
+            data: {
+                'command': 'signupArena',
+                'userId': userId,
+                'arenaId': arenaId,
+                'firstName': firstName,
+                'lastName': lastName
+            },
+            success: function (response) {
                 jQuery('#tcsContainer').hide();
                 jQuery('#button_signup').hide();
                 jQuery('#bn_text').hide();
@@ -3577,7 +3499,8 @@ function ArenaHandler()
                 }
 
             },
-            error: function(){}//'' //DoMessaging.getInstance().systemError
+            error: function () {
+            }//'' //DoMessaging.getInstance().systemError
         });
     }
 }

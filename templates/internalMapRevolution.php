@@ -2,13 +2,13 @@
     <div id="page-container" class="map-container"></div>
 
     <script>
-        <?php 		
+        <?php
         if(!$System->User->CLIENT_VERSION){
         ?>
         flashembed("page-container",
             {
                 "src": "<?=PROJECT_HTTP_ROOT?>spacemap/loadingscreen.swf",
-                "version": [11,0],
+                "version": [11, 0],
                 "expressInstall": "<?=PROJECT_HTTP_ROOT?>swf_global/expressInstall.swf",
                 "width": "1140px",
                 "height": "675px",
@@ -20,7 +20,7 @@
             },
             {
                 "lang": "en",
-                "loadingClaim":"UNIV3RSE",
+                "loadingClaim": "UNIV3RSE",
                 "userID": "<?=$System->User->PLAYER_ID?>",
                 "sessionID": "<?=session_id()?>",
                 "basePath": "spacemap",
@@ -32,7 +32,7 @@
                 "cdn": "<?=PROJECT_HTTP_ROOT?>",
                 "useHash": "1",
                 "host": "<?=PROJECT_WEB_IP?>",
-				"localGS": "0",
+                "localGS": "0",
                 "browser": "Chrome",
                 "fullscreen": "1",
                 "errortracking": "1",
@@ -58,7 +58,7 @@
         flashembed("page-container",
             {
                 "src": "http://dev.univ3rse.com/newclient/spacemap/preloader.swf",
-                "version": [11,0],
+                "version": [11, 0],
                 "expressInstall": "http://dev.univ3rse.com/newclient/swf_global/expressInstall.swf",
                 "width": "1140px",
                 "height": "675px",
@@ -69,36 +69,36 @@
                 "allowFullScreenInteractive": "true"
             },
             {
-                "lang":"us",
+                "lang": "us",
                 "userID": "<?=$System->User->PLAYER_ID?>",
                 "sessionID": "<?=session_id()?>",
-                "basePath":"spacemap",
-                "pid":"89",
-                "boardLink":"",
-                "helpLink":"",
-                "loadingClaim":"cri11ple",
-                "chatHost":"<?=PROJECT_WEB_IP?>",
-                "cdn":"http://dev.univ3rse.com/newclient/",
-                "useHash":"1",
-                "host":"127.0.0.1",
-                "browser":"Chrome",
-                "fullscreen":"1",
-                "gameXmlHash":"",
-                "resourcesXmlHash":"252475c240ec76a4e1e0ea41861f4200",
-                "profileXmlHash":"d77d1a04740e7a5b23d0602dd1c30300",
-                "languageXmlHash":"47342756a7914febc0a3562435d2ab00",
-                "loadingscreenHash":"9f1d0689a62675eb04e5edc65788c900",
-                "gameclientHash":"900ad0c95299418c7138aec826259200",
-                "gameclientPath":"spacemap",
-                "loadingscreenAssetsXmlHash":"1c540d399333ca7cc1755735a6082100",
-                "showAdvertisingHint":"",
-                "gameclientAllowedInitDelay":"10",
-                "eventStreamContext":"",
-                "useDeviceFonts":"0",
-                "display2d":"0",
-                "autoStartEnabled":"0",
-                "mapID":"<?=$System->User->Hangars->CURRENT_HANGAR->SHIP_MAP_ID?>",
-                "allowChat":"1"
+                "basePath": "spacemap",
+                "pid": "89",
+                "boardLink": "",
+                "helpLink": "",
+                "loadingClaim": "cri11ple",
+                "chatHost": "<?=PROJECT_WEB_IP?>",
+                "cdn": "http://dev.univ3rse.com/newclient/",
+                "useHash": "1",
+                "host": "127.0.0.1",
+                "browser": "Chrome",
+                "fullscreen": "1",
+                "gameXmlHash": "",
+                "resourcesXmlHash": "252475c240ec76a4e1e0ea41861f4200",
+                "profileXmlHash": "d77d1a04740e7a5b23d0602dd1c30300",
+                "languageXmlHash": "47342756a7914febc0a3562435d2ab00",
+                "loadingscreenHash": "9f1d0689a62675eb04e5edc65788c900",
+                "gameclientHash": "900ad0c95299418c7138aec826259200",
+                "gameclientPath": "spacemap",
+                "loadingscreenAssetsXmlHash": "1c540d399333ca7cc1755735a6082100",
+                "showAdvertisingHint": "",
+                "gameclientAllowedInitDelay": "10",
+                "eventStreamContext": "",
+                "useDeviceFonts": "0",
+                "display2d": "0",
+                "autoStartEnabled": "0",
+                "mapID": "<?=$System->User->Hangars->CURRENT_HANGAR->SHIP_MAP_ID?>",
+                "allowChat": "1"
             });
         <?php
         }

@@ -12,82 +12,72 @@
  kthxbye
  jmankopf
  */
-.sender
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 				11;
-	color: 					#A6DCF9;
-	
+.sender {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 11;
+    color: #A6DCF9;
+
 }
 
-.text
-{
-	fontFamily: 			_sans;
-	fontSize: 				11;
-	color: 					#eeeeee;
-	
+.text {
+    fontFamily: _sans;
+    fontSize: 11;
+    color: #eeeeee;
+
 }
 
-.highlight
-{
-	fontFamily: 			_sans;
-	fontSize: 				11;
-	color: 					#55ff55;
+.highlight {
+    fontFamily: _sans;
+    fontSize: 11;
+    color: #55ff55;
 }
 
-.supporter
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 				11;
-	color: 					#FF0000;
+.supporter {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 11;
+    color: #FF0000;
 }
 
-.mod
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 				11;
-	color: 					#F5B829;
+.mod {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 11;
+    color: #F5B829;
 }
 
-.vip
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 				10;
-	color: 					#29f5b8;
+.vip {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 10;
+    color: #29f5b8;
 }
 
-.admin
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 				11;
-	color: 					#FF0000;
+.admin {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 11;
+    color: #FF0000;
 }
 
-.system
-{
-	fontFamily: 			_sans;
-	fontWeight: 			bold;
-	fontSize: 			11;
-	color: 				#ffe538;
+.system {
+    fontFamily: _sans;
+    fontWeight: bold;
+    fontSize: 11;
+    color: #ffe538;
 }
 
-.whisper
-{
-	fontFamily: 			_sans;
-	fontSize: 				11;
-	color: 					#880000;
+.whisper {
+    fontFamily: _sans;
+    fontSize: 11;
+    color: #880000;
 }
 
-.link
-{
-	fontFamily: 			_sans;
-	fontSize: 				11;
-	color: 					#ff00ff;
-	fontStyle: 				normal;
-	textDecoration: 		underline;
+.link {
+    fontFamily: _sans;
+    fontSize: 11;
+    color: #ff00ff;
+    fontStyle: normal;
+    textDecoration: underline;
 }

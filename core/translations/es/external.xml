@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation -->
-	<translate ID="TEXT_LOGIN">CONECTARSE</translate>
-	<translate ID="TEXT_REGISTER">REGISTRARSE</translate>
-	
-	<!-- Boxes -->
-	<translate ID="BODY_TEXT_USERNAME">Usuario</translate>
-	<translate ID="BODY_TEXT_PASSWORD">Contraseña</translate>
-	<translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
-	<translate ID="BODY_TEXT_INVITATIONCODE">Código de Invitación</translate>
-	<translate ID="BODY_TEXT_TOC_NOTE">Al registrarse usted acepta los TyC</translate>
-	
-	<!-- Buttons -->
-	<translate ID="BUTTON_FORGOT_PW">Contraseña olvidada?</translate>
+    <!-- Navigation -->
+    <translate ID="TEXT_LOGIN">CONECTARSE</translate>
+    <translate ID="TEXT_REGISTER">REGISTRARSE</translate>
+
+    <!-- Boxes -->
+    <translate ID="BODY_TEXT_USERNAME">Usuario</translate>
+    <translate ID="BODY_TEXT_PASSWORD">Contraseña</translate>
+    <translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
+    <translate ID="BODY_TEXT_INVITATIONCODE">Código de Invitación</translate>
+    <translate ID="BODY_TEXT_TOC_NOTE">Al registrarse usted acepta los TyC</translate>
+
+    <!-- Buttons -->
+    <translate ID="BUTTON_FORGOT_PW">Contraseña olvidada?</translate>
 </translation>

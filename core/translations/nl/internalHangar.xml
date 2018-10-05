@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- internalHangar -->
-	<translate ID="BODY_TEXT_HANGAR_LASER">Laser</translate>
-	<translate ID="BODY_TEXT_HANGAR_HEAVY">Raketwerper</translate>
-	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Generator</translate>
-	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Extras</translate>
-	
-	<!-- Drones -->
-	<translate ID="BODY_TEXT_DRONE_Q">Wat wil je doen?</translate>
-	<translate ID="BODY_TEXT_DRONE_R_1">Verkoop Drone</translate>
-	<translate ID="BODY_TEXT_DRONE_R_2">Herstel Drone</translate>
+    <!-- internalHangar -->
+    <translate ID="BODY_TEXT_HANGAR_LASER">Laser</translate>
+    <translate ID="BODY_TEXT_HANGAR_HEAVY">Raketwerper</translate>
+    <translate ID="BODY_TEXT_HANGAR_GENERATOR">Generator</translate>
+    <translate ID="BODY_TEXT_HANGAR_EXTRAS">Extras</translate>
+
+    <!-- Drones -->
+    <translate ID="BODY_TEXT_DRONE_Q">Wat wil je doen?</translate>
+    <translate ID="BODY_TEXT_DRONE_R_1">Verkoop Drone</translate>
+    <translate ID="BODY_TEXT_DRONE_R_2">Herstel Drone</translate>
 </translation>

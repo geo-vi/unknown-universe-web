@@ -1,17 +1,17 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation -->
-	<translate ID="TEXT_LOGIN">LOGIN</translate>
-	<translate ID="TEXT_REGISTER">REGISTREREN</translate>
-	
-	<!-- Boxes -->
-	<translate ID="BODY_TEXT_USERNAME">Gebruikersnaam</translate>
-	<translate ID="BODY_TEXT_PASSWORD">Wachtwoord</translate>
-	<translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
-	<translate ID="BODY_TEXT_INVITATIONCODE">Uitnodigingscode</translate>
-	<translate ID="BODY_TEXT_TOC_NOTE">Door u te registreren gaat u akkoord met de ToC
-</translate>
-	
-	<!-- Buttons -->
-	<translate ID="BUTTON_FORGOT_PW">wachtwoord vergeten?</translate>
+    <!-- Navigation -->
+    <translate ID="TEXT_LOGIN">LOGIN</translate>
+    <translate ID="TEXT_REGISTER">REGISTREREN</translate>
+
+    <!-- Boxes -->
+    <translate ID="BODY_TEXT_USERNAME">Gebruikersnaam</translate>
+    <translate ID="BODY_TEXT_PASSWORD">Wachtwoord</translate>
+    <translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
+    <translate ID="BODY_TEXT_INVITATIONCODE">Uitnodigingscode</translate>
+    <translate ID="BODY_TEXT_TOC_NOTE">Door u te registreren gaat u akkoord met de ToC
+    </translate>
+
+    <!-- Buttons -->
+    <translate ID="BUTTON_FORGOT_PW">wachtwoord vergeten?</translate>
 </translation>

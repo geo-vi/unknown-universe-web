@@ -19,9 +19,10 @@ class UserRefreshHandler extends AbstractHandler
         //$this->$function();
     }
 
-    public function exec_refresh(){
+    public function exec_refresh()
+    {
         global $System;
-        $TIMESTAMP  = (int) $this->params['TIMESTAMP'];
+        $TIMESTAMP = (int)$this->params['TIMESTAMP'];
 
         if (isset($TIMESTAMP)) {
             session_write_close();
@@ -32,11 +33,11 @@ class UserRefreshHandler extends AbstractHandler
             }
             die(json_encode(
                 [
-                    'URIDIUM' => number_format($System->User->URIDIUM, 0, '.', '.'),
-                    'CREDITS' => number_format($System->User->CREDITS, 0, '.', '.'),
-                    'EXP' => number_format($System->User->EXP, 0, '.', '.'),
-                    'HONOR' => number_format($System->User->HONOR, 0, '.', '.'),
-                    'LVL' => number_format($System->User->LVL, 0, '.', '.'),
+                    'URIDIUM'   => number_format($System->User->URIDIUM, 0, '.', '.'),
+                    'CREDITS'   => number_format($System->User->CREDITS, 0, '.', '.'),
+                    'EXP'       => number_format($System->User->EXP, 0, '.', '.'),
+                    'HONOR'     => number_format($System->User->HONOR, 0, '.', '.'),
+                    'LVL'       => number_format($System->User->LVL, 0, '.', '.'),
                     'TIMESTAMP' => time(),
                 ]
             ));

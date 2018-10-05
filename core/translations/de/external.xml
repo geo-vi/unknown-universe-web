@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation -->
-	<translate ID="TEXT_LOGIN">LOGIN</translate>
-	<translate ID="TEXT_REGISTER">REGISTER</translate>
-	
-	<!-- Boxes -->
-	<translate ID="BODY_TEXT_USERNAME">Username</translate>
-	<translate ID="BODY_TEXT_PASSWORD">Password</translate>
-	<translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
-	<translate ID="BODY_TEXT_INVITATIONCODE">Invitation Code</translate>
-	<translate ID="BODY_TEXT_TOC_NOTE">By registering you agree upon the ToC</translate>
-	
-	<!-- Buttons -->
-	<translate ID="BUTTON_FORGOT_PW">Forgot your password?</translate>
+    <!-- Navigation -->
+    <translate ID="TEXT_LOGIN">LOGIN</translate>
+    <translate ID="TEXT_REGISTER">REGISTER</translate>
+
+    <!-- Boxes -->
+    <translate ID="BODY_TEXT_USERNAME">Username</translate>
+    <translate ID="BODY_TEXT_PASSWORD">Password</translate>
+    <translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
+    <translate ID="BODY_TEXT_INVITATIONCODE">Invitation Code</translate>
+    <translate ID="BODY_TEXT_TOC_NOTE">By registering you agree upon the ToC</translate>
+
+    <!-- Buttons -->
+    <translate ID="BUTTON_FORGOT_PW">Forgot your password?</translate>
 </translation>

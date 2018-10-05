@@ -1,5 +1,7 @@
 <?php
+
 namespace shop;
+
 use DB\MySQL;
 
 class Shop
@@ -11,79 +13,79 @@ class Shop
     private $mysql;
 
     public $CATEGORIES = [
-        "SHIPS" => [
-            "type" => "shop\Ship",
+        "SHIPS"      => [
+            "type"  => "shop\Ship",
             "table" => "ships",
-            "id" => "ship_id",
+            "id"    => "ship_id",
             "where" => [
-              "inShop" => 1
+                "inShop" => 1,
             ],
         ],
         "EQUIPABLES" => [
-            "type" => "shop\Item",
+            "type"  => "shop\Item",
             "table" => "items",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
                 "CATEGORY" => [
-                  'glue' => 'OR',
-                  'operation' => '=',
-                  'items' => ["'laser'", "'generator'","'heavy'","'extra'"]
+                    'glue'      => 'OR',
+                    'operation' => '=',
+                    'items'     => ["'laser'", "'generator'", "'heavy'", "'extra'"],
                 ],
-                "LOOT_ID" => [
-                    'glue' => 'AND',
+                "LOOT_ID"  => [
+                    'glue'      => 'AND',
                     'operation' => '>',
-                    'items' => ["''"]
-                ]
+                    'items'     => ["''"],
+                ],
             ],
-            "order" => "CATEGORY DESC,ID DESC"
+            "order" => "CATEGORY DESC,ID DESC",
         ],
-        "DRONES" => [
-            "type" => "shop\Drone",
+        "DRONES"     => [
+            "type"  => "shop\Drone",
             "table" => "items",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
-              "CATEGORY" =>  ["'drone'"]
+                "CATEGORY" => ["'drone'"],
             ],
-            "order" => "CATEGORY ASC,ID DESC"
+            "order" => "CATEGORY ASC,ID DESC",
         ],
-        "AMMO" => [
-            "type" => "shop\Ammo",
+        "AMMO"       => [
+            "type"  => "shop\Ammo",
             "table" => "items",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
-              "CATEGORY" => "'ammo'"
+                "CATEGORY" => "'ammo'",
             ],
         ],
-        "BOOSTER" => [
-            "type" => "shop\Booster",
+        "BOOSTER"    => [
+            "type"  => "shop\Booster",
             "table" => "items",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
-              "CATEGORY" => "'booster'"
+                "CATEGORY" => "'booster'",
             ],
         ],
-        "PET" => [
-            "type" => "shop\PET",
+        "PET"        => [
+            "type"  => "shop\PET",
             "table" => "items",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
-              //"CATEGORY" => ["'pet'","'pet_fuel'","'pet_gear'"]
-              "CATEGORY" => ["''"]
+                //"CATEGORY" => ["'pet'","'pet_fuel'","'pet_gear'"]
+                "CATEGORY" => ["''"],
             ],
         ],
-        "DESIGNS" => [
-            "type" => "shop\Design",
+        "DESIGNS"    => [
+            "type"  => "shop\Design",
             "table" => "ships_designs",
-            "id" => "ID",
+            "id"    => "ID",
             "where" => [
-                "inShop" => 1
+                "inShop" => 1,
             ],
         ],
     ];
 
     function __construct($user)
     {
-        $this->User = $user;
+        $this->User  = $user;
         $this->mysql = new MySQL(MYSQL_IP, $user->SERVER_DB, MYSQL_USER, MYSQL_PW);
     }
 
@@ -92,20 +94,22 @@ class Shop
      *
      * @param $CATEGORY
      * @param $ID
+     *
      * @return null|Item
      */
-    public function getItem($CATEGORY, $ID){
+    public function getItem($CATEGORY, $ID)
+    {
         $QUERY_PARAMS = $this->CATEGORIES[$CATEGORY];
-        if(isset($QUERY_PARAMS['order'])){
+        if (isset($QUERY_PARAMS['order'])) {
             unset($QUERY_PARAMS['order']);
         }
-        $QUERY = $this->buildQuery($QUERY_PARAMS);
-        $ITEM_DATA = $this->mysql->QUERY($QUERY.' AND '.$QUERY_PARAMS['id'].' =  ?', array($ID));
+        $QUERY     = $this->buildQuery($QUERY_PARAMS);
+        $ITEM_DATA = $this->mysql->QUERY($QUERY . ' AND ' . $QUERY_PARAMS['id'] . ' =  ?', [$ID]);
 
-        if(isset($ITEM_DATA[0]) && !empty($ITEM_DATA[0])){
+        if (isset($ITEM_DATA[0]) && !empty($ITEM_DATA[0])) {
             $ITEM_TYPE = $this->CATEGORIES[$CATEGORY]['type'];
             return new $ITEM_TYPE($ITEM_DATA[0], $this->mysql);
-        }else{
+        } else {
             return null;
         }
     }
@@ -114,16 +118,18 @@ class Shop
      * getItems Function
      *
      * @param $CATEGORY
+     *
      * @return array
      */
-    public function getItems($CATEGORY){
+    public function getItems($CATEGORY)
+    {
         $QUERY_PARAMS = $this->CATEGORIES[$CATEGORY];
-        $QUERY = $this->buildQuery($QUERY_PARAMS);
-        $ITEMS_RAW = $this->mysql->QUERY($QUERY);
-        $ITEM_ARR = [];
+        $QUERY        = $this->buildQuery($QUERY_PARAMS);
+        $ITEMS_RAW    = $this->mysql->QUERY($QUERY);
+        $ITEM_ARR     = [];
         /** @var  Item $ITEM_TYPE */
         $ITEM_TYPE = $this->CATEGORIES[$CATEGORY]['type'];
-        foreach ($ITEMS_RAW as $ITEM_DATA){
+        foreach ($ITEMS_RAW as $ITEM_DATA) {
             $ITEM_ARR[] = new $ITEM_TYPE($ITEM_DATA, $this->mysql);
         }
 
@@ -135,39 +141,43 @@ class Shop
      * used to build the MySQL Queries used to get stuff from the Database
      *
      * @param array $PARAMS
+     *
      * @return string
      */
-    private function buildQuery(array $PARAMS){
-        $QUERY  = "SELECT * FROM server_".$PARAMS['table'];
+    private function buildQuery(array $PARAMS)
+    {
+        $QUERY = "SELECT * FROM server_" . $PARAMS['table'];
 
-        if(isset($PARAMS['where'])){
+        if (isset($PARAMS['where'])) {
             $QUERY .= " WHERE ";
 
             $first = true;
-            foreach ($PARAMS['where'] as $FIELD => $CASE){
-               if(!$first){
-                   $QUERY .= ' AND ';
-               }
-               $QUERY .= '(';
-                if(is_array($CASE)){
-                    if(isset($CASE['glue'])){
-                        if(isset($CASE['operation'])){
-                            $QUERY .= $FIELD.' '.$CASE['operation'].' '.implode(' '.$CASE['glue'].' '.$FIELD.' '.$CASE['operation'].' ', $CASE['items']);
-                        }else{
-                            $QUERY .= $FIELD." = ".implode(' '.$CASE['glue'].' '.$FIELD.' = ', $CASE['items']);
+            foreach ($PARAMS['where'] as $FIELD => $CASE) {
+                if (!$first) {
+                    $QUERY .= ' AND ';
+                }
+                $QUERY .= '(';
+                if (is_array($CASE)) {
+                    if (isset($CASE['glue'])) {
+                        if (isset($CASE['operation'])) {
+                            $QUERY .= $FIELD . ' ' . $CASE['operation'] . ' ' . implode(' ' . $CASE['glue'] . ' ' . $FIELD . ' ' . $CASE['operation'] . ' ',
+                                    $CASE['items']);
+                        } else {
+                            $QUERY .= $FIELD . " = " . implode(' ' . $CASE['glue'] . ' ' . $FIELD . ' = ',
+                                    $CASE['items']);
                         }
-                    }else{
-                        $QUERY .= $FIELD." = ".implode(' OR '.$FIELD.' = ', $CASE);
+                    } else {
+                        $QUERY .= $FIELD . " = " . implode(' OR ' . $FIELD . ' = ', $CASE);
                     }
-                }else{
-                    $QUERY .= $FIELD." = ".$CASE;
+                } else {
+                    $QUERY .= $FIELD . " = " . $CASE;
                 }
                 $QUERY .= ')';
                 $first = false;
             }
         }
-        if(isset($PARAMS['order'])){
-            $QUERY .= " ORDER BY ".$PARAMS['order'];
+        if (isset($PARAMS['order'])) {
+            $QUERY .= " ORDER BY " . $PARAMS['order'];
         }
 
         return $QUERY;

@@ -1,36 +1,36 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- internalStart -->
-	<translate ID="BODY_TEXT_STATS">Статистика</translate>
-	<translate ID="BODY_TEXT_EVENTS">События</translate>
-	<translate ID="BODY_TEXT_PILOTPROFILE">Профиль пилота</translate>
-	
-	<!-- Stats -->
-	<translate ID="BODY_TEXT_STATS_PVPRANK">Пвп ранг</translate>
-	<translate ID="BODY_TEXT_STATS_GLOBALRANK">Общий ранг</translate>
-	<translate ID="BODY_TEXT_STATS_LEVEL">Уровень</translate>
-	
-	<!-- Events -->
-	<translate ID="BODY_TEXT_EVENTS_MONDAY">ПОНЕДЕЛЬНИК</translate>
-	<translate ID="BODY_TEXT_EVENTS_TUESDAY">ВТОРНИК</translate>
-	<translate ID="BODY_TEXT_EVENTS_WEDNESDAY">СРЕДА</translate>
-	<translate ID="BODY_TEXT_EVENTS_THURSDAY">ЧЕТВЕРГ</translate>
-	<translate ID="BODY_TEXT_EVENTS_FRIDAY">ПЯТНИЦА</translate>
-	<translate ID="BODY_TEXT_EVENTS_SATURDAY">СУББОТА</translate>
-	<translate ID="BODY_TEXT_EVENTS_SUNDAY">ВОСКРЕСЕНЬЕ</translate>
-	
-	<!-- Pilot Profile -->
-	<translate ID="BODY_TEXT_PP_NAME">Никнейм:</translate>
-	<translate ID="BODY_TEXT_PP_SINCE">В игре с:</translate>
-	<translate ID="BODY_TEXT_PP_TITLE">Титул:</translate>
-	<translate ID="BODY_TEXT_PP_RANK">Ранг:</translate>
-	<translate ID="BODY_TEXT_PP_ORIGIN">Страна:</translate>
-	<translate ID="BODY_TEXT_PP_AGE">Возраст:</translate>
-	<translate ID="BODY_TEXT_PP_GENDER">"Пол:</translate>
-	<translate ID="BODY_TEXT_PP_CONTACT">Контакты:</translate>
-	<translate ID="BODY_TEXT_PP_SKILLTREE">НАЖМИ ЗДЕСЬ ДЛЯ ОТКРЫТИЯ ДРЕВА УМЕНИЙ!</translate>
-	
-	
-	<!-- Misc Log Messages -->
-	<translate ID="LOG_MISC_LASTLOGIN">Вход успешно выполнен! С: {0}</translate>
+    <!-- internalStart -->
+    <translate ID="BODY_TEXT_STATS">Статистика</translate>
+    <translate ID="BODY_TEXT_EVENTS">События</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Профиль пилота</translate>
+
+    <!-- Stats -->
+    <translate ID="BODY_TEXT_STATS_PVPRANK">Пвп ранг</translate>
+    <translate ID="BODY_TEXT_STATS_GLOBALRANK">Общий ранг</translate>
+    <translate ID="BODY_TEXT_STATS_LEVEL">Уровень</translate>
+
+    <!-- Events -->
+    <translate ID="BODY_TEXT_EVENTS_MONDAY">ПОНЕДЕЛЬНИК</translate>
+    <translate ID="BODY_TEXT_EVENTS_TUESDAY">ВТОРНИК</translate>
+    <translate ID="BODY_TEXT_EVENTS_WEDNESDAY">СРЕДА</translate>
+    <translate ID="BODY_TEXT_EVENTS_THURSDAY">ЧЕТВЕРГ</translate>
+    <translate ID="BODY_TEXT_EVENTS_FRIDAY">ПЯТНИЦА</translate>
+    <translate ID="BODY_TEXT_EVENTS_SATURDAY">СУББОТА</translate>
+    <translate ID="BODY_TEXT_EVENTS_SUNDAY">ВОСКРЕСЕНЬЕ</translate>
+
+    <!-- Pilot Profile -->
+    <translate ID="BODY_TEXT_PP_NAME">Никнейм:</translate>
+    <translate ID="BODY_TEXT_PP_SINCE">В игре с:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Титул:</translate>
+    <translate ID="BODY_TEXT_PP_RANK">Ранг:</translate>
+    <translate ID="BODY_TEXT_PP_ORIGIN">Страна:</translate>
+    <translate ID="BODY_TEXT_PP_AGE">Возраст:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">"Пол:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Контакты:</translate>
+    <translate ID="BODY_TEXT_PP_SKILLTREE">НАЖМИ ЗДЕСЬ ДЛЯ ОТКРЫТИЯ ДРЕВА УМЕНИЙ!</translate>
+
+
+    <!-- Misc Log Messages -->
+    <translate ID="LOG_MISC_LASTLOGIN">Вход успешно выполнен! С: {0}</translate>
 </translation>

@@ -1,4 +1,5 @@
 <?php
+
 namespace shop;
 
 
@@ -23,13 +24,15 @@ abstract class AbstractItem
 
     /**
      * Item constructor.
-     * @param $ItemData
+     *
+     * @param       $ItemData
      * @param MySQL $MySQL
      */
     abstract function __construct($ItemData, MySQL $MySQL);
 
     /**
      * @param $property
+     *
      * @return mixed
      */
     function __get($property)
@@ -38,12 +41,13 @@ abstract class AbstractItem
     }
 
     /**
-     * @param $UserID
-     * @param $PlayerID
+     * @param     $UserID
+     * @param     $PlayerID
      * @param int $Amount
+     *
      * @return mixed
      */
-    abstract function buy($UserID, $PlayerID,$Amount = 1);
+    abstract function buy($UserID, $PlayerID, $Amount = 1);
 
     /**
      * @return mixed

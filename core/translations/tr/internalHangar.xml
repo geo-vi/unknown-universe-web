@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0"?>
 <translation>
-	<!-- internalHangar -->
-	<translate ID="BODY_TEXT_HANGAR_LASER">Lazer</translate>
-	<translate ID="BODY_TEXT_HANGAR_HEAVY">Ağır</translate>
-	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Jeneratör</translate>
-	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Ekstralar</translate>
-	
-	<!-- Drones -->
-	<translate ID="BODY_TEXT_DRONE_Q">Ne yapmak istiyorsun?</translate>
-	<translate ID="BODY_TEXT_DRONE_R_1">Droit Sat</translate>
-	<translate ID="BODY_TEXT_DRONE_R_2">Droit Tamir Et</translate>
+    <!-- internalHangar -->
+    <translate ID="BODY_TEXT_HANGAR_LASER">Lazer</translate>
+    <translate ID="BODY_TEXT_HANGAR_HEAVY">Ağır</translate>
+    <translate ID="BODY_TEXT_HANGAR_GENERATOR">Jeneratör</translate>
+    <translate ID="BODY_TEXT_HANGAR_EXTRAS">Ekstralar</translate>
+
+    <!-- Drones -->
+    <translate ID="BODY_TEXT_DRONE_Q">Ne yapmak istiyorsun?</translate>
+    <translate ID="BODY_TEXT_DRONE_R_1">Droit Sat</translate>
+    <translate ID="BODY_TEXT_DRONE_R_2">Droit Tamir Et</translate>
 </translation>

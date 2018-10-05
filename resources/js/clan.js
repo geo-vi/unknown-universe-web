@@ -1,10 +1,10 @@
 class clan {
-    constructor(){
+    constructor() {
         clan.searchKeyword = "";
         clan.listClans();
     }
 
-    static listClans(){
+    static listClans() {
         var clanTable = document.getElementsByClassName("table");
         clanTable.innerHTML = "<tr><td>" + 1 + "a</td><td>CLANNAME</td><td>SHORTDESCRIPTION</td><td>50/50</td><td>EIC</td><td>ACCEPTING Levl 200+</td></tr>";
         // $('.clan-bottom-list-container > table').empty();

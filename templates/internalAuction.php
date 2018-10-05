@@ -39,7 +39,9 @@
 <div class="container">
 
     <div class="auction col-md-12 aside text-center" style="padding:15px;">
-        <button class="uu_button2" onclick="auction('player_auction');">PLAYER AUCTION</button> <button class="uu_button2" onclick="auction('server_auction');">SERVER AUCTION</button> <button type="button" class="uu_button2" data-toggle="modal" data-target="#auction">START AUCTION</button>
+        <button class="uu_button2" onclick="auction('player_auction');">PLAYER AUCTION</button>
+        <button class="uu_button2" onclick="auction('server_auction');">SERVER AUCTION</button>
+        <button type="button" class="uu_button2" data-toggle="modal" data-target="#auction">START AUCTION</button>
     </div>
 
 </div>
@@ -53,7 +55,8 @@
             <div id="player_auction" class="none" style="display:block;">
                 <div class="row" style="margin-left:0px;margin-right:0px;">
 
-                    <div class="auction col-md-8 aside" style="position: relative; overflow: auto; box-sizing: border-box;height:650px;">
+                    <div class="auction col-md-8 aside"
+                         style="position: relative; overflow: auto; box-sizing: border-box;height:650px;">
                         <table class="table">
                             <thead>
                             <tr>
@@ -66,28 +69,36 @@
                             </thead>
                             <tbody>
                             <tr class="item item_light" id="0">
-                                <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                                <td style="border-top:none;"><img
+                                            src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                                </td>
                                 <td style="border-top:none;">Pil</td>
                                 <td style="border-top:none;">Test</td>
                                 <td style="border-top:none;">ITEM_OWNER_ACC</td>
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_dark" id="1">
-                                <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                                <td style="border-top:none;"><img
+                                            src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                                </td>
                                 <td style="border-top:none;">Pil</td>
                                 <td style="border-top:none;">Test</td>
                                 <td style="border-top:none;">ITEM_OWNER_ACC</td>
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_light" id="2">
-                                <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/ucb-100_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                                <td style="border-top:none;"><img
+                                            src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/ucb-100_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                                </td>
                                 <td style="border-top:none;">Pil</td>
                                 <td style="border-top:none;">Test</td>
                                 <td style="border-top:none;">ITEM_OWNER_ACC</td>
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_dark" id="3">
-                                <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/rsb-75_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                                <td style="border-top:none;"><img
+                                            src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/rsb-75_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                                </td>
                                 <td style="border-top:none;">Pil</td>
                                 <td style="border-top:none;">Test</td>
                                 <td style="border-top:none;">ITEM_OWNER_ACC</td>
@@ -97,12 +108,22 @@
                         </table>
                     </div>
 
-                    <div class="auction col-md-4 aside text-center" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
+                    <div class="auction col-md-4 aside text-center"
+                         style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
                         <div class="item_box">
-                            <div class="item_img"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00"></div>
-                            <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin hasar verme oranını üç katına çıkarır. (1.000 Birim)</div>
-                            <br/><div class="item_bid_input"><input class="uu_input" type="text" id="#" name="#" value="10000"> C.</div>
-                            <br/><div class="item_bid_button"><input type="submit" class="uu_button" value="Teklif Ver"></div>
+                            <div class="item_img"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </div>
+                            <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin
+                                hasar verme oranını üç katına çıkarır. (1.000 Birim)
+                            </div>
+                            <br/>
+                            <div class="item_bid_input"><input class="uu_input" type="text" id="#" name="#"
+                                                               value="10000"> C.
+                            </div>
+                            <br/>
+                            <div class="item_bid_button"><input type="submit" class="uu_button" value="Teklif Ver">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,7 +133,8 @@
         <div id="server_auction" class="none" style="display:none;">
             <div class="row" style="margin-left:0px;margin-right:0px;">
 
-                <div class="auction col-md-6 aside" style="position: relative; overflow: auto; box-sizing: border-box;height:650px;">
+                <div class="auction col-md-6 aside"
+                     style="position: relative; overflow: auto; box-sizing: border-box;height:650px;">
                     <table class="table">
                         <thead>
                         <tr>
@@ -123,27 +145,37 @@
                         </thead>
                         <tbody>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                            <td style="border-top:none;"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_dark">
-                            <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                            <td style="border-top:none;"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                            <td style="border-top:none;"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_dark">
-                            <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                            <td style="border-top:none;"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00"></td>
+                            <td style="border-top:none;"><img
+                                        src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                            </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         <tr/>
@@ -151,11 +183,17 @@
                     </table>
                 </div>
 
-                <div class="auction col-md-6 aside text-center" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
+                <div class="auction col-md-6 aside text-center"
+                     style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
                     <div class="item_box">
-                        <div class="item_img"><img src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00"></div>
-                        <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin hasar verme oranını üç katına çıkarır. (1.000 Birim)</div>
-                        <div class="item_desc" style="color:orange;font-size:20px;">100.000 C. <br/> STOCK LEFT: 1 <br/> <input type="submit" class="uu_button" value="Buy Now"></div>
+                        <div class="item_img"><img
+                                    src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00">
+                        </div>
+                        <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin
+                            hasar verme oranını üç katına çıkarır. (1.000 Birim)
+                        </div>
+                        <div class="item_desc" style="color:orange;font-size:20px;">100.000 C. <br/> STOCK LEFT: 1 <br/>
+                            <input type="submit" class="uu_button" value="Buy Now"></div>
 
                         <canvas id="myChart"></canvas>
                         <script>
@@ -180,7 +218,7 @@
                                     scales: {
                                         yAxes: [{
                                             ticks: {
-                                                beginAtZero:true
+                                                beginAtZero: true
                                             }
                                         }]
                                     }
@@ -206,7 +244,7 @@
             list[i].style.display = 'none';
         }
         var e = document.getElementById(id);
-        if(e.style.display == 'block') {
+        if (e.style.display == 'block') {
             e.style.display = 'none';
         } else {
             e.style.display = 'block';

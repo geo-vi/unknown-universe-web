@@ -1,7 +1,8 @@
 <?php
+
+use clan\Clan;
 use DB\MySQL;
 use shop\Shop;
-use clan\Clan;
 
 //SYSTEM RELATED CLASSES
 include_once(__DIR__ . "/system/class.MySQL.php");
@@ -36,7 +37,8 @@ include_once(__DIR__ . '/shop/items/class.Pet.php');
 include_once(__DIR__ . "/class.Game.php");
 
 
-class System {
+class System
+{
 
     /** @var MySQL */
     public $mysql;
@@ -60,58 +62,61 @@ class System {
 
     public $Server;
 
-	public $Game;
-	
-    function __construct(){
-        if(!isset($_SESSION)){
+    public $Game;
+
+    function __construct()
+    {
+        if (!isset($_SESSION)) {
             session_set_cookie_params(0, COOKIE_PATH, COOKIE_DOMAIN);
             session_start();
         }
         session_write_close();
-        $this->mysql = new MySQL(MYSQL_IP,MYSQL_DB_NAME,MYSQL_USER,MYSQL_PW);
-        $this->validate = new Validator($this->mysql);
+        $this->mysql         = new MySQL(MYSQL_IP, MYSQL_DB_NAME, MYSQL_USER, MYSQL_PW);
+        $this->validate      = new Validator($this->mysql);
         $this->error_handler = new ErrorHandler();
-        $this->routing = new Routing();
-        $this->logging = new Logging();
-        $this->translation = new Translation($this->mysql);
+        $this->routing       = new Routing();
+        $this->logging       = new Logging();
+        $this->translation   = new Translation($this->mysql);
     }
 
     /**
      *  Login Function
      *
-     *  @param string $username Username
-     *  @param string $password Password
+     * @param string $username Username
+     * @param string $password Password
      *
-     *  @return bool
+     * @return bool
      *
      */
-    public function Login($username,$password){
+    public function Login($username, $password)
+    {
 
         //CHECK IF USER EXITS
         $UserData = $this->getUserInfoByUsername($username);
-        $User = null;
+        $User     = null;
 
 
-        if(isset($UserData[0])){
+        if (isset($UserData[0])) {
             $UserData = $UserData[0];
-        }else{
+        } else {
             return false;
         }
 
         //CHECK LOGIN_DATA
-        if($username == $UserData['USERNAME'] && password_verify($password, $UserData['PW_HASH'])){
-            if(isset($_SESSION)){
+        if ($username == $UserData['USERNAME'] && password_verify($password, $UserData['PW_HASH'])) {
+            if (isset($_SESSION)) {
                 session_regenerate_id();
             }
             session_start();
             $_SESSION["USER_ID"] = $UserData['USER_ID'];
             session_write_close();
             $this->User = $User = new User($this->mysql, $UserData);;
-            $ip = (string) $this->getUserIP();
-            $this->mysql->QUERY('UPDATE users SET SESSION_ID = ? WHERE USER_ID = ?',array(session_id(), $this->User->USER_ID));
-            $this->mysql->QUERY('UPDATE users SET IP = ? WHERE SESSION_ID = ?',array($ip, session_id()));
+            $ip = (string)$this->getUserIP();
+            $this->mysql->QUERY('UPDATE users SET SESSION_ID = ? WHERE USER_ID = ?',
+                [session_id(), $this->User->USER_ID]);
+            $this->mysql->QUERY('UPDATE users SET IP = ? WHERE SESSION_ID = ?', [$ip, session_id()]);
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -121,65 +126,69 @@ class System {
      *  isLoggedIn Function
      *  checks if User is logged in over USER_ID and sessionID
      *
-     *  @return bool
+     * @return bool
      *
      */
-    public function isLoggedIn(){
-        if(isset($_SESSION["USER_ID"]) && $this->isValid($_SESSION["USER_ID"])){
+    public function isLoggedIn()
+    {
+        if (isset($_SESSION["USER_ID"]) && $this->isValid($_SESSION["USER_ID"])) {
             $user = $this->getUserInfo();
 
-            if(count($user) == 1){
+            if (count($user) == 1) {
                 //CREATING FULL USER OBJECT
-                $this->User = new User($this->mysql, $user[0]);
+                $this->User            = new User($this->mysql, $user[0]);
                 $this->User->Inventory = new Inventory($this->User);
-                $this->User->Hangars = new Hangars($this->User);
-                $this->Shop = new Shop($this->User);
-                $this->Clan = new Clan($this->User);
-				$this->Game = new Game($this->User);
+                $this->User->Hangars   = new Hangars($this->User);
+                $this->Shop            = new Shop($this->User);
+                $this->Clan            = new Clan($this->User);
+                $this->Game            = new Game($this->User);
                 //END
 
                 //GET LANGUAGE
-                if($user[0]['LANGUAGE'] != NULL){
+                if ($user[0]['LANGUAGE'] != null) {
                     $this->translation->setLanguage($this->User->LANGUAGE);
-                }else {
-                    $this->mysql->QUERY('UPDATE users SET LANGUAGE = ? WHERE USER_ID = ? AND SESSION_ID = ?',array($this->translation->LANGUAGE_ID, $this->User->USER_ID, session_id()));
+                } else {
+                    $this->mysql->QUERY('UPDATE users SET LANGUAGE = ? WHERE USER_ID = ? AND SESSION_ID = ?',
+                        [$this->translation->LANGUAGE_ID, $this->User->USER_ID, session_id()]);
                 }
 
                 //CHECK FOR EMAIL VERIFICATION
-                if(!$this->User->VERFIED && NEED_EMAIL_VERIFY){
+                if (!$this->User->VERFIED && NEED_EMAIL_VERIFY) {
                     $this->sendEmailVerification($this->User->USER_ID, $this->User->EMAIL);
                     $this->error_handler->throwError(ErrorID::EMAIL_MISSING);
                 }
 
                 //LOG ALL USER ACTIONS
-                if($this->routing->request != '/core/ajax/ajax.php'){
+                if ($this->routing->request != '/core/ajax/ajax.php') {
                     $this->logging->addLog(
                         $this->User->USER_ID,
                         $this->User->PLAYER_ID,
                         $this->User->SERVER_DB,
-                        "Route: ".$this->routing->route." Request: ".$this->routing->request,
+                        "Route: " . $this->routing->route . " Request: " . $this->routing->request,
                         LogType::SYSTEM
                     );
                 }
 
                 //GET LAST SERVER
-                if($this->User->LAST_SERVER == NULL){
+                if ($this->User->LAST_SERVER == null) {
                     //SET FIRST SERVER FOR NEW USERS
-                    $this->Server = $this->getServer();
+                    $this->Server            = $this->getServer();
                     $this->User->LAST_SERVER = $this->Server["SHORTCUT"];
-                    $this->mysql->QUERY('UPDATE users SET LAST_SERVER = ? WHERE USER_ID = ? AND SESSION_ID = ?',array($this->User->LAST_SERVER, $_SESSION["USER_ID"], session_id()));
+                    $this->mysql->QUERY('UPDATE users SET LAST_SERVER = ? WHERE USER_ID = ? AND SESSION_ID = ?',
+                        [$this->User->LAST_SERVER, $_SESSION["USER_ID"], session_id()]);
                     $this->redirectToServer();
                 } else {
                     //GET CURRENT SERVER BY SUBDOMAIN
                     $this->getCurrentServer();
 
                     //IF CURRENT SERVER NOT THE LAST_SERVER TRY TO UPDATE
-                    if($this->getCurrentServer(true) != $this->User->LAST_SERVER){
-                        if($this->Server){
+                    if ($this->getCurrentServer(true) != $this->User->LAST_SERVER) {
+                        if ($this->Server) {
                             //SELECTED SERVER EXISTS
                             $this->User->LAST_SERVER = $this->Server["SHORTCUT"];
-                            $this->mysql->QUERY('UPDATE users SET LAST_SERVER = ? WHERE USER_ID = ? AND SESSION_ID = ?',array( $this->User->LAST_SERVER, $_SESSION["USER_ID"], session_id()));
-                        }else {
+                            $this->mysql->QUERY('UPDATE users SET LAST_SERVER = ? WHERE USER_ID = ? AND SESSION_ID = ?',
+                                [$this->User->LAST_SERVER, $_SESSION["USER_ID"], session_id()]);
+                        } else {
                             //IF NOT TRY LAST SERVER
                             $this->Server = $this->getServer($this->User->LAST_SERVER);
                             $this->redirectToServer();
@@ -187,23 +196,23 @@ class System {
                     }
 
                     //CHECK IF CURRENT SERVER IS OPEN OTHERWISE REDIRECT
-                    if($this->Server && !$this->Server['OPEN']) {
+                    if ($this->Server && !$this->Server['OPEN']) {
                         $this->redirectToServer();
                     }
                 }
 
                 //CHECK IF USER HAS FACTION
-                if(!$this->User->hasFaction()){
-                    if($this->routing->route != "internalCompanyChoose" && !$this->error_handler->isError && $this->routing->request != '/core/ajax/ajax.php'){
-                        header('location: '.PROJECT_HTTP_ROOT.'internalCompanyChoose');
+                if (!$this->User->hasFaction()) {
+                    if ($this->routing->route != "internalCompanyChoose" && !$this->error_handler->isError && $this->routing->request != '/core/ajax/ajax.php') {
+                        header('location: ' . PROJECT_HTTP_ROOT . 'internalCompanyChoose');
                     }
                 }
 
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -213,15 +222,16 @@ class System {
      * redirects to selected Server
      *
      */
-    public function redirectToServer(){
-        if($this->Server && $this->Server['OPEN']){
+    public function redirectToServer()
+    {
+        if ($this->Server && $this->Server['OPEN']) {
             //IF CURRENT SERVER EXISTS AND IS OPEN REDIRECT
-            header('location: http://'.$this->Server['SHORTCUT'].'.'.PROJECT_WEB_IP.$_SERVER['REQUEST_URI']);
+            header('location: http://' . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
             exit;
-        }else{
+        } else {
             //ELSE SELECT OPEN SERVER AND REDIRECT
             $this->Server = $this->getServer();
-            header('location: http://'.$this->Server['SHORTCUT'].'.'.PROJECT_WEB_IP.$_SERVER['REQUEST_URI']);
+            header('location: http://' . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
             exit;
         }
     }
@@ -231,18 +241,20 @@ class System {
      * needs to get called to receive current server info's
      *
      * @param bool $returnServer
+     *
      * @return bool|string
      */
-    public function getCurrentServer($returnServer = false){
-        $sub_domain = strtoupper(explode('.',$_SERVER["HTTP_HOST"])[0]);
-        if($returnServer) {
+    public function getCurrentServer($returnServer = false)
+    {
+        $sub_domain = strtoupper(explode('.', $_SERVER["HTTP_HOST"])[0]);
+        if ($returnServer) {
             return $sub_domain;
         }
 
         $this->Server = $this->getServer($sub_domain);
-        if(!empty($this->Server) && $this->Server != false){
+        if (!empty($this->Server) && $this->Server != false) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -252,19 +264,21 @@ class System {
      * used to get Server Information's by Shortcut
      *
      * @param string $shortcut
+     *
      * @return mixed
      *
      */
-    public function getServer($shortcut = ""){
+    public function getServer($shortcut = "")
+    {
         $shortcut = strtoupper($shortcut);
 
-        if($shortcut == ""){
-            return $this->mysql->QUERY('SELECT * FROM server_infos WHERE OPEN = 1',array())[0];
-        }else{
-            $result = $this->mysql->QUERY('SELECT * FROM server_infos WHERE SHORTCUT = ? AND OPEN = 1 ',array($shortcut));
-            if(isset($result[0])){
+        if ($shortcut == "") {
+            return $this->mysql->QUERY('SELECT * FROM server_infos WHERE OPEN = 1', [])[0];
+        } else {
+            $result = $this->mysql->QUERY('SELECT * FROM server_infos WHERE SHORTCUT = ? AND OPEN = 1 ', [$shortcut]);
+            if (isset($result[0])) {
                 return $result[0];
-            }else{
+            } else {
                 return false;
             }
         }
@@ -275,15 +289,17 @@ class System {
      *  isValid Function
      *  checks if User is valid over USER_ID from $_SESSION and session_id();
      *
-     *  @return bool
+     * @return bool
      *
      */
-    public function isValid($id){
-        $user = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE SESSION_ID = ? AND USER_ID = ?', array(session_id(),$id));
-        if(count($user) == 1){
-            $this->mysql->QUERY('UPDATE users SET IP = ? WHERE SESSION_ID  = ?', array($this->getUserIP(), session_id()));
+    public function isValid($id)
+    {
+        $user = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE SESSION_ID = ? AND USER_ID = ?',
+            [session_id(), $id]);
+        if (count($user) == 1) {
+            $this->mysql->QUERY('UPDATE users SET IP = ? WHERE SESSION_ID  = ?', [$this->getUserIP(), session_id()]);
             return true;
-        }else {
+        } else {
             return false;
         }
     }
@@ -292,14 +308,16 @@ class System {
      *  registerUser Function
      *  used to register new Users
      *
-     *  @return bool
+     * @return bool
      *
      */
-    public function registerUser($Username, $Password, $Email){
-        if(!empty($Username) && !empty($Password)){
-            $PASSWORD_HASH = password_hash($Password,PASSWORD_DEFAULT);
-            $IP = $this->getUserIP();
-            return $this->mysql->QUERY('INSERT INTO users (USERNAME,PW_HASH,EMAIL,IP,LAST_SERVER) VALUES(?,?,?,?,?)', array($Username, $PASSWORD_HASH, $Email, $IP, $this->getServer()['SHORTCUT']));
+    public function registerUser($Username, $Password, $Email)
+    {
+        if (!empty($Username) && !empty($Password)) {
+            $PASSWORD_HASH = password_hash($Password, PASSWORD_DEFAULT);
+            $IP            = $this->getUserIP();
+            return $this->mysql->QUERY('INSERT INTO users (USERNAME,PW_HASH,EMAIL,IP,LAST_SERVER) VALUES(?,?,?,?,?)',
+                [$Username, $PASSWORD_HASH, $Email, $IP, $this->getServer()['SHORTCUT']]);
         }
         return false;
     }
@@ -314,26 +332,28 @@ class System {
      * @return bool
      *
      */
-    public function sendEmailVerification($USER_ID, $EMAIL){
+    public function sendEmailVerification($USER_ID, $EMAIL)
+    {
         //ONLY 1 MAIL PER HOUR
-        $EMAILS = $this->mysql->QUERY('SELECT * FROM server_verfiy WHERE USER_ID = ? AND SEND_TO = ? ORDER BY SEND_DATE DESC', array($USER_ID, $EMAIL));
-        if(isset($EMAILS[0])){
+        $EMAILS = $this->mysql->QUERY('SELECT * FROM server_verfiy WHERE USER_ID = ? AND SEND_TO = ? ORDER BY SEND_DATE DESC',
+            [$USER_ID, $EMAIL]);
+        if (isset($EMAILS[0])) {
             $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
-            if(new DateTime() < $TIMEOUT){
+            if (new DateTime() < $TIMEOUT) {
                 return true;
             }
         }
 
         //SEND REGISTRATION E-MAIl
-        $CODE = uniqid('UU'.$USER_ID, true);
-        $LINK = PROJECT_HTTP_ROOT.'confirm.php?code='.$CODE;
-        $DATE = date('Y-m-d H:i:s');
+        $CODE    = uniqid('UU' . $USER_ID, true);
+        $LINK    = PROJECT_HTTP_ROOT . 'confirm.php?code=' . $CODE;
+        $DATE    = date('Y-m-d H:i:s');
         $TIMEOUT = date('Y-m-d H:i:s', strtotime("+1 Hour"));
 
         $MAIL_BODY = '
             <h1>Welcome to UnknownUniverse</h1><br>
             <p>Please confirm your registration on UnknownUniverse using the link below:</p>
-            <a href="'.$LINK.'">'.$LINK.'</a><br>
+            <a href="' . $LINK . '">' . $LINK . '</a><br>
             <p>We wish fun playing!</p>
             <p>Best Regards UnknownUniverse - Team</p>
             <br>
@@ -344,16 +364,16 @@ class System {
         $QUERY = $this->mysql->QUERY(
             'INSERT INTO server_verfiy (USER_ID, ACTIVATION_CODE, SEND_TO, SEND_DATE, TIMEOUT)
                   VALUES (?,?,?,?,?)',
-                  array($USER_ID, $CODE, $EMAIL, $DATE, $TIMEOUT)
-            );
+            [$USER_ID, $CODE, $EMAIL, $DATE, $TIMEOUT]
+        );
 
-        if($QUERY){
+        if ($QUERY) {
             // Always set content-type when sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= 'From: UnknownUniverse <registration@univ3rse.com>' . "\r\n";
             return mail($EMAIL, "Welcome to UnknownUniverse - Confirm your E-Mail", $MAIL_BODY, $headers);
-        }else{
+        } else {
             return false;
         }
     }
@@ -368,33 +388,35 @@ class System {
      * @return bool
      *
      */
-    public function sendRecovery($USERNAME, $EMAIL){
+    public function sendRecovery($USERNAME, $EMAIL)
+    {
         $User = $this->getUserInfoByUsername($USERNAME);
-        if(isset($User[0])){
-            if($User[0]['EMAIL'] != $EMAIL){
+        if (isset($User[0])) {
+            if ($User[0]['EMAIL'] != $EMAIL) {
                 return false;
             }
         }
 
         //ONLY 1 MAIL PER HOUR
-        $EMAILS = $this->mysql->QUERY('SELECT * FROM server_recovery WHERE USER_ID = ? AND SEND_TO = ? ORDER BY SEND_DATE DESC', array($User[0]['USER_ID'], $User[0]['EMAIL']));
-        if(isset($EMAILS[0])){
+        $EMAILS = $this->mysql->QUERY('SELECT * FROM server_recovery WHERE USER_ID = ? AND SEND_TO = ? ORDER BY SEND_DATE DESC',
+            [$User[0]['USER_ID'], $User[0]['EMAIL']]);
+        if (isset($EMAILS[0])) {
             $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
-            if(new DateTime() < $TIMEOUT){
+            if (new DateTime() < $TIMEOUT) {
                 return true;
             }
         }
 
         //SEND REGISTRATION E-MAIl
-        $CODE = uniqid('UU'.$User[0]['USER_ID'], true);
-        $LINK = PROJECT_HTTP_ROOT.'confirm.php?code='.$CODE;
-        $DATE = date('Y-m-d H:i:s');
+        $CODE    = uniqid('UU' . $User[0]['USER_ID'], true);
+        $LINK    = PROJECT_HTTP_ROOT . 'confirm.php?code=' . $CODE;
+        $DATE    = date('Y-m-d H:i:s');
         $TIMEOUT = date('Y-m-d H:i:s', strtotime("+1 Hour"));
 
         $MAIL_BODY = '
             <h1>Recovery - UnknownUniverse</h1><br>
             <p>To recover your Account use this Link below:</p>
-            <a href="'.$LINK.'">'.$LINK.'</a><br>
+            <a href="' . $LINK . '">' . $LINK . '</a><br>
             <p>We wish fun playing!</p>
             <p>Best Regards UnknownUniverse - Team</p>
             <br>
@@ -405,16 +427,16 @@ class System {
         $QUERY = $this->mysql->QUERY(
             'INSERT INTO server_recovery (USER_ID, ACTIVATION_CODE, SEND_TO, SEND_DATE, TIMEOUT)
                   VALUES (?,?,?,?,?)',
-            array($User[0]['USER_ID'], $CODE, $EMAIL, $DATE, $TIMEOUT)
+            [$User[0]['USER_ID'], $CODE, $EMAIL, $DATE, $TIMEOUT]
         );
 
-        if($QUERY){
+        if ($QUERY) {
             // Always set content-type when sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
             $headers .= 'From: UnknownUniverse <registration@univ3rse.com>' . "\r\n";
             return mail($EMAIL, "UnknownUniverse - Account Recovery", $MAIL_BODY, $headers);
-        }else{
+        } else {
             return false;
         }
     }
@@ -425,17 +447,18 @@ class System {
      * verify an user per send e-mail code
      *
      * @param $CODE
+     *
      * @return bool
      *
      */
-    public function verifyEmail($CODE){
-        $CODE_DATA = $this->mysql->QUERY('SELECT * FROM server_verfiy WHERE ACTIVATION_CODE = ?', array($CODE));
+    public function verifyEmail($CODE)
+    {
+        $CODE_DATA = $this->mysql->QUERY('SELECT * FROM server_verfiy WHERE ACTIVATION_CODE = ?', [$CODE]);
 
-        if(isset($CODE_DATA[0])){
+        if (isset($CODE_DATA[0])) {
             $CODE_DATA = $CODE_DATA[0];
-            return $this->mysql->QUERY('UPDATE users SET VERFIED = 1 WHERE USER_ID = ?', array($CODE_DATA['USER_ID']));
-        }
-        else{
+            return $this->mysql->QUERY('UPDATE users SET VERFIED = 1 WHERE USER_ID = ?', [$CODE_DATA['USER_ID']]);
+        } else {
             $this->error_handler->throwError('verification_failed_invalid_code');
             return false;
         }
@@ -446,14 +469,16 @@ class System {
      *  getUserInfo Function
      *  gets UserData over session_id() and User_ID
      *
-     *  @return array()
+     * @return array()
      *
      */
-    public function getUserInfo(){
-        $user = $this->mysql->QUERY('SELECT * FROM users WHERE SESSION_ID = ? AND USER_ID = ?', array(session_id(), $_SESSION["USER_ID"]));
-        if(!$user){
-            return array();
-        }else{
+    public function getUserInfo()
+    {
+        $user = $this->mysql->QUERY('SELECT * FROM users WHERE SESSION_ID = ? AND USER_ID = ?',
+            [session_id(), $_SESSION["USER_ID"]]);
+        if (!$user) {
+            return [];
+        } else {
             return $user;
         }
     }
@@ -464,8 +489,9 @@ class System {
      *
      * @return array
      */
-    public function getUserInfoByUsername($Username){
-        $user = $this->mysql->QUERY("SELECT * FROM users WHERE USERNAME = ?", array($Username));
+    public function getUserInfoByUsername($Username)
+    {
+        $user = $this->mysql->QUERY("SELECT * FROM users WHERE USERNAME = ?", [$Username]);
         return $user;
     }
 
@@ -474,31 +500,34 @@ class System {
      * sets Invitation Code to used status
      *
      * @param $CODE
+     *
      * @return array|bool|null
      */
-    public function useInvitationCode($CODE){
-        return $this->mysql->QUERY('UPDATE server_invitations SET USED = 1 WHERE CODE = ?', array($CODE));
+    public function useInvitationCode($CODE)
+    {
+        return $this->mysql->QUERY('UPDATE server_invitations SET USED = 1 WHERE CODE = ?', [$CODE]);
     }
 
     /**
      *  Logout Function
      *  Destroys current Session == Logout
      *
-     *  @return bool
+     * @return bool
      *
      */
-    public function Logout(){
-       if($this->isLoggedIn()){
-           try {
-               $_SESSION = array();
-               session_regenerate_id();
-               session_destroy();
-               return true;
-           } catch(Exception $e){
-               return false;
-           }
+    public function Logout()
+    {
+        if ($this->isLoggedIn()) {
+            try {
+                $_SESSION = [];
+                session_regenerate_id();
+                session_destroy();
+                return true;
+            } catch (Exception $e) {
+                return false;
+            }
 
-       }
+        }
         return false;
     }
 
@@ -506,21 +535,23 @@ class System {
      *  getUserIP Function
      *  used to get the IP of connected User
      *
-     *  @return string
+     * @return string
      *
      */
-    public function getUserIP(){
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])){
+    public function getUserIP()
+    {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }else{
+        } else {
             $ip = $_SERVER['REMOTE_ADDR'];
         }
         return $ip;
     }
 
-    public function __($TEXT){
+    public function __($TEXT)
+    {
         return $this->translation->translate($TEXT);
     }
 } 

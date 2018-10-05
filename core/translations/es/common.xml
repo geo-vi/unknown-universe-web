@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation is here basically -->
+    <!-- Navigation is here basically -->
     <translate ID="NAV_TEXT_HANGAR">Hangar</translate>
-	<translate ID="NAV_TEXT_CLAN">Clan</translate>
+    <translate ID="NAV_TEXT_CLAN">Clan</translate>
     <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
     <translate ID="NAV_TEXT_UPGRADES">Mejoras</translate>
-	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <!-- Premium is for goods such as Premium / Rebate / Boosters-->
     <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
-	<translate ID="NAV_TEXT_GALAXYGATES">Puertas Galácticas</translate>
+    <translate ID="NAV_TEXT_GALAXYGATES">Puertas Galácticas</translate>
     <translate ID="NAV_TEXT_SHOP">Tienda</translate>
     <translate ID="NAV_TEXT_AUCTION">Subasta</translate>
-	
-	
-	<!-- Names used more than once -->
+
+
+    <!-- Names used more than once -->
     <translate ID="BODY_TEXT_DAMAGE">Daño</translate>
-	<translate ID="BODY_TEXT_SHIELD">Escudo</translate>
-	<translate ID="BODY_TEXT_SPEED">Velocidad</translate>
-	<translate ID="BODY_TEXT_HP">PV</translate>
-	<translate ID="CANCEL">Cancelar</translate>
+    <translate ID="BODY_TEXT_SHIELD">Escudo</translate>
+    <translate ID="BODY_TEXT_SPEED">Velocidad</translate>
+    <translate ID="BODY_TEXT_HP">PV</translate>
+    <translate ID="CANCEL">Cancelar</translate>
 </translation>

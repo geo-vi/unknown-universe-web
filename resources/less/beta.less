@@ -6,42 +6,41 @@
 @import "chosen.less";
 
 body {
-	background-color: #000 !important;
-	#logo {
-		content: url('../images/logos/main_logo.png');
-		position: absolute;
-	    top: 50%;
-	    left: 50%;
-	    margin-top: -51px;
-	    margin-left: -105px;
+  background-color: #000 !important;
+  #logo {
+    content: url('../images/logos/main_logo.png');
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -51px;
+    margin-left: -105px;
 
-		-webkit-transition: filter .3s;
-		-moz-transition: filter .3s;
-		-ms-transition: filter .3s;
-		-o-transition: filter .3s;
-		transition: filter .3s;
-		&:hover {
-			filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
-			-webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
-		}
-	}
-	
-	#underlogo {
-		text-align: center;
-		outline: none !important;
-	    font-family: 'Roboto Condensed';
-	    font-size: 18px;
-	    text-transform: uppercase;
-	    color: #FFFFFF;
-	    border-radius: 0 !important;
-	}
+    -webkit-transition: filter .3s;
+    -moz-transition: filter .3s;
+    -ms-transition: filter .3s;
+    -o-transition: filter .3s;
+    transition: filter .3s;
+    &:hover {
+      filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+      -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+    }
+  }
+
+  #underlogo {
+    text-align: center;
+    outline: none !important;
+    font-family: 'Roboto Condensed';
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    border-radius: 0 !important;
+  }
 }
 
 canvas {
   display: block;
   vertical-align: bottom;
 }
-
 
 /* ---- particles.js container ---- */
 
@@ -52,19 +51,19 @@ canvas {
 }
 
 #container {
-	display: none;
-	background: url('') no-repeat center center fixed;
-	height: 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+  display: none;
+  background: url('') no-repeat center center fixed;
+  height: 100%;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 
-	#join-discord > iframe {
-    	display: block;
-    	margin: auto;
-    	position: relative;
-    	top: 25px;
-    	opacity: 0.85;
-    }
+  #join-discord > iframe {
+    display: block;
+    margin: auto;
+    position: relative;
+    top: 25px;
+    opacity: 0.85;
+  }
 }

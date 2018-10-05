@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation is here basically -->
+    <!-- Navigation is here basically -->
     <translate ID="NAV_TEXT_HANGAR">Хангар</translate>
-	<translate ID="NAV_TEXT_CLAN">Клан</translate>
+    <translate ID="NAV_TEXT_CLAN">Клан</translate>
     <translate ID="NAV_TEXT_SKYLAB">Скайлаб</translate>
     <translate ID="NAV_TEXT_UPGRADES">Ъпгрейди</translate>
-	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <!-- Premium is for goods such as Premium / Rebate / Boosters-->
     <translate ID="NAV_TEXT_PREMIUM">Премиум</translate>
-	<translate ID="NAV_TEXT_GALAXYGATES">Галактически Портали</translate>
+    <translate ID="NAV_TEXT_GALAXYGATES">Галактически Портали</translate>
     <translate ID="NAV_TEXT_SHOP">Магазин</translate>
     <translate ID="NAV_TEXT_AUCTION">Аукцион</translate>
     <translate ID="NAV_TEXT_SETTINGS">Настройки</translate>
     <translate ID="NAV_TEXT_LOGOUT">Изход</translate>
 
-	<!-- Names used more than once -->
+    <!-- Names used more than once -->
     <translate ID="BODY_TEXT_DAMAGE">Щети</translate>
-	<translate ID="BODY_TEXT_SHIELD">Щит</translate>
-	<translate ID="BODY_TEXT_SPEED">Скорост</translate>
-	<translate ID="BODY_TEXT_HP">ЖТ</translate>
-	<translate ID="CANCEL">Прекъсни</translate>
+    <translate ID="BODY_TEXT_SHIELD">Щит</translate>
+    <translate ID="BODY_TEXT_SPEED">Скорост</translate>
+    <translate ID="BODY_TEXT_HP">ЖТ</translate>
+    <translate ID="CANCEL">Прекъсни</translate>
 </translation>

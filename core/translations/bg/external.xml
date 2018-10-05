@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- Navigation -->
-	<translate ID="TEXT_LOGIN">ЛОГИН</translate>
-	<translate ID="TEXT_REGISTER">РЕГИСТРАЦИЯ</translate>
-	
-	<!-- Boxes -->
-	<translate ID="BODY_TEXT_USERNAME">Потребителско име</translate>
-	<translate ID="BODY_TEXT_PASSWORD">Парола</translate>
-	<translate ID="BODY_TEXT_EMAIL">Е-Майл</translate>
-	<translate ID="BODY_TEXT_INVITATIONCODE">Инвайт-код</translate>
-	<translate ID="BODY_TEXT_TOC_NOTE">С регистрацията, вие приемате ОУП</translate>
-	
-	<!-- Buttons -->
-	<translate ID="BUTTON_FORGOT_PW">Забравена парола?</translate>
+    <!-- Navigation -->
+    <translate ID="TEXT_LOGIN">ЛОГИН</translate>
+    <translate ID="TEXT_REGISTER">РЕГИСТРАЦИЯ</translate>
+
+    <!-- Boxes -->
+    <translate ID="BODY_TEXT_USERNAME">Потребителско име</translate>
+    <translate ID="BODY_TEXT_PASSWORD">Парола</translate>
+    <translate ID="BODY_TEXT_EMAIL">Е-Майл</translate>
+    <translate ID="BODY_TEXT_INVITATIONCODE">Инвайт-код</translate>
+    <translate ID="BODY_TEXT_TOC_NOTE">С регистрацията, вие приемате ОУП</translate>
+
+    <!-- Buttons -->
+    <translate ID="BUTTON_FORGOT_PW">Забравена парола?</translate>
 </translation>

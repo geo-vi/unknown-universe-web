@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- internalShop -->
-	<translate ID="SHOP_NAV_SHIPS">Lodě</translate>
-	<translate ID="SHOP_NAV_EQUIPABLES">Vybavení</translate>
-	<translate ID="SHOP_NAV_DRONES">Letouny</translate>
-	<translate ID="SHOP_NAV_AMMO">Munice</translate>
-	<translate ID="SHOP_NAV_BOOSTER">Boostery</translate>
-	<translate ID="SHOP_NAV_PET">P.E.T</translate>
-	<translate ID="SHOP_NAV_DESIGNS">Designy</translate>
+    <!-- internalShop -->
+    <translate ID="SHOP_NAV_SHIPS">Lodě</translate>
+    <translate ID="SHOP_NAV_EQUIPABLES">Vybavení</translate>
+    <translate ID="SHOP_NAV_DRONES">Letouny</translate>
+    <translate ID="SHOP_NAV_AMMO">Munice</translate>
+    <translate ID="SHOP_NAV_BOOSTER">Boostery</translate>
+    <translate ID="SHOP_NAV_PET">P.E.T</translate>
+    <translate ID="SHOP_NAV_DESIGNS">Designy</translate>
 </translation>

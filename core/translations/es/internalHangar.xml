@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- internalHangar -->
-	<translate ID="BODY_TEXT_HANGAR_LASER">Láser</translate>
-	<translate ID="BODY_TEXT_HANGAR_HEAVY">Heavy</translate>
-	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Generador</translate>
-	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Extras</translate>
-	
-	<!-- Drones -->
-	<translate ID="BODY_TEXT_DRONE_Q">¿Qué quieres hacer?</translate>
-	<translate ID="BODY_TEXT_DRONE_R_1">Vender Vant</translate>
-	<translate ID="BODY_TEXT_DRONE_R_2">Reparar Vant</translate>
+    <!-- internalHangar -->
+    <translate ID="BODY_TEXT_HANGAR_LASER">Láser</translate>
+    <translate ID="BODY_TEXT_HANGAR_HEAVY">Heavy</translate>
+    <translate ID="BODY_TEXT_HANGAR_GENERATOR">Generador</translate>
+    <translate ID="BODY_TEXT_HANGAR_EXTRAS">Extras</translate>
+
+    <!-- Drones -->
+    <translate ID="BODY_TEXT_DRONE_Q">¿Qué quieres hacer?</translate>
+    <translate ID="BODY_TEXT_DRONE_R_1">Vender Vant</translate>
+    <translate ID="BODY_TEXT_DRONE_R_2">Reparar Vant</translate>
 </translation>

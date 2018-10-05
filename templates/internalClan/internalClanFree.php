@@ -1,11 +1,11 @@
 <div class="clan-body clearfix">
-<?php 	
-		if (isset($_POST['action']) && $_POST['action'] == "create_clan"){
-			echo $System->Clan->foundClan($_POST);
-		}else{
+    <?php
+    if (isset($_POST['action']) && $_POST['action'] == "create_clan") {
+        echo $System->Clan->foundClan($_POST);
+    } else {
 
-		}
-?>
+    }
+    ?>
     <div class="clan-top-header">
         <h1>Create a Clan</h1>
     </div>
@@ -33,7 +33,8 @@
             <div class="clan-bottom-input-container">
                 <form action="" method="post">
                     <input type="hidden" name="action" value="search_clan">
-                    <input name="clan_search_text" class="form-control" placeholder="Searching for..." value="<?= isset($_POST['action']) ? $_POST['clan_search_text'] : ''?>">
+                    <input name="clan_search_text" class="form-control" placeholder="Searching for..."
+                           value="<?= isset($_POST['action']) ? $_POST['clan_search_text'] : '' ?>">
                     <input class="btn btn-block btn-primary margin-top" type="submit" name="clan_search" value="Search">
                 </form>
             </div>
@@ -48,36 +49,42 @@
                     </thead>
                     <?php
                     $Clans = [];
-                    if(isset($_POST['action']) && $_POST['action'] == "search_clan"){
+                    if (isset($_POST['action']) && $_POST['action'] == "search_clan") {
                         $Clans = $System->Clan->searchClan($_POST['clan_search_text']);
-                    }
-                    else{
+                    } else {
                         $Clans = $System->Clan->getClans(50);
                     }
-					if (count($Clans) == 0)
-					{
-						?>
-						<td>No clans found</td>
-						<?php
-					}
+                    if (count($Clans) == 0) {
+                        ?>
+                        <td>No clans found</td>
+                        <?php
+                    }
                     foreach ($Clans as $rank => $clan) {
 
-                        $json_members = $clan['MEMBERS'];
-                        $members_array = json_decode($json_members,true);
-						$members = 0;
-						if ($members_array == null)
-							$members = 0;
-						else {
-							$members = count($members_array);
+                        $json_members  = $clan['MEMBERS'];
+                        $members_array = json_decode($json_members, true);
+                        $members       = 0;
+                        if ($members_array == null) {
+                            $members = 0;
+                        } else {
+                            $members = count($members_array);
                         }
-						?>
-                        <tr onclick="showAdditionalInfo(<?=$clan['ID']?>);">
-                            <td><?=$clan['TAG']?></td>
-                            <td><?=$clan['NAME']?></td>
-                            <td><?=$clan['DESCRIPTION']?></td>
-                            <td><?=$members?>/50</td>
-                            <td><?php if($clan['FACTION'] == 1) { echo 'MMO'; } elseif($clan['FACTION'] == 2) { echo 'EIC'; } elseif($clan['FACTION'] == 3) { echo 'VRU'; } else { echo 'ALL';}
-						?></td>
+                        ?>
+                        <tr onclick="showAdditionalInfo(<?= $clan['ID'] ?>);">
+                            <td><?= $clan['TAG'] ?></td>
+                            <td><?= $clan['NAME'] ?></td>
+                            <td><?= $clan['DESCRIPTION'] ?></td>
+                            <td><?= $members ?>/50</td>
+                            <td><?php if ($clan['FACTION'] == 1) {
+                                    echo 'MMO';
+                                } elseif ($clan['FACTION'] == 2) {
+                                    echo 'EIC';
+                                } elseif ($clan['FACTION'] == 3) {
+                                    echo 'VRU';
+                                } else {
+                                    echo 'ALL';
+                                }
+                                ?></td>
                         </tr>
                         <?php
                     }
@@ -88,7 +95,7 @@
     </div>
 </div>
 <script>
-function showAdditionalInfo(id) {
-	
-}
+    function showAdditionalInfo(id) {
+
+    }
 </script>

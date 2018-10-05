@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <translation>
-	<!-- internalHangar -->
-	<translate ID="BODY_TEXT_HANGAR_LASER">Lasery</translate>
-	<translate ID="BODY_TEXT_HANGAR_HEAVY">Raketomet</translate>
-	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Generátory</translate>
-	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Doplňky</translate>
-	
-	<!-- Drones -->
-	<translate ID="BODY_TEXT_DRONE_Q">Co chceš provést?</translate>
-	<translate ID="BODY_TEXT_DRONE_R_1">Prodat letoun</translate>
-	<translate ID="BODY_TEXT_DRONE_R_2">Opravit letoun</translate>
+    <!-- internalHangar -->
+    <translate ID="BODY_TEXT_HANGAR_LASER">Lasery</translate>
+    <translate ID="BODY_TEXT_HANGAR_HEAVY">Raketomet</translate>
+    <translate ID="BODY_TEXT_HANGAR_GENERATOR">Generátory</translate>
+    <translate ID="BODY_TEXT_HANGAR_EXTRAS">Doplňky</translate>
+
+    <!-- Drones -->
+    <translate ID="BODY_TEXT_DRONE_Q">Co chceš provést?</translate>
+    <translate ID="BODY_TEXT_DRONE_R_1">Prodat letoun</translate>
+    <translate ID="BODY_TEXT_DRONE_R_2">Opravit letoun</translate>
 </translation>

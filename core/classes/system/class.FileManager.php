@@ -1,7 +1,9 @@
 <?php
+
 namespace filesystem;
 
-class FileManager {
+class FileManager
+{
 
     /*
      * create_Folder Function
@@ -11,12 +13,13 @@ class FileManager {
      *
      *
      */
-    public function create_Folder($Path){
-        if(!is_dir($Path)){
-            if(substr($Path,-1) != "/"){
-                $Path = $Path."/";
+    public function create_Folder($Path)
+    {
+        if (!is_dir($Path)) {
+            if (substr($Path, -1) != "/") {
+                $Path = $Path . "/";
             }
-            if(mkdir($Path)){
+            if (mkdir($Path)) {
                 echo $Path;
             }
         }
@@ -31,16 +34,17 @@ class FileManager {
      *
      *
      */
-    public function create_File($Path,$Name){
-        if(substr($Path,-1) != "/"){
-            $Path = $Path."/";
+    public function create_File($Path, $Name)
+    {
+        if (substr($Path, -1) != "/") {
+            $Path = $Path . "/";
         }
-        if(!file_exists($Path.$Name)){
-            $File = fopen($Path.$Name,"a+");
-           if(fwrite($File,"")){
-               fclose($File);
-               echo $Path.$Name;
-           }
+        if (!file_exists($Path . $Name)) {
+            $File = fopen($Path . $Name, "a+");
+            if (fwrite($File, "")) {
+                fclose($File);
+                echo $Path . $Name;
+            }
         }
     }
 
@@ -52,13 +56,14 @@ class FileManager {
      *
      *
      */
-    public function delete_Folder($Path){
-        if(is_dir($Path)){
-            if(substr($Path,-1) != "/"){
-                $Path = $Path."/";
+    public function delete_Folder($Path)
+    {
+        if (is_dir($Path)) {
+            if (substr($Path, -1) != "/") {
+                $Path = $Path . "/";
             }
-            if(rmdir($Path)){
-               // echo json_encode(array("success"=>"true"));
+            if (rmdir($Path)) {
+                // echo json_encode(array("success"=>"true"));
             }
         }
     }
@@ -72,15 +77,16 @@ class FileManager {
      *
      *
      */
-    public function delete_File($Path,$File){
-       if(is_dir($Path)){
-           if(substr($Path,-1) != "/"){
-               $Path = $Path."/";
-           }
-          if(unlink($Path.$File)){
-             //return Status
-          }
-       }
+    public function delete_File($Path, $File)
+    {
+        if (is_dir($Path)) {
+            if (substr($Path, -1) != "/") {
+                $Path = $Path . "/";
+            }
+            if (unlink($Path . $File)) {
+                //return Status
+            }
+        }
     }
 
     /*
@@ -93,13 +99,14 @@ class FileManager {
      *
      *
      */
-    public function  write_File($Path,$Name,$Content){
-        if(substr($Path,-1) != "/"){
-            $Path = $Path."/";
+    public function write_File($Path, $Name, $Content)
+    {
+        if (substr($Path, -1) != "/") {
+            $Path = $Path . "/";
         }
-        if(file_exists($Path.$Name)){
-            $File = fopen($Path.$Name,"w");
-            fwrite($File,$Content);
+        if (file_exists($Path . $Name)) {
+            $File = fopen($Path . $Name, "w");
+            fwrite($File, $Content);
             fclose($File);
         }
     }
@@ -114,14 +121,15 @@ class FileManager {
      * @return bool
      *
      */
-    public function read_File($Path,$Name){
-        if(substr($Path,-1) != "/"){
-            $Path = $Path."/";
+    public function read_File($Path, $Name)
+    {
+        if (substr($Path, -1) != "/") {
+            $Path = $Path . "/";
         }
-        if(file_exists($Path.$Name)){
-          return $Content = file_get_contents($Path.$Name);
+        if (file_exists($Path . $Name)) {
+            return $Content = file_get_contents($Path . $Name);
         }
-       return false;
+        return false;
     }
 
     /*
@@ -135,14 +143,15 @@ class FileManager {
      * @return bool
      *
      */
-    public function rename_File($Path,$oldName,$newName){
-        if(substr($Path,-1) != "/"){
-            $Path = $Path."/";
+    public function rename_File($Path, $oldName, $newName)
+    {
+        if (substr($Path, -1) != "/") {
+            $Path = $Path . "/";
         }
-        if(file_exists($Path.$oldName)){
-            rename($Path.$oldName,$Path.$newName);
+        if (file_exists($Path . $oldName)) {
+            rename($Path . $oldName, $Path . $newName);
         }
-       return false;
+        return false;
     }
 
     /*
@@ -154,25 +163,26 @@ class FileManager {
      * @return array $Files
      *
      */
-    public function scan_Folder($Path){
-        if(!is_dir($Path))
+    public function scan_Folder($Path)
+    {
+        if (!is_dir($Path)) {
             return false;
+        }
 
-        $files = array();
-        $dirs = array($Path);
-        while( NULL !== ($dir = array_pop($dirs)))
-        {
-            if( $dh = opendir($dir))
-            {
-                while( false !== ($file = readdir($dh)))
-                {
-                    if( $file == '.' || $file == '..')
+        $files = [];
+        $dirs  = [$Path];
+        while (null !== ($dir = array_pop($dirs))) {
+            if ($dh = opendir($dir)) {
+                while (false !== ($file = readdir($dh))) {
+                    if ($file == '.' || $file == '..') {
                         continue;
+                    }
                     $path = $dir . '/' . $file;
-                    if( is_dir($path))
+                    if (is_dir($path)) {
                         $dirs[] = $path;
-                    else
+                    } else {
                         $files[] = $path;
+                    }
                 }
                 closedir($dh);
             }
@@ -190,13 +200,14 @@ class FileManager {
      * @return bool
      *
      */
-    public function checkFile($Path,$Name){
-        if(substr($Path,-1) != "/"){
-            $Path = $Path."/";
+    public function checkFile($Path, $Name)
+    {
+        if (substr($Path, -1) != "/") {
+            $Path = $Path . "/";
         }
-        if(file_exists($Path.$Name)){
+        if (file_exists($Path . $Name)) {
             return true;
-         }else{
+        } else {
             return false;
         }
     }

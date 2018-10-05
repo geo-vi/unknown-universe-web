@@ -1,5 +1,4 @@
 <?php
-use DB\MySQL;
 
 class Validator
 {
@@ -14,13 +13,15 @@ class Validator
      * isValidString Function
      * checks is strink is valid (using ctype_alnum)ignoring $allowed characters
      *
-     * @param $string
+     * @param       $string
      * @param array $allowed
+     *
      * @return bool
      *
      */
-    public function isValidString($string,$allowed = array()){
-        if(ctype_alnum(str_replace($allowed, '', $string ))) {
+    public function isValidString($string, $allowed = [])
+    {
+        if (ctype_alnum(str_replace($allowed, '', $string))) {
             return true;
         } else {
             return false;
@@ -32,15 +33,17 @@ class Validator
      * checks if user exists by UserID
      *
      * @param $UserID
+     *
      * @return bool
      *
      */
-    public function isUser($UserID){
-        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE USER_ID = ?',array($UserID));
+    public function isUser($UserID)
+    {
+        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE USER_ID = ?', [$UserID]);
 
-        if(count($User) == 1){
+        if (count($User) == 1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -50,15 +53,17 @@ class Validator
      * checks if users exists by Username
      *
      * @param $Username
+     *
      * @return bool
      *
      */
-    public function isUserByUsername($Username){
-        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE USERNAME = ?',array($Username));
+    public function isUserByUsername($Username)
+    {
+        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE USERNAME = ?', [$Username]);
 
-        if(count($User) === 1){
+        if (count($User) === 1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -68,14 +73,16 @@ class Validator
      * checks if users exists by Email
      *
      * @param $Email
+     *
      * @return bool
      *
      */
-    public function isUserByEmail($Email){
-        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE EMAIL = ?',array($Email));
-        if(count($User) == 1){
+    public function isUserByEmail($Email)
+    {
+        $User = $this->mysql->QUERY('SELECT USER_ID FROM users WHERE EMAIL = ?', [$Email]);
+        if (count($User) == 1) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
@@ -85,18 +92,20 @@ class Validator
      * checks if invitation code is valid
      *
      * @param $InvCode
+     *
      * @return bool
      *
      */
-    public function isValidInvitation($InvCode){
-        $Invitation = $this->mysql->QUERY('SELECT * FROM server_invitations WHERE CODE = ?',array($InvCode));
-        if(isset($Invitation[0])){
-            if(!$Invitation[0]['USED']){
+    public function isValidInvitation($InvCode)
+    {
+        $Invitation = $this->mysql->QUERY('SELECT * FROM server_invitations WHERE CODE = ?', [$InvCode]);
+        if (isset($Invitation[0])) {
+            if (!$Invitation[0]['USED']) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }

@@ -1,4 +1,5 @@
 <?php
+
 use DB\MySQL;
 use inventory\item;
 
@@ -11,57 +12,58 @@ class Inventory
 
     function __construct($user)
     {
-        $this->user = $user;
+        $this->user  = $user;
         $this->mysql = $this->mysql = new MySQL(MYSQL_IP, $user->SERVER_DB, MYSQL_USER, MYSQL_PW);
     }
 
-    public function getInventory(){
+    public function getInventory()
+    {
         /*
          * @var $JSON
          * Structure used by the equipment JS to render the Equipment (HTML5)
          */
         $JSON = [
-            "SHIP" => $this->getShipInfo(),
+            "SHIP"     => $this->getShipInfo(),
             "CONFIG_1" => [
-                "ITEMS" => [], //Contains unused Items
-                "ON_CONFIG_1" => [], //Contains Items on Ship
+                "ITEMS"         => [], //Contains unused Items
+                "ON_CONFIG_1"   => [], //Contains Items on Ship
                 "ON_DRONE_ID_1" => [], //Contains DronesID and Items on Drone
-                "ON_PET_1" => [], //Contains Items on Pet
+                "ON_PET_1"      => [], //Contains Items on Pet
             ],
             "CONFIG_2" => [
-                "ITEMS" => [], //Contains unused Items
-                "ON_CONFIG_2" => [], //Contains Items on Ship
+                "ITEMS"         => [], //Contains unused Items
+                "ON_CONFIG_2"   => [], //Contains Items on Ship
                 "ON_DRONE_ID_2" => [], //Contains DronesID and Items on Drone
-                "ON_PET_2" => [], //Contains Items on Pet
+                "ON_PET_2"      => [], //Contains Items on Pet
             ],
-            "DRONES" => $this->getDrones(),
-			"PET" => []
+            "DRONES"   => $this->getDrones(),
+            "PET"      => [],
         ];
 
-        for ($config = 1; $config <= 2; $config++){
-            foreach ($this->getItems() as $item){
-                $item = new item($item, $this->mysql);
+        for ($config = 1; $config <= 2; $config++) {
+            foreach ($this->getItems() as $item) {
+                $item     = new item($item, $this->mysql);
                 $Location = $item->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config, true);
 
-                if(!$Location){
+                if (!$Location) {
                     unset($item->CONFIGS);
-                    $JSON['CONFIG_'.$config]['ITEMS'][] = $item;
-                }else{
-                    if($Location == 'ON_DRONE_ID_'.$config){
-                        $drone_json = json_decode($item->CONFIGS[$Location]);
-                        $id_pos = array_search($this->user->Hangars->CURRENT_HANGAR->ID, $drone_json->hangars);
-                        $droneID = $drone_json->droneID[$id_pos];
+                    $JSON['CONFIG_' . $config]['ITEMS'][] = $item;
+                } else {
+                    if ($Location == 'ON_DRONE_ID_' . $config) {
+                        $drone_json     = json_decode($item->CONFIGS[$Location]);
+                        $id_pos         = array_search($this->user->Hangars->CURRENT_HANGAR->ID, $drone_json->hangars);
+                        $droneID        = $drone_json->droneID[$id_pos];
                         $item->DRONE_ID = $droneID;
                         unset($item->CONFIGS);
-                        $JSON['CONFIG_'.$config][$Location][] = $item;
+                        $JSON['CONFIG_' . $config][$Location][] = $item;
 
-                    }else{
-                        if($item->CATEGORY == 'extra'){
-                            $extraSlots = $item->isSlotCPU(true);
-                            $JSON['SHIP']['SLOTS']['CONFIG_'.$config]['EXTRA'] += $extraSlots;
+                    } else {
+                        if ($item->CATEGORY == 'extra') {
+                            $extraSlots                                          = $item->isSlotCPU(true);
+                            $JSON['SHIP']['SLOTS']['CONFIG_' . $config]['EXTRA'] += $extraSlots;
                         }
                         unset($item->CONFIGS);
-                        $JSON['CONFIG_'.$config][$Location][] = $item;
+                        $JSON['CONFIG_' . $config][$Location][] = $item;
                     }
                 }
             }
@@ -75,63 +77,66 @@ class Inventory
      * used to Calculate all Ship Configs
      *
      */
-    public function calculateConfigs(){
-        $ITEMS = $this->getItems();
+    public function calculateConfigs()
+    {
+        $ITEMS     = $this->getItems();
         $SHIP_DATA = $this->getShipInfo();
 
         $CONFIGS = [
             1 => [
-                "DAMAGE" => 0,
-                "SHIELD" => 0,
+                "DAMAGE"             => 0,
+                "SHIELD"             => 0,
                 "SHIELD_ABSORBATION" => 0,
-                "SPEED" => $SHIP_DATA["SPEED"],
-                "LASER_COUNT" => 0,
-                "LAUNCHER_COUNT" => 0,
-                "HEAVY" => [],
-                "EXTRAS" => [],
+                "SPEED"              => $SHIP_DATA["SPEED"],
+                "LASER_COUNT"        => 0,
+                "LAUNCHER_COUNT"     => 0,
+                "HEAVY"              => [],
+                "EXTRAS"             => [],
             ],
             2 => [
-                "DAMAGE" => 0,
-                "SHIELD" => 0,
+                "DAMAGE"             => 0,
+                "SHIELD"             => 0,
                 "SHIELD_ABSORBATION" => 0,
-                "SPEED" => $SHIP_DATA["SPEED"],
-                "LASER_COUNT" => 0,
-                "LAUNCHER_COUNT" => 0,
-                "HEAVY" => [],
-                "EXTRAS" => [],
-            ]
+                "SPEED"              => $SHIP_DATA["SPEED"],
+                "LASER_COUNT"        => 0,
+                "LAUNCHER_COUNT"     => 0,
+                "HEAVY"              => [],
+                "EXTRAS"             => [],
+            ],
         ];
 
-        for ($config = 1; $config <= 2; $config++){
-            foreach ($ITEMS as $ITEM_OBJ){
+        for ($config = 1; $config <= 2; $config++) {
+            foreach ($ITEMS as $ITEM_OBJ) {
                 $ITEM = new item($ITEM_OBJ, $this->mysql);
-                if(!$ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config)) continue;
-
-                if($ITEM->CATEGORY == 'extra'){
-                    //SET EXTRAS
-                    $ITEM_ARR = array(
-                        "Id" => $ITEM->ID,
-                        "Amount" => $ITEM->AMOUNT,
-                        "LootId" => $ITEM->LOOT_ID
-                    );
-                    $CONFIGS[$config]['EXTRAS'][] = $ITEM_ARR;
+                if (!$ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config)) {
+                    continue;
                 }
-                elseif ($ITEM->CATEGORY == 'heavy'){
+
+                if ($ITEM->CATEGORY == 'extra') {
+                    //SET EXTRAS
+                    $ITEM_ARR                     = [
+                        "Id"     => $ITEM->ID,
+                        "Amount" => $ITEM->AMOUNT,
+                        "LootId" => $ITEM->LOOT_ID,
+                    ];
+                    $CONFIGS[$config]['EXTRAS'][] = $ITEM_ARR;
+                } elseif ($ITEM->CATEGORY == 'heavy') {
                     //SET ROCKETLAUNCHER
-                    if($CONFIGS[$config]['LAUNCHER_COUNT'] < 15){
+                    if ($CONFIGS[$config]['LAUNCHER_COUNT'] < 15) {
                         $LAUNCHER_TYPE = $ITEM->ITEM_NAME == 'HST-01' ? 1 : 2;
                         $CONFIGS[$config]['LAUNCHER_COUNT']++;
                         $CONFIGS[$config]['HEAVY'][] = $LAUNCHER_TYPE;
                     }
-                }
-                else{
+                } else {
                     //SET LASER DAMAGE
-                   if ($ITEM->CATEGORY == 'laser') $CONFIGS[$config]['LASER_COUNT'] < 15 ? $CONFIGS[$config]['LASER_COUNT']++  : NULL;
+                    if ($ITEM->CATEGORY == 'laser') {
+                        $CONFIGS[$config]['LASER_COUNT'] < 15 ? $CONFIGS[$config]['LASER_COUNT']++ : null;
+                    }
 
-                    $CONFIGS[$config]['DAMAGE'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['DAMAGE'] * ((($ITEM->LVL - 1) * 0.004) + 1) : $ITEM->ATTRIBUTES['DAMAGE'];
-                    $CONFIGS[$config]['SHIELD'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD'];
+                    $CONFIGS[$config]['DAMAGE']             += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['DAMAGE'] * ((($ITEM->LVL - 1) * 0.004) + 1) : $ITEM->ATTRIBUTES['DAMAGE'];
+                    $CONFIGS[$config]['SHIELD']             += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD'];
                     $CONFIGS[$config]['SHIELD_ABSORBATION'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'];
-                    $CONFIGS[$config]['SPEED'] += $ITEM->ATTRIBUTES['SPEED'];
+                    $CONFIGS[$config]['SPEED']              += $ITEM->ATTRIBUTES['SPEED'];
                 }
             }
         }
@@ -154,7 +159,7 @@ class Inventory
                  CONFIG_2_HEAVY = ?,
                  CONFIG_2_EXTRAS = ?
                  WHERE USER_ID = ? AND PLAYER_ID = ?",
-            array(
+            [
                 $CONFIGS[1]['DAMAGE'],
                 $CONFIGS[1]['SHIELD'],
                 $CONFIGS[1]['SPEED'],
@@ -171,10 +176,11 @@ class Inventory
                 json_encode($CONFIGS[2]['EXTRAS']),
                 $this->user->USER_ID,
                 $this->user->PLAYER_ID,
-            )
+            ]
         );
 
-        $this->mysql->QUERY("UPDATE player_hangar SET SHIP_HP = ? WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1",array( $this->user->USER_ID, $this->user->PLAYER_ID, $SHIP_DATA["HP"]));
+        $this->mysql->QUERY("UPDATE player_hangar SET SHIP_HP = ? WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1",
+            [$this->user->USER_ID, $this->user->PLAYER_ID, $SHIP_DATA["HP"]]);
         $this->user->refresh();
     }
 
@@ -184,7 +190,8 @@ class Inventory
      *
      * @return array|bool|null
      */
-    public function getItems(){
+    public function getItems()
+    {
         $Items = $this->mysql->QUERY(
             'SELECT player_equipment.*,
                   server_items.NAME,
@@ -203,7 +210,7 @@ class Inventory
                   ORDER BY server_items.TYPE ASC,
                   server_items.ID DESC,
                   player_equipment.ITEM_LVL DESC',
-            array($this->user->USER_ID, $this->user->PLAYER_ID));
+            [$this->user->USER_ID, $this->user->PLAYER_ID]);
         return $Items;
     }
 
@@ -213,9 +220,11 @@ class Inventory
      * used to get an Item by ID
      *
      * @param $ID
+     *
      * @return bool|item
      */
-    public function getItem($ID){
+    public function getItem($ID)
+    {
         $Item = $this->mysql->QUERY(
             'SELECT player_equipment.*,
                   server_items.NAME,
@@ -232,11 +241,11 @@ class Inventory
                   AND player_equipment.PLAYER_ID = ? 
                   AND server_items.ID = player_equipment.ITEM_ID
                   AND player_equipment.ID = ?',
-            array($this->user->USER_ID, $this->user->PLAYER_ID, $ID));
+            [$this->user->USER_ID, $this->user->PLAYER_ID, $ID]);
 
-        if(!isset($Item[0])){
+        if (!isset($Item[0])) {
             return false;
-        }else{
+        } else {
             return new item($Item[0], $this->mysql);
         }
     }
@@ -249,20 +258,23 @@ class Inventory
      *
      * @return bool
      */
-    public function sellItem($ItemID){
+    public function sellItem($ItemID)
+    {
         $Item = $this->getItem($ItemID);
-        if(!$Item) return false;
+        if (!$Item) {
+            return false;
+        }
 
-        if($Item->delete()){
+        if ($Item->delete()) {
             return $this->mysql->QUERY(
                 'UPDATE player_data SET CREDITS =  CREDITS + ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                array(
+                [
                     $Item->SELLING_CREDITS,
                     $this->user->USER_ID,
                     $this->user->PLAYER_ID,
-                )
+                ]
             );
-        }else{
+        } else {
             return false;
         }
     }
@@ -273,7 +285,8 @@ class Inventory
      *
      * @return array
      */
-    public function getShipInfo(){
+    public function getShipInfo()
+    {
         $ShipData = $this->mysql->QUERY(
             'SELECT player_hangar.*,
                   player_extra_data.SHIP_DESIGNS,
@@ -290,61 +303,61 @@ class Inventory
                   AND player_hangar.ACTIVE = 1
                   AND player_extra_data.USER_ID = ? AND player_extra_data.PLAYER_ID = ?
                   AND server_ships.ship_id = player_hangar.SHIP_ID',
-            array($this->user->USER_ID, $this->user->PLAYER_ID, $this->user->USER_ID, $this->user->PLAYER_ID)
+            [$this->user->USER_ID, $this->user->PLAYER_ID, $this->user->USER_ID, $this->user->PLAYER_ID]
         )[0];
 
 
         //GET DESIGNS
         $ShipDesigns = json_decode($ShipData['SHIP_DESIGNS'], true);
 
-        if(isset($ShipDesigns[$ShipData['SHIP_ID']])){
+        if (isset($ShipDesigns[$ShipData['SHIP_ID']])) {
             $ShipDesigns = $ShipDesigns[$ShipData['SHIP_ID']];
-            foreach ($ShipDesigns as $index => $ShipDesign){
+            foreach ($ShipDesigns as $index => $ShipDesign) {
                 $DesignData = $this->mysql->QUERY(
                     'SELECT Name FROM server_ships_designs WHERE Id = ?',
-                    array($ShipDesign)
+                    [$ShipDesign]
                 )[0];
 
                 unset($ShipDesigns[$index]);
                 $ShipDesigns[$ShipDesign]['NAME'] = $DesignData['Name'];
             }
-        }else{
+        } else {
             $ShipDesigns = [];
         }
         $ShipDesigns[$ShipData['SHIP_ID']]['NAME'] = $ShipData['name'];
 
         $ShipInfo = [
-            "ID" => $ShipData['SHIP_ID'],
-            "DESIGN_ID" => $ShipData['SHIP_DESIGN'],
-            "DESIGNS" => $ShipDesigns,
-            "SPEED" => $ShipData['base_speed'],
-            "HP" => $ShipData['ship_hp'],
+            "ID"              => $ShipData['SHIP_ID'],
+            "DESIGN_ID"       => $ShipData['SHIP_DESIGN'],
+            "DESIGNS"         => $ShipDesigns,
+            "SPEED"           => $ShipData['base_speed'],
+            "HP"              => $ShipData['ship_hp'],
             "CURRENT_CONFIGS" => [
                 "CONFIG_1" => [
                     "DAMAGE" => $this->user->CONFIG_1_DMG,
                     "SHIELD" => $this->user->CONFIG_1_SHIELD,
-                    "SPEED" => $this->user->CONFIG_1_SPEED,
+                    "SPEED"  => $this->user->CONFIG_1_SPEED,
                 ],
                 "CONFIG_2" => [
                     "DAMAGE" => $this->user->CONFIG_2_DMG,
                     "SHIELD" => $this->user->CONFIG_2_SHIELD,
-                    "SPEED" => $this->user->CONFIG_2_SPEED,
+                    "SPEED"  => $this->user->CONFIG_2_SPEED,
                 ],
             ],
-            "SLOTS" => [
+            "SLOTS"           => [
                 "CONFIG_1" => [
-                    "LASER" => $ShipData['laser'],
-                    "HEAVY" => $ShipData['heavy'],
+                    "LASER"     => $ShipData['laser'],
+                    "HEAVY"     => $ShipData['heavy'],
                     "GENERATOR" => $ShipData['generator'],
-                    "EXTRA" => $ShipData['extra'],
+                    "EXTRA"     => $ShipData['extra'],
                 ],
                 "CONFIG_2" => [
-                    "LASER" => $ShipData['laser'],
-                    "HEAVY" => $ShipData['heavy'],
+                    "LASER"     => $ShipData['laser'],
+                    "HEAVY"     => $ShipData['heavy'],
                     "GENERATOR" => $ShipData['generator'],
-                    "EXTRA" => $ShipData['extra'],
-                ]
-            ]
+                    "EXTRA"     => $ShipData['extra'],
+                ],
+            ],
         ];
 
         return $ShipInfo;
@@ -355,54 +368,57 @@ class Inventory
      * used to sell a Drone
      *
      * @param $ID
+     *
      * @return array|bool|null
      */
-    public function sellDrone($ID){
+    public function sellDrone($ID)
+    {
         $error = false;
-        foreach ($this->getItems() as $Item){
-            $CONFIGS = $this->mysql->QUERY('SELECT ON_DRONE_ID_1, ON_DRONE_ID_2 FROM player_equipment WHERE ID = ?', array($Item['ID']))[0];
+        foreach ($this->getItems() as $Item) {
+            $CONFIGS = $this->mysql->QUERY('SELECT ON_DRONE_ID_1, ON_DRONE_ID_2 FROM player_equipment WHERE ID = ?',
+                [$Item['ID']])[0];
 
-            for ($config = 1; $config <= 2; $config++){
-                $Location = 'ON_DRONE_ID_'.$config;
-                $CONFIG = json_decode($CONFIGS[$Location]);
+            for ($config = 1; $config <= 2; $config++) {
+                $Location = 'ON_DRONE_ID_' . $config;
+                $CONFIG   = json_decode($CONFIGS[$Location]);
 
-                if(in_array($ID, $CONFIG->droneID)){
+                if (in_array($ID, $CONFIG->droneID)) {
                     $ID_POS = array_search($ID, $CONFIG->droneID);
 
-                    if(isset($CONFIG->droneID)){
+                    if (isset($CONFIG->droneID)) {
                         unset($CONFIG->droneID[$ID_POS]);
-                        if(!isset($CONFIG->droneID[$ID_POS])){
+                        if (!isset($CONFIG->droneID[$ID_POS])) {
                             $CONFIG->droneID = array_values($CONFIG->droneID);
-                        }else{
+                        } else {
                             $error = true;
                             break;
                         }
                     }
 
                     unset($CONFIG->hangars[$ID_POS]);
-                    if(!isset($CONFIG->hangars[$ID_POS])) {
+                    if (!isset($CONFIG->hangars[$ID_POS])) {
                         $CONFIG->hangars = array_values($CONFIG->hangars);
 
                         $error = !$this->mysql->QUERY(
-                            'UPDATE player_equipment SET '.$Location.' = ? WHERE ID = ?',
-                            array(json_encode($CONFIG), $Item['ID'])
+                            'UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
+                            [json_encode($CONFIG), $Item['ID']]
                         );
-                    }else{
+                    } else {
                         $error = true;
                         break;
                     }
-                }else{
+                } else {
                     continue;
                 }
             }
         }
 
-        if(!$error){
+        if (!$error) {
             return $this->mysql->QUERY(
                 'DELETE FROM player_drones WHERE ID = ? AND USER_ID = ? AND PLAYER_ID = ?',
-                array($ID, $this->user->USER_ID, $this->user->PLAYER_ID)
+                [$ID, $this->user->USER_ID, $this->user->PLAYER_ID]
             );
-        }else{
+        } else {
             return false;
         }
     }
@@ -419,20 +435,20 @@ class Inventory
             'SELECT player_drones.*, server_items.NAME, server_items.SLOTS FROM player_drones, server_items 
                   WHERE server_items.ID = player_drones.ITEM_ID 
                   AND USER_ID = ? AND PLAYER_ID = ?',
-            array($this->user->USER_ID, $this->user->PLAYER_ID)
+            [$this->user->USER_ID, $this->user->PLAYER_ID]
         );
 
         $Drones = [];
-        foreach ($DroneData as $Drone){
+        foreach ($DroneData as $Drone) {
             $DroneInfo = [
-                "ID" => $Drone['ID'],
+                "ID"         => $Drone['ID'],
                 "DRONE_TYPE" => $Drone['DRONE_TYPE'],
-                "NAME" => $Drone['NAME'],
-                "DESIGN_1" => $Drone['DESIGN_1'],
-				"DESIGN_2" => $Drone['DESIGN_2'],
-                "LEVEL" => $Drone['LEVEL'],
-                "DAMAGE" => $Drone['DAMAGE'],
-                "SLOTS" => $Drone['SLOTS'],
+                "NAME"       => $Drone['NAME'],
+                "DESIGN_1"   => $Drone['DESIGN_1'],
+                "DESIGN_2"   => $Drone['DESIGN_2'],
+                "LEVEL"      => $Drone['LEVEL'],
+                "DAMAGE"     => $Drone['DAMAGE'],
+                "SLOTS"      => $Drone['SLOTS'],
             ];
 
             $Drones[$Drone['ID']] = $DroneInfo;
@@ -446,15 +462,17 @@ class Inventory
      * used to check if the user owns the Item by ID
      *
      * @param $ID
+     *
      * @return bool
      */
-    public function ownsItem($ID){
+    public function ownsItem($ID)
+    {
         $Item = $this->mysql->QUERY('SELECT ITEM_ID FROM player_equipment WHERE USER_ID = ? AND PLAYER_ID = ? AND ID = ?',
-            array($this->user->USER_ID, $this->user->PLAYER_ID, $ID));
+            [$this->user->USER_ID, $this->user->PLAYER_ID, $ID]);
 
-        if(empty($Item) || $Item ==  NULL || !$Item || count($Item) < 1){
+        if (empty($Item) || $Item == null || !$Item || count($Item) < 1) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }

@@ -1,4 +1,4 @@
-<script src="<?=PROJECT_HTTP_ROOT?>resources/js/shop.js"></script>
+<script src="<?= PROJECT_HTTP_ROOT ?>resources/js/shop.js"></script>
 <script>
     $(document).ready(function () {
         new shop(
@@ -14,10 +14,12 @@
             <ul class="nav nav-justified">
                 <?php
                 $CNT = 0;
-                foreach ($System->Shop->CATEGORIES as $CATEGORY => $DATA){
+                foreach ($System->Shop->CATEGORIES as $CATEGORY => $DATA) {
                     $CNT++;
                     ?>
-                    <li class="category-<?=strtolower($CATEGORY)?> <?= $CNT == 1 ? 'active' : ''?>"><a onclick="shop.switchCategory('<?=strtolower($CATEGORY)?>');" href="#"><?=$System->__('SHOP_NAV_'.$CATEGORY)?></a></li>
+                    <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
+                                onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
+                                href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
                     <?php
                 }
                 ?>
