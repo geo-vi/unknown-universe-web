@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<translation>
+	<!-- Navigation is here basically -->
+    <translate ID="NAV_TEXT_HANGAR">Ангар</translate>
+	<translate ID="NAV_TEXT_CLAN">Клан</translate>
+    <translate ID="NAV_TEXT_SKYLAB">Скайлэб</translate>
+    <translate ID="NAV_TEXT_UPGRADES">Апгрейды</translate>
+	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <translate ID="NAV_TEXT_PREMIUM">ПРемиум</translate>
+	<translate ID="NAV_TEXT_GALAXYGATES">Galaxy Gates</translate>
+    <translate ID="NAV_TEXT_SHOP">Магазин</translate>
+    <translate ID="NAV_TEXT_AUCTION">Аукцион</translate>
+    <translate ID="NAV_TEXT_LOGOUT">Выход</translate>
+    <translate ID="NAV_TEXT_SETTINGS">Настройки</translate>
+
+	
+	<!-- Names used more than once -->
+    <translate ID="BODY_TEXT_DAMAGE">Урон</translate>
+	<translate ID="BODY_TEXT_SHIELD">Щит</translate>
+	<translate ID="BODY_TEXT_SPEED">Скорость</translate>
+	<translate ID="BODY_TEXT_HP">Прочность</translate>
+	<translate ID="CANCEL">Отмена</translate>
+</translation>

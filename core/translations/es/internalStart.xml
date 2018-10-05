@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- internalStart -->
+	<translate ID="BODY_TEXT_STATS">Estatus</translate>
+	<translate ID="BODY_TEXT_EVENTS">Eventos</translate>
+	<translate ID="BODY_TEXT_PILOTPROFILE">Pérfil del Piloto</translate>
+	
+	<!-- Stats -->
+	<translate ID="BODY_TEXT_STATS_PVPRANK">Rango PvP</translate>
+	<translate ID="BODY_TEXT_STATS_GLOBALRANK">Rango Global</translate>
+	<translate ID="BODY_TEXT_STATS_LEVEL">Nivel</translate>
+	
+	<!-- Events -->
+	<translate ID="BODY_TEXT_EVENTS_MONDAY">LUNES</translate>
+	<translate ID="BODY_TEXT_EVENTS_TUESDAY">MARTES</translate>
+	<translate ID="BODY_TEXT_EVENTS_WEDNESDAY">MIÉRCOLES</translate>
+	<translate ID="BODY_TEXT_EVENTS_THURSDAY">JUEVES</translate>
+	<translate ID="BODY_TEXT_EVENTS_FRIDAY">VIERNES</translate>
+	<translate ID="BODY_TEXT_EVENTS_SATURDAY">SÁBADO</translate>
+	<translate ID="BODY_TEXT_EVENTS_SUNDAY">DOMINGO</translate>
+	
+	<!-- Pilot Profile -->
+	<translate ID="BODY_TEXT_PP_NAME">Nombre:</translate>
+	<translate ID="BODY_TEXT_PP_SINCE">Usuario desde:</translate>
+	<translate ID="BODY_TEXT_PP_TITLE">Título:</translate>
+	<translate ID="BODY_TEXT_PP_RANK">Rango:</translate>
+	<translate ID="BODY_TEXT_PP_ORIGIN">Origen:</translate>
+	<translate ID="BODY_TEXT_PP_AGE">Edad:</translate>
+	<translate ID="BODY_TEXT_PP_GENDER">"Género:</translate>
+	<translate ID="BODY_TEXT_PP_CONTACT">Contacto:</translate>
+	<translate ID="BODY_TEXT_PP_SKILLTREE">¡HAZ CLIC AQUÍ PARA ABRIR LAS HABILIDADES!</translate>
+	
+	
+	<!-- Misc Log Messages -->
+	<translate ID="LOG_MISC_LASTLOGIN">¡Haz iniciado sesión éxitosamente! Desde: {0}</translate>
+</translation>

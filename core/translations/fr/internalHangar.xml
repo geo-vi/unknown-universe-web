@@ -1,0 +1,13 @@
+﻿<?xml version="1.0"?>
+<translation>
+	<!-- internalHangar -->
+	<translate ID="BODY_TEXT_HANGAR_LASER">Laser</translate>
+	<translate ID="BODY_TEXT_HANGAR_HEAVY">Lance-Roquettes</translate>
+	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Générateurs</translate>
+	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Extras</translate>
+	
+	<!-- Drones -->
+	<translate ID="BODY_TEXT_DRONE_Q">Que souhaitez vous faire?</translate>
+	<translate ID="BODY_TEXT_DRONE_R_1">Vendre le drone</translate>
+	<translate ID="BODY_TEXT_DRONE_R_2">Réparer le drone</translate>
+</translation>

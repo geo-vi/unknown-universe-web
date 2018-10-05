@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- Navigation is here basically -->
+    <translate ID="NAV_TEXT_HANGAR">Hangar</translate>
+	<translate ID="NAV_TEXT_CLAN">Clan</translate>
+    <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
+    <translate ID="NAV_TEXT_UPGRADES">Upgrades</translate>
+	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
+	<translate ID="NAV_TEXT_GALAXYGATES">Galaxy Poorten</translate>
+    <translate ID="NAV_TEXT_SHOP">Winkel</translate>
+    <translate ID="NAV_TEXT_AUCTION">Veiling</translate>
+	
+	
+	<!-- Names used more than once -->
+    <translate ID="BODY_TEXT_DAMAGE">Schade</translate>
+	<translate ID="BODY_TEXT_SHIELD">Schild</translate>
+	<translate ID="BODY_TEXT_SPEED">Snelheid</translate>
+	<translate ID="BODY_TEXT_HP">Hitpoints</translate>
+	<translate ID="CANCEL">Annuleer</translate>
+</translation>

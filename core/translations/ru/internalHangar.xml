@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- internalHangar -->
+	<translate ID="BODY_TEXT_HANGAR_LASER">Лазеры</translate>
+	<translate ID="BODY_TEXT_HANGAR_HEAVY">Ракетомёт</translate>
+	<translate ID="BODY_TEXT_HANGAR_GENERATOR">Генераторы</translate>
+	<translate ID="BODY_TEXT_HANGAR_EXTRAS">Дополнения</translate>
+	
+	<!-- Drones -->
+	<translate ID="BODY_TEXT_DRONE_Q">Что ты хочешь сделать?</translate>
+	<translate ID="BODY_TEXT_DRONE_R_1">Продать дрон</translate>
+	<translate ID="BODY_TEXT_DRONE_R_2">Ремонтировать дрон</translate>
+</translation>

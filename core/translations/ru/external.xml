@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- Navigation -->
+	<translate ID="TEXT_LOGIN">ВХОД</translate>
+	<translate ID="TEXT_REGISTER">РЕГИСТРАЦИЯ</translate>
+	
+	<!-- Boxes -->
+	<translate ID="BODY_TEXT_USERNAME">Имя пользователя</translate>
+	<translate ID="BODY_TEXT_PASSWORD">Пароль</translate>
+	<translate ID="BODY_TEXT_EMAIL">E-Mail</translate>
+	<translate ID="BODY_TEXT_INVITATIONCODE">Инвайт-код</translate>
+	<translate ID="BODY_TEXT_TOC_NOTE">Регистрируясь, вы соглашаетесь с правилами игры</translate>
+	
+	<!-- Buttons -->
+	<translate ID="BUTTON_FORGOT_PW">Забыли пароль?</translate>
+</translation>

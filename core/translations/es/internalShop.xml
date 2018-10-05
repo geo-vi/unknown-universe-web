@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- internalShop -->
+	<translate ID="SHOP_NAV_SHIPS">NAVES</translate>
+	<translate ID="SHOP_NAV_EQ">EQUIPABLES</translate>
+	<translate ID="SHOP_NAV_DRONES">VANTS</translate>
+	<translate ID="SHOP_NAV_AMMO">MUNICIÓN</translate>
+	<translate ID="SHOP_NAV_BOOSTER">POTENCIADOR</translate>
+	<translate ID="SHOP_NAV_PET">P.E.T</translate>
+	<translate ID="SHOP_NAV_DESIGNS">DISEÑOS</translate>
+</translation>

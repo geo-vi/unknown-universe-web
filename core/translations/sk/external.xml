@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- Navigation -->
+	<translate ID="TEXT_LOGIN">Přihlášení</translate>
+	<translate ID="TEXT_REGISTER">Registrace</translate>
+	
+	<!-- Boxes -->
+	<translate ID="BODY_TEXT_USERNAME">Uživatelské jméno</translate>
+	<translate ID="BODY_TEXT_PASSWORD">Heslo</translate>
+	<translate ID="BODY_TEXT_EMAIL">E-mail</translate>
+	<translate ID="BODY_TEXT_INVITATIONCODE">Kód pozvánky</translate>
+	<translate ID="BODY_TEXT_TOC_NOTE">Při registraci souhlasíte s VOP</translate>
+	
+	<!-- Buttons -->
+	<translate ID="BUTTON_FORGOT_PW">Zapomenuté heslo?</translate>
+</translation>

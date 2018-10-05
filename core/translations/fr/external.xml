@@ -1,0 +1,16 @@
+﻿<?xml version="1.0"?>
+<translation>
+	<!-- Navigation -->
+	<translate ID="TEXT_LOGIN">Connexion</translate>
+	<translate ID="TEXT_REGISTER">Inscription</translate>
+	
+	<!-- Boxes -->
+	<translate ID="BODY_TEXT_USERNAME">Nom d'utilisateur</translate>
+	<translate ID="BODY_TEXT_PASSWORD">Mot de passe</translate>
+	<translate ID="BODY_TEXT_EMAIL">Adresse e-mail</translate>
+	<translate ID="BODY_TEXT_INVITATIONCODE">Code d'invitation</translate>
+	<translate ID="BODY_TEXT_TOC_NOTE">En vous inscrivant vous accetpez les Termes et Conditions</translate>
+	
+	<!-- Buttons -->
+	<translate ID="BUTTON_FORGOT_PW">Mot de passe oublié?</translate>
+</translation>

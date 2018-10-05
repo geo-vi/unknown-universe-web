@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- Navigation is here basically -->
+    <translate ID="NAV_TEXT_HANGAR">Hangár</translate>
+	<translate ID="NAV_TEXT_CLAN">Klan</translate>
+    <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
+    <translate ID="NAV_TEXT_UPGRADES">Upgrady</translate>
+	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
+	<translate ID="NAV_TEXT_GALAXYGATES">Galaktické Brány</translate>
+    <translate ID="NAV_TEXT_SHOP">Obchod</translate>
+    <translate ID="NAV_TEXT_AUCTION">Aukce</translate>
+    <translate ID="NAV_TEXT_LOGOUT">Odhlásit se</translate>
+    <translate ID="NAV_TEXT_SETTINGS">Nastavení</translate>
+
+	
+	<!-- Names used more than once -->
+    <translate ID="BODY_TEXT_DAMAGE">Poškození</translate>
+	<translate ID="BODY_TEXT_SHIELD">Štít</translate>
+	<translate ID="BODY_TEXT_SPEED">Rychlost</translate>
+	<translate ID="BODY_TEXT_HP">BŽ</translate>
+	<translate ID="CANCEL">Zrušit</translate>
+</translation>

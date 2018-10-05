@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+<translation>
+	<!-- Navigation is here basically -->
+    <translate ID="NAV_TEXT_HANGAR">Hangar</translate>
+	<translate ID="NAV_TEXT_CLAN">Klan</translate>
+    <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
+    <translate ID="NAV_TEXT_UPGRADES">Geliştirmeler</translate>
+	<!-- Premium is for goods such as Premium / Rebate / Boosters-->
+    <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
+	<translate ID="NAV_TEXT_GALAXYGATES">Galaxy Gates</translate>
+    <translate ID="NAV_TEXT_SHOP">Dükkan</translate>
+    <translate ID="NAV_TEXT_AUCTION">Açık Artırma</translate>
+    <translate ID="NAV_TEXT_LOGOUT">Çıkış</translate>
+    <translate ID="NAV_TEXT_SETTINGS">Ayarlar</translate>
+
+	
+	<!-- Names used more than once -->
+    <translate ID="BODY_TEXT_DAMAGE">Hasar</translate>
+	<translate ID="BODY_TEXT_SHIELD">Kalkan</translate>
+	<translate ID="BODY_TEXT_SPEED">Hız</translate>
+	<translate ID="BODY_TEXT_HP">DP</translate>
+	<translate ID="CANCEL">İptal Et</translate>
+</translation>

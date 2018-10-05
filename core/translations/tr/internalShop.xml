@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<translation>
+	<!-- internalShop -->
+	<translate ID="SHOP_NAV_SHIPS">GEMİLER</translate>
+	<translate ID="SHOP_NAV_EQUIPABLES">MALZEMELER</translate>
+	<translate ID="SHOP_NAV_DRONES">Diroitler</translate>
+	<translate ID="SHOP_NAV_AMMO">CEPHANE</translate>
+	<translate ID="SHOP_NAV_BOOSTER">DESTEK</translate>
+	<translate ID="SHOP_NAV_PET">P.E.T</translate>
+	<translate ID="SHOP_NAV_DESIGNS">TASARIMLAR</translate>
+</translation>

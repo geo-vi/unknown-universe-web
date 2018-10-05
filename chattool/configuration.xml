@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xml>
+<game>
+
+  <core>
+    <variable key="skinXMLPath" value="skins/skin.xml" />
+    <variable key="bitmapsPath" value="skins/$SKIN/bitmaps/" />
+    <variable key="movieclipsPath" value="." />
+    <variable key="soundsPath" value="." />
+    <variable key="autoLoadRessources" value="false" />
+    <variable key="autoLoadLanguage" value="false" />
+  </core>
+  
+  <vars>
+      <variable key="bigpointURL" value="http://www.bigpoint.de" />
+      <variable key="port" value="9338" />
+      <variable key="defaultKickTimeInMinutes" value="10" />
+      <variable key="maxKickModuleMessages" value="10" />
+      <variable key="maxTextOverflow" value="150" />
+      <variable key="chatFontFace" value="TAHOMA" />
+    	<variable key="chatFontSize" value="12" />
+      <variable key="supportFont" value="TAHOMA" />
+    	<variable key="supportFontSize" value="12" />
+      <variable key="supportFontColor" value="#000000" />
+      <variable key="logFontFace" value="TAHOMA" />
+    	<variable key="logFontSize" value="12" />
+      <variable key="logFontColor" value="#000000" />
+      <variable key="skins" value="default,tron1,tron2,tron3,darkorbit,deepwar,manga,mirror,summer,bluesky,summertime,woman1,tigerpaper,geometry001,geometry002,geometry003,darkorbit002,darkorbit003,starwars001,fantasy001,spongebob001,michaeljackson" />
+	<variable key="languages" value="Deutsch|de,English|en,Turkish|tr,Russian|ru,Italian|it,Taiwan|tw,Thailand|th" />
+  </vars>
+</game>
+</xml>

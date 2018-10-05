@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<translation>
+	<!-- internalShop -->
+	<translate ID="SHOP_NAV_SHIPS">КОРАБИ</translate>
+	<translate ID="SHOP_NAV_EQUIPABLES">ОБОРУДВАНЕ</translate>
+	<translate ID="SHOP_NAV_DRONES">ДРОНИ</translate>
+	<translate ID="SHOP_NAV_AMMO">МУНИЦИИ</translate>
+	<translate ID="SHOP_NAV_BOOSTER">БУСТЕРИ</translate>
+	<translate ID="SHOP_NAV_PET">P.E.T</translate>
+	<translate ID="SHOP_NAV_DESIGNS">ДИЗАЙНИ</translate>
+</translation>
