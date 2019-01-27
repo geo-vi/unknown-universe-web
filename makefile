@@ -14,3 +14,5 @@ full-reset:
 	$(MAKE) run
 reload:
 	@docker exec docms_xamppy_1 /opt/lampp/lampp restart
+bash:
+	@docker exec -ti docms_xamppy_1 bash
