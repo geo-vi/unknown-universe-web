@@ -16,5 +16,13 @@ Trying to short the Code as much as possible while keeping the performance high 
 2. Run `make build` followed by `make run`
 3. To reload changes run `make reload`
 
+## Setting up MariaDB
+
+1. Setup docker or XAMPP/LAMPP
+2. Open the phpMyAdmin dashboard
+3. Head to the *Import* tab
+4. Import `database/do_system.sql`
+5. Import `database/do_server_ge1.sql`
+
 ## Developers
 Currently only Shock, Avyiel and Adrian187.
