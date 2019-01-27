@@ -1,9 +1,4 @@
 <?php
-$whitelist = ['127.0.0.1'];
-if (!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
-    include_once('./closed-beta/index.html');
-    return;
-}
 
 include_once('./core/core.php');
 
@@ -27,7 +22,7 @@ if ($System->routing->AdminLVL != 0) {
 }
 ?>
 
-    <body class="<?= $System->Server['XMAS'] ? 'xmas' : '' ?> <?= $System->routing->template ?>">
+<body class="<?= $System->Server['XMAS'] ? 'xmas' : '' ?> <?= $System->routing->template ?>">
     <?php
     //Load nav
     if ($System->routing->includeNav) {
@@ -61,7 +56,7 @@ if ($System->routing->AdminLVL != 0) {
         <?php
     }
     ?>
-    </body>
+</body>
 
 <?php
 //Load FooterScripts

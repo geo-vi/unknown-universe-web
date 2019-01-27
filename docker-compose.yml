@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  xamppy:
+    build: ./xamppy
+    ports:
+      - "41061:22"
+      - "41062:80"
+    volumes:
+      - ./wwwroot:/www
