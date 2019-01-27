@@ -1,11 +1,8 @@
+# STATUS: IN DEVELOPMENT
+
 ![Unknown Universe](https://bytebucket.org/UnknownUniverse/emulator/raw/75f572c43b9a3251484e153bffc7bb0bb642e565/logo.png?token=503227c3a922a6b43af1f808f923e52cdc9cb945)
 
 [Project Roadmap: Trello](https://trello.com/b/VY7zXWUB/unkown-universe)
-
-Project started in 2016. Reboot by Shock, Adrian187 & Avyiel
-
-
-# Current stage: Development
 
 ## Docker Instructions
 
@@ -23,3 +20,5 @@ Project started in 2016. Reboot by Shock, Adrian187 & Avyiel
 
 ## Developers
 Currently only Shock, Avyiel and Adrian187.
+
+Project started in 2016. Reboot by Shock, Adrian187 & Avyiel
