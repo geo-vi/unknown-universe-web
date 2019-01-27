@@ -4,6 +4,9 @@ LABEL author="Avyiel"
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing
 
+# Few handy utilities which are nice to have
+RUN apt-get -y install nano vim less --no-install-recommends
+
 # curl is needed to download the xampp installer, net-tools provides netstat command for xampp
 RUN apt-get -y install curl net-tools
 
@@ -12,12 +15,19 @@ RUN chmod +x xampp-linux-installer.run
 RUN bash -c './xampp-linux-installer.run'
 RUN ln -sf /opt/lampp/lampp /usr/bin/lampp
 
+# Clean-up
+RUN apt-get clean
+RUN rm xampp-linux-installer.run
+
 # Enable XAMPP web interface(remove security checks)
 RUN sed -i.bak s'/Require local/Require all granted/g' /opt/lampp/etc/extra/httpd-xampp.conf
 
 # Enable includes of several configuration files
 RUN mkdir /opt/lampp/apache2/conf.d && \
     echo "IncludeOptional /opt/lampp/apache2/conf.d/*.conf" >> /opt/lampp/etc/httpd.conf
+
+# Fix phpMyAdmin tmp folder error
+RUN echo "\$cfg['TempDir'] = '/tmp';" >> /opt/lampp/phpmyadmin/config.inc.php
 
 # Create a /www folder and a symbolic link to it in /opt/lampp/htdocs. It'll be accessible via http://localhost:[port]/www/
 # This is convenient because it doesn't interfere with xampp, phpmyadmin or other tools in /opt/lampp/htdocs
@@ -37,23 +47,23 @@ RUN echo "autorestart=true" >> /etc/supervisor/conf.d/supervisord-openssh-server
 
 # Allow root login via password
 # root password is: root
-RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+RUN sed -i.bak s'/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
 
 # Set root password
 # password hash generated using this command: openssl passwd -1 -salt xampp root
-RUN sed -ri 's/root\:\*/root\:\$1\$xampp\$5\/7SXMYAMmS68bAy94B5f\./g' /etc/shadow
+RUN sed -i.bak s'/root\:\*/root\:\$1\$xampp\$5\/7SXMYAMmS68bAy94B5f\./g' /etc/shadow
 
-# Few handy utilities which are nice to have
-RUN apt-get -y install nano vim less --no-install-recommends
-
-RUN apt-get clean
+# mySQL and apache logs
 VOLUME [ "/var/log/mysql/", "/var/log/apache2/" ]
 
 EXPOSE 3306
 EXPOSE 22
 EXPOSE 80
 
-# write a startup script
+# Use LAMPP binaries
+RUN echo 'export PATH=/opt/lampp/bin:$PATH' >> /root/.bashrc
+
+# Write a startup script
 RUN echo '/opt/lampp/lampp start' >> /startup.sh
 RUN echo '/usr/bin/supervisord -n' >> /startup.sh
 
