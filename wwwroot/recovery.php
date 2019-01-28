@@ -18,3 +18,20 @@ foreach ($PARAMS as $FIELD_NAME => $PARAM) {
     }
 }
 
+
+// MISSING PARAMETERS
+if (!empty($MISSING)) {
+    die(json_encode(["error" => true, "error_msg" => "Fill out " . implode(', ', $MISSING) . "!"]));
+}
+
+// VALIDATE GOOGLE_RECAPTCHA
+$RECAPTCHA_RESPONSE = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . GOOGLE_CAPTCHA_KEY . '&response=' . $_POST['g-recaptcha-response']));
+if (!$RECAPTCHA_RESPONSE->success) {
+    die(json_encode(["error" => true, "error_msg" => "Check your ReCaptcha!"]));
+}
+
+if ($System->sendRecovery($_POST['recoveryUsername'], $_POST['recoveryEmail'])) {
+    die(json_encode(["error" => false, "msg" => "Recovery email sent, please check your inbox!"]));
+} else {
+    die(json_encode(["error" => true, "error_msg" => "Something went wrong while sending the email, please try again later."]));
+}

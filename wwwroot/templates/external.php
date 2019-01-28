@@ -21,7 +21,7 @@
                            placeholder="<?= $System->__('BODY_TEXT_PASSWORD') ?>" required>
 
                     <button class="form-button" type="submit">Login</button>
-                    <a href="#"><?= $System->__('BUTTON_FORGOT_PW'); ?></a>
+                    <a href="./externalRecovery"><?= $System->__('BUTTON_FORGOT_PW'); ?></a>
                 </form>
             </div>
             <div role="tabpanel" class="tab-pane" id="sign_up-container">
