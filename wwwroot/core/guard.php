@@ -1,7 +1,6 @@
 <?php
 /* Check if User logged-in
 ***************************/
-//error_reporting(0); // Disable all errors.
 
 if (!$System->isLoggedIn()) {
     //if not logged-in go to Login

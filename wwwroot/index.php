@@ -7,7 +7,7 @@ include_once('./templates/head/head.php');
 
 //Need Login
 if ($System->routing->login_req) {
-    include_once('./core/system.php');
+    include_once('./core/guard.php');
 }
 
 //ADMIN ACCESS LVL
