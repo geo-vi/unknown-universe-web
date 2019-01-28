@@ -39,11 +39,8 @@ COPY httpd/httpd-vhosts.conf /opt/lampp/etc/extra/
 # Fix phpMyAdmin tmp folder error
 RUN echo "\$cfg['TempDir'] = '/tmp';" >> /opt/lampp/phpmyadmin/config.inc.php
 
-# Create a /www folder and a symbolic link to it in /opt/lampp/apps/docms. It'll be accessible via https://dev.univ3rse.com/
-# This is convenient because it doesn't interfere with xampp, phpmyadmin or other tools in /opt/lampp/htdocs
-RUN mkdir /www
-RUN mkdir -p /opt/lampp/apps/docms
-RUN ln -s /www /opt/lampp/apps/docms/htdocs
+# Creates an app folder for the CMS
+RUN mkdir -p /opt/lampp/apps/docms/htdocs
 
 # SSH server
 RUN apt-get install -y -q supervisor openssh-server
