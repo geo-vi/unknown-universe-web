@@ -59,7 +59,7 @@ abstract class AbstractHandler
             return true;
 
         } else {
-            die(json_encode(['error' => true, "error_msg" => 'Requested Action doesnt exists!']));
+            die(json_encode(['error' => true, "error_msg" => 'Requested Action doesnt exist: ' . $this->action]));
         }
     }
 
