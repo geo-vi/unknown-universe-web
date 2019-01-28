@@ -766,6 +766,10 @@ ul {
     color: #FFD700;
 }
 
+.red-text {
+    color: #cc0000;
+}
+
 body {
     background: url("../images/backgrounds/new-bg.jpg");
     background-position-x: center;

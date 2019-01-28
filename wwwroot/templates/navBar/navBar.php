@@ -17,20 +17,14 @@
                 <li>
                     <span title="Premium until <?= date("m/d/Y", strtotime($System->User->PREMIUM_UNTIL)) ?>" class="gold-text"><?= $System->__('NAV_TEXT_PREMIUM') ?></span>
                 </li>
-                <li>
-                    <span style= "position:relative; top:150px; left:250px;">
-                    <img src="../../resources/images/buttons/icon_member_premium.png">
-                </span>
-                </li>
-                 <?php
+                <?php
             }
             if ($System->User->isAdmin())
             {
                 ?>
-                <li>
-                    <span title="You're an administrator" class="red-text"><?= $System->__('NAV_TEXT_ADMIN') ?></span>
-                </li>
-
+                <span title="You're an administrator" class="red-text">
+                    <?= $System->__('NAV_TEXT_ADMIN') ?>
+                </span>
                 <?php
             }
             ?>
@@ -75,8 +69,9 @@
             </ul>
         </ul>
 
-        <a class="main-logo" href="./internalStart"><img
-                    src="<?= PROJECT_HTTP_ROOT ?>resources/images/logos/main_logo.png"/></a>
+        <a class="main-logo" href="./internalStart">
+            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/logos/main_logo.png"/>
+        </a>
 
         <ul id="right-buttons" class="header-buttons bold">
             <ul class="main-left-buttons">
