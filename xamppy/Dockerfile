@@ -72,8 +72,8 @@ EXPOSE 443
 # Use LAMPP binaries
 RUN echo 'export PATH=/opt/lampp/bin:$PATH' >> /root/.bashrc
 
-# Write a startup script
-RUN echo '/opt/lampp/lampp start' >> /startup.sh
-RUN echo '/usr/bin/supervisord -n' >> /startup.sh
+# Copy scripts
+COPY scripts/startup.sh /startup.sh
+COPY scripts/load_db.sh /load_db.sh
 
 CMD ["sh", "/startup.sh"]

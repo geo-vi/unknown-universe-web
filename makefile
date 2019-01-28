@@ -17,5 +17,7 @@ full-reset:
 	$(MAKE) run
 reload:
 	@docker exec docms_xamppy_1 /opt/lampp/lampp restart
+db:
+	@docker exec -ti docms_xamppy_1 /load_db.sh
 bash:
 	@docker exec -ti docms_xamppy_1 bash
