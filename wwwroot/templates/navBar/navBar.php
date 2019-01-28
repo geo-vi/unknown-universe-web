@@ -67,6 +67,22 @@
                 <li class="header_button header_disabled_button"><a href="#"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
                 </li>
             </ul>
+            <div class="inbox">
+				<p>
+                    <?php
+                    if($System->User->hasMessages())
+                    {
+                        ?>
+                        <a href="./internalMessaging"><span id="icon" class="inbox_new" title="You have <?= $System->User->hasMessages()?> new messages">(<?= $System->User->hasMessages()?>)</span></a>
+                        <?php
+                    } else {
+                        ?>
+                        <a href="./internalMessaging"><span id="icon" class="inbox_read" title="You have 0 new messages">(0)</span></a>
+                        <?php
+                    }
+                    ?>
+                </p>
+			</div>
         </ul>
 
         <a class="main-logo" href="./internalStart">

@@ -932,6 +932,36 @@ body header .main-right-buttons {
     float: right;
 }
 
+body header .inbox {
+    height: 21px;
+    position: relative;
+    top: 105px;
+    left: 200px;
+}
+
+body header .inbox #icon {
+	padding-left: 25px;
+    background-image: url("../images/icons_mail_sprite.png");
+    background-repeat: no-repeat;
+	width: 25px;
+	height: 100%;
+}
+
+body header .inbox_read {
+    background-image: url("../images/icons_mail_sprite.png");
+}
+
+body header .inbox_read:hover {
+    background-position: 0px -20px;
+}
+
+body header .inbox_new {
+    background-image: url("../images/icons_mail_sprite.png");
+}
+body header .inbox_new:hover {
+    background-position: 0px -40px;
+}
+
 body footer {
     height: 50px;
 }
