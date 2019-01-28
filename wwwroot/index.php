@@ -47,13 +47,13 @@ if ($System->routing->AdminLVL != 0) {
     <?php
     //EPVP - Backlink for external
     if (!$System->routing->login_req) {
-        ?>
+    ?>
         <div id="external-backlink">
             <a target="_blank"
                href="http://www.elitepvpers.com/forum/darkorbit/4202122-unknown-universe-15-12-16-a.html">EPVP
                 BACKLINK</a>
         </div>
-        <?php
+    <?php
     }
     ?>
 </body>
