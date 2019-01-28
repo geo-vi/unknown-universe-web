@@ -8,17 +8,15 @@
 
 1. Install docker and docker-compose
 2. Run `make build` followed by `make run`
-3. To reload changes run `make reload`
+3. Create the databases with `make db`
+4. To reload changes run `make reload`
 
-## Setting up MariaDB
+### Default Admin User
 
-1. Setup docker or XAMPP/LAMPP
-2. Open the phpMyAdmin dashboard
-3. Head to the *Import* tab
-4. Import `database/do_system.sql`
-5. Import `database/do_server_ge1.sql`
+- username: administrator
+- password: 12345
 
 ## Developers
 Currently only Shock, Avyiel and Adrian187.
 
-Project started in 2016. Reboot by Shock, Adrian187 & Avyiel
+Project started in 2016. Reboot by Shock, Adrian187
