@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <translation>
     <!-- internalStart -->
-    <translate ID="BODY_TEXT_STATS">Stats</translate>
-    <translate ID="BODY_TEXT_EVENTS">Events</translate>
-    <translate ID="BODY_TEXT_PILOTPROFILE">Pilot Profile</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Profile</translate>
+    <translate ID="BODY_TEXT_ACHIEVEMENTS">Achievements</translate>
+    <translate ID="BODY_TEXT_SETTINGS">Account Settings</translate>
     <translate ID="BODY_TEXT_SKILLTREE">Skill Tree</translate>
 
     <!-- Stats -->
     <translate ID="BODY_TEXT_STATS_PVPRANK">PvP Rank</translate>
     <translate ID="BODY_TEXT_STATS_GLOBALRANK">Global Rank</translate>
-    <translate ID="BODY_TEXT_STATS_LEVEL">Level</translate>
+    <translate ID="BODY_TEXT_STATS_TREE_PROGRESS">Skill Tree Progress</translate>
 
     <!-- Events -->
     <translate ID="BODY_TEXT_EVENTS_MONDAY">MONDAY</translate>
@@ -23,13 +23,16 @@
     <!-- Pilot Profile -->
     <translate ID="BODY_TEXT_PP_NAME">Name:</translate>
     <translate ID="BODY_TEXT_PP_SINCE">User since:</translate>
-    <translate ID="BODY_TEXT_PP_TITLE">Title:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Ranking:</translate>
     <translate ID="BODY_TEXT_PP_RANK">Rank:</translate>
     <translate ID="BODY_TEXT_PP_ORIGIN">Origin:</translate>
     <translate ID="BODY_TEXT_PP_AGE">Age:</translate>
-    <translate ID="BODY_TEXT_PP_GENDER">"Gender:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">Gender:</translate>
     <translate ID="BODY_TEXT_PP_CONTACT">Contact:</translate>
-    <translate ID="BODY_TEXT_PP_SKILLTREE">CLICK HERE TO OPEN SKILL TREE!</translate>
+    <translate ID="BODY_TEXT_PP_CLAN">Clan:</translate>
+    <translate ID="BODY_TEXT_PP_CLAN_MEMBERS">Members:</translate>
+    <translate ID="BODY_TEXT_PP_CLAN_RANKING">Clan Rank:</translate>
+
 
     <!-- Misc Log Messages -->
     <translate ID="LOG_MISC_LASTLOGIN">You successfully logged in! From: {0}</translate>
