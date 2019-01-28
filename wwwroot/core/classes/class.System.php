@@ -80,13 +80,12 @@ class System
     }
 
     /**
-     *  Login Function
+     * Login Function
      *
      * @param string $username Username
      * @param string $password Password
      *
      * @return bool
-     *
      */
     public function Login($username, $password)
     {
@@ -123,11 +122,11 @@ class System
     }
 
     /**
-     *  isLoggedIn Function
-     *  checks if User is logged in over USER_ID and sessionID
+     * isLoggedIn Function
+     *
+     * checks if User is logged in over `USER_ID` and `SESSION_ID`
      *
      * @return bool
-     *
      */
     public function isLoggedIn()
     {
@@ -219,8 +218,8 @@ class System
 
     /**
      * redirectToServer Function
-     * redirects to selected Server
      *
+     * redirects to selected Server
      */
     public function redirectToServer()
     {
@@ -237,6 +236,7 @@ class System
     }
 
     /**
+     *
      * getCurrentServer Function
      * needs to get called to receive current server info's
      *
@@ -261,12 +261,12 @@ class System
 
     /**
      * getServer Function
+     *
      * used to get Server Information's by Shortcut
      *
      * @param string $shortcut
      *
      * @return mixed
-     *
      */
     public function getServer($shortcut = "")
     {
@@ -286,11 +286,11 @@ class System
 
 
     /**
-     *  isValid Function
-     *  checks if User is valid over USER_ID from $_SESSION and session_id();
+     * isValid Function
+     *
+     * checks if User is valid over `USER_ID` from `$_SESSION` and `session_id();`
      *
      * @return bool
-     *
      */
     public function isValid($id)
     {
@@ -305,11 +305,11 @@ class System
     }
 
     /**
-     *  registerUser Function
-     *  used to register new Users
+     * registerUser Function
+     *
+     * used to register new Users
      *
      * @return bool
-     *
      */
     public function registerUser($Username, $Password, $Email)
     {
@@ -324,13 +324,13 @@ class System
 
     /**
      * sendEmailVerification Function
+     *
      * sends E-Mail with an Link to verify account
      *
      * @param $USER_ID
      * @param $EMAIL
      *
      * @return bool
-     *
      */
     public function sendEmailVerification($USER_ID, $EMAIL)
     {
@@ -380,13 +380,13 @@ class System
 
     /**
      * sendRecovery Function
+     *
      * sends E-Mail with an Link to recover account
      *
      * @param $USERNAME
      * @param $EMAIL
      *
      * @return bool
-     *
      */
     public function sendRecovery($USERNAME, $EMAIL)
     {
@@ -444,12 +444,12 @@ class System
 
     /**
      * verifyEmail Function
+     *
      * verify an user per send e-mail code
      *
      * @param $CODE
      *
      * @return bool
-     *
      */
     public function verifyEmail($CODE)
     {
@@ -466,11 +466,11 @@ class System
 
 
     /**
-     *  getUserInfo Function
-     *  gets UserData over session_id() and User_ID
+     * getUserInfo Function
      *
-     * @return array()
+     * gets UserData over `session_id()` and `USER_ID`
      *
+     * @return array
      */
     public function getUserInfo()
     {
@@ -485,7 +485,8 @@ class System
 
     /**
      * getUserInfoByUsername Function
-     * gets UserData over $Username
+     *
+     * gets UserData over `$Username`
      *
      * @return array
      */
@@ -497,6 +498,7 @@ class System
 
     /**
      * useInvitationCode Function
+     *
      * sets Invitation Code to used status
      *
      * @param $CODE
@@ -510,10 +512,10 @@ class System
 
     /**
      *  Logout Function
-     *  Destroys current Session == Logout
+     *
+     * Destroys current Session == Logout
      *
      * @return bool
-     *
      */
     public function Logout()
     {
@@ -533,10 +535,10 @@ class System
 
     /**
      *  getUserIP Function
+     *
      *  used to get the IP of connected User
      *
      * @return string
-     *
      */
     public function getUserIP()
     {
@@ -550,6 +552,13 @@ class System
         return $ip;
     }
 
+    /**
+     *  __ Function
+     *
+     *  shortcut to `$System->translation->translate($TEXT)`
+     *
+     * @return string
+     */
     public function __($TEXT)
     {
         return $this->translation->translate($TEXT);
