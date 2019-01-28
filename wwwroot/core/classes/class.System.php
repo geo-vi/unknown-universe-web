@@ -226,12 +226,12 @@ class System
     {
         if ($this->Server && $this->Server['OPEN']) {
             //IF CURRENT SERVER EXISTS AND IS OPEN REDIRECT
-            header('location: http://' . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
+            header('location: ' . PROJECT_PROTOCOL . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
             exit;
         } else {
             //ELSE SELECT OPEN SERVER AND REDIRECT
             $this->Server = $this->getServer();
-            header('location: http://' . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
+            header('location: ' . PROJECT_PROTOCOL . $this->Server['SHORTCUT'] . '.' . PROJECT_WEB_IP . $_SERVER['REQUEST_URI']);
             exit;
         }
     }
@@ -554,4 +554,4 @@ class System
     {
         return $this->translation->translate($TEXT);
     }
-} 
+}
