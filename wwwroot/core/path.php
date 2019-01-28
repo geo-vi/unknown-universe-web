@@ -6,6 +6,8 @@ define('PROJECT_DOCUMENT_ROOT', str_replace('core', '', __DIR__));
 $project = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace("\\", "/", __DIR__));
 $project = str_replace(basename(__DIR__), '', $project);
 $project = str_replace('/dev', '', $project);
+// MIGHT NEED TO REMOVE BEFORE DEPLOING
+$project = str_replace('/www', '', $project);
 
 
 //Protokoll der Verbindung (HTTP oder HTTPS)
