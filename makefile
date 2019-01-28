@@ -4,6 +4,9 @@ run:
 	@docker-compose -p docms up -d xamppy
 stop:
 	@docker-compose -p docms down
+restart:
+	$(MAKE) stop
+	$(MAKE) run
 clean-data:
 	@docker-compose -p docms down -v
 clean-images:

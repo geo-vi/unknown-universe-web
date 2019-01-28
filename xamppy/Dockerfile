@@ -22,17 +22,28 @@ RUN rm xampp-linux-installer.run
 # Enable XAMPP web interface(remove security checks)
 RUN sed -i.bak s'/Require local/Require all granted/g' /opt/lampp/etc/extra/httpd-xampp.conf
 
-# Enable includes of several configuration files
-RUN mkdir /opt/lampp/apache2/conf.d && \
-    echo "IncludeOptional /opt/lampp/apache2/conf.d/*.conf" >> /opt/lampp/etc/httpd.conf
+# Enable includes of several configuration files and VirtualHosts
+RUN mkdir /opt/lampp/apache2/conf.d
+RUN echo "IncludeOptional /opt/lampp/apache2/conf.d/*.conf" >> /opt/lampp/etc/httpd.conf
+RUN sed -i.bak s'/#Include etc\/extra\/httpd-vhosts.conf/Include etc\/extra\/httpd-vhosts.conf/g' /opt/lampp/etc/httpd.conf
+
+# Enable SSL
+RUN mkdir -p /opt/lampp/crt/dev.univ3rse.com
+COPY crt/server.crt /opt/lampp/crt/dev.univ3rse.com/server.crt
+COPY crt/server.key /opt/lampp/crt/dev.univ3rse.com/server.key
+
+# Create virtual hosts
+RUN rm /opt/lampp/etc/extra/httpd-vhosts.conf
+COPY httpd/httpd-vhosts.conf /opt/lampp/etc/extra/
 
 # Fix phpMyAdmin tmp folder error
 RUN echo "\$cfg['TempDir'] = '/tmp';" >> /opt/lampp/phpmyadmin/config.inc.php
 
-# Create a /www folder and a symbolic link to it in /opt/lampp/htdocs. It'll be accessible via http://localhost:[port]/www/
+# Create a /www folder and a symbolic link to it in /opt/lampp/apps/docms. It'll be accessible via https://dev.univ3rse.com/
 # This is convenient because it doesn't interfere with xampp, phpmyadmin or other tools in /opt/lampp/htdocs
 RUN mkdir /www
-RUN ln -s /www /opt/lampp/htdocs/
+RUN mkdir -p /opt/lampp/apps/docms
+RUN ln -s /www /opt/lampp/apps/docms/htdocs
 
 # SSH server
 RUN apt-get install -y -q supervisor openssh-server
@@ -59,6 +70,7 @@ VOLUME [ "/var/log/mysql/", "/var/log/apache2/" ]
 EXPOSE 3306
 EXPOSE 22
 EXPOSE 80
+EXPOSE 443
 
 # Use LAMPP binaries
 RUN echo 'export PATH=/opt/lampp/bin:$PATH' >> /root/.bashrc
