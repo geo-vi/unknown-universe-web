@@ -11,7 +11,7 @@ define("USERNAME_MIN_LENGTH", 3);
 define("USERNAME_MAX_LENGTH", 25);
 define("PASSWORD_MIN_LENGTH", 5);
 define("NEED_EMAIL_VERIFY", false);
-define("NEED_INVITATION", true);
+define("NEED_INVITATION", false);
 
 //Session Related
 define('COOKIE_PATH', '/');
