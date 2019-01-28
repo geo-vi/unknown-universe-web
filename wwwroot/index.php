@@ -26,7 +26,7 @@ if ($System->routing->AdminLVL != 0) {
     <?php
     //Load nav
     if ($System->routing->includeNav) {
-        include_once('./templates/nav/nav.php');
+        include_once('./templates/navBar/navBar.php');
     }
     ?>
 

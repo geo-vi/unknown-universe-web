@@ -11,7 +11,9 @@
     <translate ID="NAV_TEXT_SHOP">Shop</translate>
     <translate ID="NAV_TEXT_AUCTION">Auction</translate>
     <translate ID="NAV_TEXT_SETTINGS">Settings</translate>
+    <translate ID="NAV_TEXT_ADMIN">ADMIN</translate>
     <translate ID="NAV_TEXT_LOGOUT">Logout</translate>
+    <translate ID="NAV_TEXT_PAYMENT">Payment</translate>
 
     <!-- Names used more than once -->
     <translate ID="BODY_TEXT_DAMAGE">Damage</translate>

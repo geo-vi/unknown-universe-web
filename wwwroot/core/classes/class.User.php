@@ -63,13 +63,13 @@ class User
             [$this->SESSION_ID, $this->USER_ID]);
         //GET DATA FROM SHIP CONFIG
         $ShipConfigData       = $this->mysql->QUERY(
-            "SELECT player_ship_config.*, player_hangar.ID 
-                      FROM player_hangar, player_ship_config 
-                      WHERE  player_hangar.USER_ID = ? 
-                      AND player_hangar.ACTIVE = 1 
-                      AND player_hangar.PLAYER_ID = ? 
-                      AND player_ship_config.HANGAR_ID = player_hangar.ID 
-                      AND player_ship_config.USER_ID = ? 
+            "SELECT player_ship_config.*, player_hangar.ID
+                      FROM player_hangar, player_ship_config
+                      WHERE  player_hangar.USER_ID = ?
+                      AND player_hangar.ACTIVE = 1
+                      AND player_hangar.PLAYER_ID = ?
+                      AND player_ship_config.HANGAR_ID = player_hangar.ID
+                      AND player_ship_config.USER_ID = ?
                       AND player_ship_config.PLAYER_ID = ?",
             [
                 $this->USER_ID,
@@ -82,8 +82,8 @@ class User
 
         //GET ALL USER EXTRA DATA
         $PlayerExtraData       = $this->mysql->QUERY(
-            "SELECT * FROM player_extra_data 
-                      WHERE  USER_ID = ? 
+            "SELECT * FROM player_extra_data
+                      WHERE  USER_ID = ?
                       AND PLAYER_ID = ?",
             [
                 $this->USER_ID,
@@ -229,6 +229,24 @@ class User
     }
 
     /**
+     * isAdmin Function
+     * used to check if User is an Admin User
+     *
+     * @return bool
+     *
+     */
+    public function isAdmin()
+    {
+        $userRank = $this->mysql->QUERY("SELECT RANK FROM player_data WHERE PLAYER_ID = ? AND USER_ID = ?",
+            [$this->PLAYER_ID, $this->USER_ID]);
+        if ($userRank[0]['RANK'] == 21) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * hasPet Function
      * used to check if the User has a P.E.T
      *
@@ -324,7 +342,7 @@ class User
 
             if (
             $this->mysql->QUERY(
-                "INSERT INTO player_data (USER_ID,PLAYER_NAME,URIDIUM,CREDITS,REGISTERED,RANKING) 
+                "INSERT INTO player_data (USER_ID,PLAYER_NAME,URIDIUM,CREDITS,REGISTERED,RANKING)
                       VALUES(?,?,?,?,?,?)",
                 [
                     $this->USER_ID,
@@ -333,8 +351,7 @@ class User
                     $server_config["DEFAULT_CREDITS"],
                     date('Y-m-d H:i:s'),
                     99999,
-                ]
-            )
+                ])
             ) {
 
                 //GET PLAYER_DATA
@@ -424,7 +441,23 @@ class User
         } else {
             return false;
         }
-        return false;
+        return true;
+    }
+
+    /**
+     * expToNextLevel Function
+     *
+     * prints out the formatted EXP required for the next level
+     */
+    public function expToNextLevel()
+    {
+
+        $level = $this->mysql->QUERY('SELECT EXP from server_levels_player WHERE ID = (? + 1)', [$this->LVL]);
+        if($level)
+        {
+            $result = $level[0]['EXP'] - $this->EXP;
+            print number_format($result, 0, ',', ',');
+        }
     }
 
     public function createRankingList()
