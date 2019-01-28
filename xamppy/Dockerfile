@@ -29,7 +29,7 @@ RUN sed -i.bak s'/#Include etc\/extra\/httpd-vhosts.conf/Include etc\/extra\/htt
 
 # Enable SSL
 RUN mkdir -p /opt/lampp/crt/dev.univ3rse.com
-COPY crt/server.crt /opt/lampp/crt/dev.univ3rse.com/server.crt
+COPY crt/server.pem /opt/lampp/crt/dev.univ3rse.com/server.pem
 COPY crt/server.key /opt/lampp/crt/dev.univ3rse.com/server.key
 
 # Create virtual hosts
