@@ -64,10 +64,10 @@ RUN sed -i.bak s'/root\:\*/root\:\$1\$xampp\$5\/7SXMYAMmS68bAy94B5f\./g' /etc/sh
 # mySQL and apache logs
 VOLUME [ "/var/log/mysql/", "/var/log/apache2/" ]
 
-EXPOSE 3306
 EXPOSE 22
 EXPOSE 80
 EXPOSE 443
+EXPOSE 3306
 
 # Use LAMPP binaries
 RUN echo 'export PATH=/opt/lampp/bin:$PATH' >> /root/.bashrc

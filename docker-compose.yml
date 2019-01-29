@@ -5,6 +5,7 @@ services:
     build: ./xamppy
     ports:
       - "41061:22"
+      - "41062:3306"
       - "80:80"
       - "443:443"
     volumes:
