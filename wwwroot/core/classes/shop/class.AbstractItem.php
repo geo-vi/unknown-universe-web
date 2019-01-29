@@ -2,7 +2,6 @@
 
 namespace shop;
 
-
 use DB\MySQL;
 
 abstract class AbstractItem

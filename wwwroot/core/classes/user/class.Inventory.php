@@ -1,7 +1,7 @@
 <?php
 
 use DB\MySQL;
-use inventory\item;
+use inventory\Item;
 
 class Inventory
 {

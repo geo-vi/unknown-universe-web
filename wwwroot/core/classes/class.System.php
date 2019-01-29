@@ -1,7 +1,7 @@
 <?php
 
-use clan\Clan;
 use DB\MySQL;
+use clan\Clan;
 use shop\Shop;
 
 //SYSTEM RELATED CLASSES
@@ -17,6 +17,7 @@ include_once(__DIR__ . "/system/class.Translation.php");
 include_once(__DIR__ . "/class.User.php");
 include_once(__DIR__ . "/user/class.Hangars.php");
 include_once(__DIR__ . "/user/class.Inventory.php");
+include_once(__DIR__ . '/user/hangar/class.Hangar.php');
 include_once(__DIR__ . '/user/inventory/class.Item.php');
 
 //CLAN RELATED CLASSE
@@ -24,14 +25,16 @@ include_once(__DIR__ . "/class.Clan.php");
 
 //SHOP RELATED CLASSES
 include_once(__DIR__ . "/class.Shop.php");
-include_once(__DIR__ . '/shop/items/class.AbstractItem.php');
-include_once(__DIR__ . '/shop/items/class.Ship.php');
-include_once(__DIR__ . '/shop/items/class.Item.php');
-include_once(__DIR__ . '/shop/items/class.Drone.php');
+include_once(__DIR__ . '/shop/class.AbstractItem.php');
+include_once(__DIR__ . '/shop/items/class.AdminItem.php');
+include_once(__DIR__ . '/shop/items/class.AdminShipo.php');
 include_once(__DIR__ . '/shop/items/class.Ammo.php');
 include_once(__DIR__ . '/shop/items/class.Booster.php');
 include_once(__DIR__ . '/shop/items/class.Design.php');
+include_once(__DIR__ . '/shop/items/class.Drone.php');
+include_once(__DIR__ . '/shop/items/class.Item.php');
 include_once(__DIR__ . '/shop/items/class.Pet.php');
+include_once(__DIR__ . '/shop/items/class.Ship.php');
 
 //SERVER RELATED CLASSES
 include_once(__DIR__ . "/class.Game.php");
