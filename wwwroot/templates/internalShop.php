@@ -5,6 +5,8 @@
             <?=$System->User->USER_ID?>,
             <?=$System->User->PLAYER_ID?>,
             '<?=base64_encode($System->Server['SERVER_IP'])?>',
+            <?=$System->User->hasPet()?>,
+            <?=$System->User->isAdmin()?>,
         );
     });
 </script>
@@ -16,11 +18,24 @@
                 $CNT = 0;
                 foreach ($System->Shop->CATEGORIES as $CATEGORY => $DATA) {
                     $CNT++;
-                    ?>
-                    <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
-                                onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
-                                href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
-                    <?php
+                    if($CATEGORY == 'ADMIN' || $CATEGORY == 'ADMINSHIP')
+                    {
+                        if($System->User->isAdmin())
+                        {
+                            ?>
+                            <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
+                                        onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
+                                        href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
+                            <?php
+                        }
+                    } else
+                    {
+                        ?>
+                        <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
+                                    onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
+                                    href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
+                        <?php
+                    }
                 }
                 ?>
             </ul>

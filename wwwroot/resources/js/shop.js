@@ -1,12 +1,13 @@
 class shop {
-    constructor(USER_ID, PLAYER_ID, SERVER_IP) {
+    constructor(USER_ID, PLAYER_ID, SERVER_IP, PET, ADMIN) {
         shop.USER_ID = USER_ID;
         shop.PLAYER_ID = PLAYER_ID;
         shop.SERVER_IP = SERVER_IP;
+        shop.IS_ADMIN = ADMIN;
+        shop.pet = PET;
         shop.category = "SHIPS";
         shop.data = null;
         shop.render();
-
     }
 
     /**
@@ -43,17 +44,23 @@ class shop {
 
             let ITEMS = shop.data;
             ITEMS.forEach(function (ITEM, INDEX) {
-                let ItemDIV = $('<div>').addClass('item').attr('data-item-id', INDEX),
-                    ItemIMG = $('<div>').addClass('item-image'),
-                    ItemPRICE = $('<span>').addClass('item-price');
+                if (ITEM.SHOW_FUEL || ITEM.SHOW_CATS ||ITEM.HAS_PET || ITEM.HAS_MAX_IRIS || ITEM.NAME === 'Flax' || ITEM.hasShip || ITEM.hasDesign
+                    || ITEM.hasFormation)
+                {
 
-                let IMG_URL = ITEM.IMAGE_URL;
-                $(ItemIMG).attr('style', 'background-image: url("' + IMG_URL + '")');
+                } else {
+                    let ItemDIV = $('<div>').addClass('item').attr('data-item-id', INDEX),
+                        ItemIMG = $('<div>').addClass('item-image'),
+                        ItemPRICE = $('<span>').addClass('item-price');
 
-                let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
-                $(ItemPRICE).text(parseFloat(ITEM.PRICE).format(1, 3, '.', ',') + CURRENCY);
+                    let IMG_URL = ITEM.IMAGE_URL;
+                    $(ItemIMG).attr('style', 'background-image: url("' + IMG_URL + '")');
 
-                $('.item-list .mCSB_container').append($(ItemDIV).append(ItemIMG).append(ItemPRICE));
+                    let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
+                    $(ItemPRICE).text(parseFloat(ITEM.PRICE).format(2, 3, ',', '.') + CURRENCY);
+
+                    $('.item-list .mCSB_container').append($(ItemDIV).append(ItemIMG).append(ItemPRICE));
+                }
             });
 
             shop.activateShop();
@@ -78,6 +85,13 @@ class shop {
                 $('.single-item .single-item-content .single-item-buy-menu .amount-select').hide();
             }
 
+            if(ITEM.IS_PET){
+                $('.single-item .single-item-content .pet-name').show();
+                $('.single-item .single-item-content .pet-name-label').show();
+            } else {
+                $('.single-item .single-item-content .pet-name').hide();
+                $('.single-item .single-item-content .pet-name-label').hide();
+            }
 
             $('.single-item .single-item-content .single-item-description h3').text(ITEM.NAME);
             $('.single-item .single-item-content .single-item-description p').text(ITEM.DESCRIPTION);
@@ -85,7 +99,7 @@ class shop {
 
             let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
 
-            $('.single-item .single-item-content .single-item-buy-menu .item-price').text(parseFloat(ITEM.PRICE).format(1, 3, '.', ',') + CURRENCY);
+            $('.single-item .single-item-content .single-item-buy-menu .item-price').text(parseFloat(ITEM.PRICE).format(2, 0, ',', '.') + CURRENCY);
             $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id', ITEM_ID);
 
             for (let ATTRIBUTE in ITEM.ATTRIBUTES) {
@@ -108,7 +122,7 @@ class shop {
                 ITEM = shop.data[ITEM_ID],
                 AMOUNT = parseInt($(this).val());
             let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
-            $('.single-item .single-item-content .single-item-buy-menu .item-price').text((ITEM.PRICE * AMOUNT).format(1, 3, '.', ',') + CURRENCY);
+            $('.single-item .single-item-content .single-item-buy-menu .item-price').text((ITEM.PRICE * AMOUNT).format(2, 0, ',', '.') + CURRENCY);
         });
 
 
@@ -186,9 +200,12 @@ class shop {
         } else {
             if (data.success) {
                 swal("Success!", data.msg, "success");
-                if (shop.category == 'ammo' || shop.category == 'drones') {
+                if (shop.category == 'ammo' || shop.category == 'drones' || shop.category == 'pet'
+                    || shop.category =='gear' || shop.category == 'protocols' || shop.category=='pet_fuel'
+                || shop.category =='generator' || shop.category == 'extra' || shop.category == 'notlisted') {
                     shop.sendPacket(shop.category);
-                    if (shop.category == 'drones') shop.reload();
+                    shop.reload();
+                    setTimeout(location.reload.bind(location), 1000);
                 }
             } else {
                 swal("Error!", data.error_msg, "error");

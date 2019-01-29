@@ -65,6 +65,39 @@ class ShopHandler extends AbstractHandler
         $Success = false;
         $MSG     = 'Something went wrong while buying ' . $ITEM->NAME . '!';
         switch ($CATEGORY) {
+            case 'BOOSTER':
+                if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)){
+                    $Success = true;
+                    $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
+                }
+                break;
+            case 'ADMIN':
+                if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)){
+                    $Success = true;
+                    $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
+                }
+                break;
+            case 'ADMINSHIP':
+
+                $hasShip = false;
+                $Hangars = $System->User->Hangars->getHangars();
+                foreach ($Hangars as $Hangar) {
+                    /** @var $Hangar Hangar */
+                    if ($Hangar->SHIP_ID == $ITEM->ID) {
+                        $hasShip = true;
+                        break;
+                    }
+                }
+
+                if (!$hasShip && $ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID)) {
+                    $Success = true;
+                    $MSG     = 'You successfully bought an ' . $ITEM->NAME . '!';
+                } else {
+                    $Success = false;
+                    $MSG     = 'You already have an ' . $ITEM->NAME . ' in your Hangars!';
+                }
+
+                break;
             case 'SHIPS':
 
                 $hasShip = false;
@@ -87,6 +120,18 @@ class ShopHandler extends AbstractHandler
 
                 break;
             case 'EQUIPABLES':
+                if ($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)) {
+                    $Success = true;
+                    $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
+                }
+                break;
+            case 'EXTRAS':
+                if ($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)) {
+                    $Success = true;
+                    $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
+                }
+                break;
+            case 'GENERATOR':
                 if ($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)) {
                     $Success = true;
                     $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
@@ -117,7 +162,7 @@ class ShopHandler extends AbstractHandler
                             if ($DRONES['Zeus'] < 1) {
                                 if ($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID)) {
                                     $Success = true;
-                                    $MSG     = 'You successfully bought an ' . $ITEM->NAME . '!';
+                                    $MSG     = 'You successfully bought a ' . $ITEM->NAME . '!';
                                 }
                             } else {
                                 $Success = false;
@@ -134,6 +179,22 @@ class ShopHandler extends AbstractHandler
                                 $MSG     = 'You already have an Apis-Drone!';
                             }
                         }
+                    }
+                } elseif ($ITEM_DATA['CATEGORY']== 'drone_design') {
+                    if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID))
+                    {
+                        $Success = true;
+                        $MSG = 'You successfully bought a '. $ITEM->NAME .' Design!';
+                    }
+                } elseif ($ITEM_DATA['CATEGORY']== 'drone_formation') {
+                    if (!$System->User->hasFormation($ITEM_ID)) {
+                        if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID)){
+                            $Success = true;
+                            $MSG = 'You successfully bought drone formation - '. $ITEM->NAME .'!';
+                        }
+                    } else {
+                            $Success = false;
+                            $MSG = 'You already have this formation!';
                     }
                 } else {
                     die(json_encode(['error' => true, 'error_msg' => 'Buy Function not implemented!']));
@@ -153,28 +214,38 @@ class ShopHandler extends AbstractHandler
                     }
                 }
                 break;
-            /*case 'PET':
+            case 'PET':
                 $ITEM_DATA = $ITEM->getITEMDATA();
                 if($ITEM_DATA['CATEGORY'] == 'pet'){
                     if(!$System->User->hasPet()){
                         if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID)){
-                            die(json_encode(['success' => true, 'msg' => 'You successfully bought an '.$ITEM->NAME.'!']));
+                            die(json_encode(['success' => true,
+                                'msg' => 'You successfully bought a '.$ITEM->NAME.'!
+                                Go to hangar to give it a name!']));
                         }
                     }else{
                         die(json_encode(['error' => true, 'error_msg' => 'You already have a PET!']));
                     }
-                }else{
-                    if($System->User->hasPet()){
-                        die(json_encode(['error' => true, 'error_msg' => 'Buy Function not implemented!']));
-                    }else{
+                } else {
+                    if ($System->User->hasPet()) {
+                        if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)){
+                            die(json_encode(['success' => true, 'msg' => 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!']));
+                        }
+                    } else {
                         die(json_encode(['error' => true, 'error_msg' => 'You need to buy a PET first!']));
                     }
                 }
+
+                if ($ITEM_DATA['CATEGORY'] == 'gear' || $ITEM_DATA['CATEGORY'] == 'protocols'){
+                    if ($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID)) {
+                        $Success = true;
+                        $MSG     = 'You successfully bought ' . $ITEM->NAME . '!';
+                    } else {
+                        die(json_encode(['error' => true, 'error_msg' => 'Error occurred']));
+                    }
+                }
                 break;
-            */
-            default:
-                die(json_encode(['error' => true, 'error_msg' => 'Buy Function not implemented!']));
-                break;
+
         }
 
         if ($Success) {
