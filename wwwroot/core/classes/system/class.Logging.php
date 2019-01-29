@@ -2,6 +2,9 @@
 
 use DB\MySQL;
 
+/**
+ * Class Logging
+ */
 class Logging
 {
     /** @var MySQL */
@@ -66,10 +69,16 @@ class Logging
 
 }
 
+/**
+ * Class LogType
+ */
 abstract class LogType
 {
-    const DEBUG  = 1;
-    const SYSTEM = 2;
-    const NORMAL = 3;
-    const ALL    = true;
+    const DEBUG   = 1;
+    const SYSTEM  = 2;
+    const NORMAL  = 3;
+    const VOUCHER = 4;
+    const ACP     = 5;
+    consT CLAN    = 6;
+    const ALL     = true;
 }
