@@ -396,6 +396,34 @@ CREATE TABLE IF NOT EXISTS `player_skills_max` (
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
 
+-- Dumping data for table do_server_ge1.player_skills_max
+REPLACE INTO `player_skills_max` (`ID`, `SKILL_NAME`, `MAX_POINT`) VALUES
+	(1, 'SHIP_HULL', 2),
+	(2, 'SHIP_HULL_2', 3),
+	(3, 'ENGINEERING', 5),
+	(4, 'SHIELD_ENGINEERING', 5),
+	(5, 'EVASIVE_MANEUVERS', 2),
+	(6, 'EVASIVE_MANEUVERS_2', 3),
+	(7, 'SHIELD_MECHANICS', 5),
+	(8, 'TACTICS', 5),
+	(9, 'LOGISTICS', 5),
+	(10, 'LUCK', 2),
+	(11, 'LUCK_2', 3),
+	(12, 'CRUELTY', 2),
+	(13, 'CRUELTY_2', 3),
+	(14, 'TRACTOR_BEAM', 5),
+	(15, 'TRACTOR_BEAM_2', 5),
+	(16, 'GREED', 5),
+	(17, 'DETONATION', 2),
+	(18, 'DETONATION_2', 3),
+	(19, 'EXPLOSIVES', 5),
+	(20, 'HEAT_SEEKING_MISSLES', 5),
+	(21, 'BOUNTY_HUNTER', 2),
+	(22, 'BOUNTY_HUNTER_2', 3),
+	(23, 'ROCKET_FUSION', 5),
+	(24, 'ALIEN_HUNTER', 5),
+	(25, 'ELECTRO_OPTICS', 5);
+
 -- Dumping structure for table do_server_ge1.player_skill_tree
 CREATE TABLE IF NOT EXISTS `player_skill_tree` (
   `USER_ID` int(11) NOT NULL,
