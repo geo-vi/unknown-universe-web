@@ -1,12 +1,18 @@
 <script type="text/javascript">
     $(function () {
 
-        $("#techs_container_content").hide();
+        $("#upgrades_container_content").hide();
 
-        $(".button_techs").click(function () {
+        $(".button_upgrades").click(function () {
 
             $("#skylap_content").hide();
-            $("#techs_container_content").fadeIn(500);
+            $("#upgrades_container_content").fadeIn(500);
+        });
+
+        $(".button_skylab").click(function () {
+
+            $("#upgrades_container_content").hide();
+            $("#skylap_content").fadeIn(500);
         });
 
 
@@ -29,7 +35,7 @@
             <div id="close_modul"><h3>X</h3></div>
         </div>
         <div id="modul_button_div">
-            <button class="button_1">İnformation</button>
+            <button class="button_1">Information</button>
             <button class="button_2">Upgrades</button>
         </div>
 
@@ -280,6 +286,31 @@
 
 </div>
 
-<div id="techs_container_content">Hİ SHOCK HELLO xD</div>
+<div id="upgrades_container_content">
+    <div id="page_button_div">
+
+        <button class="button_skylab"><i class="fa fa-rocket" aria-hidden="true"></i> SKYLAB</button>
+        <button class="button_techs"><i class="fa fa-bolt" aria-hidden="true"></i> TECHS</button>
+        <button class="button_upgrades"><i class="fa fa-plus" aria-hidden="true"></i> UPGRADES</button>
+
+    </div>
+    <div id="upgrade_container">
+        <div id="modul_top"><h3>STEP 1 </h3>
+        </div>
+        <div id="modul_top_desc">Select the item you wish to upgrade</div>
+
+        <div id="modul_button_div">
+        </div>
+
+        <div id="modul_content_div">
+            <select style="background-color:black; width:150px;" name="diploForm" id="diploForm" class="clan-list fliess10px-black">
+                <option value="laser">Lasers</option>
+                <option value="rocketlauncher">Rocket Launchers</option>
+                <option value="shieldgenerators">Shield Generators</option>
+                <option value="drones">Drones</option>
+                <option value="modules">Modules</option>
+            </select>
+        </div>
+    </div>
 
 </div>
