@@ -203,9 +203,9 @@ class Inventory
                   server_items.SHIELD_ABSORBATION,
                   server_items.SPEED,
                   server_items.SELLING_CREDITS
-                  FROM player_equipment, server_items 
-                  WHERE player_equipment.USER_ID = ? 
-                  AND player_equipment.PLAYER_ID = ? 
+                  FROM player_equipment, server_items
+                  WHERE player_equipment.USER_ID = ?
+                  AND player_equipment.PLAYER_ID = ?
                   AND server_items.ID = player_equipment.ITEM_ID
                   ORDER BY server_items.TYPE ASC,
                   server_items.ID DESC,
@@ -236,9 +236,9 @@ class Inventory
                   server_items.SHIELD_ABSORBATION,
                   server_items.SPEED,
                   server_items.SELLING_CREDITS
-                  FROM player_equipment, server_items 
-                  WHERE player_equipment.USER_ID = ? 
-                  AND player_equipment.PLAYER_ID = ? 
+                  FROM player_equipment, server_items
+                  WHERE player_equipment.USER_ID = ?
+                  AND player_equipment.PLAYER_ID = ?
                   AND server_items.ID = player_equipment.ITEM_ID
                   AND player_equipment.ID = ?',
             [$this->user->USER_ID, $this->user->PLAYER_ID, $ID]);
@@ -291,15 +291,15 @@ class Inventory
             'SELECT player_hangar.*,
                   player_extra_data.SHIP_DESIGNS,
                   server_ships.name,
-                  server_ships.laser, 
-                  server_ships.heavy, 
-                  server_ships.generator, 
-                  server_ships.extra, 
-                  server_ships.base_speed, 
+                  server_ships.laser,
+                  server_ships.heavy,
+                  server_ships.generator,
+                  server_ships.extra,
+                  server_ships.base_speed,
                   server_ships.ship_hp
                   FROM player_hangar, player_extra_data, server_ships
-                  WHERE player_hangar.USER_ID = ? 
-                  AND player_hangar.PLAYER_ID = ? 
+                  WHERE player_hangar.USER_ID = ?
+                  AND player_hangar.PLAYER_ID = ?
                   AND player_hangar.ACTIVE = 1
                   AND player_extra_data.USER_ID = ? AND player_extra_data.PLAYER_ID = ?
                   AND server_ships.ship_id = player_hangar.SHIP_ID',
@@ -334,14 +334,14 @@ class Inventory
             "HP"              => $ShipData['ship_hp'],
             "CURRENT_CONFIGS" => [
                 "CONFIG_1" => [
-                    "DAMAGE" => $this->user->CONFIG_1_DMG,
-                    "SHIELD" => $this->user->CONFIG_1_SHIELD,
-                    "SPEED"  => $this->user->CONFIG_1_SPEED,
+                    "DAMAGE" => $this->user->ShipConfigData->CONFIG_1_DMG,
+                    "SHIELD" => $this->user->ShipConfigData->CONFIG_1_SHIELD,
+                    "SPEED"  => $this->user->ShipConfigData->CONFIG_1_SPEED,
                 ],
                 "CONFIG_2" => [
-                    "DAMAGE" => $this->user->CONFIG_2_DMG,
-                    "SHIELD" => $this->user->CONFIG_2_SHIELD,
-                    "SPEED"  => $this->user->CONFIG_2_SPEED,
+                    "DAMAGE" => $this->user->ShipConfigData->CONFIG_2_DMG,
+                    "SHIELD" => $this->user->ShipConfigData->CONFIG_2_SHIELD,
+                    "SPEED"  => $this->user->ShipConfigData->CONFIG_2_SPEED,
                 ],
             ],
             "SLOTS"           => [
@@ -432,8 +432,8 @@ class Inventory
     public function getDrones()
     {
         $DroneData = $this->mysql->QUERY(
-            'SELECT player_drones.*, server_items.NAME, server_items.SLOTS FROM player_drones, server_items 
-                  WHERE server_items.ID = player_drones.ITEM_ID 
+            'SELECT player_drones.*, server_items.NAME, server_items.SLOTS FROM player_drones, server_items
+                  WHERE server_items.ID = player_drones.ITEM_ID
                   AND USER_ID = ? AND PLAYER_ID = ?',
             [$this->user->USER_ID, $this->user->PLAYER_ID]
         );
