@@ -5,9 +5,12 @@
                 <img src="../../resources/images/buttons/icon_stats_ID.png" width="16" height="13" alt="">
                 <span>ID <?= $System->User->USER_ID ?></span>
             </li>
-            <li><a href="./internalSettings"><img src="<?= PROJECT_HTTP_ROOT ?>resources/images/settings-icon.png"
-                                                  width="12" height="13" alt=""><?= $System->__('NAV_TEXT_SETTINGS') ?>
-                </a></li>
+            <li>
+                <a href="./internalSettings">
+                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/settings-icon.png" width="12" height="13" alt="">
+                    <?= $System->__('NAV_TEXT_SETTINGS') ?>
+                </a>
+            </li>
             <li><span><?= $System->translation->LANGUAGE_NAME ?></span></li>
             <li><span><a href="./login.php?l"><?= $System->__('NAV_TEXT_LOGOUT') ?></a></span></li>
             <?php
@@ -22,9 +25,13 @@
             if ($System->User->isAdmin())
             {
                 ?>
-                <span title="You're an administrator" class="red-text">
-                    <?= $System->__('NAV_TEXT_ADMIN') ?>
-                </span>
+                <li>
+                    <a href="./internalAdmin">
+                        <span title="You're an administrator" class="red-text">
+                            <?= $System->__('NAV_TEXT_ADMIN') ?>
+                        </span>
+                    </a>
+                </li>
                 <?php
             }
             ?>
