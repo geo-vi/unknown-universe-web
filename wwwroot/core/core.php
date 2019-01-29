@@ -48,6 +48,8 @@ $System->routing->add("internalAuction", "internalAuction", true);
 
 //ADMIN PAGES
 $System->routing->add("internalAdmin", "internalAdmin", true, true, true, 21);
+$System->routing->add("internalAdminEdit", "internalAdminEdit", true, true, true, 21);
+$System->routing->add("internalAdminEditItems", "internalAdminEditItems", true, true, true, 21);
 
 $System->routing->route();
 
