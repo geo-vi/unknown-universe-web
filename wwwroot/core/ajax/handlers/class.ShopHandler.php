@@ -71,7 +71,7 @@ class ShopHandler extends AbstractHandler
                     $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
                 }
                 break;
-            case 'ADMIN':
+            case 'ADMINITEM':
                 if($ITEM->buy($System->User->USER_ID, $System->User->PLAYER_ID, $AMOUNT)){
                     $Success = true;
                     $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';

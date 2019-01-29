@@ -101,7 +101,7 @@ class Shop
                 "inShop" => 1,
             ],
         ],
-        "ADMIN"     => [
+        "ADMINITEM"     => [
             "type"  => "shop\Item",
             "table" => "items",
             "id"    => "ID",

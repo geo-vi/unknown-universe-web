@@ -3525,12 +3525,12 @@ body.internalShop .shop-body .shop-header ul.nav li.category-pet a:before {
 }
 
 body.internalShop .shop-body .shop-header ul.nav li.category-adminship a:before {
-    background-image: url("../images/internalShop/ships.png");
+    background-image: url("../images/internalShop/tetrathrin.png");
     width: 40px;
 }
 
-body.internalShop .shop-body .shop-header ul.nav li.category-admin a:before {
-    background-image: url("../images/internalShop/drones.png");
+body.internalShop .shop-body .shop-header ul.nav li.category-adminitem a:before {
+    background-image: url("../images/internalShop/indoctrineoil.png");
     width: 40px;
 }
 
@@ -3602,12 +3602,12 @@ body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single
 body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single-item-image img {
     width: 200px;
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    -webkit-filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
     -o-transform: translateY(10%);
     transform: translateY(10%);
-    -webkit-filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
 }
 
 body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single-item-content {

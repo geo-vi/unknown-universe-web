@@ -18,7 +18,7 @@
                 $CNT = 0;
                 foreach ($System->Shop->CATEGORIES as $CATEGORY => $DATA) {
                     $CNT++;
-                    if($CATEGORY == 'ADMIN' || $CATEGORY == 'ADMINSHIP')
+                    if($CATEGORY == 'ADMINITEM' || $CATEGORY == 'ADMINSHIP')
                     {
                         if($System->User->isAdmin())
                         {
