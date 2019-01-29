@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ClanHandler
+ */
 class ClanHandler extends AbstractHandler
 {
     function __construct()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class ShopHandler
+ */
 class ShopHandler extends AbstractHandler
 {
     function __construct()

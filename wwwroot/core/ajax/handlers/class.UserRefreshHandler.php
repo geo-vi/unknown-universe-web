@@ -1,6 +1,9 @@
 <?php
 
 
+/**
+ * Class UserRefreshHandler
+ */
 class UserRefreshHandler extends AbstractHandler
 {
     function __construct()

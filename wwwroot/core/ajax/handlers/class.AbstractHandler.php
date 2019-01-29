@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class AbstractHandler
+ */
 abstract class AbstractHandler
 {
     protected $actions = [];

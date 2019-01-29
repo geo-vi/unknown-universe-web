@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class EquipmentHandler
+ */
 class EquipmentHandler extends AbstractHandler
 {
     function __construct()

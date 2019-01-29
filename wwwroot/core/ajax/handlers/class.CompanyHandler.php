@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class CompanyHandler
+ */
 class CompanyHandler extends AbstractHandler
 {
     function __construct()
