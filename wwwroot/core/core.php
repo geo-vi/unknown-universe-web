@@ -1,6 +1,4 @@
 <?php
-//Include Main Files
-
 //Contains useful paths
 include_once("path.php");
 

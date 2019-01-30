@@ -81,7 +81,7 @@ if (!filter_var($_POST['registerEmail'], FILTER_VALIDATE_EMAIL)) {
 if (
     strpos($_POST['registerEmail'], 'hotmail.com') !== false || strpos($_POST['registerEmail'],
         'hotmail.de') !== false || strpos($_POST['registerEmail'],
-        ' freemail.hu') !== false || strpos($_POST['registerEmail'],
+        'freemail.hu') !== false || strpos($_POST['registerEmail'],
         'outlook.de') !== false || strpos($_POST['registerEmail'], 'outlook.com') !== false
 ) {
     die(json_encode([
