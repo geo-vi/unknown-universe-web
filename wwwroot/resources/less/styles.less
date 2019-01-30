@@ -1,19 +1,17 @@
-@import "fonts.less";
+// import external documents
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
-@import "../css/font-awesome.min.css";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css");
+
+// reference theme variables
+@import (reference) "theme.less";
+
+// import fonts, apply mixins
+@import "fonts.less";
 @import "mixins.less";
+
+// import additional style
 @import "chosen.less";
-
-@navbar-title: #fff;
-@placeholder-color: #fff;
-@brand-primary: rgba(81, 81, 81, 0.8);
-;
-@border-radius: 0;
-
-.margin-top {
-  margin-top: 15px;
-}
+@import "custom.less";
 
 h1, h2, h3, h4, h5 {
   color: #FFFFFF !important;
@@ -21,7 +19,7 @@ h1, h2, h3, h4, h5 {
 
 * {
   outline: none !important;
-  font-family: 'Roboto Condensed';
+  font-family: 'Roboto Condensed', sans-serif;
   text-transform: uppercase;
   color: #FFFFFF;
   border-radius: 0 !important;
@@ -34,24 +32,22 @@ h1, h2, h3, h4, h5 {
   &::-webkit-input-placeholder {
     color: @placeholder-color;
   }
+
   &:-moz-placeholder {
     /* FF 4-18 */
     color: @placeholder-color;
   }
+
   &::-moz-placeholder {
     /* FF 19+ */
     color: @placeholder-color;
   }
+
   &:-ms-input-placeholder {
     /* IE 10+ */
     color: @placeholder-color
   }
 
-}
-
-.form-control {
-  border: none !important;
-  box-shadow: none !important;
 }
 
 a {
@@ -62,103 +58,18 @@ a {
   }
 }
 
-.invisible {
-  opacity: 0;
-}
-
 ul {
   padding-left: 0;
   list-style: none;
 }
 
-#external-backlink {
-  position: absolute;
-  left: 10px;
-  bottom: 5px;
-
-  > a {
-    color: #ffffff;
-  }
-}
-
-.custom-scroll {
-  overflow-y: hidden;
-}
-
-.btn {
-  border-radius: @border-radius !important;
-
-  &.btn-primary {
-    background-color: @brand-primary;
-    border-color: #FFFFFF;
-    padding: 7.2px 18px;
-    line-height: 1.5;
-    .transition(background-color .3s);
-
-    &:active {
-      &:hover, &.active, &:focus, &:active {
-        background-color: darken(@brand-primary, 15%);
-        border-color: #FFFFFF;
-      }
-    }
-    &:hover, &.active, &:focus, &:active {
-      background-color: darken(@brand-primary, 10%);
-      border-color: #FFFFFF;
-    }
-  }
-}
-
-.swal-modal {
-  background-color: rgba(0, 0, 0, 0.91);
-
-  .swal-title {
-    color: #ffffff;
-  }
-  .swal-text {
-    color: rgba(255, 255, 255, 0.91);
-    text-align: center;
-  }
-  .swal-button {
-    background-color: @brand-primary;
-
-    &:active {
-      &:hover, &.active, &:focus, &:active {
-        background-color: darken(@brand-primary, 15%);
-        border-color: #FFFFFF;
-      }
-    }
-    &:hover, &.active, &:focus, &:active {
-      background-color: darken(@brand-primary, 10%);
-      border-color: #FFFFFF;
-    }
-  }
-  .swal-icon {
-    border-radius: 50% !important;
-
-    &:before, &:after {
-      background-color: transparent !important;
-    }
-    .swal-icon--success__hide-corners {
-      background-color: transparent !important;
-    }
-    .swal-icon--success__ring {
-      border-radius: 50% !important;
-    }
-  }
-}
-
-.gold-text {
-  color: #FFD700;
-}
-
 body {
-  background: url("../images/backgrounds/new-bg.jpg");
   background-position-x: center;
   background-size: cover;
-  background-attachment: fixed;
+  background: url("../images/backgrounds/new-bg.png") fixed;
   height: 100%;
   color: #fff;
-  font-family: 'Roboto Condensed';
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 18px;
   text-transform: uppercase;
   overflow-x: hidden;
@@ -184,6 +95,7 @@ body {
 
         &.pull-left {
           margin-left: 10px;
+
           li {
             margin-right: 24px;
           }
@@ -375,6 +287,7 @@ body {
 
           }
         }
+
         #right-buttons {
           &:before {
             content: "";
@@ -394,38 +307,39 @@ body {
 
   &.external, &.externalRecovery {
     background: url("../images/backgrounds/external.png");
+
     main {
-      margin: 0 auto;
       width: 444px;
-      margin-top: ~'calc(50vh - 345px)';
+      margin: ~'calc(50vh - 345px)' auto 0;
 
       #logo {
         height: 174px;
         background: url(../images/logos/logo.png) no-repeat;
         position: relative;
         left: 24px;
-        // .logo-U {
-        //     width: 60px;
-        //     height: 131px;
-        //     background: url(../images/logos/logo_U.png) no-repeat;
-        //     background-size: contain;
-        //     float: left;
-        //     position: relative;
-        //     top: 97px;
-        //     left: 27px;
-        //     z-index: 1;
-        // }
 
-        // .logo-text {
-        //     width: 286px;
-        //     height: 119px;
-        //     background: url(../images/logos/logo_text.png) no-repeat;
-        //     background-size: contain;
-        //     float: right;
-        //     position: relative;
-        //     top: 54px;
-        //     left: -59px;
-        // }
+        .logo-U {
+          width: 60px;
+          height: 131px;
+          background: url(../images/logos/logo_U.png) no-repeat;
+          background-size: contain;
+          float: left;
+          position: relative;
+          top: 97px;
+          left: 27px;
+          z-index: 1;
+        }
+
+        .logo-text {
+          width: 286px;
+          height: 119px;
+          background: url(../images/logos/logo_text.png) no-repeat;
+          background-size: contain;
+          float: right;
+          position: relative;
+          top: 54px;
+          left: -59px;
+        }
       }
 
       .login-form-wrapper {
@@ -522,7 +436,7 @@ body {
             .transition(background-color .3s);
             text-transform: uppercase;
             color: #ffffff;
-            font-family: "Roboto Condensed";
+            font-family: "Roboto Condensed", sans-serif;
 
             &:hover {
               background-color: #707072;
@@ -574,7 +488,7 @@ body {
             margin-right: 0 !important;
             color: #FFFFFF !important;
             width: 100px;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
 
             &:hover {
               background-color: rgba(39, 39, 39, 0.81);
@@ -589,7 +503,7 @@ body {
         .ui-dialog-content {
           background-color: rgba(39, 39, 39, 0.81);
           color: #FFFFFF !important;
-          font-family: 'Roboto Condensed';
+          font-family: 'Roboto Condensed', sans-serif;
         }
 
         .ui-widget-header {
@@ -604,7 +518,7 @@ body {
 
         .ui-dialog-title {
           width: 100% !important;
-          font-family: 'Roboto Condensed';
+          font-family: 'Roboto Condensed', sans-serif;
           font-weight: normal;
           font-size: 25px;
         }
@@ -621,11 +535,10 @@ body {
 
   &.e_404_template, &.error_template {
     .e_404-container {
-      margin: 0 auto;
       width: 600px;
       background-color: rgba(0, 0, 0, 0.48);
       padding: 35px;
-      margin-top: ~'calc(50vh - 118px)';
+      margin: ~'calc(50vh - 118px)' auto 0;
     }
   }
 
@@ -643,16 +556,19 @@ body {
       -ms-user-select: none; /* Internet Explorer/Edge */
       user-select: none; /* Non-prefixed version, currently not supported by any browser */
     }
+
     .company-choose-container {
       margin-top: ~'calc(50vh - 300px)';
       display: none;
       opacity: 0;
       text-align: center;
     }
+
     .company-choose-header > h1 {
       color: #FFFFFF;
       font-size: 40px;
     }
+
     .company-choose-select-container {
       width: 750px;
       margin: 0 auto;
@@ -683,9 +599,11 @@ body {
         &.mmo {
           background-image: url("../images/internalCompanyChoose/bg_character_mmo.jpg");
         }
+
         &.eic {
           background-image: url("../images/internalCompanyChoose/bg_character_eic.jpg");
         }
+
         &.vru {
           background-image: url("../images/internalCompanyChoose/bg_character_vru.jpg");
         }
@@ -712,6 +630,7 @@ body {
         font-size: 32px !important;
       }
     }
+
     .visible {
       display: block !important;
     }
@@ -741,9 +660,11 @@ body {
         background-image: url("../images/internalCompanyChoose/company_choose_glow_btn.png");
       }
     }
+
     #xmas-main-overlay {
       display: none !important;
     }
+
     #snow {
       display: none !important;
     }
@@ -846,8 +767,7 @@ body {
     #player-info-equipment {
       width: 260px;
       height: 118px;
-      margin: 0 auto;
-      margin-bottom: 15px;
+      margin: 0 auto 15px;
       clear: both;
       border: 1px solid rgba(255, 255, 255, 0.1);
       .transition(opacity .6s);
@@ -857,17 +777,18 @@ body {
       background: rgba(255, 255, 255, 0.1);
       width: 254px;
       height: 112px;
-      margin: 0 auto;
-      margin-top: 2px;
+      margin: 2px auto 0;
       text-align: center;
       padding: 9px;
     }
+
     #player-info-equipment-body > p {
       margin-top: 2px;
       margin-bottom: 3px;
     }
 
     /* Player ship box */
+
     #player-ship-box {
       width: 360px;
       float: left;
@@ -887,6 +808,7 @@ body {
         -o-transition: filter .6s;
         transition: filter .6s;
       }
+
       #pet {
         display: block;
         max-width: 76px;
@@ -926,6 +848,7 @@ body {
       top: 53px;
       left: 2px;
       cursor: pointer;
+
       #tv-off {
         background: url("../images/internalHome/tv/tv_off.png") no-repeat center center;
         width: 100%;
@@ -933,6 +856,7 @@ body {
         z-index: 2;
         position: absolute;
       }
+
       #tv-on {
         background: url("https://thumbs.gfycat.com/AstonishingGlitteringArizonaalligatorlizard-size_restricted.gif") no-repeat center center;
         width: 100%;
@@ -941,6 +865,7 @@ body {
         position: absolute;
       }
     }
+
     /* @end TV box */
 
     #page-container {
@@ -948,8 +873,7 @@ body {
       clear: both;
       position: relative;
       top: 12px;
-      padding: 13px 28px;
-      padding-bottom: 0;
+      padding: 13px 28px 0;
       width: 992px;
       margin: 0 auto;
     }
@@ -988,8 +912,7 @@ body {
     .nav > li > a {
       position: relative;
       display: block;
-      padding: 10px 3px;
-      padding-top: 0px;
+      padding: 0 3px 10px;
       opacity: 0.5;
     }
 
@@ -1026,10 +949,10 @@ body {
     }
 
     /* STATS TAB */
+
     #stats table {
-      margin: 0 auto;
       text-align: center;
-      margin-top: 10px;
+      margin: 10px auto 0;
     }
 
     #stats table th, #stats table td {
@@ -1040,8 +963,7 @@ body {
     #level-progress {
       width: 485px;
       height: 39px;
-      margin: 0 auto;
-      margin-top: 28px;
+      margin: 28px auto 0;
       position: relative;
     }
 
@@ -1075,6 +997,7 @@ body {
     /* @end STATS TAB */
 
     /* EVENTS */
+
     #events {
       padding: 0 25px;
     }
@@ -1087,8 +1010,9 @@ body {
     }
 
     #events th, #events td {
-      border: 1px solid white;
-      border-width: 0 0px 1px 0;
+      border-style: solid;
+      border-color: white;
+      border-width: 0 0 1px 0;
       text-align: center;
     }
 
@@ -1103,14 +1027,15 @@ body {
     #event-days th {
       font-size: 20.83px;
     }
+
     /* @end EVENTS */
 
     /* PILOT PROFILE */
+
     #pilot-profile {
       height: 114px;
-      margin: 0 auto;
       color: #c0c0c0;
-      margin-top: 15px;
+      margin: 15px auto 0;
       padding: 0 40px;
       position: relative;
     }
@@ -1175,8 +1100,7 @@ body {
       height: 114px;
       float: right;
       overflow: auto;
-      padding: 14px 0;
-      padding-left: 25px;
+      padding: 14px 0 14px 25px;
     }
 
     .skill {
@@ -1206,163 +1130,213 @@ body {
     }
 
     /* Skill positions */
+
     #skill_1 {
       background-position: -296px 0
     }
+
     #skill_small_1 {
       background-position: 0 0
     }
+
     #skill_2 {
       background-position: -370px 0
     }
+
     #skill_small_2 {
       background-position: -22px 0
     }
+
     #skill_4 {
       background-position: -444px 0
     }
+
     #skill_small_4 {
       background-position: -44px 0
     }
+
     #skill_5a {
       background-position: -518px 0
     }
+
     #skill_small_5a {
       background-position: -66px 0
     }
+
     #skill_5b {
       background-position: -592px 0
     }
+
     #skill_small_5b {
       background-position: -88px 0
     }
+
     #skill_6 {
       background-position: -666px 0
     }
+
     #skill_small_6 {
       background-position: -110px 0
     }
+
     #skill_8 {
       background-position: -740px 0
     }
+
     #skill_small_8 {
       background-position: -132px 0
     }
+
     #skill_9 {
       background-position: -814px 0
     }
+
     #skill_small_9 {
       background-position: -154px 0
     }
+
     #skill_11 {
       background-position: -888px 0
     }
+
     #skill_small_11 {
       background-position: -176px 0
     }
+
     #skill_13 {
       background-position: -962px 0
     }
+
     #skill_small_13 {
       background-position: -198px 0
     }
+
     #skill_14 {
       background-position: -1036px 0
     }
+
     #skill_small_14 {
       background-position: -220px 0
     }
+
     #skill_15 {
       background-position: -1110px 0
     }
+
     #skill_small_15 {
       background-position: -242px 0
     }
+
     #skill_16a {
       background-position: -1184px 0
     }
+
     #skill_small_16a {
       background-position: -264px 0
     }
+
     #skill_16b {
       background-position: -1258px 0
     }
+
     #skill_small_16b {
       background-position: -286px 0
     }
+
     #skill_17 {
       background-position: -1332px 0
     }
+
     #skill_small_17 {
       background-position: -305px 0
     }
+
     #skill_18a {
       background-position: -1406px 0
     }
+
     #skill_small_18a {
       background-position: -330px 0
     }
+
     #skill_18b {
       background-position: -1480px 0
     }
+
     #skill_small_18b {
       background-position: -352px 0
     }
+
     #skill_19 {
       background-position: -1554px 0
     }
+
     #skill_small_19 {
       background-position: -374px 0
     }
+
     #skill_20 {
       background-position: -1628px 0
     }
+
     #skill_small_20 {
       background-position: -396px 0
     }
+
     #skill_21a {
       background-position: -1702px 0
     }
+
     #skill_small_21a {
       background-position: -418px 0
     }
+
     #skill_21b {
       background-position: -1776px 0
     }
+
     #skill_small_21b {
       background-position: -440px 0
     }
+
     #skill_22a {
       background-position: -1850px 0
     }
+
     #skill_small_22a {
       background-position: -462px 0
     }
+
     #skill_22b {
       background-position: -1924px 0
     }
+
     #skill_small_22b {
       background-position: -484px 0
     }
+
     #skill_23a {
       background-position: -1998px 0
     }
+
     #skill_small_23a {
       background-position: -506px 0
     }
+
     #skill_23b {
       background-position: -2072px 0
     }
+
     #skill_small_23b {
       background-position: -528px 0
     }
+
     /* @end PILOT PROFILE */
 
     #stats-corner {
       height: 265px;
       background: rgba(192, 192, 192, 0.1);
-      padding: 25px 15px;
-      padding-bottom: 20px;
+      padding: 25px 15px 20px;
     }
 
     #best-pilots {
@@ -1373,9 +1347,11 @@ body {
     }
 
     /* Scrollbar for best pilots fix */
+
     .mCSB_inside > .mCSB_container {
-      margin-right: 0px
+      margin-right: 0
     }
+
     .mCS-dark-3.mCSB_scrollTools .mCSB_draggerRail, .mCS-light-3.mCSB_scrollTools .mCSB_draggerRail {
       width: 6px;
       background-color: #c0c0c0;
@@ -1395,6 +1371,7 @@ body {
     }
 
     /* This is the shit that caused the black bottom bug */
+
     #logbook-bg {
       font-size: 75px;
       position: relative;
@@ -1415,6 +1392,7 @@ body {
     .log-entry-date {
       direction: ltr;
     }
+
     .log-entry-body {
       font-weight: 300;
       direction: ltr;
@@ -1426,11 +1404,13 @@ body {
       margin-top: 3px;
       margin-right: 5px;
     }
+
     .pilot-entry > span > span {
       margin-right: 10px;
     }
 
     /* modals start */
+
     #modalTitle {
       color: black !important;
     }
@@ -1446,6 +1426,7 @@ body {
 
   &.internalHangar {
     background: url('../images/backgrounds/internal_hangar_background.png');
+
     .loading-screen {
       -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -1523,6 +1504,7 @@ body {
 
       &:hover, &.active {
         background: rgba(73, 73, 73, 0.50);
+
         > img {
           filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
           -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
@@ -1537,6 +1519,7 @@ body {
     .player-ship-view {
       margin-top: 30px;
     }
+
     .player-ship-info {
       margin-top: 85px;
       padding-left: 35px;
@@ -1552,6 +1535,7 @@ body {
           line-height: 24px;
           margin-right: 50px;
         }
+
         > h3 {
           display: inline-block;
           margin-top: 0;
@@ -1588,6 +1572,7 @@ body {
         width: auto;
       }
     }
+
     .drone-box {
       position: absolute;
       left: 15px;
@@ -1600,6 +1585,7 @@ body {
         width: auto;
       }
     }
+
     .pet-box {
       position: absolute;
       margin-left: 230px;
@@ -1669,6 +1655,7 @@ body {
     #config-tabs-container {
       padding: 20px;
     }
+
     #config-tabs-content {
       > .nav.nav-tabs {
         border: none !important;
@@ -1687,6 +1674,7 @@ body {
             border-radius: 0 !important;
             font-weight: normal !important;
           }
+
           > a:hover {
             border-radius: 0 !important;
             background: rgb(66, 66, 66) !important;
@@ -1702,6 +1690,7 @@ body {
       padding-top: 40px;
       min-height: 300px;
     }
+
     .equipment-slot, .equiped-item {
       display: inline-block;
       height: 31px;
@@ -1709,9 +1698,11 @@ body {
       background: rgba(0, 0, 0, 0.70);
       background-size: cover;
     }
+
     .equiped-item {
       border: 1px solid #111111;
     }
+
     .ship-equipment-slots {
       padding-left: 150px;
       padding-right: 180px;
@@ -1731,22 +1722,26 @@ body {
           content: "Laser";
         }
       }
+
       &.heavy-slots {
         &:before {
           content: "Heavy";
         }
       }
+
       &.generator-slots {
         &:before {
           content: "Generator";
         }
       }
+
       &.extra-slots {
         &:before {
           content: "Extras";
         }
       }
     }
+
     .ship-inventory-container {
       -webkit-touch-callout: none; /* iOS Safari */
       -webkit-user-select: none; /* Chrome/Safari/Opera */
@@ -1765,6 +1760,7 @@ body {
         font-size: 0 !important; /* dont remove this , this is a fix for a "white space - bug " */
       }
     }
+
     .inventory-item {
       display: inline-flex;
       height: 31px;
@@ -1774,19 +1770,21 @@ body {
       margin: 2px;
 
     }
+
     .mCSB_container {
       min-height: 100% !important;
     }
+
     .drone-equipment-container {
       height: 271px;
       padding-bottom: 30px;
     }
+
     .drone-container {
       width: 300px;
       height: 77px;
-      margin: 0 auto;
       background-color: #252525;
-      margin-bottom: 5px;
+      margin: 0 auto 5px;
       position: relative;
 
       &:last-child {
@@ -1828,9 +1826,11 @@ body {
     .ui-selected {
       border: 1px solid gold !important;
     }
+
     .ui-selecting {
       border: 1px solid white !important;
     }
+
     #dialog-box-hangar {
       display: none;
       padding-bottom: 0 !important;
@@ -1839,6 +1839,7 @@ body {
     div[role="dialog"][aria-describedby="dialog-box-hangar"].ui-dialog.ui-widget-content {
       width: 400px !important;
     }
+
     div.ui-dialog-buttonset > button {
       margin-left: 5px !important;
       margin-right: 5px !important;
@@ -1861,150 +1862,199 @@ body {
       }
 
       /* Inventory Items */
+
       &[data-item-name="lf-4"], &[data-item-name="lf-4"] {
         background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-4_30x30.png");
       }
+
       &[data-item-name="lf-3"], &[data-item-name="lf-3"] {
         background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-3_30x30.png");
       }
+
       &[data-item-name="lf-2"], &[data-item-name="lf-2"] {
         background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-2_30x30.png");
       }
+
       &[data-item-name="lf-1"], &[data-item-name="lf-1"] {
         background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-1_30x30.png");
       }
+
       &[data-item-name="mp-1"], &[data-item-name="mp-1"] {
         background-image: url("../../do_img/global/items/equipment/weapon/laser/mp-1_30x30.png");
       }
+
       &[data-item-name="hst-01"], &[data-item-name="hst-01"] {
         background-image: url("../../do_img/global/items/equipment/weapon/rocketlauncher/hst-1_30x30.png");
       }
+
       &[data-item-name="hst-02"], &[data-item-name="hst-02"] {
         background-image: url("../../do_img/global/items/equipment/weapon/rocketlauncher/hst-2_30x30.png");
       }
+
       &[data-item-name="sg3n-b02"], &[data-item-name="sg3n-b02"] {
         background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-b02_30x30.png");
       }
+
       &[data-item-name="sg3n-b01"], &[data-item-name="sg3n-b01"] {
         background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-b01_30x30.png");
       }
+
       &[data-item-name="sg3n-a03"], &[data-item-name="sg3n-a03"] {
         background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a03_30x30.png");
       }
+
       &[data-item-name="sg3n-a02"], &[data-item-name="sg3n-a02"] {
         background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a02_30x30.png");
       }
+
       &[data-item-name="sg3n-a01"], &[data-item-name="sg3n-a01"] {
         background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a01_30x30.png");
       }
+
       &[data-item-name="g3n-7900"], &[data-item-name="g3n-7900"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-7900_30x30.png");
       }
+
       &[data-item-name="g3n-6900"], &[data-item-name="g3n-6900"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-6900_30x30.png");
       }
+
       &[data-item-name="g3n-3310"], &[data-item-name="g3n-3310"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-3310_30x30.png");
       }
+
       &[data-item-name="g3n-3210"], &[data-item-name="g3n-3210"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-3210_30x30.png");
       }
+
       &[data-item-name="g3n-2010"], &[data-item-name="g3n-2010"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-2010_30x30.png");
       }
+
       &[data-item-name="g3n-1010"], &[data-item-name="g3n-1010"] {
         background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-1010_30x30.png");
       }
+
       &[data-item-name="havoc"], &[data-item-name="havoc"] {
         background-image: url("../../do_img/global/items/drone/designs/havoc_30x30.png");
       }
+
       &[data-item-name="hercules"], &[data-item-name="hercules"] {
         background-image: url("../../do_img/global/items/drone/designs/hercules_30x30.png");
       }
+
       &[data-item-name="rep-4"], &[data-item-name="rep-4"] {
         background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-4_30x30.png");
       }
+
       &[data-item-name="lgf"], &[data-item-name="lgf"] {
         background-image: url("../../do_img/global/items/resource/logfile_30x30.png");
       }
+
       &[data-item-name="bk-100"], &[data-item-name="bk-100"] {
         background-image: url("../../do_img/global/items/resource/booty-key_30x30.png");
       }
+
       &[data-item-name="rep-3"], &[data-item-name="rep-3"] {
         background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-3_30x30.png");
       }
+
       &[data-item-name="rep-1"], &[data-item-name="rep-1"] {
         background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-1_30x30.png");
       }
+
       &[data-item-name="rep-2"], &[data-item-name="rep-2"] {
         background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-2_30x30.png");
       }
+
       &[data-item-name="dro-02"], &[data-item-name="dro-02"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/dr-02_30x30.png");
       }
+
       &[data-item-name="dro-01"], &[data-item-name="dro-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/dr-01_30x30.png");
       }
+
       &[data-item-name="nc-rrb"], &[data-item-name="nc-rrb"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/nc-rrb-x_30x30.png");
       }
+
       &[data-item-name="min-t02"], &[data-item-name="min-t02"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/min-t02_30x30.png");
       }
+
       &[data-item-name="min-t01"], &[data-item-name="min-t01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/min-t01_30x30.png");
       }
+
       &[data-item-name="arol-x"], &[data-item-name="arol-x"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/arol-x_30x30.png");
       }
+
       &[data-item-name="cl04k-mod"], &[data-item-name="cl04k-mod"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-xs_30x30.png");
       }
+
       &[data-item-name="cl04k"], &[data-item-name="cl04k"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-m_30x30.png");
       }
+
       &[data-item-name="cl04k-xl"], &[data-item-name="cl04k-xl"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-xl_30x30.png");
       }
+
       &[data-item-name="gem-xi"], &[data-item-name="gem-xi"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/g3x-crgo-x_30x30.png");
       }
+
       &[data-item-name="jp-01"], &[data-item-name="jp-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/jp-01_30x30.png");
       }
+
       &[data-item-name="jp-02"], &[data-item-name="jp-02"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/jp-02_30x30.png");
       }
+
       &[data-item-name="aim-02"], &[data-item-name="aim-02"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/aim-02_30x30.png");
       }
+
       &[data-item-name="aim-01"], &[data-item-name="aim-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/aim-01_30x30.png");
       }
+
       &[data-item-name="rl-lb1"], &[data-item-name="rl-lb1"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/rllb-x_30x30.png");
       }
+
       &[data-item-name="smb-01"], &[data-item-name="smb-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/smb-01_30x30.png");
       }
+
       &[data-item-name="ish-01"], &[data-item-name="ish-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/ish-01_30x30.png");
       }
+
       &[data-item-name="sle-04"], &[data-item-name="sle-04"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-04_30x30.png");
       }
+
       &[data-item-name="sle-03"], &[data-item-name="sle-03"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-03_30x30.png");
       }
+
       &[data-item-name="sle-02"], &[data-item-name="sle-02"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-02_30x30.png");
       }
+
       &[data-item-name="sle-01"], &[data-item-name="sle-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-01_30x30.png");
       }
+
       &[data-item-name="rok-t01"], &[data-item-name="rok-t01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/rok-t01_30x30.png");
       }
+
       &[data-item-name="ajp-01"], &[data-item-name="ajp-01"] {
         background-image: url("../../do_img/global/items/equipment/extra/cpu/ajp-01_30x30.png");
       }
@@ -2023,6 +2073,7 @@ body {
     .shop-body {
       background: rgba(145, 145, 145, 0.21);
       padding: 40px;
+
       .shop-header {
         background: rgba(0, 0, 0, 0.61);
         height: 100%;
@@ -2031,7 +2082,7 @@ body {
 
         ul.nav {
           li {
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-size: 20px;
             font-weight: 200;
 
@@ -2043,6 +2094,7 @@ body {
                 }
               }
             }
+
             &.category-designs {
               a {
                 &:before {
@@ -2051,6 +2103,7 @@ body {
                 }
               }
             }
+
             &.category-equipables {
               a {
                 &:before {
@@ -2059,6 +2112,7 @@ body {
                 }
               }
             }
+
             &.category-drones {
               a {
                 &:before {
@@ -2067,6 +2121,7 @@ body {
                 }
               }
             }
+
             &.category-ammo {
               a {
                 &:before {
@@ -2075,6 +2130,7 @@ body {
                 }
               }
             }
+
             &.category-booster {
               a {
                 &:before {
@@ -2083,6 +2139,7 @@ body {
                 }
               }
             }
+
             &.category-pet {
               a {
                 &:before {
@@ -2125,6 +2182,7 @@ body {
           }
         }
       }
+
       .shop-inner {
         padding: 15px;
         background: rgba(0, 0, 0, 0.61);
@@ -2155,6 +2213,7 @@ body {
                 -webkit-filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
               }
             }
+
             .single-item-content {
               display: inline-block;
               width: 600px;
@@ -2164,6 +2223,7 @@ body {
               border: 1px solid rgba(204, 204, 204, 0.51);
               border-left: none;
             }
+
             .single-item-description {
               padding-right: 45px;
 
@@ -2171,6 +2231,7 @@ body {
                 border-bottom: 1px solid;
                 padding-bottom: 5px;
               }
+
               ul {
                 -moz-column-count: 2;
                 -moz-column-gap: 20px;
@@ -2180,10 +2241,12 @@ body {
                 column-gap: 20px;
                 font-size: 13px;
               }
+
               p {
                 font-size: 13px;
               }
             }
+
             .single-item-buy-menu {
               max-height: 200px;
               min-height: 200px;
@@ -2197,15 +2260,18 @@ body {
                 margin-bottom: 2px;
                 display: inline-block;
               }
+
               .item-quantity {
                 background-color: #7b7b7c57;
                 border: 1px solid #ffffff !important;
                 color: #ffffff;
               }
+
               .item-quantity-label {
                 font-size: 10px;
                 font-weight: 200;
               }
+
               .item-price {
                 position: absolute;
                 bottom: 50px;
@@ -2214,6 +2280,7 @@ body {
                 right: 15px;
                 font-size: 20px;
               }
+
               .buy-btn {
                 padding: 5px 30px;
                 position: absolute;
@@ -2287,6 +2354,7 @@ body {
                 color: @brand-primary;
               }
             }
+
             a {
               color: #ffffff;
               margin-right: 0;
@@ -2307,6 +2375,7 @@ body {
           margin-top: 20px;
           max-height: 500px;
         }
+
         .invitation-insert-form {
           margin-top: 15px;
 
@@ -2321,6 +2390,7 @@ body {
             float: left;
             display: inline-block;
           }
+
           input.btn-primary {
             width: 20%;
             float: right;
@@ -2361,38 +2431,47 @@ body {
           &:active {
             background-color: @background_color_2;
           }
+
           &:focus {
             background-color: @background_color_2;
           }
+
           &:hover {
             background-color: @background_color_2;
           }
+
           background-color: @background_color_2;
         }
       }
+
       > li {
         > a {
           &:hover {
             background-color: @background_color_3;
           }
+
           border: none !important;
           color: #ffffff;
           text-align: center;
           margin-right: 0 !important;
-          font-family: "Roboto Condensed";
+          font-family: "Roboto Condensed", sans-serif;
           font-weight: 300 !important;
           font-size: 17px !important;
           text-transform: uppercase;
         }
+
         display: block;
         height: 46px !important;
         width: 100%;
       }
+
       border: none !important;
     }
+
     .menu-header {
       padding-bottom: 17px;
       padding-top: 5px;
+
       > h1 {
         font-size: 17px !important;
         text-align: center;
@@ -2400,18 +2479,22 @@ body {
         text-transform: uppercase;
       }
     }
+
     .settings-header {
       > h3 {
         font-size: 17px !important;
         text-transform: uppercase;
       }
+
       height: 55px !important;
       background-color: @background_color_4 !important;
       padding: 0 15px !important;
     }
+
     .settings-content {
       background-color: @background_color_2;
       padding: 0 !important;
+
       > .tab-content {
         padding: 0 15px !important;
         min-height: 570px;
@@ -2430,10 +2513,12 @@ body {
       height: 600px;
       background: rgba(145, 145, 145, 0.21);
       margin: 50px auto;
+
       > #page_button_div {
         width: 1140px;
         height: 61px;
         float: left;
+
         > .button_skylab {
           width: 379px;
           height: 60px;
@@ -2441,10 +2526,11 @@ body {
           border: 1px solid transparent;
           float: left;
           color: #fff;
-          font-family: 'Roboto Condensed';;
+          font-family: 'Roboto Condensed', sans-serif;;
           font-weight: 900;
           font-size: 30px;
         }
+
         > .button_techs {
           width: 379px;
           height: 60px;
@@ -2452,11 +2538,12 @@ body {
           border: 1px solid transparent;
           float: left;
           color: #fff;
-          font-family: 'Roboto Condensed';;
+          font-family: 'Roboto Condensed', sans-serif;;
           font-weight: 900;
           margin-left: 1px;
           font-size: 30px;
         }
+
         > .button_upgrades {
           width: 380px;
           height: 60px;
@@ -2464,76 +2551,93 @@ body {
           border: 1px solid transparent;
           float: left;
           color: #fff;
-          font-family: 'Roboto Condensed';;
+          font-family: 'Roboto Condensed', sans-serif;;
           font-weight: 900;
           margin-left: 1px;
           font-size: 30px;
         }
       }
+
       /* Page Content button */
+
       > #top_content {
         width: 1140px;
         height: 30px;
         float: left;
+
         > #top_content_information {
           width: 142.1px;
           height: 30px;
           float: left;
           background: rgba(0, 0, 0, .7);
+
           > h3 {
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             font-size: 14px;
             text-align: center;
             margin-top: 8px;
           }
+
           > h3.P {
             color: #ff4e4e !important;
           }
+
           > h3.E {
             color: #00B9F3 !important;
           }
+
           > h3.T {
             color: #ffff00 !important;
           }
+
           > h3.P2 {
             color: #efa7b3 !important;
           }
+
           > h3.D {
             color: #0bde0b !important;
           }
+
           > h3.X {
             color: #bdb6b6 !important;
           }
+
           > h3.P3 {
             color: #ffa500 !important;
           }
+
           > h3.S {
             color: #e00fe0 !important;
           }
 
         }
+
         > #top_content_information.infor_left {
           margin-left: 1px;
         }
+
         > #top_content_information.infor_left_1 {
           margin-left: 1px;
           width: 137.5px;
         }
 
       }
+
       > #top_content_information_amount {
         width: 1140px;
         height: 20px;
         float: left;
+
         > #top_content_information_count {
           width: 142.4px;
           height: 20px;
           float: left;
           background: rgba(0, 0, 0, .4);
+
           > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             font-size: 11px;
             text-align: center;
@@ -2542,21 +2646,25 @@ body {
 
         }
       }
+
       > #top_content_information_kapasite {
         width: 1140px;
         height: 20px;
         float: left;
 
       }
+
       > #skylab_container {
         width: 1140px;
         height: 470px;
         float: left;
+
         > #skylab_container_left {
           width: 300px;
           height: 470px;
           float: left;
           margin-left: 55px;
+
           > #prometium_information {
             width: 200px;
             height: 40px;
@@ -2573,16 +2681,17 @@ body {
 
           > #prometium_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #prometium_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2615,16 +2724,17 @@ body {
 
           > #endurium_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #endurium_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2657,16 +2767,17 @@ body {
 
           > #terbium_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #terbium_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2699,16 +2810,17 @@ body {
 
           > #transport_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #transport_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2740,16 +2852,17 @@ body {
 
           > #storage_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #storage_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2762,6 +2875,7 @@ body {
             height: 20px;
             float: left;
           }
+
           > #storage_information {
             width: 200px;
             height: 40px;
@@ -2779,16 +2893,17 @@ body {
 
           > #storage_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #storage_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2803,10 +2918,12 @@ body {
           }
 
         }
+
         > #skylab_container_top {
           width: 600px;
           height: 470px;
           float: left;
+
           > #solar_module_information {
             width: 200px;
             height: 40px;
@@ -2827,16 +2944,17 @@ body {
 
           > #solar_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #solar_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2858,16 +2976,17 @@ body {
 
           > #solar_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #solar_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2902,16 +3021,17 @@ body {
 
           > #basic_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #basic_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2933,16 +3053,17 @@ body {
 
           > #basic_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #basic_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -2957,6 +3078,7 @@ body {
           }
 
         }
+
         > #skylab_container_right {
           width: 130px;
           height: 470px;
@@ -2967,7 +3089,7 @@ body {
             height: 40px;
             background: rgba(0, 0, 0, .6);
             margin-left: -180px;
-            margin-top: 0px;
+            margin-top: 0;
             float: left;
           }
 
@@ -2979,16 +3101,17 @@ body {
 
           > #prometid_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #prometid_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3010,16 +3133,17 @@ body {
 
           > #prometid_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #prometid_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3052,16 +3176,17 @@ body {
 
           > #duranium_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #duranium_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3083,16 +3208,17 @@ body {
 
           > #duranium_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #duranium_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3127,16 +3253,17 @@ body {
 
           > #promerium_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #promerium_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3158,16 +3285,17 @@ body {
 
           > #promerium_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #promerium_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3200,16 +3328,17 @@ body {
 
           > #xeno_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #xeno_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3231,16 +3360,17 @@ body {
 
           > #xeno_module_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #xeno_module_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3275,16 +3405,17 @@ body {
 
           > #seprom_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #seprom_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3306,16 +3437,17 @@ body {
 
           > #seprom_refinery_information > #ust_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 900;
             float: left;
             font-size: 13px;
             margin-top: 2px;
             margin-left: 10px;
           }
+
           > #seprom_refinery_information > #alt_information > h3 {
             color: #fff;
-            font-family: 'Roboto Condensed';
+            font-family: 'Roboto Condensed', sans-serif;
             font-weight: 300;
             float: left;
             font-size: 13px;
@@ -3332,20 +3464,24 @@ body {
         }
       }
     }
+
     .endurium_collecter {
       position: absolute;
       margin-top: 200px;
       margin-left: 200px;
     }
+
     .terbium_collecter {
       position: absolute;
       margin-top: 230px;
       margin-left: 60px;
     }
+
     .modul_1_skylab {
       position: absolute;
       margin-left: 50px;
     }
+
     .prometium_collecter {
       position: absolute;
       margin-top: 70px;
@@ -3356,21 +3492,25 @@ body {
       margin-top: 114px;
       margin-left: 217px;
     }
+
     .modul_6_work {
       position: absolute;
       margin-top: 132px;
       margin-left: 283px;
     }
+
     .modul_7_work {
       position: absolute;
       margin-top: 192px;
       margin-left: 214px;
     }
+
     .modul_8_work {
       position: absolute;
       margin-top: 203px;
       margin-left: 272px;
     }
+
     .modul_9_work {
       position: absolute;
       margin-top: 243px;
@@ -3411,13 +3551,14 @@ body {
       margin-right: 10px;
       margin-top: -5px;
     }
+
     #solar_module_modul_information #modul_content_div #modul_content_left #h3_div.top {
       margin-top: 15px;
     }
 
     #solar_module_modul_information #modul_content_div #modul_content_left #h3_div > h3 {
       color: #fff;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       font-weight: 300;
       font-size: 12px;
       float: left;
@@ -3436,13 +3577,14 @@ body {
       float: left;
       margin-top: -5px;
     }
+
     #solar_module_modul_information #modul_content_div #modul_content_right #h3_div.top {
       margin-top: 15px;
     }
 
     #solar_module_modul_information #modul_content_div #modul_content_right #h3_div > h3 {
       color: yellow !important;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       font-weight: 300;
       font-size: 12px;
       float: left;
@@ -3471,12 +3613,13 @@ body {
       background: rgba(0, 0, 0, .6);
       color: #fff;
       outline: none;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       margin-top: 20px;
       border: 1px solid transparent;
       cursor: pointer;
 
     }
+
     #solar_module_modul_information #modul_button_div > button.button_2 {
       width: auto;
       height: 25px;
@@ -3487,7 +3630,7 @@ body {
       outline: none;
       cursor: pointer;
       color: #fff;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       margin-left: 1px;
     }
 
@@ -3503,11 +3646,11 @@ body {
 
     #solar_module_modul_information #modul_top #close_modul > h3 {
       color: #fff;
-      text-shadow: 0px 0px 5px #fff;
+      text-shadow: 0 0 5px #fff;
       font-size: 15px;
       text-align: center;
       margin-top: 6px;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       cursor: pointer;
 
     }
@@ -3515,10 +3658,10 @@ body {
     #solar_module_modul_information #modul_top > h3 {
       color: #fff !important;
       text-align: center;
-      font-family: 'Roboto Condensed';
+      font-family: 'Roboto Condensed', sans-serif;
       font-weight: 300;
       font-size: 17px;
-      text-shadow: 0px 0px 15px #fff;
+      text-shadow: 0 0 15px #fff;
       margin-top: 20px;
     }
   }
@@ -3529,6 +3672,7 @@ body {
       height: 95%;
       background-color: rgba(0, 0, 0, 0.3);
     }
+
     .item_img {
       width: 105px;
       height: 105px;
@@ -3537,15 +3681,18 @@ body {
       background-color: rgba(145, 145, 145, 0.21);
       border: 2px solid rgba(0, 0, 0, 0.3);
     }
+
     .item_img:hover {
       filter: brightness(0.6);
     }
+
     .uu_input {
       background: rgba(145, 145, 145, 0.21);
       border: none;
       width: 90%;
       padding: 10px;
     }
+
     .uu_button {
       background-color: rgba(145, 145, 145, 0.21);
       outline: none;
@@ -3569,12 +3716,15 @@ body {
       padding: 5px 30px;
       text-align: center;
     }
+
     .auc {
       height: 100%;
     }
+
     .auction {
       background: rgba(0, 0, 0, 0.3);
     }
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -3588,18 +3738,23 @@ body {
       background: rgba(255, 255, 255, 0.3);
       border-radius: 10px;
     }
+
     .item_dark {
       background: rgba(0, 0, 0, 0.6);
     }
+
     .item_light {
       background: rgba(145, 145, 145, 0.21);
     }
+
     .item_dark:hover {
       filter: brightness(0.6);
     }
+
     .item_light:hover {
       filter: brightness(0.6);
     }
+
     tr {
       cursor: pointer;
     }
@@ -3609,23 +3764,28 @@ body {
     .clan-header {
       background: rgba(0, 0, 0, 0.4);
       height: 40px;
+
       nav > ul > li {
         text-align: center;
         text-transform: none;
         position: relative;
       }
     }
+
     .clan-body {
       background: rgba(0, 0, 0, 0.3);
     }
+
     .clan-top-header, .clan-bottom-header {
       left: 20px;
       position: relative;
     }
+
     .table > tbody > tr > td {
       font-family: Arial, Helvetica, sans-serif;
       text-transform: none !important;
     }
+
     #clan-inner {
       #clan-info {
         position: relative;
@@ -3634,15 +3794,18 @@ body {
         padding-bottom: 50px;
       }
     }
+
     #clan-details {
       h3 {
         text-align: center;
       }
+
       table > tbody > tr > th {
         padding-right: 10px;
         padding-left: 30px;
       }
     }
+
     #clan-avatar {
       background: rgb(0, 0, 0);
       float: left;

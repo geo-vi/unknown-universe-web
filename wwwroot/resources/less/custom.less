@@ -1,0 +1,104 @@
+#external-backlink {
+
+  position: absolute;
+  left: 10px;
+  bottom: 5px;
+
+  > a {
+    color: #ffffff;
+  }
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.custom-scroll {
+  overflow-y: hidden;
+}
+
+.btn {
+  border-radius: @border-radius !important;
+
+  &.btn-primary {
+    background-color: @brand-primary;
+    border-color: #FFFFFF;
+    padding: 7.2px 18px;
+    line-height: 1.5;
+    .transition(background-color .3s);
+
+    &:active {
+      &:hover, &.active, &:focus, &:active {
+        background-color: darken(@brand-primary, 15%);
+        border-color: #FFFFFF;
+      }
+    }
+
+    &:hover, &.active, &:focus, &:active {
+      background-color: darken(@brand-primary, 10%);
+      border-color: #FFFFFF;
+    }
+  }
+}
+
+.swal-modal {
+  background-color: rgba(0, 0, 0, 0.91);
+
+  .swal-title {
+    color: #ffffff;
+  }
+
+  .swal-text {
+    color: rgba(255, 255, 255, 0.91);
+    text-align: center;
+  }
+
+  .swal-button {
+    background-color: @brand-primary;
+
+    &:active {
+      &:hover, &.active, &:focus, &:active {
+        background-color: darken(@brand-primary, 15%);
+        border-color: #FFFFFF;
+      }
+    }
+
+    &:hover, &.active, &:focus, &:active {
+      background-color: darken(@brand-primary, 10%);
+      border-color: #FFFFFF;
+    }
+  }
+
+  .swal-icon {
+    border-radius: 50% !important;
+
+    &:before, &:after {
+      background-color: transparent !important;
+    }
+
+    .swal-icon--success__hide-corners {
+      background-color: transparent !important;
+    }
+
+    .swal-icon--success__ring {
+      border-radius: 50% !important;
+    }
+  }
+}
+
+.gold-text {
+  color: #FFD700;
+}
+
+.red-text {
+  color: #bb1000;
+}
+
+.form-control {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
