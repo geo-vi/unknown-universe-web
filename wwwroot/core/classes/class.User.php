@@ -749,8 +749,9 @@ class User
         $level = $this->mysql->QUERY('SELECT EXP from server_levels_player WHERE ID = (? + 1)', [$this->__get('LVL')]);
         if ($level) {
             $result = $level[0]['EXP'] - $this->__get('EXP');
-            print number_format($result, 0, ',', ',');
+            return number_format($result, 0, ',', ',');
         }
+        return '';
     }
 
     public function getRankName()
