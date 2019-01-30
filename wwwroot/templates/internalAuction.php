@@ -46,7 +46,7 @@
 
 </div>
 
-<br/>
+<br />
 
 <main class="container">
 
@@ -69,7 +69,8 @@
                             </thead>
                             <tbody>
                             <tr class="item item_light" id="0">
-                                <td style="border-top:none;"><img
+                                <td style="border-top:none;">
+                                    <img
                                             src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                                 </td>
                                 <td style="border-top:none;">Pil</td>
@@ -78,7 +79,8 @@
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_dark" id="1">
-                                <td style="border-top:none;"><img
+                                <td style="border-top:none;">
+                                    <img
                                             src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                                 </td>
                                 <td style="border-top:none;">Pil</td>
@@ -87,7 +89,8 @@
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_light" id="2">
-                                <td style="border-top:none;"><img
+                                <td style="border-top:none;">
+                                    <img
                                             src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/ucb-100_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                                 </td>
                                 <td style="border-top:none;">Pil</td>
@@ -96,7 +99,8 @@
                                 <td style="border-top:none;">09:10</td>
                             </tr>
                             <tr class="item item_dark" id="3">
-                                <td style="border-top:none;"><img
+                                <td style="border-top:none;">
+                                    <img
                                             src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/rsb-75_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                                 </td>
                                 <td style="border-top:none;">Pil</td>
@@ -111,17 +115,18 @@
                     <div class="auction col-md-4 aside text-center"
                          style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
                         <div class="item_box">
-                            <div class="item_img"><img
+                            <div class="item_img">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </div>
                             <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin
-                                hasar verme oranını üç katına çıkarır. (1.000 Birim)
+                                                   hasar verme oranını üç katına çıkarır. (1.000 Birim)
                             </div>
-                            <br/>
+                            <br />
                             <div class="item_bid_input"><input class="uu_input" type="text" id="#" name="#"
                                                                value="10000"> C.
                             </div>
-                            <br/>
+                            <br />
                             <div class="item_bid_button"><input type="submit" class="uu_button" value="Teklif Ver">
                             </div>
                         </div>
@@ -145,40 +150,45 @@
                         </thead>
                         <tbody>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img
+                            <td style="border-top:none;">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-25_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_dark">
-                            <td style="border-top:none;"><img
+                            <td style="border-top:none;">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img
+                            <td style="border-top:none;">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_dark">
-                            <td style="border-top:none;"><img
+                            <td style="border-top:none;">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
                         </tr>
                         <tr class="item_light">
-                            <td style="border-top:none;"><img
+                            <td style="border-top:none;">
+                                <img
                                         src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_30x30.png?__cv=becac3718527c5212ffbaef4de6beb00">
                             </td>
                             <td style="border-top:none;">Pil</td>
                             <td style="border-top:none;">Test</td>
-                        <tr/>
+                        <tr />
                         </tbody>
                     </table>
                 </div>
@@ -186,13 +196,15 @@
                 <div class="auction col-md-6 aside text-center"
                      style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;height:650px;">
                     <div class="item_box">
-                        <div class="item_img"><img
+                        <div class="item_img">
+                            <img
                                     src="https://darkorbit-22.bpsecure.com/do_img/global/items/ammunition/laser/mcb-50_100x100.png?__cv=becac3718527c5212ffbaef4de6beb00">
                         </div>
                         <div class="item_desc">Pazarda bulunan normal lazer cephanesi arasında en iyisidir! Lazerin
-                            hasar verme oranını üç katına çıkarır. (1.000 Birim)
+                                               hasar verme oranını üç katına çıkarır. (1.000 Birim)
                         </div>
-                        <div class="item_desc" style="color:orange;font-size:20px;">100.000 C. <br/> STOCK LEFT: 1 <br/>
+                        <div class="item_desc" style="color:orange;font-size:20px;">100.000 C. <br /> STOCK LEFT: 1
+                            <br />
                             <input type="submit" class="uu_button" value="Buy Now"></div>
 
                         <canvas id="myChart"></canvas>
@@ -231,10 +243,6 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-
-
 </main>
 
 <script type="text/javascript">

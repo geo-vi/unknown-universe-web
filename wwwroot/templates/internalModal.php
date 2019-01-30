@@ -1,16 +1,24 @@
 <?php
-include_once('internalSettings/internalCountries.php');
+include_once( 'internalSettings/internalCountries.php' );
 
-if (isset($_POST['action']) && $_POST['action'] == "changePetName" && isset($_POST['subAction']) && $_POST['subAction'] == "changename") {
+if (isset($_POST['action']) &&
+    $_POST['action'] == "changePetName" &&
+    isset($_POST['subAction']) &&
+    $_POST['subAction'] == "changename") {
     $System->User->changePetName($_POST['userName']);
 }
 
-if (isset($_POST['action']) && $_POST['action'] == "changePilotName" && isset($_POST['subAction']) && $_POST['subAction'] == "changename") {
+if (isset($_POST['action']) &&
+    $_POST['action'] == "changePilotName" &&
+    isset($_POST['subAction']) &&
+    $_POST['subAction'] == "changename") {
     $System->User->changeName($_POST['userName']);
 }
 
-if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAction'])
-    && $_POST['subAction'] == "sendmessage") {
+if (isset($_POST['action']) &&
+    $_POST['action'] == "send" &&
+    isset($_POST['subAction']) &&
+    $_POST['subAction'] == "sendmessage") {
     $System->User->sendMessage($_POST['userName'], $_POST['Content'], $_POST['Header']);
 }
 
@@ -43,7 +51,7 @@ if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAc
                                for="recipient">recipient: </label>
                         <div class="col-sm-10">
                             <input class="col-sm-10" type="text" id="recipient" value=""
-                                   style="margin-left:-100px;background-color: black;color:#fff;"/>
+                                   style="margin-left:-100px;background-color: black;color:#fff;" />
                         </div>
                     </div>
 
@@ -55,7 +63,6 @@ if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAc
                                    style="margin-left:-100px; margin-top:20px; background-color: black;color:#fff;">
                         </div>
                     </div>
-
 
                     <div class="form-group" style="margin-left:0; width:700px;">
                         <div class="col-sm-10">
@@ -104,7 +111,7 @@ if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAc
                                for="userNameTextBox">Name: </label>
                         <div class="col-sm-10">
                             <input type="text" id="userNameTextBox" value="<?= $System->User->__get('PLAYER_NAME') ?>"
-                                   style="background-color: black;color:#fff;"/>
+                                   style="background-color: black;color:#fff;" />
                         </div>
                     </div>
 
@@ -214,7 +221,8 @@ if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAc
                     Close
                 </button>
                 <a class="btn btn-primary"
-                   style="cursor: pointer; top:0; position:relative">Save Changes</a>
+                   style="cursor: pointer; top:0; position:relative">Save Changes
+                </a>
             </div>
         </div>
     </div>
@@ -245,7 +253,7 @@ if (isset($_POST['action']) && $_POST['action'] == "send" && isset($_POST['subAc
                                for="inputEmail3">Pet Name: </label>
                         <div class="col-sm-10">
                             <input type="text" id="petNameTextBox" value="<?= $System->User->getPetName() ?>"
-                                   style="background-color: black;color:#fff;"/>
+                                   style="background-color: black;color:#fff;" />
                         </div>
                     </div>
 

@@ -5,11 +5,11 @@
         </div>
         <div id="main-story-2" class="story">
             <p>Not only did the climate change drastically, but the very nature of the planet was slowly and inexorably
-                altered</p>
+               altered</p>
         </div>
         <div id="main-story-3" class="story">
             <p>Human civilization had developed between two ice ages and reached its golden age during this warmer
-                period in the Earth's climate</p>
+               period in the Earth's climate</p>
         </div>
         <div id="main-story-4" class="story">
             <p>But the dramatic change in climate forced mankind to seek out new habitats</p>
@@ -19,8 +19,8 @@
         </div>
         <div id="main-story-6" class="story">
             <p>In outer space they found a large abundance of raw materials and were able to establish colonies on
-                planets far,
-                far away, adapting quickly to the alien conditions
+               planets far,
+               far away, adapting quickly to the alien conditions
             </p>
         </div>
         <div id="main-story-7" class="story">
@@ -37,7 +37,7 @@
         </div>
         <div id="main-story-10" class="story">
             <p>The stories you heard growing up inspired you to enroll in the Space Academy and do your bit to end this
-                war</p>
+               war</p>
         </div>
         <div id="main-story-11" class="story">
             <p>Exploring unknown galaxies and discovering strange space phenomena is what you've always wanted to do</p>
@@ -83,7 +83,7 @@
             <div class="2-story-container">
                 <div id="2-story-1" class="company-story">
                     <p>Pilot, these are trying times during which only those made of the purest inner steel can
-                        prevail!</p>
+                       prevail!</p>
                 </div>
                 <div id="2-story-2" class="company-story">
                     <p>How tough is your mettle?</p>
@@ -101,15 +101,15 @@
             <div class="3-story-container">
                 <div id="3-story-1" class="company-story">
                     <p>We pride ourselves in our ability to push the envelope of technological advancement, while
-                        retaining a communal atmosphere</p>
+                       retaining a communal atmosphere</p>
                 </div>
                 <div id="3-story-2" class="company-story">
                     <p>Some call us a cult desiring galactic domination, but they simply misunderstand our brilliant
-                        recruitment methods</p>
+                       recruitment methods</p>
                 </div>
                 <div id="3-story-3" class="company-story">
                     <p>We are always looking for talented pilots to help us destroy our enemies and shape humanity's
-                        future!</p>
+                       future!</p>
                 </div>
             </div>
             <div class="join-button-container">
@@ -203,17 +203,16 @@
 
             var StoryTold = $(this).data("story");
 
-            if (inStoryTell == false) {
+            if (inStoryTell === false) {
                 $(".company-choose-select-container > .company-choose-select").removeClass("selected");
 
                 $(this).addClass("selected");
                 Faction = $(this).data("faction");
-                if (StoryTold == false) {
+                if (StoryTold === false) {
                     FactionMaxStory = $(".company-story-container > ." + Faction + "-story-container > div").length;
                     // start Story one for Faction
                     startFactionStory(Faction, 1);
-                }
-                else {
+                } else {
                     //show join button (dont tell the story again)
                 }
             }

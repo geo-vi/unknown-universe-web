@@ -1,10 +1,10 @@
 <?php
-include_once('internalModal.php');
+include_once( 'internalModal.php' );
 
-if(isset($_POST['action']) && $_POST['action'] == 'send_message')
-{
+if (isset($_POST['action']) && $_POST['action'] == 'send_message') {
     $System->User->massMessage($_POST['Content']);
-    ?> <div>Message successfully sent</div><?php
+    ?>
+    <div>Message successfully sent</div><?php
 }
 
 if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
@@ -26,7 +26,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
             <script>swal('Error!', 'Invalid Invitation Code, it cant be empty!', 'error');</script>
             <?php
         }
-    } elseif ($action =='send_vc'){
+    } else if ($action == 'send_vc') {
         if (isset($_GET['CODE_ID'])) {
             if ($System->User->sendMassCode($_GET['CODE_ID'])) {
                 ?>
@@ -44,44 +44,56 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
         }
     }
 }
-    if ($_POST['sub_action'] == 'editcon'){
-        if(!empty($_POST['pid'])){
-            $System->User->editUser($_POST['pname'], $_POST['rankk'], $_POST['plvl'], $_POST['phonor'], $_POST['pexp'], $_POST['puri'], $_POST['pcred'], $_POST['pid']);
+if ($_POST['sub_action'] == 'editcon') {
+    if ( !empty($_POST['pid'])) {
+        $System->User->editUser($_POST['pname'], $_POST['rankk'], $_POST['plvl'], $_POST['phonor'], $_POST['pexp'], $_POST['puri'], $_POST['pcred'], $_POST['pid']);
 
-        }
     }
+}
 
-    if(isset($_GET['sub_action']) && !empty($_GET['sub_action'])){
-        $action = $_GET['sub_action'];
+if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
+    $action = $_GET['sub_action'];
 
-        if($action='create_vc'){
-            if(isset($_GET['CODE']) && !empty($_GET['CODE'])){
-                if($System->mysql->QUERY('INSERT INTO do_server_ge1.server_voucher_codes (CODE, CODE_DESC, REWARD, AMOUNT) VALUES (?,?,?,?)', [$_GET['CODE'], $_GET['CODE_DESC'], $_GET['code_reward'], $_GET['code_q']])){
-                    ?>
-                    <script>swal('Success!', 'Code: <?=$_GET['CODE']?> created!', 'success');</script>
-                    <?php
-                } else {
-                    ?>
-                    <script>swal('Error!', 'Something went wrong!', 'error');</script>
-                    <?php
-                }
+    if ($action = 'create_vc') {
+        if (isset($_GET['CODE']) && !empty($_GET['CODE'])) {
+            if ($System->mysql->QUERY('INSERT INTO do_server_ge1.server_voucher_codes (CODE, CODE_DESC, REWARD, AMOUNT) VALUES (?,?,?,?)', [$_GET['CODE'],
+                                                                                                                                            $_GET['CODE_DESC'],
+                                                                                                                                            $_GET['code_reward'],
+                                                                                                                                            $_GET['code_q']])) {
+                ?>
+                <script>swal('Success!', 'Code: <?=$_GET['CODE']?> created!', 'success');</script>
+                <?php
             } else {
+                ?>
+                <script>swal('Error!', 'Something went wrong!', 'error');</script>
+                <?php
             }
         }
     }
+}
 ?>
 <script src="../resources/ckeditor/ckeditor.js"></script>
 <div class="page-content clearfix">
     <div class="col-xs-3 admin-menu-container">
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#search" aria-controls="search" role="tab" data-toggle="tab">Search</a></li>
+            <li role="presentation" class="active"><a href="#search"
+                                                      aria-controls="search"
+                                                      role="tab"
+                                                      data-toggle="tab">Search</a></li>
 
-            <li role="presentation"><a href="#invitations" aria-controls="invitations" role="tab" data-toggle="tab">Invitations</a></li>
-            <li role="presentation"><a href="#lookup" aria-controls="lookup" role="tab" data-toggle="tab">Player LookUp</a></li>
-            <li role="presentation"><a href="#message" aria-controls="message" role="tab" data-toggle="tab">Mass Messaging</a></li>
-            <li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab">Voucher Code</a></li>
+            <li role="presentation"><a href="#invitations" aria-controls="invitations" role="tab" data-toggle="tab">Invitations</a>
+            </li>
+            <li role="presentation"><a href="#lookup" aria-controls="lookup" role="tab" data-toggle="tab">Player
+                                                                                                          LookUp</a>
+            </li>
+            <li role="presentation"><a href="#message" aria-controls="message" role="tab" data-toggle="tab">Mass
+                                                                                                            Messaging</a>
+            </li>
+            <li role="presentation"><a href="#code" aria-controls="code" role="tab" data-toggle="tab">Voucher Code</a>
+            </li>
             <li role="presentation"><a href="#chat" aria-controls="chat" role="tab" data-toggle="tab">Chat</a></li>
-            <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Events</a></li>
+            <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab">Events</a>
+            </li>
             <li role="presentation"><a href="#logs" aria-controls="logs" role="tab" data-toggle="tab">logs</a></li>
             <li role="presentation"><a href="./internalAdminEdit">Ships</a></li>
             <li role="presentation"><a href="./internalAdminEditItems">Items</a></li>
@@ -128,8 +140,11 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                             <option value="2">Player ID</option>
                         </select><br />
                         <label>Input:</label>
-                        <input style ="color:black;margin-left:52px;background-color:gray;" type="text" value="" placeholder="Cocaine"
-                        name="cocaine">
+                        <input style="color:black;margin-left:52px;background-color:gray;"
+                               type="text"
+                               value=""
+                               placeholder="Cocaine"
+                               name="cocaine">
                         <button class="submit" name="subSearch">SEARCH</button>
                     </form>
                 </div>
@@ -140,18 +155,18 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         <th style="text-transform: none;">Code</th>
                         </thead>
                         <tbody style="text-align: center;">
-                            <tr>
-                                <td style="color:rgb(255,99,71)">System</td>
-                                <td style="color:rgb(255,99,71)">2</td>
-                            </tr>
-                            <tr>
-                                <td style="color:rgb(245,222,179)">Normal</td>
-                                <td style="color:rgb(245,222,179)">3</td>
-                            </tr>
-                            <tr>
-                                <td style="color:rgb(220,20,60)">Voucher</td>
-                                <td style="color:rgb(220,20,60)">4</td>
-                            </tr>
+                        <tr>
+                            <td style="color:rgb(255,99,71)">System</td>
+                            <td style="color:rgb(255,99,71)">2</td>
+                        </tr>
+                        <tr>
+                            <td style="color:rgb(245,222,179)">Normal</td>
+                            <td style="color:rgb(245,222,179)">3</td>
+                        </tr>
+                        <tr>
+                            <td style="color:rgb(220,20,60)">Voucher</td>
+                            <td style="color:rgb(220,20,60)">4</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -164,24 +179,25 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         <th style="text-transform: none;">Description</th>
                         <th style="text-transform: none;">Date</th>
                         </thead>
-                <?php if(isset($_POST['action']) && isset($_POST['sub_action']) && $_POST['sub_action'] == 'search_logs') {
-                            if(isset($_POST['search_Type']))
-                            {
+                        <?php if (isset($_POST['action']) && isset($_POST['sub_action']) &&
+                                  $_POST['sub_action'] == 'search_logs') {
+                            if (isset($_POST['search_Type'])) {
                                 $type = $_POST['search_Type'];
-                                $id = $_POST['cocaine'];
-                                        $logs = $System->User->getLogs($id, $type);
-                                        foreach ($logs as $log){?>
+                                $id   = $_POST['cocaine'];
+                                $logs = $System->User->getLogs($id, $type);
+                                foreach ($logs as $log) {
+                                    ?>
                                     <tbody style="text-align: center;">
-                                        <tr>
+                                    <tr>
                                         <td style="color:rgb(43,222,49)"><?= $log['USER_ID']; ?></td>
                                         <td style="color:rgb(43,222,49)"><?= $log['LOG_TYPE'] ?></td>
                                         <td style="color:rgb(43,222,49)"><?= $log['LOG_DESCRIPTION'] ?></td>
                                         <td style="color:rgb(43,222,49)"><?= $log['LOG_DATE'] ?></td>
-                                        </tr>
+                                    </tr>
                                     </tbody>
                                 <?php }
                             }
-                         } ?>
+                        } ?>
                     </table>
                 </div>
             </div>
@@ -223,7 +239,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
             </div>
 
             <div role="tabpanel" class="tab-pane active" id="search">
-                <h3><b>Search</b> </h3>
+                <h3><b>Search</b></h3>
                 <div class="search-form">
                     <form action="" method="POST">
                         <input type="hidden" name="sub_action" value="searchDB">
@@ -237,7 +253,11 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                             <option value="4">Administrators</option>
                         </select><br />
                         <label>Input:</label>
-                        <input style ="color:black;margin-left:52px;background-color:gray;" type="text" value="" placeholder="Search" name="searchUser">
+                        <input style="color:black;margin-left:52px;background-color:gray;"
+                               type="text"
+                               value=""
+                               placeholder="Search"
+                               name="searchUser">
                         <button class="submit" name="subSearch">SEARCH</button>
                     </form>
                 </div>
@@ -258,105 +278,132 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         </tr>
                         </thead>
                         <?php
-                        if(isset($_POST['action'])
-                            && isset($_POST['sub_action']) && $_POST['sub_action'] == 'searchDB') {
-                            $user = $_POST['searchUser'];
-                            if (isset($_POST['searchType'])) {
-                                $type = $_POST['searchType'];
-                                if($type == 0){
-                                    $info = $System->User->userInfo();
-                                    foreach ($info as $what => $a) {
-                                    $clan = $a['CLAN_ID'];
-                                    $clanname = $System->User->clanName($clan);
-                                    switch ($clan){
-                                        case 0:
-                                            $clanname = 'No Clan';
+                        if ( isset($_POST['action']) && isset($_POST['sub_action']) &&
+                             $_POST['sub_action'] == 'searchDB' ) {
+                        $user = $_POST['searchUser'];
+                        if ( isset($_POST['searchType']) ) {
+                        $type = $_POST['searchType'];
+                        if ( $type == 0 ){
+                            $info = $System->User->userInfo();
+                            foreach ($info as $what => $a) {
+                                $clan     = $a['CLAN_ID'];
+                                $clanname = $System->User->clanName($clan);
+                                switch ($clan) {
+                                    case 0:
+                                        $clanname = 'No Clan';
                                         break;
-                                    }?>
-                                            <tbody>
-                                            <tr>
-                                                <td><?= $a['USER_ID'] ?></td>
-                                                <td style="color:lawngreen"><?= $a['PLAYER_NAME']; ?></td>
-                                                <td><img class="ranking-icon"
-                                                         src="/do_img/global/ranks/rank_<?= $a['RANK']; ?>.gif"></td>
-                                                <td><?= $a['RANKING']; ?></td>
-                                                <td><?= $a['LVL']; ?></td>
-                                                <td><?= number_format($a['EXP'], 0, '.', ','); ?></td>
-                                                <td><?= number_format($a['HONOR'], 0, '.', ','); ?></td>
-                                                <td><?= number_format($a['URIDIUM'], 0, '.', ','); ?></td>
-                                                <td><?= number_format($a['CREDITS'], 0, '.', ','); ?></td>
-                                                <td style="width:100px;"><?php echo $clanname; ?></td>
-                                            </tr>
-                                            </tbody>
+                                } ?>
+                                <tbody>
+                                <tr>
+                                    <td><?= $a['USER_ID'] ?></td>
+                                    <td style="color:lawngreen"><?= $a['PLAYER_NAME']; ?></td>
+                                    <td><img class="ranking-icon"
+                                             src="/do_img/global/ranks/rank_<?= $a['RANK']; ?>.gif"></td>
+                                    <td><?= $a['RANKING']; ?></td>
+                                    <td><?= $a['LVL']; ?></td>
+                                    <td><?= number_format($a['EXP'], 0, '.', ','); ?></td>
+                                    <td><?= number_format($a['HONOR'], 0, '.', ','); ?></td>
+                                    <td><?= number_format($a['URIDIUM'], 0, '.', ','); ?></td>
+                                    <td><?= number_format($a['CREDITS'], 0, '.', ','); ?></td>
+                                    <td style="width:100px;"><?php echo $clanname; ?></td>
+                                </tr>
+                                </tbody>
 
-                                    <?php
-                                    }
-                                } else {
-                                    $information = $System->User->getInfo($user, $type);
-                                    foreach($information as $info){
-                                        $clan = $info['CLAN_ID'];
-                                        $clan_name = $System->User->clanName($clan);
-                                        switch ($clan) {
-                                            case '0':
-                                                $clan_name = 'No Clan';
-                                                break;
-                                        }
-                                        $admin = $info['RANK'];
-                                        if($admin == 21 )
-                                        {
-                                            $admin = "Administrator";
-                                        } else {
-                                            $admin =  "Regular Player";
-                                        }
-                                        ?>
-                                        <tbody>
-                                            <tr>
-                                                <td><?= $info['USER_ID'] ?></td>
-                                                <td style="color:lawngreen"><?= $info['PLAYER_NAME']; ?></td>
-                                                <td><img class="ranking-icon"
-                                                         src="/do_img/global/ranks/rank_<?= $info['RANK']; ?>.gif"></td>
-                                                <td><?= $info['RANKING']; ?></td>
-                                                <td><?= $info['LVL']; ?></td>
-                                                <td><?= number_format($info['EXP'], 0, '.', '.'); ?></td>
-                                                <td><?= number_format($info['HONOR'], 0, '.', '.'); ?></td>
-                                                <td><?= number_format($info['URIDIUM'], 0, '.', '.'); ?></td>
-                                                <td><?= number_format($info['CREDITS'], 0, '.', '.'); ?></td>
-                                                <td style="width:100px;"><?php echo $clan_name; ?></td>
-                                            </tr>
-                                    <?php if ($type != '4') {?>
-                                            </tbody>
-                                        </table>
-                                    <form action="" method="POST">
-                                        <input type="hidden" name="sub_action" value="editcon">
-                                        <input type="hidden" name="pid" value="<?= $info['USER_ID'] ?>">
-                                        <div style="margin-left:250px;margin-top:100px;">
-                                            <label>Player Name: </label><input class="search" name="pname" style="margin-left:20px;"  type="text" value= "<?= $info['PLAYER_NAME']?>" >
-                                            <br /><label>Rank:</label>
-
-                                            <select style="margin-left:66px; background-color:gray;" name="rankk" class="search">
-                                                <option style="text-align:right;" selected="selected" value="<?= $info['RANK'] ?>"><?php echo $admin; ?></option>
-                                                        <?php if ($info['RANK'] == 21){?>
-                                                <option value="1">Regular Player</option>
-                                                        <?php }else{ ?>
-                                                <option value="2">Administrator</option>
-                                                        <?php } ?>
-                                            </select>
-
-                                            <br /><label>Level: </label><input class="search" name="plvl" style="margin-left:66px;"  type="text" value= "<?= $info['LVL']?>" >
-                                            <br /><label>Honor: </label><input class="search" name="phonor" style="margin-left:60px;"  type="text" value= "<?= $info['HONOR']?>" >
-                                            <br /><label>EP: </label><input class="search" name="pexp" style="margin-left:87px;"  type="text" value= "<?= $info['EXP']?>" >
-                                            <br /><label>Uiridum: </label><input class="search" name="puri" style="margin-left:52px;"  type="text" value= "<?= $info['URIDIUM']?>" >
-                                            <br /><label>Credits: </label><input class="search" name="pcred" style="margin-left:53px;"  type="text" value= "<?= $info['CREDITS']?>" >
-                                            <Br/><button class="submit" name="subSearch">SEARCH</button>
-                                        </div>
-                                    </form>
                                 <?php
-                            } else
-                                { }
                             }
-                                }
-                            }
-                        }?>
+                        } else {
+                        $information = $System->User->getInfo($user, $type);
+                        foreach ( $information
+
+                        as $info ){
+                        $clan      = $info['CLAN_ID'];
+                        $clan_name = $System->User->clanName($clan);
+                        switch ($clan) {
+                            case '0':
+                                $clan_name = 'No Clan';
+                                break;
+                        }
+                        $admin = $info['RANK'];
+                        if ($admin == 21) {
+                            $admin = "Administrator";
+                        } else {
+                            $admin = "Regular Player";
+                        }
+                        ?>
+                        <tbody>
+                        <tr>
+                            <td><?= $info['USER_ID'] ?></td>
+                            <td style="color:lawngreen"><?= $info['PLAYER_NAME']; ?></td>
+                            <td><img class="ranking-icon"
+                                     src="/do_img/global/ranks/rank_<?= $info['RANK']; ?>.gif"></td>
+                            <td><?= $info['RANKING']; ?></td>
+                            <td><?= $info['LVL']; ?></td>
+                            <td><?= number_format($info['EXP'], 0, '.', '.'); ?></td>
+                            <td><?= number_format($info['HONOR'], 0, '.', '.'); ?></td>
+                            <td><?= number_format($info['URIDIUM'], 0, '.', '.'); ?></td>
+                            <td><?= number_format($info['CREDITS'], 0, '.', '.'); ?></td>
+                            <td style="width:100px;"><?php echo $clan_name; ?></td>
+                        </tr>
+                        <?php if ( $type != '4' ) { ?>
+                        </tbody>
+                    </table>
+                    <form action="" method="POST">
+                        <input type="hidden" name="sub_action" value="editcon">
+                        <input type="hidden" name="pid" value="<?= $info['USER_ID'] ?>">
+                        <div style="margin-left:250px;margin-top:100px;">
+                            <label>Player Name: </label><input class="search"
+                                                               name="pname"
+                                                               style="margin-left:20px;"
+                                                               type="text"
+                                                               value="<?= $info['PLAYER_NAME'] ?>">
+                            <br /><label>Rank:</label>
+
+                            <select style="margin-left:66px; background-color:gray;" name="rankk" class="search">
+                                <option style="text-align:right;"
+                                        selected="selected"
+                                        value="<?= $info['RANK'] ?>"><?php echo $admin; ?></option>
+                                <?php if ($info['RANK'] == 21) { ?>
+                                    <option value="1">Regular Player</option>
+                                <?php } else { ?>
+                                    <option value="2">Administrator</option>
+                                <?php } ?>
+                            </select>
+
+                            <br /><label>Level: </label><input class="search"
+                                                               name="plvl"
+                                                               style="margin-left:66px;"
+                                                               type="text"
+                                                               value="<?= $info['LVL'] ?>">
+                            <br /><label>Honor: </label><input class="search"
+                                                               name="phonor"
+                                                               style="margin-left:60px;"
+                                                               type="text"
+                                                               value="<?= $info['HONOR'] ?>">
+                            <br /><label>EP: </label><input class="search"
+                                                            name="pexp"
+                                                            style="margin-left:87px;"
+                                                            type="text"
+                                                            value="<?= $info['EXP'] ?>">
+                            <br /><label>Uiridum: </label><input class="search"
+                                                                 name="puri"
+                                                                 style="margin-left:52px;"
+                                                                 type="text"
+                                                                 value="<?= $info['URIDIUM'] ?>">
+                            <br /><label>Credits: </label><input class="search"
+                                                                 name="pcred"
+                                                                 style="margin-left:53px;"
+                                                                 type="text"
+                                                                 value="<?= $info['CREDITS'] ?>">
+                            <Br />
+                            <button class="submit" name="subSearch">SEARCH</button>
+                        </div>
+                    </form>
+                    <?php
+                    }
+                    }
+                    }
+                    }
+                    } ?>
                     </table>
                 </div>
             </div>
@@ -390,12 +437,13 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                                 <td><?= $USER['USER_ID'] ?></td>
                                 <td><?= $USER['USERNAME'] ?></td>
                                 <td><?= $USER['EMAIL'] ?></td>
-                                <td><?php if($USER['VERFIED'] == 0)
-                                    {
+                                <td><?php if ($USER['VERFIED'] == 0) {
                                         print 'No';
-                                    } else if($USER['VERIFIED'] == 1){
-                                    echo 'Yes';
-                                    }?></td>
+                                    } else {
+                                        if ($USER['VERIFIED'] == 1) {
+                                            echo 'Yes';
+                                        }
+                                    } ?></td>
                                 <td><a href="<?= PROJECT_HTTP_ROOT ?>confirm.php?code=<?= $USER['ACTIVATION_CODE'] ?>">Activate</a>
                                 </td>
                             </tr>
@@ -410,12 +458,20 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
             <div role="tabpanel" class="tab-pane" id="message">
                 <h3><b>Mass</b> Message</h3>
 
-                <form action=""  id="lol" method="POST">
+                <form action="" id="lol" method="POST">
                     <input type="hidden" name="action" value="send_message">
                     <strong><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></strong>
 
-                    <textarea id="editornew" name="Content" value="" style="color:black;width: 700px; height: 200px;" placeholder="Message..." ></textarea>
-                        <input id="send" type="submit" name="send"  style="margin-left:350px; color : #000;" value="Send Message" />
+                    <textarea id="editornew"
+                              name="Content"
+                              value=""
+                              style="color:black;width: 700px; height: 200px;"
+                              placeholder="Message..."></textarea>
+                    <input id="send"
+                           type="submit"
+                           name="send"
+                           style="margin-left:350px; color : #000;"
+                           value="Send Message" />
                 </form>
             </div>
 
@@ -435,13 +491,12 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         $VOUCHER = $System->mysql->QUERY('SELECT * FROM do_server_ge1.server_voucher_codes ORDER BY ID ASC');
 
                         foreach ($VOUCHER as $i) {
-                            $id = $i['REWARD'];
+                            $id   = $i['REWARD'];
                             $name = $System->Shop->getItemInfo($id);
 
-                            if(!is_numeric($id))
-                            {
+                            if ( !is_numeric($id)) {
                                 $Item = $i['REWARD'];
-                            }else{
+                            } else {
                                 $Item = $name[0]['NAME'];
                             }
                             ?>
@@ -468,11 +523,12 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                             <option style="text-align:right;color:black;" selected="selected" hidden>Reward</option>
                             <option style="text-align:right;color:black;" value="uridium">Uridium</option>
                             <?php $cat = $System->Shop->getServerItemsCat();
-                            foreach ($cat as $cats => $c){ ?>
-                           <option style="text-align:right;color:black;" value="<?= $c['ID'] ?>"><?= $c['NAME']; ?></option>
+                            foreach ($cat as $cats => $c) { ?>
+                                <option style="text-align:right;color:black;"
+                                        value="<?= $c['ID'] ?>"><?= $c['NAME']; ?></option>
                             <?php } ?>
                         </select>
-                        <input class="form-ctrl" name="code_q" type ="number" placeholder="Quantity">
+                        <input class="form-ctrl" name="code_q" type="number" placeholder="Quantity">
                         <input class="btn-primary btn-block btn-lg" type="submit" value="Create">
                     </form>
                     <h3><b>Send Voucher</b> Code</h3>
@@ -485,23 +541,23 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
             </div>
 
             <div role="tabpanel" class="tab-pane" id="events">
-                <h3><b>Events</b> </h3>
+                <h3><b>Events</b></h3>
                 <div class="tdm">
-                <label class="font12">TeamDeathMatch</label>
-                <input type="text" placeholder="Hours" class="timeset">
-                <button class="start">START</button>
+                    <label class="font12">TeamDeathMatch</label>
+                    <input type="text" placeholder="Hours" class="timeset">
+                    <button class="start">START</button>
                 </div>
 
                 <div class="spaceball">
-                <label class="font12">SpaceBall</label>
-                <input type="text" placeholder="Hours" class="timeset">
-                <button class="start">START</button>
+                    <label class="font12">SpaceBall</label>
+                    <input type="text" placeholder="Hours" class="timeset">
+                    <button class="start">START</button>
                 </div>
 
                 <div class="jb">
-                <label class="font12">JackpotBattle</label>
-                <input type="text" placeholder="Hours" class="timeset">
-                <button class="start">START</button>
+                    <label class="font12">JackpotBattle</label>
+                    <input type="text" placeholder="Hours" class="timeset">
+                    <button class="start">START</button>
                 </div>
 
                 <div class="jp-list">
@@ -518,7 +574,9 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         <tr>
                             <td>15</td>
                             <td>INFINITY</td>
-                            <td><button class="remove">START</button></td>
+                            <td>
+                                <button class="remove">START</button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
@@ -534,27 +592,37 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                     <button class="chat-button">Clan</button>
                 </div>
 
-
                 <div class="chat-content">
                     <div class="message">
-                        <label class="chat-username system">System: </label><label class="chat-message system">Welcome to the Global EN chat</label>
+                        <label class="chat-username system">System: </label><label class="chat-message system">Welcome
+                                                                                                               to the
+                                                                                                               Global EN
+                                                                                                               chat</label>
                     </div>
                     <div class="message">
-                        <label class="chat-username admin">INFINITY: </label><label class="chat-message admin">Hey all!</label>
+                        <label class="chat-username admin">INFINITY: </label><label class="chat-message admin">Hey
+                                                                                                               all!</label>
                     </div>
                     <div class="message">
-                        <label class="chat-username mod">Mod_Dragon: </label><label class="chat-message mod">Hello here</label>
+                        <label class="chat-username mod">Mod_Dragon: </label><label class="chat-message mod">Hello
+                                                                                                             here</label>
                     </div>
                     <div class="message">
-                        <label class="chat-username">Anonymous: </label><label class="chat-message">Fuck you bitch this is amazing</label>
+                        <label class="chat-username">Anonymous: </label><label class="chat-message">Fuck you bitch this
+                                                                                                    is amazing</label>
                     </div>
                     <div class="message">
-                        <label class="chat-username whisper">Mod_Dragon Whispers: </label><label class="chat-message whisper">Can i ban him for fun xd?</label>
+                        <label class="chat-username whisper">Mod_Dragon
+                                                             Whispers: </label><label class="chat-message whisper">Can i
+                                                                                                                   ban
+                                                                                                                   him
+                                                                                                                   for
+                                                                                                                   fun
+                                                                                                                   xd?</label>
                     </div>
 
                 </div>
                 <input type="text" class="chat-input">
-
 
                 <div class="right-menu">
                     <div class="users-list">

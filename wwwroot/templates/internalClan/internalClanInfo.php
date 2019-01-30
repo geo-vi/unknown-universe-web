@@ -2,18 +2,36 @@
     <div class="clan-header">
         <nav class="clan-navigation">
             <ul class="nav nav-justified">
-                <li role="presentation" class="active"><a href="#clan-info" aria-controls="info" role="tab"
-                                                          data-toggle="tab" class="bold">Info</a></li>
-                <li role="presentation"><a href="#clan-members" aria-controls="info" role="tab" data-toggle="tab"
-                                           class="bold">Members</a></li>
-                <li role="presentation"><a href="#diplomacy" aria-controls="info" role="tab" data-toggle="tab"
-                                           class="bold">Diplomacy</a></li>
-                <li role="presentation"><a href="#messages" aria-controls="info" role="tab" data-toggle="tab"
-                                           class="bold">Messages</a></li>
-                <li role="presentation"><a href="#administration" aria-controls="info" role="tab" data-toggle="tab"
-                                           class="bold">Administration</a></li>
-                <li role="presentation"><a href="#battlestation" aria-controls="info" role="tab" data-toggle="tab"
-                                           class="bold">Battle Station</a></li>
+                <li role="presentation" class="active">
+                    <a href="#clan-info" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Info
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#clan-members" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Members
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#diplomacy" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Diplomacy
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#messages" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Messages
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#administration" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Administration
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#battlestation" aria-controls="info" role="tab" data-toggle="tab" class="bold">
+                        Battle Station
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -53,7 +71,7 @@
 
     </div> <!-- /clan-members -->
 </div>
-</div>
+
 <script>
     function changePage(newPage) {
 

@@ -1,25 +1,26 @@
 <div class="skill-body clearfix">
     <div class="skill-inner clearfix">
         <div class="single-item col-xs-12">
-            <div class="single-item-inner" >
+            <div class="single-item-inner">
                 <div class="single-item-content">
 
-                <?php
-                $skills = $System->User->getSkills();
-                $hasSkill = $System->User->hasSkill();
-                foreach ($skills as $skill)
-                {
-                    ?>
-                    <div id="skill_<?= $skill['ID']?>" class="skill" data-skill-id="<?= $skill['ID']?>">
-                        <div class="skill_effect">
-                            <div class="skillPoints">
-                                <?php echo $hasSkill[$skill['SKILL_NAME']]; echo "/"; echo $skill['MAX_POINTS'];?>
+                    <?php
+                    $skills   = $System->User->getSkills();
+                    $hasSkill = $System->User->hasSkill();
+                    foreach ($skills as $skill) {
+                        ?>
+                        <div id="skill_<?= $skill['ID'] ?>" class="skill" data-skill-id="<?= $skill['ID'] ?>">
+                            <div class="skill_effect">
+                                <div class="skillPoints">
+                                    <?php echo $hasSkill[$skill['SKILL_NAME']];
+                                    echo "/";
+                                    echo $skill['MAX_POINTS']; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <?php
-                }
-                ?>
+                        <?php
+                    }
+                    ?>
 
                 </div>
             </div>
@@ -78,30 +79,30 @@
     });
 
     function exchange(data = null, playerID) {
-        if (data !== null){
-            if(!data.error){
+        if (data !== null) {
+            if (!data.error) {
                 swal('Success!', 'Successfully exchanged log files for point!', 'success')
             } else {
                 swal('Error', data.error_msg, 'error');
             }
         } else {
             let params = {
-                'PLAYER_ID' : playerID,
+                'PLAYER_ID': playerID,
             };
             sendRequest('exchange', 'exchange', JSON.stringify(params));
         }
     }
 
     function upgrade_skill(data = null, skillID) {
-        if (data !== null){
-            if(!data.error){
+        if (data !== null) {
+            if (!data.error) {
                 swal('Success!', 'Successfully upgraded skill!', 'success')
             } else {
                 swal('Error', data.error_msg, 'error');
             }
         } else {
             let params = {
-                'SKILL_ID' : skillID,
+                'SKILL_ID': skillID,
             };
             sendRequest('upgrade_skill', 'upgrade_skill', JSON.stringify(params));
         }
@@ -111,7 +112,7 @@
         $.ajax({
             type: "POST",
             url: './core/ajax/ajax.php',
-            data: { action : actionName , params : params, handler: 'profile'},
+            data: {action: actionName, params: params, handler: 'profile'},
             cache: false,
             xhrFields: {
                 withCredentials: true

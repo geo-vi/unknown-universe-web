@@ -2,8 +2,6 @@
     <?php
     if (isset($_POST['action']) && $_POST['action'] == "create_clan") {
         echo $System->Clan->foundClan($_POST);
-    } else {
-
     }
     ?>
     <div class="clan-top-header">
@@ -77,12 +75,16 @@
                             <td><?= $members ?>/50</td>
                             <td><?php if ($clan['FACTION'] == 1) {
                                     echo 'MMO';
-                                } elseif ($clan['FACTION'] == 2) {
-                                    echo 'EIC';
-                                } elseif ($clan['FACTION'] == 3) {
-                                    echo 'VRU';
                                 } else {
-                                    echo 'ALL';
+                                    if ($clan['FACTION'] == 2) {
+                                        echo 'EIC';
+                                    } else {
+                                        if ($clan['FACTION'] == 3) {
+                                            echo 'VRU';
+                                        } else {
+                                            echo 'ALL';
+                                        }
+                                    }
                                 }
                                 ?></td>
                         </tr>

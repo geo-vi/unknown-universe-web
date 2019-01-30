@@ -28,7 +28,6 @@
 
 <div id="skylap_content">
 
-
     <div id="solar_module_modul_information">
 
         <div id="modul_top"><h3>SOLAR MODULE</h3>
@@ -40,7 +39,6 @@
         </div>
 
         <div id="modul_content_div">
-
 
             <div id="modul_content_left">
 
@@ -77,7 +75,6 @@
 
             </div>
 
-
         </div>
 
     </div>
@@ -89,7 +86,6 @@
         <button class="button_upgrades"><i class="fa fa-plus" aria-hidden="true"></i> UPGRADES</button>
 
     </div>
-
 
     <div id="top_content">
 
@@ -125,15 +121,12 @@
 
     <div id="top_content_information_kapasite"></div>
 
-
     <div id="skylab_container">
-
 
         <div id="skylab_container_left">
 
-
-            <img src="../resources/images/skylab/modul3.png" class="endurium_collecter" alt=""/>
-            <img src="../resources/images/skylab/modul4.png" class="terbium_collecter" alt=""/>
+            <img src="../resources/images/skylab/modul3.png" class="endurium_collecter" alt="" />
+            <img src="../resources/images/skylab/modul4.png" class="terbium_collecter" alt="" />
 
             <div id="prometium_information">
 
@@ -213,14 +206,13 @@
                                                             aria-hidden="true"></i> 415</h3></div>
             </div>
 
-
-            <img src="../resources/images/skylab/modul1.png" class="modul_1_skylab" alt=""/>
-            <img src="../resources/images/skylab/modul2.png" class="prometium_collecter" alt=""/>
-            <img src="../resources/images/skylab/modul5.png" class="modul_5_work" alt=""/>
-            <img src="../resources/images/skylab/modul6.png" class="modul_6_work" alt=""/>
-            <img src="../resources/images/skylab/modul7.png" class="modul_7_work" alt=""/>
-            <img src="../resources/images/skylab/modul8.png" class="modul_8_work" alt=""/>
-            <img src="../resources/images/skylab/modul9.png" class="modul_9_work" alt=""/>
+            <img src="../resources/images/skylab/modul1.png" class="modul_1_skylab" alt="" />
+            <img src="../resources/images/skylab/modul2.png" class="prometium_collecter" alt="" />
+            <img src="../resources/images/skylab/modul5.png" class="modul_5_work" alt="" />
+            <img src="../resources/images/skylab/modul6.png" class="modul_6_work" alt="" />
+            <img src="../resources/images/skylab/modul7.png" class="modul_7_work" alt="" />
+            <img src="../resources/images/skylab/modul8.png" class="modul_8_work" alt="" />
+            <img src="../resources/images/skylab/modul9.png" class="modul_9_work" alt="" />
         </div>
         <div id="skylab_container_right">
 
@@ -278,9 +270,7 @@
                     <h3 style="color:#fff"><i class="fa fa-cog" aria-hidden="true"></i> 100%</h3></div>
             </div>
 
-
         </div>
-
 
     </div>
 
@@ -303,7 +293,10 @@
         </div>
 
         <div id="modul_content_div">
-            <select style="background-color:black; width:150px;" name="diploForm" id="diploForm" class="clan-list fliess10px-black">
+            <select style="background-color:black; width:150px;"
+                    name="diploForm"
+                    id="diploForm"
+                    class="clan-list fliess10px-black">
                 <option value="laser">Lasers</option>
                 <option value="rocketlauncher">Rocket Launchers</option>
                 <option value="shieldgenerators">Shield Generators</option>

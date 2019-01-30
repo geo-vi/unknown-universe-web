@@ -14,8 +14,19 @@
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="account-recovery">
             <form class="recovery-form" method="post">
-                <input type="text" id="recoveryUsername" name="recoveryUsername" class="form-input" placeholder="Username" required autofocus>
-                <input type="email" id="recoveryEmail" class="form-input" name="recoveryEmail" placeholder="E-Mail" required>
+                <input type="text"
+                       id="recoveryUsername"
+                       name="recoveryUsername"
+                       class="form-input"
+                       placeholder="Username"
+                       required
+                       autofocus>
+                <input type="email"
+                       id="recoveryEmail"
+                       class="form-input"
+                       name="recoveryEmail"
+                       placeholder="E-Mail"
+                       required>
                 <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>"></div>
                 <input type="button" class="form-button" value="Recover my Account">
             </form>

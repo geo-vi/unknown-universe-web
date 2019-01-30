@@ -6,12 +6,13 @@
         <div id="player-info-profile" class="invisible">
             <div id="player-info-profile-header">
                 <span style="color: <?= $System->User->getTitleColor() ?>"><?= $System->User->getTitle() ?></span>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/factions/logo_<?= $System->User->getFactionName() ?>.png"
-                     width="37" height="20"/>
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/factions/logo_<?= $System->User->getFactionName(
+                ) ?>.png"
+                     width="37" height="20" />
             </div><!-- /player-info-profile-header -->
 
             <div id="player-info-profile-body">
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif" width="94" height="94" class="pull-left"/>
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif" width="94" height="94" class="pull-left" />
 
                 <ul class="pull-right">
                     <li><p><?= $System->User->PLAYER_NAME ?></p></li>
@@ -26,7 +27,6 @@
         <div id="player-info-name">
             <p class="bold title"><?= $System->User->PLAYER_NAME ?></p>
         </div> <!-- /player-info-name -->
-
 
         <!-- Last box -->
         <div id="player-info-equipment" class="invisible">
@@ -46,12 +46,12 @@
 
     <div id="player-ship-box">
         <a target="_blank" href="./internalMapRevolution">
-            <img src="<?= $System->User->getShipImage() ?>" id="ship"/>
+            <img src="<?= $System->User->getShipImage() ?>" id="ship" />
         </a>
         <?php
-        if (!$System->User->hasPet()) {
+        if ( !$System->User->hasPet()) {
             ?>
-            <img src="<?= PROJECT_HTTP_ROOT ?>/do_img/global/items/pet/pet10-15_top.png" id="pet"/>
+            <img src="<?= PROJECT_HTTP_ROOT ?>/do_img/global/items/pet/pet10-15_top.png" id="pet" />
             <?php
         }
         ?>
@@ -70,17 +70,22 @@
 
 </div> <!-- /playerInfo-tv-container -->
 
-
 <div id="tabs-container">
     <div id="tabs-content">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab"
-                                                      class="bold"><?= $System->__('BODY_TEXT_STATS') ?></a></li>
-            <li role="presentation"><a href="#events" aria-controls="events" role="tab" data-toggle="tab"
-                                       class="bold"><?= $System->__('BODY_TEXT_EVENTS') ?></a></li>
-            <li role="presentation"><a href="#pilot-profile" aria-controls="pilot-profile" role="tab" data-toggle="tab"
-                                       class="bold"><?= $System->__('BODY_TEXT_PILOTPROFILE') ?></a></li>
+            <li role="presentation" class="active">
+                <a href="#stats" aria-controls="stats" role="tab" data-toggle="tab"
+                   class="bold"><?= $System->__('BODY_TEXT_STATS') ?></a>
+            </li>
+            <li role="presentation">
+                <a href="#events" aria-controls="events" role="tab" data-toggle="tab"
+                   class="bold"><?= $System->__('BODY_TEXT_EVENTS') ?></a>
+            </li>
+            <li role="presentation">
+                <a href="#pilot-profile" aria-controls="pilot-profile" role="tab" data-toggle="tab"
+                   class="bold"><?= $System->__('BODY_TEXT_PILOTPROFILE') ?></a>
+            </li>
         </ul>
 
         <div class="tab-content">
@@ -185,7 +190,7 @@
             <div role="tabpanel" class="tab-pane" id="pilot-profile">
                 <div id="pilot-profile-user" class="tab-content">
                     <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif" width="94" height="94"
-                         class="pull-left"/>
+                         class="pull-left" />
                     <div id="pilot-profile-user-column1" class="pilot-profile-column">
                         <table>
                             <tr>
@@ -200,7 +205,8 @@
                                 <th href="#" data-toggle="modal"
                                     data-target="#titleChangeModal"><?= $System->__('BODY_TEXT_PP_TITLE') ?></th>
                                 <td id="player-title"
-                                    style="color: <?= $System->User->getTitleColor() ?> !important"><?= $System->User->getTitle() ?></td>
+                                    style="color: <?= $System->User->getTitleColor(
+                                    ) ?> !important"><?= $System->User->getTitle() ?></td>
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_RANK') ?></th>
@@ -213,7 +219,8 @@
                         <table>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_ORIGIN') ?></th>
-                                <td><?= $System->User->COUNTRY_NAME != null ? $System->User->COUNTRY_NAME : '- No Informations -' ?></td>
+                                <td><?= $System->User->COUNTRY_NAME !=
+                                        null ? $System->User->COUNTRY_NAME : '- No Informations -' ?></td>
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_AGE') ?></th>
@@ -240,7 +247,7 @@
                                 if ($System->User->GENDER != 0) {
                                     if ($System->User->GENDER == 1) {
                                         $gender = 'Male';
-                                    } elseif ($System->User->GENDER == 2) {
+                                    } else if ($System->User->GENDER == 2) {
                                         $gender = 'Female';
                                     } else {
                                         $gender = 'Other';
@@ -338,11 +345,10 @@
 
         <div id="logbook-entries" class="custom-scroll" dir="rtl">
             <?php
-            $logs = $System->logging->getLogs(
-                $System->User->USER_ID,
-                $System->User->PLAYER_ID,
-                $System->User->SERVER_DB,
-                LogType::NORMAL
+            $logs = $System->logging->getLogs($System->User->USER_ID,
+                                              $System->User->PLAYER_ID,
+                                              $System->User->SERVER_DB,
+                                              LogType::NORMAL
             );
 
             // if($System->User->USER_ID == 677) $System->User->fixDB();

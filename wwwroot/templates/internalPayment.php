@@ -1,5 +1,8 @@
 <?php
-if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub_action']) && $_POST['sub_action'] == "redeem_code") {
+if (isset($_POST['action']) &&
+    $_POST['action'] == "redeem" &&
+    isset($_POST['sub_action']) &&
+    $_POST['sub_action'] == "redeem_code") {
     $System->User->redeem($_POST['code'], $_POST['userid']);
 }
 ?>
@@ -13,7 +16,7 @@ if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub
 
 </div>
 
-<br/>
+<br />
 
 <main class="container">
     <div id="tabs-container">
@@ -33,7 +36,9 @@ if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub
                                 </tr>
                                 <tr>
                                     <td>
-                                        <select style="background-color:transparent;color:white;" name="os0" aria-label="Uridium">
+                                        <select style="background-color:transparent;color:white;"
+                                                name="os0"
+                                                aria-label="Uridium">
                                             <option style="background-color:transparent;color:black;" value="5000">
                                                 5,000 Uridium for €1.99 EUR
                                             </option>
@@ -83,8 +88,8 @@ if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub
                              style=" overflow: auto; box-sizing: border-box;width:100%;height:300px;">
                             <div class="item_dark">
                                 <label style="margin-left:380px;" for="voucherCode">Please enter your voucher code here
-                                    to redeem
-                                    it:</label>
+                                                                                    to redeem
+                                                                                    it:</label>
                                 <input type="text" name="code" id="voucherCode" style="margin-left:390px;"
                                        class="ii_text" value="">
                             </div>
@@ -103,11 +108,10 @@ if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub
                     <div id="logbook" class="col-xs-6" style="display:none">
                         <div id="logbook-entries" class="custom-scroll" dir="rtl">
                             <?php
-                            $logs = $System->logging->getLogs(
-                                $System->User->__get('USER_ID'),
-                                $System->User->__get('PLAYER_ID'),
-                                $System->User->__get('SERVER_DB'),
-                                LogType::VOUCHER
+                            $logs = $System->logging->getLogs($System->User->__get('USER_ID'),
+                                                              $System->User->__get('PLAYER_ID'),
+                                                              $System->User->__get('SERVER_DB'),
+                                                              LogType::VOUCHER
                             );
                             foreach ($logs as $log) {
                                 ?>
@@ -147,7 +151,10 @@ if (isset($_POST['action']) && $_POST['action'] == "redeem" && isset($_POST['sub
                                     <tr>
                                         <td style="color:rgba(255,127,80, 0.8)"><?= $code['CODE'] ?></td>
                                         <td style="color:rgba(255,215,0, 0.8)"><?= $code['CODE_DESC'] ?></td>
-                                        <td style="color:rgba(255,215,0, 1)"><?php echo 'x' . $code['AMOUNT'] . ' ' . $r[0]['NAME']; ?></td>
+                                        <td style="color:rgba(255,215,0, 1)"><?php echo 'x' .
+                                                                                        $code['AMOUNT'] .
+                                                                                        ' ' .
+                                                                                        $r[0]['NAME']; ?></td>
                                         <td><?php echo $i ?></td>
                                     </tr>
                                     <?php

@@ -19,22 +19,23 @@
                 $CNT = 0;
                 foreach ($System->Shop->CATEGORIES as $CATEGORY => $DATA) {
                     $CNT++;
-                    if($CATEGORY == 'ADMINITEM' || $CATEGORY == 'ADMINSHIP')
-                    {
-                        if($System->User->isAdmin())
-                        {
+                    if ($CATEGORY == 'ADMINITEM' || $CATEGORY == 'ADMINSHIP') {
+                        if ($System->User->isAdmin()) {
                             ?>
-                            <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
+                            <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>">
+                                <a
                                         onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
-                                        href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
+                                        href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a>
+                            </li>
                             <?php
                         }
-                    } else
-                    {
+                    } else {
                         ?>
-                        <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>"><a
+                        <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>">
+                            <a
                                     onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
-                                    href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a></li>
+                                    href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a>
+                        </li>
                         <?php
                     }
                 }

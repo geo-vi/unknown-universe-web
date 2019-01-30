@@ -3,7 +3,7 @@
 
     <script>
         <?php
-        if(!$System->User->CLIENT_VERSION){
+        if(!$System->User->__get('CLIENT_VERSION')){
         ?>
         flashembed("page-container",
             {
@@ -25,7 +25,7 @@
                 "sessionID": "<?=session_id()?>",
                 "basePath": "spacemap",
                 "pid": "390",
-                "resolutionID": "<?=$System->User->ASSETS_VERSION?>",
+                "resolutionID": "<?=$System->User->__get('ASSETS_VERSION')?>",
                 "boardLink": "?boardLink",
                 "helpLink": "?helpLink",
                 "chatHost": "<?=PROJECT_WEB_IP?>",

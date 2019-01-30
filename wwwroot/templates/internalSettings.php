@@ -1,5 +1,5 @@
 <?php
-require_once("internalSettings/internalCountries.php");
+require_once( "internalSettings/internalCountries.php" );
 ?>
 
 <div class="page-content" clearfix>
@@ -47,7 +47,10 @@ require_once("internalSettings/internalCountries.php");
                             </label>
                         </div>
                         <div class="col-sm-4">
-                            <input class="form-control" type="text" id="userNameTextBox" value="<?= $System->User->__get('PLAYER_NAME') ?>"/>
+                            <input class="form-control"
+                                   type="text"
+                                   id="userNameTextBox"
+                                   value="<?= $System->User->__get('PLAYER_NAME') ?>" />
                         </div>
                         <div class="col-sm-4">
                             <button id="changeName" type="submit" class="btn-block btn-primary btn-md">
@@ -63,10 +66,16 @@ require_once("internalSettings/internalCountries.php");
                             </label>
                         </div>
                         <div class="col-sm-4">
-                            <input class="form-control" type="text" id="userUsernameTextBox" value="<?= $System->User->__get('USERNAME') ?>" disabled/>
+                            <input class="form-control"
+                                   type="text"
+                                   id="userUsernameTextBox"
+                                   value="<?= $System->User->__get('USERNAME') ?>"
+                                   disabled />
                         </div>
                         <div class="col-sm-4">
-                            <button id="changeUsername" type="submit" class="btn-block btn-info btn-md" disabled>Change Userame</button>
+                            <button id="changeUsername" type="submit" class="btn-block btn-info btn-md" disabled>
+                                Change Userame
+                            </button>
                         </div>
                     </div>
 
@@ -79,10 +88,10 @@ require_once("internalSettings/internalCountries.php");
                         <div class="col-sm-8">
                             <select name="day" id="day" class="select-dark" aria-label="birthday">
                                 <?php
-                                    print "<option value='0'>--</option>";
-                                    for ($i = 1; $i <= 31; $i++) {
-                                        print "<option value='$i'>$i</option>";
-                                    }
+                                print "<option value='0'>--</option>";
+                                for ($i = 1; $i <= 31; $i++) {
+                                    print "<option value='$i'>$i</option>";
+                                }
                                 ?>
                             </select>
                             <select name="month" id="month" class="select-dark" aria-label="birthday">
@@ -152,7 +161,10 @@ require_once("internalSettings/internalCountries.php");
                             </label>
                         </div>
                         <div class="col-sm-8">
-                            <input type="text" id="discord" class="form-control" value="<?= $System->User->__get('DISCORD_ID') ?>">
+                            <input type="text"
+                                   id="discord"
+                                   class="form-control"
+                                   value="<?= $System->User->__get('DISCORD_ID') ?>">
                         </div>
                     </div>
                 </form>
