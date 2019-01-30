@@ -45,6 +45,8 @@ $System->routing->add("internalSettings", "internalSettings", true);
 $System->routing->add("internalSkylab", "internalSkylab", true);
 $System->routing->add("internalAuction", "internalAuction", true);
 $System->routing->add("internalMessaging", "internalMessaging", true);
+$System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
+$System->routing->add("internalCalendar", "internalCalendar", true);
 
 //ADMIN PAGES
 $System->routing->add("internalAdmin", "internalAdmin", true, true, true, 21);
