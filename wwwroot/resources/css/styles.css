@@ -816,7 +816,7 @@ body footer .footer-inner span {
   font-weight: 300;
 }
 body.xmas:not(.external) #tv-box {
-  background: url("../images/internalHome/tv/xmas-tv-overlay.png") !important;
+  background: url("../images/internalStart/tv/xmas-tv-overlay.png") !important;
   height: 301px !important;
   z-index: 9999999;
   position: relative;
@@ -1343,7 +1343,7 @@ body.internalStart #player-ship-box:hover #ship {
   -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
 }
 body.internalStart #tv-box {
-  background: url("../images/internalHome/tv/tv_border.png");
+  background: url("../images/internalStart/tv/tv_border.png");
   width: 452px;
   height: 290px;
   float: right;
@@ -1358,7 +1358,7 @@ body.internalStart #tv-state {
   cursor: pointer;
 }
 body.internalStart #tv-state #tv-off {
-  background: url("../images/internalHome/tv/tv_off.png") no-repeat center center;
+  background: url("../images/internalStart/tv/tv_off.png") no-repeat center center;
   width: 100%;
   height: 100%;
   z-index: 2;
@@ -1569,14 +1569,14 @@ body.internalStart #pilot-profile-skills {
 body.internalStart .skill {
   width: 74px;
   height: 85px;
-  background-image: url('../images/internalHome/skilltree_texture.png');
+  background-image: url('../images/internalSkillTree/skilltree_texture.png');
   cursor: pointer;
   display: block;
   float: left;
   margin: 0 11px;
 }
 body.internalStart .skill .skill_effect_inactive {
-  background-image: url('../images/internalHome/skilltree_texture.png');
+  background-image: url('../images/internalSkillTree/skilltree_texture.png');
   background-position: -222px 0;
   cursor: default;
   width: 74px;
