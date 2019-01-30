@@ -6,6 +6,7 @@
     font-family: BebasNeue;
     src: url(../fonts/BebasNeueRegular.otf);
 }
+
 @font-face {
     font-family: BebasNeueBook;
     src: url(../fonts/BebasNeueBook.otf);
@@ -492,11 +493,11 @@ body header .inbox {
 }
 
 body header .inbox #icon {
-	padding-left: 25px;
+    padding-left: 25px;
     background-image: url("../images/icons_mail_sprite.png");
     background-repeat: no-repeat;
-	width: 25px;
-	height: 100%;
+    width: 25px;
+    height: 100%;
 }
 
 body header .inbox_read {
@@ -510,6 +511,7 @@ body header .inbox_read:hover {
 body header .inbox_new {
     background-image: url("../images/icons_mail_sprite.png");
 }
+
 body header .inbox_new:hover {
     background-position: 0 -40px;
 }
@@ -1077,32 +1079,34 @@ body.internalSkillTree .skill {
 }
 
 body.internalSkillTree .skill_inactive {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
     background-position: -222px 0;
     cursor: default;
     display: block;
-    float:left;
+    float: left;
     margin: 0 11px;
     width: 74px;
     height: 85px;
 }
 
 body.internalSkillTree .skill .skill_effect:hover {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
     background-position: -74px 0;
 }
+
 body.internalSkillTree .skill .skill_effect:active {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
     background-position: -148px 0;
 }
+
 body.internalSkillTree .skill .skill_effect_inactive {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
     background-position: -222px 0;
     cursor: default;
 }
 
 body.internalSkillTree .skill .skill_effect_inactive:hover {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png);
     background-position: 0 0;
 }
 
@@ -1221,27 +1225,29 @@ body.internalSkillTree .skill-body {
     background: rgba(145, 145, 145, 0.21);
     padding: 40px;
 }
+
 body.internalSkillTree .skill-body .skill-inner {
     padding: 15px;
     background: rgba(0, 0, 0, 0.61);
 }
 
-body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header{
+body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header {
     display: inline-block;
     position: relative;
     height: 140px;
-    width:120px;
+    width: 120px;
     margin-left: 30px;
     border: 1px solid rgba(255, 255, 255, 0.51);
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
 }
+
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header span {
     height: 1.42857;
     text-indent: -5000px;
     width: 9px;
     color: white;
-     filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -1251,7 +1257,7 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 }
 
 
-body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header:hover{
+body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header:hover {
     filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     cursor: pointer;
@@ -1261,7 +1267,7 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
     display: inline-block;
     margin-top: 0;
     line-height: 24px;
-    font-size:14px;
+    font-size: 14px;
     text-align: center;
     padding-bottom: 5px;
 }
@@ -1269,61 +1275,61 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-content {
     display: inline-block;
     border: 1px solid rgba(204, 204, 204, 0.51);
-    width:970px;
-    height:300px;
-    max-width:970px;
-    max-height:800px;
-    margin-left:30px;
-    padding-top:15px;
-    margin-top:20px;
+    width: 970px;
+    height: 300px;
+    max-width: 970px;
+    max-height: 800px;
+    margin-left: 30px;
+    padding-top: 15px;
+    margin-top: 20px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .more {
     display: block;
-    margin-left:0;
-    margin-top:170px;
+    margin-left: 0;
+    margin-top: 170px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .less {
     display: flex;
-    margin-top:-100px;
-    margin-left:288px;
+    margin-top: -100px;
+    margin-left: 288px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .less2 {
     display: flex;
-    margin-top:15px;
-    margin-left:288px;
+    margin-top: 15px;
+    margin-left: 288px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .less3 {
     display: flex;
-    margin-top:-285px;
-    margin-left:580px;
+    margin-top: -285px;
+    margin-left: 580px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .less4 {
     display: flex;
-    margin-top:15px;
-    margin-left:580px;
+    margin-top: 15px;
+    margin-left: 580px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .less5 {
     display: flex;
-    margin-top:15px;
-    margin-left:580px;
+    margin-top: 15px;
+    margin-left: 580px;
     text-transform: none;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-description {
     padding-right: 0;
-    padding-left:70px;
+    padding-left: 70px;
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-content ul {
@@ -1575,7 +1581,8 @@ body.internalStart #events table {
 
 body.internalStart #events th,
 body.internalStart #events td {
-    border: 1px solid white;
+    border-style: solid;
+    border-color: white;
     border-width: 0 0 1px 0;
     text-align: center;
 }
@@ -1718,22 +1725,25 @@ body.internalStart .skill_effect, .skill_effect_inactive, .skill_effect_max {
     width: 74px;
     height: 85px;
 }
+
 body.internalStart .skill .skill_effect:hover {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
     background-position: -74px 0;
 }
+
 body.internalStart .skill .skill_effect:active {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
     background-position: -148px 0;
 }
+
 body.internalStart .skill .skill_effect_inactive {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
     background-position: -222px 0;
     cursor: default;
 }
 
 body.internalStart .skill .skill_effect_inactive:hover {
-    background-image:  url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
+    background-image: url(/do_img/global/pilotSheet/skill/skilltree_textur.png?__cv=9af642510fbf36d5086f19cd02493f00);
     background-position: 0 0;
 }
 
@@ -2026,8 +2036,22 @@ body.internalHangar {
     background: url('../images/backgrounds/internal_hangar_background.png');
 }
 
-body.internalHangar table.itemTable th{font-size:10px;color:#dddddd;border-left:1px solid #444444;border-bottom:1px solid #444444;padding:6px 5px;text-align:left;background:#222222;}
-body.internalHangar table.itemTable td{font-size:10px;padding:5px;border-bottom:1px solid #444444;background:#000000;}
+body.internalHangar table.itemTable th {
+    font-size: 10px;
+    color: #dddddd;
+    border-left: 1px solid #444444;
+    border-bottom: 1px solid #444444;
+    padding: 6px 5px;
+    text-align: left;
+    background: #222222;
+}
+
+body.internalHangar table.itemTable td {
+    font-size: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #444444;
+    background: #000000;
+}
 
 body.internalHangar .loading-screen {
     -webkit-touch-callout: none;
@@ -2192,7 +2216,7 @@ body.internalHangar .pet-equipment-name {
 }
 
 
-body.internalHangar .pet-equipment-name-change-btn{
+body.internalHangar .pet-equipment-name-change-btn {
     padding: 5px 30px;
     position: absolute;
     top: 180px;
@@ -2385,7 +2409,7 @@ body.internalHangar .equiped-item {
     height: 32px;
     width: 32px;
     background: rgba(0, 0, 0, 0.7);
-   border: 1px solid rgba(255, 255, 255, 0.51);
+    border: 1px solid rgba(255, 255, 255, 0.51);
     margin: 0 3px 5px 0;
     background-size: cover;
 }
@@ -2500,18 +2524,19 @@ body.internalHangar .drone-container > .drone-image > img {
     margin-top: 4px;
 }
 
-body.internalHangar  .drone-level {
+body.internalHangar .drone-level {
     position: absolute;
     display: inline-block;
-    margin-top:10px;
+    margin-top: 10px;
     margin-left: 10px;
     text-transform: none;
     font-size: 12px !important;
 }
+
 body.internalHangar .drone-effect {
     position: absolute;
     display: inline-block;
-    margin-top:30px;
+    margin-top: 30px;
     margin-left: 10px;
     text-transform: none;
     font-size: 12px !important;
@@ -2548,7 +2573,7 @@ body.internalHangar .drone-container > .drone-equipment-slots {
     vertical-align: top;
     margin-top: 7px;
     margin-left: 15px;
-    height:43%;
+    height: 43%;
     display: inline-grid;
 }
 
@@ -2605,7 +2630,7 @@ body.internalHangar .equiped-item:hover {
 body.internalHangar .inventory-item > span,
 body.internalHangar .equiped-item > span {
     position: relative;
-    margin-left:3px;
+    margin-left: 3px;
     float: left;
     font-size: 10px;
     color: #ffffff;
@@ -2975,8 +3000,8 @@ body.internalHangar .equiped-item[data-item-name="ai-lm1"] {
 
 body.internalMapRevolution .container {
     position: absolute;
-	max-height:100vh;
-	left: -15px;
+    max-height: 100vh;
+    left: -15px;
 }
 
 body.internalShop .shop-body {
@@ -3235,7 +3260,7 @@ body.internalShop .shop-body .shop-inner .item-list .item .item-price {
 }
 
 body.internalAdmin .page-content {
-   background: rgba(69, 69, 69, 0.61);
+    background: rgba(69, 69, 69, 0.61);
 
 }
 
@@ -3286,55 +3311,60 @@ body.internalAdmin .page-content .tab-content .invitation-insert-form input {
 }
 
 body.internalAdmin .form-ctrl {
-  display: inline-block;
-  width: 24%;
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555555;
-  background-color: #ffffff;
-  background-image: none;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    display: inline-block;
+    width: 24%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #ffffff;
+    background-image: none;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+
 body.internalAdmin .form-ctrl:focus {
-  border-color: #66afe9;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
+
 body.internalAdmin .form-ctrl::-moz-placeholder {
-  color: #777777;
-  opacity: 1;
+    color: #777777;
+    opacity: 1;
 }
+
 body.internalAdmin .form-ctrl:-ms-input-placeholder {
-  color: #777777;
+    color: #777777;
 }
+
 body.internalAdmin .form-ctrl::-webkit-input-placeholder {
-  color: #777777;
+    color: #777777;
 }
+
 body.internalAdmin .form-ctrl[disabled],
 body.internalAdmin .form-ctrl[readonly],
 fieldset[disabled] .form-ctrl {
-  cursor: not-allowed;
-  background-color: #eeeeee;
-  opacity: 1;
+    cursor: not-allowed;
+    background-color: #eeeeee;
+    opacity: 1;
 }
 
 textarea.form-control {
-  height: auto;
+    height: auto;
 }
 
 body.internalAdmin .page-content .tab-content .user-look-up-search input.form-controls {
     width: 30%;
     float: left;
-    background: (0, 0 ,0 , 0.6);
+    background: rgba(0, 0, 0, 0.6);
     display: inline-block;
     border: none !important;
     box-shadow: none !important;
@@ -3352,10 +3382,10 @@ body.internalAdmin .page-content .tab-content .user-look-up-list {
     margin-top: 15px;
 }
 
-body.internalAdmin  .user-list {
+body.internalAdmin .user-list {
     max-height: 250px;
     margin-left: 0;
-    margin-top:100px;
+    margin-top: 100px;
 }
 
 body.internalAdmin .user-look-up-list2 {
@@ -3363,7 +3393,7 @@ body.internalAdmin .user-look-up-list2 {
     margin-top: 350px;
 }
 
-body.internalAdmin  .page-content .tab-content .search-form2{
+body.internalAdmin .page-content .tab-content .search-form2 {
     border: solid 0 white;
     width: 300px;
     height: 60px;
@@ -3371,12 +3401,12 @@ body.internalAdmin  .page-content .tab-content .search-form2{
     margin-top: -350px;
 }
 
-body.internalAdmin  .page-content .tab-content .search-form3{
+body.internalAdmin .page-content .tab-content .search-form3 {
     border: solid 0 white;
     width: 140px;
     height: 60px;
-    margin-left:500px;
-    margin-top:-98px;
+    margin-left: 500px;
+    margin-top: -98px;
 }
 
 body.internalAdmin .page-content .tab-content .user-look-up-list a {
@@ -3384,8 +3414,7 @@ body.internalAdmin .page-content .tab-content .user-look-up-list a {
 }
 
 
-
-body.internalAdmin  .page-content .tab-content .font12{
+body.internalAdmin .page-content .tab-content .font12 {
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
     color: #dcddde;
@@ -3394,8 +3423,7 @@ body.internalAdmin  .page-content .tab-content .font12{
 }
 
 
-
-body.internalAdmin .page-content .tab-content  .chat-nav{
+body.internalAdmin .page-content .tab-content .chat-nav {
     width: 950px;
     height: 35px;
     margin-left: 10px;
@@ -3403,7 +3431,7 @@ body.internalAdmin .page-content .tab-content  .chat-nav{
     margin-top: 10px;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-button{
+body.internalAdmin .page-content .tab-content .chat-button {
     background: #242424;
     border: none;
     font-family: BebasNeueBook;
@@ -3415,11 +3443,11 @@ body.internalAdmin  .page-content .tab-content .chat-button{
     cursor: pointer;
 }
 
-body.internalAdmin .page-content .tab-content  .chat-button:hover{
+body.internalAdmin .page-content .tab-content .chat-button:hover {
     background: #404040;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-content{
+body.internalAdmin .page-content .tab-content .chat-content {
     width: 950px;
     height: 600px;
     margin-left: 10px;
@@ -3427,58 +3455,58 @@ body.internalAdmin  .page-content .tab-content .chat-content{
     margin-top: 3px;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-username{
+body.internalAdmin .page-content .tab-content .chat-username {
     font-family: Tahoma Regular;
     font-size: 16px;
     color: #a6dcf9;
     cursor: pointer;
 }
 
-body.internalAdmin .page-content .tab-content  .chat-username.admin{
+body.internalAdmin .page-content .tab-content .chat-username.admin {
     color: #ef0808;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-username.mod{
+body.internalAdmin .page-content .tab-content .chat-username.mod {
     color: #f5b829;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-username.system{
+body.internalAdmin .page-content .tab-content .chat-username.system {
     color: #ffe538;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-username.whisper{
+body.internalAdmin .page-content .tab-content .chat-username.whisper {
     color: #ffe538;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message{
+body.internalAdmin .page-content .tab-content .chat-message {
     font-family: Tahoma Regular;
     font-size: 16px;
     color: #eeeeee;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message.admin{
+body.internalAdmin .page-content .tab-content .chat-message.admin {
     color: #ef0808;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message.mod{
+body.internalAdmin .page-content .tab-content .chat-message.mod {
     color: #f5b829;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message.system{
+body.internalAdmin .page-content .tab-content .chat-message.system {
     color: #eeeeee;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message.link{
+body.internalAdmin .page-content .tab-content .chat-message.link {
     color: #ff00ff;
     textDecoration: underline;
 }
 
-body.internalAdmin  .page-content .tab-content .chat-message.highlight{
+body.internalAdmin .page-content .tab-content .chat-message.highlight {
     color: #55ff55;
 }
 
 
-body.internalAdmin  .page-content .tab-content .chat-input{
+body.internalAdmin .page-content .tab-content .chat-input {
     position: absolute;
     margin-top: -140px;
     margin-left: 10px;
@@ -3492,7 +3520,7 @@ body.internalAdmin  .page-content .tab-content .chat-input{
     padding: 2px;
 }
 
-body.internalAdmin  .page-content .tab-content .right-menu{
+body.internalAdmin .page-content .tab-content .right-menu {
     background: #22222270;
     width: 312px;
     height: 500px;
@@ -3501,7 +3529,7 @@ body.internalAdmin  .page-content .tab-content .right-menu{
     margin-left: 480px;
 }
 
-body.internalAdmin  .page-content .tab-content .users-list{
+body.internalAdmin .page-content .tab-content .users-list {
     background: #28282880;
     margin-left: 10px;
     margin-top: 5px;
@@ -3510,7 +3538,7 @@ body.internalAdmin  .page-content .tab-content .users-list{
     overflow-y: scroll;
 }
 
-body.internalAdmin  .page-content .tab-content .list th{
+body.internalAdmin .page-content .tab-content .list th {
     background: #343434;
     color: white;
     font-family: Tahoma;
@@ -3521,7 +3549,7 @@ body.internalAdmin  .page-content .tab-content .list th{
     padding-left: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .color.admin{
+body.internalAdmin .page-content .tab-content .color.admin {
     color: #ef0808;
     font-family: Tahoma;
     font-size: 14px;
@@ -3532,7 +3560,7 @@ body.internalAdmin  .page-content .tab-content .color.admin{
     cursor: pointer;
 }
 
-body.internalAdmin  .page-content .tab-content .color.mod{
+body.internalAdmin .page-content .tab-content .color.mod {
     color: #f5b829;
     font-family: Tahoma;
     font-size: 14px;
@@ -3543,7 +3571,7 @@ body.internalAdmin  .page-content .tab-content .color.mod{
     cursor: pointer;
 }
 
-body.internalAdmin  .page-content .tab-content .color.player{
+body.internalAdmin .page-content .tab-content .color.player {
     color: #a6dcf9;
     font-family: Tahoma;
     font-size: 14px;
@@ -3554,14 +3582,14 @@ body.internalAdmin  .page-content .tab-content .color.player{
     cursor: pointer;
 }
 
-body.internalAdmin  .page-content .tab-content .nav{
+body.internalAdmin .page-content .tab-content .nav {
     position: relative;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
 }
 
-body.internalAdmin  .page-content .tab-content .btn-header{
+body.internalAdmin .page-content .tab-content .btn-header {
     color: #dcddde;
     width: 120px;
     height: 36px;
@@ -3570,11 +3598,12 @@ body.internalAdmin  .page-content .tab-content .btn-header{
     background-color: #7b7b7c57;
 
 }
-body.internalAdmin  .page-content .tab-content .btn-header:hover{
+
+body.internalAdmin .page-content .tab-content .btn-header:hover {
     background: #b7b7b761;
 }
 
-body.internalAdmin .page-content .tab-content  .btn-logout{
+body.internalAdmin .page-content .tab-content .btn-logout {
     background: #ff666699;
     color: #dcddde;
     width: 120px;
@@ -3583,11 +3612,11 @@ body.internalAdmin .page-content .tab-content  .btn-logout{
     border: 1px solid #fff;
 }
 
-body.internalAdmin  .page-content .tab-content .btn-logout:hover{
+body.internalAdmin .page-content .tab-content .btn-logout:hover {
     background: #e23737cf;
 }
 
-body.internalAdmin  .page-content .tab-content .font12{
+body.internalAdmin .page-content .tab-content .font12 {
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
     color: #dcddde;
@@ -3596,7 +3625,7 @@ body.internalAdmin  .page-content .tab-content .font12{
 }
 
 
-body.internalAdmin  .page-content .tab-content .spaceball {
+body.internalAdmin .page-content .tab-content .spaceball {
     color: white;
     font-family: Tahoma;
     font-size: 14px;
@@ -3605,7 +3634,7 @@ body.internalAdmin  .page-content .tab-content .spaceball {
     padding-left: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .jb {
+body.internalAdmin .page-content .tab-content .jb {
     color: white;
     font-family: Tahoma;
     font-size: 14px;
@@ -3614,7 +3643,7 @@ body.internalAdmin  .page-content .tab-content .jb {
     padding-left: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .tdm {
+body.internalAdmin .page-content .tab-content .tdm {
     color: white;
     font-family: Tahoma;
     font-size: 14px;
@@ -3623,21 +3652,21 @@ body.internalAdmin  .page-content .tab-content .tdm {
     padding-left: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .jp-list{
+body.internalAdmin .page-content .tab-content .jp-list {
     background: #55555524;
     border: solid 1px white;
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
     color: #dcddde;
     text-decoration: none;
-    text-align:center;
+    text-align: center;
     width: 750px;
     margin-top: 24px;
     margin-left: 10px;
     overflow-y: scroll;
 }
 
-body.internalAdmin  .page-content .tab-content .users{
+body.internalAdmin .page-content .tab-content .users {
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
@@ -3646,17 +3675,16 @@ body.internalAdmin  .page-content .tab-content .users{
     width: 100%;
 }
 
-body.internalAdmin  .page-content .tab-content .users th{
+body.internalAdmin .page-content .tab-content .users th {
     border: 1px solid #fff;
 }
 
-body.internalAdmin  .page-content .tab-content .users td{
+body.internalAdmin .page-content .tab-content .users td {
     border: 1px solid #fff;
 }
 
 
-
-body.internalAdmin  .page-content .tab-content .timeset{
+body.internalAdmin .page-content .tab-content .timeset {
     width: 150px;
     height: 26px;
     background-color: #7b7b7c30;
@@ -3669,7 +3697,7 @@ body.internalAdmin  .page-content .tab-content .timeset{
     margin-top: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .start{
+body.internalAdmin .page-content .tab-content .start {
     width: 115px;
     height: 26px;
     background-color: #323537;
@@ -3685,11 +3713,11 @@ body.internalAdmin  .page-content .tab-content .start{
     font-size: 16px;
 }
 
-body.internalAdmin  .page-content .tab-content .start:hover{
+body.internalAdmin .page-content .tab-content .start:hover {
     background-color: #484c4f;
 }
 
-body.internalAdmin  .page-content .tab-content .remove{
+body.internalAdmin .page-content .tab-content .remove {
     width: 115px;
     height: 26px;
     background-color: #323537;
@@ -3704,19 +3732,20 @@ body.internalAdmin  .page-content .tab-content .remove{
     font-family: BebasNeue;
     font-size: 16px;
 }
-body.internalAdmin  .page-content .tab-content .remove:hover{
+
+body.internalAdmin .page-content .tab-content .remove:hover {
     background-color: #484c4f;
 }
 
-body.internalAdmin  .page-content .tab-content .result-list{
+body.internalAdmin .page-content .tab-content .result-list {
     text-align: center;
     font-family: Verdana, Arial, sans-serif;
     font-size: 12px;
     color: #dcddde;
-    width:715px;
+    width: 715px;
 }
 
-body.internalAdmin  .page-content .tab-content .results-content{
+body.internalAdmin .page-content .tab-content .results-content {
     background-color: rgba(0, 0, 0, 0.5);
     border: solid 1px white;
     width: 750px;
@@ -3726,19 +3755,19 @@ body.internalAdmin  .page-content .tab-content .results-content{
 
 }
 
-body.internalAdmin  .page-content .tab-content .result-list th{
+body.internalAdmin .page-content .tab-content .result-list th {
     border: 0 solid #fff;
-    text-align:center;
+    text-align: center;
 }
 
-body.internalAdmin  .page-content .tab-content .result-list td{
+body.internalAdmin .page-content .tab-content .result-list td {
     border: 1px solid #fff;
-    text-align:center;
+    text-align: center;
     text-transform: none;
 }
 
 
-body.internalAdmin  .page-content .tab-content .search{
+body.internalAdmin .page-content .tab-content .search {
     width: 150px;
     height: 26px;
     background-color: #7b7b7c30;
@@ -3751,7 +3780,7 @@ body.internalAdmin  .page-content .tab-content .search{
     margin-top: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .search-form{
+body.internalAdmin .page-content .tab-content .search-form {
     border: solid 0 white;
     width: 300px;
     height: 60px;
@@ -3759,11 +3788,11 @@ body.internalAdmin  .page-content .tab-content .search-form{
     margin-top: 5px;
 }
 
-body.internalAdmin  .page-content .tab-content .submit{
+body.internalAdmin .page-content .tab-content .submit {
     width: 115px;
     height: 26px;
-    margin-top:5px;
-    margin-left:100px;
+    margin-top: 5px;
+    margin-left: 100px;
     background-color: #323537;
     border: none;
     -webkit-transition: background-color 0.3s;
@@ -3776,7 +3805,8 @@ body.internalAdmin  .page-content .tab-content .submit{
     font-family: BebasNeue;
     font-size: 16px;
 }
-body.internalAdmin  .page-content .tab-content .submit:hover{
+
+body.internalAdmin .page-content .tab-content .submit:hover {
     background-color: #484c4f;
 }
 
@@ -4040,10 +4070,10 @@ body.internalSkylab #upgrade_container #modul_top {
 }
 
 body.internalSkylab #upgrade_container #modul_top_desc {
-    width:350px;
-    height:20px;
-    float:left;
-    background: rgba(0,0,0,0.6);
+    width: 350px;
+    height: 20px;
+    float: left;
+    background: rgba(0, 0, 0, 0.6);
     text-transform: none;
     text-align: center;
 }
@@ -4120,13 +4150,13 @@ body.internalSkylab #skylap_content {
     /* Page Content button */
 }
 
-body.internalSkylab  #page_button_div {
+body.internalSkylab #page_button_div {
     width: 1140px;
     height: 61px;
     float: left;
 }
 
-body.internalSkylab  #page_button_div > .button_skylab {
+body.internalSkylab #page_button_div > .button_skylab {
     width: 379px;
     height: 60px;
     background: rgba(0, 0, 0, 0.6);
@@ -4138,7 +4168,7 @@ body.internalSkylab  #page_button_div > .button_skylab {
     font-size: 30px;
 }
 
-body.internalSkylab  #page_button_div > .button_techs {
+body.internalSkylab #page_button_div > .button_techs {
     width: 379px;
     height: 60px;
     background: rgba(0, 0, 0, 0.6);
@@ -4151,7 +4181,7 @@ body.internalSkylab  #page_button_div > .button_techs {
     font-size: 30px;
 }
 
-body.internalSkylab  #page_button_div > .button_upgrades {
+body.internalSkylab #page_button_div > .button_upgrades {
     width: 380px;
     height: 60px;
     background: rgba(0, 0, 0, 0.6);
@@ -4265,7 +4295,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
     height: 470px;
     float: left;
     margin-left: 55px;
-    margin-top : 50px;
+    margin-top: 50px;
     /*Endruium*/
     /*terbium*/
     /*transport*/
@@ -4678,7 +4708,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
     width: 130px;
     height: 470px;
     float: left;
-    margin-top:50px;
+    margin-top: 50px;
     /* Duranium */
     /*
                         promerium
@@ -5253,17 +5283,17 @@ body.internalSkylab #solar_module_modul_information #modul_top > h3 {
 body.internalPayment table {
     text-align: center;
     margin: 10px auto 0;
-    border-left: 1px solid rgba(255,255,255,0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-body.internalPayment  table th,
-body.internalPayment  table td {
+body.internalPayment table th,
+body.internalPayment table td {
     padding-right: 37.5px;
     padding-left: 37.5px;
-    border-left: 1px solid rgba(255,255,255,0.5);
-    border-right: 1px solid rgba(255,255,255,0.5);
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    text-align:center;
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
     text-transform: none;
 }
 
@@ -5274,11 +5304,11 @@ body.internalPayment #stats-corner {
 }
 
 body.internalPayment #codes {
-    margin-top:-180px;
-    margin-left:150px;
+    margin-top: -180px;
+    margin-left: 150px;
     height: 213px;
     text-align: center;
-    width:75%;
+    width: 75%;
 }
 
 body.internalPayment #codes-bg {
@@ -5299,8 +5329,8 @@ body.internalPayment #codes-entries {
 }
 
 body.internalPayment #logbook {
-    margin-top:-180px;
-    margin-left:290px;
+    margin-top: -180px;
+    margin-left: 290px;
     height: 213px;
     text-align: center;
 }
@@ -5339,7 +5369,7 @@ body.internalPayment .none {
 
 body.internalPayment h3 {
     padding-bottom: 5px;
-    text-align:center;
+    text-align: center;
 
     border-bottom: 1px solid #ffffff;
 }
@@ -5358,10 +5388,10 @@ body.internalPayment .uu_button {
     border: none;
     height: auto;
     width: auto;
-    cursor :pointer;
+    cursor: pointer;
     position: absolute;
-    margin-top:20px;
-    margin-left:400px;
+    margin-top: 20px;
+    margin-left: 400px;
     padding: 5px 30px;
 }
 
@@ -5376,7 +5406,7 @@ body.internalPayment .uu_button3 {
     border: none;
     height: auto;
     width: auto;
-    cursor :pointer;
+    cursor: pointer;
     position: absolute;
     margin: 20px 5px 5px 530px;
     text-transform: none;
@@ -5390,7 +5420,7 @@ body.internalPayment .uu_button4 {
     border: none;
     height: auto;
     width: auto;
-    cursor :pointer;
+    cursor: pointer;
     position: absolute;
     margin: 20px 5px 5px 660px;
     text-transform: none;
@@ -5432,12 +5462,12 @@ body.internalPayment ::-webkit-scrollbar-thumb:hover {
 }
 
 body.internalPayment input[type="text"] {
-    width:300px;
-    height:25px;
+    width: 300px;
+    height: 25px;
     display: inline-block;
     vertical-align: middle;
-    text-align:center;
-    background: rgba(0,0,0,0.4);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
 }
 
 body.internalAuction .item_box {
@@ -5526,99 +5556,101 @@ body.internalAuction .item_dark:hover {
 body.internalAuction .item_light:hover {
     filter: brightness(0.6);
 }
+
 body.internalAuction .article {
-    width:100%;
-    height:120px;
-    border-bottom:1px solid rgba(255,255,255,0.5);
-    position:relative;
+    width: 100%;
+    height: 120px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
 }
 
 body.internalAuction .article .image {
     vertical-align: middle;
-    width:150px;
-    height:120px;
-    border-right:1px solid rgba(255,255,255,0.5);
-    text-align:center;
-    padding:25px 0;
+    width: 150px;
+    height: 120px;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 25px 0;
     position: absolute;
 }
 
 
 body.internalAuction .article .description {
-    width:450px;
-    height:100%;
-    border-right:1px solid rgba(255,255,255,0.5);
-    padding:10px 0;
+    width: 450px;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 10px 0;
     position: absolute;
-    margin:0 160px;
+    margin: 0 160px;
 }
 
 body.internalAuction .article .description .quantity {
-    position:absolute;
-    left:0;
-    bottom:10px;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
 }
 
 
 body.internalAuction .article .bid {
-    width:270px;
-    height:100%;
-    text-align:center;
-    padding:15px;
+    width: 270px;
+    height: 100%;
+    text-align: center;
+    padding: 15px;
     position: absolute;
-    margin:0 720px;
+    margin: 0 720px;
 }
 
 body.internalAuction .article .highest {
-    position:absolute;
-    left:0;
-    bottom:10px;
+    position: absolute;
+    left: 0;
+    bottom: 10px;
 }
 
 body.internalAuction .article .bid input[type="number"] {
-    width:150px;
-    height:35px;
+    width: 150px;
+    height: 35px;
     display: inline-block;
     vertical-align: middle;
-    text-align:center;
+    text-align: center;
 
 }
 
 body.internalAuction .article .bid button {
-    width:50px;
-    height:35px;
-    line-height:25px;
-    border:none;
-    font-size:14px;
+    width: 50px;
+    height: 35px;
+    line-height: 25px;
+    border: none;
+    font-size: 14px;
     transition: background .3s ease-out;
     text-align: center;
-    cursor:pointer;
-    background:#3498db;
+    cursor: pointer;
+    background: #3498db;
     display: inline-block;
-    color:#fff;
+    color: #fff;
     vertical-align: middle;
-    margin:7px 0;
+    margin: 7px 0;
 }
 
 body.internalAuction .article .bid button:hover {
-    background:#5ebdfd;
+    background: #5ebdfd;
 }
 
-body.internalGalaxyGates .nav-button{
+body.internalGalaxyGates .nav-button {
     background: #1a1a1a1a;
     height: 50px;
     width: 150px;
     border: solid 1px #3d3d3d;
     margin-top: 5px;
 }
-body.internalGalaxyGates  .nav-button:hover{
+
+body.internalGalaxyGates .nav-button:hover {
     background: #3636367d;
     border: solid 1px #e8e8e8;
     cursor: pointer;
 }
 
 
-body.internalGalaxyGates .gate-container{
+body.internalGalaxyGates .gate-container {
     background: #1e1e1e5c;
     height: 322px;
     width: 375px;
@@ -5628,7 +5660,7 @@ body.internalGalaxyGates .gate-container{
     border: 2px solid #2f2f2f;
 }
 
-body.internalGalaxyGates .menu{
+body.internalGalaxyGates .menu {
     background: #2c2c2c3b;
     width: 250px;
     height: 490px;
@@ -5636,18 +5668,18 @@ body.internalGalaxyGates .menu{
     margin-left: 600px;
 }
 
-body.internalGalaxyGates .font{
+body.internalGalaxyGates .font {
     font-family: tahoma;
     font-size: 14px;
     color: white;
 }
 
-body.internalGalaxyGates .info{
+body.internalGalaxyGates .info {
     margin-top: 5px;
     text-align: center;
 }
 
-body.internalGalaxyGates .spin-button{
+body.internalGalaxyGates .spin-button {
     height: 50px;
     width: 250px;
     margin-top: 23px;
@@ -5655,34 +5687,37 @@ body.internalGalaxyGates .spin-button{
     border: none;
     cursor: pointer;
 }
-body.internalGalaxyGates .spin-button:hover{
+
+body.internalGalaxyGates .spin-button:hover {
     background: #32cd32;
 }
 
-body.internalGalaxyGates .spin-amount{
+body.internalGalaxyGates .spin-amount {
     text-align: center;
     margin-top: 10px;
 }
-body.internalGalaxyGates .charge-select{
+
+body.internalGalaxyGates .charge-select {
     width: 55px;
     background: #adadad12;
     color: white;
     border: 1px solid #d0d0d047;
 }
 
-body.internalGalaxyGates option{
+body.internalGalaxyGates option {
     background: #516493;
     color: white;
 }
 
-body.internalGalaxyGates log{
+body.internalGalaxyGates log {
     text-align: center;
     width: 250px;
     height: 348px;
     background: #00000033;
     margin-top: 16px;
 }
-body.internalGalaxyGates .drop-list{
+
+body.internalGalaxyGates .drop-list {
     background: #00000042;
     width: 250px;
     height: 300px;
@@ -5690,19 +5725,19 @@ body.internalGalaxyGates .drop-list{
     overflow-y: scroll;
 }
 
-body.internalGalaxyGates .drop.x2{
+body.internalGalaxyGates .drop.x2 {
     background: #3F51B5;
     height: 18px;
     margin-top: 1px;
 }
 
-body.internalGalaxyGates .drop.x3{
+body.internalGalaxyGates .drop.x3 {
     background: #2cab31;
     height: 18px;
     margin-top: 1px;
 }
 
-body.internalGalaxyGates .box{
+body.internalGalaxyGates .box {
     background: #2e2e2e4d;
     width: 850px;
     height: 490px;
@@ -5710,14 +5745,14 @@ body.internalGalaxyGates .box{
     margin: 20px auto 50px;
 }
 
-body.internalGalaxyGates .nav{
+body.internalGalaxyGates .nav {
     display: inline;
     position: absolute;
     width: 150px;
     height: 400px;
 }
 
-body.internalGalaxyGates .nav-button{
+body.internalGalaxyGates .nav-button {
     background: #1a1a1a1a;
     height: 50px;
     width: 150px;
@@ -5726,7 +5761,7 @@ body.internalGalaxyGates .nav-button{
 }
 
 
-body.internalGalaxyGates .nav-button:hover{
+body.internalGalaxyGates .nav-button:hover {
     background: #3636367d;
     border: solid 1px #e8e8e8;
     cursor: pointer;
@@ -5783,83 +5818,82 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li a:focus {
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.your-rank a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.your-rank a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_user_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:300px;
-    top:40px;
+    left: 300px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-exp a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-exp a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_experience_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:375px;
-    top:40px;
+    left: 375px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-honor a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-honor a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_honor_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:450px;
-    top:40px;
+    left: 450px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-user a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-user a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_start_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:525px;
-    top:40px;
+    left: 525px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-clan a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-clan a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_clan_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:600px;
-    top:40px;
+    left: 600px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-gg a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-gg a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_gate_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:675px;
-    top:40px;
+    left: 675px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
 
-body.internalHallOfFame .shop-body .shop-header ul.nav li.top-event a:before{
+body.internalHallOfFame .shop-body .shop-header ul.nav li.top-event a:before {
     background-image: url("../../do_img/global/hof/navigation_icon_event_42x49.png");
     background-position: 0 -50px;
     display: block;
-    left:750px;
-    top:40px;
+    left: 750px;
+    top: 40px;
     width: 50px;
-    height:100px;
+    height: 100px;
     position: absolute;
 }
-
 
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.category-ships a:before {
@@ -5873,7 +5907,7 @@ body.internalHallOfFame .shop-body .shop-inner {
     background: rgba(0, 0, 0, 0.61);
 }
 
-body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-header{
+body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-header {
     display: block;
     height: 50px;
     max-height: 200px;
@@ -5882,7 +5916,7 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     text-align: center;
 }
 
-body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-headert{
+body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-headert {
     display: ruby-base;
     height: 30px;
     max-height: 200px;
@@ -5891,14 +5925,14 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     margin-top: -14px;
     font-size: 13px;
     font-weight: bold;
-    color: rgba(255,255,255, 0.51);
+    color: rgba(255, 255, 255, 0.51);
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-header h3 {
     display: inline-block;
     margin-top: 0;
     line-height: 24px;
-    font-size:14px;
+    font-size: 14px;
     text-align: center;
     padding-bottom: 5px;
 }
@@ -5909,28 +5943,28 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     max-height: 800px;
     padding-left: 15px;
     border: 1px solid rgba(204, 204, 204, 0.51);
-    padding-top:20px;
+    padding-top: 20px;
     text-transform: none;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
     padding-right: 0;
-    padding-left:70px;
+    padding-left: 70px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .explanation {
     padding-right: 0;
-    padding-left:70px;
-    width:750px;
+    padding-left: 70px;
+    width: 750px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .ranking-points {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-left:400px;
-    margin-top:-38px;
+    margin-left: 400px;
+    margin-top: -38px;
     text-align: center;
-    width:10%;
+    width: 10%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .plus-minus-exp {
@@ -5938,8 +5972,8 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 
 }
 
@@ -5948,8 +5982,8 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .plus-minus-lvl {
@@ -5957,8 +5991,8 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .plus-minus-reg {
@@ -5966,8 +6000,8 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .plus-minus-ship {
@@ -5975,8 +6009,8 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .plus-minus-deathpvp {
@@ -5984,178 +6018,178 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
     background-color: rgba(0, 0, 0, 0.25);
     position: absolute;
     text-align: center;
-    width:5%;
-    margin-top:10px;
+    width: 5%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .exp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .hon {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .lvl {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .reg {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .ship {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .deathpvp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: relative;
-    margin-left:60px;
+    margin-left: 60px;
     text-align: left;
-    width:50%;
-    margin-top:10px;
+    width: 50%;
+    margin-top: 10px;
 }
 
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-exp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-hon {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-lvl {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-reg {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-ship {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .value-deathpvp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:450px;
+    margin-top: -23px;
+    margin-left: 450px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-exp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-hon {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-lvl {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-reg {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-ship {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .divident-deathpvp {
     border: 1px solid rgba(204, 204, 204, 0.51);
     position: absolute;
-    margin-top:-23px;
-    margin-left:650px;
+    margin-top: -23px;
+    margin-left: 650px;
     text-align: left;
-    width:25%;
+    width: 25%;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description h3 {
     display: inline-block;
     margin-top: 0;
     line-height: 24px;
-    font-size:14px;
+    font-size: 14px;
     text-align: center;
     padding-bottom: 5px;
 }
@@ -6173,6 +6207,7 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body {
     background: rgba(0, 0, 0, 0.51);
     padding: 40px;
@@ -6227,73 +6262,73 @@ body.internalAdminEditItems .shop-body .shop-header ul.nav li a:focus {
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-lasers a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-lasers a:before {
     background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-3_shop.png");
     display: inline-block;
-    left:0;
-    top:-15px;
+    left: 0;
+    top: -15px;
     width: 120px;
-    height:120px;
+    height: 120px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-heavy a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-heavy a:before {
     background-image: url("../../do_img/global/items/equipment/weapon/rocketlauncher/hst-2_shop.png");
     display: inline-block;
-    left:150px;
-    top:5px;
+    left: 150px;
+    top: 5px;
     width: 75px;
-    height:75px;
+    height: 75px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-generator a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-generator a:before {
     background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-b02_shop.png");
     display: inline-block;
-    left:300px;
-    top:5px;
+    left: 300px;
+    top: 5px;
     width: 75px;
-    height:75px;
+    height: 75px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-extra a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-extra a:before {
     background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-xl_shop.png");
     display: inline-block;
-    left:450px;
-    top:5px;
+    left: 450px;
+    top: 5px;
     width: 75px;
-    height:75px;
+    height: 75px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-ammo a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-ammo a:before {
     background-image: url("../../do_img/global/items/ammunition/laser/mcb-50_shop.png");
     display: inline-block;
-    left:600px;
-    top:5px;
+    left: 600px;
+    top: 5px;
     width: 75px;
-    height:75px;
+    height: 75px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-drone a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-drone a:before {
     background-image: url("../../do_img/global/items/drone/zeus-5_top.png");
     display: inline-block;
-    left:750px;
-    top:5px;
+    left: 750px;
+    top: 5px;
     width: 75px;
-    height:75px;
+    height: 75px;
     position: absolute;
 }
 
-body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-pet a:before{
+body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-pet a:before {
     background-image: url("../../do_img/global/items/pet/pet10_shop.png");
     display: inline-block;
-    left:830px;
-    top:-65px;
+    left: 830px;
+    top: -65px;
     width: 200px;
-    height:200px;
+    height: 200px;
     position: absolute;
 }
 
@@ -6311,7 +6346,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 300px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6319,9 +6354,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6333,7 +6368,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 300px;
     padding-left: 0;
@@ -6343,7 +6378,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description h3 {
@@ -6364,9 +6399,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description input[type="text"] {
-    width:100px;
-    margin-left:20px;
+    width: 100px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6376,7 +6412,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 250px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6384,9 +6420,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Heavy img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; ; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen;; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6398,7 +6434,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Heavy {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 250px;
     padding-left: 0;
@@ -6408,7 +6444,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Heavy {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Heavy h3 {
@@ -6429,9 +6465,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Heavy p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Heavy input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6441,7 +6478,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 300px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6449,9 +6486,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Extra img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6463,7 +6500,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Extra {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 300px;
     padding-left: 0;
@@ -6473,7 +6510,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Extra {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Extra h3 {
@@ -6494,9 +6531,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Extra p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Extra input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6506,7 +6544,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 300px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6514,9 +6552,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Generator img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6528,7 +6566,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Generator {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 300px;
     padding-left: 0;
@@ -6538,7 +6576,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Generator {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Generator h3 {
@@ -6559,9 +6597,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Generator p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Generator input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6571,13 +6610,14 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Generator .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6593,7 +6633,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 250px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6601,9 +6641,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Ammo img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6615,7 +6655,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Ammo {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 250px;
     padding-left: 0;
@@ -6625,7 +6665,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Ammo {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Ammo h3 {
@@ -6646,9 +6686,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Ammo p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Ammo input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6659,13 +6700,14 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Heavy .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6681,13 +6723,14 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Ammo .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6703,13 +6746,14 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Extra .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6725,13 +6769,14 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
     text-align: top-center;
     margin-left: 500px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6739,11 +6784,11 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary-laser {
     position: absolute;
     text-align: inherit;
-    padding-bottom:30px;
-    bottom:-8px;
+    padding-bottom: 30px;
+    bottom: -8px;
     margin-left: 250px;
-    width:100px;
-    height:30px;
+    width: 100px;
+    height: 30px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6752,7 +6797,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 250px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6760,9 +6805,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Pet img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6774,7 +6819,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Pet {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 250px;
     padding-left: 0;
@@ -6784,7 +6829,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Pet {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Pet h3 {
@@ -6805,9 +6850,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Pet p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Pet input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6818,8 +6864,8 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6830,6 +6876,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Pet {
     position: relative;
     padding: 15px;
@@ -6839,7 +6886,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     width: 200px;
     height: 250px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -6847,9 +6894,9 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-image-Drone img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -6861,7 +6908,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-content-Drone {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 250px;
     padding-left: 0;
@@ -6871,7 +6918,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Drone {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Drone h3 {
@@ -6892,9 +6939,10 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Drone p {
     font-size: 13px;
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-description-Drone input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -6905,8 +6953,8 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -6917,18 +6965,19 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
+
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Drone {
     position: relative;
     padding: 15px;
 }
 
-body.internalAdminEditItems .shop-body .shop-inner  h3.h2 {
+body.internalAdminEditItems .shop-body .shop-inner h3.h2 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
     text-align: center;
 }
 
-body.internalAdminEditItems .shop-body .single-item-header{
+body.internalAdminEditItems .shop-body .single-item-header {
     height: 50px;
     max-height: 200px;
     padding-left: 15px;
@@ -6936,7 +6985,7 @@ body.internalAdminEditItems .shop-body .single-item-header{
     border-bottom: 1px solid rgba(0, 0, 0, 0.51);
 }
 
-body.internalAdminEditItems .shop-body .single-item-headert{
+body.internalAdminEditItems .shop-body .single-item-headert {
     height: 30px;
     max-height: 200px;
     text-align: center;
@@ -6997,33 +7046,33 @@ body.internalAdminEdit .shop-body .shop-header ul.nav li a:focus {
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
-body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-ships a:before{
+body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-ships a:before {
     background-image: url("../../do_img/global/items/ship/phoenix_top.png");
     display: inline-block;
-    left:300px;
-    top:30px;
+    left: 300px;
+    top: 30px;
     width: 50px;
-    height:50px;
+    height: 50px;
     position: absolute;
 }
 
-body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-npc a:before{
+body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-npc a:before {
     background-image: url("../images/kucurbium.png");
     display: inline-block;
-    left:450px;
-    top:30px;
+    left: 450px;
+    top: 30px;
     width: 50px;
-    height:50px;
+    height: 50px;
     position: absolute;
 }
 
-body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-pet a:before{
+body.internalAdminEdit .shop-body .shop-header ul.nav li.nav-pet a:before {
     background-image: url("../../do_img/global/items/pet/pet10-15_top.png");
     display: inline-block;
-    left:600px;
-    top:30px;
+    left: 600px;
+    top: 30px;
     width: 50px;
-    height:50px;
+    height: 50px;
     position: absolute;
 }
 
@@ -7041,7 +7090,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     width: 200px;
     height: 300px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -7049,9 +7098,9 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-image img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7063,7 +7112,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-content {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 300px;
     padding-left: 0;
@@ -7073,7 +7122,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description h3 {
@@ -7094,9 +7143,10 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description p {
     font-size: 13px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description input[type="text"] {
-    width:100px;
-    margin-left:20px;
+    width: 100px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -7106,7 +7156,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     width: 200px;
     height: 250px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -7114,9 +7164,9 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-image-PET img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7128,7 +7178,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-content-PET {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 250px;
     padding-left: 0;
@@ -7138,7 +7188,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-PET {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-PET h3 {
@@ -7159,9 +7209,10 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-PET p {
     font-size: 13px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-PET input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -7171,7 +7222,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     width: 200px;
     height: 300px;
     float: left;
-    margin-left:-50px;
+    margin-left: -50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -7179,9 +7230,9 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-image-NPC img {
     width: 100px;
     height: 100px;
-    margin-top:90px;
-    margin-left:50px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: 90px;
+    margin-left: 50px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7193,7 +7244,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-content-NPC {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     width: 700px;
     height: 300px;
     padding-left: 0;
@@ -7203,7 +7254,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-NPC {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-NPC h3 {
@@ -7224,9 +7275,10 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-NPC p {
     font-size: 13px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-description-NPC input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -7236,13 +7288,14 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-NPC .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -7258,13 +7311,14 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-PET .btn-primary {
     position: absolute;
     bottom: 0;
     text-align: top-center;
     left: 450px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
@@ -7280,24 +7334,25 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     position: relative;
     padding: 15px;
 }
+
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
     text-align: top-center;
     margin-left: 500px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
 
-body.internalAdminEdit .shop-body .shop-inner  h3.h2 {
+body.internalAdminEdit .shop-body .shop-inner h3.h2 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
     text-align: center;
 }
 
-body.internalAdminEdit .shop-body .single-item-header{
+body.internalAdminEdit .shop-body .single-item-header {
     height: 50px;
     max-height: 200px;
     padding-left: 15px;
@@ -7305,7 +7360,7 @@ body.internalAdminEdit .shop-body .single-item-header{
     border-bottom: 1px solid rgba(0, 0, 0, 0.51);
 }
 
-body.internalAdminEdit .shop-body .single-item-headert{
+body.internalAdminEdit .shop-body .single-item-headert {
     height: 30px;
     max-height: 200px;
     text-align: center;
@@ -7358,11 +7413,11 @@ body.internalClan .shop-body .shop-header ul.nav li a:before {
     background-position: bottom;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button{
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button {
     width: 160px;
     height: 80px;
     text-align: center;
-    margin-left:42%;
+    margin-left: 42%;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
     margin-bottom: 30px;
@@ -7370,7 +7425,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-a
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button a {
-    font-size:20px;
+    font-size: 20px;
     padding-left: 0;
     padding-right: 0;
     color: #ffffff;
@@ -7389,7 +7444,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-a
     position: relative;
     margin-left: 370px;
     right: 0;
-    padding-top:0;
+    padding-top: 0;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button a:hover,
@@ -7420,7 +7475,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 200px;
     float: left;
-    margin-left:50px;
+    margin-left: 50px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
@@ -7428,9 +7483,9 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-image img {
     width: 150px;
     height: 200px;
-    margin-top:-22px;
-    margin-left:0;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: -22px;
+    margin-left: 0;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 7px rgba(255, 255, 255, 0.41));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7444,18 +7499,18 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 130px;
     float: left;
-    margin-left:0;
+    margin-left: 0;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-image-members img {
     width: 150px;
     height: 130px;
-    margin-top:-14px;
-    margin-left:-2px;
-    background-blend-mode:screen; /* will only affect background */
+    margin-top: -14px;
+    margin-left: -2px;
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 7px rgba(255, 255, 255, 0.41));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7466,28 +7521,28 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
 }
 
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin {
     display: inline-block;
     width: 850px;
     height: 2000px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     border-left: none;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members {
     display: block;
-    margin-left:150px;
+    margin-left: 150px;
     max-width: 800px;
     height: 130px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     border-left: none;
-    margin-top:30px;
+    margin-top: 30px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-diplo  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-diplo {
     display: inline-block;
     width: 800px;
     height: 200px;
@@ -7495,7 +7550,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content-diplo  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content-diplo {
     display: inline-block;
     width: 800px;
     height: 200px;
@@ -7503,7 +7558,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-i
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo {
     display: inline-block;
     width: 800px;
     height: 100px;
@@ -7511,29 +7566,29 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-l
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo  .search_s{
-    width:100px;
-    margin-left:180px;
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo .search_s {
+    width: 100px;
+    margin-left: 180px;
     background-color: transparent;
     position: absolute;
     text-align: center;
-    margin-top:12px;
+    margin-top: 12px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo  .reason_c{
-    width:450px;
-    height:26px;
-    margin-left:-42px;
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo .reason_c {
+    width: 450px;
+    height: 26px;
+    margin-left: -42px;
     background-color: transparent;
     position: absolute;
     text-align: left;
-    margin-top:60px;
+    margin-top: 60px;
     resize: none;
 }
 
-.link_doit{
+.link_doit {
     padding-left: 17px;
-    padding-bottom:7px;
+    padding-bottom: 7px;
     background-image: url(/do_img/global/icon_send.gif);
     background-repeat: no-repeat;
     color: #a1c8e7;
@@ -7544,15 +7599,15 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-l
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo input[type="text"] {
-    width:150px;
-    margin-left:20px;
+    width: 150px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-diplo  ul {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-diplo ul {
     -moz-column-count: 2;
     -moz-column-gap: 50px;
     -webkit-column-count: 2;
@@ -7560,14 +7615,14 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     column-count: 2;
     column-gap: 50px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content {
     display: block;
-    margin-left:200px;
+    margin-left: 200px;
     width: 550px;
     height: 200px;
     padding-left: 0;
@@ -7575,58 +7630,58 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     border-left: none;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content {
     display: inline-block;
-    margin-left:50px;
+    margin-left: 50px;
     width: 700px;
     height: 200px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
-    margin-top:50px;
+    margin-top: 50px;
     text-align: center;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content-mapp  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-introduction-content-mapp {
     display: inline-block;
     width: 850px;
     height: 200px;
     padding-left: 0;
-    margin-top:10px;
+    margin-top: 10px;
     text-align: center;
     border: 1px solid rgba(204, 204, 204, 0.51);
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content  {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content {
     display: inline-block;
-    margin-left:50px;
+    margin-left: 50px;
     width: 700px;
     height: 200px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
-    margin-top:50px;
+    margin-top: 50px;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-members {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-admin {
     padding-right: 40px;
-    width:850px;
+    width: 850px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-members input[type="submit"]{
-    width:100px;
-    margin-left:20px;
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-members input[type="submit"] {
+    width: 100px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-members input[type="submit"]:hover{
-    width:100px;
-    margin-left:20px;
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description-members input[type="submit"]:hover {
+    width: 100px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -7636,15 +7691,15 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
     padding-right: 40px;
-    width:700px;
+    width: 700px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content  h3 {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content h3 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content  ul {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content ul {
     -moz-column-count: 2;
     -moz-column-gap: 50px;
     -webkit-column-count: 2;
@@ -7652,16 +7707,16 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     column-count: 2;
     column-gap: 50px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members  h3 {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members h3 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members  ul {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-members ul {
     -moz-column-count: 3;
     -moz-column-gap: 10px;
     -webkit-column-count: 3;
@@ -7669,16 +7724,16 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     column-count: 3;
     column-gap: 10px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin  h3 {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin h3 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
 }
 
-body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin  ul {
+body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-description-content-admin ul {
     -moz-column-count: 3;
     -moz-column-gap: 10px;
     -webkit-column-count: 3;
@@ -7686,13 +7741,13 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     column-count: 3;
     column-gap: 10px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-description input[type="text"] {
-    width:100px;
-    margin-left:20px;
+    width: 100px;
+    margin-left: 20px;
     background-color: transparent;
     position: absolute;
     text-align: center;
@@ -7702,18 +7757,19 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     position: relative;
     padding: 15px;
 }
+
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
     text-align: top-center;
     margin-left: 500px;
-    width:100px;
-    height:50px;
+    width: 100px;
+    height: 50px;
     background-color: rgba(255, 255, 255, 0.51);
     border: 1px solid rgba(0, 0, 0, 0.51);
 }
 
-body.internalClan .shop-body .shop-inner  h3.h2 {
+body.internalClan .shop-body .shop-inner h3.h2 {
     border-bottom: 1px solid;
     padding-bottom: 5px;
     text-align: center;
@@ -7722,25 +7778,25 @@ body.internalClan .shop-body .shop-inner  h3.h2 {
 body.internalClan table {
     text-align: center;
     margin: 10px auto 0;
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-body.internalClan  table th,
-body.internalClan  table td {
+body.internalClan table th,
+body.internalClan table td {
     padding-right: 37.5px;
     padding-left: 37.5px;
-    border: 1px solid rgba(255,255,255,0.5);
-    text-align:center;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
     text-transform: none;
 }
 
-body.internalClan .clan-body .clan-top-header h1{
+body.internalClan .clan-body .clan-top-header h1 {
     font-family: BebasNeue;
     src: url(../fonts/BebasNeueRegular.otf);
     font-weight: 300;
     text-align: center;
     font-size: 30px;
-    background-blend-mode:screen; /* will only affect background */
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0 0 100px rgba(255, 255, 255, 0.51));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7750,17 +7806,17 @@ body.internalClan .clan-body .clan-top-header h1{
     -webkit-filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.51));
 }
 
-body.internalClan .clan-body .clan-top-container  h2{
+body.internalClan .clan-body .clan-top-container h2 {
     font-family: BebasNeue;
     src: url(../fonts/BebasNeueRegular.otf);
     font-weight: 300;
-    margin-left:250px;
-    margin-top:-60px;
+    margin-left: 250px;
+    margin-top: -60px;
     position: absolute;
-    width:10px;
+    width: 10px;
     text-align: center;
     font-size: 60px;
-    background-blend-mode:screen; /* will only affect background */
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0 0 100px rgba(0, 0, 0, 0.51));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7770,17 +7826,17 @@ body.internalClan .clan-body .clan-top-container  h2{
     -webkit-filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.51));
 }
 
-body.internalClan .clan-body .clan-top-container  h3{
+body.internalClan .clan-body .clan-top-container h3 {
     font-family: BebasNeue;
     src: url(../fonts/BebasNeueRegular.otf);
     font-weight: 300;
-    margin-left:205px;
-    margin-top:-40px;
+    margin-left: 205px;
+    margin-top: -40px;
     position: absolute;
-    width:300px;
+    width: 300px;
     text-align: center;
     font-size: 30px;
-    background-blend-mode:screen; /* will only affect background */
+    background-blend-mode: screen; /* will only affect background */
     filter: drop-shadow(0 0 100px rgba(0, 0, 0, 0.51));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -7790,49 +7846,49 @@ body.internalClan .clan-body .clan-top-container  h3{
     -webkit-filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.51));
 }
 
-body.internalClan .clan-body{
+body.internalClan .clan-body {
     padding: 15px;
     background: rgba(0, 0, 0, 0.61);
 }
 
 body.internalClan .clan-body .clan-top-container {
-    margin-left:20px;
-    width:97%;
+    margin-left: 20px;
+    width: 97%;
     height: 200px;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 body.internalClan .clan-body .clan-top-container .clan-top-clan-name input[type="text"] {
-    left:520px;
+    left: 520px;
     display: inline-flex;
     position: absolute;
     top: -65px;
 }
 
 body.internalClan .clan-body .clan-top-container .clan-top-clan-desc input[type="text"] {
-    left:120px;
+    left: 120px;
     display: inline-flex;
-    top:0;
+    top: 0;
     position: absolute;
 }
 
 body.internalClan .clan-body .clan-top-container .clan-top-input-container input[type="text"] {
-    left:120px;
+    left: 120px;
     display: inline-flex;
-    top:-50px;
+    top: -50px;
     position: absolute;
 }
 
 body.internalClan .clan-body .clan-top-container .clan-top-content input[type="text"] {
-    width:150px;
-    height:50px;
-    margin-top:80px;
-    margin-left:90px;
+    width: 150px;
+    height: 50px;
+    margin-top: 80px;
+    margin-left: 90px;
     vertical-align: middle;
-    text-align:center;
-    background: rgba(0,0,0,0.4);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
     border-style: none;
 }
 
@@ -7840,10 +7896,10 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 130px;
     float: left;
-    margin-left:0;
+    margin-left: 0;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 body.internalMapEditor .map-body {
@@ -7860,20 +7916,23 @@ body.internalMapEditor .map-body .map-header {
     height: 100%;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
+
 body.internalMapEditor .map-body .map-inner .single-item {
     padding: 0 0;
     margin-top: 25px;
 }
+
 body.internalMapEditor .map-body .map-inner .single-item .single-item-inner {
     display: inline-block;
     float: left;
 }
-body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-description  {
+
+body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-description {
     display: inline-block;
-    margin-left:200px;
+    margin-left: 200px;
     max-width: 550px;
     max-height: 100px;
-    margin-top:10px;
+    margin-top: 10px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
@@ -7903,33 +7962,33 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
     -webkit-filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.7));
 }
 
-body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-map-content  {
+body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-map-content {
     display: block;
-    margin-left:200px;
+    margin-left: 200px;
     max-width: 750px;
     max-height: 1000px;
-    margin-top:10px;
+    margin-top: 10px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
-body.internalMapEditor .single-map-minimap  {
+body.internalMapEditor .single-map-minimap {
     display: block;
-    margin-left:200px;
+    margin-left: 200px;
     padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
 body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-map-content input[type="number"] {
-    width:50px;
-    height:20px;
+    width: 50px;
+    height: 20px;
     vertical-align: middle;
-    text-align:center;
-    background: rgba(0,0,0,0.6);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.51);
 }
 
-body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-map-content  ul {
+body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-map-content ul {
     -moz-column-count: 2;
     -moz-column-gap: 30px;
     -webkit-column-count: 2;
@@ -7937,12 +7996,12 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
     column-count: 2;
     column-gap: 30px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
-    padding-left:30px;
+    margin-top: 15px;
+    margin-left: 20px;
+    padding-left: 30px;
 }
 
-body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-description  ul {
+body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-description ul {
     -moz-column-count: 2;
     -moz-column-gap: 30px;
     -webkit-column-count: 2;
@@ -7950,28 +8009,29 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
     column-count: 2;
     column-gap: 30px;
     font-size: 15px;
-    margin-top:15px;
-    margin-left:20px;
+    margin-top: 15px;
+    margin-left: 20px;
 }
 
 body.internalCalendar .calendar-body {
-    background: rgba(145, 145,calendar 145, 0.21);
+    background: rgba(145, 145, calendar 145, 0.21);
     padding: 40px;
 }
+
 body.internalCalendar .calendar-body .calendar-inner {
     padding: 15px;
     background: rgba(0, 0, 0, 0.61);
 }
 
-body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header{
+body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header {
     display: inline-block;
     position: relative;
     height: 140px;
-    width:120px;
+    width: 120px;
     margin-left: 30px;
     border: 1px solid rgba(255, 255, 255, 0.51);
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header img {
@@ -7992,7 +8052,7 @@ body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-i
     text-indent: -5000px;
     width: 9px;
     color: white;
-     filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -8002,7 +8062,7 @@ body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-i
 }
 
 
-body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header:hover{
+body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header:hover {
     filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     cursor: pointer;
@@ -8012,7 +8072,7 @@ body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-i
     display: inline-block;
     margin-top: 0;
     line-height: 24px;
-    font-size:14px;
+    font-size: 14px;
     text-align: center;
     padding-bottom: 5px;
 }
@@ -8023,13 +8083,13 @@ body.internalCalendar .shop-body .shop-inner .single-item .single-item-inner .si
     max-height: 800px;
     padding-left: 15px;
     border: 1px solid rgba(204, 204, 204, 0.51);
-    padding-top:20px;
+    padding-top: 20px;
     text-transform: none;
 }
 
 body.internalCalendar .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
     padding-right: 0;
-    padding-left:70px;
+    padding-left: 70px;
 }
 
 /*# sourceMappingURL=styles.css.map */
