@@ -504,14 +504,14 @@ body header .inbox_read {
 }
 
 body header .inbox_read:hover {
-    background-position: 0px -20px;
+    background-position: 0 -20px;
 }
 
 body header .inbox_new {
     background-image: url("../images/icons_mail_sprite.png");
 }
 body header .inbox_new:hover {
-    background-position: 0px -40px;
+    background-position: 0 -40px;
 }
 
 body footer {
@@ -1281,7 +1281,7 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .more {
     display: block;
-    margin-left:0px;
+    margin-left:0;
     margin-top:170px;
     text-transform: none;
 }
@@ -1322,7 +1322,7 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-description {
-    padding-right: 0px;
+    padding-right: 0;
     padding-left:70px;
 }
 
@@ -1482,7 +1482,7 @@ body.internalStart .nav-tabs > li > a {
 body.internalStart .nav > li > a {
     position: relative;
     display: block;
-    padding: 0px 3px 10px;
+    padding: 0 3px 10px;
     opacity: 0.5;
 }
 
@@ -1576,7 +1576,7 @@ body.internalStart #events table {
 body.internalStart #events th,
 body.internalStart #events td {
     border: 1px solid white;
-    border-width: 0 0px 1px 0;
+    border-width: 0 0 1px 0;
     text-align: center;
 }
 
@@ -1959,7 +1959,7 @@ body.internalStart #best-pilots {
 }
 
 body.internalStart .mCSB_inside > .mCSB_container {
-    margin-right: 0px;
+    margin-right: 0;
 }
 
 body.internalStart .mCS-dark-3.mCSB_scrollTools .mCSB_draggerRail,
@@ -2386,7 +2386,7 @@ body.internalHangar .equiped-item {
     width: 32px;
     background: rgba(0, 0, 0, 0.7);
    border: 1px solid rgba(255, 255, 255, 0.51);
-    margin: 0px 3px 5px 0px;
+    margin: 0 3px 5px 0;
     background-size: cover;
 }
 
@@ -2538,7 +2538,7 @@ body.internalHangar .drone-design-name {
 body.internalHangar .drone-upgrade-level {
     position: absolute;
     display: inline-block;
-    margin-top: 0px;
+    margin-top: 0;
     margin-left: -125px;
     text-transform: none;
     font-size: 12px !important;
@@ -3354,7 +3354,7 @@ body.internalAdmin .page-content .tab-content .user-look-up-list {
 
 body.internalAdmin  .user-list {
     max-height: 250px;
-    margin-left: 0px;
+    margin-left: 0;
     margin-top:100px;
 }
 
@@ -3364,7 +3364,7 @@ body.internalAdmin .user-look-up-list2 {
 }
 
 body.internalAdmin  .page-content .tab-content .search-form2{
-    border: solid 0px white;
+    border: solid 0 white;
     width: 300px;
     height: 60px;
     margin-left: 250px;
@@ -3372,7 +3372,7 @@ body.internalAdmin  .page-content .tab-content .search-form2{
 }
 
 body.internalAdmin  .page-content .tab-content .search-form3{
-    border: solid 0px white;
+    border: solid 0 white;
     width: 140px;
     height: 60px;
     margin-left:500px;
@@ -3390,7 +3390,7 @@ body.internalAdmin  .page-content .tab-content .font12{
     font-size: 12px;
     color: #dcddde;
     text-decoration: none;
-    padding: 0px 0px 0px 5px;
+    padding: 0 0 0 5px;
 }
 
 
@@ -3409,7 +3409,7 @@ body.internalAdmin  .page-content .tab-content .chat-button{
     font-family: BebasNeueBook;
     color: #b5b5b5;
     font-size: 15px;
-    margin-left: 0px;
+    margin-left: 0;
     width: 90px;
     height: 26px;
     cursor: pointer;
@@ -3592,7 +3592,7 @@ body.internalAdmin  .page-content .tab-content .font12{
     font-size: 12px;
     color: #dcddde;
     text-decoration: none;
-    padding: 0px 0px 0px 5px;
+    padding: 0 0 0 5px;
 }
 
 
@@ -3727,7 +3727,7 @@ body.internalAdmin  .page-content .tab-content .results-content{
 }
 
 body.internalAdmin  .page-content .tab-content .result-list th{
-    border: 0px solid #fff;
+    border: 0 solid #fff;
     text-align:center;
 }
 
@@ -3752,7 +3752,7 @@ body.internalAdmin  .page-content .tab-content .search{
 }
 
 body.internalAdmin  .page-content .tab-content .search-form{
-    border: solid 0px white;
+    border: solid 0 white;
     width: 300px;
     height: 60px;
     margin-left: 210px;
@@ -4094,7 +4094,7 @@ body.internalSkylab #upgrade_container #modul_top #close_modul {
 
 body.internalSkylab #upgrade_container #modul_top #close_modul > h3 {
     color: #fff;
-    text-shadow: 0px 0px 5px #fff;
+    text-shadow: 0 0 5px #fff;
     font-size: 15px;
     text-align: center;
     margin-top: 6px;
@@ -4108,7 +4108,7 @@ body.internalSkylab #upgrade_container #modul_top > h3 {
     font-family: 'Roboto Condensed';
     font-weight: 300;
     font-size: 17px;
-    text-shadow: 0px 0px 15px #fff;
+    text-shadow: 0 0 15px #fff;
     margin-top: 20px;
 }
 
@@ -4694,7 +4694,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
     height: 40px;
     background: rgba(0, 0, 0, 0.6);
     margin-left: -180px;
-    margin-top: 0px;
+    margin-top: 0;
     float: left;
 }
 
@@ -5232,7 +5232,7 @@ body.internalSkylab #solar_module_modul_information #modul_top #close_modul {
 
 body.internalSkylab #solar_module_modul_information #modul_top #close_modul > h3 {
     color: #fff;
-    text-shadow: 0px 0px 5px #fff;
+    text-shadow: 0 0 5px #fff;
     font-size: 15px;
     text-align: center;
     margin-top: 6px;
@@ -5246,7 +5246,7 @@ body.internalSkylab #solar_module_modul_information #modul_top > h3 {
     font-family: 'Roboto Condensed';
     font-weight: 300;
     font-size: 17px;
-    text-shadow: 0px 0px 15px #fff;
+    text-shadow: 0 0 15px #fff;
     margin-top: 20px;
 }
 
@@ -5550,7 +5550,7 @@ body.internalAuction .article .description {
     border-right:1px solid rgba(255,255,255,0.5);
     padding:10px 0;
     position: absolute;
-    margin:0px 160px;
+    margin:0 160px;
 }
 
 body.internalAuction .article .description .quantity {
@@ -5566,7 +5566,7 @@ body.internalAuction .article .bid {
     text-align:center;
     padding:15px;
     position: absolute;
-    margin:0px 720px;
+    margin:0 720px;
 }
 
 body.internalAuction .article .highest {
@@ -5624,7 +5624,7 @@ body.internalGalaxyGates .gate-container{
     width: 375px;
     margin-left: 170px;
     position: absolute;
-    margin-top: 0px;
+    margin-top: 0;
     border: 2px solid #2f2f2f;
 }
 
@@ -5785,7 +5785,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li a:focus {
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.your-rank a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_user_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:300px;
     top:40px;
@@ -5796,7 +5796,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.your-rank a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-exp a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_experience_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:375px;
     top:40px;
@@ -5807,7 +5807,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.top-exp a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-honor a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_honor_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:450px;
     top:40px;
@@ -5818,7 +5818,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.top-honor a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-user a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_start_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:525px;
     top:40px;
@@ -5829,7 +5829,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.top-user a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-clan a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_clan_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:600px;
     top:40px;
@@ -5840,7 +5840,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.top-clan a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-gg a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_gate_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:675px;
     top:40px;
@@ -5851,7 +5851,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li.top-gg a:before{
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li.top-event a:before{
     background-image: url("../../do_img/global/hof/navigation_icon_event_42x49.png");
-    background-position: 0px -50px;
+    background-position: 0 -50px;
     display: block;
     left:750px;
     top:40px;
@@ -5914,12 +5914,12 @@ body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
-    padding-right: 0px;
+    padding-right: 0;
     padding-left:70px;
 }
 
 body.internalHallOfFame .shop-body .shop-inner .single-item .single-item-inner .single-item-description .explanation {
-    padding-right: 0px;
+    padding-right: 0;
     padding-left:70px;
     width:750px;
 }
@@ -6230,7 +6230,7 @@ body.internalAdminEditItems .shop-body .shop-header ul.nav li a:focus {
 body.internalAdminEditItems .shop-body .shop-header ul.nav li.nav-lasers a:before{
     background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-3_shop.png");
     display: inline-block;
-    left:0px;
+    left:0;
     top:-15px;
     width: 120px;
     height:120px;
@@ -6336,7 +6336,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 300px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6401,7 +6401,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6466,7 +6466,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 300px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6531,7 +6531,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 300px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6573,7 +6573,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 }
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Generator .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -6618,7 +6618,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6661,7 +6661,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 }
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Heavy .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -6683,7 +6683,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 }
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Ammo .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -6705,7 +6705,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 }
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Extra .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -6777,7 +6777,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6815,7 +6815,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Pet .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -6864,7 +6864,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-left:150px;
     width: 700px;
     height: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -6902,7 +6902,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Drone .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -7066,7 +7066,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-left:150px;
     width: 700px;
     height: 300px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -7131,7 +7131,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-left:150px;
     width: 700px;
     height: 250px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -7196,7 +7196,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-left:150px;
     width: 700px;
     height: 300px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 1px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -7238,7 +7238,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 }
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-NPC .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -7260,7 +7260,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 }
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-PET .btn-primary {
     position: absolute;
-    bottom: 0px;
+    bottom: 0;
     text-align: top-center;
     left: 450px;
     width:100px;
@@ -7389,7 +7389,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-a
     position: relative;
     margin-left: 370px;
     right: 0;
-    padding-top:0px;
+    padding-top:0;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button a:hover,
@@ -7429,7 +7429,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 200px;
     margin-top:-22px;
-    margin-left:0px;
+    margin-left:0;
     background-blend-mode:screen; /* will only affect background */
     filter: drop-shadow(0px 0px, 7px rgba(255, 255, 255, 0.41));
     -webkit-transform: translateY(10%);
@@ -7444,7 +7444,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 130px;
     float: left;
-    margin-left:0px;
+    margin-left:0;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
     margin-top:20px;
@@ -7470,7 +7470,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     display: inline-block;
     width: 850px;
     height: 2000px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     border-left: none;
     margin-top:30px;
@@ -7481,7 +7481,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     margin-left:150px;
     max-width: 800px;
     height: 130px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     border-left: none;
     margin-top:30px;
@@ -7491,7 +7491,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     display: inline-block;
     width: 800px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
@@ -7499,7 +7499,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-i
     display: inline-block;
     width: 800px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
@@ -7507,7 +7507,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-l
     display: inline-block;
     width: 800px;
     height: 100px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
@@ -7570,7 +7570,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-d
     margin-left:200px;
     width: 550px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     border-left: none;
 }
@@ -7580,7 +7580,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-i
     margin-left:50px;
     width: 700px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     margin-top:50px;
     text-align: center;
@@ -7590,7 +7590,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-i
     display: inline-block;
     width: 850px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     margin-top:10px;
     text-align: center;
     border: 1px solid rgba(204, 204, 204, 0.51);
@@ -7601,7 +7601,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-l
     margin-left:50px;
     width: 700px;
     height: 200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
     margin-top:50px;
 }
@@ -7814,7 +7814,7 @@ body.internalClan .clan-body .clan-top-container .clan-top-clan-name input[type=
 body.internalClan .clan-body .clan-top-container .clan-top-clan-desc input[type="text"] {
     left:120px;
     display: inline-flex;
-    top:0px;
+    top:0;
     position: absolute;
 }
 
@@ -7840,7 +7840,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     width: 150px;
     height: 130px;
     float: left;
-    margin-left:0px;
+    margin-left:0;
     display: inline-block;
     border: 1px solid rgba(255, 255, 255, 0.51);
     margin-top:20px;
@@ -7861,7 +7861,7 @@ body.internalMapEditor .map-body .map-header {
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 body.internalMapEditor .map-body .map-inner .single-item {
-    padding: 0 0px;
+    padding: 0 0;
     margin-top: 25px;
 }
 body.internalMapEditor .map-body .map-inner .single-item .single-item-inner {
@@ -7874,7 +7874,7 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
     max-width: 550px;
     max-height: 100px;
     margin-top:10px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
@@ -7909,14 +7909,14 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
     max-width: 750px;
     max-height: 1000px;
     margin-top:10px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
 body.internalMapEditor .single-map-minimap  {
     display: block;
     margin-left:200px;
-    padding-left: 0px;
+    padding-left: 0;
     border: 2px solid rgba(204, 204, 204, 0.51);
 }
 
@@ -8028,7 +8028,7 @@ body.internalCalendar .shop-body .shop-inner .single-item .single-item-inner .si
 }
 
 body.internalCalendar .shop-body .shop-inner .single-item .single-item-inner .single-item-description {
-    padding-right: 0px;
+    padding-right: 0;
     padding-left:70px;
 }
 
