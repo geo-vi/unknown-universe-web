@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css");
-@import "../css/font-awesome.min.css";
+@import "font-awesome.min.css";
 
 @font-face {
     font-family: BebasNeue, "Roboto Condensed", sans-serif;
