@@ -22,7 +22,7 @@
     <!-- Include JS -->
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery-ui.min.js"></script>
-    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/chosen.jquery.js"></script>
+    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/chosen.jquery.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/visibility.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.tools.min.js"></script>
