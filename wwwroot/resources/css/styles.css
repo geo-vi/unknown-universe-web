@@ -6478,295 +6478,295 @@ body.internalHangar .inventory-item[data-item-name="lf-4"],
 body.internalHangar .equiped-item[data-item-name="lf-4"],
 body.internalHangar .inventory-item[data-item-name="lf-4"],
 body.internalHangar .equiped-item[data-item-name="lf-4"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-4_30x30.png");
+  background-image: url("../images/items/equipment/weapon/laser/lf-4_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="lf-3"],
 body.internalHangar .equiped-item[data-item-name="lf-3"],
 body.internalHangar .inventory-item[data-item-name="lf-3"],
 body.internalHangar .equiped-item[data-item-name="lf-3"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-3_30x30.png");
+  background-image: url("../images/items/equipment/weapon/laser/lf-3_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="lf-2"],
 body.internalHangar .equiped-item[data-item-name="lf-2"],
 body.internalHangar .inventory-item[data-item-name="lf-2"],
 body.internalHangar .equiped-item[data-item-name="lf-2"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-2_30x30.png");
+  background-image: url("../images/items/equipment/weapon/laser/lf-2_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="lf-1"],
 body.internalHangar .equiped-item[data-item-name="lf-1"],
 body.internalHangar .inventory-item[data-item-name="lf-1"],
 body.internalHangar .equiped-item[data-item-name="lf-1"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/laser/lf-1_30x30.png");
+  background-image: url("../images/items/equipment/weapon/laser/lf-1_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="mp-1"],
 body.internalHangar .equiped-item[data-item-name="mp-1"],
 body.internalHangar .inventory-item[data-item-name="mp-1"],
 body.internalHangar .equiped-item[data-item-name="mp-1"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/laser/mp-1_30x30.png");
+  background-image: url("../images/items/equipment/weapon/laser/mp-1_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="hst-01"],
 body.internalHangar .equiped-item[data-item-name="hst-01"],
 body.internalHangar .inventory-item[data-item-name="hst-01"],
 body.internalHangar .equiped-item[data-item-name="hst-01"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/rocketlauncher/hst-1_30x30.png");
+  background-image: url("../images/items/equipment/weapon/rocketlauncher/hst-1_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="hst-02"],
 body.internalHangar .equiped-item[data-item-name="hst-02"],
 body.internalHangar .inventory-item[data-item-name="hst-02"],
 body.internalHangar .equiped-item[data-item-name="hst-02"] {
-  background-image: url("../../do_img/global/items/equipment/weapon/rocketlauncher/hst-2_30x30.png");
+  background-image: url("../images/items/equipment/weapon/rocketlauncher/hst-2_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sg3n-b02"],
 body.internalHangar .equiped-item[data-item-name="sg3n-b02"],
 body.internalHangar .inventory-item[data-item-name="sg3n-b02"],
 body.internalHangar .equiped-item[data-item-name="sg3n-b02"] {
-  background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-b02_30x30.png");
+  background-image: url("../images/items/equipment/generator/shield/sg3n-b02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sg3n-b01"],
 body.internalHangar .equiped-item[data-item-name="sg3n-b01"],
 body.internalHangar .inventory-item[data-item-name="sg3n-b01"],
 body.internalHangar .equiped-item[data-item-name="sg3n-b01"] {
-  background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-b01_30x30.png");
+  background-image: url("../images/items/equipment/generator/shield/sg3n-b01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sg3n-a03"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a03"],
 body.internalHangar .inventory-item[data-item-name="sg3n-a03"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a03"] {
-  background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a03_30x30.png");
+  background-image: url("../images/items/equipment/generator/shield/sg3n-a03_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sg3n-a02"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a02"],
 body.internalHangar .inventory-item[data-item-name="sg3n-a02"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a02"] {
-  background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a02_30x30.png");
+  background-image: url("../images/items/equipment/generator/shield/sg3n-a02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sg3n-a01"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a01"],
 body.internalHangar .inventory-item[data-item-name="sg3n-a01"],
 body.internalHangar .equiped-item[data-item-name="sg3n-a01"] {
-  background-image: url("../../do_img/global/items/equipment/generator/shield/sg3n-a01_30x30.png");
+  background-image: url("../images/items/equipment/generator/shield/sg3n-a01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-7900"],
 body.internalHangar .equiped-item[data-item-name="g3n-7900"],
 body.internalHangar .inventory-item[data-item-name="g3n-7900"],
 body.internalHangar .equiped-item[data-item-name="g3n-7900"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-7900_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-7900_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-6900"],
 body.internalHangar .equiped-item[data-item-name="g3n-6900"],
 body.internalHangar .inventory-item[data-item-name="g3n-6900"],
 body.internalHangar .equiped-item[data-item-name="g3n-6900"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-6900_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-6900_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-3310"],
 body.internalHangar .equiped-item[data-item-name="g3n-3310"],
 body.internalHangar .inventory-item[data-item-name="g3n-3310"],
 body.internalHangar .equiped-item[data-item-name="g3n-3310"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-3310_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-3310_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-3210"],
 body.internalHangar .equiped-item[data-item-name="g3n-3210"],
 body.internalHangar .inventory-item[data-item-name="g3n-3210"],
 body.internalHangar .equiped-item[data-item-name="g3n-3210"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-3210_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-3210_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-2010"],
 body.internalHangar .equiped-item[data-item-name="g3n-2010"],
 body.internalHangar .inventory-item[data-item-name="g3n-2010"],
 body.internalHangar .equiped-item[data-item-name="g3n-2010"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-2010_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-2010_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="g3n-1010"],
 body.internalHangar .equiped-item[data-item-name="g3n-1010"],
 body.internalHangar .inventory-item[data-item-name="g3n-1010"],
 body.internalHangar .equiped-item[data-item-name="g3n-1010"] {
-  background-image: url("../../do_img/global/items/equipment/generator/speed/g3n-1010_30x30.png");
+  background-image: url("../images/items/equipment/generator/speed/g3n-1010_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="havoc"],
 body.internalHangar .equiped-item[data-item-name="havoc"],
 body.internalHangar .inventory-item[data-item-name="havoc"],
 body.internalHangar .equiped-item[data-item-name="havoc"] {
-  background-image: url("../../do_img/global/items/drone/designs/havoc_30x30.png");
+  background-image: url("../images/items/drone/designs/havoc_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="hercules"],
 body.internalHangar .equiped-item[data-item-name="hercules"],
 body.internalHangar .inventory-item[data-item-name="hercules"],
 body.internalHangar .equiped-item[data-item-name="hercules"] {
-  background-image: url("../../do_img/global/items/drone/designs/hercules_30x30.png");
+  background-image: url("../images/items/drone/designs/hercules_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rep-4"],
 body.internalHangar .equiped-item[data-item-name="rep-4"],
 body.internalHangar .inventory-item[data-item-name="rep-4"],
 body.internalHangar .equiped-item[data-item-name="rep-4"] {
-  background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-4_30x30.png");
+  background-image: url("../images/items/equipment/extra/repbot/rep-4_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="lgf"],
 body.internalHangar .equiped-item[data-item-name="lgf"],
 body.internalHangar .inventory-item[data-item-name="lgf"],
 body.internalHangar .equiped-item[data-item-name="lgf"] {
-  background-image: url("../../do_img/global/items/resource/logfile_30x30.png");
+  background-image: url("../images/items/resource/logfile_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="bk-100"],
 body.internalHangar .equiped-item[data-item-name="bk-100"],
 body.internalHangar .inventory-item[data-item-name="bk-100"],
 body.internalHangar .equiped-item[data-item-name="bk-100"] {
-  background-image: url("../../do_img/global/items/resource/booty-key_30x30.png");
+  background-image: url("../images/items/resource/booty-key_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rep-3"],
 body.internalHangar .equiped-item[data-item-name="rep-3"],
 body.internalHangar .inventory-item[data-item-name="rep-3"],
 body.internalHangar .equiped-item[data-item-name="rep-3"] {
-  background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-3_30x30.png");
+  background-image: url("../images/items/equipment/extra/repbot/rep-3_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rep-1"],
 body.internalHangar .equiped-item[data-item-name="rep-1"],
 body.internalHangar .inventory-item[data-item-name="rep-1"],
 body.internalHangar .equiped-item[data-item-name="rep-1"] {
-  background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-1_30x30.png");
+  background-image: url("../images/items/equipment/extra/repbot/rep-1_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rep-2"],
 body.internalHangar .equiped-item[data-item-name="rep-2"],
 body.internalHangar .inventory-item[data-item-name="rep-2"],
 body.internalHangar .equiped-item[data-item-name="rep-2"] {
-  background-image: url("../../do_img/global/items/equipment/extra/repbot/rep-2_30x30.png");
+  background-image: url("../images/items/equipment/extra/repbot/rep-2_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="dro-02"],
 body.internalHangar .equiped-item[data-item-name="dro-02"],
 body.internalHangar .inventory-item[data-item-name="dro-02"],
 body.internalHangar .equiped-item[data-item-name="dro-02"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/dr-02_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/dr-02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="dro-01"],
 body.internalHangar .equiped-item[data-item-name="dro-01"],
 body.internalHangar .inventory-item[data-item-name="dro-01"],
 body.internalHangar .equiped-item[data-item-name="dro-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/dr-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/dr-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="nc-rrb"],
 body.internalHangar .equiped-item[data-item-name="nc-rrb"],
 body.internalHangar .inventory-item[data-item-name="nc-rrb"],
 body.internalHangar .equiped-item[data-item-name="nc-rrb"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/nc-rrb-x_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/nc-rrb-x_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="min-t02"],
 body.internalHangar .equiped-item[data-item-name="min-t02"],
 body.internalHangar .inventory-item[data-item-name="min-t02"],
 body.internalHangar .equiped-item[data-item-name="min-t02"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/min-t02_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/min-t02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="min-t01"],
 body.internalHangar .equiped-item[data-item-name="min-t01"],
 body.internalHangar .inventory-item[data-item-name="min-t01"],
 body.internalHangar .equiped-item[data-item-name="min-t01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/min-t01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/min-t01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="arol-x"],
 body.internalHangar .equiped-item[data-item-name="arol-x"],
 body.internalHangar .inventory-item[data-item-name="arol-x"],
 body.internalHangar .equiped-item[data-item-name="arol-x"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/arol-x_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/arol-x_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="cl04k-mod"],
 body.internalHangar .equiped-item[data-item-name="cl04k-mod"],
 body.internalHangar .inventory-item[data-item-name="cl04k-mod"],
 body.internalHangar .equiped-item[data-item-name="cl04k-mod"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-xs_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/cl04k-xs_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="cl04k"],
 body.internalHangar .equiped-item[data-item-name="cl04k"],
 body.internalHangar .inventory-item[data-item-name="cl04k"],
 body.internalHangar .equiped-item[data-item-name="cl04k"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-m_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/cl04k-m_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="cl04k-xl"],
 body.internalHangar .equiped-item[data-item-name="cl04k-xl"],
 body.internalHangar .inventory-item[data-item-name="cl04k-xl"],
 body.internalHangar .equiped-item[data-item-name="cl04k-xl"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/cl04k-xl_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/cl04k-xl_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="gem-xi"],
 body.internalHangar .equiped-item[data-item-name="gem-xi"],
 body.internalHangar .inventory-item[data-item-name="gem-xi"],
 body.internalHangar .equiped-item[data-item-name="gem-xi"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/g3x-crgo-x_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/g3x-crgo-x_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="jp-01"],
 body.internalHangar .equiped-item[data-item-name="jp-01"],
 body.internalHangar .inventory-item[data-item-name="jp-01"],
 body.internalHangar .equiped-item[data-item-name="jp-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/jp-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/jp-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="jp-02"],
 body.internalHangar .equiped-item[data-item-name="jp-02"],
 body.internalHangar .inventory-item[data-item-name="jp-02"],
 body.internalHangar .equiped-item[data-item-name="jp-02"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/jp-02_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/jp-02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="aim-02"],
 body.internalHangar .equiped-item[data-item-name="aim-02"],
 body.internalHangar .inventory-item[data-item-name="aim-02"],
 body.internalHangar .equiped-item[data-item-name="aim-02"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/aim-02_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/aim-02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="aim-01"],
 body.internalHangar .equiped-item[data-item-name="aim-01"],
 body.internalHangar .inventory-item[data-item-name="aim-01"],
 body.internalHangar .equiped-item[data-item-name="aim-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/aim-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/aim-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rl-lb1"],
 body.internalHangar .equiped-item[data-item-name="rl-lb1"],
 body.internalHangar .inventory-item[data-item-name="rl-lb1"],
 body.internalHangar .equiped-item[data-item-name="rl-lb1"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/rllb-x_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/rllb-x_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="smb-01"],
 body.internalHangar .equiped-item[data-item-name="smb-01"],
 body.internalHangar .inventory-item[data-item-name="smb-01"],
 body.internalHangar .equiped-item[data-item-name="smb-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/smb-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/smb-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="ish-01"],
 body.internalHangar .equiped-item[data-item-name="ish-01"],
 body.internalHangar .inventory-item[data-item-name="ish-01"],
 body.internalHangar .equiped-item[data-item-name="ish-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/ish-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/ish-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sle-04"],
 body.internalHangar .equiped-item[data-item-name="sle-04"],
 body.internalHangar .inventory-item[data-item-name="sle-04"],
 body.internalHangar .equiped-item[data-item-name="sle-04"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-04_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/sle-04_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sle-03"],
 body.internalHangar .equiped-item[data-item-name="sle-03"],
 body.internalHangar .inventory-item[data-item-name="sle-03"],
 body.internalHangar .equiped-item[data-item-name="sle-03"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-03_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/sle-03_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sle-02"],
 body.internalHangar .equiped-item[data-item-name="sle-02"],
 body.internalHangar .inventory-item[data-item-name="sle-02"],
 body.internalHangar .equiped-item[data-item-name="sle-02"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-02_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/sle-02_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="sle-01"],
 body.internalHangar .equiped-item[data-item-name="sle-01"],
 body.internalHangar .inventory-item[data-item-name="sle-01"],
 body.internalHangar .equiped-item[data-item-name="sle-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/sle-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/sle-01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="rok-t01"],
 body.internalHangar .equiped-item[data-item-name="rok-t01"],
 body.internalHangar .inventory-item[data-item-name="rok-t01"],
 body.internalHangar .equiped-item[data-item-name="rok-t01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/rok-t01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/rok-t01_30x30.png");
 }
 body.internalHangar .inventory-item[data-item-name="ajp-01"],
 body.internalHangar .equiped-item[data-item-name="ajp-01"],
 body.internalHangar .inventory-item[data-item-name="ajp-01"],
 body.internalHangar .equiped-item[data-item-name="ajp-01"] {
-  background-image: url("../../do_img/global/items/equipment/extra/cpu/ajp-01_30x30.png");
+  background-image: url("../images/items/equipment/extra/cpu/ajp-01_30x30.png");
 }
 body.internalMapRevolution .map-container {
   margin-bottom: -6px;
