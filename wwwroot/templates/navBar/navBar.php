@@ -63,29 +63,28 @@
     <nav id="main-nav">
         <ul id="left-buttons" class="header-buttons bold">
             <ul class="main-right-buttons">
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_CLAN') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalClan"><?= $System->__('NAV_TEXT_CLAN') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalSkylab"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
                 </li>
             </ul>
 
             <ul class="main-left-buttons">
                 <li class="header_button header_normal_button">
-                    <a
-                            href="./internalHangar"><?= $System->__('NAV_TEXT_HANGAR') ?></a>
+                    <a href="internalHangar"><?= $System->__('NAV_TEXT_HANGAR') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalSkillTree"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
                 </li>
             </ul>
-            <div class="inbox">
-                <p>
+            <ul class="inbox">
+                <li>
                     <?php
                     if ($System->User->hasMessages()) {
                         ?>
-                        <a href="./internalMessaging"><span id="icon"
+                        <a href="internalMessaging"><span id="icon"
                                                             class="inbox_new"
                                                             title="You have <?= $System->User->hasMessages(
                                                             ) ?> new messages">(<?= $System->User->hasMessages(
@@ -93,38 +92,36 @@
                         <?php
                     } else {
                         ?>
-                        <a href="./internalMessaging"><span id="icon"
+                        <a href="internalMessaging"><span id="icon"
                                                             class="inbox_read"
                                                             title="You have 0 new messages">(0)</span></a>
                         <?php
                     }
                     ?>
-                </p>
-            </div>
+                </li>
+            </ul>
         </ul>
 
-        <a class="main-logo" href="./internalStart">
+        <a class="main-logo" href="internalStart">
             <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/logos/main_logo.png" />
         </a>
 
         <ul id="right-buttons" class="header-buttons bold">
             <ul class="main-left-buttons">
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalPayment"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a
-                            href="#"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalGalaxyGates"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
                 </li>
             </ul>
 
             <ul class="main-right-buttons">
                 <li class="header_button header_normal_button">
-                    <a
-                            href="./internalShop"><?= $System->__('NAV_TEXT_SHOP') ?></a>
+                    <a href="internalShop"><?= $System->__('NAV_TEXT_SHOP') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalAuction"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
                 </li>
             </ul>
         </ul>
