@@ -19,7 +19,9 @@ $System->error_handler->add(ErrorID::ACCESS_DENIED, 'Access denied!', ErrorMessa
 $System->error_handler->add(ErrorID::EMAIL_MISSING, "E-Mail verification missing!", ErrorMessages::EMAIL_VERIFICATION_MISSING);
 $System->error_handler->add(ErrorID::EMAIL_COMPLETE, "Account verified!", ErrorMessages::EMAIL_COMPLETE);
 $System->error_handler->add(ErrorID::VERIFICATION_FAILED, "Verification failed!", ErrorMessages::EMAIL_VERIFICATION_FAILED_CODE);
-$System->error_handler->add('logged_out', "Successfully logged out!", "Thanks for playing! We hope to see you soon!");
+$System->error_handler->add(ErrorID::REDEEMED_CODE, "Code Redeemed!", ErrorMessages::REDEEMED_CODE_MESSAGE);
+$System->error_handler->add(ErrorID::DUPLICATE_CODE, "Cheater!", ErrorMessages::DUPLICATE_REDEEM_MESSAGE);
+$System->error_handler->add(ErrorID::LOGGED_OUT, "Successfully logged out!", ErrorMessages::LOGGET_OUT_MESSAGE);
 $System->error_handler->handle();
 
 

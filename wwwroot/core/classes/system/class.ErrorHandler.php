@@ -1,5 +1,30 @@
 <?php
 
+abstract class ErrorID
+{
+    const FAILED_LOGIN        = "fail_login";
+    const ACCESS_DENIED       = "access_denied";
+    const EMAIL_COMPLETE      = "email_confirmed";
+    const EMAIL_MISSING       = "email_missing";
+    const VERIFICATION_FAILED = "verification_failed_invalid_code";
+    const REDEEMED_CODE       = "redeem_code";
+    const DUPLICATE_CODE      = "duplicate_redeem";
+    const LOGGED_OUT          = 'logged_out';
+}
+
+abstract class ErrorMessages
+{
+    const FAILED_LOGIN_MESSAGE           = "Your Login failed! Check your login data or try the forgot password function!";
+    const EMAIL_VERIFICATION_MISSING     = "Your E-Mail isn't confirmed yet! We send you a E-Mail, check your Spam folder!";
+    const EMAIL_VERIFICATION_FAILED_CODE = "Your Code is not valid!";
+    const EMAIL_COMPLETE                 = "Your E-Mail is now confirmed! Thank you! Go ahead and login.";
+    const ACCESS_DENIED                  = "You don't have access to this area!";
+    const UNKNOWN_ERROR                  = "Unknown Error happend!";
+    const REDEEMED_CODE_MESSAGE          = "Congratulations! You've redeemed this code! Enjoy!";
+    const DUPLICATE_REDEEM_MESSAGE       = "You may not redeem the same code more than once. Stop cheating!";
+    const LOGGET_OUT_MESSAGE             = "Thanks for playing! We hope to see you soon!";
+}
+
 class ErrorHandler
 {
     protected $errors_ = [];
@@ -59,23 +84,4 @@ class ErrorHandler
             header('location: ' . PROJECT_HTTP_ROOT . 'error?error_id=' . $ID);
         }
     }
-}
-
-abstract class ErrorID
-{
-    const FAILED_LOGIN        = "fail_login";
-    const ACCESS_DENIED       = "access_denied";
-    const EMAIL_COMPLETE      = "email_confirmed";
-    const EMAIL_MISSING       = "email_missing";
-    const VERIFICATION_FAILED = "verification_failed_invalid_code";
-}
-
-abstract class ErrorMessages
-{
-    const FAILED_LOGIN_MESSAGE           = "Your Login failed! Check your login data or try the forgot password function!";
-    const EMAIL_VERIFICATION_MISSING     = "Your E-Mail isn't confirmed yet! We send you a E-Mail, check your Spam folder!";
-    const EMAIL_VERIFICATION_FAILED_CODE = "Your Code is not valid!";
-    const EMAIL_COMPLETE                 = "Your E-Mail is now confirmed! Thank you! Go ahead and login.";
-    const ACCESS_DENIED                  = "You don't have access to this area!";
-    const UNKNOWN_ERROR                  = "Unknown Error happend!";
 }
