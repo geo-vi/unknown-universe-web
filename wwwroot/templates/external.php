@@ -54,7 +54,8 @@
                     <input type="email" id="registerEmail" class="form-input" name="registerEmail"
                            placeholder="<?= $System->__('BODY_TEXT_EMAIL') ?>" required>
                     <?php
-                    if (NEED_INVITATION) {
+                    if (NEED_INVITATION)
+                    {
                         ?>
                         <input type="text" id="registerInvation" class="form-input" name="registerInvation"
                                placeholder="<?= $System->__('BODY_TEXT_INVITATIONCODE') ?>" required>

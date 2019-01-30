@@ -14,9 +14,12 @@ class Routing
     /**
      * add Function add's new Route to Routing-System
      *
-     * @param      $uri
+     * @param $uri
+     * @param $template
      * @param bool $needLogin
-     *
+     * @param bool $includeNav
+     * @param bool $includeFooter
+     * @param int $AdminLVL
      */
     public function add($uri, $template, $needLogin = false, $includeNav = true, $includeFooter = true, $AdminLVL = 0)
     {

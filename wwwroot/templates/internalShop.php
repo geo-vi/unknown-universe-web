@@ -10,6 +10,7 @@
         );
     });
 </script>
+
 <div class="shop-body clearfix">
     <div class="shop-header">
         <nav class="shop-navigation">

@@ -9,7 +9,7 @@
     <meta name="keywords" content=""/>
     <meta name="robots" content="index, follow"/>
     <meta name="language" content="EN"/>
-    <meta name="reply-to" content="support@unknownuniverse.pw">
+    <meta name="reply-to" content="support@univ3rse.com">
     <link rel="icon" href="<?= PROJECT_HTTP_ROOT ?>resources/images/favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="<?= PROJECT_HTTP_ROOT ?>resources/images/favicon.ico" type="image/x-icon"/>
     <title><?= WEBSITE_TITLE ?></title>
@@ -24,15 +24,11 @@
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery-ui.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/chosen.jquery.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/bootstrap/bootstrap.min.js"></script>
-    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/sweetalert.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/visibility.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.tools.min.js"></script>
+    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/bootstrap/bootstrap.min.js"></script>
+    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/sweetalert.min.js"></script>
 
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
-
-
-    <!--    <script src="--><? //=PROJECT_HTTP_ROOT?><!--resources/js/plugins/snow.js"></script>-->
-    <!--    <script>$(document).ready( function(){$.fn.snow();});</script>-->
 </head>

@@ -6,8 +6,6 @@ include_once("./handlers/class.ShopHandler.php");
 include_once("./handlers/class.UserRefreshHandler.php");
 include_once("./handlers/class.CompanyHandler.php");
 
-//header("Access-Control-Allow-Origin : *");
-//header("Access-Control-Allow-Credentials : true");
 header('Content-Type: application/json');
 
 if ($System->isLoggedIn()) {

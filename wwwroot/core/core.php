@@ -9,17 +9,16 @@ include_once("config.php");
 
 //Initiate system
 include_once("classes/class.System.php");
+
 global $System;
 $System = new System();
 
 //Add Error Codes
 $System->error_handler->add(ErrorID::FAILED_LOGIN, "Login Failed!", ErrorMessages::FAILED_LOGIN_MESSAGE);
 $System->error_handler->add(ErrorID::ACCESS_DENIED, 'Access denied!', ErrorMessages::ACCESS_DENIED);
-$System->error_handler->add(ErrorID::EMAIL_MISSING, "E-Mail verification missing!",
-    ErrorMessages::EMAIL_VERIFICATION_MISSING);
+$System->error_handler->add(ErrorID::EMAIL_MISSING, "E-Mail verification missing!", ErrorMessages::EMAIL_VERIFICATION_MISSING);
 $System->error_handler->add(ErrorID::EMAIL_COMPLETE, "Account verified!", ErrorMessages::EMAIL_COMPLETE);
-$System->error_handler->add(ErrorID::VERIFICATION_FAILED, "Verification failed!",
-    ErrorMessages::EMAIL_VERIFICATION_FAILED_CODE);
+$System->error_handler->add(ErrorID::VERIFICATION_FAILED, "Verification failed!", ErrorMessages::EMAIL_VERIFICATION_FAILED_CODE);
 $System->error_handler->add('logged_out', "Successfully logged out!", "Thanks for playing! We hope to see you soon!");
 $System->error_handler->handle();
 

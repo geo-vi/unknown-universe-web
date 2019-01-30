@@ -7,4 +7,3 @@ if ($System->User->CLAN_ID == 0) {
 } else {
     include_once("internalClan/internalClanInfo.php");
 }
-?>

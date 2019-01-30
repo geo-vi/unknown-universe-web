@@ -27,7 +27,7 @@ include_once(__DIR__ . "/class.Clan.php");
 include_once(__DIR__ . "/class.Shop.php");
 include_once(__DIR__ . '/shop/class.AbstractItem.php');
 include_once(__DIR__ . '/shop/items/class.AdminItem.php');
-include_once(__DIR__ . '/shop/items/class.AdminShipo.php');
+include_once(__DIR__ . '/shop/items/class.AdminShip.php');
 include_once(__DIR__ . '/shop/items/class.Ammo.php');
 include_once(__DIR__ . '/shop/items/class.Booster.php');
 include_once(__DIR__ . '/shop/items/class.Design.php');
