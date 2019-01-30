@@ -5,7 +5,7 @@
             <?=$System->User->USER_ID?>,
             <?=$System->User->PLAYER_ID?>,
             '<?=base64_encode($System->Server['SERVER_IP'])?>',
-            <?=$System->User->hasPet()?>,
+            <?=$System->User->hasPet() ? 1 : 0;?>,
             <?=$System->User->isAdmin()?>,
         );
     });

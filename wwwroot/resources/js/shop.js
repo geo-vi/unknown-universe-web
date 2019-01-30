@@ -95,7 +95,7 @@ class shop {
 
             $('.single-item .single-item-content .single-item-description h3').text(ITEM.NAME);
             $('.single-item .single-item-content .single-item-description p').text(ITEM.DESCRIPTION);
-            $('.single-item .single-item-image').append($('<img>').attr('src', ITEM.SHOP_IMAGE_URL));
+            $('.single-item .single-item-image').append($('<img>').attr('src', ITEM.SHOP_IMAGE_URL).attr('alt', ITEM.NAME));
 
             let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
 
@@ -141,7 +141,7 @@ class shop {
      */
     static clearItemView() {
         $('.single-item .single-item-content .single-item-description h3').text("-- No Item selected --");
-        $('.single-item .single-item-content .single-item-description p').text("Select an item from the list below.");
+        $('.single-item .single-item-content .single-item-description p').text("Select an item in the list below.");
         $('.single-item .single-item-content .single-item-description ul li').remove();
         $('.single-item .single-item-image img').remove();
         $('.single-item .single-item-content .single-item-buy-menu .buy-btn').removeData('item-id');
@@ -200,9 +200,9 @@ class shop {
         } else {
             if (data.success) {
                 swal("Success!", data.msg, "success");
-                if (shop.category == 'ammo' || shop.category == 'drones' || shop.category == 'pet'
-                    || shop.category =='gear' || shop.category == 'protocols' || shop.category=='pet_fuel'
-                || shop.category =='generator' || shop.category == 'extra' || shop.category == 'notlisted') {
+                if (shop.category === 'ammo' || shop.category === 'drones' || shop.category === 'pet'
+                    || shop.category ==='gear' || shop.category === 'protocols' || shop.category==='pet_fuel'
+                || shop.category ==='generator' || shop.category === 'extra' || shop.category === 'notlisted') {
                     shop.sendPacket(shop.category);
                     shop.reload();
                     setTimeout(location.reload.bind(location), 1000);
@@ -220,7 +220,7 @@ class shop {
      * @param action
      */
     static sendPacket(action) {
-        if (shop.ws == undefined) {
+        if (shop.ws === undefined) {
             shop.ws = new WebSocket("ws://" + atob(shop.SERVER_IP) + ":666/cmslistener");
         }
 

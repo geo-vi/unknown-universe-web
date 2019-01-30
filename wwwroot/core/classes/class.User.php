@@ -575,11 +575,7 @@ class User
                                    ]
         );
 
-        if (isset($pet[0])) {
-            return true;
-        } else {
-            return false;
-        }
+        return isset($pet[0]);
     }
 
     /**
