@@ -1,20 +1,21 @@
 <?php
-include('internalSettings.php');
+include('internalModal.php');
+
     $arg = 0;
      if (isset($_GET["ID"])){
         if(!is_numeric($arg)){
-        $arg = 0;
-    } else { 
-        $arg=$_GET["ID"]; 
-    }
+            $arg = 0;
+        } else {
+            $arg=$_GET["ID"];
+        }
     }
 
     if (isset($_GET["UID"])){
         if(!is_numeric($arg)){
-        $arg = 0;
-    } else { 
-        $arg=$_GET["UID"]; 
-    }
+            $arg = 0;
+        } else {
+            $arg=$_GET["UID"];
+        }
     }
 
     if(isset($_POST['action']) && $_POST['action'] == 'reply_message')
@@ -22,11 +23,14 @@ include('internalSettings.php');
         $System->User->sendMessage($_POST['replyto'], $_POST['Content'], $_POST['title']);
         ?> <center><div>Message successfully sent</div></center><?php
     }
+
     if(isset($_POST['action']) && $_POST['action'] == 'delmessage'){
         $System->User->delmessage($_POST['mID']);
         echo "<script>swal('Success!', 'Deleted message!', 'success')</script>";
     }
+
 ?>
+
 <div class="page-content clearfix">
     <div class="col-xs-3 Messaging-menu-container">
         <ul class="nav nav-tabs" role="tablist">
@@ -41,15 +45,23 @@ include('internalSettings.php');
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="inbox">
                 <?php
-                         if(!isset($_GET['ID'])){
-                        ?>
-                <h3><b>Inbox</b><b style="margin-left:400px; font-size: 14px; text-decoration: #00d9ff;"> <a style="cursor: pointer;" data-toggle="modal"
-                                                                  data-target="#myModalMessage">New Message</a></b></h3>
-            <?php } ?>
+                if (!isset($_GET['ID']))
+                {
+                ?>
+                    <h3>
+                        <b>Inbox</b>
+                        <b style="margin-left:400px; font-size: 14px; text-decoration: #00d9ff;">
+                            <a style="cursor: pointer;" data-toggle="modal" data-target="#composeMessageModal">New Message</a>
+                        </b>
+                    </h3>
+                <?php
+                }
+                ?>
                 <div class="invitation-code-list custom-scroll">
                     <form name="Message" id="Message" action="" method="post">
                         <?php 
-                         if(!isset($_GET['ID'])){
+                        if (!isset($_GET['ID']))
+                        {
                         ?>
                         <input type="hidden" name="action" value="open_message">
                             <table class="table">
@@ -66,7 +78,11 @@ include('internalSettings.php');
                                     $argg = $message['SENDER']
                                     ?>
                                     <tr>
-                                        <td><a href="?ID=<?php print $message['ID']?>" onclick="openMessage();" name="messageid" value="<?= $message['ID'] ?>" style="color:transparent;"><b> <?= $message['HEADER']; ?></b></a></td>
+                                        <td>
+                                            <a href="?ID=<?php print $message['ID']?>" onclick="openMessage();" name="messageid" value="<?= $message['ID'] ?>" style="color:transparent;">
+                                                <b> <?= $message['HEADER']; ?></b>
+                                            </a>
+                                        </td>
 
                                         <td><?php if($message['SENDER'] == 1)
                                             {
@@ -89,7 +105,7 @@ include('internalSettings.php');
                                 </tbody>
                             </table>
                             <?php
-                        }else{
+                        } else {
                                 $messages = [];
                                 $messages = $System->User->messageInfo($arg);
                                 foreach ($messages as $messagei => $message) {
@@ -181,26 +197,29 @@ include('internalSettings.php');
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
-function openMessage() {
-    document.getElementById('Message').submit();
-    return false;
-}
 
-jQuery('#delmessageid').click(function() {
+    function openMessage() {
+        document.getElementById('Message').submit();
+        return false;
+    }
 
-    var mID = $(this).data("fpid");
-    jQuery.ajax({
-        type: "POST",
-        url: "",
-        data: { action: 'delmessage' , mID: mID },
-        success: function(){
-            swal('Success!', 'Deleted message!', 'success');
-            setTimeout(location.reload.bind(location), 1000);
-        },
-        error: function(){
-            console.log(data);
-        }
+    $('#delmessageid').click(function() {
+
+        var mID = $(this).data("fpid");
+        $.ajax({
+            type: "POST",
+            url: "",
+            data: { action: 'delmessage' , mID: mID },
+            success: function(){
+                swal('Success!', 'Deleted message!', 'success');
+                setTimeout(location.reload.bind(location), 1000);
+            },
+            error: function(){
+                console.log(data);
+            }
+        });
     });
-});
+
 </script>

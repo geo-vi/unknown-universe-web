@@ -1,5 +1,5 @@
 <?php
-include_once('internalSettings.php');
+include_once('internalModal.php');
 
 if(isset($_POST['action']) && $_POST['action'] == 'send_message')
 {

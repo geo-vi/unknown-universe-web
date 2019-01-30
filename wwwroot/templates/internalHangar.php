@@ -1,3 +1,7 @@
+<?php
+include_once('internalModal.php');
+?>
+
 <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/equipment.js"></script>
 <script>
     $(document).ready(function () {
@@ -8,11 +12,7 @@
         );
     });
 </script>
-<?php
-    if (isset($_POST['action']) && $_POST['action'] == "changePetName" && isset($_POST['subAction']) && $_POST['subAction'] == "changename") {
-            $System->User->changePetName($_POST['userName']);
-    }
-?>
+
 <div id="hangar-info-container" class="clearfix">
     <?php $Lvl = $System->User->getPetLevel(); ?>
 
@@ -162,8 +162,10 @@
                     </div>
                     <div class="pet-equipment-name-change-btn">
                         <a class="btn btn-primary name-btn"
-                        style="cursor: pointer;" data-toggle="modal"
-                        data-target="#myModalHorizontal">Change Name</a>
+                           style="cursor: pointer;" data-toggle="modal"
+                           data-target="#changePetNameModal">
+                            Change Name
+                        </a>
                     </div>
                 </div>
                 <div class="col-xs-12 drone-equipment-container custom-scroll">
@@ -212,7 +214,7 @@
                     <div class="pet-equipment-name-change-btn">
                         <a class="btn btn-primary name-btn"
                         style="cursor: pointer;" data-toggle="modal"
-                        data-target="#myModalHorizontal">Change Name</a>
+                        data-target="#changePetNameModal">Change Name</a>
                     </div>
                 </div>
                 <div class="col-xs-12 drone-equipment-container custom-scroll" style="display: none;">
@@ -227,75 +229,3 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel" aria-hidden="true" style="position: absolute; top:200px;">
-    <div class="modal-dialog" >
-        <div class="modal-content" style="background-image:url(../do_img/global/bg_event_winter.jpg);">
-            <!-- Modal Header -->
-
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h2 class="modal-title" id="myModalLabel">
-                    <center> Change Pet Name
-                </h2>
-            </div>
-            <form class="form-horizontal" role="form">
-            <!-- Modal Body -->
-            <div class="modal-body">
-
-                    <div class="form-group" style="text-align:center; margin-left:10px; top:20px; left:50px;">
-                        <label  class="col-sm-2 control-label" style="left:-15px;"
-                                for="inputEmail3">Pet Name: </label>
-                        <div class="col-sm-10">
-                            <input type="text" id="userNameTextBox" value="<?= $System->User->getPetName() ?>" style="background-color: black;color:#fff;" enabled="enabled"/>
-                        </div>
-                    </div>
-
-            </div>
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                    Close
-                </button>
-                <button id="changename" type="submit" class="btn btn-primary">
-                    Change Name
-                </button>
-
-            </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript">
-
-
-    jQuery('#changename').click(function() {
-
-        jQuery('#popup-modalBackground').css({'z-index':1050}).show();
-        jQuery.ajax({
-            type: "POST",
-            url: "",
-            data: { action: 'changePetName', subAction: 'changename',userName: jQuery('#userNameTextBox').val() },
-            success: function(data){
-                data = jQuery.parseJSON(data);
-                if (data.status == 'OK') {
-                    alert("Oke" );
-                } else {
-                    alert("Not oke " );
-                }
-            },
-            error: function(){
-                console.log(data);
-            }
-        });
-    });
-
-
-</script>
