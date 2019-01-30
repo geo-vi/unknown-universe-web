@@ -1,12 +1,12 @@
 <?php
 //Contains useful paths
-include_once("path.php");
+include_once( "path.php" );
 
 //Contains Server Config
-include_once("config.php");
+include_once( "config.php" );
 
 //Initiate system
-include_once("classes/class.System.php");
+include_once( "classes/class.System.php" );
 
 global $System;
 $System = new System();
