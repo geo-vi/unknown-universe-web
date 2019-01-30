@@ -74,6 +74,17 @@ CREATE TABLE IF NOT EXISTS `server_verfiy` (
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
+-- Dumping structure for table do_system.server_recovery
+CREATE TABLE IF NOT EXISTS `server_recovery` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL,
+  `ACTIVATION_CODE` varchar(255) NOT NULL,
+  `SEND_TO` varchar(255) NOT NULL,
+  `SEND_DATE` datetime NOT NULL,
+  `TIMEOUT` datetime NOT NULL,
+  PRIMARY KEY (`ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
 -- Dumping structure for table do_system.users
 CREATE TABLE IF NOT EXISTS `users` (
   `USER_ID` int(11) NOT NULL AUTO_INCREMENT,
