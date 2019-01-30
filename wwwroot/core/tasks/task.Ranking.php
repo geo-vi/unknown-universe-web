@@ -20,17 +20,17 @@ foreach ($server_list as $server) {
         continue;
     }
 
-    $server_con = new MySQL(MYSQL_IP, $server['DB_NAME'], MYSQL_USER, MYSQL_PW);
+    $server_mysql = new MySQL(MYSQL_IP, $server['DB_NAME'], MYSQL_USER, MYSQL_PW);
 
     //Calculating Ranking Points
-    $player_list = $server_con->QUERY('SELECT * FROM player_data WHERE RANK != 21', []);
+    $player_list = $server_mysql->QUERY('SELECT * FROM player_data WHERE `RANK` != 21', []);
 
     foreach ($player_list as $player) {
-        $player_extra_data = $server_con->QUERY('SELECT * FROM player_extra_data WHERE USER_ID = ?  AND PLAYER_ID = ?',
-            [$player['USER_ID'], $player['PLAYER_ID']])[0];
-        $player_ship       = $server_con->QUERY('SELECT SHIP_ID FROM player_hangar WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1',
-            [$player['USER_ID'], $player['PLAYER_ID']])[0];
-        $server_npcs_data  = $server_con->QUERY('SELECT ship_id, ship_hp FROM server_ships', []);
+        $player_extra_data = $server_mysql->QUERY('SELECT * FROM player_extra_data WHERE USER_ID = ?  AND PLAYER_ID = ?',
+                                                  [$player['USER_ID'], $player['PLAYER_ID']])[0];
+        $player_ship       = $server_mysql->QUERY('SELECT SHIP_ID FROM player_hangar WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1',
+                                                  [$player['USER_ID'], $player['PLAYER_ID']])[0];
+        $server_npcs_data  = $server_mysql->QUERY('SELECT ship_id, ship_hp FROM server_ships', []);
         $DaysSinceRegister = floor((time() - strtotime($player['REGISTERED'])) / (60 * 60 * 24));
         $npc_stats         = json_decode($player_extra_data['STATS'], true);
         $server_npcs       = [];
@@ -52,14 +52,14 @@ foreach ($server_list as $server) {
             }
         }
 
-        $server_con->QUERY('UPDATE player_data SET RANK_POINTS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [$RankPoints, $player['USER_ID'], $player['PLAYER_ID']]);
+        $server_mysql->QUERY('UPDATE player_data SET RANK_POINTS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                             [$RankPoints, $player['USER_ID'], $player['PLAYER_ID']]);
     }
 
     //Creating Ranks for each Company
     for ($i = 1; $i <= 3; $i++) {
-        $player_list = $server_con->QUERY('SELECT * FROM player_data WHERE FACTION_ID = ? AND RANK != 21 ORDER BY RANK_POINTS DESC',
-            [$i]);
+        $player_list = $server_mysql->QUERY('SELECT * FROM player_data WHERE FACTION_ID = ? AND `RANK` != 21 ORDER BY RANK_POINTS DESC',
+                                            [$i]);
         $player_cnt  = count($player_list);
 
         $Rank1  = 1;
@@ -166,17 +166,17 @@ foreach ($server_list as $server) {
                 $Rank20_cnt++;
                 $Rank = 1;
             }
-            $server_con->QUERY('UPDATE player_data SET RANK = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                [$Rank, $player['USER_ID'], $player['PLAYER_ID']]);
+            $server_mysql->QUERY('UPDATE player_data SET `RANK` = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                 [$Rank, $player['USER_ID'], $player['PLAYER_ID']]);
         }
     }
 
     //Creating Top Rankings
-    $player_list = $server_con->QUERY('SELECT * FROM player_data WHERE  RANK != 21 ORDER BY RANK_POINTS DESC', []);
+    $player_list = $server_mysql->QUERY('SELECT * FROM player_data WHERE  `RANK` != 21 ORDER BY RANK_POINTS DESC', []);
 
     foreach ($player_list as $pos => $player) {
         $ranking = $pos + 1;
-        $server_con->QUERY('UPDATE player_data SET RANKING = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [$ranking, $player['USER_ID'], $player['PLAYER_ID']]);
+        $server_mysql->QUERY('UPDATE player_data SET RANKING = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                             [$ranking, $player['USER_ID'], $player['PLAYER_ID']]);
     }
 }
