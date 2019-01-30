@@ -315,6 +315,7 @@ body.internalPayment,
 body.internalAuction,
 body.internalSkylab,
 body.internalSkillTree,
+body.internalSettings,
 body.internalAdminEdit,
 body.internalAdminEditItems,
 body.internalHallOfFame,
@@ -323,10 +324,9 @@ body.internalMapRevolution,
 body.internalCalendar,
 body.internalMessaging,
 body.error_template {
-    background: url("../images/backgrounds/UberOrbitForumBG.png");
     background-position-x: center;
     background-size: cover;
-    background-attachment: fixed;
+    background: url("../images/backgrounds/UberOrbitForumBG.png") fixed;
     height: 100%;
     color: #fff;
     font-family: 'Roboto Condensed';
@@ -337,7 +337,7 @@ body.error_template {
 
 body header #userinfo-nav {
     height: 22px;
-    font-size: 12.5px;
+    font-size: 13px;
     line-height: 1.8;
     background: rgba(255, 255, 255, 0.05);
 }
@@ -588,9 +588,8 @@ body.externalRecovery {
 
 body.external main,
 body.externalRecovery main {
-    margin: 0 auto;
     width: 444px;
-    margin-top: calc(50vh - 345px);
+    margin: calc(50vh - 345px) auto 0;
 }
 
 body.external main #logo,
@@ -812,11 +811,10 @@ body.externalRecovery div[role="dialog"].ui-dialog .ui-dialog-titlebar-close {
 
 body.e_404_template .e_404-container,
 body.error_template .e_404-container {
-    margin: 0 auto;
     width: 600px;
     background-color: rgba(0, 0, 0, 0.48);
     padding: 35px;
-    margin-top: calc(50vh - 118px);
+    margin: calc(50vh - 118px) auto 0;
 }
 
 body.internalCompanyChoose {
@@ -1342,8 +1340,7 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 body.internalStart #player-info-equipment {
     width: 260px;
     height: 118px;
-    margin: 0 auto;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
     clear: both;
     border: 1px solid rgba(255, 255, 255, 0.1);
     -webkit-transition: opacity 0.6s;
@@ -1356,8 +1353,7 @@ body.internalStart #player-info-equipment-body {
     background: rgba(255, 255, 255, 0.1);
     width: 254px;
     height: 112px;
-    margin: 0 auto;
-    margin-top: 2px;
+    margin: 2px auto 0;
     text-align: center;
     padding: 9px;
 }
@@ -1444,8 +1440,7 @@ body.internalStart #page-container {
     clear: both;
     position: relative;
     top: 12px;
-    padding: 13px 28px;
-    padding-bottom: 0;
+    padding: 13px 28px 0;
     width: 992px;
     margin: 0 auto;
 }
@@ -1487,8 +1482,7 @@ body.internalStart .nav-tabs > li > a {
 body.internalStart .nav > li > a {
     position: relative;
     display: block;
-    padding: 10px 3px;
-    padding-top: 0px;
+    padding: 0px 3px 10px;
     opacity: 0.5;
 }
 
@@ -1524,9 +1518,8 @@ body.internalStart #tabs-content {
 }
 
 body.internalStart #stats table {
-    margin: 0 auto;
     text-align: center;
-    margin-top: 10px;
+    margin: 10px auto 0;
 }
 
 body.internalStart #stats table th,
@@ -1538,8 +1531,7 @@ body.internalStart #stats table td {
 body.internalStart #level-progress {
     width: 485px;
     height: 39px;
-    margin: 0 auto;
-    margin-top: 28px;
+    margin: 28px auto 0;
     position: relative;
 }
 
@@ -1602,9 +1594,8 @@ body.internalStart #event-days th {
 
 body.internalStart #pilot-profile {
     height: 114px;
-    margin: 0 auto;
     color: #c0c0c0;
-    margin-top: 15px;
+    margin: 15px auto 0;
     padding: 0 40px;
     position: relative;
 }
@@ -1669,8 +1660,7 @@ body.internalStart #pilot-profile-skills {
     height: 114px;
     float: right;
     overflow: auto;
-    padding: 14px 0;
-    padding-left: 25px;
+    padding: 14px 0 14px 25px;
 }
 
 body.internalStart #tree-profile-skills-text {
@@ -1958,8 +1948,7 @@ body.internalStart #skill_small_23b {
 body.internalStart #stats-corner {
     height: 265px;
     background: rgba(192, 192, 192, 0.1);
-    padding: 25px 15px;
-    padding-bottom: 20px;
+    padding: 25px 15px 20px;
 }
 
 body.internalStart #best-pilots {
@@ -2486,9 +2475,8 @@ body.internalHangar .drone-equipment-container {
 body.internalHangar .drone-container {
     width: 300px;
     height: 77px;
-    margin: 0 auto;
     background-color: #252525;
-    margin-bottom: 5px;
+    margin: 0 auto 5px;
     position: relative;
 }
 
@@ -3402,8 +3390,7 @@ body.internalAdmin  .page-content .tab-content .font12{
     font-size: 12px;
     color: #dcddde;
     text-decoration: none;
-    padding: 0px;
-    padding-left: 5px;
+    padding: 0px 0px 0px 5px;
 }
 
 
@@ -3419,7 +3406,7 @@ body.internalAdmin .page-content .tab-content  .chat-nav{
 body.internalAdmin  .page-content .tab-content .chat-button{
     background: #242424;
     border: none;
-    font-family: EurostileHeaFl;
+    font-family: BebasNeueBook;
     color: #b5b5b5;
     font-size: 15px;
     margin-left: 0px;
@@ -3605,8 +3592,7 @@ body.internalAdmin  .page-content .tab-content .font12{
     font-size: 12px;
     color: #dcddde;
     text-decoration: none;
-    padding: 0px;
-    padding-left: 5px;
+    padding: 0px 0px 0px 5px;
 }
 
 
@@ -3958,7 +3944,7 @@ body.internalSettings .settings-content {
 
 body.internalSettings .settings-content > .tab-content {
     padding: 0 15px !important;
-    min-height: 570px;
+    min-height: 600px;
 }
 
 body.internalSettings .settings-content > .tab-content > div {
@@ -5265,9 +5251,8 @@ body.internalSkylab #solar_module_modul_information #modul_top > h3 {
 }
 
 body.internalPayment table {
-    margin: 0 auto;
     text-align: center;
-    margin-top: 10px;
+    margin: 10px auto 0;
     border-left: 1px solid rgba(255,255,255,0.5);
 }
 
@@ -5285,8 +5270,7 @@ body.internalPayment  table td {
 body.internalPayment #stats-corner {
     height: 265px;
     background: rgba(192, 192, 192, 0.1);
-    padding: 25px 15px;
-    padding-bottom: 20px;
+    padding: 25px 15px 20px;
 }
 
 body.internalPayment #codes {
@@ -5391,12 +5375,10 @@ body.internalPayment .uu_button3 {
     color: white;
     border: none;
     height: auto;
-    margin: 5px;
     width: auto;
     cursor :pointer;
     position: absolute;
-    margin-top:20px;
-    margin-left:530px;
+    margin: 20px 5px 5px 530px;
     text-transform: none;
     padding: 5px 30px;
 }
@@ -5407,12 +5389,10 @@ body.internalPayment .uu_button4 {
     color: white;
     border: none;
     height: auto;
-    margin: 5px;
     width: auto;
     cursor :pointer;
     position: absolute;
-    margin-top:20px;
-    margin-left:660px;
+    margin: 20px 5px 5px 660px;
     text-transform: none;
     padding: 5px 30px;
 }
@@ -5726,11 +5706,8 @@ body.internalGalaxyGates .box{
     background: #2e2e2e4d;
     width: 850px;
     height: 490px;
-    margin-right: auto;
-    margin-left: auto;
     position: relative;
-    margin-bottom: 50px;
-    margin-top: 20px;
+    margin: 20px auto 50px;
 }
 
 body.internalGalaxyGates .nav{
@@ -7561,11 +7538,9 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-l
     background-repeat: no-repeat;
     color: #a1c8e7;
     cursor: pointer;
-    margin:3px 0 0 15px;
     text-transform: none;
     position: absolute;
-    margin-left:300px;
-    margin-top:15px;
+    margin: 15px 0 0 300px;
 }
 
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-logs-content-diplo input[type="text"] {
@@ -7745,9 +7720,8 @@ body.internalClan .shop-body .shop-inner  h3.h2 {
 }
 
 body.internalClan table {
-    margin: 0 auto;
     text-align: center;
-    margin-top: 10px;
+    margin: 10px auto 0;
     border: 1px solid rgba(255,255,255,0.5);
 }
 
