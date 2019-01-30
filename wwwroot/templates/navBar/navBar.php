@@ -2,7 +2,7 @@
     <nav id="userinfo-nav">
         <ul class="pull-left">
             <li>
-                <img src="../../resources/images/buttons/icon_stats_ID.png" width="16" height="13" alt="">
+                <img src="../../resources/images/icons/icon_stats_ID.png" width="16" height="13" alt="">
                 <span>ID <?= $System->User->USER_ID ?></span>
             </li>
             <li>
@@ -38,17 +38,17 @@
 
         <ul class="pull-right user-stats">
             <li>
-                <img src="../../resources/images/buttons/icon_stats_lvl.png" width="16" height="13" alt="">
+                <img src="../../resources/images/icons/icon_stats_lvl.png" width="16" height="13" alt="">
                 <span data-toggle="tooltip" title="Level" class="lvl">LVL <?= $System->User->LVL ?></span>
             </li>
             <li>
-                <img src="../../resources/images/buttons/icon_stats_exp.png" width="16" height="13" alt="">
+                <img src="../../resources/images/icons/icon_stats_exp.png" width="16" height="13" alt="">
                 <span data-toggle="tooltip"
                       title="Still need <?= $System->User->expToNextLevel() ?> EXP to next level"
                       class="exp">EXP <?= number_format($System->User->EXP, 0, '.', '.'); ?></span>
             </li>
             <li>
-                <img src="../../resources/images/buttons/icon_stats_hon.png" width="16" height="13" alt="">
+                <img src="../../resources/images/icons/icon_stats_hon.png" width="16" height="13" alt="">
                 <span class="hon">HON <?= number_format($System->User->HONOR, 0, '.', '.'); ?></span>
             </li>
             <li>
