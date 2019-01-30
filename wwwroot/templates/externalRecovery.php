@@ -1,7 +1,4 @@
-<div id="logo">
-    <div class="logo-U"></div>
-    <div class="logo-text"></div>
-</div>
+<div id="logo"></div>
 
 <div class="login-form-wrapper">
     <nav>
