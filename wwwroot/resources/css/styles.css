@@ -3,7 +3,7 @@
 @import "../css/font-awesome.min.css";
 
 @font-face {
-    font-family: BebasNeue;
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     src: url(../fonts/BebasNeueRegular.otf);
 }
 
@@ -14,7 +14,7 @@
 
 /* cyrillic-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nE8xhg-WlD4iG4AP-V7QxYA.woff2) format('ttf');
@@ -23,7 +23,7 @@
 
 /* cyrillic */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nN_eC2PfU-cUGGN7U-FIfKc.woff2) format('ttf');
@@ -32,7 +32,7 @@
 
 /* greek-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nLvM2QJLsjx6Keu1D2MYodo.woff2) format('ttf');
@@ -41,7 +41,7 @@
 
 /* greek */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nNd5cRMOq5PeG3VabknWPxo.woff2) format('ttf');
@@ -50,7 +50,7 @@
 
 /* vietnamese */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nLpX8dGXLalyu5OokvgDQcs.woff2) format('ttf');
@@ -59,7 +59,7 @@
 
 /* latin-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nPVFL0ofnRu5Y2lP-UpEUGU.woff2) format('ttf');
@@ -68,7 +68,7 @@
 
 /* latin */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 300;
     src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(https://fonts.gstatic.com/s/robotocondensed/v14/b9QBgL0iMZfDSpmcXcE8nBBQ_Gf4FfI8J4SYljBAylk.woff2) format('ttf');
@@ -77,7 +77,7 @@
 
 /* cyrillic-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsDrvev4WAjW489CRDHIkJ90.woff2) format('ttf');
@@ -86,7 +86,7 @@
 
 /* cyrillic */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsCGXDOnx9ptx3UTSPTrfsgk.woff2) format('ttf');
@@ -95,7 +95,7 @@
 
 /* greek-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsAZ98xO_Wnt-JIem4AuLGfs.woff2) format('ttf');
@@ -104,7 +104,7 @@
 
 /* greek */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsE1G989qbVg6RT5ly5jB8V8.woff2) format('ttf');
@@ -113,7 +113,7 @@
 
 /* vietnamese */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsJ84zb0nVte6liF9gGtpo1Y.woff2) format('ttf');
@@ -122,7 +122,7 @@
 
 /* latin-ext */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsD86pq2NkPzVgw_9lpT6RGI.woff2) format('ttf');
@@ -131,7 +131,7 @@
 
 /* latin */
 @font-face {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-style: normal;
     font-weight: 400;
     src: local('Roboto Condensed'), local('RobotoCondensed-Regular'), url(https://fonts.gstatic.com/s/robotocondensed/v14/Zd2E9abXLFGSr9G3YK2MsDAdhzWOYhqHvOZMRGaEyPo.woff2) format('ttf');
@@ -153,7 +153,7 @@ h5 {
 
 * {
     outline: none !important;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     text-transform: uppercase;
     color: #FFFFFF;
     border-radius: 0 !important;
@@ -330,7 +330,7 @@ body.error_template {
     background: url("../images/backgrounds/UberOrbitForumBG.png") fixed;
     height: 100%;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 18px;
     text-transform: uppercase;
     overflow-x: hidden;
@@ -712,7 +712,7 @@ body.externalRecovery main .login-form-wrapper form .form-button {
     -o-transition: background-color 0.3s;
     text-transform: uppercase;
     color: #ffffff;
-    font-family: "Roboto Condensed";
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 body.external main .login-form-wrapper form .form-button:hover,
@@ -764,7 +764,7 @@ body.externalRecovery div[role="dialog"].ui-dialog .ui-dialog-buttonpane button 
     margin-right: 0 !important;
     color: #FFFFFF !important;
     width: 100px;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body.external div[role="dialog"].ui-dialog .ui-dialog-buttonpane button:hover,
@@ -781,7 +781,7 @@ body.external div[role="dialog"].ui-dialog .ui-dialog-content,
 body.externalRecovery div[role="dialog"].ui-dialog .ui-dialog-content {
     background-color: rgba(39, 39, 39, 0.81);
     color: #FFFFFF !important;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 body.external div[role="dialog"].ui-dialog .ui-widget-header,
@@ -798,7 +798,7 @@ body.externalRecovery div[role="dialog"].ui-dialog .ui-widget-header {
 body.external div[role="dialog"].ui-dialog .ui-dialog-title,
 body.externalRecovery div[role="dialog"].ui-dialog .ui-dialog-title {
     width: 100% !important;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: normal;
     font-size: 25px;
 }
@@ -1243,11 +1243,11 @@ body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner 
 }
 
 body.internalSkillTree .skill-body .skill-inner .single-item .single-item-inner .single-item-header span {
-    height: 1.42857;
+    height: 1.42857px;
     text-indent: -5000px;
     width: 9px;
     color: white;
-    filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -1473,7 +1473,7 @@ body.internalStart .nav-tabs > li > a:hover {
 
 body.internalStart .nav-tabs > li > a {
     margin-right: 2px;
-    line-height: 1.42857143;
+    line-height: 1.42857143px;
     border: none;
     border-radius: 0;
     font-size: 17px;
@@ -2623,7 +2623,7 @@ body.internalHangar .inventory-item:hover,
 body.internalHangar .equiped-item:hover {
     background-color: transparent;
     border: 1px solid #fff !important;
-    filter: drop-shadow(0px 0px, 5px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7));
 }
 
@@ -3017,7 +3017,7 @@ body.internalShop .shop-body .shop-header {
 }
 
 body.internalShop .shop-body .shop-header ul.nav li {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 20px;
     font-weight: 200;
 }
@@ -3105,7 +3105,7 @@ body.internalShop .shop-body .shop-header ul.nav li a:before {
 body.internalShop .shop-body .shop-header ul.nav li a:hover,
 body.internalShop .shop-body .shop-header ul.nav li a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -3134,7 +3134,7 @@ body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single
 
 body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single-item-image img {
     width: 200px;
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
@@ -3316,7 +3316,7 @@ body.internalAdmin .form-ctrl {
     height: 34px;
     padding: 6px 12px;
     font-size: 14px;
-    line-height: 1.42857143;
+    line-height: 1.42857143px;
     color: #555555;
     background-color: #ffffff;
     background-image: none;
@@ -3434,7 +3434,7 @@ body.internalAdmin .page-content .tab-content .chat-nav {
 body.internalAdmin .page-content .tab-content .chat-button {
     background: #242424;
     border: none;
-    font-family: BebasNeueBook;
+    font-family: BebasNeueBook, "Roboto Condensed", sans-serif;
     color: #b5b5b5;
     font-size: 15px;
     margin-left: 0;
@@ -3456,7 +3456,7 @@ body.internalAdmin .page-content .tab-content .chat-content {
 }
 
 body.internalAdmin .page-content .tab-content .chat-username {
-    font-family: Tahoma Regular;
+    font-family: Tahoma Regular, "Roboto Condensed", sans-serif;
     font-size: 16px;
     color: #a6dcf9;
     cursor: pointer;
@@ -3479,7 +3479,7 @@ body.internalAdmin .page-content .tab-content .chat-username.whisper {
 }
 
 body.internalAdmin .page-content .tab-content .chat-message {
-    font-family: Tahoma Regular;
+    font-family: Tahoma Regular, "Roboto Condensed", sans-serif;
     font-size: 16px;
     color: #eeeeee;
 }
@@ -3498,7 +3498,7 @@ body.internalAdmin .page-content .tab-content .chat-message.system {
 
 body.internalAdmin .page-content .tab-content .chat-message.link {
     color: #ff00ff;
-    textDecoration: underline;
+    text-decoration: underline;
 }
 
 body.internalAdmin .page-content .tab-content .chat-message.highlight {
@@ -3512,7 +3512,7 @@ body.internalAdmin .page-content .tab-content .chat-input {
     margin-left: 10px;
     width: 470px;
     height: 38px;
-    font-family: Tahoma Regular;
+    font-family: Tahoma Regular, "Roboto Condensed", sans-serif;
     font-size: 16px;
     color: #eeeeee;
     background: #11111180;
@@ -3541,7 +3541,7 @@ body.internalAdmin .page-content .tab-content .users-list {
 body.internalAdmin .page-content .tab-content .list th {
     background: #343434;
     color: white;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     width: 269px;
@@ -3551,7 +3551,7 @@ body.internalAdmin .page-content .tab-content .list th {
 
 body.internalAdmin .page-content .tab-content .color.admin {
     color: #ef0808;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     width: 269px;
@@ -3562,7 +3562,7 @@ body.internalAdmin .page-content .tab-content .color.admin {
 
 body.internalAdmin .page-content .tab-content .color.mod {
     color: #f5b829;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     width: 269px;
@@ -3573,7 +3573,7 @@ body.internalAdmin .page-content .tab-content .color.mod {
 
 body.internalAdmin .page-content .tab-content .color.player {
     color: #a6dcf9;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     width: 269px;
@@ -3627,7 +3627,7 @@ body.internalAdmin .page-content .tab-content .font12 {
 
 body.internalAdmin .page-content .tab-content .spaceball {
     color: white;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     text-align: left;
@@ -3636,7 +3636,7 @@ body.internalAdmin .page-content .tab-content .spaceball {
 
 body.internalAdmin .page-content .tab-content .jb {
     color: white;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     text-align: left;
@@ -3645,7 +3645,7 @@ body.internalAdmin .page-content .tab-content .jb {
 
 body.internalAdmin .page-content .tab-content .tdm {
     color: white;
-    font-family: Tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     font-weight: 200;
     text-align: left;
@@ -3709,7 +3709,7 @@ body.internalAdmin .page-content .tab-content .start {
     text-transform: uppercase;
     color: #ffffff;
     cursor: pointer;
-    font-family: BebasNeue;
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-size: 16px;
 }
 
@@ -3729,7 +3729,7 @@ body.internalAdmin .page-content .tab-content .remove {
     text-transform: uppercase;
     color: #ffffff;
     cursor: pointer;
-    font-family: BebasNeue;
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-size: 16px;
 }
 
@@ -3802,7 +3802,7 @@ body.internalAdmin .page-content .tab-content .submit {
     text-transform: uppercase;
     color: #ffffff;
     cursor: pointer;
-    font-family: BebasNeue;
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-size: 16px;
 }
 
@@ -3934,7 +3934,7 @@ body.internalSettings ul.nav-tabs > li > a {
     color: #ffffff;
     text-align: center;
     margin-right: 0 !important;
-    font-family: "Roboto Condensed";
+    font-family: "Roboto Condensed", sans-serif;
     font-weight: 300 !important;
     font-size: 17px !important;
     text-transform: uppercase;
@@ -4029,7 +4029,7 @@ body.internalSkylab #upgrade_container #modul_content_div #modul_content_left #h
 
 body.internalSkylab #upgrade_container #modul_content_div #modul_content_left #h3_div > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 12px;
     float: left;
@@ -4055,7 +4055,7 @@ body.internalSkylab #upgrade_container #modul_content_div #modul_content_right #
 
 body.internalSkylab #upgrade_container #modul_content_div #modul_content_right #h3_div > h3 {
     color: yellow !important;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 12px;
     float: left;
@@ -4092,7 +4092,7 @@ body.internalSkylab #upgrade_container #modul_button_div > button.button_1 {
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     outline: none;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     margin-top: 20px;
     border: 1px solid transparent;
     cursor: pointer;
@@ -4108,7 +4108,7 @@ body.internalSkylab #upgrade_container #modul_button_div > button.button_2 {
     outline: none;
     cursor: pointer;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     margin-left: 1px;
 }
 
@@ -4128,14 +4128,14 @@ body.internalSkylab #upgrade_container #modul_top #close_modul > h3 {
     font-size: 15px;
     text-align: center;
     margin-top: 6px;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
 }
 
 body.internalSkylab #upgrade_container #modul_top > h3 {
     color: #fff !important;
     text-align: center;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 17px;
     text-shadow: 0 0 15px #fff;
@@ -4163,7 +4163,7 @@ body.internalSkylab #page_button_div > .button_skylab {
     border: 1px solid transparent;
     float: left;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     font-size: 30px;
 }
@@ -4175,7 +4175,7 @@ body.internalSkylab #page_button_div > .button_techs {
     border: 1px solid transparent;
     float: left;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     margin-left: 1px;
     font-size: 30px;
@@ -4188,7 +4188,7 @@ body.internalSkylab #page_button_div > .button_upgrades {
     border: 1px solid transparent;
     float: left;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     margin-left: 1px;
     font-size: 30px;
@@ -4208,7 +4208,7 @@ body.internalSkylab #skylap_content > #top_content > #top_content_information {
 }
 
 body.internalSkylab #skylap_content > #top_content > #top_content_information > h3 {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 14px;
     text-align: center;
@@ -4271,7 +4271,7 @@ body.internalSkylab #skylap_content > #top_content_information_amount > #top_con
 
 body.internalSkylab #skylap_content > #top_content_information_amount > #top_content_information_count > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 11px;
     text-align: center;
@@ -4318,7 +4318,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #prometium_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4328,7 +4328,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #prometium_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4359,7 +4359,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #endurium_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4369,7 +4369,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #endurium_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4400,7 +4400,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #terbium_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4410,7 +4410,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #terbium_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4441,7 +4441,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #transport_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4451,7 +4451,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #transport_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4481,7 +4481,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #storage_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4491,7 +4491,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #storage_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4522,7 +4522,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #storage_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4532,7 +4532,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_left > #storage_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4573,7 +4573,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #solar_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4583,7 +4583,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #solar_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4605,7 +4605,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #solar_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4615,7 +4615,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #solar_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4648,7 +4648,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #basic_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4658,7 +4658,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #basic_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4680,7 +4680,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #basic_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4690,7 +4690,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top 
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_top > #basic_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4736,7 +4736,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #prometid_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4746,7 +4746,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #prometid_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4768,7 +4768,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #prometid_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4778,7 +4778,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #prometid_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4809,7 +4809,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #duranium_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4819,7 +4819,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #duranium_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4841,7 +4841,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #duranium_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4851,7 +4851,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #duranium_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4882,7 +4882,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #promerium_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4892,7 +4892,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #promerium_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4914,7 +4914,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #promerium_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4924,7 +4924,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #promerium_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4955,7 +4955,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #xeno_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4965,7 +4965,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #xeno_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -4987,7 +4987,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #xeno_module_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -4997,7 +4997,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #xeno_module_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -5028,7 +5028,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #seprom_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -5038,7 +5038,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #seprom_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -5060,7 +5060,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #seprom_refinery_information > #ust_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 900;
     float: left;
     font-size: 13px;
@@ -5070,7 +5070,7 @@ body.internalSkylab #skylap_content > #skylab_container > #skylab_container_righ
 
 body.internalSkylab #skylap_content > #skylab_container > #skylab_container_right > #seprom_refinery_information > #alt_information > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     float: left;
     font-size: 13px;
@@ -5176,7 +5176,7 @@ body.internalSkylab #solar_module_modul_information #modul_content_div #modul_co
 
 body.internalSkylab #solar_module_modul_information #modul_content_div #modul_content_left #h3_div > h3 {
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 12px;
     float: left;
@@ -5202,7 +5202,7 @@ body.internalSkylab #solar_module_modul_information #modul_content_div #modul_co
 
 body.internalSkylab #solar_module_modul_information #modul_content_div #modul_content_right #h3_div > h3 {
     color: yellow !important;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 12px;
     float: left;
@@ -5230,7 +5230,7 @@ body.internalSkylab #solar_module_modul_information #modul_button_div > button.b
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
     outline: none;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     margin-top: 20px;
     border: 1px solid transparent;
     cursor: pointer;
@@ -5246,7 +5246,7 @@ body.internalSkylab #solar_module_modul_information #modul_button_div > button.b
     outline: none;
     cursor: pointer;
     color: #fff;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     margin-left: 1px;
 }
 
@@ -5266,14 +5266,14 @@ body.internalSkylab #solar_module_modul_information #modul_top #close_modul > h3
     font-size: 15px;
     text-align: center;
     margin-top: 6px;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     cursor: pointer;
 }
 
 body.internalSkylab #solar_module_modul_information #modul_top > h3 {
     color: #fff !important;
     text-align: center;
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-size: 17px;
     text-shadow: 0 0 15px #fff;
@@ -5669,7 +5669,7 @@ body.internalGalaxyGates .menu {
 }
 
 body.internalGalaxyGates .font {
-    font-family: tahoma;
+    font-family: Tahoma, "Roboto Condensed", sans-serif;
     font-size: 14px;
     color: white;
 }
@@ -5781,7 +5781,7 @@ body.internalHallOfFame .shop-body .shop-header {
 }
 
 body.internalHallOfFame .shop-body .shop-header ul.nav li {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 20px;
     font-weight: 200;
 }
@@ -5814,7 +5814,7 @@ body.internalHallOfFame .shop-body .shop-header ul.nav li a:before {
 body.internalHallOfFame .shop-body .shop-header ul.nav li a:hover,
 body.internalHallOfFame .shop-body .shop-header ul.nav li a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6225,7 +6225,7 @@ body.internalAdminEditItems .shop-body .shop-header {
 }
 
 body.internalAdminEditItems .shop-body .shop-header ul.nav li {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 20px;
     font-weight: 200;
 }
@@ -6258,7 +6258,7 @@ body.internalAdminEditItems .shop-body .shop-header ul.nav li a:before {
 body.internalAdminEditItems .shop-body .shop-header ul.nav li a:hover,
 body.internalAdminEditItems .shop-body .shop-header ul.nav li a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6357,7 +6357,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6423,7 +6423,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen;; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6489,7 +6489,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6555,7 +6555,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6614,7 +6614,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Generator .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6625,7 +6625,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Generator .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Generator .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6644,7 +6644,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6704,7 +6704,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Heavy .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6715,7 +6715,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Heavy .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Heavy .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6727,7 +6727,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Ammo .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6738,7 +6738,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Ammo .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Ammo .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6750,7 +6750,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Extra .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6761,7 +6761,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Extra .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Extra .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6773,7 +6773,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
-    text-align: top-center;
+    text-align: center;
     margin-left: 500px;
     width: 100px;
     height: 50px;
@@ -6808,7 +6808,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6862,7 +6862,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Pet .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6873,7 +6873,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Pet .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Pet .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -6897,7 +6897,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -6951,7 +6951,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Drone .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -6962,7 +6962,7 @@ body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inn
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Drone .btn-primary:hover,
 body.internalAdminEditItems .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-Drone .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -7009,7 +7009,7 @@ body.internalAdminEdit .shop-body .shop-header {
 }
 
 body.internalAdminEdit .shop-body .shop-header ul.nav li {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 20px;
     font-weight: 200;
 }
@@ -7042,7 +7042,7 @@ body.internalAdminEdit .shop-body .shop-header ul.nav li a:before {
 body.internalAdminEdit .shop-body .shop-header ul.nav li a:hover,
 body.internalAdminEdit .shop-body .shop-header ul.nav li a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -7101,7 +7101,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -7167,7 +7167,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -7233,7 +7233,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
     margin-top: 90px;
     margin-left: 50px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -7292,7 +7292,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-NPC .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -7303,7 +7303,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-NPC .btn-primary:hover,
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-NPC .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -7315,7 +7315,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-PET .btn-primary {
     position: absolute;
     bottom: 0;
-    text-align: top-center;
+    text-align: center;
     left: 450px;
     width: 100px;
     height: 50px;
@@ -7326,7 +7326,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-PET .btn-primary:hover,
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu-PET .btn-primary:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -7338,7 +7338,7 @@ body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .s
 body.internalAdminEdit .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
-    text-align: top-center;
+    text-align: center;
     margin-left: 500px;
     width: 100px;
     height: 50px;
@@ -7384,7 +7384,7 @@ body.internalClan .shop-body .shop-header {
 }
 
 body.internalClan .shop-body .shop-header ul.nav li {
-    font-family: 'Roboto Condensed';
+    font-family: 'Roboto Condensed', sans-serif;
     font-size: 15px;
     font-weight: 200;
 }
@@ -7450,14 +7450,14 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-a
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button a:hover,
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .clan-apply-button a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
 body.internalClan .shop-body .shop-header ul.nav li a:hover,
 body.internalClan .shop-body .shop-header ul.nav li a:focus {
     background-color: transparent;
-    filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
     -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
 }
 
@@ -7486,7 +7486,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     margin-top: -22px;
     margin-left: 0;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 7px rgba(255, 255, 255, 0.41));
+    filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.41));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -7511,7 +7511,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
     margin-top: -14px;
     margin-left: -2px;
     background-blend-mode: screen; /* will only affect background */
-    filter: drop-shadow(0px 0px, 7px rgba(255, 255, 255, 0.41));
+    filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.41));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -7761,7 +7761,7 @@ body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single
 body.internalClan .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .btn-primary {
     position: relative;
     bottom: 40px;
-    text-align: top-center;
+    text-align: center;
     margin-left: 500px;
     width: 100px;
     height: 50px;
@@ -7791,8 +7791,7 @@ body.internalClan table td {
 }
 
 body.internalClan .clan-body .clan-top-header h1 {
-    font-family: BebasNeue;
-    src: url(../fonts/BebasNeueRegular.otf);
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-weight: 300;
     text-align: center;
     font-size: 30px;
@@ -7807,8 +7806,7 @@ body.internalClan .clan-body .clan-top-header h1 {
 }
 
 body.internalClan .clan-body .clan-top-container h2 {
-    font-family: BebasNeue;
-    src: url(../fonts/BebasNeueRegular.otf);
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-weight: 300;
     margin-left: 250px;
     margin-top: -60px;
@@ -7827,8 +7825,7 @@ body.internalClan .clan-body .clan-top-container h2 {
 }
 
 body.internalClan .clan-body .clan-top-container h3 {
-    font-family: BebasNeue;
-    src: url(../fonts/BebasNeueRegular.otf);
+    font-family: BebasNeue, "Roboto Condensed", sans-serif;
     font-weight: 300;
     margin-left: 205px;
     margin-top: -40px;
@@ -7953,7 +7950,7 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
 
 body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .single-item-content .single-item-image img {
     width: 100px;
-    filter: drop-shadow(0px 0px, 10px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -8014,7 +8011,7 @@ body.internalMapEditor .map-body .map-inner .single-item .single-item-inner .sin
 }
 
 body.internalCalendar .calendar-body {
-    background: rgba(145, 145, calendar 145, 0.21);
+    background: rgba(145, 145, 145, 0.21);
     padding: 40px;
 }
 
@@ -8038,7 +8035,7 @@ body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-i
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
@@ -8048,11 +8045,11 @@ body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-i
 }
 
 body.internalCalendar .calendar-body .calendar-inner .single-item .single-item-inner .single-item-header span {
-    height: 1.42857;
+    height: 1.42857px;
     text-indent: -5000px;
     width: 9px;
     color: white;
-    filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+    filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.7));
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     -ms-transform: translateY(10%);
