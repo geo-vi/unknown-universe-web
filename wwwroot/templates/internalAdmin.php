@@ -298,7 +298,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                                     <td><?= $a['USER_ID'] ?></td>
                                     <td style="color:lawngreen"><?= $a['PLAYER_NAME']; ?></td>
                                     <td><img class="ranking-icon"
-                                             src="/do_img/global/ranks/rank_<?= $a['RANK']; ?>.gif"></td>
+                                             src="/resources/images/ranks/rank_<?= $a['RANK']; ?>.gif"></td>
                                     <td><?= $a['RANKING']; ?></td>
                                     <td><?= $a['LVL']; ?></td>
                                     <td><?= number_format($a['EXP'], 0, '.', ','); ?></td>
@@ -335,7 +335,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                             <td><?= $info['USER_ID'] ?></td>
                             <td style="color:lawngreen"><?= $info['PLAYER_NAME']; ?></td>
                             <td><img class="ranking-icon"
-                                     src="/do_img/global/ranks/rank_<?= $info['RANK']; ?>.gif"></td>
+                                     src="/resources/images/ranks/rank_<?= $info['RANK']; ?>.gif"></td>
                             <td><?= $info['RANKING']; ?></td>
                             <td><?= $info['LVL']; ?></td>
                             <td><?= number_format($info['EXP'], 0, '.', '.'); ?></td>

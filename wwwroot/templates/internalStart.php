@@ -51,7 +51,7 @@
         <?php
         if ( !$System->User->hasPet()) {
             ?>
-            <img src="<?= PROJECT_HTTP_ROOT ?>/do_img/global/items/pet/pet10-15_top.png" id="pet" />
+            <img src="<?= PROJECT_HTTP_ROOT ?>/resources/images/items/pet/pet10-15_top.png" id="pet" />
             <?php
         }
         ?>

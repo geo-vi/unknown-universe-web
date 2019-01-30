@@ -17,7 +17,7 @@ class Utils
     {
         $pathArray = explode('_', $LootID);
 
-        $imageLink = PROJECT_HTTP_ROOT . "do_img/global/items/";
+        $imageLink = PROJECT_HTTP_ROOT . "resources/images/items/";
         foreach ($pathArray as $key => $pathItem) {
             if ($key + 1 == count($pathArray)) {
                 $imageLink = $imageLink . $pathItem;

@@ -29,7 +29,7 @@ if (isset($_POST['action']) &&
 <div class="modal fade" id="composeMessageModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../do_img/global/bg_event_winter.jpg);">
+        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
             <!-- Modal Header -->
 
             <div class="modal-header">
@@ -87,7 +87,7 @@ if (isset($_POST['action']) &&
 <div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../do_img/global/bg_event_winter.jpg);">
+        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
             <!-- Modal Header -->
 
             <div class="modal-header">
@@ -231,7 +231,7 @@ if (isset($_POST['action']) &&
 <div class="modal fade" id="changePetNameModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true" style="position: absolute; top:200px;">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../do_img/global/bg_event_winter.jpg);">
+        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
             <!-- Modal Header -->
 
             <div class="modal-header">

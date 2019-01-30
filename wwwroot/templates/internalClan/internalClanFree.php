@@ -39,11 +39,13 @@
             <div class="clearfix clan-bottom-list-container custom-scroll margin-top">
                 <table class="table">
                     <thead>
-                    <th>Clan Tag</th>
-                    <th>Clan Name</th>
-                    <th>Short Clan Description</th>
-                    <th>Members</th>
-                    <th>Faction</th>
+                    <tr>
+                        <th>Clan Tag</th>
+                        <th>Clan Name</th>
+                        <th>Short Clan Description</th>
+                        <th>Members</th>
+                        <th>Faction</th>
+                    </tr>
                     </thead>
                     <?php
                     $Clans = [];

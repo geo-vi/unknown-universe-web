@@ -92,7 +92,7 @@ $variable = [
                 <div class="single-item col-xs-12">
                     <div class="single-item-inner">
                         <div class="single-item-image">
-                            <img id="ship_img" src="../do_img/global/items/<?php echo $name ?>_shop.png">
+                            <img id="ship_img" src="../resources/images/items/<?php echo $name ?>_shop.png">
                         </div>
                         <div class="single-item-content">
                             <form action="" method="POST">
@@ -187,7 +187,7 @@ $variable = [
                     <div class="single-item col-xs-12">
                         <div class="single-item-inner">
                             <div class="single-item-image-<?= $type ?>">
-                                <img id="ship_img" src="../do_img/global/items/<?php echo $name ?>_shop.png">
+                                <img id="ship_img" src="../resources/images/items/<?php echo $name ?>_shop.png">
                             </div>
                             <div class="single-item-content-<?= $type ?>">
                                 <form action="" method="POST">
@@ -292,7 +292,7 @@ $variable = [
         $("#loot_id").change(function () {
             var new_loot = document.getElementById("loot_id").value;
             var res = new_loot.replace('_', '/');
-            var str = "../do_img/global/items/" + res + "_top.png";
+            var str = "../resources/images/items/" + res + "_top.png";
             $("#ship_img").attr('src', str);
         });
     });

@@ -832,7 +832,7 @@ class User
                  '</span>
                  <img alt="ranking-icon" class="pull-right ranking-icon" src="' .
                  PROJECT_HTTP_ROOT .
-                 '/do_img/global/ranks/rank_' .
+                 '/resources/images/ranks/rank_' .
                  $player['RANK'] .
                  '.gif">';
             echo '</span></div>';

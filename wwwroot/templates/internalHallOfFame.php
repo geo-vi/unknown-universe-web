@@ -176,7 +176,7 @@
                                 if ( $System->User->isAdmin() ){ ?>
                                 <center>You currently have the highest rank.
                                     <img class="ranking-icon"
-                                         src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK ); ?>.gif">
+                                         src="/resources/images/ranks/rank_<?php echo( $System->User->RANK ); ?>.gif">
                                     <?php
                                     } else {
 
@@ -200,7 +200,7 @@
                                                   $System->User->getNextRankN() .
                                                   "</b>"; ?>
                                         <img class="ranking-icon"
-                                             src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK +
+                                             src="/resources/images/ranks/rank_<?php echo( $System->User->RANK +
                                                                                         1 ); ?>.gif">
                                         .<br />
                                     <p>
@@ -213,14 +213,14 @@
 
                                         You currently have the highest rank.
                                         <img class="ranking-icon"
-                                             src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK ); ?>.gif">
+                                             src="/resources/images/ranks/rank_<?php echo( $System->User->RANK ); ?>.gif">
                                         <br />
                                     <p>
 
                                         The rank directly below yours is that of <b><?php echo $rankbelow; ?></b>
                                         <img
                                                 class="ranking-icon"
-                                                src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK -
+                                                src="/resources/images/ranks/rank_<?php echo( $System->User->RANK -
                                                                                            1 ); ?>.gif">
                                         .
                                         Space pilots with this rank have
@@ -240,7 +240,7 @@
                                                   $System->User->getNextRankN() .
                                                   "</b>"; ?>
                                         <img class="ranking-icon"
-                                             src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK +
+                                             src="/resources/images/ranks/rank_<?php echo( $System->User->RANK +
                                                                                         1 ); ?>.gif">
                                         .<br />
                                     <p>
@@ -249,7 +249,7 @@
                                     <p>The rank directly below yours is that of <b><?php echo $rankbelow; ?></b>
                                         <img
                                                 class="ranking-icon"
-                                                src="/do_img/global/ranks/rank_<?php echo( $System->User->RANK -
+                                                src="/resources/images/ranks/rank_<?php echo( $System->User->RANK -
                                                                                            1 ); ?>.gif">
                                        .
                                        Space pilots with this rank have

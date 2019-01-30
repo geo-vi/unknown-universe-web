@@ -215,7 +215,7 @@ class equipment {
                     //PREPARE HTML
                     let droneContainer = $("<div>").addClass("drone-container").attr("data-drone-id", DRONE.ID),
                         droneImageDiv = $('<div>').addClass("drone-image"),
-                        droneImageUrl = "./do_img/global/items/drone/" + DRONE.NAME.toLowerCase() + "-" + DRONE.LEVEL + "_top.png",
+                        droneImageUrl = "./resources/images/items/drone/" + DRONE.NAME.toLowerCase() + "-" + DRONE.LEVEL + "_top.png",
                         droneImage = $('<img>').attr("src", droneImageUrl),
                         droneULevel = $('<div>').addClass("drone-upgrade-level").text(DRONE.UPGRADE_LEVEL),
                         droneLevel = $('<div>').addClass("drone-level").text("Level: " + parseInt(DRONE.LEVEL)),
