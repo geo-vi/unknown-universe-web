@@ -13,7 +13,7 @@ if ($System->routing->login_req) {
 //ADMIN ACCESS LVL
 if ($System->routing->AdminLVL != 0) {
     if ($System->isLoggedIn()) {
-        if ($System->User->RANK != 21) {
+        if ($System->User->__get('RANK') != 21) {
             $System->error_handler->throwError(ErrorID::ACCESS_DENIED);
         }
     } else {

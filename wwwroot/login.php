@@ -4,9 +4,9 @@ include("./core/core.php");
 if (isset($_GET["l"])) {
     if ($System->isLoggedIn()) {
         $System->logging->addLog(
-            $System->User->USER_ID,
-            $System->User->PLAYER_ID,
-            $System->User->SERVER_DB,
+            $System->User->__get('USER_ID'),
+            $System->User->__get('PLAYER_ID'),
+            $System->User->__get('SERVER_DB'),
             "You successfully logged out! From: " . $System->getUserIP()
         );
 
@@ -24,9 +24,9 @@ if (isset($_GET["l"])) {
         if ($System->Login($_POST["loginUsername"], $_POST["loginPassword"])) {
             if ($System->isLoggedIn()) {
                 $System->logging->addLog(
-                    $System->User->USER_ID,
-                    $System->User->PLAYER_ID,
-                    $System->User->SERVER_DB,
+                    $System->User->__get('USER_ID'),
+                    $System->User->__get('PLAYER_ID'),
+                    $System->User->__get('SERVER_DB'),
                     "You successfully logged in! From: " . $System->getUserIP()
                 );
 

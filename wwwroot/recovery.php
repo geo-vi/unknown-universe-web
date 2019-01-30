@@ -1,13 +1,11 @@
 <?php
 include_once('./core/core.php');
 
-//header("Access-Control-Allow-Origin : *");
-//header("Access-Control-Allow-Credentials : true");
 header('Content-Type: application/json');
 
 $PARAMS = [
-    "recoveryUsername"     => "Username",
-    "recoveryEmail"        => "E-Mail",
+    "recoveryUsername" => "Username",
+    "recoveryEmail" => "E-Mail",
     "g-recaptcha-response" => "ReCaptcha",
 ];
 
@@ -17,7 +15,6 @@ foreach ($PARAMS as $FIELD_NAME => $PARAM) {
         $MISSING[] = $PARAM;
     }
 }
-
 
 // MISSING PARAMETERS
 if (!empty($MISSING)) {

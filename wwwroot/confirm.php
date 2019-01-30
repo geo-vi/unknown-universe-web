@@ -1,10 +1,10 @@
 <?php
 include_once('./core/core.php');
 
-if (!isset($_GET['code'])) {
-    $System->error_handler->throwError('verification_failed_invalid_code');
-} else {
+if (isset($_GET['code'])) {
     if ($System->verifyEmail($_GET['code'])) {
-        $System->error_handler->throwError('email_confirmed');
+        $System->error_handler->throwError(ErrorID::EMAIL_COMPLETE);
     }
+} else {
+    $System->error_handler->throwError(ErrorID::VERIFICATION_FAILED);
 }

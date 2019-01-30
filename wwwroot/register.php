@@ -1,14 +1,12 @@
 <?php
 include_once('./core/core.php');
 
-//header("Access-Control-Allow-Origin : *");
-//header("Access-Control-Allow-Credentials : true");
 header('Content-Type: application/json');
 
 $PARAMS = [
-    "registerUsername"     => "Username",
-    "registerEmail"        => "E-Mail",
-    "registerPassword"     => "Password",
+    "registerUsername" => "Username",
+    "registerEmail" => "E-Mail",
+    "registerPassword" => "Password",
     "g-recaptcha-response" => "ReCaptcha",
 ];
 
@@ -38,21 +36,21 @@ if (!$RECAPTCHA_RESPONSE->success) {
 //VALIDATE USERNAME
 if (strlen($_POST['registerUsername']) < USERNAME_MIN_LENGTH) {
     die(json_encode([
-        "error"     => true,
+        "error" => true,
         "error_msg" => "Your chosen username is to short! Min length: " . USERNAME_MIN_LENGTH,
     ]));
 }
 
 if (strlen($_POST['registerUsername']) > USERNAME_MAX_LENGTH) {
     die(json_encode([
-        "error"     => true,
+        "error" => true,
         "error_msg" => "Your chosen username is to long! Max length: " . USERNAME_MAX_LENGTH,
     ]));
 }
 
 if (!$System->validate->isValidString($_POST['registerUsername'], ALLOWED_CHARS)) {
     die(json_encode([
-        "error"     => true,
+        "error" => true,
         "error_msg" => "Your username can only contain [a-Z][0-9][" . implode(',', ALLOWED_CHARS) . "]!",
     ]));
 }
@@ -64,7 +62,7 @@ if ($System->validate->isUserByUsername($_POST['registerUsername'])) {
 //VALIDATE PASSWORD
 if (strlen($_POST['registerPassword']) < PASSWORD_MIN_LENGTH) {
     die(json_encode([
-        "error"     => true,
+        "error" => true,
         "error_msg" => "Your chosen password is to short! Min length: " . PASSWORD_MIN_LENGTH,
     ]));
 }
@@ -85,7 +83,7 @@ if (
         'outlook.de') !== false || strpos($_POST['registerEmail'], 'outlook.com') !== false
 ) {
     die(json_encode([
-        "error"     => true,
+        "error" => true,
         "error_msg" => "We can't support hotmail.com , hotmail.de,  freemail.hu, outlook.de, outlook.com e-mails!",
     ]));
 }
