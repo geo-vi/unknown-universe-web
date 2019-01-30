@@ -28,6 +28,11 @@ class MySQL
         return preg_match("/^" . $type . "/i", $sql);
     }
 
+    /**
+     * @param $sql
+     * @param null $options
+     * @return bool|array
+     */
     public function QUERY($sql, $options = null)
     {
         $con = $this->connection;

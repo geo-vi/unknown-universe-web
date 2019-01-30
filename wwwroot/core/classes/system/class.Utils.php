@@ -10,6 +10,7 @@ class Utils
      * @param        $LootID
      * @param string $View
      *
+     * @param string $Level
      * @return string
      */
     public static function getPathByLootId($LootID, $View = "top", $Level = "")

@@ -395,6 +395,7 @@
                 </div>
                 </form>
             </div>
+
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default"
