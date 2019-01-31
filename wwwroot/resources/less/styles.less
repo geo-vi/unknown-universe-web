@@ -1,14 +1,11 @@
 // import external documents
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
 @import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css");
-
 // reference theme variables
 @import (reference) "theme.less";
-
 // import fonts, apply mixins
 @import "fonts.less";
 @import "mixins.less";
-
 // import additional style
 @import "chosen.less";
 @import "custom.less";
@@ -2503,6 +2500,109 @@ body {
           background-color: @background_color_5 !important;
         }
       }
+    }
+  }
+
+  &.internalMessaging {
+    @background_color_1: #3c3c3c;
+    @background_color_2: #2b2b2b;
+    @background_color_3: #353535;
+    @background_color_4: #2d2e30;
+    @background_color_5: #2f2f2f;
+
+    .msg-menu-container {
+      background-color: @background_color_1;
+      height: 100% !important;
+      min-height: 655px !important;
+      padding: 15px 0 !important;
+    }
+
+    ul.nav-tabs {
+      > li.active {
+        > a {
+          &:active {
+            background-color: @background_color_2;
+          }
+
+          &:focus {
+            background-color: @background_color_2;
+          }
+
+          &:hover {
+            background-color: @background_color_2;
+          }
+
+          background-color: @background_color_2;
+        }
+      }
+
+      > li {
+        > a {
+          &:hover {
+            background-color: @background_color_3;
+          }
+
+          border: none !important;
+          color: #ffffff;
+          text-align: center;
+          margin-right: 0 !important;
+          font-family: "Roboto Condensed", sans-serif;
+          font-weight: 300 !important;
+          font-size: 17px !important;
+          text-transform: uppercase;
+        }
+
+        display: block;
+        height: 46px !important;
+        width: 100%;
+      }
+
+      border: none !important;
+    }
+
+    .menu-header {
+      padding-bottom: 17px;
+      padding-top: 5px;
+
+      > h1 {
+        font-size: 17px !important;
+        text-align: center;
+        margin: 0 !important;
+        text-transform: uppercase;
+      }
+    }
+
+    .msg-header {
+      > h3 {
+        font-size: 17px !important;
+        text-transform: uppercase;
+      }
+
+      height: 55px !important;
+      background-color: @background_color_4 !important;
+      padding: 0 15px !important;
+    }
+
+    .msg-content {
+      background-color: @background_color_2;
+      padding: 0 !important;
+
+      > .tab-content {
+        padding: 0 !important;
+        min-height: 600px;
+
+        > div {
+          background-color: @background_color_5 !important;
+        }
+      }
+    }
+
+    .msg-read {
+      color: white;
+    }
+
+    .msg-unread {
+      color: #337ab7;
     }
   }
 

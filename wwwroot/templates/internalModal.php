@@ -1,35 +1,13 @@
 <?php
 include_once( 'internalSettings/internalCountries.php' );
-
-if (isset($_POST['action']) &&
-    $_POST['action'] == "changePetName" &&
-    isset($_POST['subAction']) &&
-    $_POST['subAction'] == "changename") {
-    $System->User->changePetName($_POST['userName']);
-}
-
-if (isset($_POST['action']) &&
-    $_POST['action'] == "changePilotName" &&
-    isset($_POST['subAction']) &&
-    $_POST['subAction'] == "changename") {
-    $System->User->changeName($_POST['userName']);
-}
-
-if (isset($_POST['action']) &&
-    $_POST['action'] == "send" &&
-    isset($_POST['subAction']) &&
-    $_POST['subAction'] == "sendmessage") {
-    $System->User->sendMessage($_POST['userName'], $_POST['Content'], $_POST['Header']);
-}
-
 ?>
 
 <script src="../resources/js/ckeditor/ckeditor.js"></script>
 
 <div class="modal fade" id="composeMessageModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+     aria-labelledby="composeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
+        <div class="modal-content">
             <!-- Modal Header -->
 
             <div class="modal-header">
@@ -38,7 +16,7 @@ if (isset($_POST['action']) &&
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h2 class="modal-title" id="myModalLabel">
+                <h2 class="modal-title" id="composeModalLabel">
                     New Message
                 </h2>
             </div>
@@ -46,48 +24,48 @@ if (isset($_POST['action']) &&
             <!-- Modal Body -->
             <div class="modal-body">
                 <form class="form-horizontal" role="form">
-                    <div class="form-group" style="text-align:center; margin-left:10px; top:20px; left:50px;">
-                        <label class="col-sm-2 control-label" style="left:100px; top:-3px;"
-                               for="recipient">recipient: </label>
-                        <div class="col-sm-10">
-                            <input class="col-sm-10" type="text" id="recipient" value=""
-                                   style="margin-left:-100px;background-color: black;color:#fff;" />
-                        </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="msgRecipient">
+                            Recipient:
+                        </label>
+                        <input class="col-sm-10" type="text" id="msgRecipient" value="" />
                     </div>
 
-                    <div class="form-group" style="text-align:center; margin-left:10px; margin-top:0;">
-                        <label class="col-sm-2 control-label" style="left: 100px; top:-5px;"
-                               for="headert">Header: </label>
-                        <div class="col-sm-10" style="top:-25px;">
-                            <input id="headert" type="text" value=""
-                                   style="margin-left:-100px; margin-top:20px; background-color: black;color:#fff;">
-                        </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="msgHeader">
+                            Header:
+                        </label>
+                        <input class="col-sm-10" id="msgHeader" type="text" value="" />
                     </div>
 
-                    <div class="form-group" style="margin-left:0; width:700px;">
-                        <div class="col-sm-10">
-                            <textarea id="editornew" name="Content" style="width: 700px; height: 200px;"
+                    <div class="form-group">
+                        <div class="col-sm-12 no-padding">
+                            <textarea class=''
+                                      id="msgContent"
+                                      name="msgContent"
                                       placeholder="Message..."></textarea>
                         </div>
                     </div>
                 </form>
             </div>
+
             <!-- Modal Footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
+                <button id='closeMsg' type="button" class="btn btn-default" data-dismiss="modal">
                     Close
                 </button>
-                <button id="send" type="submit" class="btn btn-primary">Send</button>
+                <button id="sendMsg" type="submit" class="btn btn-primary">
+                    Send
+                </button>
             </div>
         </div>
     </div>
 </div>
 
 <div class="modal fade" id="userSettingsModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+     aria-labelledby="composeModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
+        <div class="modal-content">
             <!-- Modal Header -->
 
             <div class="modal-header">
@@ -229,9 +207,9 @@ if (isset($_POST['action']) &&
 </div>
 
 <div class="modal fade" id="changePetNameModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true" style="position: absolute; top:200px;">
+     aria-labelledby="composeModalLabel" aria-hidden="true" style="position: absolute; top:200px;">
     <div class="modal-dialog">
-        <div class="modal-content" style="background-image:url(../resources/images/bg_event_winter.jpg);">
+        <div class="modal-content">
             <!-- Modal Header -->
 
             <div class="modal-header">
@@ -250,7 +228,7 @@ if (isset($_POST['action']) &&
 
                     <div class="form-group" style="text-align:center; margin-left:10px; top:20px; left:50px;">
                         <label class="col-sm-2 control-label" style="left:-15px;"
-                               for="inputEmail3">Pet Name: </label>
+                               for="petNameTextBox">Pet Name: </label>
                         <div class="col-sm-10">
                             <input type="text" id="petNameTextBox" value="<?= $System->User->getPetName() ?>"
                                    style="background-color: black;color:#fff;" />
@@ -275,26 +253,31 @@ if (isset($_POST['action']) &&
 </div>
 
 <script type="text/javascript">
-    ClassicEditor.create(document.querySelector('#msgContent'));
+    ClassicEditor.create(document.querySelector('#msgContent'))
+        .then(editor => {
+            window.editor = editor;
+        });
 
-    $('#send').click(function () {
-        $.ajax({
-            type: "POST",
-            url: "",
-            data: {
-                action: 'send',
-                subAction: 'sendmessage',
-                userName: $('#recipient').val(),
-                Content: $('#editornew').val(),
-                Header: $('#headert').val()
-            },
-            success: function () {
-                swal('Success!', 'Sent message!', 'success');
-                setTimeout(location.reload.bind(location), 1000);
-            },
-            error: function () {
-                console.log(data);
-            }
+    $('#sendMsg').click(function () {
+        if (window.editor) {
+            window.editor.updateSourceElement();
+        }
+
+        let data = {
+            recipient: $('#msgRecipient').val(),
+            content: $('#msgContent').val(),
+            title: $('#msgHeader').val()
+        };
+
+        sendCoreRequest('messaging', 'send', data, function () {
+            // now we clean the message data and close the modal
+            $('#closeMsg').click();
+
+            $('#msgRecipient').val('');
+            $('#msgContent').val('');
+            $('#msgHeader').val('');
+
+            window.editor.setData('');
         });
     });
 
@@ -302,7 +285,7 @@ if (isset($_POST['action']) &&
         $.ajax({
             type: "POST",
             url: "",
-            data: {action: 'changePilotName', subAction: 'changename', userName: $('#userNameTextBox').val()},
+            data: { action: 'changePilotName', subAction: 'changename', userName: $('#userNameTextBox').val() },
             success: function () {
                 console.log(data);
             },
@@ -313,14 +296,14 @@ if (isset($_POST['action']) &&
     });
 
     $('#changePetName').click(function () {
-        $('#popup-modalBackground').css({'z-index': 1050}).show();
+        $('#popup-modalBackground').css({ 'z-index': 1050 }).show();
         $.ajax({
             type: "POST",
             url: "",
-            data: {action: 'changePetName', subAction: 'changename', userName: $('#petNameTextBox').val()},
+            data: { action: 'changePetName', subAction: 'changename', userName: $('#petNameTextBox').val() },
             success: function (data) {
                 data = $.parseJSON(data);
-                if (data.status == 'OK') {
+                if (data.status === 'OK') {
                     alert("Okey");
                 } else {
                     alert("Not okey");

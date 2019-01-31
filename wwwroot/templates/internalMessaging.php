@@ -18,22 +18,10 @@ if (isset($_GET["UID"])) {
     }
 }
 
-if (isset($_POST['action']) && $_POST['action'] == 'reply_message') {
-    $System->User->sendMessage($_POST['replyto'], $_POST['Content'], $_POST['title']);
-    ?>
-    <div>Message successfully sent</div>
-    <?php
-}
-
-if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
-    $System->User->delmessage($_POST['mID']);
-    echo "<script>swal('Success!', 'Deleted message!', 'success')</script>";
-}
-
 ?>
 
 <div class="page-content clearfix">
-    <div class="col-xs-3 Messaging-menu-container">
+    <div class="col-xs-3 msg-menu-container">
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
                 <a href="#inbox" aria-controls="inbox" role="tab" data-toggle="tab">Inbox</a>
@@ -45,115 +33,117 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
                 <a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a>
             </li>
             <li role="presentation">
-                <a href="#blocklist" aria-controls="blocklist" role="tab" data-toggle="tab">Block list</a>
+                <a href="#blacklist" aria-controls="blocklist" role="tab" data-toggle="tab">Block list</a>
             </li>
         </ul>
     </div>
-    <div class="col-xs-9 Messaging-content">
+    <div class="col-xs-9 msg-content">
+        <div class='msg-header'>
+            <h3 class='pull-left'>Messaging</h3>
+
+            <h3 class='pull-right cursor-pointer'>
+                <a data-toggle="modal" data-target="#composeMessageModal">
+                    New Message
+                </a>
+            </h3>
+        </div>
 
         <div class="tab-content">
+
             <div role="tabpanel" class="tab-pane active" id="inbox">
-                <?php
-                if ( !isset($_GET['ID'])) {
-                    ?>
-                    <h3>
-                        <b>Inbox</b>
-                        <b style="margin-left:400px; font-size: 14px; text-decoration: #00d9ff;">
-                            <a style="cursor: pointer;" data-toggle="modal" data-target="#composeMessageModal">New
-                                                                                                               Message
-                            </a>
-                        </b>
-                    </h3>
+                <form name="Message" id="Message" action="" method="post">
                     <?php
-                }
-                ?>
-                <div class="invitation-code-list custom-scroll">
-                    <form name="Message" id="Message" action="" method="post">
-                        <?php
-                        if ( !isset($_GET['ID'])) {
-                            ?>
-                            <input type="hidden" name="action" value="open_message">
-                            <table class="table">
-                                <thead>
+                    if ( !isset($_GET['ID'])) {
+                        ?>
+                        <input type="hidden" name="action" value="open_message">
+                        <table class="table">
+                            <thead>
+                            <tr>
                                 <th>HEADER</th>
                                 <th>SENDER</th>
                                 <th>DATE</th>
-                                <th>action</th>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $messages = $System->User->messages();
-                                foreach ($messages as $messagei => $message) {
-                                    $argg = $message['SENDER']
-                                    ?>
-                                    <tr>
-                                        <td>
-                                            <a href="?ID=<?php print $message['ID'] ?>"
-                                               onclick="openMessage();"
-                                               name="messageid"
-                                               value="<?= $message['ID'] ?>"
-                                               style="color:transparent;">
-                                                <b> <?= $message['HEADER']; ?></b>
-                                            </a>
-                                        </td>
-
-                                        <td><?php if ($message['SENDER'] == 1) {
-                                                print 'System';
-                                            } else {
-                                                echo $System->User->getName($argg);
-                                            } ?></td>
-                                        <td><?php print date("m/d/Y h:i:s", strtotime($message['DATE'])); ?></td>
-                                        <td>
-                                            <a href="?ID=<?php print $message['ID'] ?>"
-                                               onclick="openMessage();" name="messageid"
-                                               value="<?= $message['ID'] ?>"
-                                               style="color:transparent;"><b>View</b></a>
-                                            -
-                                            <a href="#" id="delmessageid" data-fpid="<?= $message['ID'] ?>">
-                                                <b>Delete</b></a>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                }
-                                ?>
-                                </tbody>
-                            </table>
+                                <th>ACTION</th>
+                            </tr>
+                            </thead>
+                            <tbody>
                             <?php
-                        } else {
-                            $messages = [];
-                            $messages = $System->User->messageInfo($arg);
+                            $messages = $System->User->messages();
                             foreach ($messages as $messagei => $message) {
-                                $System->User->markRead($arg);
+                                $sender = $message['SENDER']
                                 ?>
-                                <div><h3><b><?php print $message['HEADER']; ?></b></h3></div>
-                                <br>
-                                <div><?php print $message['MESSAGE']; ?></div>
-                                <br>
-                                <?php print date("m/d/Y h:i:s", strtotime($message['DATE']));
-                                print ' by ';
-                                if ($message['SENDER'] == 1) {
-                                    print 'System';
-                                } else {
-                                    $System->User->getName($message['SENDER']);
-                                } ?>
-                                <form action="" id="lol" method="POST">
-                                    <input type="hidden" name="action" value="reply_message">
-                                    <input type="hidden" name="replyto" value="<?php print $message['SENDER']; ?>">
-                                    <input type="hidden" name="title" value="<?php print $message['HEADER']; ?>">
-                                    <strong><label for='editornew'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></strong>
-                                    <textarea id="editornew"
-                                              name="Content"
-                                              style="width: 550px; height: 100px; color: #000;"></textarea>
-                                    <input id="send"
-                                           type="submit"
-                                           name="send"
-                                           style="color : #000;"
-                                           value="Send Message" />
-                                </form>
-                            <?php }
-                        } ?>
-                    </form>
-                </div>
+                                <tr>
+                                    <td>
+                                        <a href="?ID=<?= $message['ID'] ?>"
+                                           onclick="openMessage();"
+                                           name="messageid"
+                                            <?php if ($message['NEW'] == 1) {
+                                                print 'class="msg-unread"';
+                                            } else {
+                                                print 'class="msg-read"';
+                                            } ?>
+                                        >
+                                            <?= $message['HEADER']; ?>
+                                        </a>
+                                    </td>
+
+                                    <td><?php if ($message['SENDER'] == 1) {
+                                            print 'System';
+                                        } else {
+                                            echo $System->User->getName($sender);
+                                        } ?></td>
+                                    <td><?php print date("d/m/Y h:i:s", strtotime($message['DATE'])); ?></td>
+                                    <td>
+                                        <a href="?ID=<?php print $message['ID'] ?>"
+                                           onclick="openMessage();" name="messageid"
+                                           style="color:transparent;">
+                                            <b>View</b>
+                                        </a>
+                                        -
+                                        <a href="#" id="delmessageid" data-fpid="<?= $message['ID'] ?>">
+                                            <b>Delete</b>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                        <?php
+                    } else {
+                        $messages = [];
+                        $messages = $System->User->messageInfo($arg);
+                        foreach ($messages as $messagei => $message) {
+                            $System->User->markRead($arg);
+                            ?>
+                            <div><h3><b><?php print $message['HEADER']; ?></b></h3></div>
+                            <br>
+                            <div><?php print $message['MESSAGE']; ?></div>
+                            <br>
+                            <?php print date("m/d/Y h:i:s", strtotime($message['DATE']));
+                            print ' by ';
+                            if ($message['SENDER'] == 1) {
+                                print 'System';
+                            } else {
+                                $System->User->getName($message['SENDER']);
+                            } ?>
+                            <form action="" id="lol" method="POST">
+                                <input type="hidden" name="action" value="reply_message">
+                                <input type="hidden" name="replyto" value="<?php print $message['SENDER']; ?>">
+                                <input type="hidden" name="title" value="<?php print $message['HEADER']; ?>">
+                                <strong><label for='editornew'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></strong>
+                                <textarea id="editornew"
+                                          name="Content"
+                                          style="width: 550px; height: 100px; color: #000;"></textarea>
+                                <input id="send"
+                                       type="submit"
+                                       name="send"
+                                       style="color : #000;"
+                                       value="Send Message" />
+                            </form>
+                        <?php }
+                    } ?>
+                </form>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="outbox">
@@ -170,10 +160,12 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
                             <input type="hidden" name="action" value="open_message">
                             <table class="table">
                                 <thead>
-                                <th>HEADER</th>
-                                <th>TO</th>
-                                <th>DATE</th>
-                                <th>Action</th>
+                                <tr>
+                                    <th>HEADER</th>
+                                    <th>TO</th>
+                                    <th>DATE</th>
+                                    <th>Action</th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 <?php
@@ -186,8 +178,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
                                             <a href=""
                                                onclick="openMessage();"
                                                name="messageid"
-                                               value="<?= $message['ID'] ?>"
-                                               style="color:transparent;"><b> <?= $message['HEADER']; ?></b></a>
+                                               style="color:transparent;">
+                                                <b> <?= $message['HEADER']; ?></b>
+                                            </a>
                                         </td>
                                         <td><?php if ($uid == 1) {
                                                 print 'System';
@@ -198,8 +191,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
                                         <td>
                                             <a href="?ID=<?php print $message['ID'] ?>"
                                                onclick="openMessage();" name="messageid"
-                                               value="<?= $message['ID'] ?>"
-                                               style="color:transparent;"><b>View</b></a>
+                                               style="color:transparent;">
+                                                <b>View</b>
+                                            </a>
                                             -
                                             <a href="#" id="delmessageid" data-fpid="<?= $message['ID'] ?>">
                                                 <b>Delete</b></a>
@@ -211,24 +205,21 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
                                 </tbody>
                             </table>
                             <?php
-                        } else {
-                        } ?>
+                        }
+                        ?>
                     </form>
                 </div>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="contacts">
-                <h3><b>Contacts</b></h3>
                 <div class="invitation-code-list custom-scroll">
                 </div>
             </div>
 
-            <div role="tabpanel" class="tab-pane" id="blocklist">
-                <h3><b>Block</b> List</h3>
+            <div role="tabpanel" class="tab-pane" id="blacklist">
                 <div class="invitation-code-list custom-scroll">
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -246,7 +237,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'delmessage') {
         $.ajax({
             type: "POST",
             url: "",
-            data: {action: 'delmessage', mID: mID},
+            data: { action: 'delmessage', mID: mID },
             success: function () {
                 swal('Success!', 'Deleted message!', 'success');
                 setTimeout(location.reload.bind(location), 1000);
