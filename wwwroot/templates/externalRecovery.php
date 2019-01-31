@@ -16,7 +16,7 @@
             <form class="recovery-form" method="post">
                 <input type="text"
                        id="recoveryUsername"
-                       name="recoveryUsername"
+                       name="username"
                        class="form-input"
                        placeholder="Username"
                        required
@@ -24,8 +24,8 @@
                 <input type="email"
                        id="recoveryEmail"
                        class="form-input"
-                       name="recoveryEmail"
-                       placeholder="E-Mail"
+                       name="email"
+                       placeholder="Email"
                        required>
                 <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>"></div>
                 <input type="button" class="form-button" value="Recover my Account">
@@ -37,20 +37,13 @@
 <script>
     $(document).ready(function () {
         $(".recovery-form > input.form-button").click(function () {
-            $.ajax({
-                type: "POST",
-                url: 'recovery.php',
-                data: $(this).parent().serialize(),
-                success: function (resultData) {
-                    console.log(resultData);
-                    if (resultData.error) {
-                        grecaptcha.reset();
-                        swal('Error!', resultData.error_msg, 'error');
-                    } else {
-                        swal('Success!', resultData.msg, 'success');
-                    }
-                }
-            });
+            sendCoreRequest(
+                'session',
+                'recover',
+                $(this).parent().serializeObject(),
+                null,
+                grecaptcha.reset(),
+            );
         });
     });
 </script>

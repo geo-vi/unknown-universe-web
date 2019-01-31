@@ -11,17 +11,17 @@ if (isset($_GET["l"])) {
         );
 
         if ($System->Logout()) {
-            $System->error_handler->throwError('logged_out');
+            $System->error_handler->throwError(ErrorID::LOGGED_OUT);
         }
     }
 } else {
-    if (isset($_POST["loginUsername"]) && isset($_POST["loginPassword"])) {
+    if (isset($_POST["username"]) && isset($_POST["password"])) {
 
         if ($System->isLoggedIn()) {
             $System->Logout();
         }
 
-        if ($System->Login($_POST["loginUsername"], $_POST["loginPassword"])) {
+        if ($System->Login($_POST["username"], $_POST["password"])) {
             if ($System->isLoggedIn()) {
                 $System->logging->addLog(
                     $System->User->__get('USER_ID'),
@@ -33,13 +33,14 @@ if (isset($_GET["l"])) {
                 header("location: internalStart");
             }
         } else {
-            $System->error_handler->throwError('fail_login');
+            $System->error_handler->throwError(ErrorID::FAILED_LOGIN);
         }
     } else {
         if ($System->isLoggedIn()) {
             header("location: internalStart");
         } else {
-            $System->error_handler->throwError('fail_login');
+            http_response_code(400);
+            die(json_encode(['message' => 'Please enter your login details!']));
         }
     }
 }

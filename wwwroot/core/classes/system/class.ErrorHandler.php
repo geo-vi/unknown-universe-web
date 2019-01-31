@@ -73,7 +73,8 @@ class ErrorHandler
     }
 
     /**
-     * throwError Function
+     * throwError
+     *
      * moves to Error template
      *
      * @param $ID

@@ -19,10 +19,10 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="login-container">
                 <form class="login-form" method="post" action="../login.php">
-                    <input type="hidden" name="login" value="true">
-                    <input type="text" id="loginUsername" name="loginUsername" class="form-input"
+                <form class="login-form" method="post" >
+                    <input type="text" id="loginUsername" name="username" class="form-input"
                            placeholder="<?= $System->__('BODY_TEXT_USERNAME') ?>" required autofocus>
-                    <input type="password" id="loginPassword" name="loginPassword" class="form-input"
+                    <input type="password" id="loginPassword" name="password" class="form-input"
                            placeholder="<?= $System->__('BODY_TEXT_PASSWORD') ?>" required>
 
                     <button class="form-button" type="submit">Login</button>
@@ -31,17 +31,16 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="sign_up-container">
                 <form class="register-form" method="post">
-                    <input type="hidden" name="register" value="true">
-                    <input type="text" id="registerUsername" name="registerUsername" class="form-input"
+                    <input type="text" id="registerUsername" name="username" class="form-input"
                            placeholder="<?= $System->__('BODY_TEXT_USERNAME') ?>" required autofocus>
-                    <input type="password" id="registerPassword" name="registerPassword" class="form-input"
+                    <input type="password" id="registerPassword" name="password" class="form-input"
                            placeholder="<?= $System->__('BODY_TEXT_PASSWORD') ?>" required>
-                    <input type="email" id="registerEmail" class="form-input" name="registerEmail"
+                    <input type="email" id="registerEmail" class="form-input" name="email"
                            placeholder="<?= $System->__('BODY_TEXT_EMAIL') ?>" required>
                     <?php
                     if (NEED_INVITATION) {
                         ?>
-                        <input type="text" id="registerInvation" class="form-input" name="registerInvation"
+                        <input type="text" id="registerInvation" class="form-input" name="invitationCode"
                                placeholder="<?= $System->__('BODY_TEXT_INVITATIONCODE') ?>" required>
                         <?php
                     }
@@ -56,26 +55,11 @@
 </div>
 
 <script>
+
     $(document).ready(function () {
-        $(".register-form > input.form-button").click(function (event) {
-            $.ajax({
-                type: "POST",
-                url: 'register.php',
-                data: $(this).parent().serialize(),
-                success: function (resultData) {
-                    console.log(resultData);
-                    swal('Success!', resultData.message, 'success');
-                },
-                error: function (errorData, _, errorThrown) {
-                    console.log(errorData, errorThrown);
-                    grecaptcha.reset();
-                    swal(
-                        errorThrown + '!',
-                        errorData.responseJSON.message || errorThrown,
-                        'error'
-                    );
-                }
-            });
+        $(".register-form > input.form-button").click(function () {
+            sendRegisterRequest($(this).parent().serializeObject(), grecaptcha.reset());
         });
     });
+
 </script>
