@@ -21,3 +21,5 @@ db:
 	@docker exec -ti docms_xamppy_1 /load_db.sh
 bash:
 	@docker exec -ti docms_xamppy_1 bash
+error-log:
+	@docker exec -ti docms_xamppy_1 tail -f /opt/lampp/logs/php_error_log
