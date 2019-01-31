@@ -29,18 +29,18 @@ class UserRefreshHandler extends AbstractHandler
 
         if (isset($TIMESTAMP)) {
             session_write_close();
-            while (strtotime($System->User->LAST_MODIFIED) <= $TIMESTAMP) {
+            while (strtotime($System->User->__get('LAST_MODIFIED')) <= $TIMESTAMP) {
                 sleep(1);
                 clearstatcache();
                 $System->User->refresh();
             }
             die(json_encode(
                 [
-                    'URIDIUM'   => number_format($System->User->URIDIUM, 0, '.', '.'),
-                    'CREDITS'   => number_format($System->User->CREDITS, 0, '.', '.'),
-                    'EXP'       => number_format($System->User->EXP, 0, '.', '.'),
-                    'HONOR'     => number_format($System->User->HONOR, 0, '.', '.'),
-                    'LVL'       => number_format($System->User->LVL, 0, '.', '.'),
+                    'URIDIUM'   => number_format($System->User->__get('URIDIUM'), 0, '.', '.'),
+                    'CREDITS'   => number_format($System->User->__get('CREDITS'), 0, '.', '.'),
+                    'EXP'       => number_format($System->User->__get('EXP'), 0, '.', '.'),
+                    'HONOR'     => number_format($System->User->__get('HONOR'), 0, '.', '.'),
+                    'LVL'       => number_format($System->User->__get('LVL'), 0, '.', '.'),
                     'TIMESTAMP' => time(),
                 ]
             ));
