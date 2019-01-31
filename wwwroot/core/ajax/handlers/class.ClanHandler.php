@@ -10,6 +10,6 @@ class ClanHandler extends AbstractHandler
         parent::__construct();
 
         $this->addAction('getClans');
-        $this->addAction('createClan', ['CLAN_TAG'], ['CLAN_NAME'], ['CLAN_DESC']);
+        $this->addAction('createClan', ['CLAN_TAG', 'CLAN_NAME', 'CLAN_DESC']);
     }
 }

@@ -60,4 +60,4 @@ if ($System->routing->AdminLVL != 0) {
 
 <?php
 //Load FooterScripts
-include_once('./templates/footer/footerscripts.php');
+include_once( './templates/footer/footerScripts.php' );

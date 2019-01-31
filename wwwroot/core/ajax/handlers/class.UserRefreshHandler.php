@@ -10,16 +10,16 @@ class UserRefreshHandler extends AbstractHandler
     {
         parent::__construct();
 
-        //$this->addAction('refresh', ['TIMESTAMP']);
+        $this->addAction('refresh', ['TIMESTAMP']);
     }
 
-    public function handle()
+    public function handle() : void
     {
         parent::handle();
 
-        //$function = 'exec_'.$this->action;
+        $function = 'exec_'.$this->action;
 
-        //$this->$function();
+        $this->$function();
     }
 
     public function exec_refresh()

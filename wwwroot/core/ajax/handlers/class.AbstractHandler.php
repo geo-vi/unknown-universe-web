@@ -6,7 +6,7 @@
 abstract class AbstractHandler
 {
     public $action     = "";
-    public $params     = "";
+    public $params     = [];
     public $isLoggedIn = true;
 
     protected $actions = [];
@@ -20,16 +20,12 @@ abstract class AbstractHandler
         if (isset($_POST['action']) && !empty($_POST['action'])) {
             $this->action = (string) $_POST['action'];
         } else {
-            die(json_encode([
-                                'error'     => true,
-                                "error_msg" => "Empty ajax action requested!",
-                            ]
-            )
-            );
+            http_response_code(400);
+            die(json_encode(["message" => "Empty ajax action requested!"]));
         }
 
         if (isset($_POST['params'])) {
-            $this->params = json_decode($_POST['params'], true);
+            $this->params = $_POST['params'];
         }
     }
 

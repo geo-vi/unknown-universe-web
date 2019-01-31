@@ -3,25 +3,25 @@
         $(window).on("load", function () {
             $('.chosen-select').chosen();
             $(".custom-scroll").mCustomScrollbar({
-                axis: "y",
-                scrollbarPosition: "inside",
-                theme: "light-3"
+                 axis: "y",
+                 scrollbarPosition: "inside",
+                 theme: "light-3"
             });
             $(".custom-scroll-x").mCustomScrollbar({
-                axis: "x",
-                scrollbarPosition: "inside",
-                alwaysShowScrollbar: 1,
-                advanced: {
-                    autoExpandHorizontalScroll: true
-                },
-                theme: "light-3"
+               axis: "x",
+               scrollbarPosition: "inside",
+               alwaysShowScrollbar: 1,
+               advanced: {
+                   autoExpandHorizontalScroll: true
+               },
+               theme: "light-3"
             });
         });
 
         <?php
 
-        if($System->isLoggedIn() && $System->routing->login_req){
-
+        if ($System->isLoggedIn() && $System->routing->login_req)
+        {
         ?>
 
         var tabOpen = !Visibility.hidden();
@@ -62,24 +62,25 @@
             let request = {
                 'action': 'refresh',
                 'handler': 'user',
-                'params': JSON.stringify({"TIMESTAMP": TIMESTAMP})
+                'params': JSON.stringify({ "TIMESTAMP": TIMESTAMP })
             };
             $.ajax({
-                type: "POST",
-                url: './core/ajax/ajax.php',
-                data: request,
-                cache: false,
-                async: true,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function (resultData) {
-                    updateUser(resultData);
-                }
-            }).fail(function () {
+               type: "POST",
+               url: './core/ajax/ajax.php',
+               data: request,
+               cache: false,
+               async: true,
+               xhrFields: {
+                   withCredentials: true
+               },
+               success: function (resultData) {
+                   updateUser(resultData);
+               }
+           }).fail(function () {
                 updateUser();
             });
         }
+
         <?php
         }
         ?>

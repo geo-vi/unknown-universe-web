@@ -29,6 +29,7 @@
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.tools.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/bootstrap/bootstrap.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/sweetalert.min.js"></script>
+    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/ajax.js"></script>
 
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
