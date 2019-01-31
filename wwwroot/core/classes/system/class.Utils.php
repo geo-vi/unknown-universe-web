@@ -33,4 +33,15 @@ class Utils
         }
     }
 
+    /**
+     * shortcut to die + json_encode with 'message' as the only field
+     *
+     * `die(json_encode(['message' => $msg]))`
+     *
+     * @param string $msg
+     */
+    public  static function dieM($msg) {
+        die(json_encode(['message' => $msg]));
+    }
+
 }

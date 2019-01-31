@@ -151,6 +151,20 @@ class System
     }
 
     /**
+     * getUserId
+     *
+     * gets USER_ID over `$Username`
+     *
+     * @param $Username
+     */
+    public function getUserId($Username) : int
+    {
+        $userID = $this->mysql->QUERY("SELECT USER_ID FROM users WHERE USERNAME = ?", [$Username]);
+
+        return $userID[0]['USER_ID'];
+    }
+
+    /**
      *  getUserIP Function
      *
      *  used to get the IP of connected User
