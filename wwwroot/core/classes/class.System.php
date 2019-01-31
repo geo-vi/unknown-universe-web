@@ -237,7 +237,6 @@ class System
      * @param $EMAIL
      *
      * @return bool
-     * @throws Exception
      */
     public function sendRecovery($USERNAME, $EMAIL)
     {
@@ -255,14 +254,19 @@ class System
                                           $User[0]['EMAIL'],
                                       ]
         );
+
         if (isset($EMAILS[0])) {
-            $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
-            if (new DateTime() < $TIMEOUT) {
-                return true;
+            try {
+                $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
+                if (new DateTime() < $TIMEOUT) {
+                    return true;
+                }
+            } catch (Exception $e) {
+                // error with DateTime. Should probably handle
             }
         }
 
-        //SEND REGISTRATION E-MAIl
+        //SEND RECOVERY E-MAIl
         $CODE    = uniqid('UU' . $User[0]['USER_ID'], true);
         $LINK    = PROJECT_HTTP_ROOT . 'confirm.php?code=' . $CODE;
         $DATE    = date('Y-m-d H:i:s');
@@ -346,7 +350,6 @@ class System
      * Destroys current Session == Logout
      *
      * @return bool
-     * @throws Exception
      */
     public function Logout()
     {
@@ -360,7 +363,6 @@ class System
             } catch (Exception $e) {
                 return false;
             }
-
         }
 
         return false;
@@ -372,7 +374,6 @@ class System
      * checks if User is logged in over `USER_ID` and `SESSION_ID`
      *
      * @return bool
-     * @throws Exception
      */
     public function isLoggedIn()
     {
@@ -539,7 +540,6 @@ class System
      * @param $EMAIL
      *
      * @return bool
-     * @throws Exception
      */
     public function sendEmailVerification($USER_ID, $EMAIL)
     {
@@ -551,9 +551,13 @@ class System
                                       ]
         );
         if (isset($EMAILS[0])) {
-            $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
-            if (new DateTime() < $TIMEOUT) {
-                return true;
+            try {
+                $TIMEOUT = new DateTime($EMAILS[0]['TIMEOUT']);
+                if (new DateTime() < $TIMEOUT) {
+                    return true;
+                }
+            } catch (Exception $e) {
+                // exception handling. maybe
             }
         }
 
