@@ -6,16 +6,22 @@
         <div id="player-info-profile" class="invisible">
             <div id="player-info-profile-header">
                 <span style="color: <?= $System->User->getTitleColor() ?>"><?= $System->User->getTitle() ?></span>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/factions/logo_<?= $System->User->getFactionName(
-                ) ?>.png"
-                     width="37" height="20" />
+                <img alt='faction_logo'
+                     src="<?= PROJECT_HTTP_ROOT ?>resources/images/factions/logo_<?= $System->User->getFactionName(
+                     ) ?>.png"
+                     width="37"
+                     height="20" />
             </div><!-- /player-info-profile-header -->
 
             <div id="player-info-profile-body">
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif" width="94" height="94" class="pull-left" />
+                <img alt='player_avatar'
+                     src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif"
+                     width="94"
+                     height="94"
+                     class="pull-left" />
 
                 <ul class="pull-right">
-                    <li><p><?= $System->User->PLAYER_NAME ?></p></li>
+                    <li><p><?= $System->User->__get('PLAYER_NAME') ?></p></li>
                     <li><p>Beta Tester<span class="bold"> [BETA]</span></p></li>
                     <li><p class="bold">TOP 15</p></li>
                 </ul>
@@ -25,18 +31,18 @@
 
         <!-- Player name (BIG) -->
         <div id="player-info-name">
-            <p class="bold title"><?= $System->User->PLAYER_NAME ?></p>
+            <p class="bold title"><?= $System->User->__get('PLAYER_NAME') ?></p>
         </div> <!-- /player-info-name -->
 
         <!-- Last box -->
         <div id="player-info-equipment" class="invisible">
             <div id="player-info-equipment-body">
                 <p><?= $System->__('BODY_TEXT_DAMAGE') ?>: <span
-                            id="ship-damage"><?= $System->User->CONFIG_1_DMG ?></span></p>
+                            id="ship-damage"><?= $System->User->__get('CONFIG_1_DMG') ?></span></p>
                 <p><?= $System->__('BODY_TEXT_SHIELD') ?>: <span
-                            id="ship-shield"><?= $System->User->CONFIG_1_SHIELD ?></span></p>
+                            id="ship-shield"><?= $System->User->__get('CONFIG_1_SHIELD') ?></span></p>
                 <p><?= $System->__('BODY_TEXT_SPEED') ?>: <span
-                            id="ship-speed"><?= $System->User->CONFIG_1_SPEED ?></span></p>
+                            id="ship-speed"><?= $System->User->__get('CONFIG_1_SPEED') ?></span></p>
                 <p><?= $System->__('BODY_TEXT_HP') ?>: <span
                             id="ship-health"><?= $System->User->Hangars->CURRENT_HANGAR->SHIP_HP ?></span></p>
             </div>  <!-- /player-info-equipment-body -->
@@ -46,12 +52,12 @@
 
     <div id="player-ship-box">
         <a target="_blank" href="./internalMapRevolution">
-            <img src="<?= $System->User->getShipImage() ?>" id="ship" />
+            <img alt='ship' src="<?= $System->User->getShipImage() ?>" id="ship" />
         </a>
         <?php
         if ( !$System->User->hasPet()) {
             ?>
-            <img src="<?= PROJECT_HTTP_ROOT ?>/resources/images/items/pet/pet10-15_top.png" id="pet" />
+            <img alt='pet' src="<?= PROJECT_HTTP_ROOT ?>/resources/images/items/pet/pet10-15_top.png" id="pet" />
             <?php
         }
         ?>
@@ -98,11 +104,11 @@
                     </tr>
                     <tr>
                         <td class="bold">--</td>
-                        <td class="bold">#<?= $System->User->RANKING ?></td>
+                        <td class="bold">#<?= $System->User->__get('RANKING') ?></td>
                     </tr>
                 </table>
                 <div id="level-progress" class="progress">
-                    <span><?= $System->__(BODY_TEXT_STATS_LEVEL) ?> <?= $System->User->LVL ?></span>
+                    <span><?= $System->__('BODY_TEXT_STATS_LEVEL') ?> <?= $System->User->__get('LVL') ?></span>
                     <div class="progress-bar" role="progressbar"
                          style="width: <?= $System->User->getLevelProgress() ?>%;"></div>
                 </div>
@@ -189,17 +195,20 @@
             <!-- PILOT PROFILE TAB -->
             <div role="tabpanel" class="tab-pane" id="pilot-profile">
                 <div id="pilot-profile-user" class="tab-content">
-                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif" width="94" height="94"
+                    <img alt='player_avatar'
+                         src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif"
+                         width="94"
+                         height="94"
                          class="pull-left" />
                     <div id="pilot-profile-user-column1" class="pilot-profile-column">
                         <table>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_NAME') ?></th>
-                                <td><?= $System->User->PLAYER_NAME ?></td>
+                                <td><?= $System->User->__get('PLAYER_NAME') ?></td>
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_SINCE') ?></th>
-                                <td><?= $System->User->REGISTERED ?></td>
+                                <td><?= $System->User->__get('REGISTERED') ?></td>
                             </tr>
                             <tr>
                                 <th href="#" data-toggle="modal"
@@ -219,19 +228,24 @@
                         <table>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_ORIGIN') ?></th>
-                                <td><?= $System->User->COUNTRY_NAME !=
-                                        null ? $System->User->COUNTRY_NAME : '- No Informations -' ?></td>
+                                <td><?= $System->User->__get('COUNTRY_NAME') != null ? $System->User->__get(
+                                        'COUNTRY_NAME'
+                                    ) : '- No Informations -' ?></td>
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_AGE') ?></th>
                                 <?php
                                 $age = '- No Informations -';
 
-                                if (isset($System->User->BIRTHDATE)) {
-                                    $today     = new DateTime();
-                                    $birthdate = new DateTime($System->User->BIRTHDATE);
-                                    $interval  = $today->diff($birthdate);
-                                    $age       = $interval->y;
+                                if ($System->User->__get('GENDER')) {
+                                    try {
+                                        $today = new DateTime();
+                                        $birthdate = new DateTime($System->User->__get('GENDER'));
+                                        $interval = $today->diff($birthdate);
+                                        $age = $interval->y;
+                                    } catch (Exception $e) {
+                                        // YOLO handling
+                                    }
                                 }
 
                                 ?>
@@ -244,13 +258,15 @@
                                 <?php
                                 $gender = '- No Informations -';
 
-                                if ($System->User->GENDER != 0) {
-                                    if ($System->User->GENDER == 1) {
+                                if ($System->User->__get('GENDER') != 0) {
+                                    if ($System->User->__get('GENDER') == 1) {
                                         $gender = 'Male';
-                                    } else if ($System->User->GENDER == 2) {
-                                        $gender = 'Female';
                                     } else {
-                                        $gender = 'Other';
+                                        if ($System->User->__get('GENDER') == 2) {
+                                            $gender = 'Female';
+                                        } else {
+                                            $gender = 'Other';
+                                        }
                                     }
                                 }
                                 ?>
@@ -345,10 +361,11 @@
 
         <div id="logbook-entries" class="custom-scroll" dir="rtl">
             <?php
-            $logs = $System->logging->getLogs($System->User->USER_ID,
-                                              $System->User->PLAYER_ID,
-                                              $System->User->SERVER_DB,
-                                              LogType::NORMAL
+            $logs = $System->logging->getLogs(
+                $System->User->__get('USER_ID'),
+                $System->User->__get('PLAYER_ID'),
+                $System->User->__get('SERVER_DB'),
+                LogType::NORMAL
             );
 
             // if($System->User->USER_ID == 677) $System->User->fixDB();
