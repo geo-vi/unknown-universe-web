@@ -24,7 +24,7 @@ if (isset($_POST['action']) &&
 
 ?>
 
-<script src="../resources/ckeditor/ckeditor.js"></script>
+<script src="../resources/js/ckeditor/ckeditor.js"></script>
 
 <div class="modal fade" id="composeMessageModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -274,8 +274,8 @@ if (isset($_POST['action']) &&
     </div>
 </div>
 
-<!--suppress JSUnresolvedFunction -->
 <script type="text/javascript">
+    ClassicEditor.create(document.querySelector('#msgContent'));
 
     $('#send').click(function () {
         $.ajax({
@@ -331,6 +331,4 @@ if (isset($_POST['action']) &&
             }
         });
     });
-
-    CKEDITOR.replace('editornew');
 </script>

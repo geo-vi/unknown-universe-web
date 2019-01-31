@@ -72,7 +72,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
     }
 }
 ?>
-<script src="../resources/ckeditor/ckeditor.js"></script>
+<script src="../resources/js/ckeditor/ckeditor.js"></script>
 <div class="page-content clearfix">
     <div class="col-xs-3 admin-menu-container">
         <ul class="nav nav-tabs" role="tablist">
