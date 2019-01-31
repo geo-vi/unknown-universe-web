@@ -66,8 +66,10 @@ class User
             return $this->PlayerData[$property];
         } elseif (isset($this->PlayerExtraData[$property])) {
             return $this->PlayerExtraData[$property];
-        } else {
+        } elseif (isset($this->ShipConfigData[$property])) {
             return $this->ShipConfigData[$property];
+        } else {
+            return false;
         }
     }
 
