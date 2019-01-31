@@ -20,7 +20,7 @@
 
         <?php
 
-        if ($System->isLoggedIn() && $System->routing->login_req)
+        if ($System->routing->login_req)
         {
         ?>
 
