@@ -58,7 +58,7 @@ class AdminItem extends AbstractItem
                 [$this->PRICE * $Amount, $PlayerID, $UserID]);
         }
 
-        $ITEM_DATA = $this->getITEMDATA();
+        $ITEM_DATA = $this->getItemData();
         if (strpos($this->LOOT_ID, 'resource_') !== false) {
             global $System;
             if (strpos($this->LOOT_ID, 'resource_booty-key') !== false) {

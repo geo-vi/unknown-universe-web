@@ -3,9 +3,14 @@
 namespace shop;
 
 use DB\MySQL;
+use Hangar\Hangar;
 
 class Ship extends AbstractItem
 {
+    /* @var Hangar */
+    public $Hangar;
+    public $hasShip = false;
+
     function __construct($ItemData, MySQL $MySQL)
     {
         $this->mysql = $MySQL;
@@ -42,24 +47,52 @@ class Ship extends AbstractItem
             "Rockets"   => $ItemData['rockets'],
             "Cargo"     => $ItemData['cargo'],
         ];
+
+        $this->Hangars = $System->User->Hangars->getHangars();
+        foreach ($this->Hangars as $Hangar) {
+            if ($Hangar->SHIP_ID == $this->ID) {
+                $this->hasShip = true;
+                break;
+            }
+        }
     }
 
     public function buy($UserID, $PlayerID, $Amount = 1)
     {
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         } else {
-            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         }
 
         global $System;
         $Hangar_Count = $System->User->Hangars->getHangars(true);
-        $SHIP_DATA    = $this->getITEMDATA();
+        $SHIP_DATA    = $this->getItemData();
+
         return $this->mysql->QUERY(
             'INSERT INTO player_hangar (USER_ID, PLAYER_ID, SHIP_ID, SHIP_DESIGN, SHIP_HP, HANGAR_COUNT) VALUES (?,?,?,?,?,?)',
-            [$UserID, $PlayerID, $this->ID, $this->ID, $SHIP_DATA['ship_hp'], $Hangar_Count]
+            [
+                $UserID,
+                $PlayerID,
+                $this->ID,
+                $this->ID,
+                $SHIP_DATA['ship_hp'],
+                $Hangar_Count,
+            ]
         );
     }
 }

@@ -64,7 +64,7 @@ class AdminShip extends AbstractItem
 
         global $System;
         $Hangar_Count = $System->User->Hangars->getHangars(true);
-        $SHIP_DATA    = $this->getITEMDATA();
+        $SHIP_DATA    = $this->getItemData();
         return $this->mysql->QUERY(
             'INSERT INTO player_hangar (USER_ID, PLAYER_ID, SHIP_ID, SHIP_DESIGN, SHIP_HP, HANGAR_COUNT) VALUES (?,?,?,?,?,?)',
             [$UserID, $PlayerID, $this->ID, $this->ID, $SHIP_DATA['ship_hp'], $Hangar_Count]
