@@ -6831,6 +6831,14 @@ body.internalShop .shop-body .shop-header ul.nav li.category-equipables a:before
   background-image: url("../images/internalShop/weapons.png");
   width: 40px;
 }
+body.internalShop .shop-body .shop-header ul.nav li.category-extras a:before {
+  background-image: url("../images/internalShop/extra.png");
+  width: 40px;
+}
+body.internalShop .shop-body .shop-header ul.nav li.category-generator a:before {
+  background-image: url("../images/internalShop/generator.png");
+  width: 40px;
+}
 body.internalShop .shop-body .shop-header ul.nav li.category-drones a:before {
   background-image: url("../images/internalShop/drones.png");
   width: 40px;
@@ -6845,6 +6853,14 @@ body.internalShop .shop-body .shop-header ul.nav li.category-booster a:before {
 }
 body.internalShop .shop-body .shop-header ul.nav li.category-pet a:before {
   background-image: url("../images/internalShop/pet.png");
+  width: 40px;
+}
+body.internalShop .shop-body .shop-header ul.nav li.category-adminitem a:before {
+  background-image: url("../images/internalShop/tetrathrin.png");
+  width: 40px;
+}
+body.internalShop .shop-body .shop-header ul.nav li.category-adminship a:before {
+  background-image: url("../images/internalShop/indoctrineoil.png");
   width: 40px;
 }
 body.internalShop .shop-body .shop-header ul.nav li a {
