@@ -976,9 +976,16 @@ class User
     // + INFORMATIONAL FUNCTIONS                                +
     // +--------------------------------------------------------+
 
-    public function messageInfo($arg)
+    public function messageInfo($msgID)
     {
-        return $this->mysql->QUERY('SELECT * FROM player_messages WHERE ID = ?', [$arg]);
+        $msg = $this->mysql->QUERY(
+            'SELECT SENDER, DATE, HEADER, MESSAGE FROM player_messages WHERE ID = ?',
+            [$msgID]
+        );
+
+        if ($msg) return $msg[0];
+
+        return false;
     }
 
     public function massMessage($message)
@@ -1314,14 +1321,14 @@ class User
 
     public function getName($arg)
     {
-        $do = $this->mysql->QUERY('SELECT * FROM player_data WHERE USER_ID = ?', [$arg]);
+        $do = $this->mysql->QUERY('SELECT PLAYER_NAME FROM player_data WHERE USER_ID = ?', [$arg]);
 
-        return $do[0]['PLAYER_NAME'];
+        return $do ? $do[0]['PLAYER_NAME'] : false;
     }
 
     public function getShipName($id)
     {
-        $ship = $this->mysql->QUERY('SELECT * FROM server_ships WHERE ship_id = ?', [$id]);
+        $ship = $this->mysql->QUERY('SELECT name FROM server_ships WHERE ship_id = ?', [$id]);
 
         return $ship[0]['name'];
     }
