@@ -22,7 +22,6 @@ function sendCoreRequest(handler, action, params, successCallback = null, errorC
         error: function (errorData, _, errorThrown) {
             if (errorCallback !== null) errorCallback();
             if (data !== null) {
-                console.debug(errorData);
                 swal(
                     errorThrown + '!',
                     errorData.responseJSON.message || errorThrown,

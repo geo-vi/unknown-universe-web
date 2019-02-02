@@ -34,7 +34,7 @@ class shop {
             let params = {
                 "CATEGORY": shop.category
             };
-            shop.sendRequest('render', 'load', JSON.stringify(params));
+            shop.sendRequest('render', 'load', params);
         } else {
             if (data !== null) {
                 shop.data = data;
@@ -44,9 +44,16 @@ class shop {
 
             let ITEMS = shop.data;
             ITEMS.forEach(function (ITEM, INDEX) {
-                if (ITEM.SHOW_FUEL || ITEM.SHOW_CATS ||ITEM.HAS_PET || ITEM.HAS_MAX_IRIS || ITEM.NAME === 'Flax' || ITEM.hasShip || ITEM.hasDesign
-                    || ITEM.hasFormation)
-                {
+                if (ITEM.SHOW_FUEL ||
+                    ITEM.SHOW_CATS ||
+                    ITEM.HAS_PET ||
+                    ITEM.HAS_MAX_IRIS ||
+                    ITEM.NAME ===
+                    'Flax' ||
+                    ITEM.hasShip ||
+                    ITEM.hasDesign
+                    ||
+                    ITEM.hasFormation) {
 
                 } else {
                     let ItemDIV = $('<div>').addClass('item').attr('data-item-id', INDEX),
@@ -56,7 +63,9 @@ class shop {
                     let IMG_URL = ITEM.IMAGE_URL;
                     $(ItemIMG).attr('style', 'background-image: url("' + IMG_URL + '")');
 
-                    let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
+                    let CURRENCY = (
+                        ITEM.CURRENCY === 1 ? "C" : "U"
+                    );
                     $(ItemPRICE).text(parseFloat(ITEM.PRICE).format(2, 3, ',', '.') + CURRENCY);
 
                     $('.item-list .mCSB_container').append($(ItemDIV).append(ItemIMG).append(ItemPRICE));
@@ -85,7 +94,7 @@ class shop {
                 $('.single-item .single-item-content .single-item-buy-menu .amount-select').hide();
             }
 
-            if(ITEM.IS_PET){
+            if (ITEM.IS_PET) {
                 $('.single-item .single-item-content .pet-name').show();
                 $('.single-item .single-item-content .pet-name-label').show();
             } else {
@@ -95,18 +104,30 @@ class shop {
 
             $('.single-item .single-item-content .single-item-description h3').text(ITEM.NAME);
             $('.single-item .single-item-content .single-item-description p').text(ITEM.DESCRIPTION);
-            $('.single-item .single-item-image').append($('<img>').attr('src', ITEM.SHOP_IMAGE_URL).attr('alt', ITEM.NAME));
+            $('.single-item .single-item-image').append($('<img>').attr('src', ITEM.SHOP_IMAGE_URL).attr(
+                'alt',
+                ITEM.NAME
+            ));
 
-            let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
+            let CURRENCY = (
+                ITEM.CURRENCY === 1 ? "C" : "U"
+            );
 
-            $('.single-item .single-item-content .single-item-buy-menu .item-price').text(parseFloat(ITEM.PRICE).format(2, 0, ',', '.') + CURRENCY);
+            $('.single-item .single-item-content .single-item-buy-menu .item-price').text(parseFloat(ITEM.PRICE).format(
+                2,
+                0,
+                ',',
+                '.'
+            ) + CURRENCY);
             $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id', ITEM_ID);
 
             for (let ATTRIBUTE in ITEM.ATTRIBUTES) {
                 let ATTR_NAME = ATTRIBUTE,
                     ATTR_VAL = ITEM.ATTRIBUTES[ATTRIBUTE];
                 if (ATTR_VAL === 'NULL' || ATTR_VAL === null) continue;
-                $('.single-item .single-item-content .single-item-description ul').append($('<li>').text(ATTR_NAME + ": " + ATTR_VAL));
+                $('.single-item .single-item-content .single-item-description ul').append($('<li>').text(ATTR_NAME +
+                                                                                                         ": " +
+                                                                                                         ATTR_VAL));
             }
         });
 
@@ -121,8 +142,13 @@ class shop {
             let ITEM_ID = $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id'),
                 ITEM = shop.data[ITEM_ID],
                 AMOUNT = parseInt($(this).val());
-            let CURRENCY = (ITEM.CURRENCY === 1 ? "C" : "U");
-            $('.single-item .single-item-content .single-item-buy-menu .item-price').text((ITEM.PRICE * AMOUNT).format(2, 0, ',', '.') + CURRENCY);
+            let CURRENCY = (
+                ITEM.CURRENCY === 1 ? "C" : "U"
+            );
+            $('.single-item .single-item-content .single-item-buy-menu .item-price').text((
+                                                                                              ITEM.PRICE * AMOUNT
+                                                                                          ).format(2, 0, ',', '.') +
+                                                                                          CURRENCY);
         });
 
 
@@ -160,7 +186,7 @@ class shop {
             let params = {
                 "CATEGORY": shop.category
             };
-            shop.sendRequest('reload', 'load', JSON.stringify(params));
+            shop.sendRequest('reload', 'load', params);
         } else {
             shop.data = data;
             shop.render();
@@ -196,19 +222,19 @@ class shop {
                 "ITEM_ID": ITEM_ID,
                 "AMOUNT": AMOUNT,
             };
-            shop.sendRequest('buyItem', 'buy', JSON.stringify(params));
+            shop.sendRequest('buyItem', 'buy', params);
         } else {
-            if (data.success) {
-                swal("Success!", data.msg, "success");
+            if (data.status === "success") {
+                swal("Success!", data.message, "success");
                 if (shop.category === 'ammo' || shop.category === 'drones' || shop.category === 'pet'
-                    || shop.category ==='gear' || shop.category === 'protocols' || shop.category==='pet_fuel'
-                || shop.category ==='generator' || shop.category === 'extra' || shop.category === 'notlisted') {
+                    || shop.category === 'gear' || shop.category === 'protocols' || shop.category === 'pet_fuel'
+                    || shop.category === 'generator' || shop.category === 'extra' || shop.category === 'notlisted') {
                     shop.sendPacket(shop.category);
                     shop.reload();
                     setTimeout(location.reload.bind(location), 1000);
                 }
             } else {
-                swal("Error!", data.error_msg, "error");
+                swal("Error!", data.message, "error");
             }
         }
     }
@@ -244,8 +270,8 @@ class shop {
      */
     static sendRequest(callback, action, params = "") {
         let data = {
-            'action': action,
             'handler': 'shop',
+            'action': action,
             'params': params
         };
 
@@ -257,9 +283,19 @@ class shop {
             xhrFields: {
                 withCredentials: true
             },
-            success: function (resultData) {
-                shop[callback](resultData);
-            }
+            success: function (data, statusText) {
+                data.status = statusText;
+                shop[callback](data);
+            },
+            error: (errorData, _, errorThrown) => {
+                if (data !== null) {
+                    swal(
+                        errorThrown + '!',
+                        errorData.responseJSON.message || errorThrown,
+                        'error'
+                    );
+                }
+            },
         });
     }
 }

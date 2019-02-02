@@ -522,7 +522,7 @@ if (isset($_GET['sub_action']) && !empty($_GET['sub_action'])) {
                         <select name="code_reward" class="form-ctrl">
                             <option style="text-align:right;color:black;" selected="selected" hidden>Reward</option>
                             <option style="text-align:right;color:black;" value="uridium">Uridium</option>
-                            <?php $cat = $System->Shop->getServerItemsCat();
+                            <?php $cat = $System->Shop->getSpecialRewards();
                             foreach ($cat as $cats => $c) { ?>
                                 <option style="text-align:right;color:black;"
                                         value="<?= $c['ID'] ?>"><?= $c['NAME']; ?></option>
