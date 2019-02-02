@@ -272,6 +272,7 @@ CREATE TABLE IF NOT EXISTS `player_hangar` (
   `SHIP_X` int(11) NOT NULL,
   `SHIP_Y` int(11) NOT NULL,
   `IN_EQUIPMENT_ZONE` tinyint(1) NOT NULL DEFAULT "1",
+  `PET_ID` INT(11) NOT NULL
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -500,14 +501,15 @@ CREATE TABLE IF NOT EXISTS `server_auctions` (
 
 -- Dumping structure for table do_server_ge1.server_auctions_settings
 CREATE TABLE IF NOT EXISTS `server_auctions_settings` (
+  `ID` int(11) NOT NULL,
   `LAST_HOURLY` text NOT NULL,
   `LAST_DAILY` text NOT NULL,
   `LAST_WEEKLY` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Dumping data for table do_server_ge1.server_auctions_settings: ~0 rows (approximately)
-REPLACE INTO `server_auctions_settings` (`LAST_HOURLY`, `LAST_DAILY`, `LAST_WEEKLY`) VALUES
-	("2017-10-04 18:00:00.000000", "2017-09-30 00:00:00", "2017-09-29 16:00:00");
+REPLACE INTO `server_auctions_settings` (`ID`, `LAST_HOURLY`, `LAST_DAILY`, `LAST_WEEKLY`) VALUES
+	(1, "2017-10-04 18:00:00.000000", "2017-09-30 00:00:00", "2017-09-29 16:00:00");
 
 -- Dumping structure for table do_server_ge1.server_beta_info
 CREATE TABLE IF NOT EXISTS `server_beta_info` (
