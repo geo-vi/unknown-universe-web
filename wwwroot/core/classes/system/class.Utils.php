@@ -11,6 +11,7 @@ class Utils
      * @param string $View
      *
      * @param string $Level
+     *
      * @return string
      */
     public static function getPathByLootId($LootID, $View = "top", $Level = "")
@@ -40,7 +41,25 @@ class Utils
      *
      * @param string $msg
      */
-    public  static function dieM($msg) {
+    public static function dieM($msg)
+    {
+        die(json_encode(['message' => $msg]));
+    }
+
+    /**
+     * shortcut to response 400 + die + json_encode
+     * with 'message' as the only field
+     *
+     * `http_response_code($code);`
+     *
+     * `die(json_encode(['message' => $msg]))`
+     *
+     * @param int    $code
+     * @param string $msg
+     */
+    public static function dieE($code, $msg)
+    {
+        http_response_code($code);
         die(json_encode(['message' => $msg]));
     }
 
