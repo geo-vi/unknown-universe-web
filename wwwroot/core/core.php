@@ -60,6 +60,7 @@ $System->routing->add("internalCalendar", "internalCalendar", true);
 $System->routing->add("internalAdmin", "internalAdmin", true, true, true, 21);
 $System->routing->add("internalAdminEdit", "internalAdminEdit", true, true, true, 21);
 $System->routing->add("internalAdminEditItems", "internalAdminEditItems", true, true, true, 21);
+$System->routing->add("internalMapEditor", "internalMapEditor", true, true, true, 21);
 
 $System->routing->route();
 
