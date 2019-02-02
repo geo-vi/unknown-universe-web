@@ -82,7 +82,7 @@ class shop {
      *
      */
     static activateShop() {
-        $('.item-list .item').click(() => {
+        $('.item-list .item').click(function (event) {
             let ITEM_ID = $(this).data('item-id'),
                 ITEM = shop.data[ITEM_ID];
 
@@ -133,7 +133,7 @@ class shop {
             }
         });
 
-        $('.amount-select .add-button').click(() => {
+        $('.amount-select .add-button').click(function (event) {
             const QTY = $('.amount-select .item-quantity');
             let TO_ADD = parseInt($(this).data('add')),
                 CURRENT = parseInt(QTY.val());
@@ -141,7 +141,7 @@ class shop {
             QTY.val(TO_ADD + CURRENT).change();
         });
 
-        $('.amount-select .item-quantity').on('change', () => {
+        $('.amount-select .item-quantity').on('change', function () {
             let ITEM_ID = $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id'),
                 ITEM = shop.data[ITEM_ID],
                 AMOUNT = parseInt($(this).val());
@@ -155,7 +155,7 @@ class shop {
         });
 
 
-        $('.single-item .single-item-content .single-item-buy-menu .buy-btn').click(() => {
+        $('.single-item .single-item-content .single-item-buy-menu .buy-btn').click(function (event) {
             let ITEM_ID = $(this).data('item-id');
             if (ITEM_ID !== undefined) {
                 shop.buyItem(null, shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val());
