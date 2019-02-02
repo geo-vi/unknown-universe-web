@@ -3,14 +3,11 @@
 namespace shop;
 
 use DB\MySQL;
+use User;
+use Utils;
 
 class Shop
 {
-
-    /** @var User */
-    private $User;
-    /** @var MySQL */
-    private $mysql;
 
     public $CATEGORIES = [
         "SHIPS"      => [
@@ -29,30 +26,36 @@ class Shop
                 "CATEGORY" => [
                     'glue'      => 'OR',
                     'operation' => '=',
-                    'items'     => ["'laser'", "'heavy'"],
+                    'items'     => [
+                        "'laser'",
+                        "'heavy'",
+                    ],
                 ],
                 "LOOT_ID"  => [
                     'glue'      => 'AND',
                     'operation' => '!=',
-                    'items'     => ["'equipment_weapon_laser_lf-4'", "''"],
+                    'items'     => [
+                        "'equipment_weapon_laser_lf-4'",
+                        "''",
+                    ],
                 ],
             ],
             "order" => "CATEGORY DESC,ID DESC",
         ],
-        "EXTRAS"    =>  [
+        "EXTRAS"     => [
             "type"  => "shop\Item",
             "table" => "items",
             "id"    => "ID",
             "where" => [
-                 "CATEGORY" => "'extra'",
-                 "LOOT_ID" => [
-                    'glue'  => 'AND',
+                "CATEGORY" => "'extra'",
+                "LOOT_ID"  => [
+                    'glue'      => 'AND',
                     'operation' => '!=',
                     'items'     => ["''"],
                 ],
             ],
         ],
-        "GENERATOR"    =>  [
+        "GENERATOR"  => [
             "type"  => "shop\Item",
             "table" => "items",
             "id"    => "ID",
@@ -65,7 +68,23 @@ class Shop
             "table" => "items",
             "id"    => "ID",
             "where" => [
-                "LOOT_ID" => ["'drone_iris'", "'drone_flax'", "'drone_formation_f-01-tu'", "'drone_formation_f-02-ar'", "'drone_formation_f-03-la'", "'drone_formation_f-04-st'", "'drone_formation_f-05-pi'", "'drone_formation_f-06-da'", "'drone_formation_f-07-di'", "'drone_formation_f-08-ch'", "'drone_formation_f-09-mo'", "'drone_formation_f-10-cr'", "'drone_formation_f-11-he'", "'drone_formation_f-12-ba'", "'drone_formation_f-13-bt'"],
+                "LOOT_ID" => [
+                    "'drone_iris'",
+                    "'drone_flax'",
+                    "'drone_formation_f-01-tu'",
+                    "'drone_formation_f-02-ar'",
+                    "'drone_formation_f-03-la'",
+                    "'drone_formation_f-04-st'",
+                    "'drone_formation_f-05-pi'",
+                    "'drone_formation_f-06-da'",
+                    "'drone_formation_f-07-di'",
+                    "'drone_formation_f-08-ch'",
+                    "'drone_formation_f-09-mo'",
+                    "'drone_formation_f-10-cr'",
+                    "'drone_formation_f-11-he'",
+                    "'drone_formation_f-12-ba'",
+                    "'drone_formation_f-13-bt'",
+                ],
             ],
             "order" => "CATEGORY ASC,ID DESC",
         ],
@@ -90,7 +109,12 @@ class Shop
             "table" => "items",
             "id"    => "ID",
             "where" => [
-                "CATEGORY" => ["'pet'","'pet_fuel'","'gear'", "'protocols'"],
+                "CATEGORY" => [
+                    "'pet'",
+                    "'pet_fuel'",
+                    "'gear'",
+                    "'protocols'",
+                ],
             ],
         ],
         "DESIGNS"    => [
@@ -101,29 +125,44 @@ class Shop
                 "inShop" => 1,
             ],
         ],
-        "ADMINITEM"     => [
+        "ADMINITEM"  => [
             "type"  => "shop\Item",
             "table" => "items",
             "id"    => "ID",
-            "where" =>  [
-                "LOOT_ID"  => [
+            "where" => [
+                "LOOT_ID" => [
                     'glue'      => 'OR',
                     'operation' => '=',
-                    'items'     => ["'drone_designs_hercules'", "'drone_designs_havoc'", "'equipment_weapon_laser_lf-4'",
-                        "'drone_apis'", "'drone_zeus'", "'ammunition_laser_rsb-75'", "'ammunition_laser_ucb-100'"],
+                    'items'     => [
+                        "'drone_designs_hercules'",
+                        "'drone_designs_havoc'",
+                        "'equipment_weapon_laser_lf-4'",
+                        "'drone_apis'",
+                        "'drone_zeus'",
+                        "'ammunition_laser_rsb-75'",
+                        "'ammunition_laser_ucb-100'",
+                    ],
                 ],
             ],
             "order" => "CATEGORY DESC,ID DESC",
         ],
-        "ADMINSHIP"     => [
+        "ADMINSHIP"  => [
             "type"  => "shop\Ship",
             "table" => "ships",
             "id"    => "ship_id",
             "where" => [
-                "ship_id" => ["'98'", "'109'", "'110'"],
+                "ship_id" => [
+                    "'98'",
+                    "'109'",
+                    "'110'",
+                ],
             ],
         ],
     ];
+    /** @var User */
+    private $User;
+    /** @var MySQL */
+    private $mysql;
 
     function __construct($user)
     {
@@ -150,38 +189,11 @@ class Shop
 
         if (isset($ITEM_DATA[0]) && !empty($ITEM_DATA[0])) {
             $ITEM_TYPE = $this->CATEGORIES[$CATEGORY]['type'];
+
             return new $ITEM_TYPE($ITEM_DATA[0], $this->mysql);
         } else {
             return null;
         }
-    }
-
-    public function getItemData($ID)
-    {
-        $do = $this->mysql->QUERY('SELECT * FROM server_items WHERE ID = ?', [$ID]);
-        return $do[0]['NAME'];
-    }
-
-    /**
-     * getItems Function
-     *
-     * @param $CATEGORY
-     *
-     * @return array
-     */
-    public function getItems($CATEGORY)
-    {
-        $QUERY_PARAMS = $this->CATEGORIES[$CATEGORY];
-        $QUERY        = $this->buildQuery($QUERY_PARAMS);
-        $ITEMS_RAW    = $this->mysql->QUERY($QUERY);
-        $ITEM_ARR     = [];
-        /** @var  Item $ITEM_TYPE */
-        $ITEM_TYPE = $this->CATEGORIES[$CATEGORY]['type'];
-        foreach ($ITEMS_RAW as $ITEM_DATA) {
-            $ITEM_ARR[] = new $ITEM_TYPE($ITEM_DATA, $this->mysql);
-        }
-
-        return $ITEM_ARR;
     }
 
     /**
@@ -202,18 +214,22 @@ class Shop
 
             $first = true;
             foreach ($PARAMS['where'] as $FIELD => $CASE) {
-                if (!$first) {
+                if ( !$first) {
                     $QUERY .= ' AND ';
                 }
                 $QUERY .= '(';
                 if (is_array($CASE)) {
                     if (isset($CASE['glue'])) {
                         if (isset($CASE['operation'])) {
-                            $QUERY .= $FIELD . ' ' . $CASE['operation'] . ' ' . implode(' ' . $CASE['glue'] . ' ' . $FIELD . ' ' . $CASE['operation'] . ' ',
-                                    $CASE['items']);
+                            $QUERY .= $FIELD . ' ' . $CASE['operation'] . ' ' . implode(
+                                    ' ' . $CASE['glue'] . ' ' . $FIELD . ' ' . $CASE['operation'] . ' ',
+                                    $CASE['items']
+                                );
                         } else {
-                            $QUERY .= $FIELD . " = " . implode(' ' . $CASE['glue'] . ' ' . $FIELD . ' = ',
-                                    $CASE['items']);
+                            $QUERY .= $FIELD . " = " . implode(
+                                    ' ' . $CASE['glue'] . ' ' . $FIELD . ' = ',
+                                    $CASE['items']
+                                );
                         }
                     } else {
                         $QUERY .= $FIELD . " = " . implode(' OR ' . $FIELD . ' = ', $CASE);
@@ -232,40 +248,85 @@ class Shop
         return $QUERY;
     }
 
-    /* Auction */
+    public function getItemInfo($id)
+    {
+        $items = $this->mysql->QUERY('SELECT * FROM server_items WHERE ID = ?', [$id]);
 
+        return $items;
+    }
+
+    public function getItemData($ID)
+    {
+        $do = $this->mysql->QUERY('SELECT * FROM server_items WHERE ID = ?', [$ID]);
+
+        return $do[0]['NAME'];
+    }
+
+    /**
+     * Returns a special list of items for the shop
+     *
+     * @param $CATEGORY
+     *
+     * @return array
+     */
+    public function getShopItems($CATEGORY)
+    {
+        $QUERY_PARAMS = $this->CATEGORIES[$CATEGORY];
+        $QUERY        = $this->buildQuery($QUERY_PARAMS);
+        $ITEMS_RAW    = $this->mysql->QUERY($QUERY);
+        $ITEM_ARR     = [];
+
+        /** @var  Item $ITEM_TYPE */
+        $ITEM_TYPE = $this->CATEGORIES[$CATEGORY]['type'];
+        foreach ($ITEMS_RAW as $ITEM_DATA) {
+            $ITEM_ARR[] = new $ITEM_TYPE($ITEM_DATA, $this->mysql);
+        }
+
+        return $ITEM_ARR;
+    }
+
+    /**
+     * Returns all items on the server
+     *
+     * @return array|bool
+     */
     public function getServerItems()
     {
         $items = $this->mysql->QUERY('SELECT * FROM server_items ORDER BY ID ASC');
+
         return $items;
     }
 
-    public function getServerItemsCat()
+    /**
+     * Returns all unique item categories
+     *
+     * @return array|bool
+     */
+    public function getItemCategories()
     {
-        $items = $this->mysql->QUERY('SELECT * FROM server_items WHERE CATEGORY = "ammo" OR CATEGORY = "notlisted" OR CATEGORY = "laser" AND LOOT_ID NOT IN ("equipment_weapon_laser_lf-2", "equipment_weapon_laser_mp-1", "equipment_weapon_laser_lf-1") ORDER BY ID ASC');
+        $items = $this->mysql->QUERY('SELECT DISTINCT CATEGORY FROM server_items');
+
         return $items;
     }
 
-    public function getServerCategories()
-    {
-        $items = $this->mysql->QUERY('SELECT * FROM server_items GROUP BY CATEGORY');
-        return $items   ;
-    }
+    // +-----------------------------------------------------------------------+
+    // + Auction                                                               +
+    // +-----------------------------------------------------------------------+
 
     public function checkTime()
     {
         $Today       = time();
-        $Time       = $this->getAuctionTime();
+        $Time        = $this->getAuctionTime();
         $PremiumDate = strtotime($Time);
 
-        $Premium     = (bool)0;
-
-        if ($PremiumDate < $Today){
-                print $PremiumDate; echo '<br>';
-                print $Today;
-                $this->updateAuction();
+        if ($PremiumDate < $Today) {
+            print $PremiumDate;
+            echo '<br>';
+            print $Today;
+            $this->updateAuction();
         } else {
-            print $PremiumDate; echo '<br>';
+            print $PremiumDate;
+            echo '<br>';
             print $Today;
         }
     }
@@ -273,41 +334,68 @@ class Shop
     public function getAuctionTime()
     {
         $hour = $this->mysql->QUERY('SELECT * FROM server_auctions_settings WHERE ID = 1');
+
         return $hour[0]['LAST_HOURLY'];
     }
 
     public function updateAuction()
     {
-        $update = $this->mysql->QUERY('UPDATE server_auctions_settings SET LAST_HOURLY = DATE_ADD(LAST_HOURLY, INTERVAL 1 HOUR)');
+        $update = $this->mysql->QUERY(
+            'UPDATE server_auctions_settings SET LAST_HOURLY = DATE_ADD(LAST_HOURLY, INTERVAL 1 HOUR)'
+        );
+
         return $update;
     }
 
-    public function newItem($item_id, $item_name, $item_desc, $item_quantity, $type)
+    public function addAuctionItem($item_id, $item_name, $item_desc, $item_quantity, $type)
     {
-        $additem = $this->mysql->QUERY('INSERT INTO server_auctions (ITEMID, ITEMNAME, ITEMQ, ITEM_DESC, TYPE, AUCTION_TYPE, MAX_BID, BID_USER_ID)
+        return $this->mysql->QUERY(
+            'INSERT INTO server_auctions (ITEMID, ITEMNAME, ITEMQ, ITEM_DESC, TYPE, AUCTION_TYPE, MAX_BID, BID_USER_ID)
         VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
-            [$item_id, $item_name, $item_quantity, $item_desc, $type, 1, 0, 0]);
-        ?>
-        <script>swal('Success!', 'Successfully added new item!', 'success');</script>
-        <?php
+            [
+                $item_id,
+                $item_name,
+                $item_quantity,
+                $item_desc,
+                $type,
+                1,
+                0,
+                0,
+            ]
+        );
     }
 
-    public function sAuctionInfo()
+    public function getAllAuctions()
     {
         $auction = $this->mysql->query("SELECT * FROM server_auctions ORDER BY ID ASC");
+
         return $auction;
     }
 
     public function submitBid($item_id, $bid)
     {
-        if($bid > $this->User->CREDITS || $this->User->CREDITS <= 0 )
-        {?>
-            <script>swal('Error!', 'You do not have enough credits for this!', 'error');</script>
-        <?php } else {
-            $this->mysql->QUERY("UPDATE player_data SET CREDITS = CREDITS - ? WHERE USER_ID = ?", [$bid, $this->User->USER_ID]);
-            $submit = $this->mysql->query("UPDATE server_auctions SET MAX_BID = ?, BID_USER_ID = ? WHERE ID = ?", [$bid, $this->User->USER_ID, $item_id]);
-            ?> <script>swal('Success!', 'Successfully placed bid!', 'success');</script>
-            <?php return $submit;
+        if ($bid > $this->User->__get('CREDITS') || $this->User->__get('CREDITS') <= 0) {
+            http_response_code(400);
+            Utils::dieM('You do not have enough credits for this!');
+        } else {
+            $this->mysql->QUERY(
+                "UPDATE player_data SET CREDITS = CREDITS - ? WHERE USER_ID = ?",
+                [
+                    $bid,
+                    $this->User->__get('USER_ID'),
+                ]
+            );
+            $submit = $this->mysql->query(
+                "UPDATE server_auctions SET MAX_BID = ?, BID_USER_ID = ? WHERE ID = ?",
+                [
+                    $bid,
+                    $this->User->__get('USER_ID'),
+                    $item_id,
+                ]
+            );
+
+            if ($submit) Utils::dieM('Successfully placed bid!');
+            else Utils::dieE(400, 'Something went wrong, try again.');
         }
     }
 
@@ -315,9 +403,19 @@ class Shop
     ********** VOUCHER CODE SYSTEM START ************
     */
 
-    public function getItemInfo($id)
+    /**
+     * Gets special items in the voucher reward category
+     *
+     * @return array|bool
+     */
+    public function getSpecialRewards()
     {
-        $items = $this->mysql->QUERY('SELECT * FROM server_items WHERE ID = ?', [$id]);
+        // TYPE 0: laser, TYPE 1: ammo
+        // ID 22: LF-2, ID 23: MP-1, ID 24: LF-1
+        $items = $this->mysql->QUERY(
+            'SELECT ID, NAME FROM server_items WHERE TYPE IN (0, 12) AND ID NOT IN (22, 23, 24) ORDER BY ID ASC'
+        );
+
         return $items;
     }
 
