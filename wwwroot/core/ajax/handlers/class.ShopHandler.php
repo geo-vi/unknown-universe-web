@@ -36,7 +36,7 @@ class ShopHandler extends AbstractHandler
         global $System;
         $CATEGORY = (string) strtoupper($this->params['CATEGORY']);
 
-        die(json_encode($System->Shop->getItems($CATEGORY)));
+        die(json_encode($System->Shop->getShopItems($CATEGORY)));
     }
 
     public function exec_buy()
@@ -162,7 +162,7 @@ class ShopHandler extends AbstractHandler
                 }
                 break;
             case 'DRONES':
-                $ITEM_DATA = $ITEM->getITEMDATA();
+                $ITEM_DATA = $ITEM->getItemData();
                 if ($ITEM_DATA['CATEGORY'] == 'drone') {
                     $DRONES = $System->User->hasDrones(true, true);
                     if ($ITEM->LOOT_ID != 'drone_zeus' && $ITEM->LOOT_ID != 'drone_apis') {
@@ -224,7 +224,7 @@ class ShopHandler extends AbstractHandler
                 break;
             case 'DESIGNS':
                 $DESIGNS   = json_decode($System->User->__get('SHIP_DESIGNS'), true);
-                $ITEM_DATA = $ITEM->getITEMDATA();
+                $ITEM_DATA = $ITEM->getItemData();
 
                 if (is_array($DESIGNS) && in_array($ITEM->ID, $DESIGNS[$ITEM_DATA['ShipId']])) {
                     $Success = false;
@@ -237,7 +237,7 @@ class ShopHandler extends AbstractHandler
                 }
                 break;
             case 'PET':
-                $ITEM_DATA = $ITEM->getITEMDATA();
+                $ITEM_DATA = $ITEM->getItemData();
                 if ($ITEM_DATA['CATEGORY'] == 'pet') {
                     if ( !$System->User->hasPet()) {
                         if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {

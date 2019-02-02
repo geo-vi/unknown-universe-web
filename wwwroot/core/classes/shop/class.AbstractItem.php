@@ -2,23 +2,24 @@
 
 namespace shop;
 
+
 use DB\MySQL;
 
 abstract class AbstractItem
 {
+    public  $ID;
+    public  $NAME;
+    public  $LOOT_ID;
+    public  $IMAGE_URL;
+    public  $SHOP_IMAGE_URL;
+    public  $AMOUNT_SELECTABLE = true;
+    public  $PRICE;
+    public  $CURRENCY;
+    public  $DESCRIPTION;
+    public  $ATTRIBUTES        = [];
+
     /** @var MySQL */
     protected $mysql;
-
-    public $ID;
-    public $NAME;
-    public $LOOT_ID;
-    public $IMAGE_URL;
-    public $SHOP_IMAGE_URL;
-    public $AMOUNT_SELECTABLE = true;
-    public $PRICE;
-    public $CURRENCY;
-    public $DESCRIPTION;
-    public $ATTRIBUTES = [];
     private $ITEM_DATA;
 
     /**
@@ -51,7 +52,7 @@ abstract class AbstractItem
     /**
      * @return mixed
      */
-    public function getITEMDATA()
+    public function getItemData()
     {
         return $this->ITEM_DATA;
     }
