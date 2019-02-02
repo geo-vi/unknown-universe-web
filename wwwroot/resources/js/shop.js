@@ -122,20 +122,23 @@ class shop {
             $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id', ITEM_ID);
 
             for (let ATTRIBUTE in ITEM.ATTRIBUTES) {
-                let ATTR_NAME = ATTRIBUTE,
-                    ATTR_VAL = ITEM.ATTRIBUTES[ATTRIBUTE];
-                if (ATTR_VAL === 'NULL' || ATTR_VAL === null) continue;
-                $('.single-item .single-item-content .single-item-description ul').append($('<li>').text(ATTR_NAME +
-                                                                                                         ": " +
-                                                                                                         ATTR_VAL));
+                if (ITEM.ATTRIBUTES.hasOwnProperty(ATTRIBUTE)) {
+                    let ATTR_NAME = ATTRIBUTE,
+                        ATTR_VAL = ITEM.ATTRIBUTES[ATTRIBUTE];
+                    if (ATTR_VAL === 'NULL' || ATTR_VAL === null) continue;
+                    $('.single-item .single-item-content .single-item-description ul').append($('<li>').text(ATTR_NAME +
+                                                                                                             ": " +
+                                                                                                             ATTR_VAL));
+                }
             }
         });
 
         $('.amount-select .add-button').click(function (event) {
+            const QTY = $('.amount-select .item-quantity');
             let TO_ADD = parseInt($(this).data('add')),
-                CURRENT = parseInt($('.amount-select .item-quantity').val());
+                CURRENT = parseInt(QTY.val());
 
-            $('.amount-select .item-quantity').val(TO_ADD + CURRENT).change();
+            QTY.val(TO_ADD + CURRENT).change();
         });
 
         $('.amount-select .item-quantity').on('change', function () {
@@ -230,9 +233,9 @@ class shop {
                     || shop.category === 'gear' || shop.category === 'protocols' || shop.category === 'pet_fuel'
                     || shop.category === 'generator' || shop.category === 'extra' || shop.category === 'notlisted') {
                     shop.sendPacket(shop.category);
-                    shop.reload();
-                    setTimeout(location.reload.bind(location), 1000);
                 }
+                shop.reload();
+                // setTimeout(location.reload.bind(location), 1000);
             } else {
                 swal("Error!", data.message, "error");
             }

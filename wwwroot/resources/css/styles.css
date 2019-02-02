@@ -6961,6 +6961,7 @@ body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single
   margin-right: 5px;
   margin-bottom: 2px;
   display: inline-block;
+  cursor: pointer;
 }
 body.internalShop .shop-body .shop-inner .single-item .single-item-inner .single-item-buy-menu .item-quantity {
   background-color: #7b7b7c57;

@@ -2,8 +2,8 @@
 <script>
     $(document).ready(function () {
         new shop(
-            <?=$System->User->USER_ID?>,
-            <?=$System->User->PLAYER_ID?>,
+            <?=$System->User->__get('USER_ID')?>,
+            <?=$System->User->__get('PLAYER_ID')?>,
             '<?=base64_encode($System->Server['SERVER_IP'])?>',
             <?=$System->User->hasPet() ? 1 : 0;?>,
             <?=$System->User->isAdmin()?>,
@@ -60,11 +60,15 @@
                     </div>
                     <div class="single-item-buy-menu col-xs-4">
                         <div class="amount-select">
-                            <a href="#" class="add-button" data-add="1">+1</a>
-                            <a href="#" class="add-button" data-add="10">+10</a>
-                            <a href="#" class="add-button" data-add="100">+100</a>
-                            <a href="#" class="add-button" data-add="1000">+1000</a>
-                            <input type="number" min="1" value="1" class="item-quantity form-control">
+                            <span class="add-button" data-add="1">+1</span>
+                            <span class="add-button" data-add="10">+10</span>
+                            <span class="add-button" data-add="100">+100</span>
+                            <span class="add-button" data-add="1000">+1000</span>
+                            <input type="number"
+                                   min="1"
+                                   value="1"
+                                   class="item-quantity form-control"
+                                   aria-label='quantity'>
                             <span class="item-quantity-label">(Item Amount)</span>
                         </div>
 
