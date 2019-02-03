@@ -158,6 +158,7 @@ class shop {
         $('.single-item .single-item-content .single-item-buy-menu .buy-btn').click(function (event) {
             let ITEM_ID = $(this).data('item-id');
             if (ITEM_ID !== undefined) {
+                if (ITEM_ID === 13 || ITEM_ID === 94) shop.category = 'DRONES';
                 shop.buyItem(null, shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val());
             }
         });
