@@ -2,12 +2,18 @@
     <nav id="userinfo-nav">
         <ul class="pull-left">
             <li>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_ID.png" width="16" height="13" alt="">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_ID.png"
+                     width="16"
+                     height="13"
+                     alt="">
                 <span>ID <?= $System->User->USER_ID ?></span>
             </li>
             <li>
                 <a href="./internalSettings">
-                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_settings.png" width="12" height="13" alt="">
+                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_settings.png"
+                         width="12"
+                         height="13"
+                         alt="">
                     <?= $System->__('NAV_TEXT_SETTINGS') ?>
                 </a>
             </li>
@@ -38,17 +44,26 @@
 
         <ul class="pull-right user-stats">
             <li>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_lvl.png" width="16" height="13" alt="">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_lvl.png"
+                     width="16"
+                     height="13"
+                     alt="">
                 <span data-toggle="tooltip" title="Level" class="lvl">LVL <?= $System->User->LVL ?></span>
             </li>
             <li>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_exp.png" width="16" height="13" alt="">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_exp.png"
+                     width="16"
+                     height="13"
+                     alt="">
                 <span data-toggle="tooltip"
                       title="Still need <?= $System->User->expToNextLevel() ?> EXP to next level"
                       class="exp">EXP <?= number_format($System->User->EXP, 0, '.', '.'); ?></span>
             </li>
             <li>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_hon.png" width="16" height="13" alt="">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/icons/icon_stats_hon.png"
+                     width="16"
+                     height="13"
+                     alt="">
                 <span class="hon">HON <?= number_format($System->User->HONOR, 0, '.', '.'); ?></span>
             </li>
             <li>
@@ -79,29 +94,24 @@
                     <a href="internalSkillTree"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
                 </li>
             </ul>
-            <ul class="inbox">
-                <li>
-                    <?php
-                    if ($System->User->hasMessages()) {
-                        ?>
-                        <a href="internalMessaging"><span id="icon"
-                                                            class="inbox_new"
-                                                            title="You have <?= $System->User->hasMessages(
-                                                            ) ?> new messages">(<?= $System->User->hasMessages(
-                                ) ?>)</span></a>
-                        <?php
-                    } else {
-                        ?>
-                        <a href="internalMessaging"><span id="icon"
-                                                            class="inbox_read"
-                                                            title="You have 0 new messages">(0)</span></a>
-                        <?php
-                    }
-                    ?>
-                </li>
-            </ul>
         </ul>
-
+        <?php
+        if ($System->User->hasMessages()) {
+            ?>
+            <a href="internalMessaging" class='inbox inbox-new'>
+                <span title="You have <?= $System->User->hasMessages() ?> new messages">
+                    (<?= $System->User->hasMessages() ?>)
+                </span>
+            </a>
+            <?php
+        } else {
+            ?>
+            <a href="internalMessaging" class='inbox inbox-empty'>
+                <span title="You have 0 new messages">(0)</span>
+            </a>
+            <?php
+        }
+        ?>
         <a class="main-logo" href="internalStart">
             <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/logos/main_logo.png" />
         </a>

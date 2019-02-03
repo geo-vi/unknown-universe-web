@@ -5054,6 +5054,22 @@ body header #main-nav ul li.header_button.header_normal_button {
 body header #main-nav ul li.header_button.header_disabled_button {
   background-position: -1px -1px;
 }
+body header #main-nav .inbox {
+  background: url('../images/icons/icons_mail_sprite.png') no-repeat;
+  padding-left: 24px;
+  position: relative;
+  left: -175px;
+  top: 65px;
+}
+body header #main-nav .inbox-empty:hover {
+  background-position: 0 -20px;
+}
+body header #main-nav .inbox-new {
+  background-position: 0 -40px;
+}
+body header #main-nav .inbox-new:hover {
+  background-position: 0 -20px;
+}
 body header .header-buttons {
   width: 367px;
   height: auto;
