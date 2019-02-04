@@ -4,7 +4,7 @@ namespace inventory;
 
 use DB\MySQL;
 
-class item
+class Item
 {
     public $ID;
     public $ITEM_ID;
@@ -14,18 +14,16 @@ class item
     public $CATEGORY;
     public $LVL;
     public $AMOUNT;
+    public $SELLING_CREDITS;
     public $ATTRIBUTES = [
         "DAMAGE"        => 0,
         "SHIELD"        => 0,
         "SHIELD_ABSORB" => 0,
         "SPEED"         => 0,
     ];
-
+    public $CONFIGS;
     /** @var MySQL * */
     private $mysql;
-
-    public $CONFIGS;
-
     private $ITEM_DATA;
 
     function __construct($ItemData, $mysql)
@@ -33,15 +31,15 @@ class item
         $this->mysql     = $mysql;
         $this->ITEM_DATA = $ItemData;
 
-        $this->ID              = (int)$ItemData['ID'];
-        $this->ITEM_ID         = (int)$ItemData['ITEM_ID'];
+        $this->ID              = (int) $ItemData['ID'];
+        $this->ITEM_ID         = (int) $ItemData['ITEM_ID'];
         $this->LOOT_ID         = $ItemData['LOOT_ID'];
         $this->ITEM_NAME       = $ItemData['NAME'];
-        $this->TYPE            = (int)$ItemData['ITEM_TYPE'];
+        $this->TYPE            = (int) $ItemData['ITEM_TYPE'];
         $this->CATEGORY        = $ItemData['CATEGORY'];
-        $this->LVL             = (int)$ItemData['ITEM_LVL'];
-        $this->AMOUNT          = (int)$ItemData['ITEM_AMOUNT'];
-        $this->SELLING_CREDITS = (int)$ItemData['SELLING_CREDITS'];
+        $this->LVL             = (int) $ItemData['ITEM_LVL'];
+        $this->AMOUNT          = (int) $ItemData['ITEM_AMOUNT'];
+        $this->SELLING_CREDITS = (int) $ItemData['SELLING_CREDITS'];
 
         //ITEM ATTRIBUTES
         $this->ATTRIBUTES['DAMAGE']             = $ItemData['DAMAGE'];
@@ -49,8 +47,11 @@ class item
         $this->ATTRIBUTES['SHIELD_ABSORBATION'] = $ItemData['SHIELD_ABSORBATION'];
         $this->ATTRIBUTES['SPEED']              = $ItemData['SPEED'];
 
-        $this->CONFIGS = $this->mysql->QUERY('SELECT ON_CONFIG_1, ON_CONFIG_2, ON_DRONE_ID_1, ON_DRONE_ID_2, ON_PET_1, ON_PET_2 
-                                      FROM player_equipment WHERE ID = ?', [$this->ID])[0];
+        $this->CONFIGS = $this->mysql->QUERY(
+            'SELECT ON_CONFIG_1, ON_CONFIG_2, ON_DRONE_ID_1, ON_DRONE_ID_2, ON_PET_1, ON_PET_2 
+                                      FROM player_equipment WHERE ID = ?',
+            [$this->ID]
+        )[0];
     }
 
 
@@ -88,7 +89,7 @@ class item
      */
     public function moveToEquipment($HangarID, $Config, $To)
     {
-        if (!isset($To['target'])) {
+        if ( !isset($To['target'])) {
             return false;
         }
         if ($this->isInUse($HangarID, $Config)) {
@@ -101,7 +102,7 @@ class item
                 $Location = 'ON_CONFIG_' . $Config;
                 break;
             case 'drone':
-                if (!isset($To['droneID'])) {
+                if ( !isset($To['droneID'])) {
                     return false;
                 }
                 $Location = 'ON_DRONE_ID_' . $Config;
@@ -116,7 +117,7 @@ class item
 
         $ConfigID = $Config;
         $Config   = json_decode($this->CONFIGS[$Location]);
-        if (!isset($Config->hangars[$HangarID])) {
+        if ( !isset($Config->hangars[$HangarID])) {
             $Config->hangars[] = $HangarID;
             array_values($Config->hangars);
             if ($toDrone) {
@@ -139,58 +140,14 @@ class item
             }
         }
 
-        return $this->mysql->QUERY('UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
-            [json_encode($Config), $this->ID]);
+        return $this->mysql->QUERY(
+            'UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
+            [
+                json_encode($Config),
+                $this->ID,
+            ]
+        );
     }
-
-    /**
-     * moveToInventory Function
-     * used to move The Item from equipment to the Inventory
-     *
-     * @param $HangarID
-     * @param $Config
-     *
-     * @return bool
-     */
-    public function moveToInventory($HangarID, $Config)
-    {
-        $Location = $this->isInUse($HangarID, $Config, true);
-        if (!$Location) {
-            return false;
-        }
-
-        $ConfigID = $Config;
-        $Config   = json_decode($this->CONFIGS[$Location]);
-        $Index    = array_search($HangarID, $Config->hangars);
-
-        if ($this->CATEGORY == 'drone_design') {
-            $this->mysql->QUERY(
-                'UPDATE player_drones SET DESIGN_' . $ConfigID . ' = 0 WHERE ID = ?',
-                [$Config->droneID[$Index]]
-            );
-        }
-
-        if (isset($Config->droneID)) {
-            unset($Config->droneID[$Index]);
-            if (!isset($Config->droneID[$Index])) {
-                $Config->droneID = array_values($Config->droneID);
-            } else {
-                return false;
-            }
-        }
-
-        unset($Config->hangars[$Index]);
-        if (!isset($Config->hangars[$Index])) {
-            $Config->hangars = array_values($Config->hangars);
-            return $this->mysql->QUERY(
-                'UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
-                [json_encode($Config), $this->ID]);
-
-        } else {
-            return false;
-        }
-    }
-
 
     /**
      * isInUse Function
@@ -208,7 +165,7 @@ class item
         $Drone = json_decode($this->CONFIGS['ON_DRONE_ID_' . $Config])->hangars;
         $Pet   = json_decode($this->CONFIGS['ON_PET_' . $Config])->hangars;
 
-        if (!$ReturnLocation) {
+        if ( !$ReturnLocation) {
             if (in_array($HangarID, $Ship) || in_array($HangarID, $Drone) || in_array($HangarID, $Pet)) {
                 return true;
             } else {
@@ -224,6 +181,59 @@ class item
             } else {
                 return false;
             }
+        }
+    }
+
+    /**
+     * moveToInventory Function
+     * used to move The Item from equipment to the Inventory
+     *
+     * @param $HangarID
+     * @param $Config
+     *
+     * @return bool
+     */
+    public function moveToInventory($HangarID, $Config)
+    {
+        $Location = $this->isInUse($HangarID, $Config, true);
+        if ( !$Location) {
+            return false;
+        }
+
+        $ConfigID = $Config;
+        $Config   = json_decode($this->CONFIGS[$Location]);
+        $Index    = array_search($HangarID, $Config->hangars);
+
+        if ($this->CATEGORY == 'drone_design') {
+            $this->mysql->QUERY(
+                'UPDATE player_drones SET DESIGN_' . $ConfigID . ' = 0 WHERE ID = ?',
+                [$Config->droneID[$Index]]
+            );
+        }
+
+        if (isset($Config->droneID)) {
+            unset($Config->droneID[$Index]);
+            if ( !isset($Config->droneID[$Index])) {
+                $Config->droneID = array_values($Config->droneID);
+            } else {
+                return false;
+            }
+        }
+
+        unset($Config->hangars[$Index]);
+        if ( !isset($Config->hangars[$Index])) {
+            $Config->hangars = array_values($Config->hangars);
+
+            return $this->mysql->QUERY(
+                'UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
+                [
+                    json_encode($Config),
+                    $this->ID,
+                ]
+            );
+
+        } else {
+            return false;
         }
     }
 
