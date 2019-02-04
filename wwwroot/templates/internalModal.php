@@ -255,12 +255,12 @@ include_once( 'internalSettings/internalCountries.php' );
 <script type="text/javascript">
     ClassicEditor.create(document.querySelector('#msgContent'))
         .then(editor => {
-            window.editor = editor;
+            window.modalEditor = editor;
         });
 
     $('#sendMsg').click(function () {
-        if (window.editor) {
-            window.editor.updateSourceElement();
+        if (window.modalEditor) {
+            window.modalEditor.updateSourceElement();
         }
 
         let data = {
@@ -277,7 +277,7 @@ include_once( 'internalSettings/internalCountries.php' );
             $('#msgContent').val('');
             $('#msgHeader').val('');
 
-            window.editor.setData('');
+            window.modalEditor.setData('');
         });
     });
 
