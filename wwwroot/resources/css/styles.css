@@ -6187,6 +6187,7 @@ body.internalHangar .equipment-slot {
   width: 31px;
   background: rgba(0, 0, 0, 0.7);
   background-size: cover;
+  margin: 0 3px 5px 0;
 }
 body.internalHangar #hangar-info-container {
   margin-top: 20px;
@@ -6306,6 +6307,12 @@ body.internalHangar #design-select {
   color: white;
   background: #272727 !important;
 }
+body.internalHangar #filter-select {
+  display: inline-block;
+  color: white;
+  background: #272727 !important;
+  margin-bottom: 6px;
+}
 body.internalHangar #config-navbar {
   float: right;
   right: 100px;
@@ -6383,6 +6390,7 @@ body.internalHangar .equiped-item {
 }
 body.internalHangar .equiped-item {
   border: 1px solid #111111;
+  margin: 0 3px 5px 0;
 }
 body.internalHangar .ship-equipment-slots {
   padding-left: 150px;
@@ -6423,7 +6431,7 @@ body.internalHangar .ship-inventory-container {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently not supported by any browser */
-  padding: 25px;
+  padding: 20px;
   padding-left: 0 !important;
   max-height: 396px;
 }
