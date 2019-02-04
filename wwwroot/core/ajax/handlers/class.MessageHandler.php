@@ -44,8 +44,7 @@ class MessageHandler extends AbstractHandler
         if ($System->User->sendMessage($rID, $this->params['content'], $this->params['title'])) {
             Utils::dieM('Message sent!');
         } else {
-            http_response_code(500);
-            Utils::dieM('Failed to send message, pleas try again.');
+            Utils::dieE(500, 'Failed to send message, pleas try again.');
         }
     }
 
@@ -56,8 +55,7 @@ class MessageHandler extends AbstractHandler
         if ($System->User->sendMessage($this->params['recipient'], $this->params['content'], $this->params['title'])) {
             Utils::dieM('Message sent!');
         } else {
-            http_response_code(500);
-            Utils::dieM('Failed to send message, pleas try again.');
+            Utils::dieE(500, 'Failed to send message, pleas try again.');
         }
     }
 
@@ -67,8 +65,7 @@ class MessageHandler extends AbstractHandler
         if ($System->User->delMessage($this->params['mID'])) {
             Utils::dieM('Deleted message!');
         } else {
-            http_response_code(500);
-            Utils::dieM('Unknown internal error, please try again.');
+            Utils::dieE(500, 'Unknown internal error, please try again.');
         }
 
     }
