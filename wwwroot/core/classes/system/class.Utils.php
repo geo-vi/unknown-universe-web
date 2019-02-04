@@ -47,8 +47,10 @@ class Utils
     }
 
     /**
-     * shortcut to response 400 + die + json_encode
-     * with 'message' as the only field
+     * **die**s with **S**tatus
+     *
+     * shortcut to response + die + json_encode
+     * with 'message' as the only response field
      *
      * `http_response_code($code);`
      *
@@ -57,7 +59,7 @@ class Utils
      * @param int    $code
      * @param string $msg
      */
-    public static function dieE($code, $msg)
+    public static function dieS($code, $msg)
     {
         http_response_code($code);
         die(json_encode(['message' => $msg]));

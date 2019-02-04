@@ -24,10 +24,8 @@ if ($System->isLoggedIn()) {
             $available_handler[$_POST['handler']]->handle();
         }
     } else {
-        http_response_code(400);
-        die(json_encode(['message' => 'Empty ajax Handler requested!']));
+        Utils::dieS(400, 'Empty ajax handler requested!');
     }
 } else {
-    http_response_code(400);
-    die(json_encode(['message' => 'Not logged in!']));
+    Utils::dieS(403, 'Not logged in!');
 }

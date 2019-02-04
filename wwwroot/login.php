@@ -39,8 +39,7 @@ if (isset($_GET["l"])) {
         if ($System->isLoggedIn()) {
             header("location: internalStart");
         } else {
-            http_response_code(400);
-            die(json_encode(['message' => 'Please enter your login details!']));
+            Utils::dieS(400, 'Please enter your login details!');
         }
     }
 }

@@ -395,7 +395,7 @@ class Shop
             );
 
             if ($submit) Utils::dieM('Successfully placed bid!');
-            else Utils::dieE(400, 'Something went wrong, try again.');
+            else Utils::dieS(400, 'Something went wrong, try again.');
         }
     }
 
