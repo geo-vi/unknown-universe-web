@@ -1,21 +1,14 @@
 <?php
 include( 'internalModal.php' );
 
-$arg = 0;
+$msgID = null;
+
 if (isset($_GET["ID"])) {
-    if ( !is_numeric($arg)) {
-        $arg = 0;
-    } else {
-        $arg = $_GET["ID"];
-    }
+    $msgID = $_GET["ID"];
 }
 
 if (isset($_GET["UID"])) {
-    if ( !is_numeric($arg)) {
-        $arg = 0;
-    } else {
-        $arg = $_GET["UID"];
-    }
+    $msgID = $_GET["UID"];
 }
 
 ?>
@@ -39,7 +32,16 @@ if (isset($_GET["UID"])) {
     </div>
     <div class="col-xs-9 msg-content">
         <div class='msg-header'>
-            <h3 class='pull-left'>Messaging</h3>
+            <?php if ($msgID !== null) {
+                ?>
+                <h3 class='pull-left'><span class='fas fa-chevron-left'><a href='internalMessaging'> Back</a></span>
+                </h3>
+                <?php
+            } else {
+                ?>
+                <h3 class='pull-left'>Messaging</h3>
+                <?php
+            } ?>
 
             <h3 class='pull-right cursor-pointer'>
                 <a data-toggle="modal" data-target="#composeMessageModal">
@@ -51,10 +53,10 @@ if (isset($_GET["UID"])) {
         <div class="tab-content">
 
             <div role="tabpanel" class="tab-pane active" id="inbox">
-                <form name="Message" id="Message" action="" method="post">
-                    <?php
-                    if ( !isset($_GET['ID'])) {
-                        ?>
+                <?php
+                if ($msgID === null) {
+                    ?>
+                    <form name="msgForm" id="msgForm" method="post">
                         <input type="hidden" name="action" value="open_message">
                         <table class="table">
                             <thead>
@@ -68,6 +70,8 @@ if (isset($_GET["UID"])) {
                             <tbody>
                             <?php
                             $messages = $System->User->messages();
+                            $messageNum = count($messages);
+                            $i = 0;
                             foreach ($messages as $messagei => $message) {
                                 $sender = $message['SENDER']
                                 ?>
@@ -99,51 +103,54 @@ if (isset($_GET["UID"])) {
                                             <b>View</b>
                                         </a>
                                         -
-                                        <a href="#" id="delmessageid" data-fpid="<?= $message['ID'] ?>">
+                                        <a href='#' id='delete-msg-<?= $i ?>' name='deleteMsg' data-fpid="<?= $message['ID'] ?>">
                                             <b>Delete</b>
                                         </a>
                                     </td>
                                 </tr>
                                 <?php
+                                $i++;
                             }
                             ?>
                             </tbody>
                         </table>
-                        <?php
-                    } else {
-                        $messages = [];
-                        $messages = $System->User->messageInfo($arg);
-                        foreach ($messages as $messagei => $message) {
-                            $System->User->markRead($arg);
-                            ?>
-                            <div><h3><b><?php print $message['HEADER']; ?></b></h3></div>
-                            <br>
+                    </form>
+                    <?php
+                } else {
+                    $message = $System->User->messageInfo($msgID);
+                    if ($message) {
+                        $System->User->markRead($msgID);
+                        ?>
+                        <div class='message-details'>
+                            <h4><b>SUBJECT: </b><?php print $message['HEADER']; ?></h4>
+                            <br />
+                            <h4><b>MESSAGE:</b></h4>
                             <div><?php print $message['MESSAGE']; ?></div>
-                            <br>
-                            <?php print date("m/d/Y h:i:s", strtotime($message['DATE']));
+                            <br />
+                            <?php print date("d/m/Y h:i:s", strtotime($message['DATE']));
                             print ' by ';
                             if ($message['SENDER'] == 1) {
                                 print 'System';
                             } else {
-                                $System->User->getName($message['SENDER']);
+                                print $System->User->getName($message['SENDER']);
                             } ?>
-                            <form action="" id="lol" method="POST">
-                                <input type="hidden" name="action" value="reply_message">
-                                <input type="hidden" name="replyto" value="<?php print $message['SENDER']; ?>">
-                                <input type="hidden" name="title" value="<?php print $message['HEADER']; ?>">
-                                <strong><label for='editornew'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label></strong>
-                                <textarea id="editornew"
-                                          name="Content"
-                                          style="width: 550px; height: 100px; color: #000;"></textarea>
-                                <input id="send"
-                                       type="submit"
-                                       name="send"
-                                       style="color : #000;"
-                                       value="Send Message" />
-                            </form>
-                        <?php }
-                    } ?>
-                </form>
+                            <br>
+                            <div id="replyForm">
+                                <input type="hidden" id='replyRecipient' value="<?php print $message['SENDER']; ?>">
+                                <input type="hidden" id='replyHeader' value="RE: <?php print $message['HEADER']; ?>">
+                                <label for='replyMsg'></label>
+                                <textarea id="replyMsg" name="Content"></textarea>
+                                <br>
+                                <button id="sendReply"
+                                        name="sendReply"
+                                        class="btn-lg btn-block btn-primary reply-btn">
+                                    Send Message
+                                </button>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                } ?>
             </div>
 
             <div role="tabpanel" class="tab-pane" id="outbox">
@@ -226,25 +233,53 @@ if (isset($_GET["UID"])) {
 
 <script type="text/javascript">
 
+    ClassicEditor.create(document.querySelector('#replyMsg'))
+        .then(editor => {
+            window.replyEditor = editor;
+        });
+
     function openMessage() {
         document.getElementById('Message').submit();
         return false;
     }
 
-    $('#delmessageid').click(function () {
+    $('<?php for ($i = $messageNum; $i >= 0; $i--) {
+        if ($i > 0) {
+        print '#delete-msg-' . $i . ', ';
+        } else {
+            print '#delete-msg-0';
+        }
+    } ?>'
+    ).click(function (e) {
+        console.log('clicked');
+        e.preventDefault();
 
-        var mID = $(this).data("fpid");
-        $.ajax({
-            type: "POST",
-            url: "",
-            data: { action: 'delmessage', mID: mID },
-            success: function () {
-                swal('Success!', 'Deleted message!', 'success');
-                setTimeout(location.reload.bind(location), 1000);
-            },
-            error: function () {
-                console.log(data);
-            }
+        const mID = $(this).data("fpid");
+        sendCoreRequest(
+            'messaging',
+            'delete',
+            { mID: mID },
+            () => setTimeout(location.reload.bind(location), 1000)
+        );
+    });
+
+    $('#sendReply').click(function (e) {
+        e.preventDefault();
+
+        if (window.replyEditor) {
+            window.replyEditor.updateSourceElement();
+        }
+
+        let data = {
+            recipient: $('#replyRecipient').val(),
+            content: $('#replyMsg').val(),
+            title: $('#replyHeader').val()
+        };
+
+        sendCoreRequest('messaging', 'reply', data, function () {
+            $('#replyContent').val('');
+
+            window.replyEditor.setData('');
         });
     });
 

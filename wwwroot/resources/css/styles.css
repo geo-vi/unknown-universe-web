@@ -7240,6 +7240,22 @@ body.internalMessaging .msg-content > .tab-content {
 body.internalMessaging .msg-content > .tab-content > div {
   background-color: #2f2f2f !important;
 }
+body.internalMessaging .message-details {
+  padding: 40px;
+}
+body.internalMessaging .message-details input {
+  color: #000;
+}
+body.internalMessaging .message-details .ck-editor__editable {
+  min-height: 200px;
+}
+body.internalMessaging .message-details .ck-editor__editable > * {
+  color: #000;
+}
+body.internalMessaging .message-details .reply-btn {
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
 body.internalMessaging .msg-read {
   color: white;
 }
