@@ -25,6 +25,7 @@ class MessageHandler extends AbstractHandler
             ]
         );
         $this->addAction('delete', ['mID']);
+        $this->addAction('delete_outbox', ['mID']);
     }
 
     public function handle() : void
@@ -63,6 +64,17 @@ class MessageHandler extends AbstractHandler
     {
         global $System;
         if ($System->User->delMessage($this->params['mID'])) {
+            Utils::dieM('Deleted message!');
+        } else {
+            Utils::dieS(500, 'Unknown internal error, please try again.');
+        }
+
+    }
+
+    public function exec_delete_outbox()
+    {
+        global $System;
+        if ($System->User->delMessageOutbox($this->params['mID'])) {
             Utils::dieM('Deleted message!');
         } else {
             Utils::dieS(500, 'Unknown internal error, please try again.');

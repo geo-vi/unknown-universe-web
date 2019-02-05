@@ -70,8 +70,8 @@ if (isset($_GET["UID"])) {
                             <tbody>
                             <?php
                             $messages = $System->User->messages();
-                            $messageNum = count($messages);
-                            $i = 0;
+                            $msgCount = count($messages);
+                            $i        = 0;
                             foreach ($messages as $messagei => $message) {
                                 $sender = $message['SENDER']
                                 ?>
@@ -103,7 +103,10 @@ if (isset($_GET["UID"])) {
                                             <b>View</b>
                                         </a>
                                         -
-                                        <a href='#' id='delete-msg-<?= $i ?>' name='deleteMsg' data-fpid="<?= $message['ID'] ?>">
+                                        <a href='#'
+                                           id='delete-msg-<?= $i ?>'
+                                           name='deleteMsg'
+                                           data-fpid="<?= $message['ID'] ?>">
                                             <b>Delete</b>
                                         </a>
                                     </td>
@@ -154,11 +157,6 @@ if (isset($_GET["UID"])) {
             </div>
 
             <div role="tabpanel" class="tab-pane" id="outbox">
-                <?php
-                if ( !isset($_GET['UID'])) {
-                    ?>
-                    <h3><b>Outbox</b></h3>
-                <?php } ?>
                 <div class="invitation-code-list custom-scroll">
                     <form name="Message" id="Message" action="" method="post">
                         <?php
@@ -169,14 +167,16 @@ if (isset($_GET["UID"])) {
                                 <thead>
                                 <tr>
                                     <th>HEADER</th>
-                                    <th>TO</th>
+                                    <th>RECIPIENT</th>
                                     <th>DATE</th>
-                                    <th>Action</th>
+                                    <th>ACTIONS</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php
-                                $messages = $System->User->outbox();
+                                $messages  = $System->User->outbox();
+                                $sentCount = count($messages);
+                                $j         = 0;
                                 foreach ($messages as $messagei => $message) {
                                     $uid = $message['USER_ID'];
                                     ?>
@@ -194,7 +194,7 @@ if (isset($_GET["UID"])) {
                                             } else {
                                                 echo $System->User->getName($uid);
                                             } ?></td>
-                                        <td><?php print date("m/d/Y h:i:s", strtotime($message['DATE'])); ?></td>
+                                        <td><?php print date("d/m/Y h:i:s", strtotime($message['DATE'])); ?></td>
                                         <td>
                                             <a href="?ID=<?php print $message['ID'] ?>"
                                                onclick="openMessage();" name="messageid"
@@ -202,11 +202,12 @@ if (isset($_GET["UID"])) {
                                                 <b>View</b>
                                             </a>
                                             -
-                                            <a href="#" id="delmessageid" data-fpid="<?= $message['ID'] ?>">
+                                            <a href="#" id="delete-sent-<?= $j ?>" data-fpid="<?= $message['ID'] ?>">
                                                 <b>Delete</b></a>
                                         </td>
                                     </tr>
                                     <?php
+                                    $j++;
                                 }
                                 ?>
                                 </tbody>
@@ -243,13 +244,16 @@ if (isset($_GET["UID"])) {
         return false;
     }
 
-    $('<?php for ($i = $messageNum; $i >= 0; $i--) {
-        if ($i > 0) {
-        print '#delete-msg-' . $i . ', ';
-        } else {
-            print '#delete-msg-0';
-        }
-    } ?>'
+    // delete action for inbox
+    <?php if ( !isset($msgCount))
+        $msgCount = 0; ?>
+    $('<?php for ($i = $msgCount; $i >= 0; $i--) {
+            if ($i > 0) {
+                print '#delete-msg-' . $i . ', ';
+            } else {
+                print '#delete-msg-0';
+            }
+        } ?>'
     ).click(function (e) {
         console.log('clicked');
         e.preventDefault();
@@ -258,6 +262,29 @@ if (isset($_GET["UID"])) {
         sendCoreRequest(
             'messaging',
             'delete',
+            { mID: mID },
+            () => setTimeout(location.reload.bind(location), 1000)
+        );
+    });
+
+    // delete action for outbox
+    <?php if ( !isset($sentCount))
+        $sentCount = 0; ?>
+    $('<?php for ($j = $sentCount; $j >= 0; $j--) {
+            if ($j > 0) {
+                print '#delete-sent-' . $j . ', ';
+            } else {
+                print '#delete-sent-0';
+            }
+        } ?>'
+    ).click(function (e) {
+        console.log('clicked');
+        e.preventDefault();
+
+        const mID = $(this).data("fpid");
+        sendCoreRequest(
+            'messaging',
+            'delete_outbox',
             { mID: mID },
             () => setTimeout(location.reload.bind(location), 1000)
         );

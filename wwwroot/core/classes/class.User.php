@@ -903,7 +903,7 @@ class User
     public function outbox()
     {
         return $this->mysql->QUERY(
-            'SELECT * FROM player_messages WHERE SENDER = ? ORDER BY ID DESC',
+            'SELECT * FROM player_outbox WHERE USER_ID = ? ORDER BY ID DESC',
             [$this->__get('USER_ID')]
         );
     }
@@ -925,18 +925,18 @@ class User
     /**
      * Sends a message to the given USER_ID
      *
-     * @param int    $receiverId
+     * @param int    $recipientID
      * @param string $message
      * @param string $title
      *
      * @return array|bool
      */
-    public function sendMessage($receiverId, $message, $title)
+    public function sendMessage($recipientID, $message, $title)
     {
         $sent = $this->mysql->QUERY(
             "INSERT INTO player_messages (USER_ID,SENDER,DATE,NEW,HEADER,MESSAGE,TYPE) VALUES(?,?,?,1,?,?,1)",
             [
-                $receiverId,
+                $recipientID,
                 $this->__get('USER_ID'),
                 date('Y-m-d H:i:s'),
                 $title,
@@ -944,7 +944,18 @@ class User
             ]
         );
 
-        if ($sent) {
+        $received = $this->mysql->QUERY(
+            "INSERT INTO player_outbox (USER_ID,RECIPIENT,DATE,HEADER,MESSAGE,TYPE) VALUES(?,?,?,?,?,1)",
+            [
+                $this->__get('USER_ID'),
+                $recipientID,
+                date('Y-m-d H:i:s'),
+                $title,
+                $message,
+            ]
+        );
+
+        if ($sent && $received) {
             $MSG = 'Sent message';
 
             return self::addlog($MSG, LogType::NORMAL);
@@ -956,6 +967,19 @@ class User
     public function delMessage($arg)
     {
         $deleted = $this->mysql->QUERY('DELETE FROM player_messages WHERE ID = ? ', [$arg]);
+
+        if ($deleted) {
+            $MSG = 'Deleted message';
+
+            return self::addlog($MSG, LogType::NORMAL);
+        }
+
+        return false;
+    }
+
+    public function delMessageOutbox($arg)
+    {
+        $deleted = $this->mysql->QUERY('DELETE FROM player_outbox WHERE ID = ? ', [$arg]);
 
         if ($deleted) {
             $MSG = 'Deleted message';
