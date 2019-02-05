@@ -155,17 +155,17 @@ CREATE TABLE IF NOT EXISTS `player_boosters` (
 
 -- Dumping structure for table do_server_ge1.player_data
 CREATE TABLE IF NOT EXISTS `player_data` (
-  `USER_ID` int(11) NOT NULL DEFAULT "0",
+  `USER_ID` int(11) NOT NULL DEFAULT 0,
   `PLAYER_ID` int(11) NOT NULL AUTO_INCREMENT,
   `SESSION_ID` varchar(255) NOT NULL,
   `PLAYER_NAME` varchar(255) NOT NULL,
   `FACTION_ID` int(11) NOT NULL,
   `TITLE_ID` int(11) NOT NULL,
-  `LVL` int(30) NOT NULL DEFAULT "1",
+  `LVL` int(30) NOT NULL DEFAULT 1,
   `EXP` bigint(11) NOT NULL,
   `HONOR` bigint(11) NOT NULL,
   `RANK_POINTS` float NOT NULL,
-  `RANK` int(99) NOT NULL DEFAULT "1",
+  `RANK` int(99) NOT NULL DEFAULT 1,
   `URIDIUM` bigint(11) NOT NULL,
   `CREDITS` bigint(11) NOT NULL,
   `PREMIUM` tinyint(1) NOT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `player_data` (
   `CLAN_ID` int(11) NOT NULL,
   `REGISTERED` datetime NOT NULL,
   `RANKING` int(11) NOT NULL,
-  `LAST_MODIFIED` timestamp NOT NULL DEFAULT "0000-00-00 00:00:00" ON UPDATE CURRENT_TIMESTAMP,
+  `LAST_MODIFIED` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`PLAYER_ID`,`USER_ID`,`SESSION_ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -198,12 +198,12 @@ CREATE TABLE IF NOT EXISTS `player_drones` (
   `PLAYER_ID` int(11) NOT NULL,
   `ITEM_ID` int(11) NOT NULL,
   `DRONE_TYPE` int(11) NOT NULL,
-  `DAMAGE` varchar(255) NOT NULL COMMENT "(NOT ATTACK DAMAGE)",
-  `LEVEL` int(11) NOT NULL DEFAULT "1",
+  `DAMAGE` varchar(255) NOT NULL COMMENT '(NOT ATTACK DAMAGE)',
+  `LEVEL` int(11) NOT NULL DEFAULT 1,
   `EXPERIENCE` int(11) NOT NULL,
   `UPGRADE_LVL` int(11) NOT NULL,
-  `DESIGN_1` int(11) NOT NULL DEFAULT "0",
-  `DESIGN_2` int(11) NOT NULL DEFAULT "0",
+  `DESIGN_1` int(11) NOT NULL DEFAULT 0,
+  `DESIGN_2` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -214,14 +214,14 @@ CREATE TABLE IF NOT EXISTS `player_equipment` (
   `PLAYER_ID` int(11) NOT NULL,
   `ITEM_ID` int(11) NOT NULL,
   `ITEM_TYPE` tinyint(4) NOT NULL,
-  `ITEM_LVL` tinyint(4) NOT NULL DEFAULT "1",
+  `ITEM_LVL` tinyint(4) NOT NULL DEFAULT 1,
   `ON_CONFIG_1` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [] }",
   `ON_CONFIG_2` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [] }",
   `ON_DRONE_ID_1` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [], 'droneID':[] }",
   `ON_DRONE_ID_2` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [], 'droneID':[] }",
   `ON_PET_1` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [] }",
   `ON_PET_2` varchar(255) NOT NULL DEFAULT "{ 'hangars' : [] }",
-  `ITEM_AMOUNT` int(11) DEFAULT "0",
+  `ITEM_AMOUNT` int(11) DEFAULT 0,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -238,7 +238,7 @@ CREATE TABLE IF NOT EXISTS `player_event_info` (
 CREATE TABLE IF NOT EXISTS `player_extra_data` (
   `USER_ID` int(11) NOT NULL,
   `PLAYER_ID` int(11) NOT NULL,
-  `LOGFILES` int(11) NOT NULL DEFAULT "15",
+  `LOGFILES` int(11) NOT NULL DEFAULT 15,
   `RESEARCH_POINTS` int(11) NOT NULL,
   `RESEARCH_LEVEL` int(11) NOT NULL,
   `BOOTY_KEYS` varchar(255) NOT NULL,
@@ -260,19 +260,19 @@ CREATE TABLE IF NOT EXISTS `player_extra_data` (
 -- Dumping structure for table do_server_ge1.player_hangar
 CREATE TABLE IF NOT EXISTS `player_hangar` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `USER_ID` int(11) NOT NULL DEFAULT "0",
+  `USER_ID` int(11) NOT NULL DEFAULT 0,
   `PLAYER_ID` int(11) NOT NULL,
-  `HANGAR_COUNT` smallint(6) NOT NULL DEFAULT "0",
+  `HANGAR_COUNT` smallint(6) NOT NULL DEFAULT 0,
   `ACTIVE` tinyint(1) NOT NULL,
   `SHIP_ID` int(11) NOT NULL,
   `SHIP_DESIGN` int(11) NOT NULL,
   `SHIP_HP` int(11) NOT NULL,
   `SHIP_NANO` int(11) NOT NULL,
-  `SHIP_MAP_ID` int(11) NOT NULL DEFAULT "255",
+  `SHIP_MAP_ID` int(11) NOT NULL DEFAULT 255,
   `SHIP_X` int(11) NOT NULL,
   `SHIP_Y` int(11) NOT NULL,
-  `IN_EQUIPMENT_ZONE` tinyint(1) NOT NULL DEFAULT "1",
-  `PET_ID` INT(11) NOT NULL
+  `IN_EQUIPMENT_ZONE` tinyint(1) NOT NULL DEFAULT 1,
+  `PET_ID` INT(11) NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -292,8 +292,20 @@ CREATE TABLE IF NOT EXISTS `player_messages` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_ID` int(11) NOT NULL,
   `SENDER` text NOT NULL,
-  `DATE` datetime NOT NULL,
+  `DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `NEW` tinyint(1) NOT NULL,
+  `HEADER` text NOT NULL,
+  `MESSAGE` text NOT NULL,
+  `TYPE` int(11) NOT NULL,
+  PRIMARY KEY (`ID`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT;
+
+-- Dumping structure for table do_server_ge1.player_outbox
+CREATE TABLE IF NOT EXISTS `player_outbox` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USER_ID` int(11) NOT NULL,
+  `RECIPIENT` text NOT NULL,
+  `DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `HEADER` text NOT NULL,
   `MESSAGE` text NOT NULL,
   `TYPE` int(11) NOT NULL,
@@ -322,21 +334,21 @@ CREATE TABLE IF NOT EXISTS `player_pet` (
   `PET_TYPE` int(11) NOT NULL,
   `ITEM_ID` int(11) NOT NULL,
   `NAME` text NOT NULL,
-  `LEVEL` int(11) NOT NULL DEFAULT "1",
+  `LEVEL` int(11) NOT NULL DEFAULT 1,
   `EXPERIENCE` int(11) NOT NULL,
   `HP` int(11) NOT NULL,
-  `FUEL` int(11) NOT NULL DEFAULT "0",
+  `FUEL` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 -- Dumping structure for table do_server_ge1.player_pet_config
 CREATE TABLE IF NOT EXISTS `player_pet_config` (
-  `USER_ID` int(11) NOT NULL DEFAULT "0",
+  `USER_ID` int(11) NOT NULL DEFAULT 0,
   `PLAYER_ID` int(11) DEFAULT NULL,
-  `CONFIG_1_DMG_PET` int(11) NOT NULL DEFAULT "0",
-  `CONFIG_2_DMG_PET` int(11) NOT NULL DEFAULT "0",
-  `CONFIG_1_SHIELD_PET` int(11) NOT NULL DEFAULT "0",
-  `CONFIG_2_SHIELD_PET` int(11) NOT NULL DEFAULT "0",
+  `CONFIG_1_DMG_PET` int(11) NOT NULL DEFAULT 0,
+  `CONFIG_2_DMG_PET` int(11) NOT NULL DEFAULT 0,
+  `CONFIG_1_SHIELD_PET` int(11) NOT NULL DEFAULT 0,
+  `CONFIG_2_SHIELD_PET` int(11) NOT NULL DEFAULT 0,
   `CONFIG_1_GEARS` text NOT NULL,
   `CONFIG_2_GEARS` text NOT NULL,
   `CONFIG_1_PROTOCOLS` text NOT NULL,
@@ -365,7 +377,7 @@ CREATE TABLE IF NOT EXISTS `player_quests` (
 
 -- Dumping structure for table do_server_ge1.player_ship_config
 CREATE TABLE IF NOT EXISTS `player_ship_config` (
-  `USER_ID` int(11) NOT NULL DEFAULT "0",
+  `USER_ID` int(11) NOT NULL DEFAULT 0,
   `PLAYER_ID` int(11) NOT NULL,
   `HANGAR_ID` int(11) NOT NULL,
   `CONFIG_1_DMG` int(11) NOT NULL,
@@ -384,8 +396,8 @@ CREATE TABLE IF NOT EXISTS `player_ship_config` (
   `CONFIG_2_SHIELDABSORB` double(10,0) NOT NULL,
   `CONFIG_1_LASERCOUNT` int(11) NOT NULL,
   `CONFIG_2_LASERCOUNT` int(11) NOT NULL,
-  `CONFIG_1_LASER_TYPES` tinyint(1) NOT NULL COMMENT "0-Mixed, 1-all lasers equipped on ship (not drones / pet) are LF1, 2-all lasers.. LF2, 3-all... LF3, 4-all.. LF4",
-  `CONFIG_2_LASER_TYPES` tinyint(1) NOT NULL COMMENT "0-Mixed, 1-all lasers equipped on ship (not drones / pet) are LF1, 2-all lasers.. LF2, 3-all... LF3, 4-all.. LF4",
+  `CONFIG_1_LASER_TYPES` tinyint(1) NOT NULL COMMENT '0-Mixed, 1-all lasers equipped on ship (not drones / pet) are LF1, 2-all lasers.. LF2, 3-all... LF3, 4-all.. LF4',
+  `CONFIG_2_LASER_TYPES` tinyint(1) NOT NULL COMMENT '0-Mixed, 1-all lasers equipped on ship (not drones / pet) are LF1, 2-all lasers.. LF2, 3-all... LF3, 4-all.. LF4',
   PRIMARY KEY (`USER_ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -493,7 +505,7 @@ CREATE TABLE IF NOT EXISTS `server_auctions` (
   `ITEMQ` int(11) NOT NULL,
   `ITEM_DESC` text NOT NULL,
   `TYPE` varchar(255) NOT NULL,
-  `AUCTION_TYPE` int(11) NOT NULL COMMENT "(1 = hourly, 2 = daily , 3= weekly)",
+  `AUCTION_TYPE` int(11) NOT NULL COMMENT '(1 = hourly, 2 = daily , 3= weekly)',
   `MAX_BID` bigint(20) NOT NULL,
   `BID_USER_ID` int(11) NOT NULL,
   PRIMARY KEY (`ID`) USING BTREE
@@ -509,7 +521,7 @@ CREATE TABLE IF NOT EXISTS `server_auctions_settings` (
 
 -- Dumping data for table do_server_ge1.server_auctions_settings: ~0 rows (approximately)
 REPLACE INTO `server_auctions_settings` (`ID`, `LAST_HOURLY`, `LAST_DAILY`, `LAST_WEEKLY`) VALUES
-	(1, "2017-10-04 18:00:00.000000", "2017-09-30 00:00:00", "2017-09-29 16:00:00");
+	(1, '2017-10-04 18:00:00.000000', '2017-09-30 00:00:00', '2017-09-29 16:00:00');
 
 -- Dumping structure for table do_server_ge1.server_beta_info
 CREATE TABLE IF NOT EXISTS `server_beta_info` (
@@ -519,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `server_beta_info` (
 
 -- Dumping data for table do_server_ge1.server_beta_info: ~0 rows (approximately)
 REPLACE INTO `server_beta_info` (`PUBLIC_END`, `WHITELISTED_PLAYERS`) VALUES
-	("2017-01-23 23:00:00", "[544,495,498]");
+	('2017-01-23 23:00:00', '[544,495,498]');
 
 -- Dumping structure for table do_server_ge1.server_calendar
 CREATE TABLE IF NOT EXISTS `server_calendar` (
@@ -531,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `server_calendar` (
 
 -- Dumping data for table do_server_ge1.server_calendar: ~0 rows (approximately)
 REPLACE INTO `server_calendar` (`ID`, `Month`, `Reward`) VALUES
-	(1, "1", "[{'Day':1,'ItemID':'33','Q':'1','Type':'booster'},\r\n{'Day':2,'ItemID':'28','Q':'10000','Type':'ammo'},\r\n{'Day':3,'ItemID':'53','Q':'25','Type':'extra'},\r\n{'Day':4,'ItemID':'54','Q':'10','Type':'extra'},\r\n{'Day':5,'ItemID':'74','Q':'1','Type':'equipment'},\r\n{'Day':6,'ItemID':'92','Q':'250','Type':'ammo'},\r\n{'Day':7,'ItemID':'93','Q':'1000','Type':'ammo'},\r\n{'Day':8,'ItemID':'97','Q':'1000','Type':'fuel'},\r\n{'Day':9,'ItemID':'36','Q':'1','Type':'booster'},\r\n{'Day':10,'ItemID':'29','Q':'5000','Type':'ammo'},\r\n{'Day':11,'ItemID':'21','Q':'2','Type':'equipment'},\r\n{'Day':12,'ItemID':'9','Q':'2','Type':'equipment'},\r\n{'Day':13,'ItemID':'1','Q':'2','Type':'equipment'},\r\n{'Day':14,'ItemID':'27','Q':'800','Type':'ammo'},\r\n{'Day':15,'ItemID':'37','Q':'1','Type':'booster'},\r\n{'Day':16,'ItemID':'54','Q':'12','Type':'extra'},\r\n{'Day':17,'ItemID':'30','Q':'7500','Type':'ammo'},\r\n{'Day':18,'ItemID':'2','Q':'1','Type':'equipment'},\r\n{'Day':19,'ItemID':'90','Q':'500','Type':'ammo'},\r\n{'Day':20,'ItemID':'97','Q':'2500','Type':'fuel'},\r\n{'Day':21,'ItemID':'34','Q':'1','Type':'booster'},\r\n{'Day':22,'ItemID':'39','Q':'1','Type':'booster'},\r\n{'Day':23,'ItemID':'26','Q':'1','Type':'equipment'},\r\n{'Day':24,'ItemID':'31','Q':'10000','Type':'ammo'},\r\n{'Day':25,'ItemID':'29','Q':'5000','Type':'ammo'},\r\n{'Day':26,'ItemID':'53','Q':'25','Type':'extra'},\r\n{'Day':27,'ItemID':'58','Q':'1','Type':'equipment'},\r\n{'Day':28,'ItemID':'37','Q':'1','Type':'booster'},\r\n{'Day':29,'ItemID':'73','Q':'1','Type':'equipment'},\r\n{'Day':30,'ItemID':'92','Q':'200','Type':'ammo'}]\r\n\r\n");
+	(1, 1, "[{'Day':1,'ItemID':'33','Q':'1','Type':'booster'},\r\n{'Day':2,'ItemID':'28','Q':'10000','Type':'ammo'},\r\n{'Day':3,'ItemID':'53','Q':'25','Type':'extra'},\r\n{'Day':4,'ItemID':'54','Q':'10','Type':'extra'},\r\n{'Day':5,'ItemID':'74','Q':'1','Type':'equipment'},\r\n{'Day':6,'ItemID':'92','Q':'250','Type':'ammo'},\r\n{'Day':7,'ItemID':'93','Q':'1000','Type':'ammo'},\r\n{'Day':8,'ItemID':'97','Q':'1000','Type':'fuel'},\r\n{'Day':9,'ItemID':'36','Q':'1','Type':'booster'},\r\n{'Day':10,'ItemID':'29','Q':'5000','Type':'ammo'},\r\n{'Day':11,'ItemID':'21','Q':'2','Type':'equipment'},\r\n{'Day':12,'ItemID':'9','Q':'2','Type':'equipment'},\r\n{'Day':13,'ItemID':'1','Q':'2','Type':'equipment'},\r\n{'Day':14,'ItemID':'27','Q':'800','Type':'ammo'},\r\n{'Day':15,'ItemID':'37','Q':'1','Type':'booster'},\r\n{'Day':16,'ItemID':'54','Q':'12','Type':'extra'},\r\n{'Day':17,'ItemID':'30','Q':'7500','Type':'ammo'},\r\n{'Day':18,'ItemID':'2','Q':'1','Type':'equipment'},\r\n{'Day':19,'ItemID':'90','Q':'500','Type':'ammo'},\r\n{'Day':20,'ItemID':'97','Q':'2500','Type':'fuel'},\r\n{'Day':21,'ItemID':'34','Q':'1','Type':'booster'},\r\n{'Day':22,'ItemID':'39','Q':'1','Type':'booster'},\r\n{'Day':23,'ItemID':'26','Q':'1','Type':'equipment'},\r\n{'Day':24,'ItemID':'31','Q':'10000','Type':'ammo'},\r\n{'Day':25,'ItemID':'29','Q':'5000','Type':'ammo'},\r\n{'Day':26,'ItemID':'53','Q':'25','Type':'extra'},\r\n{'Day':27,'ItemID':'58','Q':'1','Type':'equipment'},\r\n{'Day':28,'ItemID':'37','Q':'1','Type':'booster'},\r\n{'Day':29,'ItemID':'73','Q':'1','Type':'equipment'},\r\n{'Day':30,'ItemID':'92','Q':'200','Type':'ammo'}]\r\n\r\n");
 
 -- Dumping structure for table do_server_ge1.server_chat_bans
 CREATE TABLE IF NOT EXISTS `server_chat_bans` (
@@ -552,7 +564,7 @@ CREATE TABLE IF NOT EXISTS `server_chat_login` (
 
 -- Dumping data for table do_server_ge1.server_chat_login: ~0 rows (approximately)
 REPLACE INTO `server_chat_login` (`USER_LOGIN_MSG`, `MODERATOR_LOGIN_MSG`) VALUES
-	("Welcome", "Welcome");
+	('Welcome', 'Welcome');
 
 -- Dumping structure for table do_server_ge1.server_chat_logs
 CREATE TABLE IF NOT EXISTS `server_chat_logs` (
@@ -597,7 +609,7 @@ CREATE TABLE IF NOT EXISTS `server_clanbattlestations` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(255) NOT NULL,
   `FACTION` tinyint(1) NOT NULL,
-  `TYPE` tinyint(1) NOT NULL COMMENT "Asteroid: 0 / Clan BattleStation: 1",
+  `TYPE` tinyint(1) NOT NULL COMMENT 'Asteroid: 0 / Clan BattleStation: 1',
   `MAP_ID` int(11) NOT NULL,
   `CLAN_ID` int(11) NOT NULL,
   `POSITION` text NOT NULL,
@@ -619,7 +631,7 @@ CREATE TABLE IF NOT EXISTS `server_clans` (
   `MEMBERS` longtext NOT NULL,
   `LEADER` int(11) NOT NULL,
   `FACTION` int(1) NOT NULL,
-  `IS_ACCEPTING` int(11) NOT NULL DEFAULT "0",
+  `IS_ACCEPTING` int(11) NOT NULL DEFAULT 0,
   `CREATED` date NOT NULL,
   `PICTURE` text,
   `RANK` int(11) NOT NULL,
@@ -676,14 +688,14 @@ CREATE TABLE IF NOT EXISTS `server_collectables` (
 
 -- Dumping data for table do_server_ge1.server_collectables: ~0 rows (approximately)
 REPLACE INTO `server_collectables` (`ID`, `TYPE`, `REWARDS`, `SPAWN_COUNT`, `PVP_SPAWN_COUNT`) VALUES
-	(2, "BONUS_BOX", "[{'Item1':'credits','Item2':100000},{'Item1':'credits','Item2':20000},{'Item1':'credits','Item2':50000},{'Item1':'uridium','Item2':100},{'Item1':'uridium','Item2':300},{'Item1':'uridium','Item2':500},{'Item1':'ammunition_laser_lcb-10','Item2':10000},{'Item1':'ammunition_laser_lcb-10','Item2':2000},{'Item1':'ammunition_laser_mcb-25','Item2':3000},{'Item1':'ammunition_laser_mcb-50','Item2':1000},{'Item1':'ammunition_rocket_r-310','Item2':8},{'Item1':'ammunition_rocket_r-310','Item2':16},{'Item1':'ammunition_rocket_plt-2026','Item2':4},{'Item1':'ammunition_rocket_plt-2026','Item2':8},{'Item1':'ammunition_laser_ucb-100','Item2':550},{'Item1':'ammunition_laser_rsb-75','Item2':100}]", 150, 300);
+	(2, 'BONUS_BOX', "[{'Item1':'credits','Item2':100000},{'Item1':'credits','Item2':20000},{'Item1':'credits','Item2':50000},{'Item1':'uridium','Item2':100},{'Item1':'uridium','Item2':300},{'Item1':'uridium','Item2':500},{'Item1':'ammunition_laser_lcb-10','Item2':10000},{'Item1':'ammunition_laser_lcb-10','Item2':2000},{'Item1':'ammunition_laser_mcb-25','Item2':3000},{'Item1':'ammunition_laser_mcb-50','Item2':1000},{'Item1':'ammunition_rocket_r-310','Item2':8},{'Item1':'ammunition_rocket_r-310','Item2':16},{'Item1':'ammunition_rocket_plt-2026','Item2':4},{'Item1':'ammunition_rocket_plt-2026','Item2':8},{'Item1':'ammunition_laser_ucb-100','Item2':550},{'Item1':'ammunition_laser_rsb-75','Item2':100}]", 150, 300);
 
 -- Dumping structure for table do_server_ge1.server_config
 CREATE TABLE IF NOT EXISTS `server_config` (
   `DEFAULT_SHIP` int(11) NOT NULL,
   `DEFAULT_URI` int(11) NOT NULL,
   `DEFAULT_CREDITS` int(11) NOT NULL,
-  `DEFAULT_ITEMS` text NOT NULL COMMENT "JSON-FORMAT",
+  `DEFAULT_ITEMS` text NOT NULL COMMENT 'JSON-FORMAT',
   `DEFAULT_AMMO` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 MIN_ROWS=1 MAX_ROWS=1 ROW_FORMAT=COMPACT;
 
@@ -716,16 +728,16 @@ CREATE TABLE IF NOT EXISTS `server_galaxy_gates` (
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
--- Dumping data for table do_server_ge1.server_galaxy_gates: ~4 rows (approximately)
+-- Dumping data for table do_server_ge1.server_galaxy_gates: ~8 rows (approximately)
 REPLACE INTO `server_galaxy_gates` (`ID`, `NAME`, `PART_CNT`, `REWARDS`) VALUES
-	(1, "Alpha", 34, ""),
-	(2, "Beta", 48, ""),
-	(3, "Gamma", 82, ""),
-	(4, "Delta", 128, ""),
-	(5, "Epsilon", 99, ""),
-	(6, "Zeta", 111, ""),
-	(7, "Kappa", 120, ""),
-	(8, "Lambda", 45, "");
+	(1, 'Alpha', 34, ''),
+	(2, 'Beta', 48, ''),
+	(3, 'Gamma', 82, ''),
+	(4, 'Delta', 128, ''),
+	(5, 'Epsilon', 99, ''),
+	(6, 'Zeta', 111, ''),
+	(7, 'Kappa', 120, ''),
+	(8, 'Lambda', 45, '');
 
 -- Dumping structure for table do_server_ge1.server_game_bans
 CREATE TABLE IF NOT EXISTS `server_game_bans` (
@@ -761,101 +773,101 @@ CREATE TABLE IF NOT EXISTS `server_items` (
 
 -- Dumping data for table do_server_ge1.server_items: ~90 rows (approximately)
 REPLACE INTO `server_items` (`ID`, `NAME`, `TYPE`, `LOOT_ID`, `CATEGORY`, `PRICE_U`, `PRICE_C`, `SELLING_CREDITS`, `DAMAGE`, `SHIELD`, `SHIELD_ABSORBATION`, `SPEED`, `SLOTS`, `EFFECT`, `USES`, `DESCRIPTION`) VALUES
-	(1, "LF-3", 0, "equipment_weapon_laser_lf-3", "laser", 10000, 0, 25000, 150, NULL, NULL, NULL, NULL, NULL, NULL, "Much stronger laser: Causes up to 150 damage points per round"),
-	(2, "LF-4", 0, "equipment_weapon_laser_lf-4", "laser", 1, 0, 2500000, 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(5, "SG3N-A01", 2, "equipment_generator_shield_sg3n-a01", "generator", 0, 10000, 5000, NULL, 1000, 400, NULL, NULL, NULL, NULL, "1,000 shield strength / 40% less damage"),
-	(6, "SG3N-B02", 2, "equipment_generator_shield_sg3n-b02", "generator", 10000, 0, 25000, NULL, 10000, 8000, NULL, NULL, NULL, NULL, "10,000 shield strength / 80% less damage"),
-	(7, "SG3N-A02", 2, "equipment_generator_shield_sg3n-a02", "generator", 0, 20000, 10000, NULL, 2000, 1200, NULL, NULL, NULL, NULL, "2,000 shield strength / 50% less damage"),
-	(8, "SG3N-A03", 2, "equipment_generator_shield_sg3n-a03", "generator", 0, 256000, 1280000, NULL, 5000, 3500, NULL, NULL, NULL, NULL, "5,000 shield strength / 60% less damage"),
-	(9, "SG3N-B01", 2, "equipment_generator_shield_sg3n-b01", "generator", 5000, 0, 0, NULL, 4000, 2800, NULL, NULL, NULL, NULL, "4,000 shield strength / 70% less damage"),
-	(13, "Apis", 24, "drone_apis", "drone", 10000, 0, 2500000, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Power drone with two slots"),
-	(14, "Iris", 24, "drone_iris", "drone", 15000, 0, 37500, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Power drone with two slots"),
-	(15, "Flax", 24, "drone_flax", "drone", 0, 100000, 50000, NULL, NULL, NULL, NULL, 1, NULL, NULL, "Starter drone with one slot"),
-	(16, "G3N-1010", 3, "equipment_generator_speed_g3n-1010", "generator", 0, 2000, 1000, NULL, NULL, NULL, 2, NULL, NULL, NULL, "Increases ship speed by 2"),
-	(17, "G3N-2010", 3, "equipment_generator_speed_g3n-2010", "generator", 0, 4000, 2000, NULL, NULL, NULL, 3, NULL, NULL, NULL, "Increases ship speed by 3"),
-	(18, "G3N-3210", 3, "equipment_generator_speed_g3n-3210", "generator", 0, 8000, 4000, NULL, NULL, NULL, 4, NULL, NULL, NULL, "Increases ship speed by 4"),
-	(19, "G3N-3310", 3, "equipment_generator_speed_g3n-3310", "generator", 0, 16000, 8000, NULL, NULL, NULL, 5, NULL, NULL, NULL, "Increases ship speed by 5"),
-	(20, "G3N-6900", 3, "equipment_generator_speed_g3n-6900", "generator", 1000, 0, 2500, NULL, NULL, NULL, 7, NULL, NULL, NULL, "Increases ship speed by 7"),
-	(21, "G3N-7900", 3, "equipment_generator_speed_g3n-7900", "generator", 2000, 0, 5000, NULL, NULL, NULL, 10, NULL, NULL, NULL, "Increases ship speed by 10"),
-	(22, "LF-2", 0, "equipment_weapon_laser_lf-2", "laser", 5000, 0, 12500, 100, NULL, NULL, NULL, NULL, NULL, NULL, "Strong laser: causes up to 100 damage points per round"),
-	(23, "MP-1", 0, "equipment_weapon_laser_mp-1", "laser", 0, 50000, 25000, 60, NULL, NULL, NULL, NULL, NULL, NULL, "Average laser: causes up to 60 damage points per round"),
-	(24, "LF-1", 0, "equipment_weapon_laser_lf-1", "laser", 0, 10000, 5000, 40, NULL, NULL, NULL, NULL, NULL, NULL, "Small laser: causes up to 40 damage points per round"),
-	(25, "HST-02", 1, "equipment_weapon_rocketlauncher_hst-2", "heavy", 15000, 0, 37500, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The rapid reloader! This upgraded version of the Hellstorm launcher 1 makes it possible to win the battle before it's even begun. One little rocket makes a world of difference on the battlefield - firing up to 5 rocket"),
-	(26, "HST-01", 1, "equipment_weapon_rocketlauncher_hst-1", "heavy", 0, 500000, 250000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The rapid reloader! This rocket launcher makes it possible to win a battle before it's even begun. One little rocket makes a world of difference on the battlefield - firing up to 3 rockets, this rocket launcher unleashes a broadside of destruction"),
-	(27, "RSB-75", 12, "ammunition_laser_rsb-75", "notlisted", 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(28, "UCB-100", 12, "ammunition_laser_ucb-100", "notlisted", 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(29, "SAB-50", 12, "ammunition_laser_sab-50", "ammo", 0.5, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Special ammunition that reinforces your Shield, strengthening it by tapping into enemy shields (Shield Leech)."),
-	(30, "MCB-50", 12, "ammunition_laser_mcb-50", "ammo", 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "This is the best standard laser ammo on the market. x3 laser damage per round"),
-	(31, "MCB-25", 12, "ammunition_laser_mcb-25", "ammo", 0, 20, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "More bang for your buck: x2 laser damage per round"),
-	(32, "LCB-10", 12, "ammunition_laser_lcb-10", "ammo", 0, 10, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Low efficiency for a low price"),
-	(33, "DMG-B01", 6, "booster_dmg-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% damage for all damage inflicted for 10 h."),
-	(34, "EP-B01", 6, "booster_ep-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% EP Boost for 10 h."),
-	(35, "HON-B01", 6, "booster_hon-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% honor for 10 h."),
-	(36, "HP-B01", 6, "booster_hp-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% ship HP for 10 h."),
-	(37, "REP-B01", 6, "booster_rep-b01", "booster", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% faster ship repairs for 10 h."),
-	(38, "RES-B01", 6, "booster_res-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The resource booster increases the number of resources from collected NPC cargo boxes by 25% for 10 h."),
-	(39, "SHD-B01", 6, "booster_shd-b01", "booster", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+25% shield power for 10 h."),
-	(40, "F-01-TU", 17, "drone_formation_f-01-tu", "drone_formation", 0, 1000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(41, "F-02-AR", 17, "drone_formation_f-02-ar", "drone_formation", 0, 1000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(42, "F-03-LA", 17, "drone_formation_f-03-la", "drone_formation", 0, 2000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(43, "F-04-ST", 17, "drone_formation_f-04-st", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(44, "F-05-PI", 17, "drone_formation_f-05-pi", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(45, "F-06-DA", 17, "drone_formation_f-06-da", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(46, "F-07-DI", 17, "drone_formation_f-07-di", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(47, "F-08-CH", 17, "drone_formation_f-08-ch", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(48, "F-09-MO", 17, "drone_formation_f-09-mo", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(49, "F-10-CR", 17, "drone_formation_f-10-cr", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(50, "F-11-HE", 17, "drone_formation_f-11-he", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(51, "F-12-BA", 17, "drone_formation_f-12-ba", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(52, "F-13-BT", 17, "drone_formation_f-13-bt", "drone_formation", 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(53, "LGF", 25, "resource_logfile", "extra", 500, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Log-disks can be exchanged for Research Points."),
-	(54, "BK-100", 25, "resource_booty-key", "extra", 1500, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Used to open pirate booty and collect the valuable treasure contained within."),
-	(55, "REP-1", 10, "equipment_extra_repbot_rep-1", "extra", 0, 10000, 5000, NULL, NULL, NULL, NULL, NULL, "0", 1, "This repair bot recovers your ship's hull in 165 seconds"),
-	(56, "REP-2", 10, "equipment_extra_repbot_rep-2", "extra", 0, 100000, 50000, NULL, NULL, NULL, NULL, NULL, "0", 1, "This repair bot recovers your ship's hull in 120 seconds"),
-	(57, "REP-3", 10, "equipment_extra_repbot_rep-3", "extra", 5000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "This repair bot recovers your ship's hull in 105 seconds."),
-	(58, "REP-4", 10, "equipment_extra_repbot_rep-4", "extra", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "This repair bot recovers your ship's hull in 90 seconds."),
-	(59, "ROK-T01", 30, "equipment_extra_cpu_rok-t01", "extra", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "Doubles rocket firing speed"),
-	(60, "SLE-01", 9, "equipment_extra_cpu_sle-01", "extra", 0, 600000, 0, NULL, NULL, NULL, NULL, 2, "", 1, "+2 new slots for extras"),
-	(61, "SLE-02", 9, "equipment_extra_cpu_sle-02", "extra", 75000, 0, 0, NULL, NULL, NULL, NULL, 4, "", 1, "+4 new slots for extras"),
-	(62, "SLE-03", 9, "equipment_extra_cpu_sle-03", "extra", 150000, 0, 0, NULL, NULL, NULL, NULL, 6, "", 1, "+6 new slots for extras"),
-	(63, "SLE-04", 9, "equipment_extra_cpu_sle-04", "extra", 250000, 0, 0, NULL, NULL, NULL, NULL, 10, "", 1, "+10 new slots for extras"),
-	(65, "ISH-01", 31, "equipment_extra_cpu_ish-01", "extra", 50000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "3-second protection against enemies; 10 mines and 100 Xenomit used every time"),
-	(66, "SMB-01", 32, "equipment_extra_cpu_smb-01", "extra", 50000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "Instant bomb made from 10 mines and 100 Xenomit; doesn't cause any damage to your ship"),
-	(67, "RL-LB1", 33, "equipment_extra_cpu_rllb-x", "extra", 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, "0", 1, "The rocket-launcher CPU automatically reloads your rocket launcher with a specified rocket type to rain fire on your enemies when you launch a laser attack."),
-	(68, "AIM-01", 34, "equipment_extra_cpu_aim-01", "extra", 0, 20000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "25% less chance that lasers will miss their target; 10 Xenomit used per volley"),
-	(69, "AIM-02", 34, "equipment_extra_cpu_aim-02", "extra", 200000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "50% less chance that lasers will miss their target; 10 Xenomit used per volley"),
-	(70, "JP-01", 35, "equipment_extra_cpu_jp-01", "extra", 0, 2000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-	(71, "JP-02", 35, "equipment_extra_cpu_jp-02", "extra", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-	(72, "GEM-XI", 36, "equipment_extra_cpu_g3x-crgo-x", "extra", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Doubles cargo space thanks to molecular compression"),
-	(73, "CL04K-XL", 37, "equipment_extra_cpu_cl04k-xl", "extra", 22500, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 50, "Cloak your ship 50 times and stay invisible until you launch an attack yourself."),
-	(74, "CL04K", 37, "equipment_extra_cpu_cl04k-m", "extra", 5000, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 20, "10 ship cloakings (active until your first attack)"),
-	(75, "CL04K-MOD", 37, "equipment_extra_cpu_cl04k-xs", "extra", 500, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 1, "Ship stays cloaked until your first attack"),
-	(76, "AROL-X", 38, "equipment_extra_cpu_arol-x", "extra", 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Automatic rocket rapid fire during your laser attacks."),
-	(77, "MIN-T01", 39, "equipment_extra_cpu_min-t01", "extra", 0, 5000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "25% shorter cooldown for mines and items made from mines."),
-	(78, "MIN-T02", 39, "equipment_extra_cpu_min-t02", "extra", 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "50% shorter cooldown for mines and items made from mines."),
-	(79, "NC-RRB", 40, "equipment_extra_cpu_nc-rrb-x", "extra", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Auto-activates a repair robot available"),
-	(81, "AJP-01", 41, "equipment_extra_cpu_ajp-01", "extra", 75000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Allows you to jump to any of the valid target maps. May not be used during battle."),
-	(84, "DRO-01", 42, "equipment_extra_cpu_dr-01", "extra", 0, 150000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "This CPU automatically repairs your drones when they sustain more than 70% damage upon ship destruction, as long as you have enough Uridium or Credits (depends on the drone type). Good for 8 repairs."),
-	(85, "DRO-02", 42, "equipment_extra_cpu_dr-02", "extra", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "This CPU automatically repairs your drones when they have received the maximum damage upon ship destruction, as long as you have enough Uridium or Credits (depends on the drone type). Good for 32 repairs."),
-	(86, "HAVOC", 50, "drone_designs_havoc", "drone_design", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(87, "BK-101", 25, "", "extra", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-	(88, "BK-102", 25, "", "extra", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
-	(89, "R-310", 12, "ammunition_rocket_r-310", "ammo", 0, 100, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Short-range rocket: causes up to 1,000 damage points per rocket fired"),
-	(90, "PLT-2026", 12, "ammunition_rocket_PLT-2026", "ammo", 0, 500, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Mid-range rocket: causes up to 2,000 damage points per rocket fired"),
-	(91, "PLT-2021", 12, "ammunition_rocket_PLT-2021", "ammo", 5, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Long-range rocket: causes up to 4,000 points per rocket fired"),
-	(92, "PLT-3030", 12, "ammunition_rocket_PLT-3030", "ammo", 7, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Each rocket inflicts a max. of 6,000 HP of damage, but has a lower accuracy rate due to its impressive firepower. An exceptional weapon when used in combination with the Tech Center's precision targeter."),
-	(93, "ECO-10 ", 12, "ammunition_rocketlauncher_ECO-10", "ammo", 0, 1500, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The multi-angle damage rocket for smart spenders. Your toughest enemies won't stand a chance against the many broadsides of the ECO Hellstorm."),
-	(94, "Zeus", 24, "drone_zeus", "drone", 10000, 0, 750000, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Epic drone with two slots"),
-	(95, "HERCULES", 50, "drone_designs_hercules", "drone_design", 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(96, "PET", 26, "pet_pet10", "pet", 50000, 0, 0, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL),
-	(97, "FUEL", 26, "pet_fuel-100", "pet_fuel", 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(99, "G-KK1", 99, "pet_gear_g-kk1", "gear", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(100, "AI-LM1", 25, "pet_protocol_ai-lm1", "protocols", 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+	(1, 'LF-3', 0, 'equipment_weapon_laser_lf-3', 'laser', 10000, 0, 25000, 150, NULL, NULL, NULL, NULL, NULL, NULL, "Much stronger laser: Causes up to 150 damage points per round"),
+	(2, 'LF-4', 0, 'equipment_weapon_laser_lf-4', 'laser', 1, 0, 2500000, 200, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(5, 'SG3N-A01', 2, 'equipment_generator_shield_sg3n-a01', 'generator', 0, 10000, 5000, NULL, 1000, 400, NULL, NULL, NULL, NULL, "1,000 shield strength / 40% less damage"),
+	(6, 'SG3N-B02', 2, 'equipment_generator_shield_sg3n-b02', 'generator', 10000, 0, 25000, NULL, 10000, 8000, NULL, NULL, NULL, NULL, "10,000 shield strength / 80% less damage"),
+	(7, 'SG3N-A02', 2, 'equipment_generator_shield_sg3n-a02', 'generator', 0, 20000, 10000, NULL, 2000, 1200, NULL, NULL, NULL, NULL, "2,000 shield strength / 50% less damage"),
+	(8, 'SG3N-A03', 2, 'equipment_generator_shield_sg3n-a03', 'generator', 0, 256000, 1280000, NULL, 5000, 3500, NULL, NULL, NULL, NULL, "5,000 shield strength / 60% less damage"),
+	(9, 'SG3N-B01', 2, 'equipment_generator_shield_sg3n-b01', 'generator', 5000, 0, 0, NULL, 4000, 2800, NULL, NULL, NULL, NULL, "4,000 shield strength / 70% less damage"),
+	(13, 'Apis', 24, 'drone_apis', 'drone', 10000, 0, 2500000, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Power drone with two slots"),
+	(14, 'Iris', 24, 'drone_iris', 'drone', 15000, 0, 37500, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Power drone with two slots"),
+	(15, 'Flax', 24, 'drone_flax', 'drone', 0, 100000, 50000, NULL, NULL, NULL, NULL, 1, NULL, NULL, "Starter drone with one slot"),
+	(16, 'G3N-1010', 3, 'equipment_generator_speed_g3n-1010', 'generator', 0, 2000, 1000, NULL, NULL, NULL, 2, NULL, NULL, NULL, "Increases ship speed by 2"),
+	(17, 'G3N-2010', 3, 'equipment_generator_speed_g3n-2010', 'generator', 0, 4000, 2000, NULL, NULL, NULL, 3, NULL, NULL, NULL, "Increases ship speed by 3"),
+	(18, 'G3N-3210', 3, 'equipment_generator_speed_g3n-3210', 'generator', 0, 8000, 4000, NULL, NULL, NULL, 4, NULL, NULL, NULL, "Increases ship speed by 4"),
+	(19, 'G3N-3310', 3, 'equipment_generator_speed_g3n-3310', 'generator', 0, 16000, 8000, NULL, NULL, NULL, 5, NULL, NULL, NULL, "Increases ship speed by 5"),
+	(20, 'G3N-6900', 3, 'equipment_generator_speed_g3n-6900', 'generator', 1000, 0, 2500, NULL, NULL, NULL, 7, NULL, NULL, NULL, "Increases ship speed by 7"),
+	(21, 'G3N-7900', 3, 'equipment_generator_speed_g3n-7900', 'generator', 2000, 0, 5000, NULL, NULL, NULL, 10, NULL, NULL, NULL, "Increases ship speed by 10"),
+	(22, 'LF-2', 0, 'equipment_weapon_laser_lf-2', 'laser', 5000, 0, 12500, 100, NULL, NULL, NULL, NULL, NULL, NULL, "Strong laser: causes up to 100 damage points per round"),
+	(23, 'MP-1', 0, 'equipment_weapon_laser_mp-1', 'laser', 0, 50000, 25000, 60, NULL, NULL, NULL, NULL, NULL, NULL, "Average laser: causes up to 60 damage points per round"),
+	(24, 'LF-1', 0, 'equipment_weapon_laser_lf-1', 'laser', 0, 10000, 5000, 40, NULL, NULL, NULL, NULL, NULL, NULL, "Small laser: causes up to 40 damage points per round"),
+	(25, 'HST-02', 1, 'equipment_weapon_rocketlauncher_hst-2', 'heavy', 15000, 0, 37500, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The rapid reloader! This upgraded version of the Hellstorm launcher 1 makes it possible to win the battle before it's even begun. One little rocket makes a world of difference on the battlefield - firing up to 5 rocket"),
+	(26, 'HST-01', 1, 'equipment_weapon_rocketlauncher_hst-1', 'heavy', 0, 500000, 250000, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The rapid reloader! This rocket launcher makes it possible to win a battle before it's even begun. One little rocket makes a world of difference on the battlefield - firing up to 3 rockets, this rocket launcher unleashes a broadside of destruction"),
+	(27, 'RSB-75', 12, 'ammunition_laser_rsb-75', 'notlisted', 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(28, 'UCB-100', 12, 'ammunition_laser_ucb-100', 'notlisted', 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(29, 'SAB-50', 12, 'ammunition_laser_sab-50', 'ammo', 0.5, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Special ammunition that reinforces your Shield, strengthening it by tapping into enemy shields (Shield Leech)."),
+	(30, 'MCB-50', 12, 'ammunition_laser_mcb-50', 'ammo', 1, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "This is the best standard laser ammo on the market. x3 laser damage per round"),
+	(31, 'MCB-25', 12, 'ammunition_laser_mcb-25', 'ammo', 0, 20, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "More bang for your buck: x2 laser damage per round"),
+	(32, 'LCB-10', 12, 'ammunition_laser_lcb-10', 'ammo', 0, 10, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Low efficiency for a low price"),
+	(33, 'DMG-B01', 6, 'booster_dmg-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% damage for all damage inflicted for 10 h."),
+	(34, 'EP-B01', 6, 'booster_ep-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% EP Boost for 10 h."),
+	(35, 'HON-B01', 6, 'booster_hon-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% honor for 10 h."),
+	(36, 'HP-B01', 6, 'booster_hp-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% ship HP for 10 h."),
+	(37, 'REP-B01', 6, 'booster_rep-b01', 'booster', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+10% faster ship repairs for 10 h."),
+	(38, 'RES-B01', 6, 'booster_res-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The resource booster increases the number of resources from collected NPC cargo boxes by 25% for 10 h."),
+	(39, 'SHD-B01', 6, 'booster_shd-b01', 'booster', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "+25% shield power for 10 h."),
+	(40, 'F-01-TU', 17, 'drone_formation_f-01-tu', 'drone_formation', 0, 1000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(41, 'F-02-AR', 17, 'drone_formation_f-02-ar', 'drone_formation', 0, 1000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(42, 'F-03-LA', 17, 'drone_formation_f-03-la', 'drone_formation', 0, 2000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(43, 'F-04-ST', 17, 'drone_formation_f-04-st', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(44, 'F-05-PI', 17, 'drone_formation_f-05-pi', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(45, 'F-06-DA', 17, 'drone_formation_f-06-da', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(46, 'F-07-DI', 17, 'drone_formation_f-07-di', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(47, 'F-08-CH', 17, 'drone_formation_f-08-ch', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(48, 'F-09-MO', 17, 'drone_formation_f-09-mo', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(49, 'F-10-CR', 17, 'drone_formation_f-10-cr', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(50, 'F-11-HE', 17, 'drone_formation_f-11-he', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(51, 'F-12-BA', 17, 'drone_formation_f-12-ba', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(52, 'F-13-BT', 17, 'drone_formation_f-13-bt', 'drone_formation', 150000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(53, 'LGF', 25, 'resource_logfile', 'extra', 500, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Log-disks can be exchanged for Research Points."),
+	(54, 'BK-100', 25, 'resource_booty_key', 'extra', 1500, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Used to open pirate booty and collect the valuable treasure contained within."),
+	(55, 'REP-1', 10, 'equipment_extra_repbot_rep-1', 'extra', 0, 10000, 5000, NULL, NULL, NULL, NULL, NULL, 0, 1, "This repair bot recovers your ship's hull in 165 seconds"),
+	(56, 'REP-2', 10, 'equipment_extra_repbot_rep-2', 'extra', 0, 100000, 50000, NULL, NULL, NULL, NULL, NULL, 0, 1, "This repair bot recovers your ship's hull in 120 seconds"),
+	(57, 'REP-3', 10, 'equipment_extra_repbot_rep-3', 'extra', 5000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "This repair bot recovers your ship's hull in 105 seconds."),
+	(58, 'REP-4', 10, 'equipment_extra_repbot_rep-4', 'extra', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "This repair bot recovers your ship's hull in 90 seconds."),
+	(59, 'ROK-T01', 30, 'equipment_extra_cpu_rok-t01', 'extra', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "Doubles rocket firing speed"),
+	(60, 'SLE-01', 9, 'equipment_extra_cpu_sle-01', 'extra', 0, 600000, 0, NULL, NULL, NULL, NULL, 2, "", 1, "+2 new slots for extras"),
+	(61, 'SLE-02', 9, 'equipment_extra_cpu_sle-02', 'extra', 75000, 0, 0, NULL, NULL, NULL, NULL, 4, "", 1, "+4 new slots for extras"),
+	(62, 'SLE-03', 9, 'equipment_extra_cpu_sle-03', 'extra', 150000, 0, 0, NULL, NULL, NULL, NULL, 6, "", 1, "+6 new slots for extras"),
+	(63, 'SLE-04', 9, 'equipment_extra_cpu_sle-04', 'extra', 250000, 0, 0, NULL, NULL, NULL, NULL, 10, "", 1, "+10 new slots for extras"),
+	(65, 'ISH-01', 31, 'equipment_extra_cpu_ish-01', 'extra', 50000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "3-second protection against enemies; 10 mines and 100 Xenomit used every time"),
+	(66, 'SMB-01', 32, 'equipment_extra_cpu_smb-01', 'extra', 50000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "Instant bomb made from 10 mines and 100 Xenomit; doesn't cause any damage to your ship"),
+	(67, 'RL-LB1', 33, 'equipment_extra_cpu_rllb-x', 'extra', 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 1, "The rocket-launcher CPU automatically reloads your rocket launcher with a specified rocket type to rain fire on your enemies when you launch a laser attack."),
+	(68, 'AIM-01', 34, 'equipment_extra_cpu_aim-01', 'extra', 0, 20000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "25% less chance that lasers will miss their target; 10 Xenomit used per volley"),
+	(69, 'AIM-02', 34, 'equipment_extra_cpu_aim-02', 'extra', 200000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "50% less chance that lasers will miss their target; 10 Xenomit used per volley"),
+	(70, 'JP-01', 35, 'equipment_extra_cpu_jp-01', 'extra', 0, 2000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+	(71, 'JP-02', 35, 'equipment_extra_cpu_jp-02', 'extra', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+	(72, 'GEM-XI', 36, 'equipment_extra_cpu_gem-xi', 'extra', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Doubles cargo space thanks to molecular compression"),
+	(73, 'CL04K-XL', 37, 'equipment_extra_cpu_cl04k-xl', 'extra', 22500, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 50, "Cloak your ship 50 times and stay invisible until you launch an attack yourself."),
+	(74, 'CL04K', 37, 'equipment_extra_cpu_cl04k-m', 'extra', 5000, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 20, "10 ship cloakings (active until your first attack)"),
+	(75, 'CL04K-MOD', 37, 'equipment_extra_cpu_cl04k-xs', 'extra', 500, 0, 0, NULL, NULL, NULL, NULL, NULL, "", 1, "Ship stays cloaked until your first attack"),
+	(76, 'AROL-X', 38, 'equipment_extra_cpu_arol-x', 'extra', 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Automatic rocket rapid fire during your laser attacks."),
+	(77, 'MIN-T01', 39, 'equipment_extra_cpu_min-t01', 'extra', 0, 5000000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "25% shorter cooldown for mines and items made from mines."),
+	(78, 'MIN-T02', 39, 'equipment_extra_cpu_min-t02', 'extra', 25000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "50% shorter cooldown for mines and items made from mines."),
+	(79, 'NC-RRB', 40, 'equipment_extra_cpu_nc-rrb', 'extra', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Auto-activates a repair robot available"),
+	(81, 'AJP-01', 41, 'equipment_extra_cpu_ajp-01', 'extra', 75000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "Allows you to jump to any of the valid target maps. May not be used during battle."),
+	(84, 'DRO-01', 42, 'equipment_extra_cpu_dr-01', 'extra', 0, 150000, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "This CPU automatically repairs your drones when they sustain more than 70% damage upon ship destruction, as long as you have enough Uridium or Credits (depends on the drone type). Good for 8 repairs."),
+	(85, 'DRO-02', 42, 'equipment_extra_cpu_dr-02', 'extra', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, "This CPU automatically repairs your drones when they have received the maximum damage upon ship destruction, as long as you have enough Uridium or Credits (depends on the drone type). Good for 32 repairs."),
+	(86, 'HAVOC', 50, 'drone_designs_havoc', 'drone_design', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(87, 'BK-101', 25, 'resource_booty_key_blue', 'extra', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+	(88, 'BK-102', 25, 'resource_booty_key_red', 'extra', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL),
+	(89, 'R-310', 12, 'ammunition_rocket_r-310', 'ammo', 0, 100, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Short-range rocket: causes up to 1,000 damage points per rocket fired"),
+	(90, 'PLT-2026', 12, 'ammunition_rocket_PLT-2026', 'ammo', 0, 500, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Mid-range rocket: causes up to 2,000 damage points per rocket fired"),
+	(91, 'PLT-2021', 12, 'ammunition_rocket_PLT-2021', 'ammo', 5, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Long-range rocket: causes up to 4,000 points per rocket fired"),
+	(92, 'PLT-3030', 12, 'ammunition_rocket_PLT-3030', 'ammo', 7, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "Each rocket inflicts a max. of 6,000 HP of damage, but has a lower accuracy rate due to its impressive firepower. An exceptional weapon when used in combination with the Tech Center's precision targeter."),
+	(93, 'ECO-10 ', 12, 'ammunition_rocketlauncher_ECO-10', 'ammo', 0, 1500, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, "The multi-angle damage rocket for smart spenders. Your toughest enemies won't stand a chance against the many broadsides of the ECO Hellstorm."),
+	(94, 'Zeus', 24, 'drone_zeus', 'drone', 10000, 0, 750000, NULL, NULL, NULL, NULL, 2, NULL, NULL, "Epic drone with two slots"),
+	(95, 'HERCULES', 50, 'drone_designs_hercules', 'drone_design', 10000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(96, 'PET', 26, 'pet_pet10', 'pet', 50000, 0, 0, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL),
+	(97, 'FUEL', 26, 'pet_fuel-100', 'pet_fuel', 15, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(99, 'G-KK1', 99, 'pet_gear_g-kk1', 'gear', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(100, 'AI-LM1', 25, 'pet_protocol_ai-lm1', 'protocols', 15000, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
--- Dumping structure for table do_server_ge1.server_levels_drone
+-- Dumping tructure for table do_server_ge1.server_levels_drone
 CREATE TABLE IF NOT EXISTS `server_levels_drone` (
   `ID` int(11) NOT NULL,
-  `EXP` bigint(11) NOT NULL COMMENT "(xp needed)",
+  `EXP` bigint(11) NOT NULL COMMENT '(XP needed)',
   `REWARDS` text,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -872,7 +884,7 @@ REPLACE INTO `server_levels_drone` (`ID`, `EXP`, `REWARDS`) VALUES
 -- Dumping structure for table do_server_ge1.server_levels_pet
 CREATE TABLE IF NOT EXISTS `server_levels_pet` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `EXP` bigint(11) NOT NULL COMMENT "(xp needed)",
+  `EXP` bigint(11) NOT NULL COMMENT '(XP needed)',
   `REWARDS` text,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -898,7 +910,7 @@ REPLACE INTO `server_levels_pet` (`ID`, `EXP`, `REWARDS`) VALUES
 -- Dumping structure for table do_server_ge1.server_levels_player
 CREATE TABLE IF NOT EXISTS `server_levels_player` (
   `ID` int(20) NOT NULL,
-  `EXP` bigint(11) NOT NULL COMMENT "(xp needed)",
+  `EXP` bigint(11) NOT NULL COMMENT '(XP needed)',
   `REWARDS` text,
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
@@ -950,12 +962,12 @@ REPLACE INTO `server_levels_player` (`ID`, `EXP`, `REWARDS`) VALUES
 -- Dumping structure for table do_server_ge1.server_maps
 CREATE TABLE IF NOT EXISTS `server_maps` (
   `ID` int(4) NOT NULL AUTO_INCREMENT,
-  `NAME` varchar(20) NOT NULL DEFAULT "",
-  `LIMITS` varchar(20) NOT NULL DEFAULT "128x128",
+  `NAME` varchar(20) NOT NULL DEFAULT '',
+  `LIMITS` varchar(20) NOT NULL DEFAULT '128x128',
   `PORTALS` text NOT NULL,
   `NPCS` text NOT NULL,
-  `IS_STARTER_MAP` enum("0","1") NOT NULL DEFAULT "0",
-  `FACTION_ID` tinyint(1) NOT NULL DEFAULT "0",
+  `IS_STARTER_MAP` enum(0,1) NOT NULL DEFAULT 0,
+  `FACTION_ID` tinyint(1) NOT NULL DEFAULT 0,
   `LEVEL` int(11) NOT NULL,
   `MAP_ASSETS` text CHARACTER SET utf32 NOT NULL,
   `MAP_TYPE` int(11) NOT NULL,
@@ -964,8 +976,6 @@ CREATE TABLE IF NOT EXISTS `server_maps` (
 
 -- Dumping data for table do_server_ge1.server_maps: 33 rows
 REPLACE INTO `server_maps` (`ID`, `NAME`, `LIMITS`, `PORTALS`, `NPCS`, `IS_STARTER_MAP`, `FACTION_ID`, `LEVEL`, `MAP_ASSETS`, `MAP_TYPE`) VALUES
-	(26, "3-6", "208x128", "[{'Id':1,'x':'2000','y':'2000','newX':'2000','newY':'11500','Map':25},{'Id':2,'x':'18500','y':'11500','newX':'2000','newY':'11500','Map':28}]", "[{'NpcId':79,'Count':3},{'NpcId':78,'Count':20},{'NpcId':80,'Count':0},{'NpcId':29,'Count':6},{'NpcId':35,'Count':1}]", '0', 3, 11, "", 0),
-	(27, "3-7", "208x128", "[{'Id':1,'x':'2000','y':'11300','newX':'18500','newY':'11500','Map':25},{'Id':2,'x':'18500','y':'11500','newX':'2000','newY':'2000','Map':28}]", "[{'NpcId':79,'Count':8},{'NpcId':78,'Count':12},{'NpcId':29,'Count':2},{'NpcId':35,'Count':2}]", '0', 3, 11, "", 0),
 	(2, "1-2", "208x130", "[{'Id':1,'x':'2000','y':'2000','newX':'18500','newY':'11500','Map':1},{'Id':2,'x':'18500','y':'2000','newX':'2000','newY':'11500','Map':3},{'Id':3,'x':'18500','y':'11500','newX':'2000','newY':'2000','Map':4}]", "[{'NpcId':84,'Count':10},{'NpcId':71,'Count':10},{'NpcId':23,'Count':3},{'NpcId':24,'Count':2}]", '1', 1, 0, "", 0),
 	(1, "1-1", "208x130", "[{'Id':1,'x':'18500','y':'11500','newX':'2000','newY':'2000','Map':2}]", "[{'NpcId':84,'Count':20}]", '1', 1, 0, "", 0),
 	(3, "1-3", "128x128", "[{'Id':1,'x':'2000','y':'11500','newX':'18500','newY':'2000','Map':2},{'Id':2,'x':'18500','y':'2000','newX':'2000','newY':'11500','Map':7},{'Id':3,'x':'18500','y':'11500','newX':'18500','newY':'2000','Map':4}]", "[{'NpcId':71,'Count':10},{'NpcId':72,'Count':8},{'NpcId':75,'Count':8},{'NpcId':73,'Count':5},{'NpcId':26,'Count':1},{'NpcId':25,'Count':3},{'NpcId':31,'Count':1}]", '0', 1, 2, "", 0),
@@ -991,6 +1001,8 @@ REPLACE INTO `server_maps` (`ID`, `NAME`, `LIMITS`, `PORTALS`, `NPCS`, `IS_START
 	(23, "2-7", "208x128", "[{'Id':1,'x':'2000','y':'11500','newX':'18500','newY':'2000','Map':21},{'Id':2,'x':'18500','y':'2000','newX':'18500','newY':'11500','Map':24}]", "[{'NpcId':79,'Count':8},{'NpcId':78,'Count':12},{'NpcId':29,'Count':2},{'NpcId':35,'Count':2}]", '0', 2, 11, "", 0),
 	(24, "2-8", "208x128", "[{'Id':1,'x':'2000','y':'11500','newX':'18500','newY':'2000','Map':22},{'Id':2,'x':'18500','y':'11500','newX':'18500','newY':'2000','Map':23}]", "[{'NpcId':85,'Count':25},{'NpcId':34,'Count':1}]", '0', 2, 12, "", 0),
 	(25, "3-5", "208x128", "[{'Id':1,'x':'2000','y':'2000','newX':'28000','newY':'24000','Map':16},{'Id':2,'x':'2000','y':'11500','newX':'2000','newY':'2000','Map':26},{'Id':3,'x':'18500','y':'11500','newX':'2000','newY':'11300','Map':27},{'Id':4,'x':'17400','y':'2000','newX':'28000','newY':'24000','Map':29}]", "[{'NpcId':77,'Count':10},{'NpcId':71,'Count':15},{'NpcId':76,'Count':8},{'NpcId':28,'Count':2},{'NpcId':27,'Count':3}]", '0', 3, 10, "", 0),
+	(26, "3-6", "208x128", "[{'Id':1,'x':'2000','y':'2000','newX':'2000','newY':'11500','Map':25},{'Id':2,'x':'18500','y':'11500','newX':'2000','newY':'11500','Map':28}]", "[{'NpcId':79,'Count':3},{'NpcId':78,'Count':20},{'NpcId':80,'Count':0},{'NpcId':29,'Count':6},{'NpcId':35,'Count':1}]", '0', 3, 11, "", 0),
+	(27, "3-7", "208x128", "[{'Id':1,'x':'2000','y':'11300','newX':'18500','newY':'11500','Map':25},{'Id':2,'x':'18500','y':'11500','newX':'2000','newY':'2000','Map':28}]", "[{'NpcId':79,'Count':8},{'NpcId':78,'Count':12},{'NpcId':29,'Count':2},{'NpcId':35,'Count':2}]", '0', 3, 11, "", 0),
 	(28, "3-8", "208x128", "[{'Id':1,'x':'2000','y':'2000','newX':'18500','newY':'11500','Map':27},{'Id':2,'x':'2000','y':'11500','newX':'18500','newY':'11500','Map':26}]", "[{'NpcId':85,'Count':25},{'NpcId':34,'Count':1}]", '0', 3, 12, "", 0),
 	(29, "4-5", "208x128", "[{'Id':1,'x':'6000','y':'13000','newX':'10000','newY':'11300','Map':17},{'Id':2,'x':'28000','y':'3000','newX':'10000','newY':'11300','Map':21},{'Id':3,'x':'28000','y':'24000','newX':'17400','newY':'2000','Map':25}]", "[{'NpcId':23,'Count':6},{'NpcId':24,'Count':7},{'NpcId':25,'Count':4},{'NpcId':31,'Count':2},{'NpcId':26,'Count':1},{'NpcId':46,'Count':1},{'NpcId':27,'Count':3},{'NpcId':28,'Count':1},{'NpcId':29,'Count':4},{'NpcId':35,'Count':2},{'NpcId':34,'Count':3},{'NpcId':45,'Count':2}]", '0', 0, 10, "", 0),
 	(42, "???", "208x128", "", "", '0', 0, 0, "", 0),
@@ -1063,15 +1075,15 @@ REPLACE INTO `server_max_research_point` (`ID`, `RESEARCH_POINT`, `LOGS_NEEDED`)
 CREATE TABLE IF NOT EXISTS `server_modules` (
   `ID` int(11) NOT NULL,
   `NAME` varchar(11) NOT NULL,
-  `HP` int(11) NOT NULL DEFAULT "250000",
-  `SHIELD` int(11) NOT NULL DEFAULT "500000",
+  `HP` int(11) NOT NULL DEFAULT 250000,
+  `SHIELD` int(11) NOT NULL DEFAULT 500000,
   `ATTACK_RANGE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping data for table do_server_ge1.server_modules: ~2 rows (approximately)
 REPLACE INTO `server_modules` (`ID`, `NAME`, `HP`, `SHIELD`, `ATTACK_RANGE`) VALUES
-	(1, "HULL", 500000, 500000, 0),
-	(0, "", 250000, 500000, 0);
+	(1, 'HULL', 500000, 500000, 0),
+	(0, '', 250000, 500000, 0);
 
 -- Dumping structure for table do_server_ge1.server_ore_prices
 CREATE TABLE IF NOT EXISTS `server_ore_prices` (
@@ -1083,15 +1095,15 @@ CREATE TABLE IF NOT EXISTS `server_ore_prices` (
 
 -- Dumping data for table do_server_ge1.server_ore_prices: ~9 rows (approximately)
 REPLACE INTO `server_ore_prices` (`ID`, `LOOT_ID`, `SELL_PRICE`) VALUES
-	(0, "resource_ore_prometium", 10),
-	(1, "resource_ore_endurium", 15),
-	(2, "resource_ore_terbium", 25),
-	(3, "resource_ore_prometid", 200),
-	(4, "resource_ore_duranium", 300),
-	(5, "resource_ore_promerium", 1000),
-	(6, "resource_ore_xenomit", -1),
-	(7, "resource_ore_seprom", -1),
-	(8, "resource_ore_palladium", -1);
+	(0, 'resource_ore_prometium', 10),
+	(1, 'resource_ore_endurium', 15),
+	(2, 'resource_ore_terbium', 25),
+	(3, 'resource_ore_prometid', 200),
+	(4, 'resource_ore_duranium', 300),
+	(5, 'resource_ore_promerium', 1000),
+	(6, 'resource_ore_xenomit', -1),
+	(7, 'resource_ore_seprom', -1),
+	(8, 'resource_ore_palladium', -1);
 
 -- Dumping structure for table do_server_ge1.server_payments
 CREATE TABLE IF NOT EXISTS `server_payments` (
@@ -1118,7 +1130,7 @@ CREATE TABLE IF NOT EXISTS `server_premium_packs` (
 
 -- Dumping data for table do_server_ge1.server_premium_packs: ~0 rows (approximately)
 REPLACE INTO `server_premium_packs` (`ID`, `NAME`, `DESCRIPTION`, `PRICE`, `ITEMS`) VALUES
-	(1, "PREMIUM 1", "1 Week Premium Access", 3.99, "{'Items':[{'Type':'Premium','Value':1}]}");
+	(1, 'PREMIUM 1', '1 Week Premium Access', 3.99, "{'Items':[{'Type':'Premium','Value':1}]}");
 
 -- Dumping structure for table do_server_ge1.server_quests
 CREATE TABLE IF NOT EXISTS `server_quests` (
@@ -1127,11 +1139,11 @@ CREATE TABLE IF NOT EXISTS `server_quests` (
   `DESC` text NOT NULL,
   `ROOT` text NOT NULL,
   `REWARDS` text NOT NULL,
-  `TYPE` int(11) NOT NULL DEFAULT "0",
-  `ICON` int(11) NOT NULL DEFAULT "0",
-  `ACCEPT_LEVEL` int(11) NOT NULL DEFAULT "0",
+  `TYPE` int(11) NOT NULL DEFAULT 0,
+  `ICON` int(11) NOT NULL DEFAULT 0,
+  `ACCEPT_LEVEL` int(11) NOT NULL DEFAULT 0,
   `EXPIRY_DATE` datetime DEFAULT CURRENT_TIMESTAMP,
-  `DAY_OF_WEEK` smallint(2) DEFAULT "0" COMMENT "Used for daily quests (0-6)",
+  `DAY_OF_WEEK` smallint(2) DEFAULT 0 COMMENT 'Used for daily quests (0-6)',
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
@@ -1192,20 +1204,20 @@ REPLACE INTO `server_ranks` (`ID`, `RANK_NAME`) VALUES
 -- Dumping structure for table do_server_ge1.server_ships
 CREATE TABLE IF NOT EXISTS `server_ships` (
   `ship_id` smallint(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL DEFAULT "-=[ ]=-",
+  `name` varchar(255) NOT NULL DEFAULT '-=[ ]=-',
   `inShop` tinyint(1) NOT NULL,
-  `ship_lootid` varchar(100) NOT NULL DEFAULT "",
-  `ship_hp` int(255) NOT NULL DEFAULT "1000",
+  `ship_lootid` varchar(100) NOT NULL DEFAULT '',
+  `ship_hp` int(255) NOT NULL DEFAULT 1000,
   `nanohull` bigint(255) NOT NULL,
-  `shield` int(255) NOT NULL DEFAULT "0",
-  `shieldAbsorb` smallint(11) NOT NULL DEFAULT "20",
-  `minDamage` int(255) NOT NULL DEFAULT "0",
-  `maxDamage` int(11) NOT NULL DEFAULT "0",
-  `base_speed` smallint(11) NOT NULL DEFAULT "150",
-  `isNeutral` enum("0","1") NOT NULL DEFAULT "1",
-  `laserID` tinyint(1) NOT NULL DEFAULT "0",
+  `shield` int(255) NOT NULL DEFAULT 0,
+  `shieldAbsorb` smallint(11) NOT NULL DEFAULT 20,
+  `minDamage` int(255) NOT NULL DEFAULT 0,
+  `maxDamage` int(11) NOT NULL DEFAULT 0,
+  `base_speed` smallint(11) NOT NULL DEFAULT 150,
+  `isNeutral` enum(0,1) NOT NULL DEFAULT 1,
+  `laserID` tinyint(1) NOT NULL DEFAULT 0,
   `laser` bigint(255) NOT NULL,
-  `heavy` bigint(255) NOT NULL DEFAULT "1",
+  `heavy` bigint(255) NOT NULL DEFAULT 1,
   `generator` bigint(255) NOT NULL,
   `batteries` bigint(255) NOT NULL,
   `rockets` bigint(255) NOT NULL,
@@ -1213,12 +1225,12 @@ CREATE TABLE IF NOT EXISTS `server_ships` (
   `gear` int(11) NOT NULL,
   `protocols` int(11) NOT NULL,
   `cargo` bigint(255) NOT NULL,
-  `experience` int(11) NOT NULL DEFAULT "0",
-  `honor` int(11) NOT NULL DEFAULT "0",
-  `credits` int(11) NOT NULL DEFAULT "0",
-  `uridium` int(11) NOT NULL DEFAULT "0",
-  `rankPoints` bigint(20) NOT NULL DEFAULT "0",
-  `AI` int(11) NOT NULL DEFAULT "0",
+  `experience` int(11) NOT NULL DEFAULT 0,
+  `honor` int(11) NOT NULL DEFAULT 0,
+  `credits` int(11) NOT NULL DEFAULT 0,
+  `uridium` int(11) NOT NULL DEFAULT 0,
+  `rankPoints` bigint(20) NOT NULL DEFAULT 0,
+  `AI` int(11) NOT NULL DEFAULT 0,
   `price_cre` int(11) NOT NULL,
   `price_uri` int(11) NOT NULL,
   `dropJSON` varchar(255) DEFAULT "",
@@ -1227,130 +1239,130 @@ CREATE TABLE IF NOT EXISTS `server_ships` (
 
 -- Dumping data for table do_server_ge1.server_ships: 117 rows
 REPLACE INTO `server_ships` (`ship_id`, `name`, `inShop`, `ship_lootid`, `ship_hp`, `nanohull`, `shield`, `shieldAbsorb`, `minDamage`, `maxDamage`, `base_speed`, `isNeutral`, `laserID`, `laser`, `heavy`, `generator`, `batteries`, `rockets`, `extra`, `gear`, `protocols`, `cargo`, `experience`, `honor`, `credits`, `uridium`, `rankPoints`, `AI`, `price_cre`, `price_uri`, `dropJSON`) VALUES
-	(1, "Phoenix", 1, "ship_phoenix", 4000, 4000, 2000, 50, 100, 150, 320, "1", 1, 1, 1, 1, 2000, 100, 1, 0, 0, 100, 100, 0, 0, 0, 0, 0, 0, 0, ""),
-	(2, "Yamato", 1, "ship_yamato", 18000, 18000, 8000, 50, 200, 300, 300, "1", 1, 2, 1, 5, 4000, 200, 1, 0, 0, 200, 200, 2, 0, 0, 0, 0, 16000, 0, ""),
-	(3, "Leonov", 1, "ship_leonov", 64000, 64000, 70000, 80, 2000, 2200, 360, "1", 1, 6, 1, 6, 6000, 300, 1, 0, 0, 500, 400, 4, 0, 0, 0, 0, 0, 15000, ""),
-	(4, "Defcom", 1, "ship_defcom", 12000, 12000, 5000, 50, 600, 800, 340, "1", 1, 5, 1, 3, 8000, 400, 2, 0, 0, 300, 800, 8, 0, 0, 0, 0, 25000, 0, ""),
-	(5, "Liberator", 1, "ship_liberator", 16000, 16000, 7500, 50, 400, 600, 330, "1", 1, 4, 1, 6, 10000, 500, 2, 0, 0, 400, 1600, 16, 0, 0, 0, 0, 40000, 0, ""),
-	(6, "Piranha", 1, "ship_piranha", 64000, 64000, 10000, 60, 1000, 1200, 360, "1", 1, 7, 1, 6, 14000, 600, 2, 0, 0, 500, 3200, 32, 0, 0, 0, 0, 80000, 0, ""),
-	(7, "Nostromo", 1, "ship_nostromo", 120000, 120000, 20000, 60, 1000, 1200, 340, "1", 1, 7, 1, 8, 16000, 700, 2, 0, 0, 600, 6400, 64, 0, 0, 0, 0, 100000, 0, ""),
-	(8, "Vengeance", 1, "ship_vengeance", 180000, 180000, 145000, 90, 24000, 27000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
-	(9, "Bigboy", 1, "ship_bigboy", 180000, 180000, 75000, 70, 1400, 1600, 260, "1", 1, 8, 1, 16, 18000, 900, 3, 0, 0, 900, 25600, 256, 0, 0, 0, 0, 200000, 0, ""),
-	(10, "Goliath", 1, "ship_goliath", 256000, 256000, 265000, 90, 42500, 48500, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 80000, ""),
-	(11, "-=[demaNer]=-", 0, "", 400000, 0, 300000, 60, 3500, 4000, 300, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(12, "pet", 0, "", 80000, 0, 20, 60, 20, 20, 200, "0", 1, 7, 1, 6, 0, 0, 0, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(13, "pet", 0, "", 120000, 0, 20, 60, 20, 20, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(14, "pet", 0, "", 140000, 0, 20, 60, 20, 20, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(15, "pet", 0, "", 170000, 0, 20, 60, 20, 20, 200, "1", 1, 15, 1, 10, 0, 0, 0, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(16, "Adept", 0, "ship_vengeance_design_adept", 180000, 180000, 145000, 80, 24000, 25000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
-	(17, "Corsair", 0, "ship_vengeance_design_corsair", 180000, 180000, 145000, 80, 24000, 25000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
-	(18, "Lightning", 0, "ship_vengeance_design_lightning", 180000, 180000, 145000, 80, 24000, 25000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 250000, ""),
-	(20, "UFO", 0, "", 3200000, 0, 2400000, 60, 120000, 125000, 250, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(21, "mini UFO", 0, "", 400000, 0, 300000, 60, 4000, 5000, 300, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(22, "pet", 0, "", 20000, 0, 20, 60, 20, 20, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(23, "..::{Boss Streuner}::..", 0, "", 3200, 0, 1600, 60, 100, 120, 270, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1600, 8, 1600, 4, 2, 0, 0, 0, "{'Prometium':40,'Endurium':40,'Terbium':10,'Prometid':0,'Duranium':0,'Promerium':0,'Xenomit':0,'Seprom':0}"),
-	(24, "..::{Boss Lordakia}::..", 0, "", 8000, 0, 8000, 60, 295, 350, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 3200, 8, 2, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':10,'Duranium':0,'Promerium':0,'Xenomit':1,'Seprom':0}"),
-	(25, "..::{Boss Saimon}::..", 0, "", 24000, 0, 12000, 60, 600, 720, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 6400, 16, 4, 0, 0, 0, "{'Prometium':160,'Endurium':160,'Terbium':160,'Prometid':8,'Duranium':8,'Promerium':1,'Xenomit':2,'Seprom':0}"),
-	(26, "..::{Boss Devolarium}::..", 0, "", 400000, 0, 400000, 60, 4100, 4650, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 204800, 64, 8, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':64,'Duranium':64,'Promerium':8,'Xenomit':8,'Seprom':0}"),
-	(27, "..::{Boss Sibelonit}::..", 0, "", 160000, 0, 160000, 60, 3175, 4350, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 128, 51200, 64, 6, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':32,'Duranium':32,'Promerium':4,'Xenomit':8,'Seprom':0}"),
-	(28, "..::{Boss Lordakium}::..", 0, "", 1200000, 0, 800000, 60, 10000, 16000, 230, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 102400, 512, 819200, 256, 12, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':256,'Duranium':256,'Promerium':32,'Xenomit':32,'Seprom':0}"),
-	(29, "..::{Boss Kristallin}::..", 0, "", 200000, 0, 160000, 60, 3600, 4700, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 51200, 64, 6, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':64,'Duranium':64,'Promerium':4,'Xenomit':8,'Seprom':0}"),
-	(30, "leonov", 0, "", 160000, 160000, 0, 0, 0, 0, 380, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(31, "..::{Boss Mordon}::..", 0, "", 80000, 0, 40000, 60, 1300, 1500, 125, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 51200, 32, 4, 0, 0, 0, "{'Prometium':320,'Endurium':320,'Terbium':320,'Prometid':32,'Duranium':32,'Promerium':8,'Xenomit':4,'Seprom':0}"),
-	(32, "-=[Santabot]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(33, "-=[Super Ice Metroid]=-", 0, "", 3200000, 0, 2400000, 60, 0, 0, 200, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(34, "..::{Boss StreuneR}::..", 0, "", 80000, 0, 40000, 60, 1500, 2000, 280, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 51200, 32, 4, 0, 0, 0, "{'Prometium':320,'Endurium':320,'Terbium':320,'Prometid':32,'Duranium':32,'Promerium':0,'Xenomit':4,'Seprom':0}"),
-	(35, "..::{Boss Kristallon}::..", 0, "", 1600000, 0, 1200000, 60, 15000, 20000, 250, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 204800, 1024, 1634400, 512, 16, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':512,'Duranium':512,'Promerium':64,'Xenomit':64,'Seprom':0}"),
-	(42, "<-o(Uber Kristallin)o->", 0, "", 400000, 0, 320000, 60, 7200, 9400, 250, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 102400, 128, 12, 0, 0, 0, "{'Prometium':800,'Endurium':800,'Terbium':800,'Prometid':128,'Duranium':128,'Promerium':8,'Xenomit':16,'Seprom':0}"),
-	(45, "<-o(Uber Kristallon)o->", 0, "", 3200000, 0, 2400000, 60, 30000, 45000, 200, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 409600, 2048, 3268800, 1024, 32, 0, 0, 0, "{'Prometium':2400,'Endurium':2400,'Terbium':2400,'Prometid':512,'Duranium':512,'Promerium':128,'Xenomit':128,'Seprom':0}"),
-	(46, "..::{Boss Sibelon}::..", 0, "", 800000, 0, 800000, 60, 9100, 12350, 100, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 408600, 128, 10, 0, 0, 0, "{'Prometium':800,'Endurium':800,'Terbium':800,'Prometid':128,'Duranium':128,'Promerium':16,'Xenomit':32,'Seprom':0}"),
-	(48, "-=[Carnivalbot]=-", 0, "", 1000, 0, 0, 60, 20, 20, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(49, "Aegis", 1, "ship_aegis", 275000, 275000, 0, 90, 30000, 40000, 300, "1", 0, 10, 1, 15, 15000, 3000, 3, 0, 0, 2000, 0, 0, 0, 0, 0, 0, 0, 250000, ""),
-	(50, "Red bigboy", 0, "", 160000, 160000, 0, 0, 0, 0, 260, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(52, "Amber", 0, "ship_goliath_design_amber", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
-	(53, "Crismon", 0, "ship_goliath_design_crimson", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(54, "Sapphire", 0, "ship_goliath_design_sapphire", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
-	(55, "Jade", 0, "ship_goliath_design_jade", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
-	(56, "Enforcer", 0, "ship_goliath_design_enforcer", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(57, "USA", 0, "ship_goliath_design_independence", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(58, "Revenger", 0, "ship_vengeance_design_revenge", 180000, 180000, 145000, 80, 24000, 25000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 50000, ""),
-	(59, "Bastion", 0, "ship_goliath_design_bastion", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(60, "Avenger", 0, "ship_vengeance_design_avenger", 180000, 180000, 145000, 80, 24000, 25000, 380, "1", 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 50000, ""),
-	(61, "Veteran", 0, "ship_goliath_design_veteran", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(62, "Exalted", 0, "ship_goliath_design_exalted", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(63, "Solace", 0, "ship_goliath_design_solace", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
-	(64, "Diminisher", 0, "ship_goliath_design_diminisher", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
-	(65, "Spectrum", 0, "ship_goliath_design_spectrum", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
-	(66, "Sentinel", 0, "ship_goliath_design_sentinel", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
-	(67, "Venom", 0, "ship_goliath_design_venom", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
-	(68, "Ignite", 0, "ship_goliath_design_ignite", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
-	(69, "Citadel", 1, "ship_citadel", 550000, 550000, 0, 90, 25000, 35000, 240, "1", 0, 7, 2, 20, 20000, 2000, 5, 0, 0, 4000, 0, 0, 0, 0, 0, 0, 0, 300000, ""),
-	(70, "Spearhead", 1, "ship_spearhead", 140000, 140000, 0, 80, 10000, 17000, 380, "1", 0, 7, 1, 12, 5000, 500, 2, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 50000, ""),
-	(71, "-=[Lordakia]=-", 0, "", 2000, 0, 2000, 60, 80, 100, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 800, 4, 800, 2, 0, 0, 0, 0, "{'Prometium':20,'Endurium':20,'Terbium':20,'Prometid':0,'Duranium':0,'Promerium':0,'Xenomit':0,'Seprom':0}"),
-	(72, "-=[Devolarium]=-", 0, "", 100000, 0, 100000, 60, 900, 1200, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 51200, 16, 4, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':2,'Xenomit':0,'Seprom':0}"),
-	(73, "-=[Mordon]=-", 0, "", 20000, 0, 10000, 60, 300, 400, 125, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 6400, 8, 2, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':8,'Duranium':8,'Promerium':1,'Xenomit':0,'Seprom':0}"),
-	(74, "-=[Sibelon]=-", 0, "", 200000, 0, 200000, 60, 2250, 3000, 100, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 102400, 32, 5, 0, 0, 0, "{'Prometium':200,'Endurium':200,'Terbium':200,'Prometid':32,'Duranium':32,'Promerium':4,'Xenomit':0,'Seprom':0}"),
-	(75, "-=[Saimon]=-", 0, "", 6000, 0, 3000, 60, 150, 200, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1600, 8, 1600, 4, 2, 0, 0, 0, "{'Prometium':40,'Endurium':40,'Terbium':40,'Prometid':2,'Duranium':2,'Xenomit':0,'Promerium':0,'Seprom':0}"),
-	(76, "-=[Sibelonit]=-", 0, "", 40000, 0, 40000, 60, 750, 1000, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 12800, 12, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':8,'Duranium':8,'Promerium':4,'Xenomit':0,'Seprom':0}"),
-	(77, "-=[Lordakium]=-", 0, "", 300000, 0, 200000, 60, 3150, 3600, 230, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 204800, 64, 6, 0, 0, 0, "{'Prometium':300,'Endurium':300,'Terbium':300,'Prometid':64,'Duranium':64,'Promerium':8,'Xenomit':0,'Seprom':0}"),
-	(78, "-=[Kristallin]=-", 0, "", 50000, 0, 40000, 60, 900, 1200, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 12800, 16, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':1,'Xenomit':0,'Seprom':0}"),
-	(79, "-=[Kristallon]=-", 0, "", 400000, 0, 300000, 60, 3750, 5000, 250, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 409600, 128, 8, 0, 0, 0, "{'Prometium':300,'Endurium':300,'Terbium':300,'Prometid':128,'Duranium':128,'Promerium':16,'Xenomit':0,'Seprom':0}"),
-	(80, "-=[Cubikon]=-", 0, "", 1600000, 0, 1200000, 60, 0, 0, 30, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 512000, 4096, 1638400, 1024, 10, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':512,'Duranium':512,'Promerium':64,'Xenomit':128,'Seprom':0}"),
-	(81, "-=[Protegit]=-", 0, "", 50000, 0, 40000, 60, 1125, 1500, 380, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 12800, 16, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':2,'Xenomit':0,'Seprom':0}"),
-	(82, "<==<Kucurbium>==>", 0, "", 5000000, 0, 5000000, 60, 20000, 25000, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(83, "<==<Boss Kucurbium>==>", 0, "", 20000000, 0, 20000000, 60, 50000, 60000, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(84, "-=[Streuner]=-", 0, "", 800, 0, 400, 60, 10, 20, 270, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 400, 2, 400, 1, 0, 0, 0, 0, "{'Prometium':10,'Endurium':10,'Terbium':0,'Prometid':0,'Duranium':0,'Xenomit':0,'Promerium':0,'Seprom':0}"),
-	(85, "-=[StreuneR]=-", 0, "", 20000, 0, 10000, 60, 350, 500, 280, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 6400, 8, 0, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':8,'Duranium':8,'Promerium':0,'Xenomit':0,'Seprom':0}"),
-	(86, "Kick", 0, "ship_goliath_design_kick", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
-	(87, "Referee", 0, "ship_goliath_design_referee", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
-	(88, "Goal", 0, "ship_goliath_design_goal", 256000, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
-	(89, "-=[Refreebot]=-", 0, "", 1000, 0, 0, 20, 20, 20, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(90, "-=[Century Falcon]=-", 0, "", 4000000, 0, 3000000, 60, 19000, 25000, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1000000, 5000, 1000000, 5000, 0, 0, 0, 0, ""),
-	(91, "-=[Corsair]=-", 0, "", 200000, 0, 120000, 60, 6000, 8000, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 10000, 32, 12000, 64, 0, 0, 0, 0, ""),
-	(92, "-=[Outcast]=-", 0, "", 150000, 0, 80000, 60, 3800, 5000, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 7500, 12, 7500, 24, 0, 0, 0, 0, ""),
-	(93, "-=[Marauder]=-", 0, "", 100000, 0, 60000, 60, 3500, 4500, 380, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4500, 8, 4500, 16, 0, 0, 0, 0, ""),
-	(94, "-=[Vagrant]=-", 0, "", 40000, 0, 40000, 60, 1900, 2500, 380, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2000, 4, 2000, 8, 0, 0, 0, 0, ""),
-	(95, "-=[Convict]=-", 0, "", 400000, 0, 200000, 60, 9500, 12000, 340, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 18000, 64, 25000, 128, 0, 0, 0, 0, ""),
-	(96, "-=[Hooligan]=-", 0, "", 250000, 0, 200000, 60, 7000, 9000, 340, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12000, 16, 15000, 32, 0, 0, 0, 0, ""),
-	(97, "-=[Ravager]=-", 0, "", 300000, 0, 200000, 60, 8000, 11000, 340, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 15000, 64, 20000, 128, 0, 0, 0, 0, ""),
-	(98, "Police", 0, "ship_police", 100000000, 100000000, 1250000, 90, 500000, 525000, 1500, "1", 1, 50, 15, 50, 1000000, 1000000, 10, 0, 0, 2500000, 1000000, 100000, 0, 0, 0, 0, 0, 5000, ""),
-	(99, "-=[Scorcher]=-", 0, "", 200000, 0, 200000, 60, 2500, 0, 280, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(100, "-=[Infernal]=-", 0, "", 60000, 0, 50000, 60, 950, 0, 300, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(101, "-=[Ice Meteoroid]=-", 0, "", 1600000, 0, 1200000, 60, 0, 0, 200, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(102, "-=[Melter]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(103, "<=<Icy>=>", 0, "", 100000, 0, 80000, 60, 1500, 0, 450, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(104, "-=[Binarybot]=-", 0, "", 800000, 0, 1200000, 80, 20000, 0, 300, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(105, "-=[Devourer]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(106, "-=[Lordakia]=-", 0, "", 2000, 0, 2000, 60, 80, 0, 320, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 800, 4, 800, 2, 0, 0, 0, 0, "{'Prometium':20,'Endurium':20,'Terbium':0,'Prometid':0,'Duranium':0,'Xenomit':0,'Promerium':0,'Seprom':0}"),
-	(107, "-=[Solarburst]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(108, "-=[Havok]=-", 0, "", 50000, 0, 50000, 60, 1400, 0, 300, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 12800, 32, 0, 0, 0, 0, ""),
-	(109, "Saturn", 0, "ship_goliath_design_saturn", 307200, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
-	(110, "Centaur", 0, "ship_goliath_design_centaur", 281600, 256000, 265000, 92, 42500, 45000, 300, "1", 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
-	(111, "-=[Interceptor]=-", 0, "", 60000, 0, 40000, 60, 350, 500, 450, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 7500, 24, 25000, 20, 1, 0, 0, 0, ""),
-	(112, "-=[Barracuda]=-", 0, "", 180000, 0, 100000, 60, 4500, 6000, 430, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 15000, 56, 90000, 25, 2, 0, 0, 0, ""),
-	(113, "-=[Saboteur]=-", 0, "", 200000, 0, 150000, 60, 3000, 4000, 430, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 22500, 72, 125000, 45, 2, 0, 0, 0, ""),
-	(114, "-=[Annihilator]=-", 0, "", 300000, 0, 200000, 60, 12000, 14000, 350, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 75000, 128, 250000, 65, 6, 0, 0, 0, ""),
-	(115, "-=[Battleray]=-", 0, "", 500000, 0, 400000, 60, 7000, 10000, 250, "0", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 125000, 192, 1750000, 175, 8, 0, 0, 0, ""),
-	(116, "-=[Hitac 2.0]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(117, "-=[Minion]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(118, "..::{Boss Twist}::..", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(119, "-=[Twist]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(120, "-=[Turkey]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(121, "-=[Snowman]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(122, "-=[Emperor Kristallon]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 50, 2, 50, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, ""),
-	(123, "-=[Emperor Lordakium]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(124, "-=[Emperor Sibelon]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(125, "-=[Mine Car]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(442, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(443, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
-	(444, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, "1", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "");
+	(1, "Phoenix", 1, "ship_phoenix", 4000, 4000, 2000, 50, 100, 150, 320, 1, 1, 1, 1, 1, 2000, 100, 1, 0, 0, 100, 100, 0, 0, 0, 0, 0, 0, 0, ""),
+	(2, "Yamato", 1, "ship_yamato", 18000, 18000, 8000, 50, 200, 300, 300, 1, 1, 2, 1, 5, 4000, 200, 1, 0, 0, 200, 200, 2, 0, 0, 0, 0, 16000, 0, ""),
+	(3, "Leonov", 1, "ship_leonov", 64000, 64000, 70000, 80, 2000, 2200, 360, 1, 1, 6, 1, 6, 6000, 300, 1, 0, 0, 500, 400, 4, 0, 0, 0, 0, 0, 15000, ""),
+	(4, "Defcom", 1, "ship_defcom", 12000, 12000, 5000, 50, 600, 800, 340, 1, 1, 5, 1, 3, 8000, 400, 2, 0, 0, 300, 800, 8, 0, 0, 0, 0, 25000, 0, ""),
+	(5, "Liberator", 1, "ship_liberator", 16000, 16000, 7500, 50, 400, 600, 330, 1, 1, 4, 1, 6, 10000, 500, 2, 0, 0, 400, 1600, 16, 0, 0, 0, 0, 40000, 0, ""),
+	(6, "Piranha", 1, "ship_piranha", 64000, 64000, 10000, 60, 1000, 1200, 360, 1, 1, 7, 1, 6, 14000, 600, 2, 0, 0, 500, 3200, 32, 0, 0, 0, 0, 80000, 0, ""),
+	(7, "Nostromo", 1, "ship_nostromo", 120000, 120000, 20000, 60, 1000, 1200, 340, 1, 1, 7, 1, 8, 16000, 700, 2, 0, 0, 600, 6400, 64, 0, 0, 0, 0, 100000, 0, ""),
+	(8, "Vengeance", 1, "ship_vengeance", 180000, 180000, 145000, 90, 24000, 27000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
+	(9, "Bigboy", 1, "ship_bigboy", 180000, 180000, 75000, 70, 1400, 1600, 260, 1, 1, 8, 1, 16, 18000, 900, 3, 0, 0, 900, 25600, 256, 0, 0, 0, 0, 200000, 0, ""),
+	(10, "Goliath", 1, "ship_goliath", 256000, 256000, 265000, 90, 42500, 48500, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 80000, ""),
+	(11, "-=[demaNer]=-", 0, "", 400000, 0, 300000, 60, 3500, 4000, 300, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(12, "pet", 0, "", 80000, 0, 20, 60, 20, 20, 200, 0, 1, 7, 1, 6, 0, 0, 0, 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(13, "pet", 0, "", 120000, 0, 20, 60, 20, 20, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(14, "pet", 0, "", 140000, 0, 20, 60, 20, 20, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(15, "pet", 0, "", 170000, 0, 20, 60, 20, 20, 200, 1, 1, 15, 1, 10, 0, 0, 0, 5, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(16, "Adept", 0, "ship_vengeance_design_adept", 180000, 180000, 145000, 80, 24000, 25000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
+	(17, "Corsair", 0, "ship_vengeance_design_corsair", 180000, 180000, 145000, 80, 24000, 25000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 30000, ""),
+	(18, "Lightning", 0, "ship_vengeance_design_lightning", 180000, 180000, 145000, 80, 24000, 25000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 250000, ""),
+	(20, "UFO", 0, "", 3200000, 0, 2400000, 60, 120000, 125000, 250, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(21, "mini UFO", 0, "", 400000, 0, 300000, 60, 4000, 5000, 300, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(22, "pet", 0, "", 20000, 0, 20, 60, 20, 20, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(23, "..::{Boss Streuner}::..", 0, "", 3200, 0, 1600, 60, 100, 120, 270, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1600, 8, 1600, 4, 2, 0, 0, 0, "{'Prometium':40,'Endurium':40,'Terbium':10,'Prometid':0,'Duranium':0,'Promerium':0,'Xenomit':0,'Seprom':0}"),
+	(24, "..::{Boss Lordakia}::..", 0, "", 8000, 0, 8000, 60, 295, 350, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 3200, 8, 2, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':10,'Duranium':0,'Promerium':0,'Xenomit':1,'Seprom':0}"),
+	(25, "..::{Boss Saimon}::..", 0, "", 24000, 0, 12000, 60, 600, 720, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 6400, 16, 4, 0, 0, 0, "{'Prometium':160,'Endurium':160,'Terbium':160,'Prometid':8,'Duranium':8,'Promerium':1,'Xenomit':2,'Seprom':0}"),
+	(26, "..::{Boss Devolarium}::..", 0, "", 400000, 0, 400000, 60, 4100, 4650, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 204800, 64, 8, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':64,'Duranium':64,'Promerium':8,'Xenomit':8,'Seprom':0}"),
+	(27, "..::{Boss Sibelonit}::..", 0, "", 160000, 0, 160000, 60, 3175, 4350, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 128, 51200, 64, 6, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':32,'Duranium':32,'Promerium':4,'Xenomit':8,'Seprom':0}"),
+	(28, "..::{Boss Lordakium}::..", 0, "", 1200000, 0, 800000, 60, 10000, 16000, 230, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 102400, 512, 819200, 256, 12, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':256,'Duranium':256,'Promerium':32,'Xenomit':32,'Seprom':0}"),
+	(29, "..::{Boss Kristallin}::..", 0, "", 200000, 0, 160000, 60, 3600, 4700, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 51200, 64, 6, 0, 0, 0, "{'Prometium':400,'Endurium':400,'Terbium':400,'Prometid':64,'Duranium':64,'Promerium':4,'Xenomit':8,'Seprom':0}"),
+	(30, "leonov", 0, "", 160000, 160000, 0, 0, 0, 0, 380, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(31, "..::{Boss Mordon}::..", 0, "", 80000, 0, 40000, 60, 1300, 1500, 125, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 51200, 32, 4, 0, 0, 0, "{'Prometium':320,'Endurium':320,'Terbium':320,'Prometid':32,'Duranium':32,'Promerium':8,'Xenomit':4,'Seprom':0}"),
+	(32, "-=[Santabot]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(33, "-=[Super Ice Metroid]=-", 0, "", 3200000, 0, 2400000, 60, 0, 0, 200, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(34, "..::{Boss StreuneR}::..", 0, "", 80000, 0, 40000, 60, 1500, 2000, 280, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 51200, 32, 4, 0, 0, 0, "{'Prometium':320,'Endurium':320,'Terbium':320,'Prometid':32,'Duranium':32,'Promerium':0,'Xenomit':4,'Seprom':0}"),
+	(35, "..::{Boss Kristallon}::..", 0, "", 1600000, 0, 1200000, 60, 15000, 20000, 250, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 204800, 1024, 1634400, 512, 16, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':512,'Duranium':512,'Promerium':64,'Xenomit':64,'Seprom':0}"),
+	(42, "<-o(Uber Kristallin)o->", 0, "", 400000, 0, 320000, 60, 7200, 9400, 250, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 102400, 128, 12, 0, 0, 0, "{'Prometium':800,'Endurium':800,'Terbium':800,'Prometid':128,'Duranium':128,'Promerium':8,'Xenomit':16,'Seprom':0}"),
+	(45, "<-o(Uber Kristallon)o->", 0, "", 3200000, 0, 2400000, 60, 30000, 45000, 200, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 409600, 2048, 3268800, 1024, 32, 0, 0, 0, "{'Prometium':2400,'Endurium':2400,'Terbium':2400,'Prometid':512,'Duranium':512,'Promerium':128,'Xenomit':128,'Seprom':0}"),
+	(46, "..::{Boss Sibelon}::..", 0, "", 800000, 0, 800000, 60, 9100, 12350, 100, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 408600, 128, 10, 0, 0, 0, "{'Prometium':800,'Endurium':800,'Terbium':800,'Prometid':128,'Duranium':128,'Promerium':16,'Xenomit':32,'Seprom':0}"),
+	(48, "-=[Carnivalbot]=-", 0, "", 1000, 0, 0, 60, 20, 20, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(49, "Aegis", 1, "ship_aegis", 275000, 275000, 0, 90, 30000, 40000, 300, 1, 0, 10, 1, 15, 15000, 3000, 3, 0, 0, 2000, 0, 0, 0, 0, 0, 0, 0, 250000, ""),
+	(50, "Red bigboy", 0, "", 160000, 160000, 0, 0, 0, 0, 260, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(52, "Amber", 0, "ship_goliath_design_amber", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
+	(53, "Crismon", 0, "ship_goliath_design_crimson", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(54, "Sapphire", 0, "ship_goliath_design_sapphire", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
+	(55, "Jade", 0, "ship_goliath_design_jade", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 125000, ""),
+	(56, "Enforcer", 0, "ship_goliath_design_enforcer", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(57, "USA", 0, "ship_goliath_design_independence", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(58, "Revenger", 0, "ship_vengeance_design_revenge", 180000, 180000, 145000, 80, 24000, 25000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 50000, ""),
+	(59, "Bastion", 0, "ship_goliath_design_bastion", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(60, "Avenger", 0, "ship_vengeance_design_avenger", 180000, 180000, 145000, 80, 24000, 25000, 380, 1, 4, 10, 1, 10, 16000, 800, 2, 0, 0, 1000, 12800, 128, 0, 0, 0, 0, 0, 50000, ""),
+	(61, "Veteran", 0, "ship_goliath_design_veteran", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(62, "Exalted", 0, "ship_goliath_design_exalted", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(63, "Solace", 0, "ship_goliath_design_solace", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
+	(64, "Diminisher", 0, "ship_goliath_design_diminisher", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
+	(65, "Spectrum", 0, "ship_goliath_design_spectrum", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
+	(66, "Sentinel", 0, "ship_goliath_design_sentinel", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
+	(67, "Venom", 0, "ship_goliath_design_venom", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 250000, ""),
+	(68, "Ignite", 0, "ship_goliath_design_ignite", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 50000, ""),
+	(69, "Citadel", 1, "ship_citadel", 550000, 550000, 0, 90, 25000, 35000, 240, 1, 0, 7, 2, 20, 20000, 2000, 5, 0, 0, 4000, 0, 0, 0, 0, 0, 0, 0, 300000, ""),
+	(70, "Spearhead", 1, "ship_spearhead", 140000, 140000, 0, 80, 10000, 17000, 380, 1, 0, 7, 1, 12, 5000, 500, 2, 0, 0, 500, 0, 0, 0, 0, 0, 0, 0, 50000, ""),
+	(71, "-=[Lordakia]=-", 0, "", 2000, 0, 2000, 60, 80, 100, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 800, 4, 800, 2, 0, 0, 0, 0, "{'Prometium':20,'Endurium':20,'Terbium':20,'Prometid':0,'Duranium':0,'Promerium':0,'Xenomit':0,'Seprom':0}"),
+	(72, "-=[Devolarium]=-", 0, "", 100000, 0, 100000, 60, 900, 1200, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 51200, 16, 4, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':2,'Xenomit':0,'Seprom':0}"),
+	(73, "-=[Mordon]=-", 0, "", 20000, 0, 10000, 60, 300, 400, 125, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 6400, 8, 2, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':8,'Duranium':8,'Promerium':1,'Xenomit':0,'Seprom':0}"),
+	(74, "-=[Sibelon]=-", 0, "", 200000, 0, 200000, 60, 2250, 3000, 100, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 102400, 32, 5, 0, 0, 0, "{'Prometium':200,'Endurium':200,'Terbium':200,'Prometid':32,'Duranium':32,'Promerium':4,'Xenomit':0,'Seprom':0}"),
+	(75, "-=[Saimon]=-", 0, "", 6000, 0, 3000, 60, 150, 200, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1600, 8, 1600, 4, 2, 0, 0, 0, "{'Prometium':40,'Endurium':40,'Terbium':40,'Prometid':2,'Duranium':2,'Xenomit':0,'Promerium':0,'Seprom':0}"),
+	(76, "-=[Sibelonit]=-", 0, "", 40000, 0, 40000, 60, 750, 1000, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 12800, 12, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':8,'Duranium':8,'Promerium':4,'Xenomit':0,'Seprom':0}"),
+	(77, "-=[Lordakium]=-", 0, "", 300000, 0, 200000, 60, 3150, 3600, 230, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 25600, 128, 204800, 64, 6, 0, 0, 0, "{'Prometium':300,'Endurium':300,'Terbium':300,'Prometid':64,'Duranium':64,'Promerium':8,'Xenomit':0,'Seprom':0}"),
+	(78, "-=[Kristallin]=-", 0, "", 50000, 0, 40000, 60, 900, 1200, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 12800, 16, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':1,'Xenomit':0,'Seprom':0}"),
+	(79, "-=[Kristallon]=-", 0, "", 400000, 0, 300000, 60, 3750, 5000, 250, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 51200, 256, 409600, 128, 8, 0, 0, 0, "{'Prometium':300,'Endurium':300,'Terbium':300,'Prometid':128,'Duranium':128,'Promerium':16,'Xenomit':0,'Seprom':0}"),
+	(80, "-=[Cubikon]=-", 0, "", 1600000, 0, 1200000, 60, 0, 0, 30, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 512000, 4096, 1638400, 1024, 10, 0, 0, 0, "{'Prometium':1200,'Endurium':1200,'Terbium':1200,'Prometid':512,'Duranium':512,'Promerium':64,'Xenomit':128,'Seprom':0}"),
+	(81, "-=[Protegit]=-", 0, "", 50000, 0, 40000, 60, 1125, 1500, 380, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 6400, 32, 12800, 16, 3, 0, 0, 0, "{'Prometium':100,'Endurium':100,'Terbium':100,'Prometid':16,'Duranium':16,'Promerium':2,'Xenomit':0,'Seprom':0}"),
+	(82, "<==<Kucurbium>==>", 0, "", 5000000, 0, 5000000, 60, 20000, 25000, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(83, "<==<Boss Kucurbium>==>", 0, "", 20000000, 0, 20000000, 60, 50000, 60000, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(84, "-=[Streuner]=-", 0, "", 800, 0, 400, 60, 10, 20, 270, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 400, 2, 400, 1, 0, 0, 0, 0, "{'Prometium':10,'Endurium':10,'Terbium':0,'Prometid':0,'Duranium':0,'Xenomit':0,'Promerium':0,'Seprom':0}"),
+	(85, "-=[StreuneR]=-", 0, "", 20000, 0, 10000, 60, 350, 500, 280, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3200, 16, 6400, 8, 0, 0, 0, 0, "{'Prometium':80,'Endurium':80,'Terbium':80,'Prometid':8,'Duranium':8,'Promerium':0,'Xenomit':0,'Seprom':0}"),
+	(86, "Kick", 0, "ship_goliath_design_kick", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
+	(87, "Referee", 0, "ship_goliath_design_referee", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
+	(88, "Goal", 0, "ship_goliath_design_goal", 256000, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
+	(89, "-=[Refreebot]=-", 0, "", 1000, 0, 0, 20, 20, 20, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(90, "-=[Century Falcon]=-", 0, "", 4000000, 0, 3000000, 60, 19000, 25000, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1000000, 5000, 1000000, 5000, 0, 0, 0, 0, ""),
+	(91, "-=[Corsair]=-", 0, "", 200000, 0, 120000, 60, 6000, 8000, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 10000, 32, 12000, 64, 0, 0, 0, 0, ""),
+	(92, "-=[Outcast]=-", 0, "", 150000, 0, 80000, 60, 3800, 5000, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 7500, 12, 7500, 24, 0, 0, 0, 0, ""),
+	(93, "-=[Marauder]=-", 0, "", 100000, 0, 60000, 60, 3500, 4500, 380, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 4500, 8, 4500, 16, 0, 0, 0, 0, ""),
+	(94, "-=[Vagrant]=-", 0, "", 40000, 0, 40000, 60, 1900, 2500, 380, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2000, 4, 2000, 8, 0, 0, 0, 0, ""),
+	(95, "-=[Convict]=-", 0, "", 400000, 0, 200000, 60, 9500, 12000, 340, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 18000, 64, 25000, 128, 0, 0, 0, 0, ""),
+	(96, "-=[Hooligan]=-", 0, "", 250000, 0, 200000, 60, 7000, 9000, 340, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12000, 16, 15000, 32, 0, 0, 0, 0, ""),
+	(97, "-=[Ravager]=-", 0, "", 300000, 0, 200000, 60, 8000, 11000, 340, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 15000, 64, 20000, 128, 0, 0, 0, 0, ""),
+	(98, "Police", 0, "ship_police", 100000000, 100000000, 1250000, 90, 500000, 525000, 1500, 1, 1, 50, 15, 50, 1000000, 1000000, 10, 0, 0, 2500000, 1000000, 100000, 0, 0, 0, 0, 0, 5000, ""),
+	(99, "-=[Scorcher]=-", 0, "", 200000, 0, 200000, 60, 2500, 0, 280, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(100, "-=[Infernal]=-", 0, "", 60000, 0, 50000, 60, 950, 0, 300, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(101, "-=[Ice Meteoroid]=-", 0, "", 1600000, 0, 1200000, 60, 0, 0, 200, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(102, "-=[Melter]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(103, "<=<Icy>=>", 0, "", 100000, 0, 80000, 60, 1500, 0, 450, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(104, "-=[Binarybot]=-", 0, "", 800000, 0, 1200000, 80, 20000, 0, 300, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(105, "-=[Devourer]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(106, "-=[Lordakia]=-", 0, "", 2000, 0, 2000, 60, 80, 0, 320, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 800, 4, 800, 2, 0, 0, 0, 0, "{'Prometium':20,'Endurium':20,'Terbium':0,'Prometid':0,'Duranium':0,'Xenomit':0,'Promerium':0,'Seprom':0}"),
+	(107, "-=[Solarburst]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(108, "-=[Havok]=-", 0, "", 50000, 0, 50000, 60, 1400, 0, 300, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 12800, 64, 12800, 32, 0, 0, 0, 0, ""),
+	(109, "Saturn", 0, "ship_goliath_design_saturn", 307200, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
+	(110, "Centaur", 0, "ship_goliath_design_centaur", 281600, 256000, 265000, 92, 42500, 45000, 300, 1, 4, 15, 1, 15, 32000, 1600, 3, 0, 0, 1500, 51200, 512, 0, 0, 0, 0, 0, 0, ""),
+	(111, "-=[Interceptor]=-", 0, "", 60000, 0, 40000, 60, 350, 500, 450, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 7500, 24, 25000, 20, 1, 0, 0, 0, ""),
+	(112, "-=[Barracuda]=-", 0, "", 180000, 0, 100000, 60, 4500, 6000, 430, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 15000, 56, 90000, 25, 2, 0, 0, 0, ""),
+	(113, "-=[Saboteur]=-", 0, "", 200000, 0, 150000, 60, 3000, 4000, 430, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 22500, 72, 125000, 45, 2, 0, 0, 0, ""),
+	(114, "-=[Annihilator]=-", 0, "", 300000, 0, 200000, 60, 12000, 14000, 350, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 75000, 128, 250000, 65, 6, 0, 0, 0, ""),
+	(115, "-=[Battleray]=-", 0, "", 500000, 0, 400000, 60, 7000, 10000, 250, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 125000, 192, 1750000, 175, 8, 0, 0, 0, ""),
+	(116, "-=[Hitac 2.0]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(117, "-=[Minion]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(118, "..::{Boss Twist}::..", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(119, "-=[Twist]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(120, "-=[Turkey]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(121, "-=[Snowman]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(122, "-=[Emperor Kristallon]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 50, 2, 50, 0, 0, 15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, ""),
+	(123, "-=[Emperor Lordakium]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(124, "-=[Emperor Sibelon]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(125, "-=[Mine Car]=-", 0, "", 1000, 0, 0, 20, 20, 0, 150, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(442, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(443, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ""),
+	(444, "-=[Spaceball]=-", 0, "", 0, 0, 0, 0, 0, 0, 200, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "");
 
 -- Dumping structure for table do_server_ge1.server_ships_designs
 CREATE TABLE IF NOT EXISTS `server_ships_designs` (
   `Id` smallint(11) NOT NULL AUTO_INCREMENT,
   `ShipId` smallint(11) NOT NULL,
-  `Name` varchar(255) NOT NULL DEFAULT "",
-  `type` varchar(255) NOT NULL DEFAULT "",
+  `Name` varchar(255) NOT NULL DEFAULT '',
+  `type` varchar(255) NOT NULL DEFAULT '',
   `inShop` tinyint(1) NOT NULL,
   `price_cre` int(11) NOT NULL,
   `price_uri` int(11) NOT NULL,
