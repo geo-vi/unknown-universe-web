@@ -158,7 +158,7 @@ if (isset($_GET["UID"])) {
 
             <div role="tabpanel" class="tab-pane" id="outbox">
                 <div class="invitation-code-list custom-scroll">
-                    <form name="Message" id="Message" action="" method="post">
+                    <form name="Outbox" id="outboxForm" action="" method="post">
                         <?php
                         if ( !isset($_GET['UID'])) {
                             ?>
@@ -184,7 +184,7 @@ if (isset($_GET["UID"])) {
                                         <td>
                                             <a href=""
                                                onclick="openMessage();"
-                                               name="messageid"
+                                               name="messageID"
                                                style="color:transparent;">
                                                 <b> <?= $message['HEADER']; ?></b>
                                             </a>
@@ -197,7 +197,7 @@ if (isset($_GET["UID"])) {
                                         <td><?php print date("d/m/Y h:i:s", strtotime($message['DATE'])); ?></td>
                                         <td>
                                             <a href="?ID=<?php print $message['ID'] ?>"
-                                               onclick="openMessage();" name="messageid"
+                                               onclick="openMessage();" name="messageID"
                                                style="color:transparent;">
                                                 <b>View</b>
                                             </a>
