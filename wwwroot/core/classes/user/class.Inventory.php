@@ -42,7 +42,7 @@ class Inventory
 
         for ($config = 1; $config <= 2; $config++) {
             foreach ($this->getItems() as $item) {
-                $item     = new item($item, $this->mysql);
+                $item     = new Item($item, $this->mysql);
                 $Location = $item->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config, true);
 
                 if (!$Location) {
@@ -107,7 +107,7 @@ class Inventory
 
         for ($config = 1; $config <= 2; $config++) {
             foreach ($ITEMS as $ITEM_OBJ) {
-                $ITEM = new item($ITEM_OBJ, $this->mysql);
+                $ITEM = new Item($ITEM_OBJ, $this->mysql);
                 if (!$ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config)) {
                     continue;
                 }
@@ -221,7 +221,7 @@ class Inventory
      *
      * @param $ID
      *
-     * @return bool|item
+     * @return bool|Item
      */
     public function getItem($ID)
     {
@@ -246,7 +246,7 @@ class Inventory
         if (!isset($Item[0])) {
             return false;
         } else {
-            return new item($Item[0], $this->mysql);
+            return new Item($Item[0], $this->mysql);
         }
     }
 
@@ -334,14 +334,14 @@ class Inventory
             "HP"              => $ShipData['ship_hp'],
             "CURRENT_CONFIGS" => [
                 "CONFIG_1" => [
-                    "DAMAGE" => $this->user->ShipConfigData->CONFIG_1_DMG,
-                    "SHIELD" => $this->user->ShipConfigData->CONFIG_1_SHIELD,
-                    "SPEED"  => $this->user->ShipConfigData->CONFIG_1_SPEED,
+                    "DAMAGE" => $this->user->__get('CONFIG_1_DMG'),
+                    "SHIELD" => $this->user->__get('CONFIG_1_SHIELD'),
+                    "SPEED"  => $this->user->__get('CONFIG_1_SPEED'),
                 ],
                 "CONFIG_2" => [
-                    "DAMAGE" => $this->user->ShipConfigData->CONFIG_2_DMG,
-                    "SHIELD" => $this->user->ShipConfigData->CONFIG_2_SHIELD,
-                    "SPEED"  => $this->user->ShipConfigData->CONFIG_2_SPEED,
+                    "DAMAGE" => $this->user->__get('CONFIG_2_DMG'),
+                    "SHIELD" => $this->user->__get('CONFIG_2_SHIELD'),
+                    "SPEED"  => $this->user->__get('CONFIG_2_SPEED'),
                 ],
             ],
             "SLOTS"           => [
