@@ -27,6 +27,9 @@ RUN mkdir /opt/lampp/apache2/conf.d
 RUN echo "IncludeOptional /opt/lampp/apache2/conf.d/*.conf" >> /opt/lampp/etc/httpd.conf
 RUN sed -i.bak s'/#Include etc\/extra\/httpd-vhosts.conf/Include etc\/extra\/httpd-vhosts.conf/g' /opt/lampp/etc/httpd.conf
 
+# Enable remote access to MariaDB
+RUN echo '[mysqld]\nskip-networking=0\nskip-bind-address' >> /opt/lampp/etc/my.cnf
+
 # Enable SSL
 RUN mkdir -p /opt/lampp/crt/dev.univ3rse.com
 COPY crt/server.pem /opt/lampp/crt/dev.univ3rse.com/server.pem
