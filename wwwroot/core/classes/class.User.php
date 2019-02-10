@@ -209,7 +209,7 @@ class User
 
                 //GET DEFAULT_SHIP_INFOS
                 $default_ship = $this->mysql->QUERY(
-                    "SELECT (ship_id, ship_hp) FROM server_ships WHERE ship_id =  ?",
+                    "SELECT ship_id, ship_hp FROM server_ships WHERE ship_id =  ?",
                     [$server_config["DEFAULT_SHIP"]]
                 )[0];
 
