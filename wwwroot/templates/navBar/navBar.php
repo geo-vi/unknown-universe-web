@@ -81,8 +81,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalClan"><?= $System->__('NAV_TEXT_CLAN') ?></a>
                 </li>
-                <li class="header_button header_normal_button">
-                    <a href="internalSkylab"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
+                <li class="header_button header_disabled_button">
+                    <a href="#"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
                 </li>
             </ul>
 
@@ -90,8 +90,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalHangar"><?= $System->__('NAV_TEXT_HANGAR') ?></a>
                 </li>
-                <li class="header_button header_normal_button">
-                    <a href="internalSkillTree"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
+                <li class="header_button header_disabled_button">
+                    <a href="#"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
                 </li>
             </ul>
         </ul>
@@ -121,8 +121,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalPayment"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
                 </li>
-                <li class="header_button header_normal_button">
-                    <a href="internalGalaxyGates"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
+                <li class="header_button header_disabled_button">
+                    <a href="#"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
                 </li>
             </ul>
 
@@ -130,8 +130,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalShop"><?= $System->__('NAV_TEXT_SHOP') ?></a>
                 </li>
-                <li class="header_button header_normal_button">
-                    <a href="internalAuction"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
+                <li class="header_button header_disabled_button">
+                    <a href="#"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
                 </li>
             </ul>
         </ul>
