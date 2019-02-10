@@ -471,13 +471,13 @@ class User
 
         switch ($FactionId) {
             case 1:
-                return "mmo";
+                return "MMO";
             case 2:
-                return "eic";
+                return "EIC";
             case 3:
-                return "vru";
+                return "VRU";
             default:
-                return "";
+                return "VOID";
         }
     }
 
@@ -507,7 +507,7 @@ class User
      */
     public function hasFaction()
     {
-        return ( $this->__get('FACTION_ID') !== 0 );
+        return ( $this->__get('FACTION_ID') != 0 );
     }
 
     /**
@@ -520,7 +520,7 @@ class User
     public function setFaction($FactionID)
     {
         if ($this->__get('FACTION_ID') == 0) {
-            if ($FactionID === 1 || $FactionID === 2 || $FactionID === 3) {
+            if ($FactionID == 1 || $FactionID == 2 || $FactionID == 3) {
                 return $this->mysql->QUERY(
                     'UPDATE player_data SET FACTION_ID = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
                     [

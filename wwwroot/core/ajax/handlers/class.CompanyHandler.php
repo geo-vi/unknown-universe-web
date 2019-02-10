@@ -9,7 +9,7 @@ class CompanyHandler extends AbstractHandler
     {
         parent::__construct();
 
-        $this->addAction('choose', ['FACTION']);
+        $this->addAction('choose', ['faction']);
     }
 
     public function handle() : void
@@ -23,19 +23,18 @@ class CompanyHandler extends AbstractHandler
     public function exec_choose()
     {
         global $System;
-        $FACTION = (int)$this->params['FACTION'];
+        $faction = (int)$this->params['faction'];
 
-        if ($System->User->setFaction($FACTION)) {
+        if ($System->User->setFaction($faction)) {
             $System->logging->addLog(
                 $System->User->__get('USER_ID'),
                 $System->User->__get('PLAYER_ID'),
                 $System->User->__get('SERVER_DB'),
-                "You successfully joined " . $System->User->getFactionName($FACTION) . "!"
+                "You successfully joined " . $System->User->getFactionName($faction) . "!"
             );
-            die(json_encode(['message' => 'Company successfully chosen!']));
+            Utils::dieM('Company successfully chosen!');
         } else {
-            http_response_code(400);
-            die(json_encode(['message' => 'Failed to write to database.']));
+            Utils::dieS(500, 'Failed to write to database.');
         }
     }
 }

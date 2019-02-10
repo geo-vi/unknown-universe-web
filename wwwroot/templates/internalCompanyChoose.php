@@ -276,31 +276,13 @@
         }
 
         $(".join-button-container").click(function () {
-            let params = {
-                'FACTION': parseInt(Faction),
-            };
-            let data = {
-                'action': 'choose',
-                'handler': 'company',
-                'params': JSON.stringify(params)
+            const params = {
+                faction: parseInt(Faction),
             };
 
-            $.ajax({
-                type: "POST",
-                url: './core/ajax/ajax.php',
-                data: data,
-                cache: false,
-                xhrFields: {
-                    withCredentials: true
-                },
-                success: function (resultData) {
-                    if (resultData.success === true) {
-                        window.location.replace("./internalStart");
-                    } else {
-                        window.location.replace("./");
-                    }
-                }
-            });
+            sendCoreRequest('company', 'choose', params, function () {
+                window.location.replace("./internalStart");
+            })
         });
     });
 </script>
