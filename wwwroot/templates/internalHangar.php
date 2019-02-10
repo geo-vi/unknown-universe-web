@@ -17,18 +17,24 @@ include_once( 'internalModal.php' );
     <?php $Lvl = $System->User->getPetLevel(); ?>
 
     <div class="col-xs-3 player-ship-info">
-        <div class="ship-info"><h3>Damage:</h3> <span id="ship-damage"><?= $System->User->CONFIG_1_DMG ?></span></div>
+        <div class="ship-info"><h3>Damage:</h3> <span id="ship-damage"><?= $System->User->__get(
+                    'CONFIG_1_DMG'
+                ) ?></span></div>
         <?php
         if ($System->User->hasPet()) {
             ?>
             <div class="ship-info"><h3>Pet Damage:</h3>
-                <span id="pet-damage"><?= $System->User->CONFIG_1_DMG_PET ?></span></div>
+                <span id="pet-damage"><?= $System->User->__get('CONFIG_1_DMG_PET') ?></span></div>
             <?php
         }
         ?>
-        <div class="ship-info"><h3>Shield:</h3> <span id="ship-shield"><?= $System->User->CONFIG_1_SHIELD ?></span>
+        <div class="ship-info"><h3>Shield:</h3> <span id="ship-shield"><?= $System->User->__get(
+                    'CONFIG_1_SHIELD'
+                ) ?></span>
         </div>
-        <div class="ship-info"><h3>Speed:</h3> <span id="ship-speed"><?= $System->User->CONFIG_1_SPEED ?></span></div>
+        <div class="ship-info"><h3>Speed:</h3> <span id="ship-speed"><?= $System->User->__get(
+                    'CONFIG_1_SPEED'
+                ) ?></span></div>
     </div>
 
     <div class="col-xs-4 player-ship-view">
@@ -38,14 +44,14 @@ include_once( 'internalModal.php' );
             $dlevel = $System->User->getDroneLevel();
             ?>
             <div class="drone-box" onclick="equipment.switchDisplay(1, 'drone')">
-                <img src="<?= Utils::getPathByLootId('drone_iris', 'top', $dlevel) ?>" />
+                <img src="<?= Utils::getPathByLootId('drone_iris', 'top', $dlevel) ?>" alt='drone_iris' />
             </div>
             <?php
         }
         ?>
 
         <div class="ship-box active" onclick="equipment.switchDisplay(1, 'ship')">
-            <img src="<?= $System->User->getShipImage(); ?>" />
+            <img src="<?= $System->User->getShipImage(); ?>" alt='ship_image'/>
         </div>
 
         <?php
@@ -53,7 +59,7 @@ include_once( 'internalModal.php' );
             $level = $System->User->getPetLevel();
             ?>
             <div class="pet-box" onclick="equipment.switchDisplay(1, 'pet')">
-                <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $level) ?>" />
+                <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $level) ?>" alt='pet_img'/>
             </div>
             <?php
         }
@@ -69,13 +75,13 @@ include_once( 'internalModal.php' );
                 if ($hangar->ACTIVE) {
                     ?>
                     <div class="hangar-slot col-xs-4 active" data-hangar-id="<?= $hangar->ID ?>">
-                        <img src="<?= $System->User->getShipImage($hangar->SHIP_DESIGN) ?>" />
+                        <img src="<?= $System->User->getShipImage($hangar->SHIP_DESIGN) ?>" alt='ship_design'/>
                     </div>
                     <?php
                 } else {
                     ?>
                     <div class="hangar-slot col-xs-4" data-hangar-id="<?= $hangar->ID ?>">
-                        <img src="<?= $System->User->getShipImage($hangar->SHIP_DESIGN) ?>" />
+                        <img src="<?= $System->User->getShipImage($hangar->SHIP_DESIGN) ?>" alt='ship_design'/>
                     </div>
                     <?php
                 }
@@ -102,7 +108,7 @@ include_once( 'internalModal.php' );
     </div>
     <div id="config-tabs-container" class="col-xs-8">
         <div id="config-navbar">
-            <select id="design-select" class="form-control">
+            <select id="design-select" class="form-control" aria-label='designSelect'>
             </select>
         </div>
         <div id="config-tabs-content">
@@ -125,7 +131,7 @@ include_once( 'internalModal.php' );
             <div role="tabpanel" class="tab-pane config-tab row active" id="config-1">
                 <div class="col-xs-12 ship-equipment-container">
                     <div class="ship-equipment-box">
-                        <img src="<?= $System->User->getShipImage(); ?>" />
+                        <img src="<?= $System->User->getShipImage(); ?>" alt='ship_image'/>
                     </div>
                     <div class="ship-equipment-slots laser-slots" data-category="laser">
 
@@ -140,12 +146,12 @@ include_once( 'internalModal.php' );
 
                     </div>
                 </div>
-                <div class="col-xs-12 pet-equipment-container" data-pet-id="<?= $System->User->USER_ID ?>">
+                <div class="col-xs-12 pet-equipment-container" data-pet-id="<?= $System->User->__get('USER_ID') ?>">
                     <div class="pet-equipment-name">
                         <?= $System->User->getPetName() ?>
                     </div>
                     <div class="pet-equipment-box">
-                        <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $Lvl) ?>" />
+                        <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $Lvl) ?>" alt='pet_img'/>
                     </div>
                     <div class="pet-equipment-slots laser-slots" data-category="laser">
 
@@ -176,7 +182,7 @@ include_once( 'internalModal.php' );
             <div role="tabpanel" class="tab-pane config-tab row" id="config-2">
                 <div class="col-xs-12 ship-equipment-container">
                     <div class="ship-equipment-box">
-                        <img src="<?= $System->User->getShipImage(); ?>" />
+                        <img src="<?= $System->User->getShipImage(); ?>" alt='ship_image'/>
                     </div>
                     <div class="ship-equipment-slots laser-slots" data-category="laser">
 
@@ -191,12 +197,12 @@ include_once( 'internalModal.php' );
 
                     </div>
                 </div>
-                <div class="col-xs-12 pet-equipment-container" data-pet-id="<?= $System->User->USER_ID ?>">
+                <div class="col-xs-12 pet-equipment-container" data-pet-id="<?= $System->User->__get('USER_ID') ?>">
                     <div class="pet-equipment-name">
                         <?= $System->User->getPetName() ?>
                     </div>
                     <div class="pet-equipment-box">
-                        <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $Lvl) ?>" />
+                        <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $Lvl) ?>" alt='pet_img'/>
                     </div>
                     <div class="pet-equipment-slots laser-slots" data-category="laser">
 
@@ -223,7 +229,7 @@ include_once( 'internalModal.php' );
         </div>
     </div>
     <div class="col-xs-4 ship-inventory-container">
-        <select id="filter-select" class="form-control">
+        <select id="filter-select" class="form-control" aria-label='filterSelect'>
         </select>
         <div class="ship-inventory-content custom-scroll">
         </div>
