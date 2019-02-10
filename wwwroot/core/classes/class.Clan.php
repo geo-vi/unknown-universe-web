@@ -23,45 +23,17 @@ class Clan
         return $this->mysql->QUERY("SELECT * FROM server_clans LIMIT " . $limit);
     }
 
-    public function searchClan(string $string)
+    public function searchClan($string)
     {
         $string = '%' . $string . '%';
+
         return $this->mysql->QUERY("SELECT * FROM server_clans WHERE DESCRIPTION LIKE ? OR NAME LIKE ? OR TAG LIKE ?",
-            [$string, $string, $string]);
-    }
-
-    private function getMyNewClan($tag)
-    {
-        $clan = $this->mysql->QUERY("SELECT * FROM server_clans WHERE TAG = ?", [$tag]);
-        return $clan;
-    }
-
-    private function regMyClan($args)
-    {
-        $clan->mysql->QUERY('UPDATE player_data SET CLAN_ID = ? WHERE USER_ID = ?');
-        $clan = $this->mysql->prepare($sqli);
-        $clan->bindParam(1, $args[0]['ID'], PDO::PARAM_INT);
-        $clan->bindParam(2, $this->user->USER_ID, PDO::PARAM_STR);
-        if ($clan->execute()) {
-            return true;
-        }
-    }
-
-    private function regClan($args)
-    {
-        $n          = 1;
-        $FACTION_ID = $this->User->FACTION_ID;
-        $tag        = $args['clan_tag'];
-
-        $New = $this->mysql->QUERY("INSERT INTO server_clans (NAME, LEADER,TAG,MEMBERS,FACTION,IS_ACCEPTING) VALUES(?,?,?,?,?,?)",
-            [$args['clan_name'], $this->User->USER_ID, $args['clan_tag'], $this->User->USER_ID, $FACTION_ID, $n]);
-
-        if ($New) {
-            return self::getMyNewClan($tag);
-        } else {
-            echo $n;
-        }
-
+                                   [
+                                       $string,
+                                       $string,
+                                       $string,
+                                   ]
+        );
     }
 
     public function foundClan($args)
@@ -77,11 +49,49 @@ class Clan
         }
 
         $result = $this->mysql->QUERY("SELECT * FROM server_clans WHERE TAG = ? || NAME = ? || LEADER = ?",
-            [$args['clan_tag'], $args['clan_name'], $this->User->USER_ID]);
+                                      [
+                                          $args['clan_tag'],
+                                          $args['clan_name'],
+                                          $this->User->__get('USER_ID'),
+                                      ]
+        );
         if (empty($result)) {
-            return self::regClan($args);
+            return self::registerClan($args);
         } else {
             return "The clan name or tag already exists.";
         }
+    }
+
+    private function registerClan($args)
+    {
+        $n          = 1;
+        $FACTION_ID = $this->User->__get('FACTION_ID');
+        $USER_ID    = $this->User->__get('USER_ID');
+        $tag        = $args['clan_tag'];
+
+        $New = $this->mysql->QUERY("INSERT INTO server_clans (NAME,LEADER,TAG,MEMBERS,FACTION,IS_ACCEPTING,CREATED) VALUES(?,?,?,?,?,?,?)",
+                                   [
+                                       $args['clan_name'],
+                                       $USER_ID,
+                                       $args['clan_tag'],
+                                       $USER_ID,
+                                       $FACTION_ID,
+                                       $n,
+                                       date('Y-m-d H:i:s'),
+                                   ]
+        );
+
+        if ($New) {
+            return self::getClanByTag($tag);
+        } else {
+            return false;
+        }
+
+    }
+
+    private function getClanByTag($tag)
+    {
+        return $this->mysql->QUERY("SELECT * FROM server_clans WHERE TAG = ?", [$tag]);
+
     }
 }
