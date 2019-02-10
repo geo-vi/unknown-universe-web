@@ -47,6 +47,19 @@ class Utils
     }
 
     /**
+     * shortcut to die + json_encode with 'message' and 'param' as fields
+     *
+     * `die(json_encode(['message' => $msg, 'param' => $param]))`
+     *
+     * @param $msg
+     * @param $param
+     */
+    public static function dieP($msg, $param)
+    {
+        die(json_encode(['message' => $msg, 'param' => $param]));
+    }
+
+    /**
      * **die**s with **S**tatus
      *
      * shortcut to response + die + json_encode

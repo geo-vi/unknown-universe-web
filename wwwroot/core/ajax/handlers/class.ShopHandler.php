@@ -12,14 +12,14 @@ class ShopHandler extends AbstractHandler
         parent::__construct();
 
         $this->addAction('load', ['CATEGORY']);
-        $this->addAction(
-            'buy',
-            [
-                'CATEGORY',
-                'ITEM_ID',
-                'AMOUNT',
-            ]
+        $this->addAction('buy',
+                         [
+                             'CATEGORY',
+                             'ITEM_ID',
+                             'AMOUNT',
+                         ]
         );
+        $this->addAction('category_ids', ['category']);
     }
 
     public function handle() : void
@@ -37,6 +37,13 @@ class ShopHandler extends AbstractHandler
         $CATEGORY = (string) strtoupper($this->params['CATEGORY']);
 
         die(json_encode($System->Shop->getShopItems($CATEGORY)));
+    }
+
+    public function exec_category_ids()
+    {
+        global $System;
+        $cat = '"' . (string) $this->params['category'] . '"';
+        die(json_encode($System->Shop->getCategoryIDs($cat)));
     }
 
     public function exec_buy()
@@ -82,6 +89,7 @@ class ShopHandler extends AbstractHandler
 
         $Success = false;
         $MSG     = 'Something went wrong while buying ' . $ITEM->NAME . '!';
+        $param   = 0;
         switch ($CATEGORY) {
             case 'BOOSTER':
                 if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'), $AMOUNT)) {
@@ -167,9 +175,11 @@ class ShopHandler extends AbstractHandler
                     $DRONES = $System->User->hasDrones(true, true);
                     if ($ITEM->LOOT_ID != 'drone_zeus' && $ITEM->LOOT_ID != 'drone_apis') {
                         if (( $DRONES['Iris'] + $DRONES['Flax'] ) < 8) {
-                            if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {
+                            $id = $ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'));
+                            if ($id) {
                                 $Success = true;
                                 $MSG     = 'You successfully bought an ' . $ITEM->NAME . '!';
+                                $param   = $id;
                             }
                         } else {
                             $Success = false;
@@ -178,9 +188,11 @@ class ShopHandler extends AbstractHandler
                     } else {
                         if ($ITEM->LOOT_ID == 'drone_zeus') {
                             if ($DRONES['Zeus'] < 1) {
-                                if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {
+                                $id = $ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'));
+                                if ($id) {
                                     $Success = true;
                                     $MSG     = 'You successfully bought a ' . $ITEM->NAME . '!';
+                                    $param   = $id;
                                 }
                             } else {
                                 $Success = false;
@@ -188,9 +200,11 @@ class ShopHandler extends AbstractHandler
                             }
                         } else {
                             if ($DRONES['Apis'] < 1) {
-                                if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {
+                                $id = $ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'));
+                                if ($id) {
                                     $Success = true;
                                     $MSG     = 'You successfully bought an ' . $ITEM->NAME . '!';
+                                    $param   = $id;
                                 }
                             } else {
                                 $Success = false;
@@ -205,21 +219,18 @@ class ShopHandler extends AbstractHandler
                     }
                 } elseif ($ITEM_DATA['CATEGORY'] == 'drone_formation') {
                     if ( !$System->User->hasFormation($ITEM_ID)) {
-                        if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {
+                        $id = $ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'));
+                        if ($id) {
                             $Success = true;
                             $MSG     = 'You successfully bought drone formation - ' . $ITEM->NAME . '!';
+                            $param   = $id;
                         }
                     } else {
                         $Success = false;
                         $MSG     = 'You already have this formation!';
                     }
                 } else {
-                    http_response_code(400);
-                    die(
-                    json_encode(
-                        ['message' => 'Buy functionality for ' . $ITEM_DATA['CATEGORY'] . ' not implemented!']
-                    )
-                    );
+                    Utils::dieS(500, 'Buy functionality for ' . $ITEM_DATA['CATEGORY'] . ' not implemented!');
                 }
                 break;
             case 'DESIGNS':
@@ -276,23 +287,20 @@ class ShopHandler extends AbstractHandler
         }
 
         if ($Success) {
-            $System->logging->addLog(
-                $System->User->__get('USER_ID'),
-                $System->User->__get('PLAYER_ID'),
-                $System->User->__get('SERVER_DB'),
-                $MSG
+            $System->logging->addLog($System->User->__get('USER_ID'),
+                                     $System->User->__get('PLAYER_ID'),
+                                     $System->User->__get('SERVER_DB'),
+                                     $MSG
             );
-            die(json_encode(['message' => $MSG]));
+            Utils::dieP($MSG, $param);
         } else {
-            $System->logging->addLog(
-                $System->User->__get('USER_ID'),
-                $System->User->__get('PLAYER_ID'),
-                $System->User->__get('SERVER_DB'),
-                $MSG,
-                LogType::SYSTEM
+            $System->logging->addLog($System->User->__get('USER_ID'),
+                                     $System->User->__get('PLAYER_ID'),
+                                     $System->User->__get('SERVER_DB'),
+                                     $MSG,
+                                     LogType::SYSTEM
             );
-            http_response_code(400);
-            die(json_encode(['message' => $MSG]));
+            Utils::dieS(400, $MSG);
         }
     }
 }

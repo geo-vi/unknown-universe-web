@@ -66,14 +66,18 @@ class Booster extends AbstractItem
         if ( !$Current_Booster == true) {
             $date = date('Y-m-d H:i:s', strtotime("+10 hour"));
 
-            return $this->mysql->QUERY(
+            if (
+            $this->mysql->QUERY(
                 'INSERT INTO player_boosters (PLAYER_ID, BOOSTER_ID, END_TIME) VALUES (?,?,?)',
                 [
                     $PlayerID,
                     $this->ID,
                     $date,
                 ]
-            );
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         }
     }
 }

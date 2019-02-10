@@ -64,8 +64,12 @@ class MySQL
         return false;
     }
 
+    function lastID() {
+        return $this->QUERY('SELECT LAST_INSERT_ID()')[0]['LAST_INSERT_ID()'];
+    }
+
     function __destruct()
     {
         $this->connection = null;
     }
-} 
+}

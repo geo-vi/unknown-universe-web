@@ -12,7 +12,7 @@ class AdminItem extends AbstractItem
 
         $this->setITEMDATA($ItemData);
 
-        $this->ID       = (int)$ItemData['ID'];
+        $this->ID       = (int) $ItemData['ID'];
         $this->NAME     = $ItemData['NAME'];
         $this->LOOT_ID  = $ItemData['LOOT_ID'];
         $this->PRICE    = $ItemData['PRICE_C'] == 0 ? $ItemData['PRICE_U'] : $ItemData['PRICE_C'];
@@ -21,8 +21,8 @@ class AdminItem extends AbstractItem
         global $System;
         if ($System->User->hasPremium() && $this->CURRENCY == 2 && $System->User->DISCOUNT == 0) {
             $this->PRICE = $this->PRICE * 0.8;
-        }elseif($System->User->DISCOUNT > 0 && $System->User->hasPremium() && $this->CURRENCY == 2){
-            $premium = 0.8 - ($System->User->DISCOUNT / 100);
+        } elseif ($System->User->DISCOUNT > 0 && $System->User->hasPremium() && $this->CURRENCY == 2) {
+            $premium     = 0.8 - ( $System->User->DISCOUNT / 100 );
             $this->PRICE = $this->PRICE * $premium;
         }
 
@@ -34,28 +34,52 @@ class AdminItem extends AbstractItem
         $this->ATTRIBUTES = [
             "Damage"      => $ItemData['DAMAGE'],
             "Shield"      => $ItemData['SHIELD'],
-            "Absorbation" => $ItemData['SHIELD'] > 0 ? ($ItemData['SHIELD_ABSORBATION']) : 'NULL',
+            "Absorbation" => $ItemData['SHIELD'] > 0 ? ( $ItemData['SHIELD_ABSORBATION'] ) : 'NULL',
             "Speed"       => $ItemData['SPEED'],
-            "Uses"        => $ItemData['USES'] > 1 ? ($ItemData['USES']) : 'NULL',
+            "Uses"        => $ItemData['USES'] > 1 ? ( $ItemData['USES'] ) : 'NULL',
         ];
     }
 
     public function buy($UserID, $PlayerID, $Amount = 1)
     {
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE * $Amount, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE * $Amount,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         } else {
-            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE * $Amount, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE * $Amount,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         }
 
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE * $Amount, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE * $Amount,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         } else {
-            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE * $Amount, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE * $Amount,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         }
 
         $ITEM_DATA = $this->getItemData();
@@ -78,22 +102,45 @@ class AdminItem extends AbstractItem
                     $BOOTY_KEYS[2] += $Amount;
                 }
                 $BOOTY_KEYS = json_encode($BOOTY_KEYS);
-                return $this->mysql->QUERY('UPDATE player_extra_data SET BOOTY_KEYS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                    [$BOOTY_KEYS, $UserID, $PlayerID]);
+
+                return $this->mysql->QUERY(
+                    'UPDATE player_extra_data SET BOOTY_KEYS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                    [
+                        $BOOTY_KEYS,
+                        $UserID,
+                        $PlayerID,
+                    ]
+                );
             } else {
                 if (strpos($this->LOOT_ID, 'resource_logfile') !== false) {
-                    $LOGFILES = (int)$System->User->LOGFILES;
+                    $LOGFILES = (int) $System->User->LOGFILES;
                     $LOGFILES += $Amount;
-                    return $this->mysql->QUERY('UPDATE player_extra_data SET LOGFILES = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                        [$LOGFILES, $UserID, $PlayerID]);
+
+                    return $this->mysql->QUERY(
+                        'UPDATE player_extra_data SET LOGFILES = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                        [
+                            $LOGFILES,
+                            $UserID,
+                            $PlayerID,
+                        ]
+                    );
                 }
             }
 
-        } if (strpos($this->LOOT_ID, 'ammunition_laser_') !== false){
+        }
+        if (strpos($this->LOOT_ID, 'ammunition_laser_') !== false) {
             $ROW = str_replace('-', '_', $this->NAME);
-            return $this->mysql->QUERY("UPDATE player_ammo SET " . $ROW . " = " . $ROW . " + ? WHERE USER_ID = ? AND PLAYER_ID = ?",
-                [$Amount, $UserID, $PlayerID]);
-        } if ($this->LOOT_ID == 'drone_apis' || $this->LOOT_ID == 'drone_zeus') {
+
+            return $this->mysql->QUERY(
+                "UPDATE player_ammo SET " . $ROW . " = " . $ROW . " + ? WHERE USER_ID = ? AND PLAYER_ID = ?",
+                [
+                    $Amount,
+                    $UserID,
+                    $PlayerID,
+                ]
+            );
+        }
+        if ($this->LOOT_ID == 'drone_apis' || $this->LOOT_ID == 'drone_zeus') {
             switch ($this->LOOT_ID) {
                 case 'drone_flax':
                     $DRONE_TYPE = 0;
@@ -111,11 +158,23 @@ class AdminItem extends AbstractItem
                     return false;
             }
 
+            if (
             $this->mysql->QUERY(
                 "INSERT INTO player_drones (USER_ID,PLAYER_ID,ITEM_ID,DRONE_TYPE,DAMAGE,LEVEL,UPGRADE_LVL)
                     VALUES(?,?,?,?,?,?,?)",
-                [$UserID, $PlayerID, $this->ID, $DRONE_TYPE, "0%", 1, 1]
-            );
+                [
+                    $UserID,
+                    $PlayerID,
+                    $this->ID,
+                    $DRONE_TYPE,
+                    "0%",
+                    1,
+                    1,
+                ]
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         }
 
         return false;

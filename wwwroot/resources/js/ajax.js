@@ -14,13 +14,13 @@ function sendCoreRequest(handler, action, params, successCallback = null, errorC
             withCredentials: true
         },
         success: function (data) {
-            if (successCallback !== null) successCallback();
+            if (successCallback !== null) successCallback(data);
             if (data !== null) {
                 swal('Success!', data.message, 'success');
             }
         },
         error: function (errorData, _, errorThrown) {
-            if (errorCallback !== null) errorCallback();
+            if (errorCallback !== null) errorCallback(errorData);
             if (data !== null) {
                 swal(
                     errorThrown + '!',
@@ -28,6 +28,30 @@ function sendCoreRequest(handler, action, params, successCallback = null, errorC
                     'error'
                 );
             }
+        }
+    });
+}
+
+function sendQuietRequest(handler, action, params, successCallback = null, errorCallback = null) {
+    let data = {
+        'handler': handler,
+        'action': action,
+        'params': params
+    };
+
+    $.ajax({
+        type: "POST",
+        url: '/core/ajax/ajax.php',
+        data: data,
+        cache: false,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function (data) {
+            if (successCallback !== null) successCallback(data);
+        },
+        error: function (errorData, _, errorThrown) {
+            if (errorCallback !== null) errorCallback(errorData);
         }
     });
 }

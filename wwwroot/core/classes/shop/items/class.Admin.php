@@ -44,42 +44,38 @@ class Admin extends AbstractItem
     public function buy($UserID, $PlayerID, $Amount = 1)
     {
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY(
-                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [
-                    $this->PRICE * $Amount,
-                    $PlayerID,
-                    $UserID,
-                ]
+            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                                [
+                                    $this->PRICE * $Amount,
+                                    $PlayerID,
+                                    $UserID,
+                                ]
             );
         } else {
-            $this->mysql->QUERY(
-                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [
-                    $this->PRICE * $Amount,
-                    $PlayerID,
-                    $UserID,
-                ]
+            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                                [
+                                    $this->PRICE * $Amount,
+                                    $PlayerID,
+                                    $UserID,
+                                ]
             );
         }
 
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY(
-                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [
-                    $this->PRICE * $Amount,
-                    $PlayerID,
-                    $UserID,
-                ]
+            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                                [
+                                    $this->PRICE * $Amount,
+                                    $PlayerID,
+                                    $UserID,
+                                ]
             );
         } else {
-            $this->mysql->QUERY(
-                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [
-                    $this->PRICE * $Amount,
-                    $PlayerID,
-                    $UserID,
-                ]
+            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                                [
+                                    $this->PRICE * $Amount,
+                                    $PlayerID,
+                                    $UserID,
+                                ]
             );
         }
 
@@ -103,26 +99,24 @@ class Admin extends AbstractItem
                 }
                 $BOOTY_KEYS = json_encode($BOOTY_KEYS);
 
-                return $this->mysql->QUERY(
-                    'UPDATE player_extra_data SET BOOTY_KEYS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                    [
-                        $BOOTY_KEYS,
-                        $UserID,
-                        $PlayerID,
-                    ]
+                return $this->mysql->QUERY('UPDATE player_extra_data SET BOOTY_KEYS = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                           [
+                                               $BOOTY_KEYS,
+                                               $UserID,
+                                               $PlayerID,
+                                           ]
                 );
             } else {
                 if (strpos($this->LOOT_ID, 'resource_logfile') !== false) {
                     $LOGFILES = (int) $System->User->__get('LOGFILES');
                     $LOGFILES += $Amount;
 
-                    return $this->mysql->QUERY(
-                        'UPDATE player_extra_data SET LOGFILES = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                        [
-                            $LOGFILES,
-                            $UserID,
-                            $PlayerID,
-                        ]
+                    return $this->mysql->QUERY('UPDATE player_extra_data SET LOGFILES = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                               [
+                                                   $LOGFILES,
+                                                   $UserID,
+                                                   $PlayerID,
+                                               ]
                     );
                 }
             }
@@ -131,13 +125,16 @@ class Admin extends AbstractItem
         if (strpos($this->LOOT_ID, 'ammunition_laser_') !== false) {
             $ROW = str_replace('-', '_', $this->NAME);
 
-            return $this->mysql->QUERY(
-                "UPDATE player_ammo SET " . $ROW . " = " . $ROW . " + ? WHERE USER_ID = ? AND PLAYER_ID = ?",
-                [
-                    $Amount,
-                    $UserID,
-                    $PlayerID,
-                ]
+            return $this->mysql->QUERY("UPDATE player_ammo SET " .
+                                       $ROW .
+                                       " = " .
+                                       $ROW .
+                                       " + ? WHERE USER_ID = ? AND PLAYER_ID = ?",
+                                       [
+                                           $Amount,
+                                           $UserID,
+                                           $PlayerID,
+                                       ]
             );
         }
         if ($this->LOOT_ID == 'drone_apis' || $this->LOOT_ID == 'drone_zeus') {
@@ -158,19 +155,22 @@ class Admin extends AbstractItem
                     return false;
             }
 
-            $this->mysql->QUERY(
-                "INSERT INTO player_drones (USER_ID,PLAYER_ID,ITEM_ID,DRONE_TYPE,DAMAGE,LEVEL,UPGRADE_LVL) 
+            if (
+            $this->mysql->QUERY("INSERT INTO player_drones (USER_ID,PLAYER_ID,ITEM_ID,DRONE_TYPE,DAMAGE,LEVEL,UPGRADE_LVL) 
                     VALUES(?,?,?,?,?,?,?)",
-                [
-                    $UserID,
-                    $PlayerID,
-                    $this->ID,
-                    $DRONE_TYPE,
-                    "0%",
-                    1,
-                    1,
-                ]
-            );
+                                [
+                                    $UserID,
+                                    $PlayerID,
+                                    $this->ID,
+                                    $DRONE_TYPE,
+                                    "0%",
+                                    1,
+                                    1,
+                                ]
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         }
 
         return false;

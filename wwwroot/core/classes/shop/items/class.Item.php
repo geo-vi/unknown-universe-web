@@ -148,7 +148,8 @@ class Item extends AbstractItem
                     return false;
             }
 
-            return $this->mysql->QUERY(
+            if (
+            $this->mysql->QUERY(
                 "INSERT INTO player_drones (USER_ID,PLAYER_ID,ITEM_ID,DRONE_TYPE,DAMAGE,LEVEL,UPGRADE_LVL) 
                         VALUES(?,?,?,?,?,?,?)",
                 [
@@ -161,9 +162,12 @@ class Item extends AbstractItem
                     1,
                 ]
 
-            );
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         } else {
-            for ($Success = 0; $Success < $Amount;) {
+            for ($i = 0; $i < $Amount;) {
                 if (
                 $this->mysql->QUERY(
                     "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
@@ -176,11 +180,11 @@ class Item extends AbstractItem
                     ]
                 )
                 ) {
-                    $Success++;
+                    $i++;
                 }
             }
 
-            return true;
+            return $this->mysql->lastID();
         }
     }
 }

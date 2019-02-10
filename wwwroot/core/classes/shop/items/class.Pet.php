@@ -116,7 +116,8 @@ class Pet extends AbstractItem
                 ]
             );
 
-            return $this->mysql->QUERY(
+            if (
+            $this->mysql->QUERY(
                 "INSERT INTO player_pet (USER_ID, PLAYER_ID, PET_TYPE, ITEM_ID, NAME, LEVEL, EXPERIENCE, HP, FUEL) 
                     VALUES(?,?,?,?,?,?,?,?, ?)",
                 [
@@ -130,7 +131,10 @@ class Pet extends AbstractItem
                     50000,
                     0,
                 ]
-            );
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         } elseif ($ITEM_DATA['CATEGORY'] == 'pet_fuel') {
             $this->mysql->QUERY(
                 'UPDATE player_pet SET FUEL = FUEL + ? WHERE PLAYER_ID = ? ',
@@ -142,6 +146,7 @@ class Pet extends AbstractItem
 
             return true;
         } elseif ($ITEM_DATA['CATEGORY'] == 'gear') {
+            if (
             $this->mysql->QUERY(
                 "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
                 [
@@ -151,11 +156,12 @@ class Pet extends AbstractItem
                     $ITEM_DATA['TYPE'],
                     1,
                 ]
-            );
-
-            return true;
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         } elseif ($ITEM_DATA['CATEGORY'] == 'protocols') {
-            $this->mysql->QUERY(
+            if ($this->mysql->QUERY(
                 "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
                 [
                     $UserID,
@@ -164,9 +170,9 @@ class Pet extends AbstractItem
                     $ITEM_DATA['TYPE'],
                     1,
                 ]
-            );
-
-            return true;
+            )) {
+                return $this->mysql->lastID();
+            } else return false;
         } else {
             return false;
         }

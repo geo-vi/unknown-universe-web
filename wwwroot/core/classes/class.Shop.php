@@ -262,6 +262,18 @@ class Shop
         return $do[0]['NAME'];
     }
 
+    public function getCategoryIDs($category)
+    {
+        $query = $this->mysql->QUERY('SELECT ID FROM server_items WHERE CATEGORY = ' . $category);
+
+        $ids = [];
+        foreach ($query as $row) {
+            $ids[] = (int) $row['ID'];
+        }
+
+        return $ids;
+    }
+
     /**
      * Returns a special list of items for the shop
      *
@@ -394,8 +406,9 @@ class Shop
                 ]
             );
 
-            if ($submit) Utils::dieM('Successfully placed bid!');
-            else Utils::dieS(400, 'Something went wrong, try again.');
+            if ($submit) {
+                Utils::dieM('Successfully placed bid!');
+            } else Utils::dieS(400, 'Something went wrong, try again.');
         }
     }
 

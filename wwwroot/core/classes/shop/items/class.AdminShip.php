@@ -44,8 +44,8 @@ class AdminShip extends AbstractItem
         ];
 
         $this->Hangars = $System->User->Hangars->getHangars();
-        foreach ($this->Hangars as $Hangar){
-            if($Hangar->SHIP_ID == $this->ID){
+        foreach ($this->Hangars as $Hangar) {
+            if ($Hangar->SHIP_ID == $this->ID) {
                 $this->hasShip = true;
                 break;
             }
@@ -55,19 +55,42 @@ class AdminShip extends AbstractItem
     public function buy($UserID, $PlayerID, $Amount = 1)
     {
         if ($this->CURRENCY == 1) {
-            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         } else {
-            $this->mysql->QUERY('UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
-                [$this->PRICE, $PlayerID, $UserID]);
+            $this->mysql->QUERY(
+                'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
+                [
+                    $this->PRICE,
+                    $PlayerID,
+                    $UserID,
+                ]
+            );
         }
 
         global $System;
         $Hangar_Count = $System->User->Hangars->getHangars(true);
         $SHIP_DATA    = $this->getItemData();
-        return $this->mysql->QUERY(
+        if (
+        $this->mysql->QUERY(
             'INSERT INTO player_hangar (USER_ID, PLAYER_ID, SHIP_ID, SHIP_DESIGN, SHIP_HP, HANGAR_COUNT) VALUES (?,?,?,?,?,?)',
-            [$UserID, $PlayerID, $this->ID, $this->ID, $SHIP_DATA['ship_hp'], $Hangar_Count]
-        );
+            [
+                $UserID,
+                $PlayerID,
+                $this->ID,
+                $this->ID,
+                $SHIP_DATA['ship_hp'],
+                $Hangar_Count,
+            ]
+        )
+        ) {
+            return $this->mysql->lastID();
+        } else return false;
     }
 }

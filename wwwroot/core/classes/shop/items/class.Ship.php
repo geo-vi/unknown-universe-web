@@ -83,7 +83,7 @@ class Ship extends AbstractItem
         $Hangar_Count = $System->User->Hangars->getHangars(true);
         $SHIP_DATA    = $this->getItemData();
 
-        return $this->mysql->QUERY(
+        if ($this->mysql->QUERY(
             'INSERT INTO player_hangar (USER_ID, PLAYER_ID, SHIP_ID, SHIP_DESIGN, SHIP_HP, HANGAR_COUNT) VALUES (?,?,?,?,?,?)',
             [
                 $UserID,
@@ -93,6 +93,8 @@ class Ship extends AbstractItem
                 $SHIP_DATA['ship_hp'],
                 $Hangar_Count,
             ]
-        );
+        )) {
+            return $this->mysql->lastID();
+        } else return false;
     }
 }

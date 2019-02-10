@@ -123,7 +123,8 @@ class Drone extends AbstractItem
                     return false;
             }
 
-            return $this->mysql->QUERY(
+            if (
+            $this->mysql->QUERY(
                 "INSERT INTO player_drones (USER_ID,PLAYER_ID,ITEM_ID,DRONE_TYPE,DAMAGE,LEVEL,UPGRADE_LVL) 
                     VALUES(?,?,?,?,?,?,?)",
                 [
@@ -135,7 +136,10 @@ class Drone extends AbstractItem
                     1,
                     1,
                 ]
-            );
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         } elseif ($ITEM_DATA['CATEGORY'] == 'drone_formation') {
             global $System;
             $DESIGNS         = json_decode($System->User->__get('DRONE_FORMATIONS'), true);
@@ -143,7 +147,7 @@ class Drone extends AbstractItem
             $DESIGNS['ID'][] = $this->ID;
             $DESIGNS         = json_encode($DESIGNS);
 
-            $this->mysql->QUERY(
+            $insert = $this->mysql->QUERY(
                 "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
                 [
                     $UserID,
@@ -162,8 +166,12 @@ class Drone extends AbstractItem
                 ]
             );
 
-            return true;
+
+            if ($insert) {
+                return $this->mysql->lastID();
+            } else return false;
         } elseif ($ITEM_DATA['CATEGORY'] == 'drone_design') {
+            if (
             $this->mysql->QUERY(
                 "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
                 [
@@ -173,9 +181,10 @@ class Drone extends AbstractItem
                     $ITEM_DATA['TYPE'],
                     1,
                 ]
-            );
-
-            return true;
+            )
+            ) {
+                return $this->mysql->lastID();
+            } else return false;
         } else {
             return false;
         }

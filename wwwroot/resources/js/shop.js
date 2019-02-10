@@ -8,6 +8,29 @@ class shop {
         shop.category = "SHIPS";
         shop.data = null;
         shop.render();
+        shop.packets = {
+            ammo: 'update_ammo',
+            drones: 'new_drone',
+            formation: 'new_form',
+            pet: 'new_pet',
+            pet_fuel: 'refuel',
+            notlisted: 'new_drone'
+        };
+
+        shop.ids = {
+            ammo_ids: [],
+            formation_ids: [],
+            drone_ids: []
+        };
+        sendQuietRequest('shop', 'category_ids', { category: 'ammo' }, function (ammo_data) {
+            shop.ids.ammo_ids = ammo_data;
+        });
+        sendQuietRequest('shop', 'category_ids', { category: 'drone' }, function (drone_data) {
+            shop.ids.drone_ids = drone_data;
+        });
+        sendQuietRequest('shop', 'category_ids', { category: 'drone_formation' }, function (form_data) {
+            shop.ids.formation_ids = form_data;
+        });
     }
 
     /**
@@ -159,7 +182,7 @@ class shop {
             let ITEM_ID = $(this).data('item-id');
             if (ITEM_ID !== undefined) {
                 if (ITEM_ID === 13 || ITEM_ID === 94) shop.category = 'DRONES';
-                shop.buyItem(null, shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val());
+                shop.buyItem(shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val());
             }
         });
     }
@@ -215,31 +238,45 @@ class shop {
      * buyItem
      * sends a request to buy an Item
      *
-     * @param data
      * @param ITEM_ID
      * @param AMOUNT
      */
-    static buyItem(data = null, ITEM_ID, AMOUNT) {
-        if (data === null) {
-            let params = {
-                "CATEGORY": shop.category,
-                "ITEM_ID": ITEM_ID,
-                "AMOUNT": AMOUNT,
-            };
-            shop.sendRequest('buyItem', 'buy', params);
-        } else {
-            if (data.status === "success") {
-                swal("Success!", data.message, "success");
-                if (shop.category === 'ammo' || shop.category === 'drones' || shop.category === 'pet'
-                    || shop.category === 'gear' || shop.category === 'protocols' || shop.category === 'pet_fuel'
-                    || shop.category === 'generator' || shop.category === 'extra' || shop.category === 'notlisted') {
-                    shop.sendPacket(shop.category);
+    static buyItem(ITEM_ID, AMOUNT) {
+        let params = {
+            "CATEGORY": shop.category,
+            "ITEM_ID": ITEM_ID,
+            "AMOUNT": AMOUNT,
+        };
+        shop.lastBoughtID = ITEM_ID;
+        shop.sendRequest('buyCallback', 'buy', params);
+    }
+
+    static buyCallback(data) {
+        if (data.status === "success") {
+            swal("Success!", data.message, "success");
+            let action = shop.packets[shop.category];
+
+            if (shop.category === 'ammo'
+                || shop.category === 'pet'
+                || shop.category === 'pet_fuel'
+            ) {
+                shop.sendPacket(action);
+            } else if (shop.category === 'drones' || shop.category === 'notlisted') {
+                let params = data.param;
+
+                if (shop.lastBoughtID in shop.ids.formation_ids) {
+                    action = shop.packets.formation;
+                } else if (shop.lastBoughtID in shop.ids.ammo_ids) {
+                    action = shop.packets.ammo;
+                } else if (shop.lastBoughtID in shop.ids.drone_ids) {
+                    action = shop.packets.drones;
                 }
-                shop.reload();
-                // setTimeout(location.reload.bind(location), 1000);
-            } else {
-                swal("Error!", data.message, "error");
+
+                shop.sendPacket(action, params);
             }
+            shop.reload();
+        } else {
+            swal("Error!", data.message, "error");
         }
     }
 
@@ -248,15 +285,25 @@ class shop {
      * sends packet to emulator
      *
      * @param action
+     * @param params
      */
-    static sendPacket(action) {
+    static sendPacket(action, params = []) {
         if (shop.ws === undefined) {
             shop.ws = new WebSocket("ws://" + atob(shop.SERVER_IP) + ":666/cmslistener");
         }
 
+        let paramStr = '';
+        if (params.length > 0) {
+            paramStr = '|';
+            for (let param of params) {
+                paramStr += '|' + param;
+            }
+            paramStr = paramStr.substring(0, paramStr.length - 1);
+        }
+
         setTimeout(function () {
             if (shop.ws.readyState === 1) {
-                shop.ws.send('user|' + action + '|' + shop.PLAYER_ID);
+                shop.ws.send('shop|' + shop.PLAYER_ID + '|' + action + paramStr);
             } else {
                 shop.sendPacket(action);
             }
