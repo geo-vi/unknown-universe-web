@@ -21,7 +21,7 @@ function sendCoreRequest(handler, action, params, successCallback = null, errorC
         },
         error: function (errorData, _, errorThrown) {
             if (errorCallback !== null) errorCallback(errorData);
-            if (data !== null) {
+            if (errorData !== null) {
                 swal(
                     errorThrown + '!',
                     errorData.responseJSON.message || errorThrown,

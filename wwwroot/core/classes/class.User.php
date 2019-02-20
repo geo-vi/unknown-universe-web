@@ -8,6 +8,8 @@ class User
     public $Inventory;
     /** @var  Hangars */
     public $Hangars;
+    /** @var  SkillTree */
+    public $SkillTree;
 
     protected $AccountData;
     protected $PlayerData;
@@ -31,16 +33,14 @@ class User
         $this->AccountData = $AccountData;
 
         //GET DB_NAME FROM CURRENT SERVER
-        $this->SERVER_DB = $this->mysql->QUERY(
-            "SELECT DB_NAME FROM server_infos WHERE SHORTCUT = ?",
-            [$this->__get('LAST_SERVER')]
+        $this->SERVER_DB = $this->mysql->QUERY("SELECT DB_NAME FROM server_infos WHERE SHORTCUT = ?",
+                                               [$this->__get('LAST_SERVER')]
         )[0]['DB_NAME'];
         $this->mysql     = new MySQL(MYSQL_IP, $this->SERVER_DB, MYSQL_USER, MYSQL_PW);
 
         //GET PLAYER_DATA , SHIP_CONFIG, PLAYER_EXTRA_DATA FROM CURRENT SERVER
-        $PlayerData = $this->mysql->QUERY(
-            "SELECT * FROM player_data WHERE player_data.USER_ID = ?",
-            [$this->__get('USER_ID')]
+        $PlayerData = $this->mysql->QUERY("SELECT * FROM player_data WHERE player_data.USER_ID = ?",
+                                          [$this->__get('USER_ID')]
         );
         if (isset($PlayerData[0])) {
             $this->refresh();
@@ -106,59 +106,91 @@ class User
     {
 
         //REFRESH player_data
-        $PlayerData       = $this->mysql->QUERY(
-            "SELECT * 
+        $PlayerData       = $this->mysql->QUERY("SELECT * 
                 FROM player_data 
                 WHERE player_data.USER_ID = ?",
-            [
-                $this->__get('USER_ID'),
-            ]
+                                                [
+                                                    $this->__get('USER_ID'),
+                                                ]
         );
         $this->PlayerData = $PlayerData[0];
 
-        $this->mysql->QUERY(
-            "UPDATE player_data SET SESSION_ID = ? WHERE  USER_ID = ?",
-            [
-                $this->__get('SESSION_ID'),
-                $this->__get('USER_ID'),
-            ]
+        $this->mysql->QUERY("UPDATE player_data SET SESSION_ID = ? WHERE  USER_ID = ?",
+                            [
+                                $this->__get('SESSION_ID'),
+                                $this->__get('USER_ID'),
+                            ]
         );
 
         //GET DATA FROM SHIP CONFIG
-        $ShipConfigData       = $this->mysql->QUERY(
-            "SELECT player_ship_config.*, player_hangar.*, player_pet_config.*
-                FROM player_hangar, player_ship_config, player_pet_config
-                WHERE player_hangar.USER_ID = ?
-                AND player_hangar.ACTIVE = 1
-                AND player_hangar.PLAYER_ID = ?
-                AND player_ship_config.HANGAR_ID = player_hangar.ID
-                AND player_ship_config.USER_ID = ?
+        $this->ShipConfigData = [
+            'ShipConfig' => [],
+            'Hangar'     => [],
+            'PetConfig'  => [],
+        ];
+
+        $ShipConfig = $this->mysql->QUERY("SELECT player_ship_config.*
+                FROM player_ship_config
+                WHERE player_ship_config.USER_ID = ?
                 AND player_ship_config.PLAYER_ID = ?
-                AND player_pet_config.USER_ID = ?
-                AND player_pet_config.PLAYER_ID = ?",
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
-        )[0];
-        $this->ShipConfigData = $ShipConfigData;
+                AND player_ship_config.HANGAR_ID IN 
+                (SELECT player_hangar.ID
+                FROM player_hangar 
+                WHERE player_hangar.USER_ID = ?
+                AND player_hangar.PLAYER_ID = ?
+                AND player_hangar.ACTIVE = 1)",
+                                          [
+                                              $this->__get('USER_ID'),
+                                              $this->__get('PLAYER_ID'),
+                                              $this->__get('USER_ID'),
+                                              $this->__get('PLAYER_ID'),
+                                          ]
+        );
+        if (sizeof($ShipConfig) > 0) {
+            $this->ShipConfigData['ShipConfig'] = $ShipConfig[0];
+        }
+
+        $HangarConfig = $this->mysql->QUERY("SELECT * 
+                  FROM player_hangar 
+                  WHERE USER_ID = ? 
+                  AND PLAYER_ID = ? 
+                  AND ACTIVE = 1",
+                                            [
+                                                $this->__get('USER_ID'),
+                                                $this->__get('PLAYER_ID'),
+                                            ]
+        );
+        if (sizeof($HangarConfig) > 0) {
+            $this->ShipConfigData['Hangar'] = $HangarConfig[0];
+        }
+
+        $PetConfig = $this->mysql->QUERY("SELECT * 
+                  FROM player_pet_config 
+                  WHERE USER_ID = ? 
+                  AND PLAYER_ID = ?",
+                                         [
+                                             $this->__get('USER_ID'),
+                                             $this->__get('PLAYER_ID'),
+                                         ]
+        );
+        if (sizeof($PetConfig) > 0) {
+            $this->ShipConfigData['PetConfig'] = $PetConfig[0];
+        }
 
         //GET ALL USER EXTRA DATA
-        $PlayerExtraData       = $this->mysql->QUERY(
-            "SELECT * 
+        $PlayerExtraData       = $this->mysql->QUERY("SELECT * 
                 FROM player_extra_data 
                 WHERE  USER_ID = ? 
                 AND PLAYER_ID = ?",
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
+                                                     [
+                                                         $this->__get('USER_ID'),
+                                                         $this->__get('PLAYER_ID'),
+                                                     ]
         )[0];
         $this->PlayerExtraData = $PlayerExtraData;
+
+        // GET SKILLTREE DATA
+        $this->SkillTree = new SkillTree($this);
     }
 
     /**
@@ -184,47 +216,43 @@ class User
             $server_config = $this->mysql->QUERY("SELECT * FROM server_config")[0];
 
             if (
-            $this->mysql->QUERY(
-                "INSERT INTO player_data (USER_ID,PLAYER_NAME,URIDIUM,CREDITS,REGISTERED,RANKING)
+            $this->mysql->QUERY("INSERT INTO player_data (USER_ID,PLAYER_NAME,URIDIUM,CREDITS,REGISTERED,RANKING)
                       VALUES(?,?,?,?,?,?)",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('USERNAME'),
-                    $server_config["DEFAULT_URI"],
-                    $server_config["DEFAULT_CREDITS"],
-                    date('Y-m-d H:i:s'),
-                    99999,
-                ]
+                                [
+                                    $this->__get('USER_ID'),
+                                    $this->__get('USERNAME'),
+                                    $server_config["DEFAULT_URI"],
+                                    $server_config["DEFAULT_CREDITS"],
+                                    date('Y-m-d H:i:s'),
+                                    99999,
+                                ]
             )
             ) {
 
                 //GET PLAYER_DATA
-                $PlayerData = $this->mysql->QUERY(
-                    "SELECT * FROM player_data WHERE player_data.USER_ID = ?",
-                    [$this->__get('USER_ID')]
+                $PlayerData = $this->mysql->QUERY("SELECT * FROM player_data WHERE player_data.USER_ID = ?",
+                                                  [$this->__get('USER_ID')]
                 );
                 if (isset($PlayerData[0])) {
                     $this->PlayerData = $PlayerData[0];
                 }
 
                 //GET DEFAULT_SHIP_INFOS
-                $default_ship = $this->mysql->QUERY(
-                    "SELECT ship_id, ship_hp FROM server_ships WHERE ship_id =  ?",
-                    [$server_config["DEFAULT_SHIP"]]
+                $default_ship = $this->mysql->QUERY("SELECT ship_id, ship_hp FROM server_ships WHERE ship_id =  ?",
+                                                    [$server_config["DEFAULT_SHIP"]]
                 )[0];
 
                 // INSERT Hangar Data
-                $this->mysql->QUERY(
-                    "INSERT INTO player_hangar (USER_ID,PLAYER_ID,ACTIVE,SHIP_ID,SHIP_DESIGN,SHIP_HP)
+                $this->mysql->QUERY("INSERT INTO player_hangar (USER_ID,PLAYER_ID,ACTIVE,SHIP_ID,SHIP_DESIGN,SHIP_HP)
                           VALUES(?,?,?,?,?,?)",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                        1,
-                        $default_ship["ship_id"],
-                        $default_ship["ship_id"],
-                        $default_ship["ship_hp"],
-                    ]
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                        1,
+                                        $default_ship["ship_id"],
+                                        $default_ship["ship_id"],
+                                        $default_ship["ship_hp"],
+                                    ]
                 );
 
                 // GIVE DEFAULT ITEMS TO USER
@@ -234,26 +262,24 @@ class User
                 foreach ($items->items as $item) {
                     $item_info = $this->mysql->QUERY("SELECT * FROM server_items WHERE ID = ?", [$item->ID])[0];
                     for ($i = 1; $i <= $item->Q; $i++) {
-                        $this->mysql->QUERY(
-                            "INSERT INTO player_equipment (USER_ID,PLAYER_ID,ITEM_ID,ITEM_TYPE,ITEM_LVL) VALUES(?,?,?,?,?)",
-                            [
-                                $this->__get('USER_ID'),
-                                $this->__get('PLAYER_ID'),
-                                $item->ID,
-                                $item_info["TYPE"],
-                                $item->LVL,
-                            ]
+                        $this->mysql->QUERY("INSERT INTO player_equipment (USER_ID,PLAYER_ID,ITEM_ID,ITEM_TYPE,ITEM_LVL) VALUES(?,?,?,?,?)",
+                                            [
+                                                $this->__get('USER_ID'),
+                                                $this->__get('PLAYER_ID'),
+                                                $item->ID,
+                                                $item_info["TYPE"],
+                                                $item->LVL,
+                                            ]
                         );
                     }
                 }
 
                 //GIVE DEFAULT AMMO
-                $this->mysql->QUERY(
-                    "INSERT INTO player_ammo (USER_ID,PLAYER_ID) VALUES(?,?)",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                $this->mysql->QUERY("INSERT INTO player_ammo (USER_ID,PLAYER_ID) VALUES(?,?)",
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                    ]
                 );
                 $default_ammo_json = $server_config["DEFAULT_AMMO"];
                 $ammoTypes         = json_decode($default_ammo_json);
@@ -261,49 +287,46 @@ class User
                 foreach ($ammoTypes->ammo as $ammo) {
                     $Selector = $ammo->NAME;
                     $Ammount  = $ammo->Q;
-                    $this->mysql->QUERY(
-                        "UPDATE player_ammo SET " . $Selector . " =  ? WHERE USER_ID = ? AND PLAYER_ID = ?",
-                        [
-                            $Ammount,
-                            $this->__get('USER_ID'),
-                            $this->__get('PLAYER_ID'),
-                        ]
+                    $this->mysql->QUERY("UPDATE player_ammo SET " .
+                                        $Selector .
+                                        " =  ? WHERE USER_ID = ? AND PLAYER_ID = ?",
+                                        [
+                                            $Ammount,
+                                            $this->__get('USER_ID'),
+                                            $this->__get('PLAYER_ID'),
+                                        ]
                     );
                 }
 
                 //INSERT player_ship_config
-                $hangarID = $this->mysql->QUERY(
-                    "SELECT ID FROM player_hangar WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                $hangarID = $this->mysql->QUERY("SELECT ID FROM player_hangar WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1",
+                                                [
+                                                    $this->__get('USER_ID'),
+                                                    $this->__get('PLAYER_ID'),
+                                                ]
                 )[0];
-                $this->mysql->QUERY(
-                    "INSERT INTO player_ship_config (USER_ID,PLAYER_ID,HANGAR_ID) VALUES(?,?,?)",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                        $hangarID["ID"],
-                    ]
+                $this->mysql->QUERY("INSERT INTO player_ship_config (USER_ID,PLAYER_ID,HANGAR_ID) VALUES(?,?,?)",
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                        $hangarID["ID"],
+                                    ]
                 );
 
                 //INSERT player_extra_data
-                $this->mysql->QUERY(
-                    "INSERT INTO player_extra_data (USER_ID,PLAYER_ID) VALUES(?,?)",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                $this->mysql->QUERY("INSERT INTO player_extra_data (USER_ID,PLAYER_ID) VALUES(?,?)",
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                    ]
                 );
 
                 //INSERT player_skill_tree
-                $this->mysql->QUERY(
-                    "INSERT INTO player_skill_tree(USER_ID,PLAYER_ID) VALUES(?,?)",
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                $this->mysql->QUERY("INSERT INTO player_skill_tree(USER_ID,PLAYER_ID) VALUES(?,?)",
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                    ]
                 );
 
                 $this->refresh();
@@ -331,19 +354,18 @@ class User
      */
     public function editUser($name, $rank, $lvl, $hon, $exp, $uri, $credits, $id)
     {
-        $edited = $this->mysql->QUERY(
-            'UPDATE player_data SET PLAYER_NAME = ?, `RANK` =?, LVL = ?,
+        $edited = $this->mysql->QUERY('UPDATE player_data SET PLAYER_NAME = ?, `RANK` =?, LVL = ?,
                           HONOR = ?, EXP = ?, URIDIUM = ?, CREDITS = ? WHERE USER_ID = ?',
-            [
-                $name,
-                $rank,
-                $lvl,
-                $hon,
-                $exp,
-                $uri,
-                $credits,
-                $id,
-            ]
+                                      [
+                                          $name,
+                                          $rank,
+                                          $lvl,
+                                          $hon,
+                                          $exp,
+                                          $uri,
+                                          $credits,
+                                          $id,
+                                      ]
         );
         if ($edited) {
             echo "<script>swal('Success!', 'Successfully edited player!', 'success')</script>";
@@ -366,15 +388,14 @@ class User
      */
     private function addlog($MSG, $LogType = LogType::NORMAL)
     {
-        return $this->mysql->QUERY(
-            'INSERT INTO player_logs (USER_ID, PLAYER_ID, LOG_TYPE, LOG_DESCRIPTION, LOG_DATE) VALUES (?, ?, ?, ?, ?)',
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-                $LogType,
-                $MSG,
-                date('Y-m-d H:i:s'),
-            ]
+        return $this->mysql->QUERY('INSERT INTO player_logs (USER_ID, PLAYER_ID, LOG_TYPE, LOG_DESCRIPTION, LOG_DATE) VALUES (?, ?, ?, ?, ?)',
+                                   [
+                                       $this->__get('USER_ID'),
+                                       $this->__get('PLAYER_ID'),
+                                       $LogType,
+                                       $MSG,
+                                       date('Y-m-d H:i:s'),
+                                   ]
         );
     }
 
@@ -388,12 +409,11 @@ class User
      */
     public function changeName($arg)
     {
-        $changed = $this->mysql->QUERY(
-            'UPDATE player_data SET PLAYER_NAME = ? WHERE USER_ID = ?',
-            [
-                $arg,
-                $this->__get('USER_ID'),
-            ]
+        $changed = $this->mysql->QUERY('UPDATE player_data SET PLAYER_NAME = ? WHERE USER_ID = ?',
+                                       [
+                                           $arg,
+                                           $this->__get('USER_ID'),
+                                       ]
         );
         if ($changed) {
             $MSG = 'Changed Name';
@@ -414,13 +434,12 @@ class User
      */
     public function changePetName($arg)
     {
-        $do = $this->mysql->QUERY(
-            'UPDATE player_pet SET NAME = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $arg,
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
+        $do = $this->mysql->QUERY('UPDATE player_pet SET NAME = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                  [
+                                      $arg,
+                                      $this->__get('USER_ID'),
+                                      $this->__get('PLAYER_ID'),
+                                  ]
         );
         if ($do) {
             $MSG = 'Changed Pet Name';
@@ -444,9 +463,8 @@ class User
         if ($Design == "") {
             $Design = $this->Hangars->CURRENT_HANGAR->SHIP_DESIGN;
         }
-        $loot_id = $this->mysql->QUERY(
-            "SELECT ship_lootid FROM server_ships WHERE ship_id = ?",
-            [$Design]
+        $loot_id = $this->mysql->QUERY("SELECT ship_lootid FROM server_ships WHERE ship_id = ?",
+                                       [$Design]
         )[0]['ship_lootid'];
         if ($loot_id == 'ship_aegis' || $loot_id == 'ship_citadel' || $loot_id == 'ship_spearhead') {
             $loot_id .= '-' . $this->getFactionName();
@@ -521,13 +539,12 @@ class User
     {
         if ($this->__get('FACTION_ID') == 0) {
             if ($FactionID == 1 || $FactionID == 2 || $FactionID == 3) {
-                return $this->mysql->QUERY(
-                    'UPDATE player_data SET FACTION_ID = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
-                    [
-                        $FactionID,
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                return $this->mysql->QUERY('UPDATE player_data SET FACTION_ID = ? WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                           [
+                                               $FactionID,
+                                               $this->__get('USER_ID'),
+                                               $this->__get('PLAYER_ID'),
+                                           ]
                 );
             } else {
                 return false;
@@ -551,12 +568,11 @@ class User
 
         if ($PremiumDate < $Today) {
             if ($Premium) {
-                $this->mysql->QUERY(
-                    'UPDATE player_data SET PREMIUM = 0 WHERE USER_ID = ? AND PLAYER_ID = ?',
-                    [
-                        $this->__get('USER_ID'),
-                        $this->__get('PLAYER_ID'),
-                    ]
+                $this->mysql->QUERY('UPDATE player_data SET PREMIUM = 0 WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                    [
+                                        $this->__get('USER_ID'),
+                                        $this->__get('PLAYER_ID'),
+                                    ]
                 );
 
                 return false;
@@ -576,12 +592,11 @@ class User
      */
     public function isAdmin()
     {
-        $userRank = $this->mysql->QUERY(
-            'SELECT `RANK` FROM player_data WHERE PLAYER_ID = ? AND USER_ID = ?',
-            [
-                $this->__get('PLAYER_ID'),
-                $this->__get('USER_ID'),
-            ]
+        $userRank = $this->mysql->QUERY('SELECT `RANK` FROM player_data WHERE PLAYER_ID = ? AND USER_ID = ?',
+                                        [
+                                            $this->__get('PLAYER_ID'),
+                                            $this->__get('USER_ID'),
+                                        ]
         );
 
         return ( $userRank[0]['RANK'] == 21 );
@@ -595,12 +610,11 @@ class User
      */
     public function hasPet()
     {
-        $pet = $this->mysql->QUERY(
-            'SELECT * FROM player_pet WHERE PLAYER_ID = ? AND USER_ID = ?',
-            [
-                $this->__get('PLAYER_ID'),
-                $this->__get('USER_ID'),
-            ]
+        $pet = $this->mysql->QUERY('SELECT * FROM player_pet WHERE PLAYER_ID = ? AND USER_ID = ?',
+                                   [
+                                       $this->__get('PLAYER_ID'),
+                                       $this->__get('USER_ID'),
+                                   ]
         );
 
         return isset($pet[0]);
@@ -614,12 +628,11 @@ class User
      */
     public function getPetName()
     {
-        $pet = $this->mysql->QUERY(
-            'SELECT * FROM player_pet WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
+        $pet = $this->mysql->QUERY('SELECT * FROM player_pet WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                   [
+                                       $this->__get('USER_ID'),
+                                       $this->__get('PLAYER_ID'),
+                                   ]
         );
 
         if (isset($pet[0]['NAME'])) {
@@ -637,13 +650,15 @@ class User
      */
     public function getPetLevel()
     {
-        return $this->mysql->QUERY(
-            'SELECT * FROM player_pet WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
-        )[0]['LEVEL'];
+        $pet = $this->mysql->QUERY('SELECT * FROM player_pet WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                   [
+                                       $this->__get('USER_ID'),
+                                       $this->__get('PLAYER_ID'),
+                                   ]
+        );
+        if ($pet) return $pet[0]['LEVEL'];
+
+        return 0;
     }
 
     /**
@@ -658,33 +673,29 @@ class User
     public function hasDrones($returnCount = false, $splitTypes = false)
     {
         if ($returnCount && $splitTypes) {
-            $droneFlax = $this->mysql->QUERY(
-                "SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 0",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('PLAYER_ID'),
-                ]
+            $droneFlax = $this->mysql->QUERY("SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 0",
+                                             [
+                                                 $this->__get('USER_ID'),
+                                                 $this->__get('PLAYER_ID'),
+                                             ]
             );
-            $droneIris = $this->mysql->QUERY(
-                "SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 1",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('PLAYER_ID'),
-                ]
+            $droneIris = $this->mysql->QUERY("SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 1",
+                                             [
+                                                 $this->__get('USER_ID'),
+                                                 $this->__get('PLAYER_ID'),
+                                             ]
             );
-            $droneApis = $this->mysql->QUERY(
-                "SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 2",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('PLAYER_ID'),
-                ]
+            $droneApis = $this->mysql->QUERY("SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 2",
+                                             [
+                                                 $this->__get('USER_ID'),
+                                                 $this->__get('PLAYER_ID'),
+                                             ]
             );
-            $droneZeus = $this->mysql->QUERY(
-                "SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 3",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('PLAYER_ID'),
-                ]
+            $droneZeus = $this->mysql->QUERY("SELECT ID FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ? AND DRONE_TYPE = 3",
+                                             [
+                                                 $this->__get('USER_ID'),
+                                                 $this->__get('PLAYER_ID'),
+                                             ]
             );
             $result    = [
                 "Iris" => count($droneIris),
@@ -695,12 +706,11 @@ class User
 
             return $result;
         } else {
-            $droneResult = $this->mysql->QUERY(
-                "SELECT ID, DRONE_TYPE FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?",
-                [
-                    $this->__get('USER_ID'),
-                    $this->__get('PLAYER_ID'),
-                ]
+            $droneResult = $this->mysql->QUERY("SELECT ID, DRONE_TYPE FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?",
+                                               [
+                                                   $this->__get('USER_ID'),
+                                                   $this->__get('PLAYER_ID'),
+                                               ]
             );
         }
 
@@ -725,13 +735,12 @@ class User
      */
     public function hasFormation($ItemID)
     {
-        $formation = $this->mysql->QUERY(
-            'SELECT * FROM player_equipment WHERE PLAYER_ID = ? AND USER_ID = ? AND ITEM_ID = ?',
-            [
-                $this->__get('PLAYER_ID'),
-                $this->__get('USER_ID'),
-                $ItemID,
-            ]
+        $formation = $this->mysql->QUERY('SELECT * FROM player_equipment WHERE PLAYER_ID = ? AND USER_ID = ? AND ITEM_ID = ?',
+                                         [
+                                             $this->__get('PLAYER_ID'),
+                                             $this->__get('USER_ID'),
+                                             $ItemID,
+                                         ]
         );
 
         if (isset($formation[0])) {
@@ -749,12 +758,11 @@ class User
      */
     public function getDroneLevel()
     {
-        return $this->mysql->QUERY(
-            'SELECT * FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
+        return $this->mysql->QUERY('SELECT * FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?',
+                                   [
+                                       $this->__get('USER_ID'),
+                                       $this->__get('PLAYER_ID'),
+                                   ]
         )[0]['LEVEL'];
     }
 
@@ -771,9 +779,8 @@ class User
      */
     public function getLevelProgress()
     {
-        $ExpNeed = $this->mysql->QUERY(
-            'SELECT * FROM server_levels_player WHERE ID = ?',
-            [$this->__get('LVL') + 1]
+        $ExpNeed = $this->mysql->QUERY('SELECT * FROM server_levels_player WHERE ID = ?',
+                                       [$this->__get('LVL') + 1]
         )[0]['EXP'];
 
         return ( $this->__get('EXP') / $ExpNeed ) * 100;
@@ -798,9 +805,8 @@ class User
 
     public function getRankName()
     {
-        $RankName = $this->mysql->QUERY(
-            'SELECT RANK_NAME FROM server_ranks WHERE ID = ?',
-            [$this->__get('RANK')]
+        $RankName = $this->mysql->QUERY('SELECT RANK_NAME FROM server_ranks WHERE ID = ?',
+                                        [$this->__get('RANK')]
         )[0]['RANK_NAME'];
 
         return $RankName;
@@ -808,8 +814,7 @@ class User
 
     public function getRanking()
     {
-        $update = $this->mysql->QUERY(
-            "UPDATE player_data SET RANK_POINTS = (round(EXP / 100000, 2) +
+        $update = $this->mysql->QUERY("UPDATE player_data SET RANK_POINTS = (round(EXP / 100000, 2) +
         HONOR / 100 + LVL * 100 ) WHERE PLAYER_ID = (SELECT PLAYER_ID WHERE LVL >=1 )"
         );
 
@@ -818,10 +823,9 @@ class User
 
     public function getNextRank()
     {
-        $rank = $this->mysql->QUERY(
-            'SELECT  MIN(RANK_POINTS) as lowest FROM player_data
+        $rank = $this->mysql->QUERY('SELECT  MIN(RANK_POINTS) as lowest FROM player_data
         WHERE `RANK` = ? + 1',
-            [$this->__get('RANK')]
+                                    [$this->__get('RANK')]
         )[0]['lowest'];
 
         return $rank;
@@ -829,10 +833,9 @@ class User
 
     public function getRankBelowPT()
     {
-        $rank = $this->mysql->QUERY(
-            'SELECT  MAX(RANK_POINTS) as highest FROM player_data
+        $rank = $this->mysql->QUERY('SELECT  MAX(RANK_POINTS) as highest FROM player_data
         WHERE `RANK` = ? + 1',
-            [$this->__get('RANK')]
+                                    [$this->__get('RANK')]
         )[0]['highest'];
 
         return $rank;
@@ -840,9 +843,8 @@ class User
 
     public function getNextRankN()
     {
-        $RankName = $this->mysql->QUERY(
-            'SELECT RANK_NAME FROM server_ranks WHERE ID = ? + 1',
-            [$this->__get('RANK')]
+        $RankName = $this->mysql->QUERY('SELECT RANK_NAME FROM server_ranks WHERE ID = ? + 1',
+                                        [$this->__get('RANK')]
         )[0]['RANK_NAME'];
 
         return $RankName;
@@ -855,9 +857,8 @@ class User
 
     public function getRankBelow()
     {
-        $RankName = $this->mysql->QUERY(
-            'SELECT RANK_NAME FROM server_ranks WHERE ID = ? - 1',
-            [$this->__get('RANK')]
+        $RankName = $this->mysql->QUERY('SELECT RANK_NAME FROM server_ranks WHERE ID = ? - 1',
+                                        [$this->__get('RANK')]
         )[0]['RANK_NAME'];
 
         return $RankName;
@@ -865,8 +866,7 @@ class User
 
     public function createRankingList()
     {
-        $playerRanking = $this->mysql->QUERY(
-            'SELECT PLAYER_NAME, RANK_POINTS, `RANK`, FACTION_ID FROM player_data WHERE `RANK` != 21 ORDER BY RANKING LIMIT 100'
+        $playerRanking = $this->mysql->QUERY('SELECT PLAYER_NAME, RANK_POINTS, `RANK`, FACTION_ID FROM player_data WHERE `RANK` != 21 ORDER BY RANKING LIMIT 100'
         );
 
         foreach ($playerRanking as $pos => $player) {
@@ -894,25 +894,22 @@ class User
 
     public function messages()
     {
-        return $this->mysql->QUERY(
-            'SELECT * FROM player_messages WHERE USER_ID = ? ORDER BY ID DESC',
-            [$this->__get('USER_ID')]
+        return $this->mysql->QUERY('SELECT * FROM player_messages WHERE USER_ID = ? ORDER BY ID DESC',
+                                   [$this->__get('USER_ID')]
         );
     }
 
     public function outbox()
     {
-        return $this->mysql->QUERY(
-            'SELECT * FROM player_outbox WHERE USER_ID = ? ORDER BY ID DESC',
-            [$this->__get('USER_ID')]
+        return $this->mysql->QUERY('SELECT * FROM player_outbox WHERE USER_ID = ? ORDER BY ID DESC',
+                                   [$this->__get('USER_ID')]
         );
     }
 
     public function hasMessages()
     {
-        $messages = $this->mysql->QUERY(
-            'SELECT * FROM player_messages WHERE USER_ID = ? AND NEW = 1',
-            [$this->__get('USER_ID')]
+        $messages = $this->mysql->QUERY('SELECT * FROM player_messages WHERE USER_ID = ? AND NEW = 1',
+                                        [$this->__get('USER_ID')]
         );
 
         if ($messages) {
@@ -933,26 +930,24 @@ class User
      */
     public function sendMessage($recipientID, $message, $title)
     {
-        $sent = $this->mysql->QUERY(
-            "INSERT INTO player_messages (USER_ID,SENDER,DATE,NEW,HEADER,MESSAGE,TYPE) VALUES(?,?,?,1,?,?,1)",
-            [
-                $recipientID,
-                $this->__get('USER_ID'),
-                date('Y-m-d H:i:s'),
-                $title,
-                $message,
-            ]
+        $sent = $this->mysql->QUERY("INSERT INTO player_messages (USER_ID,SENDER,DATE,NEW,HEADER,MESSAGE,TYPE) VALUES(?,?,?,1,?,?,1)",
+                                    [
+                                        $recipientID,
+                                        $this->__get('USER_ID'),
+                                        date('Y-m-d H:i:s'),
+                                        $title,
+                                        $message,
+                                    ]
         );
 
-        $received = $this->mysql->QUERY(
-            "INSERT INTO player_outbox (USER_ID,RECIPIENT,DATE,HEADER,MESSAGE,TYPE) VALUES(?,?,?,?,?,1)",
-            [
-                $this->__get('USER_ID'),
-                $recipientID,
-                date('Y-m-d H:i:s'),
-                $title,
-                $message,
-            ]
+        $received = $this->mysql->QUERY("INSERT INTO player_outbox (USER_ID,RECIPIENT,DATE,HEADER,MESSAGE,TYPE) VALUES(?,?,?,?,?,1)",
+                                        [
+                                            $this->__get('USER_ID'),
+                                            $recipientID,
+                                            date('Y-m-d H:i:s'),
+                                            $title,
+                                            $message,
+                                        ]
         );
 
         if ($sent && $received) {
@@ -1002,12 +997,13 @@ class User
 
     public function messageInfo($msgID)
     {
-        $msg = $this->mysql->QUERY(
-            'SELECT SENDER, DATE, HEADER, MESSAGE FROM player_messages WHERE ID = ?',
-            [$msgID]
+        $msg = $this->mysql->QUERY('SELECT SENDER, DATE, HEADER, MESSAGE FROM player_messages WHERE ID = ?',
+                                   [$msgID]
         );
 
-        if ($msg) return $msg[0];
+        if ($msg) {
+            return $msg[0];
+        }
 
         return false;
     }
@@ -1016,18 +1012,17 @@ class User
     {
         $userid = $this->mysql->QUERY('SELECT USER_ID FROM player_data WHERE USER_ID >= 1');
         foreach ($userid as $u => $send) {
-            $this->mysql->QUERY(
-                'INSERT INTO player_messages(USER_ID, SENDER, DATE, NEW ,HEADER , MESSAGE, TYPE)
+            $this->mysql->QUERY('INSERT INTO player_messages(USER_ID, SENDER, DATE, NEW ,HEADER , MESSAGE, TYPE)
             VALUES (?,?,?,?,?,?,?)',
-                [
-                    $send['USER_ID'],
-                    1,
-                    DATE('Y-m-d H:i:s'),
-                    1,
-                    'Test',
-                    $message,
-                    2,
-                ]
+                                [
+                                    $send['USER_ID'],
+                                    1,
+                                    DATE('Y-m-d H:i:s'),
+                                    1,
+                                    'Test',
+                                    $message,
+                                    2,
+                                ]
             );
 
         }
@@ -1041,9 +1036,8 @@ class User
         if ($this->__get('TITLE_ID') == 0) {
             return "";
         }
-        $title = $this->mysql->QUERY(
-            'SELECT TITLE_NAME FROM server_titles WHERE ID = ?',
-            [$this->__get('TITLE_ID')]
+        $title = $this->mysql->QUERY('SELECT TITLE_NAME FROM server_titles WHERE ID = ?',
+                                     [$this->__get('TITLE_ID')]
         )[0]['TITLE_NAME'];
 
         return $title;
@@ -1054,9 +1048,8 @@ class User
         if ($this->__get('TITLE_ID') == 0) {
             return "#fff";
         }
-        $titleColor = $this->mysql->QUERY(
-            'SELECT TITLE_COLOR_HEX FROM server_titles WHERE ID = ?',
-            [$this->__get('TITLE_ID')]
+        $titleColor = $this->mysql->QUERY('SELECT TITLE_COLOR_HEX FROM server_titles WHERE ID = ?',
+                                          [$this->__get('TITLE_ID')]
         )[0]['TITLE_COLOR_HEX'];
 
         return $titleColor;
@@ -1076,8 +1069,7 @@ class User
 
     public function userInfo()
     {
-        $userinfo = $this->mysql->QUERY(
-            'SELECT player_data.*, player_extra_data.*
+        $userinfo = $this->mysql->QUERY('SELECT player_data.*, player_extra_data.*
                   FROM player_data, player_extra_data
                   WHERE player_data.USER_ID > 0
                    AND player_data.USER_ID = player_extra_data.USER_ID and player_data.CLAN_ID >= 0
@@ -1095,30 +1087,27 @@ class User
     public function getInfo($ID, $Type)
     {
         if ($Type == 1) {
-            $userinfo = $this->mysql->QUERY(
-                'SELECT player_data.*, player_extra_data.*
+            $userinfo = $this->mysql->QUERY('SELECT player_data.*, player_extra_data.*
                   FROM player_data, player_extra_data
                   WHERE player_data.USER_ID = ?
                   AND player_data.USER_ID = player_extra_data.USER_ID and player_data.CLAN_ID >= 0',
-                [$ID]
+                                            [$ID]
             );
 
             return $userinfo;
         } elseif ($Type == 2) {
-            $userinfo = $this->mysql->QUERY(
-                'SELECT player_data.*, player_extra_data.*
+            $userinfo = $this->mysql->QUERY('SELECT player_data.*, player_extra_data.*
                   FROM player_data, player_extra_data
                   WHERE player_data.PLAYER_NAME = ? AND player_data.USER_ID = player_extra_data.USER_ID',
-                [$ID]
+                                            [$ID]
             );
 
             return $userinfo;
         } elseif ($Type == 3) {
-            $userinfo = $this->mysql->QUERY(
-                'SELECT player_data.*, player_extra_data.*
+            $userinfo = $this->mysql->QUERY('SELECT player_data.*, player_extra_data.*
                   FROM player_data, player_extra_data
                   WHERE player_data.RANKING = ? AND player_data.USER_ID = player_extra_data.USER_ID',
-                [$ID]
+                                            [$ID]
             );
 
             return $userinfo;
@@ -1127,11 +1116,10 @@ class User
 
             return $userinfo;
         } elseif ($Type == 5) {
-            $userinfo = $this->mysql->QUERY(
-                'SELECT player_data.*, player_extra_data.*
+            $userinfo = $this->mysql->QUERY('SELECT player_data.*, player_extra_data.*
                   FROM player_data, player_extra_data
                   WHERE player_data.PLAYER_ID = ? AND player_data.USER_ID = player_extra_data.USER_ID',
-                [$ID]
+                                            [$ID]
             )[0];
 
             return $userinfo;
@@ -1156,12 +1144,11 @@ class User
 
     public function getUserCode($id)
     {
-        $check = $this->mysql->QUERY(
-            'SELECT * FROM player_voucher_codes WHERE USER_ID = ? AND CODE_ID = ? ',
-            [
-                $this->__get('USER_ID'),
-                $id,
-            ]
+        $check = $this->mysql->QUERY('SELECT * FROM player_voucher_codes WHERE USER_ID = ? AND CODE_ID = ? ',
+                                     [
+                                         $this->__get('USER_ID'),
+                                         $id,
+                                     ]
         );
 
         return $check[0]['USED'];
@@ -1184,18 +1171,17 @@ class User
                   We wish you fun playing!
             Best Regards UnknownUniverse - Team
         ';
-            $this->mysql->QUERY(
-                'INSERT INTO player_messages(USER_ID, SENDER, DATE, NEW ,HEADER , MESSAGE, TYPE)
+            $this->mysql->QUERY('INSERT INTO player_messages(USER_ID, SENDER, DATE, NEW ,HEADER , MESSAGE, TYPE)
             VALUES (?,?,?,?,?,?,?)',
-                [
-                    $send['USER_ID'],
-                    1,
-                    DATE('Y-m-d H:i:s'),
-                    1,
-                    $codeid,
-                    $MESSAGE_BODY,
-                    2,
-                ]
+                                [
+                                    $send['USER_ID'],
+                                    1,
+                                    DATE('Y-m-d H:i:s'),
+                                    1,
+                                    $codeid,
+                                    $MESSAGE_BODY,
+                                    2,
+                                ]
             );
         }
 
@@ -1226,56 +1212,55 @@ class User
                 $name     = $rewardId;
             }
 
-            $check_user = $this->mysql->QUERY(
-                'SELECT * FROM player_voucher_codes WHERE USER_ID = ? AND CODE_ID = ?',
-                [
-                    $userid,
-                    $codeid,
-                ]
+            $check_user = $this->mysql->QUERY('SELECT * FROM player_voucher_codes WHERE USER_ID = ? AND CODE_ID = ?',
+                                              [
+                                                  $userid,
+                                                  $codeid,
+                                              ]
             );
             if (isset($rewardName) && empty($check_user)) {
                 switch ($category) {
                     case 'notlisted':
                     case 'ammo':
-                        $update = $this->mysql->QUERY(
-                            "UPDATE player_ammo SET " . $rewardName . " = " . $rewardName . " + ? WHERE USER_ID = ?",
-                            [
-                                $amt,
-                                $this->__get('USER_ID'),
-                            ]
+                        $update = $this->mysql->QUERY("UPDATE player_ammo SET " .
+                                                      $rewardName .
+                                                      " = " .
+                                                      $rewardName .
+                                                      " + ? WHERE USER_ID = ?",
+                                                      [
+                                                          $amt,
+                                                          $this->__get('USER_ID'),
+                                                      ]
                         );
                         break;
                     case 'laser':
                         $rewardName = 0;
-                        $update     = $this->mysql->QUERY(
-                            "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
-                            [
-                                $this->__get('USER_ID'),
-                                $this->__get('PLAYER_ID'),
-                                $rewardId,
-                                $rewardName,
-                                $amt,
-                            ]
+                        $update     = $this->mysql->QUERY("INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
+                                                          [
+                                                              $this->__get('USER_ID'),
+                                                              $this->__get('PLAYER_ID'),
+                                                              $rewardId,
+                                                              $rewardName,
+                                                              $amt,
+                                                          ]
                         );
                         break;
                     case 'uridium':
-                        $update = $this->mysql->QUERY(
-                            "UPDATE player_data SET URIDIUM = URIDIUM + ? WHERE USER_ID = ?",
-                            [
-                                $amt,
-                                $this->__get('USER_ID'),
-                            ]
+                        $update = $this->mysql->QUERY("UPDATE player_data SET URIDIUM = URIDIUM + ? WHERE USER_ID = ?",
+                                                      [
+                                                          $amt,
+                                                          $this->__get('USER_ID'),
+                                                      ]
                         );
                         break;
                 }
                 if (isset($update) && $update) {
-                    $this->mysql->QUERY(
-                        'INSERT INTO player_voucher_codes (USER_ID, CODE_ID, USED) VALUES (?, ? ,?)',
-                        [
-                            $userid,
-                            $codeid,
-                            1,
-                        ]
+                    $this->mysql->QUERY('INSERT INTO player_voucher_codes (USER_ID, CODE_ID, USED) VALUES (?, ? ,?)',
+                                        [
+                                            $userid,
+                                            $codeid,
+                                            1,
+                                        ]
                     );
                     echo "<script>swal('Success!', 'Redeemed code!', 'success')</script>";
                     $MSG = 'Received (' . $amt . ') ' . $name . '. Code: ' . $codeid;
@@ -1332,12 +1317,11 @@ class User
 
     public function banUser()
     {
-        $ban = $this->mysql->QUERY(
-            "UPDATE player_data SET PLAYER_NAME = 'Banned' WHERE USER_ID = ? AND PLAYER_ID = ?",
-            [
-                $this->__get('USER_ID'),
-                $this->__get('PLAYER_ID'),
-            ]
+        $ban = $this->mysql->QUERY("UPDATE player_data SET PLAYER_NAME = 'Banned' WHERE USER_ID = ? AND PLAYER_ID = ?",
+                                   [
+                                       $this->__get('USER_ID'),
+                                       $this->__get('PLAYER_ID'),
+                                   ]
         );
 
         return $ban;
@@ -1359,8 +1343,7 @@ class User
 
     public function getTopExp()
     {
-        $userid = $this->mysql->QUERY(
-            'SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21 ORDER BY EXP DESC LIMIT 100'
+        $userid = $this->mysql->QUERY('SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21 ORDER BY EXP DESC LIMIT 100'
         );
 
         return $userid;
@@ -1368,8 +1351,7 @@ class User
 
     public function getTopHon()
     {
-        $userid = $this->mysql->QUERY(
-            'SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21  ORDER BY HONOR DESC LIMIT 100'
+        $userid = $this->mysql->QUERY('SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21  ORDER BY HONOR DESC LIMIT 100'
         );
 
         return $userid;
@@ -1377,8 +1359,7 @@ class User
 
     public function getTopUser()
     {
-        $userid = $this->mysql->QUERY(
-            'SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21  ORDER BY RANK_POINTS DESC LIMIT 100'
+        $userid = $this->mysql->QUERY('SELECT * FROM player_data WHERE USER_ID >= 1 AND `RANK` != 21  ORDER BY RANK_POINTS DESC LIMIT 100'
         );
 
         return $userid;
@@ -1386,9 +1367,8 @@ class User
 
     public function GRN($arg)
     {
-        $RankName = $this->mysql->QUERY(
-            'SELECT RANK_NAME FROM server_ranks WHERE ID = ?',
-            [$arg]
+        $RankName = $this->mysql->QUERY('SELECT RANK_NAME FROM server_ranks WHERE ID = ?',
+                                        [$arg]
         )[0]['RANK_NAME'];
 
         return $RankName;
@@ -1406,12 +1386,11 @@ class User
         5 / battlestation
         */
 
-        $deathResult = $this->mysql->QUERY(
-            "SELECT ID FROM player_deaths WHERE PLAYER_ID = ? AND DEATH_TYPE = ?",
-            [
-                $this->__get('PLAYER_ID'),
-                $type,
-            ]
+        $deathResult = $this->mysql->QUERY("SELECT ID FROM player_deaths WHERE PLAYER_ID = ? AND DEATH_TYPE = ?",
+                                           [
+                                               $this->__get('PLAYER_ID'),
+                                               $type,
+                                           ]
         );
 
         if (count($deathResult) > 0) {
@@ -1425,12 +1404,11 @@ class User
     {
         $server_items = $this->mysql->QUERY('SELECT * FROM server_items');
         foreach ($server_items as $item) {
-            $this->mysql->QUERY(
-                'UPDATE player_equipment SET ITEM_TYPE = ? WHERE ITEM_ID = ?',
-                [
-                    $item['TYPE'],
-                    $item['ID'],
-                ]
+            $this->mysql->QUERY('UPDATE player_equipment SET ITEM_TYPE = ? WHERE ITEM_ID = ?',
+                                [
+                                    $item['TYPE'],
+                                    $item['ID'],
+                                ]
             );
         }
     }

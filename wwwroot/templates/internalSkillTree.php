@@ -1,130 +1,231 @@
 <div class="skill-body clearfix">
-    <div class="skill-inner clearfix">
-        <div class="single-item col-xs-12">
-            <div class="single-item-inner">
-                <div class="single-item-content">
+    <div id='exchange-panel' class='col-lg-12'>
 
-                    <?php
-                    $skills   = $System->User->getSkills();
-                    $hasSkill = $System->User->hasSkill();
-                    foreach ($skills as $skill) {
-                        ?>
-                        <div id="skill_<?= $skill['ID'] ?>" class="skill" data-skill-id="<?= $skill['ID'] ?>">
-                            <div class="skill_effect">
+    </div>
+
+    <?php
+    $skills = $System->User->SkillTree->getServerSkills();
+    ?>
+    <div class="tree-content">
+        <div class='col-29'>
+            <div class='skill-row'>
+                <?php for ($j = 0; $j < 3; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
                                 <div class="skillPoints">
-                                    <?php echo $hasSkill[$skill['SKILL_NAME']];
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
                                     echo "/";
-                                    echo $skill['MAX_POINTS']; ?>
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
                                 </div>
                             </div>
                         </div>
-                        <?php
-                    }
-                    ?>
-
-                </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 3; $j < 5; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 5; $j < 8; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+        </div>
+        <div class='col-29'>
+            <div class='skill-row'>
+                <?php for ($j = 8; $j < 10; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 10; $j < 13; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 13; $j < 16; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+        </div>
+        <div class='col-42'>
+            <div class='skill-row'>
+                <?php for ($j = 16; $j < 18; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 18; $j < 22; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
+            </div>
+            <div class='skill-row'>
+                <?php for ($j = 22; $j < 25; $j++) {
+                    $i            = $skills[$j];
+                    $id           = $i['ID'];
+                    $playerSkills = $System->User->SkillTree->__get('SKILL_LIST');
+                    if ($id > 0 && $id <= 25) { ?>
+                        <div id="skill_<?= $i['ID'] ?>" class="skill" data-skill-id="<?= $i['ID'] ?>">
+                            <div class="skill-effect">
+                                <div class="skillPoints">
+                                    <?php echo $playerSkills[$i['SKILL_NAME']];
+                                    echo "/";
+                                    echo $System->User->SkillTree->getSkillMaxLevel($i['ID']); ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    $('.skill').click(function (event) {
+<script type="text/javascript">
+    $('.skill').click(function () {
         let skillID = $(this).data('skill-id');
-        swal('Do you want to use a point on this skill??', {
+        swal('Are you sure you want to use a point on this skill?', {
             buttons: {
-                Yes: {
-                    text: "Use point"
+                yes: {
+                    text: "Yes"
                 },
-                No: {
+                no: {
                     text: "No"
                 },
-                cancel: true
+                cancel: false
             }
         }).then((value) => {
             switch (value) {
-                case "Yes":
-                    upgrade_skill(null, skillID);
+                case "yes":
+                    sendCoreRequest('skilltree', 'upgrade', { sID: skillID });
                     break;
-                case "No":
-                    swal("Error!", "Couldn't upgrade skill!", "error");
+                case "no":
                     break;
             }
         });
     });
 
-    $('.exchange').click(function (event) {
-        let userID = $(this).data('user-id');
+    $('.exchange').click(function () {
         swal('Do you want to use your log disks to get a research point??', {
             buttons: {
-                Yes: {
-                    text: "Exchange Log Disks"
+                yes: {
+                    text: "Exchange"
                 },
-                No: {
-                    text: "No"
+                no: {
+                    text: "Cancel"
                 },
-                cancel: true
+                cancel: false
             }
         }).then((value) => {
             switch (value) {
-                case "Yes":
-                    exchange(null, userID);
-                    setTimeout(location.reload.bind(location), 1000);
+                case "yes":
+                    sendCoreRequest(
+                        'skilltree',
+                        'exchange',
+                        {},
+                        () => setTimeout(location.reload.bind(location), 1000)
+                    );
                     break;
-                case "No":
-                    swal("Error!", "Couldn't exchange log disks!", "error");
+                case "no":
                     break;
             }
         });
     });
-
-    function exchange(data = null, playerID) {
-        if (data !== null) {
-            if (!data.error) {
-                swal('Success!', 'Successfully exchanged log files for point!', 'success')
-            } else {
-                swal('Error', data.error_msg, 'error');
-            }
-        } else {
-            let params = {
-                'PLAYER_ID': playerID,
-            };
-            sendRequest('exchange', 'exchange', JSON.stringify(params));
-        }
-    }
-
-    function upgrade_skill(data = null, skillID) {
-        if (data !== null) {
-            if (!data.error) {
-                swal('Success!', 'Successfully upgraded skill!', 'success')
-            } else {
-                swal('Error', data.error_msg, 'error');
-            }
-        } else {
-            let params = {
-                'SKILL_ID': skillID,
-            };
-            sendRequest('upgrade_skill', 'upgrade_skill', JSON.stringify(params));
-        }
-    }
-
-    function sendRequest(callback, actionName, params = "") {
-        $.ajax({
-            type: "POST",
-            url: './core/ajax/ajax.php',
-            data: {action: actionName, params: params, handler: 'profile'},
-            cache: false,
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (data) {
-                console.log(data);
-                if (data.error) {
-                    swal('Error!', data.error_msg, 'error');
-                } else {
-                    swal('Success!', data.msg, 'success');
-                }
-            }
-        });
-    }
 </script>

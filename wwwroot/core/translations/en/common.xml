@@ -4,7 +4,7 @@
     <translate ID="NAV_TEXT_HANGAR">Hangar</translate>
     <translate ID="NAV_TEXT_CLAN">Clan</translate>
     <translate ID="NAV_TEXT_SKYLAB">Skylab</translate>
-    <translate ID="NAV_TEXT_UPGRADES">Upgrades</translate>
+    <translate ID="NAV_TEXT_SKILLTREE">Skill Tree</translate>
     <!-- Premium is for goods such as Premium / Rebate / Boosters-->
     <translate ID="NAV_TEXT_PREMIUM">Premium</translate>
     <translate ID="NAV_TEXT_GALAXYGATES">Galaxy Gates</translate>
