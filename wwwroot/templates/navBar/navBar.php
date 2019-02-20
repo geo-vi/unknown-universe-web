@@ -90,8 +90,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalHangar"><?= $System->__('NAV_TEXT_HANGAR') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_UPGRADES') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalSkillTree"><?= $System->__('NAV_TEXT_SKILLTREE') ?></a>
                 </li>
             </ul>
         </ul>
