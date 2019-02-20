@@ -5,26 +5,27 @@ use DB\MySQL;
 use shop\Shop;
 
 //SYSTEM RELATED CLASSES
-include_once( __DIR__ . "/system/class.MySQL.php" );
-include_once( __DIR__ . "/system/class.Utils.php" );
-include_once( __DIR__ . "/system/class.Validator.php" );
-include_once( __DIR__ . "/system/class.ErrorHandler.php" );
-include_once( __DIR__ . "/system/class.Routing.php" );
-include_once( __DIR__ . "/system/class.Logging.php" );
-include_once( __DIR__ . "/system/class.Translation.php" );
+include_once( __DIR__ . '/system/class.MySQL.php' );
+include_once( __DIR__ . '/system/class.Utils.php' );
+include_once( __DIR__ . '/system/class.Validator.php' );
+include_once( __DIR__ . '/system/class.ErrorHandler.php' );
+include_once( __DIR__ . '/system/class.Routing.php' );
+include_once( __DIR__ . '/system/class.Logging.php' );
+include_once( __DIR__ . '/system/class.Translation.php' );
 
 //USER RELATED CLASSES
-include_once( __DIR__ . "/class.User.php" );
-include_once( __DIR__ . "/user/class.Hangars.php" );
-include_once( __DIR__ . "/user/class.Inventory.php" );
+include_once( __DIR__ . '/class.User.php' );
+include_once( __DIR__ . '/user/class.Hangars.php' );
+include_once( __DIR__ . '/user/class.Inventory.php' );
+include_once( __DIR__ . '/user/class.SkillTree.php' );
 include_once( __DIR__ . '/user/hangar/class.Hangar.php' );
 include_once( __DIR__ . '/user/inventory/class.Item.php' );
 
 //CLAN RELATED CLASSE
-include_once( __DIR__ . "/class.Clan.php" );
+include_once( __DIR__ . '/class.Clan.php' );
 
 //SHOP RELATED CLASSES
-include_once( __DIR__ . "/class.Shop.php" );
+include_once( __DIR__ . '/class.Shop.php' );
 include_once( __DIR__ . '/shop/class.AbstractItem.php' );
 include_once( __DIR__ . '/shop/items/class.AdminItem.php' );
 include_once( __DIR__ . '/shop/items/class.AdminShip.php' );
@@ -37,7 +38,7 @@ include_once( __DIR__ . '/shop/items/class.Pet.php' );
 include_once( __DIR__ . '/shop/items/class.Ship.php' );
 
 //SERVER RELATED CLASSES
-include_once( __DIR__ . "/class.Game.php" );
+include_once( __DIR__ . '/class.Game.php' );
 
 
 class System
@@ -151,20 +152,6 @@ class System
     }
 
     /**
-     * getUserId
-     *
-     * gets USER_ID over `$Username`
-     *
-     * @param $Username
-     */
-    public function getUserId($Username) : int
-    {
-        $userID = $this->mysql->QUERY("SELECT USER_ID FROM users WHERE USERNAME = ?", [$Username]);
-
-        return $userID[0]['USER_ID'];
-    }
-
-    /**
      *  getUserIP Function
      *
      *  used to get the IP of connected User
@@ -184,6 +171,22 @@ class System
         }
 
         return $ip;
+    }
+
+    /**
+     * getUserId
+     *
+     * gets USER_ID over `$Username`
+     *
+     * @param $Username
+     *
+     * @return int
+     */
+    public function getUserId($Username) : int
+    {
+        $userID = $this->mysql->QUERY("SELECT USER_ID FROM users WHERE USERNAME = ?", [$Username]);
+
+        return $userID[0]['USER_ID'];
     }
 
     /**
@@ -435,7 +438,7 @@ class System
                 //GET LAST SERVER
                 if ($this->User->__get('LAST_SERVER') == null) {
                     //SET FIRST SERVER FOR NEW USERS
-                    $this->Server            = $this->getServer();
+                    $this->Server = $this->getServer();
                     $this->User->__set('LAST_SERVER', $this->Server["SHORTCUT"]);
                     $this->mysql->QUERY('UPDATE users SET LAST_SERVER = ? WHERE USER_ID = ? AND SESSION_ID = ?',
                                         [
@@ -476,9 +479,11 @@ class System
 
                 //CHECK IF USER HAS FACTION
                 if ( !$this->User->hasFaction()) {
-                    if ($this->routing->route != "internalCompanyChoose" &&
+                    if (
+                        $this->routing->route != "internalCompanyChoose" &&
                         !$this->error_handler->isError &&
-                        $this->routing->request != '/core/ajax/ajax.php') {
+                        $this->routing->request != '/core/ajax/ajax.php'
+                    ) {
                         header('location: ' . PROJECT_HTTP_ROOT . 'internalCompanyChoose');
                     }
                 }
