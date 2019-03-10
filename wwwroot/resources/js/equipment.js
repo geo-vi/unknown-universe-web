@@ -257,14 +257,17 @@ class equipment {
 
                     //APPEND ALL SLOTS
                     $(droneContainer).append(droneEquipmentSlots);
-                    $(droneContainer).append(droneLevel);
-                    $(droneContainer).append(droneDesignName);
-                    $(droneContainer).append(droneEffect);
-                    $(droneContainer).append(droneDamage);
+                    var droneDetailContainer = $("<div>").addClass("drone-detail-container");
+                        $(droneDetailContainer).append(droneLevel);
+                        $(droneDetailContainer).append(droneDesignName);
+                        $(droneDetailContainer).append(droneEffect);
+                        $(droneDetailContainer).append(droneDamage);
+
+                    $(droneContainer).append(droneDetailContainer);
                     $(droneContainer).append(droneULevel);
 
                     //CREATE DESIGN SLOT
-                    let designSlot = $('<div>');
+                    let designSlot = $('<div>').html('c');
                     if (DRONE.DRONE_DESIGN !== null && DRONE.DRONE_DESIGN !== undefined) {
                         $(designSlot)
                             .attr("data-type", DRONE.DRONE_DESIGN.CATEGORY.toLowerCase())
