@@ -143,7 +143,44 @@ $(document).ready(function () {
                     withCredentials: true
                 },
                 success: function (data) {
-                    console.log(data);
+                    if(data.success){
+                        swal(
+                            'SUCCESS!',
+                            data.message,
+                            'success'
+                        );
+                    }else{
+                        swal(
+                            'ERROR!',
+                            data.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function (errorData, _, errorThrown) {
+                    swal(
+                        'ERROR!',
+                        'Please contact support. Error CODE: A404',
+                        'error'
+                    );
+                }
+            });
+        });
+    }
+
+    if($('#switchClient').length>0){
+        var switcher = $('#switchClient');
+
+        switcher.on('change',function (e) {
+            $.ajax({
+                type:"POST",
+                url:'ajax.php',
+                data:{action:'switch_client',value:document.getElementById('switchClient').checked},
+                cache:false,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (data) {
                     if(data.success){
                         swal(
                             'SUCCESS!',
