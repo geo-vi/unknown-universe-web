@@ -58,6 +58,21 @@ require_once("internalSettings/internalCountries.php");
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <div class="col-sm-4 text-right">
+                            <label class="control-label">
+                                Enable 3D Version:
+                            </label>
+                        </div>
+                        <div class="col-sm-8">
+                            <!-- Rounded switch -->
+                            <label class="switch">
+                                <input type="checkbox" name="client_version" id="switchClient" <?php if($System->User->__get('CLIENT_VERSION')>0){ echo 'checked'; } ?>>
+                                <span class="slider round"></span>
+                            </label>
+
+                        </div>
+                    </div>
                     <hr/>
 
                     <input type="hidden" name="action" value="change_account_info">
