@@ -1,5 +1,5 @@
 <?php
-require_once( "internalSettings/internalCountries.php" );
+require_once("internalSettings/internalCountries.php");
 ?>
 
 <div class="page-content" clearfix>
@@ -38,85 +38,150 @@ require_once( "internalSettings/internalCountries.php" );
 
             </div>
             <div role="tabpanel" class="tab-pane" id="account">
-                <form class="form-horizontal" role="form">
-
+                <form class="form-horizontal" role="form" id="frmAccountInfo">
                     <div id="nameFormGroup" class="form-group">
                         <div class="col-sm-4 text-right">
-                            <label class="control-label" for="userNameTextBox">
-                                Name:
+                            <label class="control-label" for="txtShipName">
+                                Ship Name:
                             </label>
                         </div>
                         <div class="col-sm-4">
                             <input class="form-control"
                                    type="text"
-                                   id="userNameTextBox"
-                                   value="<?= $System->User->__get('PLAYER_NAME') ?>" />
+                                   id="txtShipName"
+                                   value="<?= $System->User->__get('PLAYER_NAME') ?>"/>
                         </div>
                         <div class="col-sm-4">
-                            <button id="changeName" type="submit" class="btn-block btn-primary btn-md">
+                            <button id="changeName" type="button" class="btn-block btn-primary btn-md">
                                 Change Name
                             </button>
                         </div>
                     </div>
 
+                    <hr/>
+
+                    <input type="hidden" name="action" value="change_account_info">
                     <div id="usernameFormGroup" class="form-group">
                         <div class="col-sm-4 text-right">
-                            <label class="control-label" for="userUsernameTextBox">
+                            <label class="control-label" for="txtUserName">
                                 Username:
                             </label>
                         </div>
                         <div class="col-sm-4">
                             <input class="form-control"
                                    type="text"
-                                   id="userUsernameTextBox"
+                                   id="txtUserName"
                                    value="<?= $System->User->__get('USERNAME') ?>"
-                                   disabled />
+                                   disabled/>
                         </div>
                         <div class="col-sm-4">
-                            <button id="changeUsername" type="submit" class="btn-block btn-info btn-md" disabled>
+                            <!--<button id="changeUsername" type="submit" class="btn-block btn-info btn-md" disabled>
                                 Change Userame
-                            </button>
+                            </button>-->
+                        </div>
+                    </div>
+
+                    <div id="userInformationFormGroup" class="form-group">
+                        <div class="col-sm-4 text-right">
+                            <label for="txtFirstName" class="control-label">
+                                First/Last Name:
+                            </label>
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control"
+                                   type="text"
+                                   id="txtFirstName" name="first_name" placeholder="First Name"
+                                   value="<?= $System->User->__get('FIRST_NAME') ?>"
+                            />
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="form-control"
+                                   type="text"
+                                   id="txtLastName" name="last_name" placeholder="Last Name"
+                                   value="<?= $System->User->__get('LAST_NAME') ?>"
+                            />
                         </div>
                     </div>
 
                     <div id="birthdayFormGroup" class="form-group">
                         <div class="col-sm-4 text-right">
-                            <label id="birthday" class="control-label">
+                            <label for="birthday" class="control-label">
                                 Date of Birth:
                             </label>
                         </div>
                         <div class="col-sm-8">
-                            <select name="day" id="day" class="select-dark" aria-label="birthday">
-                                <?php
-                                print "<option value='0'>--</option>";
-                                for ($i = 1; $i <= 31; $i++) {
-                                    print "<option value='$i'>$i</option>";
-                                }
-                                ?>
-                            </select>
-                            <select name="month" id="month" class="select-dark" aria-label="birthday">
-                                <option value="0">--</option>
-                                <option value="1">January</option>
-                                <option value="2">February</option>
-                                <option value="3">March</option>
-                                <option value="4">April</option>
-                                <option value="5">May</option>
-                                <option value="6">June</option>
-                                <option value="7">July</option>
-                                <option value="8">August</option>
-                                <option value="9">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
-                            </select>
-                            <select id="year" name="year" class="select-dark" aria-label="birthday">
-                                <?php
-                                print "<option value='0'>--</option>";
-                                for ($i = 2005; $i <= 1950; $i--) {
-                                    print "<option value='$i'>$i</option>";
-                                }
-                                ?>
-                            </select>
+                            <?php
+                            $day = 0;
+                            $month = 0;
+                            $year = 0;
+                            if ($System->User->__get('BIRTHDATE') != '') {
+                                $exp = explode('-',$System->User->__get('BIRTHDATE'));
+                                $year = $exp[0];
+                                $month = $exp[1];
+                                $day = $exp[2];
+                            }
+                            ?>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <select name="day" id="day" class="select-dark form-control" aria-label="birthday">
+                                        <?php
+                                        echo '<option value="0">--</option>';
+                                        for ($i = 1; $i <= 31; $i++) {
+                                            $selectedDay = '';
+                                            if ($day == $i) {
+                                                $selectedDay = 'selected';
+                                            }
+                                            echo '<option value="' . $i . '" ' . $selectedDay . '>' . $i . '</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select name="month" id="month" class="select-dark form-control"
+                                            aria-label="birthday">
+                                        <option value="0">--</option>
+                                        <?php
+                                        $months = array(
+                                            '01' => 'January',
+                                            '02' => 'February',
+                                            '03' => 'March',
+                                            '04' => 'April',
+                                            '05' => 'May',
+                                            '06' => 'June',
+                                            '07' => 'July',
+                                            '08' => 'August',
+                                            '09' => 'September',
+                                            '10' => 'October',
+                                            '11' => 'November',
+                                            '12' => 'December'
+                                        );
+                                        foreach($months as $m => $m_name){
+                                            $selectedMonth = '';
+                                            if(intval($m) == intval($month)){
+                                                $selectedMonth = 'selected';
+                                            }
+                                            echo '<option value="'.$m.'" '.$selectedMonth.'>'.$m_name.'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select id="year" name="year" class="select-dark form-control"
+                                            aria-label="birthday">
+                                        <?php
+                                        echo '<option value="0">--</option>';
+                                        $n_year = date('Y');
+                                        for ($i = $n_year; $i >= 1950; $i--) {
+                                            $selectedYear = '';
+                                            if($i == $year){
+                                                $selectedYear = 'selected';
+                                            }
+                                            echo '<option value="'.$i.'" '.$selectedYear.'>'.$i.'</option>';
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -128,11 +193,20 @@ require_once( "internalSettings/internalCountries.php" );
                         </div>
                         <div class="col-sm-8">
                             <select name="gender" id="gender" class="select-dark form-control">
-                                <option value="0">--</option>
-                                <option value="1">Male</option>
-                                <option value="2">Female</option>
-                                <option value="3">Potato</option>
-                                <option value="4">Other</option>
+                                <?php
+                                $types = array(
+                                    0 => '--',
+                                    1 => 'Male',
+                                    2 => 'Female',
+                                    3 => 'Potato',
+                                    4 => 'Other'
+                                );
+
+                                foreach ($types as $id => $name) {
+                                    ($System->User->__get('GENDER') == $id) ? $selected = ' selected' : $selected = '';
+                                    echo '<option value="' . $id . '" '.$selected.'>' . $name . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -146,8 +220,12 @@ require_once( "internalSettings/internalCountries.php" );
                         <div class="col-sm-8">
                             <select name="country" id="country" class="select-dark form-control">
                                 <?php
-                                foreach ($countries as $code => $name) {
-                                    print "<option value='$code'>$name</option>";
+                                foreach ($countries as $code => $c_name) {
+                                    $selectedCountry = '';
+                                    if($System->User->__get('COUNTRY_NAME') == $code){
+                                        $selectedCountry = 'selected';
+                                    }
+                                    echo '<option value="'.$code.'" '.$selectedCountry.'>'.$c_name.'</option>';
                                 }
                                 ?>
                             </select>
@@ -157,19 +235,19 @@ require_once( "internalSettings/internalCountries.php" );
                     <div id="discordFormGroup" class="form-group">
                         <div class="col-sm-4 text-right">
                             <label class="control-label" for="discord">
-                                Discord:
+                                Discord ID:
                             </label>
                         </div>
                         <div class="col-sm-8">
                             <input type="text"
-                                   id="discord"
+                                   id="discord" name="discord"
                                    class="form-control"
                                    value="<?= $System->User->__get('DISCORD_ID') ?>">
                         </div>
                     </div>
                 </form>
 
-                <a class="btn-block btn-success btn-lg text-center" style="cursor: pointer;">
+                <a class="btn-block btn-success btn-lg text-center" id="btnSaveUserProfile" style="cursor: pointer;">
                     Save Changes
                 </a>
             </div>

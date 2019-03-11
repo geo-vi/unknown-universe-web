@@ -656,7 +656,11 @@ class User
                                        $this->__get('PLAYER_ID'),
                                    ]
         );
-        if ($pet) return $pet[0]['LEVEL'];
+        if ($pet){
+            if(isset($pet[0]['LEVEL'])){
+                return $pet[0]['LEVEL'];
+            }
+        };
 
         return 0;
     }

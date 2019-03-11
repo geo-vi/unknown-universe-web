@@ -82,3 +82,90 @@ function sendRegisterRequest(params, errorCallback = null) {
         }
     });
 }
+
+$(document).ready(function () {
+
+    if ($('#changeName').length > 0) {
+        var button = $('#changeName');
+
+        button.on('click', function (e) {
+            e.preventDefault();
+
+            var shipName = $('#txtShipName').val();
+            $.ajax({
+                type: "POST",
+                url: 'ajax.php',
+                data: {action:'change_ship_name',txtShipName:shipName},
+                cache: false,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (data) {
+                    console.log(data);
+                    if(data.success){
+                        swal(
+                            'SUCCESS!',
+                            data.message,
+                            'success'
+                        );
+                    }else{
+                        swal(
+                            'ERROR!',
+                            data.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function (errorData, _, errorThrown) {
+                    swal(
+                        'ERROR!',
+                        'Please contact support. Error CODE: A404',
+                        'error'
+                    );
+                }
+            });
+
+        });
+    }
+
+    if($('#btnSaveUserProfile').length>0){
+        var button = $('#btnSaveUserProfile');
+
+        button.on('click',function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: "POST",
+                url: 'ajax.php',
+                data: $('#frmAccountInfo').serialize(),
+                cache: false,
+                xhrFields: {
+                    withCredentials: true
+                },
+                success: function (data) {
+                    console.log(data);
+                    if(data.success){
+                        swal(
+                            'SUCCESS!',
+                            data.message,
+                            'success'
+                        );
+                    }else{
+                        swal(
+                            'ERROR!',
+                            data.message,
+                            'error'
+                        );
+                    }
+                },
+                error: function (errorData, _, errorThrown) {
+                    swal(
+                        'ERROR!',
+                        'Please contact support. Error CODE: A404',
+                        'error'
+                    );
+                }
+            });
+        });
+    }
+});

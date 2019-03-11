@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/styles.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/main.css">
 
     <!-- Include JS -->
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.min.js"></script>

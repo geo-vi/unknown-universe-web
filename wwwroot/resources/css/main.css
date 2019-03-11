@@ -1,0 +1,37 @@
+.ship-equipment-box{
+    float: left;
+}
+body.internalHangar .ship-equipment-slots{
+    padding-left: 250px;
+}
+body.internalHangar .drone-container{
+    width: 70%;
+    border: 1px solid #1b1b1b;
+    padding: 5px;
+    height: 100px;
+}
+.drone-detail-container{
+    width: 300px;
+    float: left;
+}
+
+body.internalHangar .drone-container > .drone-equipment-slots{
+    float:left;
+}
+body.internalHangar .drone-container > .drone-image{
+    float: left;
+}
+
+body.internalHangar .drone-container > .drone-equipment-slots.drone_design-slots{
+    top: 10px;
+    right: 10px;
+    left: unset;
+}
+
+body.internalHangar .drone-container > .drone-equipment-slots > div {
+    text-align: right;
+    color: #ffd700d6;
+    font-size: 10px;
+    padding-top: 17px;
+    padding-right: 3px;
+}
