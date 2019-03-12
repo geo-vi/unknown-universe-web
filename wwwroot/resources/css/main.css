@@ -150,6 +150,22 @@ body.internalHangar .drone-container > .drone-equipment-slots > div {
     height: 325px !important;
 
 }
+.ggKappa{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggLambda{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggKuiper{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
 .ggStats{
     position: absolute;
     bottom: 0;

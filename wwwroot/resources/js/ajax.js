@@ -256,6 +256,9 @@ $(document).ready(function () {
 
                             $('#imgGGAlpha').attr('src', '/resources/images/gg/gate_1_' + e.piece + '.png');
                             $('#ggStatAlpha').html('<small>GG α</small> ' + e.piece + '/34');
+                            if (e.piece == 34) {
+                                $('#divPreAlpha').removeAttr('style');
+                            }
                             $('#btnGGAlpha').click(); // Run Click Action
                         }
                         else if (e.name == 'beta') {
@@ -264,6 +267,9 @@ $(document).ready(function () {
 
                             $('#imgGGBeta').attr('src', '/resources/images/gg/gate_2_' + e.piece + '.png');
                             $('#ggStatBeta').html('<small>GG β</small> ' + e.piece + '/48');
+                            if (e.piece == 48) {
+                                $('#divPreBeta').removeAttr('style');
+                            }
                             $('#btnGGBeta').click(); // Run Click Action
                         }
                         else if (e.name == 'gamma') {
@@ -272,6 +278,9 @@ $(document).ready(function () {
 
                             $('#imgGGGamma').attr('src', '/resources/images/gg/gate_3_' + e.piece + '.png');
                             $('#ggStatGama').html('<small>GG γ</small> ' + e.piece + '/82');
+                            if (e.piece == 82) {
+                                $('#divPreGamma').removeAttr('style');
+                            }
                             $('#btnGGGama').click(); // Run Click Action
 
                         }
@@ -281,7 +290,66 @@ $(document).ready(function () {
 
                             $('#imgGGDelta').attr('src', '/resources/images/gg/gate_4_' + e.piece + '.png');
                             $('#ggStatDelta').html('<small>GG δ</small> ' + e.piece + '/128');
+                            if (e.piece == 128) {
+                                $('#divPreDelta').removeAttr('style');
+                            }
                             $('#btnGGDelta').click(); // Run Click Action
+                        }
+                        else if (e.name == 'epsilon') {
+                            var epsilonHtml = '<div class="won_item_line"><img src="/resources/images/gg/gate_5_128.png" class="won_item_image"><b class="won_item_name"> Epsilon </b><b class="won_item_piece">' + e.piece + '</b></div>';
+                            $('#wonItems').prepend(epsilonHtml);
+
+                            $('#imgGGEpsilon').attr('src', '/resources/images/gg/gate_5_' + e.piece + '.png');
+                            $('#ggStatEpsilon').html('<small>GG ε</small> ' + e.piece + '/99');
+                            if (e.piece == 99) {
+                                $('#divPreEpsilon').removeAttr('style');
+                            }
+                            $('#btnGGEpsilon').click(); // Run Click Action
+                        }
+                        else if (e.name == 'zeta') {
+                            var zetaHtml = '<div class="won_item_line"><img src="/resources/images/gg/gate_6_128.png" class="won_item_image"><b class="won_item_name"> Zeta </b><b class="won_item_piece">' + e.piece + '</b></div>';
+                            $('#wonItems').prepend(zetaHtml);
+
+                            $('#imgGGZeta').attr('src', '/resources/images/gg/gate_6_' + e.piece + '.png');
+                            $('#ggStatZeta').html('<small>GG ζ</small> ' + e.piece + '/111');
+                            if (e.piece == 111) {
+                                $('#divPreZeta').removeAttr('style');
+                            }
+                            $('#btnGGZeta').click(); // Run Click Action
+                        }
+                        else if (e.name == 'kappa') {
+                            var kappaHtml = '<div class="won_item_line"><img src="/resources/images/gg/gate_7_128.png" class="won_item_image"><b class="won_item_name"> Kappa </b><b class="won_item_piece">' + e.piece + '</b></div>';
+                            $('#wonItems').prepend(kappaHtml);
+
+                            $('#imgGGKappa').attr('src', '/resources/images/gg/gate_7_' + e.piece + '.png');
+                            $('#ggStatKappa').html('<small>GG κ</small> ' + e.piece + '/120');
+                            if (e.piece == 120) {
+                                $('#divPreKappa').removeAttr('style');
+                            }
+                            $('#btnGGKappa').click(); // Run Click Action
+                        }
+                        else if (e.name == 'lambda') {
+                            var lambdaHtml = '<div class="won_item_line"><img src="/resources/images/gg/gate_8_128.png" class="won_item_image"><b class="won_item_name"> Lambda </b><b class="won_item_piece">' + e.piece + '</b></div>';
+                            $('#wonItems').prepend(lambdaHtml);
+
+                            $('#imgGGLambda').attr('src', '/resources/images/gg/gate_8_' + e.piece + '.png');
+                            $('#ggStatLambda').html('<small>GG λ</small> ' + e.piece + '/45');
+                            if (e.piece == 45) {
+                                $('#divPreLambda').removeAttr('style');
+                            }
+                            $('#btnGGLambda').click(); // Run Click Action
+                        }
+                        else if (e.name == 'kuiper') {
+                            var kuiperHtml = '<div class="won_item_line"><img src="/resources/images/gg/gate_9_128.png" class="won_item_image"><b class="won_item_name"> Kuiper </b><b class="won_item_piece">' + e.piece + '</b></div>';
+                            $('#wonItems').prepend(kuiperHtml);
+
+                            $('#imgGGKuiper').attr('src', '/resources/images/gg/gate_9_' + e.piece + '.png');
+                            $('#ggStatKuiper').html('<small>GG ς</small> ' + e.piece + '/100');
+                            if (e.piece == 100) {
+                                alert('OK');
+                                $('#divPreKuiper').removeAttr('style');
+                            }
+                            $('#btnGGKuiper').click(); // Run Click Action
                         }
                         else {
                             // Ammo or Xeno:
@@ -309,5 +377,41 @@ $(document).ready(function () {
             }
         });
 
+    });
+
+    $('.btnGGPrepare').on('click',function (e) {
+        e.preventDefault();
+        var gate_id = $(this).data('id');
+        $.ajax({
+            type: "POST",
+            url: 'ajax.php',
+            data: {action: 'prepare_gate', gate_id: gate_id},
+            cache: false,
+            xhrFields: {
+                withCredentials: true
+            },
+            success: function (data) {
+                if (data.success) {
+                    swal(
+                        'SUCCESS!',
+                        data.message,
+                        'success'
+                    );
+                } else {
+                    swal(
+                        'ERROR!',
+                        data.message,
+                        'error'
+                    );
+                }
+            },
+            error: function (errorData, _, errorThrown) {
+                swal(
+                    'ERROR!',
+                    'Please contact support. Error CODE: PG04',
+                    'error'
+                );
+            }
+        });
     });
 });

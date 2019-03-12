@@ -21,7 +21,22 @@ $activeGates = array(
     2 => 'Beta',
     3 => 'Gamma',
     4 => 'Delta',
-    6 => 'Zeta'
+    5 => 'Epsilon',
+    6 => 'Zeta',
+    7 => 'Kappa',
+    8 => 'Lambda',
+    9 => 'Kuiper'
+);
+$total_parts = array(
+    1 => 34,
+    2 => 48,
+    3 => 82,
+    4 => 128,
+    5 => 99,
+    6 => 111,
+    7 => 120,
+    8 => 45,
+    9 => 100
 );
 
 $gate_id = intval($_POST['gate_id']);
@@ -67,19 +82,426 @@ $won_gate_part = array(
 
 $won_list = array();
 
+
+function getFirstInsertText($gate,$userid,$player_id)
+{
+    $text = "INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,";
+    $text .= "ALPHA_PARTS,ALPHA_PREPARED,ALPHA_WAVE,ALPHA_LIVES,";
+    $text .= "BETA_PARTS,BETA_PREPARED,BETA_WAVE,BETA_LIVES,";
+    $text .= "GAMMA_PARTS,GAMMA_PREPARED,GAMMA_WAVE,GAMMA_LIVES,";
+    $text .= "DELTA_PARTS,DELTA_PREPARED,DELTA_WAVE,DELTA_LIVES,";
+    $text .= "EPSILON_PARTS,EPSILON_PREPARED,EPSILON_WAVE,EPSILON_LIVES,";
+    $text .= "ZETA_PARTS,ZETA_PREPARED,ZETA_WAVE,ZETA_LIVES,";
+    $text .= "KAPPA_PARTS,KAPPA_PREPARED,KAPPA_WAVE,KAPPA_LIVES,";
+    $text .= "LAMBDA_PARTS,LAMBDA_PREPARED,LAMBDA_WAVE,LAMBDA_LIVES,";
+    $text .= "KUIPER_PARTS,KUIPER_PREPARED,KUIPER_WAVE,KUIPER_LIVES";
+    $text .= ") VALUES (?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?,";
+    $text .= "?,?,?,?";
+    $text .= ")";
+
+    $data['sql'] = $text;
+    $array = array();
+    $zero_wave = json_encode(array('wave'=>1,'total_died'=>0));
+
+    if ($gate == 'alpha') {
+        $array = array(
+            $userid,
+            $player_id,
+            1, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'beta'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            1, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'gamma'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            1, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'delta'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            1, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'epsilon'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            1, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'zeta'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            1, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'kappa'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            1, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'lambda'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            1, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            0, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }elseif ($gate == 'kuiper'){
+        $array = array(
+            $userid,
+            $player_id,
+            0, // Alpha part
+            0, // Alpha pre
+            $zero_wave, // Alpha wave
+            0, // Alpha live
+            0, // beta part
+            0, // beta pre
+            $zero_wave, // beta wave
+            0, // beta live
+            0, // Gamma part
+            0, // Gamma pre
+            $zero_wave, // Gamma wave
+            0, // Gamma live
+            0, // Delta part
+            0, // Delta pre
+            $zero_wave, // Delta wave
+            0, // Delta live
+            0, // Epsilon part
+            0, // Epsilon pre
+            $zero_wave, // Epsilon wave
+            0, // Epsilon live
+            0, // Zeta part
+            0, // Zeta pre
+            $zero_wave, // Zeta wave
+            0, // Zeta live
+            0, // Kappa part
+            0, // Kappa pre
+            $zero_wave, // Kappa wave
+            0, // Kappa live
+            0, // Lambda part
+            0, // Lambda pre
+            $zero_wave, // Lambda wave
+            0, // Lambda live
+            1, // Kuiper part
+            0, // Kuiper pre
+            $zero_wave, // Kuiper wawe
+            0 // Kuiper live
+        );
+    }
+
+    $data['array'] = $array;
+
+    return $data;
+}
+
 for ($i = 1; $i <= $energy; $i++) {
 
     // Check Energy and Uri:
     $user_energy = 0;
     $user_uridium = 0;
 
-    $energyQuery = $serverSQL->QUERY("SELECT * FROM player_extra_data WHERE USER_ID=? AND PLAYER_ID=?",array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
-    if(count($energyQuery)>0){
+    $energyQuery = $serverSQL->QUERY("SELECT * FROM player_extra_data WHERE USER_ID=? AND PLAYER_ID=?",
+        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+    if (count($energyQuery) > 0) {
         $user_energy = $energyQuery[0]['GG_ENERGY'];
     }
 
-    $uridiumQuery = $serverSQL->QUERY("SELECT * FROM player_data WHERE USER_ID=? AND PLAYER_ID=?",array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
-    if(count($uridiumQuery)>0){
+    $uridiumQuery = $serverSQL->QUERY("SELECT * FROM player_data WHERE USER_ID=? AND PLAYER_ID=?",
+        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+    if (count($uridiumQuery) > 0) {
         $user_uridium = $uridiumQuery[0]['URIDIUM'];
     }
 
@@ -99,7 +521,8 @@ for ($i = 1; $i <= $energy; $i++) {
             $new_energy = 0;
         }
         // Set new Energy:
-        $serverSQL->QUERY("UPDATE player_extra_data SET GG_ENERGY=? WHERE USER_ID=? AND PLAYER_ID=?",array($new_energy,$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+        $serverSQL->QUERY("UPDATE player_extra_data SET GG_ENERGY=? WHERE USER_ID=? AND PLAYER_ID=?",
+            array($new_energy, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
     }
 
     if ($use_uridium) {
@@ -108,7 +531,8 @@ for ($i = 1; $i <= $energy; $i++) {
             $new_uridium = 0;
         }
         // Set new uridium.
-        $serverSQL->QUERY("UPDATE player_data SET URIDIUM=? WHERE USER_ID=? AND PLAYER_ID=?",array($new_uridium,$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+        $serverSQL->QUERY("UPDATE player_data SET URIDIUM=? WHERE USER_ID=? AND PLAYER_ID=?",
+            array($new_uridium, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
     }
 
     $random = rand(1, 100);
@@ -159,8 +583,8 @@ for ($i = 1; $i <= $energy; $i++) {
             $get_random_part = $won_gate_part[rand(0, 2)];
             if ($get_random_part == 'alpha') {
                 # Alpha Control
-                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=?",
-                    array($_SESSION['USER_ID']));
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
 
                 if (count($getGates) > 0) {
                     $getGatesDetail = $getGates[0];
@@ -184,16 +608,16 @@ for ($i = 1; $i <= $energy; $i++) {
                             array(($alpha_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
                     }
                 } else {
-                    $serverSQL->QUERY("INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,ALPHA_PARTS,ALPHA_PREPARED,BETA_PARTS,BETA_PREPARED,GAMMA_PARTS,GAMMA_PREPARED,DELTA_PARTS,DELTA_PREPARED) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID'], 1, 0, 0, 0, 0, 0, 0, 0));
-                    $won_list[] = array('name' => 'alpha', 'piece' => 1);
+                    $insertData = getFirstInsertText('alpha',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+                    $won_list[] = array('name' => 'alpha', 'piece' => 1,'insertData'=>$insertData);
                 }
 
             } elseif ($get_random_part == 'beta') {
                 # Beta Control
 
-                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=?",
-                    array($_SESSION['USER_ID']));
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
 
                 if (count($getGates) > 0) {
                     $getGatesDetail = $getGates[0];
@@ -217,9 +641,10 @@ for ($i = 1; $i <= $energy; $i++) {
                             array(($beta_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
                     }
                 } else {
-                    $serverSQL->QUERY("INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,ALPHA_PARTS,ALPHA_PREPARED,BETA_PARTS,BETA_PREPARED,GAMMA_PARTS,GAMMA_PREPARED,DELTA_PARTS,DELTA_PREPARED) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID'], 0, 0, 1, 0, 0, 0, 0, 0));
-                    $won_list[] = array('name' => 'beta', 'piece' => 1);
+                    $insertData = getFirstInsertText('beta',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'beta', 'piece' => 1,'insertData'=>$insertData);
                 }
 
             } else {
@@ -250,9 +675,10 @@ for ($i = 1; $i <= $energy; $i++) {
                             array(($gamma_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
                     }
                 } else {
-                    $serverSQL->QUERY("INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,ALPHA_PARTS,ALPHA_PREPARED,BETA_PARTS,BETA_PREPARED,GAMMA_PARTS,GAMMA_PREPARED,DELTA_PARTS,DELTA_PREPARED) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID'], 0, 0, 0, 0, 1, 0, 0, 0));
-                    $won_list[] = array('name' => 'gamma', 'piece' => 1);
+                    $insertData = getFirstInsertText('gamma',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'gamma', 'piece' => 1,'insertData'=>$insertData);
                 }
 
             }
@@ -263,8 +689,8 @@ for ($i = 1; $i <= $energy; $i++) {
             if ($gate_id == 4) {
                 # Delta:
 
-                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=?",
-                    array($_SESSION['USER_ID']));
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
 
                 if (count($getGates) > 0) {
                     $getGatesDetail = $getGates[0];
@@ -288,21 +714,55 @@ for ($i = 1; $i <= $energy; $i++) {
                             array(($delta_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
                     }
                 } else {
-                    $serverSQL->QUERY("INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,ALPHA_PARTS,ALPHA_PREPARED,BETA_PARTS,BETA_PREPARED,GAMMA_PARTS,GAMMA_PREPARED,DELTA_PARTS,DELTA_PREPARED) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID'], 0, 0, 0, 0, 0, 0, 1, 0));
-                    $won_list[] = array('name' => 'delta', 'piece' => 1);
+                    $insertData = getFirstInsertText('delta',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'delta', 'piece' => 1,'insertData'=>$insertData);
                 }
 
-            } else {
-                # Zeta
+            } elseif ($gate_id == 5){
+                # Epsilon
 
-                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=?",
-                    array($_SESSION['USER_ID']));
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
 
                 if (count($getGates) > 0) {
                     $getGatesDetail = $getGates[0];
-                    $delta_parts = $getGatesDetail['DELTA_PARTS'];
-                    if ($delta_parts >= 128) {
+                    $epsilon_parts = $getGatesDetail['EPSILON_PARTS'];
+                    if ($epsilon_parts >= 99) {
+                        // Epsilon is finished but user not click "Ready" button. Give ammo.
+                        $end = count($won_ammo_list) - 1;
+                        $ammos = $won_ammo_list[rand(0, $end)];
+                        $won_list[] = $ammos;
+
+                        $getOldAmmoQuery = $serverSQL->QUERY("SELECT * FROM player_ammo WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                        $getOldAmmo = $getOldAmmoQuery[0];
+                        $newAmmo = $getOldAmmo[$ammos['column']] + $ammos['piece'];
+                        $serverSQL->QUERY("UPDATE player_ammo SET " . $ammos['column'] . "=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($newAmmo, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+
+                    } else {
+                        $won_list[] = array('name' => 'epsilon', 'piece' => $epsilon_parts + 1);
+                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET EPSILON_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array(($epsilon_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                    }
+                } else {
+                    $insertData = getFirstInsertText('epsilon',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'epsilon', 'piece' => 1,'insertData'=>$insertData);
+                }
+            }elseif ($gate_id == 6){
+                # Zeta
+
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+
+                if (count($getGates) > 0) {
+                    $getGatesDetail = $getGates[0];
+                    $zeta_parts = $getGatesDetail['ZETA_PARTS'];
+                    if ($zeta_parts >= 111) {
                         // Zeta is finished but user not click "Ready" button. Give ammo.
                         $end = count($won_ammo_list) - 1;
                         $ammos = $won_ammo_list[rand(0, $end)];
@@ -316,33 +776,147 @@ for ($i = 1; $i <= $energy; $i++) {
                             array($newAmmo, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
 
                     } else {
-                        $won_list[] = array('name' => 'delta', 'piece' => $delta_parts + 1);
-                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET DELTA_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
-                            array(($delta_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                        $won_list[] = array('name' => 'zeta', 'piece' => $zeta_parts + 1);
+                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET ZETA_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array(($zeta_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
                     }
                 } else {
-                    $serverSQL->QUERY("INSERT INTO player_galaxy_gates (USER_ID,PLAYER_ID,ALPHA_PARTS,ALPHA_PREPARED,BETA_PARTS,BETA_PREPARED,GAMMA_PARTS,GAMMA_PREPARED,DELTA_PARTS,DELTA_PREPARED) VALUES (?,?,?,?,?,?,?,?,?,?)",
-                        array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID'], 0, 0, 0, 0, 0, 0, 1, 0));
-                    $won_list[] = array('name' => 'delta', 'piece' => 1);
+                    $insertData = getFirstInsertText('zeta',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'zeta', 'piece' => 1,'insertData'=>$insertData);
                 }
-            }
+
+            }elseif ($gate_id == 7){
+                #Kappa
+
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+
+                if (count($getGates) > 0) {
+                    $getGatesDetail = $getGates[0];
+                    $kappa_parts = $getGatesDetail['KAPPA_PARTS'];
+                    if ($kappa_parts >= 120) {
+                        // Zeta is finished but user not click "Ready" button. Give ammo.
+                        $end = count($won_ammo_list) - 1;
+                        $ammos = $won_ammo_list[rand(0, $end)];
+                        $won_list[] = $ammos;
+
+                        $getOldAmmoQuery = $serverSQL->QUERY("SELECT * FROM player_ammo WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                        $getOldAmmo = $getOldAmmoQuery[0];
+                        $newAmmo = $getOldAmmo[$ammos['column']] + $ammos['piece'];
+                        $serverSQL->QUERY("UPDATE player_ammo SET " . $ammos['column'] . "=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($newAmmo, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+
+                    } else {
+                        $won_list[] = array('name' => 'kappa', 'piece' => $kappa_parts + 1);
+                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET KAPPA_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array(($kappa_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                    }
+                } else {
+                    $insertData = getFirstInsertText('kappa',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'kappa', 'piece' => 1,'insertData'=>$insertData);
+                }
+
+            }elseif ($gate_id == 8){
+
+                # Lambda
+
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+
+                if (count($getGates) > 0) {
+                    $getGatesDetail = $getGates[0];
+                    $lambda_parts = $getGatesDetail['LAMBDA_PARTS'];
+                    if ($lambda_parts >= 45) {
+                        // Zeta is finished but user not click "Ready" button. Give ammo.
+                        $end = count($won_ammo_list) - 1;
+                        $ammos = $won_ammo_list[rand(0, $end)];
+                        $won_list[] = $ammos;
+
+                        $getOldAmmoQuery = $serverSQL->QUERY("SELECT * FROM player_ammo WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                        $getOldAmmo = $getOldAmmoQuery[0];
+                        $newAmmo = $getOldAmmo[$ammos['column']] + $ammos['piece'];
+                        $serverSQL->QUERY("UPDATE player_ammo SET " . $ammos['column'] . "=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($newAmmo, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+
+                    } else {
+                        $won_list[] = array('name' => 'lambda', 'piece' => $lambda_parts + 1);
+                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET LAMBDA_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array(($lambda_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                    }
+                } else {
+                    $insertData = getFirstInsertText('lambda',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'lambda', 'piece' => 1,'insertData'=>$insertData);
+                }
+
+
+            }else{
+                # ID 9 - Kuiper
+
+                $getGates = $serverSQL->QUERY("SELECT * FROM player_galaxy_gates WHERE USER_ID=? AND PLAYER_ID=?",
+                    array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
+
+                if (count($getGates) > 0) {
+                    $getGatesDetail = $getGates[0];
+                    $kuiper_parts = $getGatesDetail['KUIPER_PARTS'];
+                    if ($kuiper_parts >= 100) {
+                        // Zeta is finished but user not click "Ready" button. Give ammo.
+                        $end = count($won_ammo_list) - 1;
+                        $ammos = $won_ammo_list[rand(0, $end)];
+                        $won_list[] = $ammos;
+
+                        $getOldAmmoQuery = $serverSQL->QUERY("SELECT * FROM player_ammo WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                        $getOldAmmo = $getOldAmmoQuery[0];
+                        $newAmmo = $getOldAmmo[$ammos['column']] + $ammos['piece'];
+                        $serverSQL->QUERY("UPDATE player_ammo SET " . $ammos['column'] . "=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array($newAmmo, $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+
+                    } else {
+                        $won_list[] = array('name' => 'kuiper', 'piece' => $kuiper_parts + 1);
+                        $serverSQL->QUERY("UPDATE player_galaxy_gates SET KUIPER_PARTS=? WHERE USER_ID=? AND PLAYER_ID=?",
+                            array(($kuiper_parts + 1), $_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+                    }
+                } else {
+                    $insertData = getFirstInsertText('kuiper',$_SESSION['USER_ID'],$playerDetail['PLAYER_ID']);
+                    $serverSQL->QUERY($insertData['sql'],$insertData['array']);
+
+                    $won_list[] = array('name' => 'kuiper', 'piece' => 1,'insertData'=>$insertData);
+                }
+
+            } // End of selected gates
+
         }
     }
 }
 
 
-
 $user_last_energy = 0;
 $user_last_uridium = 0;
 
-$energyQuery2 = $serverSQL->QUERY("SELECT * FROM player_extra_data WHERE USER_ID=? AND PLAYER_ID=?",array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
-if(count($energyQuery2)>0){
+$energyQuery2 = $serverSQL->QUERY("SELECT * FROM player_extra_data WHERE USER_ID=? AND PLAYER_ID=?",
+    array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+if (count($energyQuery2) > 0) {
     $user_last_energy = $energyQuery2[0]['GG_ENERGY'];
 }
 
-$uridiumQuery2 = $serverSQL->QUERY("SELECT * FROM player_data WHERE USER_ID=? AND PLAYER_ID=?",array($_SESSION['USER_ID'],$playerDetail['PLAYER_ID']));
-if(count($uridiumQuery2)>0){
+$uridiumQuery2 = $serverSQL->QUERY("SELECT * FROM player_data WHERE USER_ID=? AND PLAYER_ID=?",
+    array($_SESSION['USER_ID'], $playerDetail['PLAYER_ID']));
+if (count($uridiumQuery2) > 0) {
     $user_last_uridium = $uridiumQuery2[0]['URIDIUM'];
 }
 
-response(array('success' => true, 'message' => '', 'data' => $won_list,'energy'=>$user_last_energy,'uridium'=>$user_last_uridium));
+response(array(
+    'success' => true,
+    'message' => '',
+    'data'    => $won_list,
+    'energy'  => $user_last_energy,
+    'uridium' => $user_last_uridium
+));
