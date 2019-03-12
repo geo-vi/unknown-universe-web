@@ -54,6 +54,8 @@ if(!$lastServer){
 
 
 $serverSQL = new \DB\MySQL($lastServer['SERVER_IP'],$lastServer['DB_NAME'],MYSQL_USER,MYSQL_PW);
+$playerDetailQuery = $serverSQL->QUERY("SELECT * FROM player_data WHERE USER_ID=?",array($_SESSION['USER_ID']));
+$playerDetail = $playerDetailQuery[0];
 
 if(isset($_POST['action'])){
     $fileName = str_replace(array('.','/','\\',' '),'',$_POST['action']);
