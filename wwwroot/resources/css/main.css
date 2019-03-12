@@ -100,3 +100,114 @@ body.internalHangar .drone-container > .drone-equipment-slots > div {
     padding-top: 17px;
     padding-right: 3px;
 }
+#ggMain{
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+}
+.ggButton{
+    margin-bottom: 15px;
+    padding: 5px;
+    width: 150px;
+    background: #363636;
+}
+.ggButton.active{
+    background: #a7daff;
+    color: black;
+}
+
+/*212x263*/
+.ggAlpha{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
+.ggBeta{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
+.ggGama{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
+.ggDelta{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
+.ggEpsilon{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggZeta{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggKappa{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggLambda{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+.ggKuiper{
+    width: 212px !important;
+    height: 325px !important;
+
+}
+
+.ggStats{
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    font-size:20px;
+}
+.ggStats small{
+    text-transform: initial !important;
+    padding-right: 15px;
+}
+#btnGetGG{
+    margin-top: 10px;
+}
+.ggUriEnergyBar{
+    text-align: left;
+    font-size: 12px;
+    padding: 0px;
+    margin: 0px;
+    line-height: 0px;
+}
+#useEnergy{
+    height: 25px;
+    width: 150px;
+}
+.won_item_line{
+    border: 1px solid green;
+    margin-top: 5px;
+}
+
+.won_item_image{
+    max-width: 22px;
+}
+.won_item_name{
+    font-size:12px;
+}
+
+.won_item_piece{
+    font-size: 12px;
+    color: greenyellow;
+}
+#wonItems{
+    margin-top: 10px;
+    height: 300px;
+    overflow-y: auto;
+}
