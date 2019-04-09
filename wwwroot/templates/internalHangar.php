@@ -16,25 +16,15 @@ include_once( 'internalModal.php' );
 <div id="hangar-info-container" class="clearfix">
     <?php $Lvl = $System->User->getPetLevel(); ?>
 
-    <div class="col-xs-3 player-ship-info">
-        <div class="ship-info"><h3>Damage:</h3> <span id="ship-damage"><?= $System->User->__get(
-                    'CONFIG_1_DMG'
-                ) ?></span></div>
-        <?php
-        if ($System->User->hasPet()) {
-            ?>
-            <div class="ship-info"><h3>Pet Damage:</h3>
-                <span id="pet-damage"><?= $System->User->__get('CONFIG_1_DMG_PET') ?></span></div>
-            <?php
-        }
-        ?>
-        <div class="ship-info"><h3>Shield:</h3> <span id="ship-shield"><?= $System->User->__get(
-                    'CONFIG_1_SHIELD'
-                ) ?></span>
+    <div id="ship-info-container" class="col-xs-3 player-ship-info">
+        <div class="ship-info"><h3>Damage:</h3> <span id="ship-damage">0</span></div>
+
+        <div class="ship-info"><h3>HP:</h3> <span id="ship-hp">0/0</span>
         </div>
-        <div class="ship-info"><h3>Speed:</h3> <span id="ship-speed"><?= $System->User->__get(
-                    'CONFIG_1_SPEED'
-                ) ?></span></div>
+
+        <div class="ship-info"><h3>Shield:</h3> <span id="ship-shield">0/0</span>
+        </div>
+        <div class="ship-info"><h3>Speed:</h3> <span id="ship-speed">0</span></div>
     </div>
 
     <div class="col-xs-4 player-ship-view">
@@ -159,18 +149,18 @@ include_once( 'internalModal.php' );
                     <div class="pet-equipment-slots generator-slots" data-category="generator">
 
                     </div>
-                    <div class="pet-equipment-slots gear-slots" data-category="gear">
-
-                    </div>
-                    <div class="pet-equipment-slots protocols-slots" data-category="protocols">
-
-                    </div>
                     <div class="pet-equipment-name-change-btn">
                         <a class="btn btn-primary name-btn"
                            style="cursor: pointer;" data-toggle="modal"
                            data-target="#changePetNameModal">
                             Change Name
                         </a>
+                    </div>
+                    <div class="pet-equipment-slots gear-slots" data-category="gear">
+
+                    </div>
+                    <div class="pet-equipment-slots protocols-slots" data-category="protocols">
+
                     </div>
                 </div>
                 <div class="col-xs-12 drone-equipment-container custom-scroll">
@@ -210,17 +200,17 @@ include_once( 'internalModal.php' );
                     <div class="pet-equipment-slots generator-slots" data-category="generator">
 
                     </div>
-                    <div class="pet-equipment-slots gear-slots" data-category="gear">
-
-                    </div>
-                    <div class="pet-equipment-slots protocols-slots" data-category="protocols">
-
-                    </div>
                     <div class="pet-equipment-name-change-btn">
                         <a class="btn btn-primary name-btn"
                            style="cursor: pointer;" data-toggle="modal"
                            data-target="#changePetNameModal">Change Name
                         </a>
+                    </div>
+                    <div class="pet-equipment-slots gear-slots" data-category="gear">
+
+                    </div>
+                    <div class="pet-equipment-slots protocols-slots" data-category="protocols">
+
                     </div>
                 </div>
                 <div class="col-xs-12 drone-equipment-container custom-scroll" style="display: none;">

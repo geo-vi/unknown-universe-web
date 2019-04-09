@@ -126,20 +126,6 @@ class Item
             }
         }
 
-        if ($this->CATEGORY == 'drone_design') {
-            if ($this->LOOT_ID == 'drone_design_havoc') {
-                $this->mysql->QUERY(
-                    'UPDATE player_drones SET DESIGN_' . $ConfigID . ' = 1 WHERE ID = ?',
-                    [$To['droneID']]
-                );
-            } elseif ($this->LOOT_ID == 'drone_design_hercules') {
-                $this->mysql->QUERY(
-                    'UPDATE player_drones SET DESIGN_' . $ConfigID . ' = 2 WHERE ID = ?',
-                    [$To['droneID']]
-                );
-            }
-        }
-
         return $this->mysql->QUERY(
             'UPDATE player_equipment SET ' . $Location . ' = ? WHERE ID = ?',
             [

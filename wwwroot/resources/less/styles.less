@@ -63,7 +63,7 @@ ul {
 body {
   background-position-x: center;
   background-size: cover;
-  background: url("../images/backgrounds/internal_background.png") fixed;
+  background: url("../images/backgrounds/external.png") fixed;
   height: 100%;
   color: #fff;
   font-family: 'Roboto Condensed', sans-serif;
@@ -1730,7 +1730,12 @@ body {
       margin: 0 3px 5px 0;
     }
 
-    .ship-equipment-slots {
+    .pet-equipment-box,
+    .ship-equipment-box {
+      padding-left: 35px;
+    }
+
+    .ship-equipment-slots, .pet-equipment-slots {
       padding-left: 150px;
       padding-right: 180px;
       margin-bottom: 20px;
@@ -1767,6 +1772,28 @@ body {
           content: "Extras";
         }
       }
+
+      &.gear-slots {
+        &:before {
+          content: "Gears";
+        }
+      }
+
+      &.protocols-slots {
+        &:before {
+          content: "Protocols";
+        }
+      }
+    }
+
+    .pet-equipment-name {
+      padding-left: 45px;
+      padding-bottom: 15px;
+    }
+
+    .pet-equipment-name-change-btn {
+      padding-left: 25px;
+      float:left;
     }
 
     .ship-inventory-container {
@@ -1803,7 +1830,7 @@ body {
     }
 
     .drone-equipment-container {
-      height: 271px;
+      height: 356px;
       padding-bottom: 30px;
     }
 
@@ -2084,6 +2111,94 @@ body {
 
       &[data-item-name="ajp-01"], &[data-item-name="ajp-01"] {
         background-image: url("../images/items/equipment/extra/cpu/ajp-01_30x30.png");
+      }
+
+      &[data-item-name="cgm-02"], &[data-item-name="cgm-02"] {
+        background-image: url("../images/items/equipment/petgear/cgm-02_30x30.png");
+      }
+
+      &[data-item-name="csr-02"], &[data-item-name="csr-02"] {
+        background-image: url("../images/items/equipment/petgear/csr-02_30x30.png");
+      }
+
+      &[data-item-name="g-al1"], &[data-item-name="g-al1"] {
+        background-image: url("../images/items/equipment/petgear/g-al1_30x30.png");
+      }
+
+      &[data-item-name="g-ar1"], &[data-item-name="g-ar1"] {
+        background-image: url("../images/items/equipment/petgear/g-ar1_30x30.png");
+      }
+
+      &[data-item-name="g-el1"], &[data-item-name="g-el1"] {
+        background-image: url("../images/items/equipment/petgear/g-el1_30x30.png");
+      }
+
+      &[data-item-name="g-ex1"], &[data-item-name="g-ex1"] {
+        background-image: url("../images/items/equipment/petgear/g-ex1_30x30.png");
+      }
+
+      &[data-item-name="g-kk1"], &[data-item-name="g-kk1"] {
+        background-image: url("../images/items/equipment/petgear/g-kk1_30x30.png");
+      }
+
+      &[data-item-name="g-pd1"], &[data-item-name="g-pd1"] {
+        background-image: url("../images/items/equipment/petgear/g-pd1_30x30.png");
+      }
+
+      &[data-item-name="g-rep1"], &[data-item-name="g-rep1"] {
+        background-image: url("../images/items/equipment/petgear/g-rep1_30x30.png");
+      }
+
+      &[data-item-name="g-rl1"], &[data-item-name="g-rl1"] {
+        background-image: url("../images/items/equipment/petgear/g-rl1_30x30.png");
+      }
+
+      &[data-item-name="g-tra1"], &[data-item-name="g-tra1"] {
+        background-image: url("../images/items/equipment/petgear/g-tra1_30x30.png");
+      }
+
+      &[data-item-name="ai-aim1"], &[data-item-name="ai-aim1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-aim1_30x30.png");
+      }
+
+      &[data-item-name="ai-al1"], &[data-item-name="ai-al1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-al1_30x30.png");
+      }
+
+      &[data-item-name="ai-cr1"], &[data-item-name="ai-cr1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-cr1_30x30.png");
+      }
+
+      &[data-item-name="ai-e1"], &[data-item-name="ai-e1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-e1_30x30.png");
+      }
+
+      &[data-item-name="ai-eco1"], &[data-item-name="ai-eco1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-eco1_30x30.png");
+      }
+
+      &[data-item-name="ai-hp1"], &[data-item-name="ai-hp1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-hp1_30x30.png");
+      }
+
+      &[data-item-name="ai-lm1"], &[data-item-name="ai-lm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-lm1_30x30.png");
+      }
+
+      &[data-item-name="ai-pm1"], &[data-item-name="ai-pm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-pm1_30x30.png");
+      }
+
+      &[data-item-name="ai-r1"], &[data-item-name="ai-r1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-r1_30x30.png");
+      }
+
+      &[data-item-name="ai-s1"], &[data-item-name="ai-s1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-s1_30x30.png");
+      }
+
+      &[data-item-name="ai-sm1"], &[data-item-name="ai-sm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-sm1_30x30.png");
       }
     }
   }
@@ -2551,12 +2666,12 @@ body {
       }
 
       height: 55px !important;
-      background-color: @background_color_4 !important;
+      //background-color: @background_color_4 !important;
       padding: 0 15px !important;
     }
 
     .settings-content {
-      background-color: @background_color_2;
+      background-color: #2b2b2b60;
       padding: 0 !important;
 
       > .tab-content {
@@ -2564,7 +2679,7 @@ body {
         min-height: 570px;
 
         > div {
-          background-color: @background_color_5 !important;
+          //background-color: @background_color_5 !important;
         }
       }
     }

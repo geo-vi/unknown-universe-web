@@ -48,6 +48,3 @@ RewriteRule ^(.*)$ /forum/$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php?action=$1 [QSA,N]
-
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R,L]

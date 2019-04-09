@@ -3,6 +3,16 @@ include_once( 'internalSettings/internalCountries.php' );
 ?>
 
 <script src="../resources/js/ckeditor/ckeditor.js"></script>
+<script src="<?= PROJECT_HTTP_ROOT ?>resources/js/modals.js"></script>
+<script>
+    $(document).ready(function () {
+        new modals(
+            <?=$System->User->__get('USER_ID')?>,
+            <?=$System->User->__get('PLAYER_ID')?>,
+            '<?=base64_encode($System->Server['SERVER_IP'])?>',
+        );
+    });
+</script>
 
 <div class="modal fade" id="composeMessageModal" tabindex="-1" role="dialog"
      aria-labelledby="composeModalLabel" aria-hidden="true">
@@ -116,9 +126,9 @@ include_once( 'internalSettings/internalCountries.php' );
                             <select style="background-color:black; width:100px;" name="day" id="day"
                                     class="clan-list fliess10px-black" aria-label="birthday">
                                 <?php
-                                print "<option value='0'>--</option>";
+                                echo "<option value='0'>--</option>";
                                 for ($i = 1; $i <= 31; $i++) {
-                                    print "<option value='$i'>$i</option>";
+                                    echo "<option value='$i'>$i</option>";
                                 }
                                 ?>
                             </select>
@@ -253,65 +263,66 @@ include_once( 'internalSettings/internalCountries.php' );
 </div>
 
 <script type="text/javascript">
-    ClassicEditor.create(document.querySelector('#msgContent'))
-        .then(editor => {
-            window.modalEditor = editor;
-        });
-
-    $('#sendMsg').click(function () {
-        if (window.modalEditor) {
-            window.modalEditor.updateSourceElement();
-        }
-
-        let data = {
-            recipient: $('#msgRecipient').val(),
-            content: $('#msgContent').val(),
-            title: $('#msgHeader').val()
-        };
-
-        sendCoreRequest('messaging', 'send', data, function () {
-            // now we clean the message data and close the modal
-            $('#closeMsg').click();
-
-            $('#msgRecipient').val('');
-            $('#msgContent').val('');
-            $('#msgHeader').val('');
-
-            window.modalEditor.setData('');
-        });
-    });
-
-    $('#changename').click(function () {
-        $.ajax({
-            type: "POST",
-            url: "",
-            data: { action: 'changePilotName', subAction: 'changename', userName: $('#userNameTextBox').val() },
-            success: function () {
-                console.log(data);
-            },
-            error: function () {
-                console.log(data);
-            }
-        });
-    });
-
-    $('#changePetName').click(function () {
-        $('#popup-modalBackground').css({ 'z-index': 1050 }).show();
-        $.ajax({
-            type: "POST",
-            url: "",
-            data: { action: 'changePetName', subAction: 'changename', userName: $('#petNameTextBox').val() },
-            success: function (data) {
-                data = $.parseJSON(data);
-                if (data.status === 'OK') {
-                    alert("Okey");
-                } else {
-                    alert("Not okey");
-                }
-            },
-            error: function () {
-                console.log(data);
-            }
-        });
-    });
+    // ClassicEditor.create(document.querySelector('#msgContent'))
+    //     .then(editor => {
+    //         window.modalEditor = editor;
+    //     });
+    //
+    // $('#sendMsg').click(function () {
+    //     if (window.modalEditor) {
+    //         window.modalEditor.updateSourceElement();
+    //     }
+    //
+    //     let data = {
+    //         recipient: $('#msgRecipient').val(),
+    //         content: $('#msgContent').val(),
+    //         title: $('#msgHeader').val()
+    //     };
+    //
+    //     sendCoreRequest('messaging', 'send', data, function () {
+    //         // now we clean the message data and close the modal
+    //         $('#closeMsg').click();
+    //
+    //         $('#msgRecipient').val('');
+    //         $('#msgContent').val('');
+    //         $('#msgHeader').val('');
+    //
+    //         window.modalEditor.setData('');
+    //     });
+    // });
+    //
+    // $('#changename').click(function () {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "",
+    //         data: { action: 'changePilotName', subAction: 'changename', userName: $('#userNameTextBox').val() },
+    //         success: function () {
+    //             console.log(data);
+    //         },
+    //         error: function () {
+    //             console.log(data);
+    //         }
+    //     });
+    // });
+    //
+    // $('#changePetName').click(function () {
+    //     console.log("Trying to change name to : " + $('#petNameTextBox').val())
+    //     $('#popup-modalBackground').css({ 'z-index': 1050 }).show();
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "",
+    //         data: { action: 'changePetName', subAction: 'changename', userName: $('#petNameTextBox').val() },
+    //         success: function (data) {
+    //             data = $.parseJSON(data);
+    //             if (data.status === 'OK') {
+    //                 alert("Okey");
+    //             } else {
+    //                 alert("Not okey");
+    //             }
+    //         },
+    //         error: function () {
+    //             console.log(data);
+    //         }
+    //     });
+    // });
 </script>

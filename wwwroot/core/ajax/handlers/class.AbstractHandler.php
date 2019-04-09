@@ -16,7 +16,6 @@ abstract class AbstractHandler
      */
     function __construct()
     {
-
         if (isset($_POST['action']) && !empty($_POST['action'])) {
             $this->action = (string) $_POST['action'];
         } else {
@@ -68,23 +67,22 @@ abstract class AbstractHandler
     {
         if (isset($this->actions[$this->action])) {
 
+
             $action = $this->actions[$this->action];
-
             if (isset($action['params'])) {
-
                 if (empty($this->params) && $this->params != 0) {
-                    http_response_code(400);
-                    die(json_encode(["message" => 'This action requires parameters, which arent given']));
+                    die(json_encode(['error'     => true,
+                        "error_msg" => 'This action requires parameters, which arent given',
+                    ]));
                 }
-
                 foreach ($action['params'] as $param) {
-                    if ( !isset($this->params[$param])) {
-                        http_response_code(400);
-                        die(json_encode(["message" => 'This action requires parameters, which arent given']));
+                    if (!isset($this->params[$param])) {
+                        die(json_encode(['error'     => true,
+                            "error_msg" => 'This action requires parameters, which arent given',
+                        ]));
                     }
                 }
             }
-
             return true;
 
         } else {

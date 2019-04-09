@@ -8,5 +8,6 @@ services:
       - "41062:3306"
       - "80:80"
       - "443:443"
+      - "3306:3306"
     volumes:
       - ./wwwroot:/opt/lampp/apps/docms/htdocs

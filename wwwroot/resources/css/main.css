@@ -69,6 +69,14 @@ input:checked + .slider:before {
 body.internalHangar .ship-equipment-slots{
     padding-left: 250px;
 }
+
+.pet-equipment-box {
+    float: left;
+}
+body.internalHangar .pet-equipment-slots {
+    padding-left: 250px;
+}
+
 body.internalHangar .drone-container{
     width: 70%;
     border: 1px solid #1b1b1b;

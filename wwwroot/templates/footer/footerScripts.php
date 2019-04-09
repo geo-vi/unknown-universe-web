@@ -26,12 +26,12 @@
 
         var tabOpen = !Visibility.hidden();
         if (tabOpen) {
-            updateUser();
+            //updateUser();
         }
         Visibility.change(function (e, state) {
             if (state === 'visible') {
                 tabOpen = true;
-                updateUser();
+                //updateUser();
             } else {
                 tabOpen = false;
             }

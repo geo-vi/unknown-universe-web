@@ -13,10 +13,10 @@ class EquipmentHandler extends AbstractHandler
         $this->addAction(
             'move_items',
             [
+                'ITEMS',
                 'CONFIG',
                 'DISPLAY',
-                'ITEMS',
-                'TO',
+                'TO'
             ]
         );
         $this->addAction('switch_design', ['TO']);
@@ -148,9 +148,9 @@ class EquipmentHandler extends AbstractHandler
         global $System;
 
         //READ OUT PARAMETERS
+        $ITEMS   = $this->params['ITEMS'];
         $CONFIG  = (int) $this->params['CONFIG'];
         $DISPLAY = (string) $this->params['DISPLAY'];
-        $ITEMS   = $this->params['ITEMS'];
         $TO      = $this->params['TO'];
 
         if ($TO == 'equip') {
@@ -236,12 +236,13 @@ class EquipmentHandler extends AbstractHandler
                         $DRONES_DESIGN[$DRONE['ID']] = 0;
                     }
 
-                    foreach ($DRONE_ITEMS as $ITEM) {
-                        if ($ITEM->CATEGORY == 'drone_design') {
-                            $DRONES_DESIGN[$ITEM->DRONE_ID]++;
-                        } else {
-                            $DRONES_USAGE[$ITEM->DRONE_ID]++;
+                    foreach ($DRONE_ITEMS as $DRONE_ITEM) {
+                        $DRONE_ID = $DRONE_ITEM->DRONE_ID;
+                        if ($DRONE_ITEM->CATEGORY == 'drone_design')
+                        {
+                            $DRONES_DESIGN[$DRONE_ID]++;
                         }
+                        else $DRONES_USAGE[$DRONE_ID]++;
                     }
 
                     if (empty($DRONES)) {
@@ -262,7 +263,7 @@ class EquipmentHandler extends AbstractHandler
                         if (isset($ITEM['DRONE_ID'])) {
                             if (isset($DRONES[$ITEM['DRONE_ID']])) {
                                 if (
-                                    ( $DRONES_USAGE[$ITEM['DRONE_ID']] < $DRONES[$ITEM['DRONE_ID']]['SLOTS'] ) ||
+                                    ( $DRONES_USAGE[$ITEM['DRONE_ID']] < $DRONES[$ITEM['DRONE_ID']]['SLOTS'] && $ITEM['CATEGORY'] != 'drone_design') ||
                                     ( $ITEM['CATEGORY'] == 'drone_design' && $DRONES_DESIGN[$ITEM['DRONE_ID']] < 1 )
                                 ) {
                                     if (
@@ -291,18 +292,23 @@ class EquipmentHandler extends AbstractHandler
                             }
                         } else {
                             foreach ($DRONES as $DRONE) {
-                                if ($DRONES_USAGE[$DRONE['ID']] < $DRONE['SLOTS']) {
+                                if (($DRONES_USAGE[$DRONE['ID']] < $DRONE['SLOTS'] && $ITEM['CATEGORY'] != 'drone_design') ||
+                                    ($ITEM['CATEGORY'] == 'drone_design' && $DRONES_DESIGN[$DRONE['ID']] < 1 )) {
                                     if (
                                     $ITEM_OBJ->moveToEquipment(
                                         $System->User->Hangars->CURRENT_HANGAR->ID,
                                         $CONFIG,
                                         [
-                                            'target'  => $DISPLAY,
+                                            'target' => $DISPLAY,
                                             'droneID' => $DRONE['ID'],
                                         ]
                                     )
                                     ) {
-                                        $DRONES_USAGE[$DRONE['ID']]++;
+                                        if ($ITEM['CATEGORY'] == 'drone_design') {
+                                            $DRONES_DESIGN[$DRONE['ID']]++;
+                                        } else {
+                                            $DRONES_USAGE[$DRONE['ID']]++;
+                                        }
                                     } else {
                                         http_response_code(400);
                                         die(json_encode(["message" => "Something went wrong while moveing the Item!"]));
@@ -314,6 +320,70 @@ class EquipmentHandler extends AbstractHandler
                     break;
                 case 'pet':
                     $IDENTIFIER = 'ON_PET_' . $CONFIG;
+
+                    $SLOT_TYPES = [
+                        "LASER"     => [
+                            "MAX"    => 0,
+                            "IN_USE" => 0,
+                        ],
+                        "GEAR"     => [
+                            "MAX"    => 0,
+                            "IN_USE" => 0,
+                            "ITEMS"  => [],
+                            "TYPES"  => [],
+                        ],
+                        "GENERATOR" => [
+                            "MAX"    => 0,
+                            "IN_USE" => 0,
+                        ],
+                        "PROTOCOLS"     => [
+                            "MAX"    => 0,
+                            "IN_USE" => 0,
+                        ],
+                    ];
+
+                    foreach ($INVENTORY['PET']['SLOTS']['CONFIG_' . $CONFIG] as $SLOT_TYPE => $MAX_SLOTS) {
+                        $SLOT_TYPES[$SLOT_TYPE]['MAX'] = (int) $MAX_SLOTS;
+                    }
+
+                    foreach ($INVENTORY['CONFIG_' . $CONFIG][$IDENTIFIER] as $ITEM) {
+                        $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['IN_USE']++;
+                        if ($ITEM->CATEGORY == 'gear') {
+                            $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['ITEMS'][$ITEM->LOOT_ID] = $ITEM->LOOT_ID;
+                            $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['TYPES'][$ITEM->TYPE]    = $ITEM->TYPE;
+                        }
+                    }
+
+                    foreach ($ITEMS as $ITEM) {
+                        $ITEM = $System->User->Inventory->getItem($ITEM['ID']);
+
+                        if (
+                            isset($SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['ITEMS'][$ITEM->LOOT_ID]) ||
+                            isset($SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['TYPES'][$ITEM->TYPE])
+                        ) {
+                            continue;
+                        }
+
+                        if (
+                            $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['MAX'] >
+                            $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['IN_USE']
+                        ) {
+                            if (
+                            $ITEM->moveToEquipment(
+                                $System->User->Hangars->CURRENT_HANGAR->ID,
+                                $CONFIG,
+                                ['target' => $DISPLAY]
+                            )
+                            ) {
+                                $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['IN_USE']++;
+                            } else {
+                                http_response_code(400);
+                                die(json_encode(["message" => "Something went wrong while moveing the Item!"]));
+                            }
+                        } else {
+                            break;
+                        }
+                    }
                     break;
                 default:
                     die(json_encode(["message" => "No idea what just happened."]));

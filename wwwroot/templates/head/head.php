@@ -15,7 +15,7 @@
     <title><?= WEBSITE_TITLE ?></title>
 
     <!-- Include Styles -->
-    <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/styles.css">
+    <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/less/styles.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/main.css">

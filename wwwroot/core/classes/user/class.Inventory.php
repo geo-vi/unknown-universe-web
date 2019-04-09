@@ -12,7 +12,7 @@ class Inventory
 
     function __construct($user)
     {
-        $this->user  = $user;
+        $this->user = $user;
         $this->mysql = $this->mysql = new MySQL(MYSQL_IP, $user->SERVER_DB, MYSQL_USER, MYSQL_PW);
     }
 
@@ -23,26 +23,26 @@ class Inventory
          * Structure used by the equipment JS to render the Equipment (HTML5)
          */
         $JSON = [
-            "SHIP"     => $this->getShipInfo(),
+            "SHIP" => $this->getShipInfo(),
             "CONFIG_1" => [
-                "ITEMS"         => [], //Contains unused Items
-                "ON_CONFIG_1"   => [], //Contains Items on Ship
+                "ITEMS" => [], //Contains unused Items
+                "ON_CONFIG_1" => [], //Contains Items on Ship
                 "ON_DRONE_ID_1" => [], //Contains DronesID and Items on Drone
-                "ON_PET_1"      => [], //Contains Items on Pet
+                "ON_PET_1" => [], //Contains Items on Pet
             ],
             "CONFIG_2" => [
-                "ITEMS"         => [], //Contains unused Items
-                "ON_CONFIG_2"   => [], //Contains Items on Ship
+                "ITEMS" => [], //Contains unused Items
+                "ON_CONFIG_2" => [], //Contains Items on Ship
                 "ON_DRONE_ID_2" => [], //Contains DronesID and Items on Drone
-                "ON_PET_2"      => [], //Contains Items on Pet
+                "ON_PET_2" => [], //Contains Items on Pet
             ],
-            "DRONES"   => $this->getDrones(),
-            "PET"      => [],
+            "DRONES" => $this->getDrones(),
+            "PET" => $this->getPetInfo(),
         ];
 
         for ($config = 1; $config <= 2; $config++) {
             foreach ($this->getItems() as $item) {
-                $item     = new Item($item, $this->mysql);
+                $item = new Item($item, $this->mysql);
                 $Location = $item->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config, true);
 
                 if (!$Location) {
@@ -50,16 +50,16 @@ class Inventory
                     $JSON['CONFIG_' . $config]['ITEMS'][] = $item;
                 } else {
                     if ($Location == 'ON_DRONE_ID_' . $config) {
-                        $drone_json     = json_decode($item->CONFIGS[$Location]);
-                        $id_pos         = array_search($this->user->Hangars->CURRENT_HANGAR->ID, $drone_json->hangars);
-                        $droneID        = $drone_json->droneID[$id_pos];
+                        $drone_json = json_decode($item->CONFIGS[$Location]);
+                        $id_pos = array_search($this->user->Hangars->CURRENT_HANGAR->ID, $drone_json->hangars);
+                        $droneID = $drone_json->droneID[$id_pos];
                         $item->DRONE_ID = $droneID;
                         unset($item->CONFIGS);
                         $JSON['CONFIG_' . $config][$Location][] = $item;
 
                     } else {
                         if ($item->CATEGORY == 'extra') {
-                            $extraSlots                                          = $item->isSlotCPU(true);
+                            $extraSlots = $item->isSlotCPU(true);
                             $JSON['SHIP']['SLOTS']['CONFIG_' . $config]['EXTRA'] += $extraSlots;
                         }
                         unset($item->CONFIGS);
@@ -79,29 +79,29 @@ class Inventory
      */
     public function calculateConfigs()
     {
-        $ITEMS     = $this->getItems();
+        $ITEMS = $this->getItems();
         $SHIP_DATA = $this->getShipInfo();
 
         $CONFIGS = [
             1 => [
-                "DAMAGE"             => 0,
-                "SHIELD"             => 0,
+                "DAMAGE" => 0,
+                "SHIELD" => 0,
                 "SHIELD_ABSORBATION" => 0,
-                "SPEED"              => $SHIP_DATA["SPEED"],
-                "LASER_COUNT"        => 0,
-                "LAUNCHER_COUNT"     => 0,
-                "HEAVY"              => [],
-                "EXTRAS"             => [],
+                "SPEED" => $SHIP_DATA["SPEED"],
+                "LASER_COUNT" => 0,
+                "LAUNCHER_COUNT" => 0,
+                "HEAVY" => [],
+                "EXTRAS" => [],
             ],
             2 => [
-                "DAMAGE"             => 0,
-                "SHIELD"             => 0,
+                "DAMAGE" => 0,
+                "SHIELD" => 0,
                 "SHIELD_ABSORBATION" => 0,
-                "SPEED"              => $SHIP_DATA["SPEED"],
-                "LASER_COUNT"        => 0,
-                "LAUNCHER_COUNT"     => 0,
-                "HEAVY"              => [],
-                "EXTRAS"             => [],
+                "SPEED" => $SHIP_DATA["SPEED"],
+                "LASER_COUNT" => 0,
+                "LAUNCHER_COUNT" => 0,
+                "HEAVY" => [],
+                "EXTRAS" => [],
             ],
         ];
 
@@ -114,8 +114,8 @@ class Inventory
 
                 if ($ITEM->CATEGORY == 'extra') {
                     //SET EXTRAS
-                    $ITEM_ARR                     = [
-                        "Id"     => $ITEM->ID,
+                    $ITEM_ARR = [
+                        "Id" => $ITEM->ID,
                         "Amount" => $ITEM->AMOUNT,
                         "LootId" => $ITEM->LOOT_ID,
                     ];
@@ -133,10 +133,10 @@ class Inventory
                         $CONFIGS[$config]['LASER_COUNT'] < 15 ? $CONFIGS[$config]['LASER_COUNT']++ : null;
                     }
 
-                    $CONFIGS[$config]['DAMAGE']             += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['DAMAGE'] * ((($ITEM->LVL - 1) * 0.004) + 1) : $ITEM->ATTRIBUTES['DAMAGE'];
-                    $CONFIGS[$config]['SHIELD']             += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD'];
+                    $CONFIGS[$config]['DAMAGE'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['DAMAGE'] * ((($ITEM->LVL - 1) * 0.004) + 1) : $ITEM->ATTRIBUTES['DAMAGE'];
+                    $CONFIGS[$config]['SHIELD'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD'];
                     $CONFIGS[$config]['SHIELD_ABSORBATION'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'];
-                    $CONFIGS[$config]['SPEED']              += $ITEM->ATTRIBUTES['SPEED'];
+                    $CONFIGS[$config]['SPEED'] += $ITEM->ATTRIBUTES['SPEED'];
                 }
             }
         }
@@ -327,35 +327,35 @@ class Inventory
         $ShipDesigns[$ShipData['SHIP_ID']]['NAME'] = $ShipData['name'];
 
         $ShipInfo = [
-            "ID"              => $ShipData['SHIP_ID'],
-            "DESIGN_ID"       => $ShipData['SHIP_DESIGN'],
-            "DESIGNS"         => $ShipDesigns,
-            "SPEED"           => $ShipData['base_speed'],
-            "HP"              => $ShipData['ship_hp'],
+            "ID" => $ShipData['SHIP_ID'],
+            "DESIGN_ID" => $ShipData['SHIP_DESIGN'],
+            "DESIGNS" => $ShipDesigns,
+            "SPEED" => $ShipData['base_speed'],
+            "HP" => $ShipData['ship_hp'],
             "CURRENT_CONFIGS" => [
                 "CONFIG_1" => [
-                    "DAMAGE" => $this->user->__get('CONFIG_1_DMG'),
-                    "SHIELD" => $this->user->__get('CONFIG_1_SHIELD'),
-                    "SPEED"  => $this->user->__get('CONFIG_1_SPEED'),
+                    "DAMAGE" => $this->user->__get('ShipConfig')['CONFIG_1_DMG'],
+                    "SHIELD" => $this->user->__get('ShipConfig')['CONFIG_1_SHIELD'],
+                    "SPEED" => $this->user->__get('ShipConfig')['CONFIG_1_SPEED'],
                 ],
                 "CONFIG_2" => [
-                    "DAMAGE" => $this->user->__get('CONFIG_2_DMG'),
-                    "SHIELD" => $this->user->__get('CONFIG_2_SHIELD'),
-                    "SPEED"  => $this->user->__get('CONFIG_2_SPEED'),
+                    "DAMAGE" => $this->user->__get('ShipConfig')['CONFIG_2_DMG'],
+                    "SHIELD" => $this->user->__get('ShipConfig')['CONFIG_2_SHIELD'],
+                    "SPEED" => $this->user->__get('ShipConfig')['CONFIG_2_SPEED'],
                 ],
             ],
-            "SLOTS"           => [
+            "SLOTS" => [
                 "CONFIG_1" => [
-                    "LASER"     => $ShipData['laser'],
-                    "HEAVY"     => $ShipData['heavy'],
+                    "LASER" => $ShipData['laser'],
+                    "HEAVY" => $ShipData['heavy'],
                     "GENERATOR" => $ShipData['generator'],
-                    "EXTRA"     => $ShipData['extra'],
+                    "EXTRA" => $ShipData['extra'],
                 ],
                 "CONFIG_2" => [
-                    "LASER"     => $ShipData['laser'],
-                    "HEAVY"     => $ShipData['heavy'],
+                    "LASER" => $ShipData['laser'],
+                    "HEAVY" => $ShipData['heavy'],
                     "GENERATOR" => $ShipData['generator'],
-                    "EXTRA"     => $ShipData['extra'],
+                    "EXTRA" => $ShipData['extra'],
                 ],
             ],
         ];
@@ -380,7 +380,7 @@ class Inventory
 
             for ($config = 1; $config <= 2; $config++) {
                 $Location = 'ON_DRONE_ID_' . $config;
-                $CONFIG   = json_decode($CONFIGS[$Location]);
+                $CONFIG = json_decode($CONFIGS[$Location]);
 
                 if (in_array($ID, $CONFIG->droneID)) {
                     $ID_POS = array_search($ID, $CONFIG->droneID);
@@ -441,14 +441,14 @@ class Inventory
         $Drones = [];
         foreach ($DroneData as $Drone) {
             $DroneInfo = [
-                "ID"         => $Drone['ID'],
+                "ID" => $Drone['ID'],
                 "DRONE_TYPE" => $Drone['DRONE_TYPE'],
-                "NAME"       => $Drone['NAME'],
-                "DESIGN_1"   => $Drone['DESIGN_1'],
-                "DESIGN_2"   => $Drone['DESIGN_2'],
-                "LEVEL"      => $Drone['LEVEL'],
-                "DAMAGE"     => $Drone['DAMAGE'],
-                "SLOTS"      => $Drone['SLOTS'],
+                "NAME" => $Drone['NAME'],
+                "DESIGN_1" => $Drone['DESIGN_1'],
+                "DESIGN_2" => $Drone['DESIGN_2'],
+                "LEVEL" => $Drone['LEVEL'],
+                "DAMAGE" => $Drone['DAMAGE'],
+                "SLOTS" => $Drone['SLOTS'],
             ];
 
             $Drones[$Drone['ID']] = $DroneInfo;
@@ -475,5 +475,58 @@ class Inventory
         } else {
             return true;
         }
+    }
+
+    /**
+     * getPetItems Function
+     * used to generate the PET slots and PET info
+     */
+    public function getPetInfo()
+    {
+        $PetData = $this->mysql->QUERY(
+            'SELECT player_pet.*,
+                  server_ships.name,
+                  server_ships.laser,
+                  server_ships.gear,
+                  server_ships.generator,
+                  server_ships.protocols,
+                  server_ships.base_speed,
+                  server_ships.ship_hp
+                  FROM player_pet, server_ships
+                  WHERE player_pet.USER_ID = ?
+                  AND player_pet.PLAYER_ID = ?
+                  AND server_ships.ship_id = player_pet.PET_TYPE',
+            [$this->user->USER_ID, $this->user->PLAYER_ID]
+        )[0];
+
+        $PetInfo = [
+            "ID" => $PetData['ID'],
+            "HP" => $PetData['ship_hp'],
+            "CURRENT_CONFIGS" => [
+                "CONFIG_1" => [
+                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_1_DMG_PET'],
+                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_1_SHIELD_PET'],
+                ],
+                "CONFIG_2" => [
+                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_2_DMG_PET'],
+                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_2_SHIELD_PET'],
+                ],
+            ],
+            "SLOTS" => [
+                "CONFIG_1" => [
+                    "LASER" => $PetData['laser'],
+                    "GENERATOR" => $PetData['generator'],
+                    "GEAR" => $PetData['gear'],
+                    "PROTOCOLS" => $PetData['protocols'],
+                ],
+                "CONFIG_2" => [
+                    "LASER" => $PetData['laser'],
+                    "GENERATOR" => $PetData['generator'],
+                    "GEAR" => $PetData['gear'],
+                    "PROTOCOLS" => $PetData['protocols'],
+                ],
+            ],
+        ];
+        return $PetInfo;
     }
 }

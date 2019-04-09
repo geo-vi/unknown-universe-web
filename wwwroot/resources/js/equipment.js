@@ -35,7 +35,6 @@ class equipment {
                 equipment.data = data;
             }
 
-            console.log(this.data);
             equipment.preRender();
             let SLOTS = this.data.SHIP.SLOTS["CONFIG_" + equipment.config],
                 DESIGNS = this.data.SHIP.DESIGNS,
@@ -86,12 +85,6 @@ class equipment {
             $('#filter-select').append(optionItem9);
 
             $('#filter-select')[0].selectedIndex = equipment.filterID;
-
-            //RENDER SHIP INFO
-            $('.player-ship-info #pet-damage').text(CURRENT_CONFIG.DAMAGE_PET);
-            $('.player-ship-info #ship-damage').text(CURRENT_CONFIG.DAMAGE);
-            $('.player-ship-info #ship-shield').text(CURRENT_CONFIG.SHIELD);
-            $('.player-ship-info #ship-speed').text(CURRENT_CONFIG.SPEED);
 
             /**
              * SORTED_ITEMS
@@ -147,6 +140,13 @@ class equipment {
                         $(equipmentSlots).append(equipmentSlot);
                     }
                 }
+
+                //RENDER SHIP INFO
+                $('.player-ship-info #ship-damage').text(CURRENT_CONFIG.DAMAGE);
+                $('.player-ship-info #ship-shield').text(CURRENT_CONFIG.SHIELD);
+                $('.player-ship-info #ship-speed').text(CURRENT_CONFIG.SPEED);
+
+                $("#ship-info-container").show(1000);
             } else if (equipment.display === "pet") {
                 //RENDER SHIP / PET SLOTS
                 for (let SLOT_TYPE in PETS) {
@@ -180,6 +180,12 @@ class equipment {
                         $(equipmentSlots).append(equipmentSlot);
                     }
                 }
+                //RENDER SHIP INFO
+                $('.player-ship-info #ship-damage').text(CURRENT_CONFIG.DAMAGE_PET);
+                $('.player-ship-info #ship-shield').text(CURRENT_CONFIG.SHIELD);
+                $('.player-ship-info #ship-speed').text(CURRENT_CONFIG.SPEED);
+
+                $("#ship-info-container").show(1000);
             } else if (equipment.display === "drone") {
                 let SORTED_DRONES = [];
 
@@ -287,6 +293,8 @@ class equipment {
                     //APPEND DRONE TO HANGAR
                     $("#config-" + equipment.config + " > .drone-equipment-container > div > div").first().append(droneContainer);
                 }
+
+                $("#ship-info-container").hide(1000);
             }
 
             //CREATE INVENTORY (UNUSED ITEMS)
@@ -376,6 +384,7 @@ class equipment {
         //SWITCH TABS
         $(Tabs[0]).find("a").attr("onclick", "equipment.switchDisplay(1,'" + equipment.display + "')");
         $(Tabs[1]).find("a").attr("onclick", "equipment.switchDisplay(2, '" + equipment.display + "')");
+
 
         //RENDER EQUIPMENT
         equipment.render();
@@ -468,6 +477,7 @@ class equipment {
                     if (!moveToIventory) {
                         $(".ship-inventory-content .inventory-item[data-item-name=" + $(this).data("item-name") + "]").addClass("ui-selected");
                     } else {
+                        console.log("MoveToInventory");
                         $("." + equipment.display + "-equipment-container .equiped-item[data-item-name=" + $(this).data("item-name") + "]").addClass("ui-selected");
                     }
                 }
@@ -698,7 +708,8 @@ class equipment {
         });
 
         //DRONE MENU
-        $('.drone-container').click(function (event) {
+        $('.drone-container').contextmenu(function (event) {
+            event.preventDefault();
             let droneID = parseInt($(this).data('drone-id'));
             swal('What do you want to do?', {
                 buttons: {
@@ -722,8 +733,26 @@ class equipment {
             });
         });
 
+        //SHIP MENU
+        $('.ship-equipment-box').click(function (event) {
+            swal('What do you want to do?', {
+                buttons: {
+                    sell: {
+                        text: "Sell Ship"
+                    },
+                    cancel: true
+                }
+            }).then((value) => {
+                switch (value) {
+                    case "sell":
+                        equipment.sellShip(null, 0);
+                        break;
+                }
+            });
+        });
+
         //PET MENU
-        $('.pet-equipment-containe2').click(function (event) {
+        $('.pet-equipment-box').click(function (event) {
             swal('What do you want to do?', {
                 buttons: {
                     sell: {
@@ -739,7 +768,7 @@ class equipment {
                     case "sell":
                         equipment.sellPet(null);
                         break;
-                    case "repair":
+                    case "change":
                         equipment.changeName(null);
                         break;
                 }
@@ -768,7 +797,7 @@ class equipment {
             let params = {
                 'ITEM_ID': itemID,
             };
-            equipment.sendRequest('sellItem', 'sell_item', JSON.stringify(params));
+            equipment.sendRequest('sellItem', 'sell_item', params);
         }
     }
 
@@ -792,7 +821,7 @@ class equipment {
             let params = {
                 'DRONE_ID': droneID,
             };
-            equipment.sendRequest('sellDrone', 'sell_drone', JSON.stringify(params));
+            equipment.sendRequest('sellDrone', 'sell_drone', params);
         }
     }
 
@@ -811,7 +840,7 @@ class equipment {
     }
 
     static changeName(data = null, petID) {
-
+        $('#changePetNameModal').modal('show');
     }
 
     /**
@@ -828,6 +857,7 @@ class equipment {
                 let shipIMAGE = data.NEW_SHIP;
                 $('.player-ship-view > .ship-box > img').attr('src', shipIMAGE);
                 $('.hangar-slot[data-hangar-id="' + data.HANGAR_ID + '"] > img').attr('src', shipIMAGE);
+                $('.ship-equipment-box > img').attr('src', shipIMAGE);
                 equipment.reload();
             } else {
                 swal('Error!', data.error_msg, 'error');
@@ -837,7 +867,7 @@ class equipment {
             let params = {
                 'TO': designID,
             };
-            equipment.sendRequest('switchDesign', 'switch_design', JSON.stringify(params));
+            equipment.sendRequest('switchDesign', 'switch_design', params);
         }
     }
 
@@ -869,7 +899,7 @@ class equipment {
             let params = {
                 'HANGAR_ID': hangarID,
             };
-            equipment.sendRequest('switchHangar', 'switch_hangar', JSON.stringify(params));
+            equipment.sendRequest('switchHangar', 'switch_hangar', params);
         }
     }
 
@@ -954,7 +984,7 @@ class equipment {
                 'DISPLAY': equipment.display,
                 'TO': TO,
             };
-            equipment.sendRequest('moveItemsTo', 'move_items', JSON.stringify(params));
+            equipment.sendRequest('moveItemsTo', 'move_items', params);
         }
     }
 
