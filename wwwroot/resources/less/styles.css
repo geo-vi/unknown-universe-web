@@ -7007,11 +7007,6 @@ body.internalHangar .inventory-item[data-item-name="ai-sm1"],
 body.internalHangar .equiped-item[data-item-name="ai-sm1"] {
   background-image: url("../images/items/equipment/aiprotocol/ai-sm1_30x30.png");
 }
-body.internalMapRevolution .map-container {
-  margin-bottom: -6px;
-  position: relative;
-  z-index: 9999;
-}
 body.internalShop .shop-body {
   background: rgba(145, 145, 145, 0.21);
   padding: 40px;

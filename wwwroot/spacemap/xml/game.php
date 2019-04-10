@@ -734,8 +734,19 @@
 
     <patterns>
         <resolutions>
+            <?php
+            $width = 800;
+            $height = 600;
+
+            if (isset($_COOKIE['RES'])){
+                $cookie = $_COOKIE['RES'];
+                $resObj = json_decode($cookie);
+                $width = $resObj->w;
+                $height = $resObj->h;
+            }
+            ?>
             <!-- old client resolution -->
-            <resolution id="0" width="1140" height="675" mainMenuXPos="349" mainMenuYPos="480" slotMenuXPos="312"
+            <resolution id="0" width="<?=$width?>" height="<?=$height?>" mainMenuXPos="349" mainMenuYPos="480" slotMenuXPos="312"
                         slotMenuYPos="451" premslotMenuXPos="365" premslotMenuYPos="421">
                 <minimizedIconSlots x="25" y="200">
                     <minimizedIconSlot iconXPos="0" iconYPos="0"/>
@@ -807,7 +818,7 @@
             </resolution>
 
             <!-- mid client resolution 16:9 -->
-            <resolution id="1" width="1140" height="675" mainMenuXPos="349" mainMenuYPos="480" slotMenuXPos="312"
+            <resolution id="1" width="<?=$width?>" height="<?=$height?>" mainMenuXPos="349" mainMenuYPos="480" slotMenuXPos="312"
                         slotMenuYPos="451" premslotMenuXPos="365" premslotMenuYPos="421">
                 <minimizedIconSlots x="25" y="200">
                     <minimizedIconSlot iconXPos="0" iconYPos="0"/>
@@ -1432,7 +1443,7 @@
 			 <clickRadius>
 			 <clickOffsetX>
 			 <clickOffsetY>
-			  
+
 			  minimapIcon  = {}
 			  minimapColor = {int   , use hexcolor notation }
 			 -->
@@ -6839,7 +6850,7 @@
             <achievement id="12" languageKey="GROUP"/>
         </achievements>
 
-        <!-- banner billboards ............................................................................................................................. 
+        <!-- banner billboards .............................................................................................................................
 		 -= needed values: =-
 		  id           = this is the typeID from the server
 		  resKey       = the ResourceID for rhe resources.php
