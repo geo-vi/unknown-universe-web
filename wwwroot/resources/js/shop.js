@@ -105,7 +105,9 @@ class shop {
      *
      */
     static activateShop() {
+        $('#item-info-box').hide();
         $('.item-list .item').click(function (event) {
+            $('#item-info-box').show(500);
             let ITEM_ID = $(this).data('item-id'),
                 ITEM = shop.data[ITEM_ID];
 
@@ -113,8 +115,13 @@ class shop {
 
             if (ITEM.AMOUNT_SELECTABLE) {
                 $('.single-item .single-item-content .single-item-buy-menu .amount-select').show();
+                $('.single-item .single-item-content .single-item-buy-menu .level-select').hide();
+            } else if (ITEM.LEVEL_SELECTABLE) {
+                $('.single-item .single-item-content .single-item-buy-menu .level-select').show();
+                $('.single-item .single-item-content .single-item-buy-menu .amount-select').hide();
             } else {
                 $('.single-item .single-item-content .single-item-buy-menu .amount-select').hide();
+                $('.single-item .single-item-content .single-item-buy-menu .level-select').hide();
             }
 
             if (ITEM.IS_PET) {
@@ -150,8 +157,8 @@ class shop {
                         ATTR_VAL = ITEM.ATTRIBUTES[ATTRIBUTE];
                     if (ATTR_VAL === 'NULL' || ATTR_VAL === null) continue;
                     $('.single-item .single-item-content .single-item-description ul').append($('<li>').text(ATTR_NAME +
-                                                                                                             ": " +
-                                                                                                             ATTR_VAL));
+                        ": " +
+                        ATTR_VAL));
                 }
             }
         });
@@ -172,18 +179,37 @@ class shop {
                 ITEM.CURRENCY === 1 ? "C" : "U"
             );
             $('.single-item .single-item-content .single-item-buy-menu .item-price').text((
-                                                                                              ITEM.PRICE * AMOUNT
-                                                                                          ).format(2, 0, ',', '.') +
-                                                                                          CURRENCY);
+                    ITEM.PRICE * AMOUNT
+                ).format(2, 0, ',', '.') +
+                CURRENCY);
         });
 
 
         $('.single-item .single-item-content .single-item-buy-menu .buy-btn').click(function (event) {
             let ITEM_ID = $(this).data('item-id');
+            let ITEM_LVL = $('.level-select .selected').data('level');
             if (ITEM_ID !== undefined) {
+                if (!shop.data[ITEM_ID].LEVEL_SELECTABLE) {
+                    ITEM_LVL = 1;
+                }
                 if (ITEM_ID === 13 || ITEM_ID === 94) shop.category = 'DRONES';
-                shop.buyItem(shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val());
+                shop.buyItem(shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val(), ITEM_LVL);
             }
+        });
+
+        $('.single-item .single-item-content .single-item-buy-menu .lvl-btn').click(function (event) {
+            let ITEM_ID = $('.single-item .single-item-content .single-item-buy-menu .buy-btn').data('item-id'),
+                ITEM = shop.data[ITEM_ID],
+                LVL = $(this).data('level');
+            let CURRENCY = (
+                ITEM.CURRENCY === 1 ? "C" : "U");
+
+            $('.single-item .single-item-content .single-item-buy-menu .lvl-btn').removeClass('selected');
+            $(this).addClass('selected');
+            $('.single-item .single-item-content .single-item-buy-menu .item-price').text((
+                    ITEM.PRICE * LVL
+                ).format(2, 0, ',', '.') +
+                CURRENCY);
         });
     }
 
@@ -240,12 +266,14 @@ class shop {
      *
      * @param ITEM_ID
      * @param AMOUNT
+     * @param LEVEL
      */
-    static buyItem(ITEM_ID, AMOUNT) {
+    static buyItem(ITEM_ID, AMOUNT, LEVEL) {
         let params = {
             "CATEGORY": shop.category,
             "ITEM_ID": ITEM_ID,
             "AMOUNT": AMOUNT,
+            "LEVEL" : LEVEL,
         };
         shop.lastBoughtID = ITEM_ID;
         shop.sendRequest('buyCallback', 'buy', params);

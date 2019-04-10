@@ -131,62 +131,63 @@
                         </tr>
                         <tr>
                             <th>00:00</th>
-                            <td>this is a larger text</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
                         </tr>
                         <tr>
                             <th>10:00</th>
 
-                            <td>Test</td>
-                            <td></td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
                         </tr>
                         <tr style="color: chartreuse">
                             <th>14:00</th>
 
-                            <td>I</td>
-                            <td>Made</td>
-                            <td>This</td>
-                            <td>Because</td>
-                            <td>I</td>
-                            <td>Fucking</td>
-                            <td>Want</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
                         </tr>
                         <tr>
                             <th>18:00</th>
 
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
                         </tr>
                         <tr>
                             <th>22:00</th>
 
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
+                            <td>NONE</td>
                         </tr>
                     </table>
                 <?php } else {
                     ?>
                     <div id="eventdetails">
+                        TODO
                     </div>
                 <?php }
                 ?>
@@ -283,63 +284,10 @@
                 </div> <!-- /pilot-profile-user -->
 
                 <div id="pilot-profile-skills-text">
-                    <a href="#" data-toggle="modal" data-target="#skillTreeModal"
-                       class="title"><?= $System->__('BODY_TEXT_PP_SKILLTREE') ?></a>
+                    <a href="internalSkillTree" class="title"><?= $System->__('BODY_TEXT_PP_SKILLTREE') ?></a>
                 </div>
 
                 <div id="pilot-profile-skills" class="custom-scroll">
-                    <!-- <div class="row">
-                      <div class="col-xs-4 skill">Skill 1</div>
-                      <div class="col-xs-4 skill">Skill 1</div>
-                      <div class="col-xs-4 skill">Skill 1</div>
-                    </div> -->
-                    <div class="skill skill_effect_inactive" id="skill_5a">
-                        <div class="">
-                            <div class="skillPoints">0/2</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_2">
-                        <div class="">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_18a">
-                        <div class="">
-                            <div class="skillPoints">0/2</div>
-                        </div>
-                    </div>
-
-                    <div class="skill" id="skill_13">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_4">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_4">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-
-                    <div class="skill" id="skill_13">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_4">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
-                    <div class="skill" id="skill_4">
-                        <div class="skill_effect_inactive">
-                            <div class="skillPoints">0/5</div>
-                        </div>
-                    </div>
 
                 </div> <!-- /pilot-profile-skills -->
 

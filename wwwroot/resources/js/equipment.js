@@ -39,6 +39,7 @@ class equipment {
             let SLOTS = this.data.SHIP.SLOTS["CONFIG_" + equipment.config],
                 DESIGNS = this.data.SHIP.DESIGNS,
                 CURRENT_CONFIG = this.data.SHIP.CURRENT_CONFIGS["CONFIG_" + equipment.config],
+                PET_CURRENT_CONFIG = this.data.PET.CURRENT_CONFIGS["CONFIG_" + equipment.config],
                 CURRENT_DESIGN = this.data.SHIP.DESIGN_ID,
                 ITEMS_UNUSED = equipment.data["CONFIG_" + equipment.config].ITEMS,
                 DRONES = equipment.data.DRONES,
@@ -181,9 +182,10 @@ class equipment {
                     }
                 }
                 //RENDER SHIP INFO
-                $('.player-ship-info #ship-damage').text(CURRENT_CONFIG.DAMAGE_PET);
-                $('.player-ship-info #ship-shield').text(CURRENT_CONFIG.SHIELD);
-                $('.player-ship-info #ship-speed').text(CURRENT_CONFIG.SPEED);
+                console.log(PET_CURRENT_CONFIG);
+                $('.player-ship-info #ship-damage').text(PET_CURRENT_CONFIG.DAMAGE);
+                $('.player-ship-info #ship-shield').text(PET_CURRENT_CONFIG.SHIELD);
+                $('.player-ship-info #ship-speed').text(CURRENT_CONFIG.SPEED * 2);
 
                 $("#ship-info-container").show(1000);
             } else if (equipment.display === "drone") {

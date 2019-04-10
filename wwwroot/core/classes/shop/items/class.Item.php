@@ -50,7 +50,7 @@ class Item extends AbstractItem
         ];
     }
 
-    public function buy($UserID, $PlayerID, $Amount = 1)
+    public function buy($UserID, $PlayerID, $Amount = 1, $Level = 1)
     {
         if ($this->CURRENCY == 1) {
             $this->mysql->QUERY(

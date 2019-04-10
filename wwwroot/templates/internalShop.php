@@ -45,7 +45,7 @@
     </div>
 
     <div class="shop-inner clearfix">
-        <div class="single-item col-xs-12">
+        <div id="item-info-box" class="single-item col-xs-12">
             <div class="single-item-inner">
                 <div class="single-item-image">
 
@@ -71,7 +71,11 @@
                                    aria-label='quantity'>
                             <span class="item-quantity-label">(Item Amount)</span>
                         </div>
-
+                        <div class="level-select">
+                            <a class="btn lvl-btn selected" data-level="1">Level 1</a>
+                            <a class="btn lvl-btn" data-level="2">Level 2</a>
+                            <a class="btn lvl-btn" data-level="3">Level 3</a>
+                        </div>
                         <span class="item-price"></span>
                         <a class="btn btn-primary buy-btn">Buy now</a>
                     </div>

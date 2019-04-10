@@ -362,7 +362,7 @@ body {
 
       .login-form-wrapper {
         height: 462px;
-        border: 1px solid #fff;
+        border: 1px solid #ffffff2e;
 
         nav {
           // float: right;
@@ -373,12 +373,12 @@ body {
           z-index: -1;
 
           ul.nav-tabs {
-            border-bottom: 1px solid #bcbcbd;
+            border-bottom: 1px solid #54545440;
 
             > li {
               > a {
                 border-radius: 0;
-                background-color: #9fa0a3;
+                background-color: #9fa0a314;
                 color: #fff;
                 position: relative;
                 display: block;
@@ -395,7 +395,7 @@ body {
               &.active {
                 > a {
                   border: none;
-                  background-color: #78797b;
+                  background-color: #78797b47;
 
                   &:focus, &:hover {
                     border: none;
@@ -437,18 +437,22 @@ body {
             height: 56px;
             padding: 0 12px;
             margin-bottom: 15px;
-            background-color: #7b7b7c57;
-            border: 1px solid #c0c0c0;
+            background-color: #7b7b7c00;
+            border: 1px solid #c0c0c036;
             font-size: 14px;
             text-align: center;
             text-transform: none;
             font-weight: bold;
+
+            &:active {
+              background-color: #7b7b7c57;
+            }
           }
 
           .form-button {
             width: 100%;
             height: 84px;
-            background-color: #a8a8aa;
+            background-color: #a8a8aa14;
             border: none;
             margin-bottom: 45px;
             .transition(background-color .3s);
@@ -658,6 +662,13 @@ body {
       display: none;
       opacity: 0;
       color: #FFFFFF;
+    }
+
+    .skip-story-button {
+      margin-top:20px;
+      justify-content: center;
+      display: block;
+      background: #ffffff00;
     }
 
     .join-button-container {
@@ -2468,6 +2479,15 @@ body {
                 left: 15px;
                 right: 15px;
               }
+
+              .lvl-btn {
+                width: 100%;
+                height: 35px;
+              }
+
+              .selected {
+                color:white !important;
+              }
             }
           }
         }
@@ -4066,6 +4086,22 @@ body {
   }
 
   &.internalClan {
+    .clan-textbox {
+      display: inline;
+      margin: 15px;
+    }
+    #clan_tag {
+      width: 150px;
+    }
+    #clan_name {
+      width: 300px;
+    }
+
+    #clan_desc {
+      height: 100px;
+      width: 483px;
+      margin-left: 15px;
+    }
     .clan-header {
       background: rgba(0, 0, 0, 0.4);
       height: 40px;
@@ -4078,7 +4114,7 @@ body {
     }
 
     .clan-body {
-      background: rgba(0, 0, 0, 0.3);
+      background: #cccccc36;
     }
 
     .clan-top-header, .clan-bottom-header {

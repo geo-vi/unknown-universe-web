@@ -52,6 +52,7 @@
             <p>The fate of the universe rests in your hands!</p>
         </div>
     </div>
+    <a class="btn btn-primary skip-story-button">Skip story</a>
     <div class="company-choose-container">
         <div class="company-choose-header">
             <h1>it’s time to choose your company, make a wise choice!</h1>
@@ -283,6 +284,22 @@
             sendCoreRequest('company', 'choose', params, function () {
                 window.location.replace("./internalStart");
             })
+        });
+
+        $(".skip-story-button").click(function() {
+            if (inStoryTell) {
+                var FactionStoryContainer = $(".company-story-container > ." + Faction + "-story-container ");
+                var AllStorys = $(FactionStoryContainer).find("div");
+                inStoryTell = false;
+                //show join button
+                $(AllStorys).removeClass("visible");
+                $(FactionStoryContainer).removeClass("visible");
+                $(".company-choose-select-container > .company-choose-select." + Faction).data("story", true);
+                showJoinUs();
+            }
+            if ($('.main-story-container').is(":visible")) {
+                showCompanyChoose();
+            }
         });
     });
 </script>

@@ -52,6 +52,7 @@ class ShopHandler extends AbstractHandler
         $CATEGORY = (string) strtoupper($this->params['CATEGORY']);
         $ITEM_ID  = (int) $this->params['ITEM_ID'];
         $AMOUNT   = (int) $this->params['AMOUNT'];
+        $LEVEL = (int) $this->params['LEVEL'];
 
         if ( !isset($System->Shop->CATEGORIES[$CATEGORY])) {
             http_response_code(400);
@@ -63,6 +64,7 @@ class ShopHandler extends AbstractHandler
             die(json_encode(['message' => 'You need to buy a min. of 1 Item!']));
         }
 
+
         $ITEM = $System->Shop->getItem($CATEGORY, $ITEM_ID);
         if ($ITEM == null) {
             http_response_code(400);
@@ -73,8 +75,12 @@ class ShopHandler extends AbstractHandler
             http_response_code(400);
             die(json_encode(['message' => 'Amount invalid!']));
         }
+        if ($LEVEL > 1 && !$ITEM->LEVEL_SELECTABLE) {
+            http_response_code(400);
+            die(json_encode(['message' => 'Level invalid!']));
+        }
 
-        $PRICE = $ITEM->PRICE * $AMOUNT;
+        $PRICE = $ITEM->PRICE * $AMOUNT * $LEVEL;
         if ($ITEM->CURRENCY == 1) {
             if (( $System->User->__get('CREDITS') - $PRICE ) < 0) {
                 http_response_code(400);
@@ -263,27 +269,16 @@ class ShopHandler extends AbstractHandler
                     }
                 } else {
                     if ($System->User->hasPet()) {
-                        if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'), $AMOUNT)) {
+                        if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'), $AMOUNT, $LEVEL)) {
                             $Success = true;
-                            $MSG     = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
+                            $MSG = 'You successfully bought  ' . $AMOUNT . 'x ' . $ITEM->NAME . '!';
                         }
                     } else {
                         http_response_code(400);
                         die(json_encode(['message' => 'You need to buy a PET first!']));
                     }
                 }
-
-                if ($ITEM_DATA['CATEGORY'] == 'gear' || $ITEM_DATA['CATEGORY'] == 'protocols') {
-                    if ($ITEM->buy($System->User->__get('USER_ID'), $System->User->__get('PLAYER_ID'))) {
-                        $Success = true;
-                        $MSG     = 'You successfully bought ' . $ITEM->NAME . '!';
-                    } else {
-                        http_response_code(400);
-                        die(json_encode(['message' => 'Error occurred']));
-                    }
-                }
                 break;
-
         }
 
         if ($Success) {

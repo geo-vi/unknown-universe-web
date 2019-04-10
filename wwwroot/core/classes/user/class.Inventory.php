@@ -105,10 +105,30 @@ class Inventory
             ],
         ];
 
+        $PET_CONFIGS = [
+            1 => [
+                "DAMAGE" => 0,
+                "SHIELD" => 0,
+                "SHIELD_ABSORBATION" => 0,
+            ],
+            2 => [
+                "DAMAGE" => 0,
+                "SHIELD" => 0,
+                "SHIELD_ABSORBATION" => 0,
+            ],
+        ];
+
         for ($config = 1; $config <= 2; $config++) {
             foreach ($ITEMS as $ITEM_OBJ) {
                 $ITEM = new Item($ITEM_OBJ, $this->mysql);
                 if (!$ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config)) {
+                    continue;
+                }
+
+                if ($ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $config, true) == "ON_PET_". $config) {
+                    $PET_CONFIGS[$config]['DAMAGE'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['DAMAGE'] * ((($ITEM->LVL - 1) * 0.004) + 1) : $ITEM->ATTRIBUTES['DAMAGE'];
+                    $PET_CONFIGS[$config]['SHIELD'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD'];
+                    $PET_CONFIGS[$config]['SHIELD_ABSORBATION'] += $ITEM->LVL > 1 ? $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'] * ((($ITEM->LVL - 1) * 0.01) + 1) : $ITEM->ATTRIBUTES['SHIELD_ABSORBATION'];
                     continue;
                 }
 
@@ -175,9 +195,33 @@ class Inventory
                 json_encode($CONFIGS[2]['HEAVY']),
                 json_encode($CONFIGS[2]['EXTRAS']),
                 $this->user->USER_ID,
-                $this->user->PLAYER_ID,
-            ]
+                $this->user->PLAYER_ID
+            ],
         );
+
+        if ($this->user->hasPet()) {
+            // UPDATE PET CONFIGS
+            $this->mysql->QUERY(
+                "UPDATE player_pet_config
+                 SET CONFIG_1_DMG = ?,
+                 CONFIG_1_SHIELD = ?,
+                 CONFIG_1_SHIELDABSORB = ?,
+                 CONFIG_2_DMG = ?,
+                 CONFIG_2_SHIELD = ?,
+                 CONFIG_2_SHIELDABSORB = ?                 
+                 WHERE USER_ID = ? AND PLAYER_ID = ?",
+                [
+                    $PET_CONFIGS[1]['DAMAGE'],
+                    $PET_CONFIGS[1]['SHIELD'],
+                    $PET_CONFIGS[1]['SHIELD_ABSORBATION'],
+                    $PET_CONFIGS[2]['DAMAGE'],
+                    $PET_CONFIGS[2]['SHIELD'],
+                    $PET_CONFIGS[2]['SHIELD_ABSORBATION'],
+                    $this->user->USER_ID,
+                    $this->user->PLAYER_ID
+                ]
+            );
+        }
 
         $this->mysql->QUERY("UPDATE player_hangar SET SHIP_HP = ? WHERE USER_ID = ? AND PLAYER_ID = ? AND ACTIVE = 1",
             [$this->user->USER_ID, $this->user->PLAYER_ID, $SHIP_DATA["HP"]]);
@@ -504,12 +548,12 @@ class Inventory
             "HP" => $PetData['ship_hp'],
             "CURRENT_CONFIGS" => [
                 "CONFIG_1" => [
-                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_1_DMG_PET'],
-                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_1_SHIELD_PET'],
+                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_1_DMG'],
+                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_1_SHIELD'],
                 ],
                 "CONFIG_2" => [
-                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_2_DMG_PET'],
-                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_2_SHIELD_PET'],
+                    "DAMAGE" => $this->user->__get('PetConfig')['CONFIG_2_DMG'],
+                    "SHIELD" => $this->user->__get('PetConfig')['CONFIG_2_SHIELD'],
                 ],
             ],
             "SLOTS" => [

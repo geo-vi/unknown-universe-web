@@ -44,7 +44,8 @@ class Pet extends AbstractItem
                 $this->SHOW_FUEL = true;
             }
         } elseif ($this->CAT == 'protocols' || $this->CAT == 'gear') {
-            $this->AMOUNT_SELECTABLE = true;
+            $this->AMOUNT_SELECTABLE = false;
+            $this->LEVEL_SELECTABLE = true;
             $this->IS_PET            = false;
 
             if ($System->User->hasPet()) {
@@ -76,7 +77,7 @@ class Pet extends AbstractItem
 
     }
 
-    public function buy($UserID, $PlayerID, $Amount = 1)
+    public function buy($UserID, $PlayerID, $Amount = 1, $Level = 1)
     {
         if ($this->CURRENCY == 1) {
             $this->mysql->QUERY(
@@ -148,13 +149,14 @@ class Pet extends AbstractItem
         } elseif ($ITEM_DATA['CATEGORY'] == 'gear') {
             if (
             $this->mysql->QUERY(
-                "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
+                "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT, ITEM_LVL) VALUES(?,?,?,?,?,?)",
                 [
                     $UserID,
                     $PlayerID,
                     $this->ID,
                     $ITEM_DATA['TYPE'],
                     1,
+                    $Level,
                 ]
             )
             ) {
@@ -162,13 +164,14 @@ class Pet extends AbstractItem
             } else return false;
         } elseif ($ITEM_DATA['CATEGORY'] == 'protocols') {
             if ($this->mysql->QUERY(
-                "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT) VALUES(?,?,?,?,?)",
+                "INSERT INTO player_equipment (USER_ID, PLAYER_ID, ITEM_ID, ITEM_TYPE, ITEM_AMOUNT, ITEM_LVL) VALUES(?,?,?,?,?,?)",
                 [
                     $UserID,
                     $PlayerID,
                     $this->ID,
                     $ITEM_DATA['TYPE'],
                     1,
+                    $Level,
                 ]
             )) {
                 return $this->mysql->lastID();

@@ -78,7 +78,7 @@
     <nav id="main-nav">
         <ul id="left-buttons" class="header-buttons bold">
             <ul class="main-right-buttons">
-                <li class="header_button header_normal_button">
+                <li class="header_button header_disabled_button">
                     <a href="internalClan"><?= $System->__('NAV_TEXT_CLAN') ?></a>
                 </li>
                 <li class="header_button header_disabled_button">
@@ -118,10 +118,10 @@
 
         <ul id="right-buttons" class="header-buttons bold">
             <ul class="main-left-buttons">
-                <li class="header_button header_normal_button">
+                <li class="header_button header_disabled_button">
                     <a href="internalPayment"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
                 </li>
-                <li class="header_button header_normal_button">
+                <li class="header_button header_disabled_button">
                     <a href="internalGalaxyGates"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
                 </li>
             </ul>

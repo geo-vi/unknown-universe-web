@@ -45,7 +45,7 @@
                         <?php
                     }
                     ?>
-                    <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>"></div>
+                    <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>" data-theme="dark"></div>
                     <p class="text-xs-center">* <?= $System->__('BODY_TEXT_TOC_NOTE') ?></p>
                     <input type="button" class="form-button" value="Register">
                 </form>

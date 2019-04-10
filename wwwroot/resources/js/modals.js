@@ -3,6 +3,11 @@ class modals {
         modals.USER_ID = USER_ID;
         modals.PLAYER_ID = PLAYER_ID;
         modals.SERVER_IP = SERVER_IP;
+        modals.render();
+    }
+
+    static render() {
+
     }
 
     /**
