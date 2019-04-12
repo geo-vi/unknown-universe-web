@@ -1404,6 +1404,21 @@ class User
         return [];
     }
 
+    public function hasBooster($BOOSTER_ID)
+    {
+        $boosters = $this->mysql->QUERY('SELECT * FROM player_boosters WHERE PLAYER_ID = ? AND BOOSTER_ID = ?', [$this->PLAYER_ID, $BOOSTER_ID]);
+        return $boosters[0] == true;
+    }
+
+    public function getBoosterById($BOOSTER_ID) {
+        $booster = $this->mysql->QUERY('SELECT * FROM player_boosters WHERE PLAYER_ID = ? AND BOOSTER_ID = ?', [$this->PLAYER_ID, $BOOSTER_ID]);
+        if ($booster[0]) {
+            return $booster[0];
+        } else {
+            return false;
+        }
+    }
+
     public function fixDB()
     {
         $server_items = $this->mysql->QUERY('SELECT * FROM server_items');

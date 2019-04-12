@@ -83,7 +83,7 @@ class Pet extends AbstractItem
             $this->mysql->QUERY(
                 'UPDATE player_data SET CREDITS = CREDITS - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
                 [
-                    $this->PRICE * $Amount,
+                    $this->PRICE * $Amount * $Level,
                     $PlayerID,
                     $UserID,
                 ]
@@ -92,7 +92,7 @@ class Pet extends AbstractItem
             $this->mysql->QUERY(
                 'UPDATE player_data SET URIDIUM = URIDIUM - ? WHERE PLAYER_ID  = ? AND USER_ID = ?',
                 [
-                    $this->PRICE * $Amount,
+                    $this->PRICE * $Amount * $Level,
                     $PlayerID,
                     $UserID,
                 ]

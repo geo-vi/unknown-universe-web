@@ -203,7 +203,6 @@ class shop {
                 LVL = $(this).data('level');
             let CURRENCY = (
                 ITEM.CURRENCY === 1 ? "C" : "U");
-
             $('.single-item .single-item-content .single-item-buy-menu .lvl-btn').removeClass('selected');
             $(this).addClass('selected');
             $('.single-item .single-item-content .single-item-buy-menu .item-price').text((
@@ -226,6 +225,8 @@ class shop {
         $('.single-item .single-item-content .single-item-buy-menu .buy-btn').removeData('item-id');
         $('.single-item .single-item-content .single-item-buy-menu .item-price').text("");
         $('.amount-select .item-quantity').val(1);
+        $('.single-item .single-item-content .single-item-buy-menu .lvl-btn').removeClass('selected');
+        $('.single-item .single-item-content .single-item-buy-menu .lvl-btn').first().addClass("selected");
     }
 
     /**
