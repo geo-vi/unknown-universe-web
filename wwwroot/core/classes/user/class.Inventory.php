@@ -196,7 +196,7 @@ class Inventory
                 json_encode($CONFIGS[2]['EXTRAS']),
                 $this->user->USER_ID,
                 $this->user->PLAYER_ID
-            ],
+            ]
         );
 
         if ($this->user->hasPet()) {

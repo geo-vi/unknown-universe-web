@@ -5,6 +5,8 @@ define("MYSQL_DB_NAME", "do_system");
 define("MYSQL_USER", "root");
 define("MYSQL_PW", "");
 
+define('HTTP_HOST', 'dev.univ3rse.com');
+
 //Advanced Options
 define("ALLOWED_CHARS", [".", "-", "_", ">", "<"]);
 define("USERNAME_MIN_LENGTH", 3);
