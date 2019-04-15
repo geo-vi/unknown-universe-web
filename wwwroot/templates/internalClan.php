@@ -14,9 +14,9 @@ include_once('internalModal.php');
 </script>
 
 <?php
-//if ($System->User->__get('CLAN_ID') == 0) {
-//    include_once( "internalClan/internalClanFree.php" );
-//} else {
-//    include_once( "internalClan/internalClanInfo.php" );
-//}
-//?>
+if ($System->User->__get('CLAN_ID') == 0) {
+    include_once( "internalClan/internalClanFree.php" );
+} else {
+    include_once( "internalClan/internalClanInfo.php" );
+}
+?>

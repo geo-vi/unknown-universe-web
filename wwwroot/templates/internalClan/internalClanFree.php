@@ -7,13 +7,14 @@
     </div>
     <div class="clan-top-cotainer">
         <div class="clan-top-content clearfix">
-            <input id="clan_tag" class="form-control clan-textbox" placeholder="Clan Tag">
-            <input id="clan_name" class="form-control clan-textbox" placeholder="Clan Name">
-            <textarea id="clan_desc" class="form-control" placeholder="Clan Description"></textarea>
-
-                <div class="clan-top-send col-xs-12 margin-top">
-                    <a id="create_clan" class="btn btn-block btn-primary">Create</a>
-                </div>
+            <div class="main-clan-info">
+                <input id="clan_tag" class="form-control clan-textbox" maxlength="4" placeholder="Clan Tag">
+                <input id="clan_name" class="form-control clan-textbox" maxlength="24" placeholder="Clan Name">
+                <textarea id="clan_desc" class="form-control clan-textbox" maxlength="128" placeholder="Clan Description"></textarea>
+            </div>
+            <div class="clan-top-send col-xs-12 margin-top">
+                <a id="create_clan" class="btn btn-block btn-primary">Create</a>
+            </div>
         </div>
     </div>
     <div class="clan-bottom-header">

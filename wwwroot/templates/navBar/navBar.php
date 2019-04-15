@@ -78,7 +78,7 @@
     <nav id="main-nav">
         <ul id="left-buttons" class="header-buttons bold">
             <ul class="main-right-buttons">
-                <li class="header_button header_disabled_button">
+                <li class="header_button header_normal_button">
                     <a href="internalClan"><?= $System->__('NAV_TEXT_CLAN') ?></a>
                 </li>
                 <li class="header_button header_disabled_button">

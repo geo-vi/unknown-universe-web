@@ -40,6 +40,19 @@ class clan {
         this.activateExternal();
     }
 
+    static renderInternal(data = null) {
+        $('#clan-members table > tbody:last-child').append('<tr>\n' +
+            '                    <td><div id="player-avatar"></div></td>\n' +
+            '                    <td>general_Rejection</td>\n' +
+            '                    <td>VRU</td>\n' +
+            '                    <td>0</td>\n' +
+            '                    <td>0</td>\n' +
+            '                    <td>0</td>\n' +
+            '                    <td>General</td>\n' +
+            '                </tr>');
+        $('#clan-members table > tbody > tr').click(() => console.log('clicked on ID: '));
+    }
+
     static activateExternal() {
         $('#create_clan').click(() => this.clanCreate());
         $('#clan_search').click(() => this.clanSearch());
@@ -50,6 +63,7 @@ class clan {
             let params = {
                 'TAG': $('#clan_tag').val(),
                 'NAME': $('#clan_name').val(),
+                'DESC': $('#clan_desc').val()
             };
             console.log(params);
             this.sendRequest('clanCreate', 'createClan', params);

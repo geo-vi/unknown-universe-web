@@ -1,3 +1,7 @@
+<?php
+require_once("internalSettings/internalCountries.php");
+include_once('internalModal.php');
+?>
 <div id="playerInfo-tv-container">
 
     <!-- Player info when you hover the ship -->
@@ -15,7 +19,7 @@
 
             <div id="player-info-profile-body">
                 <img alt='player_avatar'
-                     src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif"
+                     src="<?= PROJECT_HTTP_ROOT ?>resources/images/avatars/default.png"
                      width="94"
                      height="94"
                      class="pull-left" />
@@ -70,6 +74,11 @@
             </div> <!-- /tv-off -->
 
             <div id="tv-on" class="invisible">
+                <div class="tv-buttons">
+                    <div id="news" class="tv-button"></div>
+                    <div id="videos" class="tv-button"></div>
+                    <div id="live" class="tv-button"></div>
+                </div>
             </div> <!-- /tv-on -->
         </div> <!-- /tv-state -->
     </div> <!-- /tv-box -->
@@ -197,7 +206,7 @@
             <div role="tabpanel" class="tab-pane" id="pilot-profile">
                 <div id="pilot-profile-user" class="tab-content">
                     <img alt='player_avatar'
-                         src="<?= PROJECT_HTTP_ROOT ?>resources/images/lel.gif"
+                         src="<?= PROJECT_HTTP_ROOT ?>resources/images/avatars/default.png"
                          width="94"
                          height="94"
                          class="pull-left" />
@@ -212,15 +221,23 @@
                                 <td><?= $System->User->__get('REGISTERED') ?></td>
                             </tr>
                             <tr>
-                                <th href="#" data-toggle="modal"
-                                    data-target="#titleChangeModal"><?= $System->__('BODY_TEXT_PP_TITLE') ?></th>
-                                <td id="player-title"
-                                    style="color: <?= $System->User->getTitleColor(
-                                    ) ?> !important"><?= $System->User->getTitle() ?></td>
-                            </tr>
-                            <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_RANK') ?></th>
                                 <td><?= $System->User->getRankName() ?></td>
+                            </tr>
+                            <tr>
+                                <th><?= $System->__('BODY_TEXT_PP_TITLE') ?></th>
+                                <td id="player-title"
+                                    style="color: <?= $System->User->getTitleColor(
+                                    ) ?> !important">
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" disabled>No titles found
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Most Wanted</a></li>
+                                            <li><a href="#">Lord Of Likes</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
                             </tr>
                         </table>
                     </div> <!-- pilot-profile-user-column1 -->
@@ -229,19 +246,26 @@
                         <table>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_ORIGIN') ?></th>
-                                <td><?= $System->User->__get('COUNTRY_NAME') != null ? $System->User->__get(
-                                        'COUNTRY_NAME'
-                                    ) : '- No Informations -' ?></td>
+                                <?php
+                                $country = '- No Informations -';
+                                $short = $System->User->__get('COUNTRY_NAME') != null ? $System->User->__get(
+                                    'COUNTRY_NAME'
+                                ) : '';
+                                if ($short !== '') {
+                                    $country = $countries[$short];
+                                }
+                                ?>
+                                <td><?= $country ?></td>
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_AGE') ?></th>
                                 <?php
                                 $age = '- No Informations -';
 
-                                if ($System->User->__get('GENDER')) {
+                                if ($System->User->__get('BIRTHDATE')) {
                                     try {
                                         $today = new DateTime();
-                                        $birthdate = new DateTime($System->User->__get('GENDER'));
+                                        $birthdate = new DateTime($System->User->__get('BIRTHDATE'));
                                         $interval = $today->diff($birthdate);
                                         $age = $interval->y;
                                     } catch (Exception $e) {
@@ -277,7 +301,9 @@
                             </tr>
                             <tr>
                                 <th><?= $System->__('BODY_TEXT_PP_CONTACT') ?></th>
-                                <td>- No Informations -</td>
+                                <td><?=$System->User->__get('DISCORD_ID') != null ? $System->User->__get(
+                                        'DISCORD_ID'
+                                    ) : '- No Informations -'; ?></td>
                             </tr>
                         </table>
                     </div> <!-- pilot-profile-user-column2 -->
@@ -347,6 +373,23 @@
         </div>
     </div> <!-- /skillTreeModal -->
     <script>
+        // swal({
+        //     title: '',
+        //     text: "You won't be able to revert this!",
+        //     type: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, delete it!'
+        // }).then((result) => {
+        //     if (result.value) {
+        //         Swal.fire(
+        //             'Deleted!',
+        //             'Your file has been deleted.',
+        //             'success'
+        //         )
+        //     }
+        // });
 
         $('#player-ship-box').mouseenter(function () {
             // Hides the player info box

@@ -748,6 +748,9 @@ body {
       margin: 0;
     }
 
+    #player-title .dropdown {
+      max-width: 100px;
+    }
     /* @end player info profile */
 
     #player-info-name {
@@ -887,11 +890,31 @@ body {
       }
 
       #tv-on {
-        background: url("https://thumbs.gfycat.com/AstonishingGlitteringArizonaalligatorlizard-size_restricted.gif") no-repeat center center;
+        background: url("../images/backgrounds/internal_background.png") no-repeat center center;
         width: 100%;
         height: 100%;
         z-index: 3;
         position: absolute;
+
+        .tv-buttons {
+          margin-left: 140px;
+          margin-top: 90px;
+        }
+
+        .tv-button {
+          width: 50px;
+          height: 50px;
+          background: white;
+          margin-left:5px;
+          &:hover {
+            background:black !important;
+          }
+        }
+
+        #news, #videos, #live {
+          background: white;
+          float:left;
+        }
       }
     }
 
@@ -4081,35 +4104,36 @@ body {
   }
 
   &.internalClan {
-    .clan-textbox {
-      display: inline;
-      margin: 15px;
-    }
-    #clan_tag {
-      width: 150px;
-    }
-    #clan_name {
-      width: 300px;
+    .main-clan-info {
+      margin-left:15px;
+      margin-right:15px;
     }
 
-    #clan_desc {
-      height: 100px;
-      width: 483px;
-      margin-left: 15px;
+    .clan-textbox {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: none !important;
     }
+
     .clan-header {
       background: rgba(0, 0, 0, 0.4);
       height: 40px;
 
-      nav > ul > li {
+      ul > li {
         text-align: center;
         text-transform: none;
         position: relative;
+
+        a {
+          color:white;
+          &:hover {
+            color: black;
+          }
+        }
       }
     }
 
     .clan-body {
-      background: #cccccc36;
+      background: #ffffff1c;
     }
 
     .clan-top-header, .clan-bottom-header {
@@ -4139,6 +4163,47 @@ body {
       table > tbody > tr > th {
         padding-right: 10px;
         padding-left: 30px;
+      }
+    }
+
+    .edit-clan {
+      max-width:300px;
+      margin: 0 auto;
+    }
+
+    #clan-members {
+      h3 {
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        tbody > tr {
+          height: 65px;
+          text-align: center;
+          background-color: #0000003d;
+          th {
+            text-align: center;
+            padding-right: 10px;
+            padding-left: 30px;
+          }
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+          }
+        }
+
+        thead > tr > th {
+          text-align: center;
+          padding-right: 0;
+        }
+      }
+
+      #player-avatar {
+        background-color: red;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        border: 1px solid white;
       }
     }
 

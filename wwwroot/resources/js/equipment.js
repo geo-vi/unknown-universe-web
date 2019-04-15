@@ -689,24 +689,64 @@ class equipment {
 
         //ITEM MENU
         $('.inventory-item').contextmenu(function (event) {
-            event.preventDefault();
-            let itemID = parseInt($(this).data('item-id')),
-                itemName = $(this).data('item-name'),
-                itemSell = parseInt($(this).data('item-credits'));
-            swal('Sell item?', 'For selling ' + itemName + ' you will get ' + itemSell + ' Credits.', {
-                buttons: {
-                    sell: {
-                        text: "Sell Item"
-                    },
-                    cancel: true
-                }
-            }).then((value) => {
-                switch (value) {
-                    case "sell":
-                        equipment.sellItem(null, itemID);
-                        break;
-                }
+            let selected = $(".ui-selected:not(.ui-draggable-dragging)").each(function () {
             });
+
+            if (selected.length > 1) {
+                let ITEMS = [],
+                    ITEM_CATEGORY = null,
+                    ITEM = null,
+                    ITEM_NAME = null,
+                    ITEM_ID = null,
+                    SELL_VALUE = 0;
+
+                for (let i = 0; i < selected.length; i++) {
+                    ITEM_NAME = $(selected[i]).data("item-name");
+                    ITEM_CATEGORY = $(selected[i]).data("type");
+                    ITEM_ID = $(selected[i]).data("item-id");
+                    SELL_VALUE += parseInt($(selected[i]).data('item-credits'));
+                    ITEM = {
+                        'NAME': ITEM_NAME,
+                        'CATEGORY': ITEM_CATEGORY,
+                        'ID': ITEM_ID
+                    };
+                    ITEMS.push(ITEM);
+                }
+
+                swal('Sell item?', 'For selling ' + selected.length + ' of  ' + ITEM_NAME + ' you will get ' + SELL_VALUE + ' Credits.', {
+                    buttons: {
+                        sell: {
+                            text: "Sell Item"
+                        },
+                        cancel: true
+                    }
+                }).then((value) => {
+                    switch (value) {
+                        case "sell":
+                            equipment.sellItems(null, ITEMS);
+                            break;
+                    }
+                });
+            } else {
+                event.preventDefault();
+                let itemID = parseInt($(this).data('item-id')),
+                    itemName = $(this).data('item-name'),
+                    itemSell = parseInt($(this).data('item-credits'));
+                swal('Sell item?', 'For selling ' + itemName + ' you will get ' + itemSell + ' Credits.', {
+                    buttons: {
+                        sell: {
+                            text: "Sell Item"
+                        },
+                        cancel: true
+                    }
+                }).then((value) => {
+                    switch (value) {
+                        case "sell":
+                            equipment.sellItem(null, itemID);
+                            break;
+                    }
+                });
+            }
         });
 
         //DRONE MENU
@@ -800,6 +840,31 @@ class equipment {
                 'ITEM_ID': itemID,
             };
             equipment.sendRequest('sellItem', 'sell_item', params);
+        }
+    }
+
+    /**
+     * sellItems Function
+     * sends request to sellItems
+     *
+     * @param data
+     * @param items
+     */
+    static sellItems(data = null, items) {
+        if (data !== null) {
+            if (!data.error) {
+                swal('Success!', 'Sucessfully sold your Item!', 'success')
+                equipment.reload();
+            } else {
+                swal('Error!', data.error_msg, 'error');
+                equipment.reload();
+            }
+        } else {
+            $(".loading-screen").show();
+            let params = {
+                'ITEMS': items,
+            };
+            equipment.sendRequest('sellItems', 'sell_items', params);
         }
     }
 

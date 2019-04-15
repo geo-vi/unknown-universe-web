@@ -81,7 +81,7 @@ class Item extends AbstractItem
                     $BOOTY_KEYS = [
                         0 => 0,
                         1 => 0,
-                        2 => 0,
+                        2 => 0
                     ];
                 }
                 if ($this->LOOT_ID == 'resource_booty-key') {

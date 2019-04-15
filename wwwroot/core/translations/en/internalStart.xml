@@ -28,7 +28,7 @@
     <translate ID="BODY_TEXT_PP_ORIGIN">Origin:</translate>
     <translate ID="BODY_TEXT_PP_AGE">Age:</translate>
     <translate ID="BODY_TEXT_PP_GENDER">Gender:</translate>
-    <translate ID="BODY_TEXT_PP_CONTACT">Contact:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Discord:</translate>
     <translate ID="BODY_TEXT_PP_SKILLTREE">CLICK HERE TO OPEN SKILL TREE!</translate>
 
     <!-- Misc Log Messages -->

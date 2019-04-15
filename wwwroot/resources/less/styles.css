@@ -5607,6 +5607,9 @@ body.internalStart #player-info-profile-body ul {
 body.internalStart #player-info-profile-body ul p {
   margin: 0;
 }
+body.internalStart #player-title .dropdown {
+  max-width: 100px;
+}
 body.internalStart #player-info-name {
   font-size: 41.67px;
   text-align: center;
@@ -5727,11 +5730,30 @@ body.internalStart #tv-state #tv-off {
   position: absolute;
 }
 body.internalStart #tv-state #tv-on {
-  background: url("https://thumbs.gfycat.com/AstonishingGlitteringArizonaalligatorlizard-size_restricted.gif") no-repeat center center;
+  background: url("../images/backgrounds/internal_background.png") no-repeat center center;
   width: 100%;
   height: 100%;
   z-index: 3;
   position: absolute;
+}
+body.internalStart #tv-state #tv-on .tv-buttons {
+  margin-left: 140px;
+  margin-top: 90px;
+}
+body.internalStart #tv-state #tv-on .tv-button {
+  width: 50px;
+  height: 50px;
+  background: white;
+  margin-left: 5px;
+}
+body.internalStart #tv-state #tv-on .tv-button:hover {
+  background: black !important;
+}
+body.internalStart #tv-state #tv-on #news,
+body.internalStart #tv-state #tv-on #videos,
+body.internalStart #tv-state #tv-on #live {
+  background: white;
+  float: left;
 }
 body.internalStart #page-container {
   background: rgba(255, 255, 255, 0.02);
@@ -8510,32 +8532,31 @@ body.internalAuction .item_light:hover {
 body.internalAuction tr {
   cursor: pointer;
 }
-body.internalClan .clan-textbox {
-  display: inline;
-  margin: 15px;
-}
-body.internalClan #clan_tag {
-  width: 150px;
-}
-body.internalClan #clan_name {
-  width: 300px;
-}
-body.internalClan #clan_desc {
-  height: 100px;
-  width: 483px;
+body.internalClan .main-clan-info {
   margin-left: 15px;
+  margin-right: 15px;
+}
+body.internalClan .clan-textbox {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: none !important;
 }
 body.internalClan .clan-header {
   background: rgba(0, 0, 0, 0.4);
   height: 40px;
 }
-body.internalClan .clan-header nav > ul > li {
+body.internalClan .clan-header ul > li {
   text-align: center;
   text-transform: none;
   position: relative;
 }
+body.internalClan .clan-header ul > li a {
+  color: white;
+}
+body.internalClan .clan-header ul > li a:hover {
+  color: black;
+}
 body.internalClan .clan-body {
-  background: #cccccc36;
+  background: #ffffff1c;
 }
 body.internalClan .clan-top-header,
 body.internalClan .clan-bottom-header {
@@ -8558,6 +8579,40 @@ body.internalClan #clan-details h3 {
 body.internalClan #clan-details table > tbody > tr > th {
   padding-right: 10px;
   padding-left: 30px;
+}
+body.internalClan .edit-clan {
+  max-width: 300px;
+  margin: 0 auto;
+}
+body.internalClan #clan-members h3 {
+  text-align: center;
+}
+body.internalClan #clan-members table {
+  width: 100%;
+}
+body.internalClan #clan-members table tbody > tr {
+  height: 65px;
+  text-align: center;
+  background-color: #0000003d;
+}
+body.internalClan #clan-members table tbody > tr th {
+  text-align: center;
+  padding-right: 10px;
+  padding-left: 30px;
+}
+body.internalClan #clan-members table tbody > tr:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+body.internalClan #clan-members table thead > tr > th {
+  text-align: center;
+  padding-right: 0;
+}
+body.internalClan #clan-members #player-avatar {
+  background-color: red;
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+  border: 1px solid white;
 }
 body.internalClan #clan-avatar {
   background: #000000;

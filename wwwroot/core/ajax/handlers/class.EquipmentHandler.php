@@ -23,6 +23,7 @@ class EquipmentHandler extends AbstractHandler
         $this->addAction('switch_hangar', ['HANGAR_ID']);
         $this->addAction('sell_drone', ['DRONE_ID']);
         $this->addAction('sell_item', ['ITEM_ID']);
+        $this->addAction('sell_items', ['ITEMS']);
     }
 
     public function handle() : void
@@ -137,6 +138,18 @@ class EquipmentHandler extends AbstractHandler
         } else {
             http_response_code(400);
             die(json_encode(["message" => "Something went wrong..."]));
+        }
+    }
+
+    /*
+     * Sell Items Function
+     */
+    public function exec_sell_items() {
+        global $System;
+        $ITEMS = json_decode($this->params['ITEMS']);
+        die(json_encode(["message" => "Something went wrong...".$ITEMS]));
+        foreach ($ITEMS as $ITEM) {
+             $ITEM_ID = $ITEM->ID;
         }
     }
 
