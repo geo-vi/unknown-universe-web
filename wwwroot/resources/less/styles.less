@@ -4199,7 +4199,8 @@ body {
       }
 
       #player-avatar {
-        background-color: red;
+        background: url("../images/avatars/default.png") no-repeat;
+        background-size: cover;
         width: 50px;
         height: 50px;
         margin-left: 15px;
@@ -4208,11 +4209,35 @@ body {
     }
 
     #clan-avatar {
-      background: rgb(0, 0, 0);
+      background: url("../images/avatars/default.png") no-repeat;
+      background-size: cover;
       float: left;
       width: 100px;
       height: 100px;
       margin-right: 20px;
+      border: 1px solid white;
+    }
+
+    #diplomacy {
+      height: 450px;
+      .diplomacies {
+        height: 330px;
+        overflow: auto;
+        display: block;
+        margin: 15px;
+      }
+      #usr {
+        width:300px;
+      }
+    }
+
+    #administration {
+      height: 450px;
+
+      .container {
+        margin-top: 150px;
+        left: 200px;
+      }
     }
   }
 

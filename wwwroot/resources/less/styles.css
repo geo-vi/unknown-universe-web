@@ -8608,18 +8608,40 @@ body.internalClan #clan-members table thead > tr > th {
   padding-right: 0;
 }
 body.internalClan #clan-members #player-avatar {
-  background-color: red;
+  background: url("../images/avatars/default.png") no-repeat;
+  background-size: cover;
   width: 50px;
   height: 50px;
   margin-left: 15px;
   border: 1px solid white;
 }
 body.internalClan #clan-avatar {
-  background: #000000;
+  background: url("../images/avatars/default.png") no-repeat;
+  background-size: cover;
   float: left;
   width: 100px;
   height: 100px;
   margin-right: 20px;
+  border: 1px solid white;
+}
+body.internalClan #diplomacy {
+  height: 450px;
+}
+body.internalClan #diplomacy .diplomacies {
+  height: 330px;
+  overflow: auto;
+  display: block;
+  margin: 15px;
+}
+body.internalClan #diplomacy #usr {
+  width: 300px;
+}
+body.internalClan #administration {
+  height: 450px;
+}
+body.internalClan #administration .container {
+  margin-top: 150px;
+  left: 200px;
 }
 body.internalSkillTree .skill-body {
   background: rgba(0, 0, 0, 0.61);

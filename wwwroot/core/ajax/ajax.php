@@ -17,7 +17,7 @@ if ($System->isLoggedIn()) {
         'company'   => new CompanyHandler(),
         'user'      => new UserRefreshHandler(),
         'messaging' => new MessageHandler(),
-        'clan'      => new ClanHandler(),
+        'clan'      => new ClanHandler()
     ];
 
     if (isset($_POST['handler']) && !empty($_POST['handler'])) {

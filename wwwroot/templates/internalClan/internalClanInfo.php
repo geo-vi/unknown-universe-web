@@ -1,3 +1,9 @@
+<?php
+    $CLAN_ID = $System->User->__get('CLAN_ID');
+    $CLAN = $System->Clan->getClanById($CLAN_ID);
+    $CLAN_MEMBERS = $System->Clan->getClanMembers($CLAN_ID);
+
+?>
 <div class="clan-body clearfix">
     <div class="clan-header">
             <ul class="nav nav-justified" role="tablist">
@@ -37,11 +43,11 @@
         <div role="tabpanel" class="tab-pane active" id="clan-info">
             <div id="clan-avatar"></div>
             <div id="clan-details">
-                <h3>NAME OF CLAN</h3>
+                <h3><?=$CLAN['NAME'] ?></h3>
                 <table>
                     <tr>
                         <th>Name</th>
-                        <td>[CLAN] NAME OF CLAN</td>
+                        <td>[<?=$CLAN['TAG'] ?>] <?=$CLAN['NAME']?></td>
                         <th>Company</th>
                         <td>VRU</td>
                     </tr>
@@ -49,15 +55,15 @@
                         <th>Leader</th>
                         <td>general_Rejection</td>
                         <th>Description</th>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet imperdiet ultrices.</td>
+                        <td><?=$CLAN['DESCRIPTION'] ?></td>
                     </tr>
                     <tr>
                         <th>Ranking</th>
-                        <td>#0</td>
+                        <td>#<?=$CLAN['RANK'] ?></td>
                     </tr>
                     <tr>
                         <th>Date of creation</th>
-                        <td>0/0/0 0:00:00</td>
+                        <td><?=$CLAN['CREATED'] ?></td>
                     </tr>
                 </table>
                 <div class="edit-clan"><a id="edit_clan_button" class="btn btn-block btn-primary" data-toggle="modal"
@@ -66,7 +72,7 @@
         </div> <!-- /clan-info -->
 
         <div role="tabpanel" class="tab-pane" id="clan-members">
-            <h3>Clan Members [1/50]</h3>
+            <h3>Clan Members [<?=sizeof($CLAN_MEMBERS)?>/50]</h3>
             <table>
                 <thead>
                 <tr>
@@ -79,24 +85,82 @@
                     <th>Rank</th>
                 </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+
+                </tbody>
             </table>
         </div> <!-- /clan-members -->
 
         <div role="tabpanel" class="tab-pane" id="diplomacy">
+            <div class="diplomacies">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Clan name</th>
+                        <th>Members</th>
+                        <th>Rank</th>
+                        <th>Company</th>
+                        <th>Diplomacy</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>No Diplomacies</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-inline col-lg-6 col-lg-offset-3 text-center">
+                <div class="form-group">
+                    <label for="usr" class="col-xs-2">Name:</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="usr">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Diplomacy
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Alliance</a></li>
+                            <li><a href="#">NAP</a></li>
+                            <li><a href="#">War</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
         </div> <!-- /diplomacy -->
 
         <div role="tabpanel" class="tab-pane" id="messages">
         </div> <!-- /messages -->
 
         <div role="tabpanel" class="tab-pane" id="administration">
+            <div class="container col-lg-6 col-lg-offset-3">
+                <div id="members-list" class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose a player
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </div>
+                <div class="control-group controls span2">
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" disabled>Update Clan Info</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" disabled>Kick Members</label>
+                    </div>
+                    <div class="checkbox disabled">
+                        <label><input type="checkbox" value="" disabled>Accept Members</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" disabled>Delete clan</label>
+                    </div>
+                </div>
+            </div>
         </div> <!-- /administration -->
 
         <div role="tabpanel" class="tab-pane" id="battlestation">
         </div> <!-- /battlestation -->
     </div>
 </div>
-
-<script>
-    clan.renderInternal();
-</script>
