@@ -11,6 +11,9 @@ class User
     /** @var  SkillTree */
     public $SkillTree;
 
+    /** @var GalaxyGates */
+    public $GalaxyGates;
+
     protected $AccountData;
     protected $PlayerData;
     protected $PlayerExtraData;
@@ -191,6 +194,9 @@ class User
 
         // GET SKILLTREE DATA
         $this->SkillTree = new SkillTree($this);
+
+        //LOAD GG
+        $this->GalaxyGates = new GalaxyGates($this);
     }
 
     /**
@@ -327,6 +333,14 @@ class User
                                         $this->__get('USER_ID'),
                                         $this->__get('PLAYER_ID'),
                                     ]
+                );
+
+                //INSERT player_galaxy_gates
+                $this->mysql->QUERY("INSERT INTO player_galaxy_gates(USER_ID,PLAYER_ID) VALUES(?,?)",
+                    [
+                        $this->__get('USER_ID'),
+                        $this->__get('PLAYER_ID'),
+                    ]
                 );
 
                 $this->refresh();

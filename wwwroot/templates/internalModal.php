@@ -262,67 +262,88 @@ include_once( 'internalSettings/internalCountries.php' );
     </div>
 </div>
 
-<script type="text/javascript">
-    // ClassicEditor.create(document.querySelector('#msgContent'))
-    //     .then(editor => {
-    //         window.modalEditor = editor;
-    //     });
-    //
-    // $('#sendMsg').click(function () {
-    //     if (window.modalEditor) {
-    //         window.modalEditor.updateSourceElement();
-    //     }
-    //
-    //     let data = {
-    //         recipient: $('#msgRecipient').val(),
-    //         content: $('#msgContent').val(),
-    //         title: $('#msgHeader').val()
-    //     };
-    //
-    //     sendCoreRequest('messaging', 'send', data, function () {
-    //         // now we clean the message data and close the modal
-    //         $('#closeMsg').click();
-    //
-    //         $('#msgRecipient').val('');
-    //         $('#msgContent').val('');
-    //         $('#msgHeader').val('');
-    //
-    //         window.modalEditor.setData('');
-    //     });
-    // });
-    //
-    // $('#changename').click(function () {
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "",
-    //         data: { action: 'changePilotName', subAction: 'changename', userName: $('#userNameTextBox').val() },
-    //         success: function () {
-    //             console.log(data);
-    //         },
-    //         error: function () {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
-    //
-    // $('#changePetName').click(function () {
-    //     console.log("Trying to change name to : " + $('#petNameTextBox').val())
-    //     $('#popup-modalBackground').css({ 'z-index': 1050 }).show();
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "",
-    //         data: { action: 'changePetName', subAction: 'changename', userName: $('#petNameTextBox').val() },
-    //         success: function (data) {
-    //             data = $.parseJSON(data);
-    //             if (data.status === 'OK') {
-    //                 alert("Okey");
-    //             } else {
-    //                 alert("Not okey");
-    //             }
-    //         },
-    //         error: function () {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
-</script>
+<div class="modal" id="clickClanMember" tabindex="-1" role="dialog"
+     aria-labelledby="composeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Clan member actions</h4>
+            </div>
+            <div class="modal-body">
+                <?php
+                $isLeader = $System->Clan->memberIsLeader($System->User->__get('USER_ID'));
+                if (!$isLeader) {
+                ?>
+                <p>You can't do any actions to this member!</p>
+                <?php } else { ?>
+                <div class="form-inline">
+                    <div class="form-group">
+                        <button id="kick" type="button" class="btn btn-primary" data-dismiss="modal">Kick</button>
+                    </div>
+                    <div class="form-group">
+                        <button id="make-leader" type="button" class="btn btn-primary" data-dismiss="modal">Make leader</button>
+                    </div>
+                </div>
+                <?php } ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="editClanInfo" tabindex="-1" role="dialog"
+     aria-labelledby="composeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2 class="modal-title" id="composeModalLabel">
+                    Editing Clan Info
+                </h2>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="clanName">
+                            NAME:
+                        </label>
+                        <input class="col-sm-10" type="text" id="clanName" value="" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="clanDesc">
+                            DESCRIPTION:
+                        </label>
+                        <textarea class="col-sm-2 control-label" id="clanDesc"
+                                  name="clanDesc"
+                                  placeholder="Clan Description..."></textarea>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button id='closeMsg' type="button" class="btn btn-default" data-dismiss="modal">
+                    Close
+                </button>
+                <button id="sendMsg" type="submit" class="btn btn-primary">
+                    Send
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

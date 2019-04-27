@@ -60,7 +60,7 @@
                     ?>
                     <h3>Your rank</h3>
                     <div class="single-item-headert">
-                        You are a <?php echo $System->User->getRankName($System->User->RANK) ?>. Your rank is calculated
+                        You are a <?php echo $System->User->getRankName() ?>. Your rank is calculated
                         as follows:
                     </div>
                 </div>

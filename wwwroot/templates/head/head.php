@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="<?= PROJECT_HTTP_ROOT ?>resources/css/main.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
 
     <!-- Include JS -->
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.min.js"></script>
@@ -28,9 +29,10 @@
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/visibility.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/jQuery/jquery.tools.min.js"></script>
-    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/bootstrap/bootstrap.min.js"></script>
+    <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/bootstrap/bootstrap.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/sweetalert.min.js"></script>
     <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/ajax.js"></script>
-
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>

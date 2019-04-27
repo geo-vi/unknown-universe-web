@@ -7,6 +7,7 @@ include_once( './handlers/class.EquipmentHandler.php' );
 include_once( './handlers/class.MessageHandler.php' );
 include_once( './handlers/class.ShopHandler.php' );
 include_once( './handlers/class.UserRefreshHandler.php' );
+include_once( './handlers/class.GalaxyGateHandler.php' );
 
 header('Content-Type: application/json');
 
@@ -17,7 +18,8 @@ if ($System->isLoggedIn()) {
         'company'   => new CompanyHandler(),
         'user'      => new UserRefreshHandler(),
         'messaging' => new MessageHandler(),
-        'clan'      => new ClanHandler()
+        'clan'      => new ClanHandler(),
+        'gg'        => new GalaxyGateHandler()
     ];
 
     if (isset($_POST['handler']) && !empty($_POST['handler'])) {

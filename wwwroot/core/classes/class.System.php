@@ -18,11 +18,12 @@ include_once( __DIR__ . '/class.User.php' );
 include_once( __DIR__ . '/user/class.Hangars.php' );
 include_once( __DIR__ . '/user/class.Inventory.php' );
 include_once( __DIR__ . '/user/class.SkillTree.php' );
+include_once( __DIR__ . '/user/class.GalaxyGates.php' );
 include_once( __DIR__ . '/user/hangar/class.Hangar.php' );
 include_once( __DIR__ . '/user/inventory/class.Item.php' );
 
 //CLAN RELATED CLASSE
-include_once( __DIR__ . '/class.Clan.php' );
+include_once(__DIR__ . '/class.Clan.php');
 
 //SHOP RELATED CLASSES
 include_once( __DIR__ . '/class.Shop.php' );
@@ -372,10 +373,13 @@ class System
     {
         if ($this->isLoggedIn()) {
             try {
-                $_SESSION = [];
-                session_regenerate_id();
+                session_start();
+                session_unset();
                 session_destroy();
 
+                session_regenerate_id(true);
+                session_commit(); // or session_write_close();
+                setcookie(session_name(),'',0,'/');
                 return true;
             } catch (Exception $e) {
                 return false;

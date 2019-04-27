@@ -27,7 +27,7 @@ include_once('internalModal.php');
                 <ul class="pull-right">
                     <li><p><?= $System->User->__get('PLAYER_NAME') ?></p></li>
                     <li><p>Beta Tester<span class="bold"> [BETA]</span></p></li>
-                    <li><p class="bold">TOP 15</p></li>
+                    <li><p class="bold">TOP <?= $System->User->__get('RANKING') ?></p></li>
                 </ul>
             </div><!-- /player-info-profile-body -->
 

@@ -16,6 +16,9 @@ class ClanHandler extends AbstractHandler
         $this->addAction('acceptMemberRequest', ['USER_ID']);
         $this->addAction('cancelMemberRequest', ['USER_ID']);
         $this->addAction('joinRequest', ['CLAN_ID']);
+        $this->addAction('kickMember', ['USER_ID']);
+        $this->addAction('makeLeader', ['USER_ID']);
+        $this->addAction('leaveClan');
     }
 
     public function handle() : void
@@ -30,17 +33,23 @@ class ClanHandler extends AbstractHandler
     {
         global $System;
         $CLANS = $System->Clan->getClans();
+        $JOIN_REQUESTS = $System->Clan->getMyJoinRequests();
         $CLAN_ARRAY = [];
+        $REQUESTS_ARRAY = [];
 
         foreach ($CLANS as $clan) {
             $clan['MEMBERS'] = $System->Clan->getClanMembers($clan['ID']);
             array_push($CLAN_ARRAY, $clan);
         }
 
+        foreach ($JOIN_REQUESTS as $req) {
+            array_push($REQUESTS_ARRAY, $req);
+        }
         die(
         json_encode(
             [
                 "CLANS"  => $CLAN_ARRAY,
+                "JOIN_REQUESTS" => $REQUESTS_ARRAY,
             ]
         )
         );
@@ -109,18 +118,51 @@ class ClanHandler extends AbstractHandler
     function exec_acceptMemberRequest() {
         global $System;
         $id = $this->params['USER_ID'];
-        $System->Clan->acceptMemberRequest($id);
+        if ($System->Clan->memberIsLeader($System->User->__get('USER_ID'))) {
+            $System->Clan->acceptMemberRequest($id);
+        }
     }
 
     function exec_cancelMemberRequest() {
         global $System;
         $id = $this->params['USER_ID'];
-        $System->Clan->cancelMemberRequest($id);
+        if ($System->Clan->memberIsLeader($System->User->__get('USER_ID'))) {
+            $System->Clan->cancelMemberRequest($id);
+        }
     }
 
     function exec_joinRequest() {
         global $System;
         $id = $this->params['CLAN_ID'];
         $System->Clan->submitJoinRequest($id);
+    }
+
+    function exec_kickMember() {
+        global $System;
+        $id = $this->params['USER_ID'];
+        if ($System->Clan->memberIsLeader($System->User->__get('USER_ID'))) {
+            $System->Clan->kick($id);
+        }
+    }
+
+    function exec_makeLeader() {
+        global $System;
+        $targetId = $this->params['USER_ID'];
+        $USER_ID = $System->User->__get('USER_ID');
+
+        if ($System->Clan->memberIsLeader($USER_ID)) {
+            $System->Clan->setLeader($targetId);
+            $System->Clan->demote($USER_ID, 1);
+        }
+    }
+
+    function exec_leaveClan() {
+        global $System;
+        $System->Clan->leave();
+        die(json_encode(
+            [
+                "success" => true,
+            ]
+        ));
     }
 }

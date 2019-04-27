@@ -17,11 +17,10 @@
     <div class="clan-bottom-header">
         <h1>Find Clan</h1>
     </div>
-    <div class="clan-bottom-cotainer">
-        <div class="clan-bottom-content  col-xs-12">
+    <div class="clan-bottom-container">
+        <div class="clan-bottom-content col-xs-12">
             <div class="clan-bottom-input-container">
                 <input id="clan-search-text" class="form-control">
-                <a class="btn btn-block btn-primary margin-top" id="clan-search">Search</a>
             </div>
             <div class="clearfix clan-bottom-list-container custom-scroll margin-top">
                 <table class="table">

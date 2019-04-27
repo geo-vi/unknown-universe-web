@@ -53,7 +53,7 @@ $System->routing->add("internalSettings", "internalSettings", true);
 //$System->routing->add("internalSkylab", "internalSkylab", true);
 //$System->routing->add("internalAuction", "internalAuction", true);
 $System->routing->add("internalMessaging", "internalMessaging", true);
-//$System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
+$System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
 //$System->routing->add("internalCalendar", "internalCalendar", true);
 //$System->routing->add("internalPayment", "internalPayment", true);
 

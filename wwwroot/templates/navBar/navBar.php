@@ -121,7 +121,7 @@
                 <li class="header_button header_disabled_button">
                     <a href="internalPayment"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
+                <li class="header_button header_normal_button">
                     <a href="internalGalaxyGates"><?= $System->__('NAV_TEXT_GALAXYGATES') ?></a>
                 </li>
             </ul>

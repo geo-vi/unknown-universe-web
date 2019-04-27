@@ -7,7 +7,13 @@ class modals {
     }
 
     static render() {
-
+        $('#kick').click(function() {
+           clan.kickButtonClicked();
+        });
+        $('#make-leader').click(function() {
+            clan.makeLeaderClicked();
+            $(this).hide();
+        });
     }
 
     /**
