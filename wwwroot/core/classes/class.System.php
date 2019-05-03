@@ -1,8 +1,8 @@
 <?php
 
-use clan\Clan;
 use DB\MySQL;
 use shop\Shop;
+use clan\Clan;
 
 //SYSTEM RELATED CLASSES
 include_once( __DIR__ . '/system/class.MySQL.php' );
@@ -67,6 +67,7 @@ class System
 
     public $Server;
 
+    /** @var Game */
     public $Game;
 
     function __construct()
@@ -409,7 +410,6 @@ class System
                 $this->Shop            = new Shop($this->User);
                 $this->Clan            = new Clan($this->User);
                 $this->Game            = new Game($this->User);
-
                 //GET LANGUAGE
                 if ($user[0]['LANGUAGE'] != null) {
                     $this->translation->setLanguage($this->User->__get('LANGUAGE'));

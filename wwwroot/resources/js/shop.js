@@ -71,8 +71,6 @@ class shop {
                     ITEM.SHOW_CATS ||
                     ITEM.HAS_PET ||
                     ITEM.HAS_MAX_IRIS ||
-                    ITEM.NAME ===
-                    'Flax' ||
                     ITEM.hasShip ||
                     ITEM.hasDesign
                     ||
@@ -82,6 +80,10 @@ class shop {
                     let ItemDIV = $('<div>').addClass('item').attr('data-item-id', INDEX),
                         ItemIMG = $('<div>').addClass('item-image'),
                         ItemPRICE = $('<span>').addClass('item-price');
+
+                    if (ITEM.CATEGORY == 'eventammo') {
+                        ItemPRICE.addClass('discounted-item');
+                    }
 
                     let IMG_URL = ITEM.IMAGE_URL;
                     $(ItemIMG).attr('style', 'background-image: url("' + IMG_URL + '")');

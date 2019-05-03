@@ -61,7 +61,12 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-
+.discounted-item {
+    background: url('../images/icons/event_icon_18x18.png') no-repeat;
+    height: 18px;
+    width: 18px;
+    display: inline-block;
+}
 
 .ship-equipment-box{
     float: left;

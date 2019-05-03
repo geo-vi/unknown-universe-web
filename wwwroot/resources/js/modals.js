@@ -1,5 +1,6 @@
 class modals {
     constructor(USER_ID, PLAYER_ID, SERVER_IP) {
+        console.log('aa');
         modals.USER_ID = USER_ID;
         modals.PLAYER_ID = PLAYER_ID;
         modals.SERVER_IP = SERVER_IP;
@@ -10,9 +11,14 @@ class modals {
         $('#kick').click(function() {
            clan.kickButtonClicked();
         });
+
         $('#make-leader').click(function() {
             clan.makeLeaderClicked();
             $(this).hide();
+        });
+
+        $('#change-pet-name').click(function() {
+            equipment.changeName(undefined, $('#petNameTextBox').val());
         });
     }
 

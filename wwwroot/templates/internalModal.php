@@ -240,7 +240,7 @@ include_once( 'internalSettings/internalCountries.php' );
                         <label class="col-sm-2 control-label" style="left:-15px;"
                                for="petNameTextBox">Pet Name: </label>
                         <div class="col-sm-10">
-                            <input type="text" id="petNameTextBox" value="<?= $System->User->getPetName() ?>"
+                            <input type="text" id="petNameTextBox" class="form-control" value="<?= $System->User->getPetName() ?>"
                                    style="background-color: black;color:#fff;" />
                         </div>
                     </div>
@@ -252,7 +252,7 @@ include_once( 'internalSettings/internalCountries.php' );
                             data-dismiss="modal">
                         Close
                     </button>
-                    <button id="changePetName" type="submit" class="btn btn-primary">
+                    <button id="change-pet-name" type="button" class="btn btn-primary" data-dismiss="modal">
                         Change Name
                     </button>
 

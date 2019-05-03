@@ -34,7 +34,7 @@
                         <li class="category-<?= strtolower($CATEGORY) ?> <?= $CNT == 1 ? 'active' : '' ?>">
                             <a
                                     onclick="shop.switchCategory('<?= strtolower($CATEGORY) ?>');"
-                                    href="#"><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a>
+                                    href="#"><?php if ($CATEGORY == 'ammo' && $System->Game->getEventRunningNow()) { ?><span class="discounted-item"></span><?php } ?><?= $System->__('SHOP_NAV_' . $CATEGORY) ?></a>
                         </li>
                         <?php
                     }

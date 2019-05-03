@@ -128,7 +128,7 @@
 
             <ul class="main-right-buttons">
                 <li class="header_button header_normal_button">
-                    <a href="internalShop"><?= $System->__('NAV_TEXT_SHOP') ?></a>
+                    <a href="internalShop"><? if ($System->Game->getEventRunningNow()) { ?><span class="discounted-item"></span><?php } ?> <?= $System->__('NAV_TEXT_SHOP') ?></a>
                 </li>
                 <li class="header_button header_disabled_button">
                     <a href="#"><?= $System->__('NAV_TEXT_AUCTION') ?></a>

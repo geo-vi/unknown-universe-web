@@ -93,7 +93,9 @@ class Shop
             "table" => "items",
             "id"    => "ID",
             "where" => [
-                "CATEGORY" => "'ammo'",
+                "CATEGORY" => [
+                    "'ammo'"
+                ],
             ],
         ],
         "BOOSTER"    => [

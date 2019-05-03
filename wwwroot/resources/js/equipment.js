@@ -906,8 +906,29 @@ class equipment {
         }
     }
 
-    static changeName(data = null, petID) {
-        $('#changePetNameModal').modal('show');
+    static changeName(data = null, newName) {
+        if (data == null && newName !== undefined) {
+            if (newName.length > 15) {
+                swal('Name too long', 'Please reduce the characters in your P.E.T name', 'error');
+                return;
+            }
+            $(".loading-screen").show();
+
+            let params = {
+                'NEW_PET_NAME': newName,
+            };
+            equipment.sendRequest('changeName', 'change_pet_name', params);
+        }
+        else {
+            if (data.error) {
+                swal('Error', data.error_msg, 'error');
+            }
+            else {
+                $('#pet-name').text(data['new_name']);
+                swal('Success!', 'Pet name changed successfully!', 'success');
+                equipment.reload();
+            }
+        }
     }
 
     /**

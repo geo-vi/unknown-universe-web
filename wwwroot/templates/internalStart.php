@@ -26,7 +26,7 @@ include_once('internalModal.php');
 
                 <ul class="pull-right">
                     <li><p><?= $System->User->__get('PLAYER_NAME') ?></p></li>
-                    <li><p>Beta Tester<span class="bold"> [BETA]</span></p></li>
+                    <li><p><?=$System->User->getCurrentClan('NAME') ?><span class="bold"> [<?=$System->User->getCurrentClan('TAG') ?>]</span></p></li>
                     <li><p class="bold">TOP <?= $System->User->__get('RANKING') ?></p></li>
                 </ul>
             </div><!-- /player-info-profile-body -->
@@ -59,9 +59,18 @@ include_once('internalModal.php');
             <img alt='ship' src="<?= $System->User->getShipImage() ?>" id="ship" />
         </a>
         <?php
-        if ( !$System->User->hasPet()) {
+        if ($System->User->hasDrones()) {
+            $dlevel = $System->User->getDroneLevel();
+            $dtype = $System->User->getDroneType();
             ?>
-            <img alt='pet' src="<?= PROJECT_HTTP_ROOT ?>/resources/images/items/pet/pet10-15_top.png" id="pet" />
+
+            <img alt='drone' src="<?= Utils::getPathByLootId($dtype, 'top', $dlevel) ?>" id="drone"/>
+            <?php
+        }
+        if ( $System->User->hasPet()) {
+            $level = $System->User->getPetLevel();
+            ?>
+            <img alt='pet' src="<?= Utils::getPathByLootId('pet_pet10', 'top', $level) ?>" id="pet" />
             <?php
         }
         ?>
@@ -75,10 +84,13 @@ include_once('internalModal.php');
 
             <div id="tv-on" class="invisible">
                 <div class="tv-buttons">
-                    <div id="news" class="tv-button"></div>
-                    <div id="videos" class="tv-button"></div>
-                    <div id="live" class="tv-button"></div>
+                    <div id="news" class="tv-button"><p>News</p><span class="glyphicon glyphicon-globe"></span></div>
+                    <div id="videos" class="tv-button"><p>Live</p><span class="glyphicon glyphicon-film"></span></div>
+                    <div id="live" class="tv-button"><p>Players</p><span class="glyphicon glyphicon-user"></span></div>
                 </div>
+                <div class="tv-news invisible"><h2>News Channel</h2></div>
+                <div class="tv-live invisible"></div>
+                <div class="tv-players invisible"></div>
             </div> <!-- /tv-on -->
         </div> <!-- /tv-state -->
     </div> <!-- /tv-box -->
@@ -125,8 +137,7 @@ include_once('internalModal.php');
 
             <!-- EVENTS TAB -->
             <div role="tabpanel" class="tab-pane" id="events">
-                <?php if ($System->Game->getEventRunning() == -1) {
-                    ?>
+
                     <table id="roster">
                         <tr id="event-days">
                             <th></th>
@@ -138,68 +149,61 @@ include_once('internalModal.php');
                             <th><?= $System->__('BODY_TEXT_EVENTS_FRIDAY') ?></th>
                             <th><?= $System->__('BODY_TEXT_EVENTS_SATURDAY') ?></th>
                         </tr>
-                        <tr>
+                        <tr data-time="0">
                             <th>00:00</th>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
+                            <td><?=$System->Game->getEventRunning(0,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(1,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(2,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(3,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(4,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(5,0) ?></td>
+                            <td><?=$System->Game->getEventRunning(6,0) ?></td>
                         </tr>
-                        <tr>
+                        <tr data-time="10">
                             <th>10:00</th>
 
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
+                            <td><?=$System->Game->getEventRunning(0,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(1,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(2,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(3,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(4,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(5,1) ?></td>
+                            <td><?=$System->Game->getEventRunning(6,1) ?></td>
                         </tr>
-                        <tr style="color: chartreuse">
+                        <tr data-time="14">
                             <th>14:00</th>
 
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
+                            <td><?=$System->Game->getEventRunning(0,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(1,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(2,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(3,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(4,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(5,2) ?></td>
+                            <td><?=$System->Game->getEventRunning(6,2) ?></td>
                         </tr>
-                        <tr>
+                        <tr data-time="18">
                             <th>18:00</th>
 
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
+                            <td><?=$System->Game->getEventRunning(0,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(1,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(2,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(3,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(4,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(5,3) ?></td>
+                            <td><?=$System->Game->getEventRunning(6,3) ?></td>
                         </tr>
-                        <tr>
+                        <tr data-time="22">
                             <th>22:00</th>
 
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
-                            <td>NONE</td>
+                            <td><?=$System->Game->getEventRunning(0,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(1,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(2,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(3,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(4,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(5,4) ?></td>
+                            <td><?=$System->Game->getEventRunning(6,4) ?></td>
                         </tr>
                     </table>
-                <?php } else {
-                    ?>
-                    <div id="eventdetails">
-                        TODO
-                    </div>
-                <?php }
-                ?>
             </div> <!-- /events -->
 
             <!-- PILOT PROFILE TAB -->
@@ -356,41 +360,7 @@ include_once('internalModal.php');
     </div> <!-- /logbook -->
 </div> <!-- /stats-corner -->
 
-<div id="skillTreeModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 id="modalTitle" class="modal-title">Skill tree</h4>
-            </div>
-            <div id="skillTreeContent" class="modal-body">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div> <!-- /skillTreeModal -->
     <script>
-        // swal({
-        //     title: '',
-        //     text: "You won't be able to revert this!",
-        //     type: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes, delete it!'
-        // }).then((result) => {
-        //     if (result.value) {
-        //         Swal.fire(
-        //             'Deleted!',
-        //             'Your file has been deleted.',
-        //             'success'
-        //         )
-        //     }
-        // });
-
         $('#player-ship-box').mouseenter(function () {
             // Hides the player info box
             $('#player-info-profile').toggleClass('invisible');
@@ -416,8 +386,31 @@ include_once('internalModal.php');
             //$('#player-title').toggleClass('dropdown');
         });
 
+        $('#news').click(function() {
+            $('.tv-buttons').toggleClass('invisible');
+            $('.tv-news').toggleClass('invisible');
+        });
+
         function switchTvOn() {
             $('#tv-off').toggleClass('invisible');
             $('#tv-on').toggleClass('invisible');
+        }
+
+        let today = new Date().getHours();
+        $('#roster .active-event').removeClass('active-event')
+        if (today >= 22 && today <= 24) {
+            $('#roster > tbody > tr[data-time="22"]').addClass('active-event')
+        }
+        else if (today >= 0 && today <= 2) {
+            $('#roster > tbody > tr[data-time="0"]').addClass('active-event')
+        }
+        else if (today >= 10 && today <= 12) {
+            $('#roster > tbody > tr[data-time="10"]').addClass('active-event')
+        }
+        else if (today >= 14 && today <= 16) {
+            $('#roster > tbody > tr[data-time="14"]').addClass('active-event')
+        }
+        else if (today >= 18 && today <= 20) {
+            $('#roster > tbody > tr[data-time="14"]').addClass('active-event')
         }
     </script>

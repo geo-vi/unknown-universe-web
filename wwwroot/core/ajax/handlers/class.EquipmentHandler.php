@@ -24,6 +24,7 @@ class EquipmentHandler extends AbstractHandler
         $this->addAction('sell_drone', ['DRONE_ID']);
         $this->addAction('sell_item', ['ITEM_ID']);
         $this->addAction('sell_items', ['ITEMS']);
+        $this->addAction('change_pet_name', ['NEW_PET_NAME']);
     }
 
     public function handle() : void
@@ -433,5 +434,21 @@ class EquipmentHandler extends AbstractHandler
                 die(json_encode(["message" => "No idea what just happened."]));
             }
         }
+    }
+
+    public function exec_change_pet_name() {
+        global $System;
+        $NEW_NAME = $this->params['NEW_PET_NAME'];
+        if (sizeof($NEW_NAME) > 15) {
+            http_response_code(400);
+            die(json_encode(["message" => "Name too long."]));
+        }
+        $System->User->changePetName($NEW_NAME);
+        die(json_encode(
+            [
+                "message" => "Name changed.",
+                "new_name" => $NEW_NAME,
+            ]
+        ));
     }
 }

@@ -784,6 +784,24 @@ class User
         )[0]['LEVEL'];
     }
 
+    public function getDroneType() {
+        $query = $this->mysql->QUERY('SELECT * FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?',
+            [
+                $this->__get('USER_ID'),
+                $this->__get('PLAYER_ID'),
+            ]
+        )[0]['DRONE_TYPE'];
+        switch ($query) {
+            case '1':
+                return 'drone_iris';
+            case '2':
+                return 'drone_apis';
+            case '3':
+                return 'drone_zeus';
+            default:
+                return 'drone_flax';
+        }
+    }
 
     // +--------------------------------------------------------+
     // + RANKING FUNCTIONS                                      +
@@ -1146,13 +1164,6 @@ class User
         return [];
     }
 
-    public function clanName($id)
-    {
-        $clan = $this->mysql->QUERY('SELECT * FROM server_clans WHERE ID = ?', [$id]);
-
-        return $clan[0]['NAME'];
-    }
-
     public function getCodes()
     {
         $check = $this->mysql->QUERY('SELECT * FROM server_voucher_codes');
@@ -1444,5 +1455,11 @@ class User
                                 ]
             );
         }
+    }
+
+    public function getCurrentClan($clanRow) {
+        Global $System;
+        $clan = $System->Clan->getClanById($this->__get('CLAN_ID'));
+        return $clan[$clanRow];
     }
 }

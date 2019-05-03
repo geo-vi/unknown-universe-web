@@ -32,9 +32,10 @@ include_once( 'internalModal.php' );
         <?php
         if ($System->User->hasDrones()) {
             $dlevel = $System->User->getDroneLevel();
+            $dtype = $System->User->getDroneType();
             ?>
             <div class="drone-box" onclick="equipment.switchDisplay(1, 'drone')">
-                <img src="<?= Utils::getPathByLootId('drone_iris', 'top', $dlevel) ?>" alt='drone_iris' />
+                <img src="<?= Utils::getPathByLootId($dtype, 'top', $dlevel) ?>" alt='drone_iris' />
             </div>
             <?php
         }
@@ -138,7 +139,7 @@ include_once( 'internalModal.php' );
                 </div>
                 <div class="col-xs-12 pet-equipment-container" data-pet-id="<?= $System->User->__get('USER_ID') ?>">
                     <div class="pet-equipment-name">
-                        <?= $System->User->getPetName() ?>
+                        <span id="pet-name"><?= $System->User->getPetName() ?></span>
                     </div>
                     <div class="pet-equipment-box">
                         <img src="<?= Utils::getPathByLootId('pet_pet10', 'top', $Lvl) ?>" alt='pet_img'/>
