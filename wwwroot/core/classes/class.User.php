@@ -781,7 +781,7 @@ class User
                                        $this->__get('USER_ID'),
                                        $this->__get('PLAYER_ID'),
                                    ]
-        )[0]['LEVEL'];
+        )[0]['LEVEL'] - 1;
     }
 
     public function getDroneType() {
