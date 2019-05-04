@@ -18,11 +18,11 @@ class Game
     public function getEventRunning($day, $hour)
     {
         $event = $this->mysql->QUERY('SELECT * FROM server_events WHERE EVENT_DAY = ? AND EVENT_HOUR = ?',
-            [$day, $hour])[0];
-        if ($event == null) {
+            [$day, $hour]);
+        if ($event == null || sizeof($event) == 0) {
             return 'NONE';
         }
-        return $event['NAME'];
+        return $event[0]['NAME'];
     }
 
     public function getEventRunningNow() {
