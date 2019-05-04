@@ -147,11 +147,22 @@ class EquipmentHandler extends AbstractHandler
      */
     public function exec_sell_items() {
         global $System;
-        $ITEMS = json_decode($this->params['ITEMS']);
-        die(json_encode(["message" => "Something went wrong...".$ITEMS]));
+        $ITEMS = $this->params['ITEMS'];
         foreach ($ITEMS as $ITEM) {
-             $ITEM_ID = $ITEM->ID;
+            $ITEM_ID = $ITEM['ID'];
+
+            if ( !$System->User->Inventory->ownsItem($ITEM_ID)) {
+                break;
+            }
+
+            if ($System->User->Inventory->sellItem($ITEM_ID)) {
+                //NO ERROR OCCURED
+            } else {
+                http_response_code(400);
+                die(json_encode(["message" => "Something went wrong..."]));
+            }
         }
+        die(json_encode(["message" => "Success!"]));
     }
 
     /*
