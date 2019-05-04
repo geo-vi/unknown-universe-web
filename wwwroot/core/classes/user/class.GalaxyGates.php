@@ -69,7 +69,7 @@ class GalaxyGates
             $this->tax($GGENERGY, $uridiumCost);
         }
         else {
-            $this->tax(100, 0);
+            $this->tax($times, 0);
         }
 
         for ($i = 0; $i < $times; $i++) {
