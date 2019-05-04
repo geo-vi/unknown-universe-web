@@ -395,7 +395,7 @@ class EquipmentHandler extends AbstractHandler
                                 die(json_encode(["message" => "Something went wrong while moveing the Item!"]));
                             }
                         } else {
-                            return;
+                            break;
                         }
                     }
                     break;
