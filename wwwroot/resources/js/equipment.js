@@ -1101,6 +1101,22 @@ class equipment {
     static sendPacket() {
         if (equipment.ws === undefined) {
             equipment.ws = new WebSocket("ws://" + atob(equipment.SERVER_IP) + ":666/cmslistener");
+
+            equipment.onmessage = function(e) {
+                console.log('Message:', e.data);
+            };
+
+            equipment.onclose = function(e) {
+                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+                setTimeout(function() {
+                    connect();
+                }, 1000);
+            };
+
+            equipment.onerror = function(err) {
+                console.error('Socket encountered error: ', err.message, 'Closing socket');
+                equipment.close();
+            };
         }
 
         setTimeout(function () {
