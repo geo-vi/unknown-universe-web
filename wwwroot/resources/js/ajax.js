@@ -1,7 +1,7 @@
 let ws = undefined;
 
 function connect() {
-    ws = new WebSocket("ws://dev.univ3rse.com:666/cmslistener");
+    ws = new WebSocket("ws://" + document.domain + ":666/cmslistener");
 
     ws.onclose = function(e) {
         console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);

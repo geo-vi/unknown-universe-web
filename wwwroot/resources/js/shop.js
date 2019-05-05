@@ -319,10 +319,6 @@ class shop {
      * @param params
      */
     static sendPacket(action, params = []) {
-        if (shop.ws === undefined) {
-            shop.ws = new WebSocket("ws://" + atob(shop.SERVER_IP) + ":666/cmslistener");
-        }
-
         let paramStr = '';
         if (params.length > 0) {
             paramStr = '|';
@@ -332,13 +328,7 @@ class shop {
             paramStr = paramStr.substring(0, paramStr.length - 1);
         }
 
-        setTimeout(function () {
-            if (shop.ws.readyState === 1) {
-                shop.ws.send('shop|' + shop.PLAYER_ID + '|' + action + paramStr);
-            } else {
-                shop.sendPacket(action);
-            }
-        }, 5);
+        sendGamePacket('shop|' + shop.PLAYER_ID + '|' + action + paramStr);
     }
 
 

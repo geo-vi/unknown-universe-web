@@ -25,7 +25,6 @@ include_once( 'internalModal.php' );
         <div class="ship-info"><h3>Shield:</h3> <span id="ship-shield">0/0</span>
         </div>
         <div class="ship-info"><h3>Speed:</h3> <span id="ship-speed">0</span></div>
-        <span class="server-connection">No connection established</span>
     </div>
 
     <div class="col-xs-4 player-ship-view">
