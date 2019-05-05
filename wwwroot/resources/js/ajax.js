@@ -1,3 +1,23 @@
+let ws = undefined;
+
+function connect() {
+    ws = new WebSocket("ws://dev.univ3rse.com:666/cmslistener");
+
+    ws.onclose = function(e) {
+        console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+        setTimeout(function() {
+            connect();
+        }, 1000);
+    };
+
+    ws.onerror = function(err) {
+        console.error('Socket encountered error: ', err.message, 'Closing socket');
+        ws.close();
+    };
+}
+
+connect();
+
 function sendCoreRequest(handler, action, params, successCallback = null, errorCallback = null) {
     let data = {
         'handler': handler,
@@ -81,4 +101,15 @@ function sendRegisterRequest(params, errorCallback = null) {
             }
         }
     });
+}
+
+function sendGamePacket(packet) {
+    console.log(packet);
+    setTimeout(function () {
+        if (ws.readyState === 1) {
+            ws.send(packet);
+        } else {
+            sendGamePacket(packet);
+        }
+    }, 2000);
 }

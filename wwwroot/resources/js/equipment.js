@@ -1099,33 +1099,7 @@ class equipment {
      * @param action
      */
     static sendPacket() {
-        if (equipment.ws === undefined) {
-            equipment.ws = new WebSocket("ws://" + atob(equipment.SERVER_IP) + ":666/cmslistener");
-
-            equipment.onmessage = function(e) {
-                console.log('Message:', e.data);
-            };
-
-            equipment.onclose = function(e) {
-                console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
-                setTimeout(function() {
-                    connect();
-                }, 1000);
-            };
-
-            equipment.onerror = function(err) {
-                console.error('Socket encountered error: ', err.message, 'Closing socket');
-                equipment.close();
-            };
-        }
-
-        setTimeout(function () {
-            if (equipment.ws.readyState === 1) {
-                equipment.ws.send('user|eq|' + equipment.PLAYER_ID);
-            } else {
-                equipment.sendPacket();
-            }
-        }, 5);
+        sendGamePacket('user|eq|' + equipment.PLAYER_ID);
     }
 
     /**
