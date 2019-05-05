@@ -1107,7 +1107,7 @@ class equipment {
             if (equipment.ws.readyState === 1) {
                 equipment.ws.send('user|eq|' + equipment.PLAYER_ID);
             } else {
-                equipment.sendPacket(action);
+                equipment.sendPacket();
             }
         }, 5);
     }
