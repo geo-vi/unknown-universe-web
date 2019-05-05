@@ -1099,7 +1099,7 @@ class equipment {
      * @param action
      */
     static sendPacket() {
-        if (equipment.ws == undefined) {
+        if (equipment.ws === undefined) {
             equipment.ws = new WebSocket("ws://" + atob(equipment.SERVER_IP) + ":666/cmslistener");
         }
 
@@ -1121,7 +1121,7 @@ class equipment {
      * @param params
      */
     static sendRequest(callback, action, params = "") {
-        // equipment.sendPacket();
+        equipment.sendPacket();
 
         let data = {
             'action': action,

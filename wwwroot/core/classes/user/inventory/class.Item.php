@@ -186,16 +186,8 @@ class Item
             return false;
         }
 
-        $ConfigID = $Config;
         $Config   = json_decode($this->CONFIGS[$Location]);
         $Index    = array_search($HangarID, $Config->hangars);
-
-        if ($this->CATEGORY == 'drone_design') {
-            $this->mysql->QUERY(
-                'UPDATE player_drones SET DESIGN_' . $ConfigID . ' = 0 WHERE ID = ?',
-                [$Config->droneID[$Index]]
-            );
-        }
 
         if (isset($Config->droneID)) {
             unset($Config->droneID[$Index]);

@@ -241,7 +241,7 @@ class EquipmentHandler extends AbstractHandler
                             ) {
                                 $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['IN_USE']++;
                             } else {
-                                http_response_code(400);
+                                //http_response_code(400);
                                 die(json_encode(["message" => "Something went wrong while moveing the Item!"]));
                             }
                         } else {
@@ -402,7 +402,7 @@ class EquipmentHandler extends AbstractHandler
                             ) {
                                 $SLOT_TYPES[strtoupper($ITEM->CATEGORY)]['IN_USE']++;
                             } else {
-                                http_response_code(400);
+                                //http_response_code(400);
                                 die(json_encode(["message" => "Something went wrong while moveing the Item!"]));
                             }
                         } else {
@@ -425,7 +425,7 @@ class EquipmentHandler extends AbstractHandler
                         if ($ITEM->moveToInventory($System->User->Hangars->CURRENT_HANGAR->ID, $CONFIG)) {
                             continue;
                         } else {
-                            http_response_code(400);
+                            //http_response_code(400);
                             die(json_encode(["message" => "Something went wrong while moveing an item!"]));
                         }
                     } else {
