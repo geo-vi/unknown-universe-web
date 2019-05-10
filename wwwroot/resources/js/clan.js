@@ -177,6 +177,7 @@ class clan {
         }
         else {
             if (data['message'] === "success") {
+                sendGamePacket('clan|new_create');
                 location.reload();
             } else {
                 swal('Error creating clan', data['message'], 'error')
@@ -243,6 +244,7 @@ class clan {
             this.sendRequest('acceptButtonClicked', 'acceptMemberRequest', params);
         }
         else {
+            sendGamePacket('clan|update_members');
             location.reload();
         }
     }
@@ -300,6 +302,7 @@ class clan {
         if (data === null) {
             this.sendRequest('leaveClan', 'leaveClan');
         } else {
+            sendGamePacket('clan|left_clan');
             location.reload();
         }
     }
