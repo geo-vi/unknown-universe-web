@@ -39,10 +39,10 @@ class Clan
     public function foundClan($name, $tag, $desc)
     {
         if (strlen($tag) < 3 || strlen($tag) > 4) {
-            return "Invalid clan tag";
+            return -1;
         } else {
             if (strlen($name) < 5 || strlen($name) > 20) {
-                return "Invalid clan name";
+                return -2;
             }
         }
 
@@ -56,7 +56,7 @@ class Clan
         if (empty($result)) {
             return self::registerClan($name, $tag, $desc);
         } else {
-            return "Clan name or tag exists";
+            return -3;
         }
     }
 
@@ -103,7 +103,7 @@ class Clan
             ]
         );
 
-        return $clanData[0];
+        return 1;
     }
 
     public function getClanByTag($tag)

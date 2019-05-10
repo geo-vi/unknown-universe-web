@@ -81,8 +81,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalClan"><?= $System->__('NAV_TEXT_CLAN') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalSkylab"><?= $System->__('NAV_TEXT_SKYLAB') ?></a>
                 </li>
             </ul>
 

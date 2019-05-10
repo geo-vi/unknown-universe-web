@@ -776,12 +776,17 @@ class User
      */
     public function getDroneLevel()
     {
-        return $this->mysql->QUERY('SELECT * FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?',
-                                   [
-                                       $this->__get('USER_ID'),
-                                       $this->__get('PLAYER_ID'),
-                                   ]
-        )[0]['LEVEL'] - 1;
+        $level = $this->mysql->QUERY('SELECT * FROM player_drones WHERE USER_ID = ? AND PLAYER_ID = ?',
+            [
+                $this->__get('USER_ID'),
+                $this->__get('PLAYER_ID'),
+            ]
+        )[0]['LEVEL'];
+
+        if ($level !== null && $level > 0) {
+            return $level - 1;
+        }
+        return 0;
     }
 
     public function getDroneType() {

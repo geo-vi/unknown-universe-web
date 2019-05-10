@@ -76,19 +76,27 @@ class ClanHandler extends AbstractHandler
         $clanName = $this->params['NAME'];
         $clanTag = $this->params['TAG'];
         $clanDesc = $this->params['DESC'];
+
+        if (!(preg_match('/^[\w.-]*$/', $clanTag))) {
+            Utils::dieM('No special characters or whitespaces allowed');
+            return;
+        }
+
         $clan = $System->Clan->foundClan($clanName, $clanTag, $clanDesc);
 
-        if ($clan == "Clan name or tag exists") {
-            Utils::dieM('Clan name or tag exists!');
-        }
-        else {
-            die(
-            json_encode(
-                [
-                    "CLAN" => $clan,
-                ]
-            )
-            );
+        switch ($clan) {
+            case -2:
+                Utils::dieM('Name shorter than 5 or longer than 20 characters!');
+                break;
+            case -1:
+                Utils::dieM('Tag shorter than 3 or longer than 4 characters!');
+                break;
+            case 1:
+                Utils::dieM('success');
+                break;
+            default:
+                Utils::dieM('Unknown error occured');
+                break;
         }
     }
 

@@ -50,7 +50,7 @@ $System->routing->add("internalMapRevolution", "internalMapRevolution", true, fa
 $System->routing->add("internalCompanyChoose", "internalCompanyChoose", true, false, false);
 $System->routing->add("internalClan", "internalClan", true);
 $System->routing->add("internalSettings", "internalSettings", true);
-//$System->routing->add("internalSkylab", "internalSkylab", true);
+$System->routing->add("internalSkylab", "internalSkylab", true);
 //$System->routing->add("internalAuction", "internalAuction", true);
 $System->routing->add("internalMessaging", "internalMessaging", true);
 $System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);

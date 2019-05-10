@@ -176,11 +176,10 @@ class clan {
             this.sendRequest('clanCreate', 'createClan', params);
         }
         else {
-            if (data.error) {
-                swal('Error!', data['error_msg'], 'error');
-            }
-            else {
+            if (data['message'] === "success") {
                 location.reload();
+            } else {
+                swal('Error creating clan', data['message'], 'error')
             }
         }
     }
