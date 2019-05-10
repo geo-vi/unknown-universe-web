@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<translation>
+    <!-- internalStart -->
+    <translate ID="BODY_TEXT_STATS">Statistiky</translate>
+    <translate ID="BODY_TEXT_EVENTS">Akce</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Profil Pilota</translate>
+
+    <!-- Stats -->
+    <translate ID="BODY_TEXT_STATS_PVPRANK">PvP pozice</translate>
+    <translate ID="BODY_TEXT_STATS_GLOBALRANK">Celková pozice</translate>
+    <translate ID="BODY_TEXT_STATS_LEVEL">Level</translate>
+
+    <!-- Events -->
+    <translate ID="BODY_TEXT_EVENTS_MONDAY">Pondělí</translate>
+    <translate ID="BODY_TEXT_EVENTS_TUESDAY">Úterý</translate>
+    <translate ID="BODY_TEXT_EVENTS_WEDNESDAY">Středa</translate>
+    <translate ID="BODY_TEXT_EVENTS_THURSDAY">Čtvrtek</translate>
+    <translate ID="BODY_TEXT_EVENTS_FRIDAY">Pátek</translate>
+    <translate ID="BODY_TEXT_EVENTS_SATURDAY">Sobota</translate>
+    <translate ID="BODY_TEXT_EVENTS_SUNDAY">Neděle</translate>
+
+    <!-- Pilot Profile -->
+    <translate ID="BODY_TEXT_PP_NAME">Jméno:</translate>
+    <translate ID="BODY_TEXT_PP_SINCE">Členem od:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Titul:</translate>
+    <translate ID="BODY_TEXT_PP_RANK">Hodnost:</translate>
+    <translate ID="BODY_TEXT_PP_ORIGIN">Původ:</translate>
+    <translate ID="BODY_TEXT_PP_AGE">Věk:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">Pohlaví:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Discord:</translate>
+    <translate ID="BODY_TEXT_PP_SKILLTREE">Klikněte zde pro otevření schopností!</translate>
+
+
+    <!-- Misc Log Messages -->
+    <translate ID="LOG_MISC_LASTLOGIN">Úspěšně ses přihlásil! z: {0}</translate>
+</translation>

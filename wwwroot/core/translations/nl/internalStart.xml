@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<translation>
+    <!-- internalStart -->
+    <translate ID="BODY_TEXT_STATS">Statistieken</translate>
+    <translate ID="BODY_TEXT_EVENTS">Evenementen</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Piloot Profiel</translate>
+
+    <!-- Stats -->
+    <translate ID="BODY_TEXT_STATS_PVPRANK">PvP Rang</translate>
+    <translate ID="BODY_TEXT_STATS_GLOBALRANK">Algemene Rang</translate>
+    <translate ID="BODY_TEXT_STATS_LEVEL">Level</translate>
+
+    <!-- Events -->
+    <translate ID="BODY_TEXT_EVENTS_MONDAY">MAANDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_TUESDAY">DINSDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_WEDNESDAY">WOENSDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_THURSDAY">DONDERDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_FRIDAY">VRIJDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_SATURDAY">ZATERDAG</translate>
+    <translate ID="BODY_TEXT_EVENTS_SUNDAY">ZONDAG</translate>
+
+    <!-- Pilot Profile -->
+    <translate ID="BODY_TEXT_PP_NAME">Naam:</translate>
+    <translate ID="BODY_TEXT_PP_SINCE">Gebruiker sinds:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Titel:</translate>
+    <translate ID="BODY_TEXT_PP_RANK">Rang:</translate>
+    <translate ID="BODY_TEXT_PP_ORIGIN">Land:</translate>
+    <translate ID="BODY_TEXT_PP_AGE">Leeftijd:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">Geslacht:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Discord:</translate>
+    <translate ID="BODY_TEXT_PP_SKILLTREE">KLIK HIER OP TALENTENBOOM THE OPENEN!</translate>
+
+
+    <!-- Misc Log Messages -->
+    <translate ID="LOG_MISC_LASTLOGIN">Je bent succesvol ingelogd! Van: {0}</translate>
+</translation>

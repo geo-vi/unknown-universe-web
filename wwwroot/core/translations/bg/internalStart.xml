@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<translation>
+    <!-- internalStart -->
+    <translate ID="BODY_TEXT_STATS">Статистика</translate>
+    <translate ID="BODY_TEXT_EVENTS">Евенти</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Пилотско Досие</translate>
+
+    <!-- Stats -->
+    <translate ID="BODY_TEXT_STATS_PVPRANK">PvP Ранк</translate>
+    <translate ID="BODY_TEXT_STATS_GLOBALRANK">Глобален Ранк</translate>
+    <translate ID="BODY_TEXT_STATS_LEVEL">Ниво</translate>
+
+    <!-- Events -->
+    <translate ID="BODY_TEXT_EVENTS_MONDAY">ПОНЕДЕЛНИК</translate>
+    <translate ID="BODY_TEXT_EVENTS_TUESDAY">ВТОРНИК</translate>
+    <translate ID="BODY_TEXT_EVENTS_WEDNESDAY">СРЯДА</translate>
+    <translate ID="BODY_TEXT_EVENTS_THURSDAY">ЧЕТВЪРТЪК</translate>
+    <translate ID="BODY_TEXT_EVENTS_FRIDAY">ПЕТЪК</translate>
+    <translate ID="BODY_TEXT_EVENTS_SATURDAY">СЪБОТА</translate>
+    <translate ID="BODY_TEXT_EVENTS_SUNDAY">НЕДЕЛЯ</translate>
+
+    <!-- Pilot Profile -->
+    <translate ID="BODY_TEXT_PP_NAME">Име:</translate>
+    <translate ID="BODY_TEXT_PP_SINCE">Рег. в:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Титла:</translate>
+    <translate ID="BODY_TEXT_PP_RANK">Ранк:</translate>
+    <translate ID="BODY_TEXT_PP_ORIGIN">От:</translate>
+    <translate ID="BODY_TEXT_PP_AGE">Възраст:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">Пол:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Discord:</translate>
+    <translate ID="BODY_TEXT_PP_SKILLTREE">Кликни тук за да отвориш скиловете!</translate>
+
+
+    <!-- Misc Log Messages -->
+    <translate ID="LOG_MISC_LASTLOGIN">Успешно влезе! От: {0}</translate>
+</translation>

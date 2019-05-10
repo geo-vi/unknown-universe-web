@@ -1,0 +1,36 @@
+﻿<?xml version="1.0"?>
+<translation>
+    <!-- internalStart -->
+    <translate ID="BODY_TEXT_STATS">İstatistikler</translate>
+    <translate ID="BODY_TEXT_EVENTS">Etkinlikler</translate>
+    <translate ID="BODY_TEXT_PILOTPROFILE">Pilot Profili</translate>
+
+    <!-- Stats -->
+    <translate ID="BODY_TEXT_STATS_PVPRANK">PvP Sıralama</translate>
+    <translate ID="BODY_TEXT_STATS_GLOBALRANK">Genel Sıralama</translate>
+    <translate ID="BODY_TEXT_STATS_LEVEL">Seviye</translate>
+
+    <!-- Events -->
+    <translate ID="BODY_TEXT_EVENTS_MONDAY">PAZARTESİ</translate>
+    <translate ID="BODY_TEXT_EVENTS_TUESDAY">SALI</translate>
+    <translate ID="BODY_TEXT_EVENTS_WEDNESDAY">ÇARŞAMBA</translate>
+    <translate ID="BODY_TEXT_EVENTS_THURSDAY">PERŞEMBE</translate>
+    <translate ID="BODY_TEXT_EVENTS_FRIDAY">CUMA</translate>
+    <translate ID="BODY_TEXT_EVENTS_SATURDAY">CUMARTESİ</translate>
+    <translate ID="BODY_TEXT_EVENTS_SUNDAY">PAZAR</translate>
+
+    <!-- Pilot Profile -->
+    <translate ID="BODY_TEXT_PP_NAME">İsim:</translate>
+    <translate ID="BODY_TEXT_PP_SINCE">Kayıt Tarihi:</translate>
+    <translate ID="BODY_TEXT_PP_TITLE">Ünvan:</translate>
+    <translate ID="BODY_TEXT_PP_RANK">Sıralama:</translate>
+    <translate ID="BODY_TEXT_PP_ORIGIN">Ülke:</translate>
+    <translate ID="BODY_TEXT_PP_AGE">Yaş:</translate>
+    <translate ID="BODY_TEXT_PP_GENDER">Cinsiyet:</translate>
+    <translate ID="BODY_TEXT_PP_CONTACT">Discord:</translate>
+    <translate ID="BODY_TEXT_PP_SKILLTREE">YETENEK AĞACINI GÖRMEK İÇİN TIKLA!</translate>
+
+
+    <!-- Misc Log Messages -->
+    <translate ID="LOG_MISC_LASTLOGIN">Başarılı bir şekilde giriş yaptın! From: {0}</translate>
+</translation>
