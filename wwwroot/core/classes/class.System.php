@@ -19,6 +19,7 @@ include_once( __DIR__ . '/user/class.Hangars.php' );
 include_once( __DIR__ . '/user/class.Inventory.php' );
 include_once( __DIR__ . '/user/class.SkillTree.php' );
 include_once( __DIR__ . '/user/class.GalaxyGates.php' );
+include_once( __DIR__ . '/user/class.Skylab.php' );
 include_once( __DIR__ . '/user/hangar/class.Hangar.php' );
 include_once( __DIR__ . '/user/inventory/class.Item.php' );
 

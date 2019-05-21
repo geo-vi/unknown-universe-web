@@ -101,6 +101,7 @@ include_once( 'internalModal.php' );
         <div id="config-navbar">
             <select id="design-select" class="form-control" aria-label='designSelect'>
             </select>
+            <button id="reset-config" class="btn btn-primary">Reset</button>
         </div>
         <div id="config-tabs-content">
             <ul class="nav nav-tabs" role="tablist">

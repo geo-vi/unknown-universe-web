@@ -10,9 +10,10 @@ class User
     public $Hangars;
     /** @var  SkillTree */
     public $SkillTree;
-
     /** @var GalaxyGates */
     public $GalaxyGates;
+    /** @var Skylab */
+    public $Skylab;
 
     protected $AccountData;
     protected $PlayerData;
@@ -197,6 +198,8 @@ class User
 
         //LOAD GG
         $this->GalaxyGates = new GalaxyGates($this);
+
+        $this->Skylab = new Skylab($this);
     }
 
     /**
