@@ -16,16 +16,16 @@
                     Skylab
                 </a>
             </li>
-            <li role="presentation">
-                <a href="#techfactory-tab" aria-controls="techfactory-tab" role="tab" data-toggle="tab" class="bold">
-                    Tech Factory
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#upgrades-tab" aria-controls="upgrades-tab" role="tab" data-toggle="tab" class="bold">
-                    Upgrades
-                </a>
-            </li>
+<!--            <li role="presentation">-->
+<!--                <a href="#techfactory-tab" aria-controls="techfactory-tab" role="tab" data-toggle="tab" class="bold">-->
+<!--                    Tech Factory-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li role="presentation">-->
+<!--                <a href="#upgrades-tab" aria-controls="upgrades-tab" role="tab" data-toggle="tab" class="bold">-->
+<!--                    Upgrades-->
+<!--                </a>-->
+<!--            </li>-->
         </ul>
     </div>
     <div class="tab-content">
