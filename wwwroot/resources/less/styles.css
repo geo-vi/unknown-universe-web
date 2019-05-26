@@ -7410,6 +7410,8 @@ body.internalSettings .settings-header > h3 {
 body.internalSettings .settings-content {
   background-color: #2b2b2b60;
   padding: 0 !important;
+  height: 100% !important;
+  min-height: 655px !important;
 }
 body.internalSettings .settings-content > .tab-content {
   padding: 0 15px !important;
@@ -7886,7 +7888,7 @@ body.internalSkylab #skylab .module .power {
   float: left;
   white-space: nowrap;
 }
-body.internalSkylab #skylab .module.upgrading .state_icon {
+body.internalSkylab #skylab .module .state_icon {
   width: 14px;
   height: 14px;
   background: url(../images/internalSkylab/lab/cinema_icon.gif?__cv=51d71e8a1e713f9abf9b652338bae900) no-repeat;
@@ -8601,7 +8603,7 @@ body.internalSkylab .upgrade_option_instant {
 body.internalSkylab .upgrade_option .option_state {
   background: url(../images/internalSkylab/lab/modules_large/icon_bg_normal.png?__cv=26465c30c888074460711c8090f15f00) no-repeat center;
   width: 71px;
-  height: 57px;
+  height: 70px;
   margin: 8px auto 9px;
   padding-top: 13px;
 }
@@ -8799,7 +8801,7 @@ body.internalSkylab .buff {
 }
 body.internalSkylab .buff_hover {
   background-image: url(../images/internalSkylab/nanotech/buffs_sprite_small.png?__cv=9cf5c3994dbaa3fdc7d084cd81fca200);
-  background-position: 0px 0px;
+  background-position: 0 0;
   width: 56px;
   height: 60px;
 }
@@ -9884,5 +9886,75 @@ body.internalGalaxyGates #cross h4 {
 }
 body.internalGalaxyGates #gate-progress-bar {
   background-color: #00000038;
+}
+body.internalPayment .settings-menu-container {
+  background-color: #3c3c3c;
+  height: 100% !important;
+  min-height: 655px !important;
+  padding: 15px 0 !important;
+}
+body.internalPayment ul.nav-tabs {
+  border: none !important;
+}
+body.internalPayment ul.nav-tabs > li.active > a {
+  background-color: #2b2b2b;
+}
+body.internalPayment ul.nav-tabs > li.active > a:active {
+  background-color: #2b2b2b;
+}
+body.internalPayment ul.nav-tabs > li.active > a:focus {
+  background-color: #2b2b2b;
+}
+body.internalPayment ul.nav-tabs > li.active > a:hover {
+  background-color: #2b2b2b;
+}
+body.internalPayment ul.nav-tabs > li {
+  display: block;
+  height: 46px !important;
+  width: 100%;
+}
+body.internalPayment ul.nav-tabs > li > a {
+  border: none !important;
+  color: #ffffff;
+  text-align: center;
+  margin-right: 0 !important;
+  font-family: "Roboto Condensed", sans-serif;
+  font-weight: 300 !important;
+  font-size: 17px !important;
+  text-transform: uppercase;
+}
+body.internalPayment ul.nav-tabs > li > a:hover {
+  background-color: #353535;
+}
+body.internalPayment .menu-header {
+  padding-bottom: 17px;
+  padding-top: 5px;
+}
+body.internalPayment .menu-header > h1 {
+  font-size: 17px !important;
+  text-align: center;
+  margin: 0 !important;
+  text-transform: uppercase;
+}
+body.internalPayment .settings-header {
+  height: 55px !important;
+  padding: 0 15px !important;
+}
+body.internalPayment .settings-header > h3 {
+  font-size: 17px !important;
+  text-transform: uppercase;
+}
+body.internalPayment .settings-content {
+  background-color: #2b2b2b60;
+  padding: 0 !important;
+  height: 100% !important;
+  min-height: 655px !important;
+}
+body.internalPayment .settings-content > .tab-content {
+  padding: 0 15px !important;
+  min-height: 570px;
+}
+body.internalPayment .g-recaptcha {
+  display: inline-block;
 }
 /*# sourceMappingURL=styles.css.map */

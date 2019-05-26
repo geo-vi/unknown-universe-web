@@ -27,7 +27,7 @@ class Skylab
                 "CREDITS"   => 0,
                 "URIDIUM"   => 0,
                 "TIME"      => 0,
-            ]
+            ],
         ],
         "STORAGE_MODULE"  => [
             "ACTIVE"    => -1,
@@ -39,7 +39,8 @@ class Skylab
                 "CREDITS"   => 0,
                 "URIDIUM"   => 0,
                 "TIME"      => 0,
-            ]
+            ],
+            "MAX_CAPACITY" => []
         ],
         "SOLAR_MODULE"     => [
             "ACTIVE"    => -1,
@@ -62,18 +63,7 @@ class Skylab
             "LEVEL"     => 1,
             "ROBOTS"    => [
                 "MAX"   => 12,
-                "OWNED" => [
-                    [
-                        "TYPE"       =>  "URI_ROBOT",
-                        "END_TIME"    =>  "2019-8-7 6:53PM",
-                        "EFFICIENCY"    => "4%"
-                    ],
-                    [
-                        "TYPE"       =>  "CRE_ROBOT",
-                        "END_TIME"    =>  "2019-8-7 6:55PM",
-                        "EFFICIENCY"    => "2%"
-                    ],
-                ],
+                "OWNED" => [],
             ],
             "POWER"         => 0,
             "PRODUCTION"    => 0,
@@ -86,7 +76,7 @@ class Skylab
         ],
         "ENDURIUM_COLLECTOR" => [
             "ACTIVE"    => 0,
-            "LEVEL"     => 0,
+            "LEVEL"     => 1,
             "ROBOTS"    => [
                 "MAX"   => 12,
                 "OWNED" => [],
@@ -102,7 +92,7 @@ class Skylab
         ],
         "TERBIUM_COLLECTOR" => [
             "ACTIVE"    => 0,
-            "LEVEL"     => 0,
+            "LEVEL"     => 1,
             "ROBOTS"    => [
                 "MAX"   => 12,
                 "OWNED" => [],
@@ -195,12 +185,32 @@ class Skylab
     }
 
     function refresh() {
+        $skylab = $this->mysql->QUERY('SELECT * FROM player_skylab WHERE USER_ID = ? AND PLAYER_ID = ?',[
+            $this->user->__get('USER_ID'),
+            $this->user->__get('PLAYER_ID')
+        ])[0];
+
+        if ($skylab['MODULES'] !== '') {
+            $modules = json_decode($skylab['MODULES'], true);
+            if ($modules != null) {
+                $this->MODULES = $modules;
+            }
+        }
+
+        if ($skylab['ORES'] !== '') {
+            $ores = json_decode($skylab['ORES'], true);
+            if ($ores != null) {
+                $this->ORES = $ores;
+            }
+        }
+
         $allModules = $this->mysql->QUERY('SELECT * FROM server_skylab_modules');
         foreach ($allModules as $module) {
             $myModule = $this->MODULES[$module['TYPE']];
             if ($module['LEVEL'] == $myModule['LEVEL'])
             {
                 $this->MODULES[$module['TYPE']]['POWER'] = $module['ENERGY'];
+                $this->MODULES[$module['TYPE']]['PRODUCTION'] = $module['PRODUCTION'];
             }
             if ($module['LEVEL'] == $myModule['LEVEL'] + 1){
                 $this->MODULES[$module['TYPE']]['COST']['PET'] = $module['PET_COST'];
@@ -214,12 +224,25 @@ class Skylab
                     $storageArray = json_decode($module['STORAGE']);
                     $newArray = [$storageArray[0],$storageArray[0],$storageArray[0],$storageArray[1],$storageArray[1],$storageArray[2],$storageArray[2],$storageArray[3]];
                     array_push($this->STORAGE, $newArray);
+                    $this->MODULES[$module['TYPE']]['MAX_CAPACITY'] = $this->STORAGE[$myModule['LEVEL'] - 1];
                     break;
                 case 'SOLAR_MODULE':
                     array_push($this->POWER_LEVELS, $module['PRODUCTION']);
                     break;
             }
         }
+        $this->save();
+    }
+
+    function save() {
+        $moduleJson = json_encode($this->MODULES);
+        $oresJson = json_encode($this->ORES);
+        $this->mysql->QUERY('UPDATE player_skylab SET MODULES = ?, ORES = ? WHERE USER_ID = ? AND PLAYER_ID = ?', [
+            $moduleJson,
+            $oresJson,
+            $this->user->__get('USER_ID'),
+            $this->user->__get('PLAYER_ID')
+        ]);
     }
 
     function getStorageLevel() {
@@ -249,7 +272,7 @@ class Skylab
     function getTotalPowerConsumption() {
         $cons = 0;
         foreach($this->MODULES as $module) {
-            if ($module['LEVEL'] > 0) {
+            if ($module['LEVEL'] > 0 && ($module['ACTIVE'] == 1 || $module['ACTIVE'] == -1)) {
                 $cons += $module['POWER'];
             }
         }
@@ -257,6 +280,9 @@ class Skylab
     }
 
     function getConsumption($moduleType) {
+        if ($this->MODULES[$moduleType]['ACTIVE'] == 0) {
+            return 0;
+        }
         $power = $this->MODULES[$moduleType]['POWER'];
         return $power;
     }
@@ -308,5 +334,166 @@ class Skylab
     function getTimeCost($moduleType) {
         $cost = $this->MODULES[$moduleType]['COST']['TIME'];
         return $cost;
+    }
+
+    function getModuleActive($moduleType) {
+        if ($this->MODULES[$moduleType]['LEVEL'] <= 0) return -1;
+        $active = $this->MODULES[$moduleType]['ACTIVE'];
+        return $active;
+    }
+
+    function getEfficiency($moduleType) {
+        // 0 - 25 - 50 - 75 - 100
+        return 0;
+    }
+
+    function getUpgradeTimeStart($moduleType) {
+        if ($this->getIsUpgrading($moduleType)) {
+            return $this->MODULES[$moduleType]['UPGRADE']['START'];
+        }
+        return 0;
+    }
+
+    function getUpgradeTimeEnd($moduleType) {
+        if ($this->getIsUpgrading($moduleType)) {
+            return $this->MODULES[$moduleType]['UPGRADE']['END'];
+        }
+        return 0;
+    }
+
+    function getIsUpgrading($moduleType) {
+        $inArray = isset($this->MODULES[$moduleType]['UPGRADE']);
+        return $inArray;
+    }
+
+    function buyRobot($moduleType, $robotID) {
+        $timestamp = time();
+        switch ($moduleType) {
+            case "PROMETIUM_COLLECTOR":
+            case "ENDURIUM_COLLECTOR":
+            case "TERBIUM_COLLECTOR":
+                if (sizeof($this->MODULES[$moduleType]['ROBOTS']['OWNED']) == $this->MODULES[$moduleType]['ROBOTS']['MAX']) {
+                    return ['isError' => 1, 'msg' => 'Maximal amount of robots owned'];
+                }
+                switch ($robotID) {
+                    case 1:
+                        if ($this->tryTax(250, 0, 0, 0,0)) {
+                            array_push($this->MODULES[$moduleType]['ROBOTS']['OWNED'], [
+                                "TYPE"       =>  "CRE_ROBOT",
+                                "END_TIME"    =>  strtotime('+4 hours'),
+                                "EFFICIENCY"    => "2%"
+                            ]);
+                            $this->save();
+                            return ['isError' => 0, 'msg' => 'Successfully bought a Credit robot'];
+                        }
+                        else {
+                            return ['isError' => 1, 'msg' => 'Failed taxing.'];
+                        }
+                        break;
+                    case 2:
+                        if ($this->tryTax(0, 50, 0, 0,0)) {
+                            array_push($this->MODULES[$moduleType]['ROBOTS']['OWNED'], [
+                                "TYPE"       =>  "URI_ROBOT",
+                                "END_TIME"    =>  strtotime('+4 hours'),
+                                "EFFICIENCY"    => "4%"
+                            ]);
+                            $this->save();
+                            return ['isError' => 0, 'msg' => 'Successfully bought an Uridium robot'];
+                        }
+                        else {
+                            return ['isError' => 1, 'msg' => 'Failed taxing.'];
+                        }
+                        break;
+                }
+                break;
+        }
+        return ['isError' => 1, 'msg' => 'Failed purchasing robot, please try again later.'];
+    }
+
+    function tryUpgradeModule($moduleType, $instantBuild) {
+        switch ($moduleType) {
+            case "BASIC_MODULE":
+            case "STORAGE_MODULE":
+            case "SOLAR_MODULE":
+            case "PROMETIUM_COLLECTOR":
+            case "ENDURIUM_COLLECTOR":
+            case "TERBIUM_COLLECTOR":
+            case "PROMETID_COLLECTOR":
+            case "DURANIUM_COLLECTOR":
+            case "XENOMIT_MODULE":
+            case "PROMERIUM_COLLECTOR":
+            case "SEPROM_COLLECTOR":
+                if ($this->getIsUpgrading($moduleType) || $this->getModuleLevel($moduleType) >= 20 || ($this->getModuleLevel($moduleType) + 1) > $this->getModuleLevel('BASIC_MODULE')) {
+                    return ['isError' => 1, 'msg' => 'Cannot start upgrade.'];
+                } else {
+                    $buildCost = $this->MODULES[$moduleType]['COST'];
+                    $time = date_create_from_format( 'H:i:s' , $buildCost['TIME']);
+                    $end = time() + ($time->getTimestamp() - $timestamp = strtotime('today midnight'));
+                    if (!$instantBuild) {
+                        if ($this->tryTax($buildCost['CREDITS'], 0, $buildCost['PET'], $buildCost['PET'],
+                            $buildCost['PET'])) {
+                            $this->MODULES[$moduleType]['UPGRADE'] = [
+                                "START" => time(),
+                                "END"   => $end,
+                            ];
+                            $this->save();
+                            return ['isError' => 0, 'msg' => 'Successfully started building.'];
+                        } else {
+                            return ['isError' => 1, 'msg' => 'Not enough resources to build.'];
+                        }
+                    } else {
+                        if ($this->tryTax($buildCost['CREDITS'], $buildCost['URIDIUM'], $buildCost['PET'], $buildCost['PET'],
+                            $buildCost['PET'])) {
+                            array_push($this->MODULES[$moduleType], ['UPGRADE' => [
+                                "START" => time(),
+                                "END"   => time(),
+                            ]]);
+                            $this->save();
+                            return ['isError' => 0, 'msg' => 'Started building module using Instant Build.'];
+                        } else {
+                            return ['isError' => 1, 'msg' => 'Not enough resources to build.'];
+                        }
+                    }
+                    break;
+                }
+        }
+        return ['isError' => 1, 'msg' => 'Failed starting upgrade, please try again later.'];
+    }
+
+    function tryTax($cre, $uri, $p, $e, $t) {
+        $playerCredits = $this->user->__get('CREDITS');
+        $playerUridium = $this->user->__get('URIDIUM');
+        if ($cre <= $playerCredits && $uri <= $playerUridium && $this->ORES[0] >= $p
+            && $this->ORES[1] >= $e && $this->ORES[2] >= $t) {
+            $this->mysql->QUERY('UPDATE player_data SET CREDITS = CREDITS - ?, URIDIUM = URIDIUM - ? WHERE USER_ID = ? AND PLAYER_ID = ?', [
+                $cre,
+                $uri,
+                $this->user->__get('USER_ID'),
+                $this->user->__get('PLAYER_ID')
+            ]);
+            $this->ORES[0] -= $p;
+            $this->ORES[1] -= $e;
+            $this->ORES[2] -= $t;
+            $this->save();
+            return true;
+        }
+        return false;
+    }
+
+    function powerModule($moduleType) {
+        if ($this->MODULES[$moduleType]['LEVEL'] <= 0) {
+            return ['isError' => 1, 'msg' => 'Module not built'];
+        }
+        if ($this->MODULES[$moduleType]['ACTIVE'] == 0 && $this->MODULES[$moduleType]['POWER'] + $this->getTotalPowerConsumption() <= $this->getSolarModuleMaxPower()) {
+            $this->MODULES[$moduleType]['ACTIVE'] = 1;
+            $this->save();
+            return ['isError' => 0, 'msg' => 'Module powered on.'];
+        }
+        else if ($this->MODULES[$moduleType]['ACTIVE'] == 1) {
+            $this->MODULES[$moduleType]['ACTIVE'] = 0;
+            $this->save();
+            return ['isError' => 0, 'msg' => 'Module powered off.'];
+        }
+        return ['isError' => 1, 'msg' => 'Failed powering module.'];
     }
 }

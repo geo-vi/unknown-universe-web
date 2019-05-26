@@ -1,5 +1,5 @@
 FROM debian:stretch
-LABEL author="Avyiel"
+LABEL author="Heisenberg"
 
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update --fix-missing

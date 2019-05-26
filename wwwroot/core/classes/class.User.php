@@ -346,6 +346,14 @@ class User
                     ]
                 );
 
+                //INSERT player_skylab
+                $this->mysql->QUERY("INSERT INTO player_skylab(USER_ID,PLAYER_ID) VALUES(?,?)",
+                    [
+                        $this->__get('USER_ID'),
+                        $this->__get('PLAYER_ID'),
+                    ]
+                );
+
                 $this->refresh();
             }
 

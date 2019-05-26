@@ -60,7 +60,7 @@ class GalaxyGateHandler extends AbstractHandler
         global $System;
         $times = $this->params['AMOUNT'];
         $selectedGG = $this->params['SELECTED_GG'];
-        $multiplier = $this->params['USE_MULTIPLIER'];
+        $multiplier = $this->params['USE_MULTIPLIER'] == 1;
         $gates = $System->User->GalaxyGates->performClick($times,$selectedGG, $multiplier);
         die(json_encode($gates));
     }

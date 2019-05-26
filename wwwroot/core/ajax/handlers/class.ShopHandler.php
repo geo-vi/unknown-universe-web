@@ -68,7 +68,7 @@ class ShopHandler extends AbstractHandler
         $ITEM = $System->Shop->getItem($CATEGORY, $ITEM_ID);
         if ($ITEM == null) {
             http_response_code(400);
-            die(json_encode(['message' => 'Item doesn\'t exist!']));
+            die(json_encode(['message' => 'Item doesn\'t exist! ['. $CATEGORY .' ,'. $ITEM_ID . ' ,'. $AMOUNT .' ]']));
         }
 
         if ($AMOUNT > 1 && !$ITEM->AMOUNT_SELECTABLE) {
