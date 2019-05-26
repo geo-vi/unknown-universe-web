@@ -53,19 +53,19 @@ foreach ($server_list as $server) {
                         if (($ORES[0] + $PRODUCTION) > $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][0]) {
                             $ORES[0] = $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][0];
                         }
-                        else $ORES[0] += round($PRODUCTION) * $efficiencyBoost;
+                        else $ORES[0] += round($PRODUCTION * $efficiencyBoost);
                         break;
                     case 'ENDURIUM_COLLECTOR':
                         if (($ORES[1] + $PRODUCTION) > $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][1]) {
                             $ORES[1] = $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][1];
                         }
-                        else $ORES[1] += round($PRODUCTION) * $efficiencyBoost;
+                        else $ORES[1] += round($PRODUCTION * $efficiencyBoost);
                         break;
                     case 'TERBIUM_COLLECTOR':
                         if (($ORES[2] + $PRODUCTION) > $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][2]) {
                             $ORES[2] = $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][2];
                         }
-                        else $ORES[2] += round($PRODUCTION) * $efficiencyBoost;
+                        else $ORES[2] += round($PRODUCTION * $efficiencyBoost);
                         break;
                     case 'PROMETID_COLLECTOR':
                         if (($ORES[3] + $PRODUCTION) > $MODULES['STORAGE_MODULE']['MAX_CAPACITY'][3]) {

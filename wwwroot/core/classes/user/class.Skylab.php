@@ -59,7 +59,7 @@ class Skylab
             "POWER"     => 16,
         ],
         "PROMETIUM_COLLECTOR" => [
-            "ACTIVE"    => 1,
+            "ACTIVE"    => 0,
             "LEVEL"     => 1,
             "ROBOTS"    => [
                 "MAX"   => 12,
@@ -194,6 +194,18 @@ class Skylab
             $modules = json_decode($skylab['MODULES'], true);
             if ($modules != null) {
                 $this->MODULES = $modules;
+                foreach ($modules as $moduleKey => $myModule) {
+                    if (isset($myModule['UPGRADE'])) {
+                        if ($myModule['UPGRADE']['END'] <= time()) {
+                            // finish upgrade
+                            unset($this->MODULES[$moduleKey]['UPGRADE']);
+                            $this->MODULES[$moduleKey]['LEVEL'] = $this->MODULES[$moduleKey]['LEVEL'] + 1;
+                            if ($myModule['ACTIVE'] == 1)  {
+                                $this->MODULES[$moduleKey]['ACTIVE'] = 0;
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -423,7 +435,7 @@ class Skylab
             case "XENOMIT_MODULE":
             case "PROMERIUM_COLLECTOR":
             case "SEPROM_COLLECTOR":
-                if ($this->getIsUpgrading($moduleType) || $this->getModuleLevel($moduleType) >= 20 || ($this->getModuleLevel($moduleType) + 1) > $this->getModuleLevel('BASIC_MODULE')) {
+                if ($this->getIsUpgrading($moduleType) || $this->getModuleLevel($moduleType) >= 20 || ($this->getModuleLevel($moduleType) + 1) > $this->getModuleLevel('BASIC_MODULE') && $moduleType != 'BASIC_MODULE') {
                     return ['isError' => 1, 'msg' => 'Cannot start upgrade.'];
                 } else {
                     $buildCost = $this->MODULES[$moduleType]['COST'];

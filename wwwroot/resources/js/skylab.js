@@ -146,28 +146,28 @@ class skylab
             if (data['DURANIUM_COLLECTOR']['READY'] === false) {
                 this.unreadyCollector('DuraniumRefinery');
             }
-            if (data['DURANIUM_COLLECTOR']['ACTIVE'] === true) {
+            if (data['DURANIUM_COLLECTOR']['ACTIVE'] === false) {
                 this.deactivateCollector('DuraniumRefinery');
             }
 
             if (data['XENOMIT_MODULE']['READY'] === false) {
                 this.unreadyCollector('XenoModule');
             }
-            if (data['XENOMIT_MODULE']['ACTIVE'] === true) {
+            if (data['XENOMIT_MODULE']['ACTIVE'] === false) {
                 this.deactivateCollector('XenoModule');
             }
 
             if (data['PROMERIUM_COLLECTOR']['READY'] === false) {
                 this.unreadyCollector('PromeriumRefinery');
             }
-            if (data['PROMERIUM_COLLECTOR']['ACTIVE'] === true) {
+            if (data['PROMERIUM_COLLECTOR']['ACTIVE'] === false) {
                 this.deactivateCollector('PromeriumRefinery');
             }
 
             if (data['SEPROM_COLLECTOR']['READY'] === false) {
                 this.unreadyCollector('SepromRefinery');
             }
-            if (data['SEPROM_COLLECTOR']['ACTIVE'] === true) {
+            if (data['SEPROM_COLLECTOR']['ACTIVE'] === false) {
                 this.deactivateCollector('SepromRefinery');
             }
 

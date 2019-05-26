@@ -101,9 +101,13 @@
 
     <div id="skylabReloader" onclick="skylab.reload()"></div>
     <div id="modules">
-        <div id="module_baseModule_small" class="module module_small" onclick="skylab.showModule('baseModule');" "="">
+        <?php
+        $module = 'BASIC_MODULE';
+        $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+        ?>
+        <div id="module_baseModule_small" class="module module_small <?=$isUpgrading == true ? 'upgrading' : ''?>" onclick="skylab.showModule('baseModule');" "="">
 
-        <table cellpadding="0" cellspacing="0" border="0">
+        <table>
             <tbody><tr>
                 <td id="corner_small_top_left_active">
                     <div class="name">Basic module</div>
@@ -112,17 +116,21 @@
             </tr>
             <tr>
                 <td id="corner_small_bottom_left_active">
-                    <table cellpadding="0" cellspacing="0">
+                    <table>
                         <tbody><tr>
                             <td>
-                                <div class="level_icon"></div>
-                                <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('BASIC_MODULE') ?></div>
+                                <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                                <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
                             </td>
                             <td class="cellview">
                                 <div class="power_icon"></div>
-                                <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption( 'BASIC_MODULE') ?></div>
+                                <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption($module) ?></div>
                             </td>
-                            <td><br></td>
+                            <?php if ($isUpgrading) { ?>
+                                <td>
+                                    <div class="state_icon"></div>
+                                </td>
+                            <?php } ?>
                         </tr>
                         </tbody></table>
                 </td>
@@ -265,76 +273,175 @@
                 </div>
 
                 <div id="module_infobox_baseModule_upgrade_large" class="tabContent skylab_standard" style="display: none;">
-                    <?php $module = 'BASIC_MODULE'; ?>
 
-                    <table class="module_infobox_upgrade">
-                        <tbody><tr>
-                            <td class="firstRow"><br></td>
-                            <td class="secondRow">Instant</td>
-                            <td class="thirdRow skylab_price_normal" style="width:1px;">
-                                <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
-                                <br>
-                            </td>
-                            <td>Normal</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Uridium</td>
-                            <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal">0</td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Credits</td>
-                            <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',')?></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Time</td>
-                            <td class="secondRow">0:00</td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Prometium</td>
-                            <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Endurium</td>
-                            <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        </tr>
-                        <tr>
-                            <td class="firstRow">Terbium</td>
-                            <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                            <td><br></td>
-                            <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="padding:8px 3px">
-                                <div class="button_standard" style="float:right;">
-                                    <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    <?php
+                    $module = 'BASIC_MODULE';
+                    $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
+
+                    if (!$reachedMaxLevel) {
+                        $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+
+                        if (!$isUpgrading) {
+                            ?>
+
+                            <table class="module_infobox_upgrade">
+                                <tbody>
+                                <tr>
+                                    <td class="firstRow"><br></td>
+                                    <td class="secondRow">Instant</td>
+                                    <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                        <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                        <br>
+                                    </td>
+                                    <td>Normal</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"
+                                        style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Uridium</td>
+                                    <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal">0</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"
+                                        style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Credits</td>
+                                    <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Time</td>
+                                    <td class="secondRow">0:00</td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Prometium</td>
+                                    <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Endurium</td>
+                                    <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                </tr>
+                                <tr>
+                                    <td class="firstRow">Terbium</td>
+                                    <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                    <td><br></td>
+                                    <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"
+                                        style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding:8px 3px">
+                                        <div class="button_standard" style="float:right;">
+                                            <a style="display:block;" onfocus="this.blur()"
+                                               onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                        </div>
+                                    </td>
+                                    <td colspan="2" style="padding:8px 5px">
+                                        <div class="button_standard">
+                                            <a style="display:block" onfocus="this.blur()"
+                                               onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        <?php } else { ?>
+                            <div class="upgrade_container">
+                                <div>
+
+                                    <div id="timers_baseModule"></div>
+                                    <script language="javascript">
+                                        $(document).ready(function () {
+                                            var tmp = new SkylabTimer();
+                                            tmp.init(
+                                                'baseModule',
+                                                <?=time() ?>,
+                                                <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                                <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                            );
+                                            tmp = undefined;
+                                        });
+                                    </script>
                                 </div>
-                            </td>
-                            <td colspan="2" style="padding:8px 5px">
-                                <div class="button_standard">
-                                    <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                                <div class="module_progressBGWrapper">
+                                    <div class="module_progressBG_left"></div>
+                                    <div id="progressBG_module_baseModule" class="module_progressBG">
+                                        <div class="progress_timer" id="progress_timer_baseModule"></div>
+                                        <div class="module_progressBarWrapper"
+                                             id="module_progressBarWrapper_baseModule">
+                                            <div class="module_progressBar_left"></div>
+                                            <div class="module_progressBar_right"></div>
+                                        </div>
+                                    </div>
+                                    <div class="module_progressBG_right"></div>
                                 </div>
-                            </td>
-                        </tr>
-                        </tbody></table>
+
+                                <div class="upgrade_options_wrapper">
+                                    <div class="upgrade_option_instant upgrade_option"
+                                         onclick="skylab.chooseUpgradeOption('instant', 'baseModule')">
+                                        <div class="option_state">
+                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                        </div>
+                                        INSTANT
+                                    </div>
+                                    <div class="upgrade_option_cinema upgrade_option"
+                                         onclick="skylab.chooseUpgradeOption('cinema', 'baseModule')">
+                                        <div class="option_state">
+                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                        </div>
+                                        CINEMA (10/10)
+                                    </div>
+                                    <div class="upgrade_option_cancel upgrade_option"
+                                         onclick="skylab.chooseUpgradeOption('cancel', 'baseModule')">
+                                        <div class="option_state">
+                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                        </div>
+                                        CANCEL
+                                    </div>
+
+                                    <br class="clearMe">
+
+                                    <div class="upgrade_options_text" id="upgrade_text_instant_baseModule">
+                                        Instantly finish the upgrade for 750 Uridium
+                                    </div>
+                                    <div class="upgrade_options_text" id="upgrade_text_cinema_baseModule">
+                                        You can skip 45 minutes by watching a full video.
+                                    </div>
+                                    <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_baseModule">
+                                        There is currently no video available.
+                                    </div>
+                                    <div class="upgrade_options_text" id="upgrade_text_cancel_baseModule">
+                                        Warning: If you cancel this upgrade, all invested resources will be lost.
+                                    </div>
+                                </div>
+
+                                <div class="upgrade_option_confirm" style="display: none">
+                                    <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                                </div>
+                            </div>
+                        <?php }
+                    } else {?>
+
+                        <div class="upgrade_container_max">
+                            Maximum upgrade level attained
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <div id="module_infobox_baseModule_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning">
@@ -396,14 +503,18 @@
                 <table>
                     <tbody><tr>
                         <td>
-                            <div class="level_icon"></div>
-                            <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('SOLAR_MODULE') ?></div>
+                            <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                            <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
                         </td>
                         <td class="cellview">
                             <div class="power_icon"></div>
-                            <div class="power skylab_font_power"><?= number_format($System->User->Skylab->getTotalPowerConsumption(), 0, '.', ',') ?> / <?= number_format($System->User->Skylab->getSolarModuleMaxPower(), 0, '.', ',') ?></div>
+                            <div class="power skylab_font_power"><?=$System->User->Skylab->getTotalPowerConsumption() ?> / <?=$System->User->Skylab->getSolarModuleMaxPower() ?></div>
                         </td>
-                        <td><br></td>
+                        <?php if ($isUpgrading) { ?>
+                            <td>
+                                <div class="state_icon"></div>
+                            </td>
+                        <?php } ?>
                     </tr>
                     </tbody></table>
             </td>
@@ -513,77 +624,174 @@
             </div>
 
             <div id="module_infobox_solarModule_upgrade_large" class="tabContent skylab_standard" style="display: none;">
+                <?php
+                $module = 'SOLAR_MODULE';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
 
-                <?php $module = 'SOLAR_MODULE'; ?>
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
 
-                <table class="module_infobox_upgrade">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_solarModule"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'solarModule',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_solarModule" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_solarModule"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_solarModule">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'solarModule')">
+                                    <div class="option_state">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'solarModule')">
+                                    <div class="option_state">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'solarModule')">
+                                    <div class="option_state">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_solarModule">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_solarModule">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_solarModule">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_solarModule">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
 
             <div id="module_infobox_solarModule_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning">
@@ -645,14 +853,18 @@
             <table>
                 <tbody><tr>
                     <td>
-                        <div class="level_icon"></div>
-                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('STORAGE_MODULE') ?></div>
+                        <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
                     </td>
                     <td class="cellview">
                         <div class="power_icon"></div>
-                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption('STORAGE_MODULE') ?></div>
+                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption($module) ?></div>
                     </td>
-                    <td><br></td>
+                    <?php if ($isUpgrading) { ?>
+                        <td>
+                            <div class="state_icon"></div>
+                        </td>
+                    <?php } ?>
                 </tr>
                 </tbody></table>
         </td>
@@ -727,7 +939,7 @@
                     if (!$isUpgrading) {
                         ?>
 
-                        <table class="module_infobox_upgrade" cellpadding="0" cellspacing="0">
+                        <table class="module_infobox_upgrade">
                             <tbody>
                             <tr>
                                 <td class="firstRow"><br></td>
@@ -756,7 +968,7 @@
                                 <td class="firstRow">Credits</td>
                                 <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
                                 <td><br></td>
-                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',') ?></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
                             </tr>
                             <tr>
                                 <td class="firstRow">Time</td>
@@ -807,12 +1019,12 @@
                         <div class="upgrade_container">
                             <div>
 
-                                <div id="timers_prometiumCollector"></div>
+                                <div id="timers_storageModule"></div>
                                 <script language="javascript">
                                     $(document).ready(function () {
                                         var tmp = new SkylabTimer();
                                         tmp.init(
-                                            'prometiumCollector',
+                                            'storageModule',
                                             <?=time() ?>,
                                             <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
                                             <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
@@ -824,10 +1036,10 @@
 
                             <div class="module_progressBGWrapper">
                                 <div class="module_progressBG_left"></div>
-                                <div id="progressBG_module_prometiumCollector" class="module_progressBG">
-                                    <div class="progress_timer" id="progress_timer_prometiumCollector"></div>
+                                <div id="progressBG_module_storageModule" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_storageModule"></div>
                                     <div class="module_progressBarWrapper"
-                                         id="module_progressBarWrapper_prometiumCollector">
+                                         id="module_progressBarWrapper_storageModule">
                                         <div class="module_progressBar_left"></div>
                                         <div class="module_progressBar_right"></div>
                                     </div>
@@ -837,21 +1049,21 @@
 
                             <div class="upgrade_options_wrapper">
                                 <div class="upgrade_option_instant upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('instant', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('instant', 'storageModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
                                     </div>
                                     INSTANT
                                 </div>
                                 <div class="upgrade_option_cinema upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('cinema', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'storageModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
                                     </div>
                                     CINEMA (10/10)
                                 </div>
                                 <div class="upgrade_option_cancel upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('cancel', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'storageModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
                                     </div>
@@ -860,19 +1072,18 @@
 
                                 <br class="clearMe">
 
-                                <div class="upgrade_options_text" id="upgrade_text_instant_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_instant_storageModule">
                                     Instantly finish the upgrade for 750 Uridium
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cinema_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_storageModule">
                                     You can skip 45 minutes by watching a full video.
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_storageModule">
                                     There is currently no video available.
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cancel_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_storageModule">
                                     Warning: If you cancel this upgrade, all invested resources will be lost.
                                 </div>
-                                <input type="hidden" id="upgrade_option_prometiumCollector" value="">
                             </div>
 
                             <div class="upgrade_option_confirm" style="display: none">
@@ -891,7 +1102,7 @@
             <div id="module_infobox_storageModule_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning">
                 <div id="module_infobox_storageModule_infomessage" class="module_resourceWarning_text"></div>
                 <div class="button_standard module_resourceWarning_button">
-                    <a style="display: block;" onfocus="this.blur()" onclick="jQuery('#module_infobox_storageModule_resourceWarning_large').hide();" href="#">
+                    <a style="display: block;" onfocus="this.blur()" onclick="$('#module_infobox_storageModule_resourceWarning_large').hide();" href="#">
                         <strong>OK</strong>
                     </a>
                 </div>
@@ -1117,14 +1328,18 @@
             <table>
                 <tbody><tr>
                     <td>
-                        <div class="level_icon"></div>
-                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('XENOMIT_MODULE') ?></div>
+                        <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
                     </td>
                     <td class="cellview">
                         <div class="power_icon"></div>
-                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption('XENOMIT_MODULE') ?></div>
+                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption($module) ?></div>
                     </td>
-                    <td><br></td>
+                    <?php if ($isUpgrading) { ?>
+                        <td>
+                            <div class="state_icon"></div>
+                        </td>
+                    <?php } ?>
                 </tr>
                 </tbody></table>
         </td>
@@ -1148,7 +1363,7 @@
 
         <div id="module_infobox_xenoModule_content" class="skylab_module_content">
             <div id="module_infobox_xenoModule_overview_large" class="tabContent skylab_standard">
-                <table class="module_infobox_xenoModule" cellpadding="0" cellspacing="0">
+                <table class="module_infobox_xenoModule">
                     <tbody><tr>
                         <td class="firstRow"><strong>Xeno module</strong></td>
                         <td class="secondRow"><strong>Active</strong></td>
@@ -1167,12 +1382,12 @@
                     </tr>
                     <tr>
                         <td class="firstRow"><strong>Efficiency:</strong></td>
-                        <td class="secondRow"><strong>100%</strong></td>
+                        <td class="secondRow"><strong><?=$System->User->Skylab->getEfficiency($module) ?>%</strong></td>
                         <td class="thirdRow skylab_price_normal"><strong>0%</strong></td>
                     </tr>
                     <tr>
                         <td class="firstRow"><strong>Energy:</strong></td>
-                        <td class="secondRow"><strong>16</strong></td>
+                        <td class="secondRow"><strong><?=$System->User->Skylab->getConsumption($module) ?></strong></td>
                         <td class="thirdRow skylab_price_normal"><strong>0</strong></td>
                     </tr>
                     <tr>
@@ -1195,7 +1410,7 @@
                     if (!$isUpgrading) {
                         ?>
 
-                        <table class="module_infobox_upgrade" cellpadding="0" cellspacing="0">
+                        <table class="module_infobox_upgrade">
                             <tbody>
                             <tr>
                                 <td class="firstRow"><br></td>
@@ -1224,7 +1439,7 @@
                                 <td class="firstRow">Credits</td>
                                 <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
                                 <td><br></td>
-                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',') ?></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
                             </tr>
                             <tr>
                                 <td class="firstRow">Time</td>
@@ -1275,12 +1490,12 @@
                         <div class="upgrade_container">
                             <div>
 
-                                <div id="timers_prometiumCollector"></div>
+                                <div id="timers_xenoModule"></div>
                                 <script type="javascript">
                                     $(document).ready(function () {
                                         var tmp = new SkylabTimer();
                                         tmp.init(
-                                            'prometiumCollector',
+                                            'xenoModule',
                                             <?=time() ?>,
                                             <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
                                             <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
@@ -1292,10 +1507,10 @@
 
                             <div class="module_progressBGWrapper">
                                 <div class="module_progressBG_left"></div>
-                                <div id="progressBG_module_prometiumCollector" class="module_progressBG">
-                                    <div class="progress_timer" id="progress_timer_prometiumCollector"></div>
+                                <div id="progressBG_module_xenoModule" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_xenoModule"></div>
                                     <div class="module_progressBarWrapper"
-                                         id="module_progressBarWrapper_prometiumCollector">
+                                         id="module_progressBarWrapper_xenoModule">
                                         <div class="module_progressBar_left"></div>
                                         <div class="module_progressBar_right"></div>
                                     </div>
@@ -1305,21 +1520,21 @@
 
                             <div class="upgrade_options_wrapper">
                                 <div class="upgrade_option_instant upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('instant', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('instant', 'xenoModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
                                     </div>
                                     INSTANT
                                 </div>
                                 <div class="upgrade_option_cinema upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('cinema', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'xenoModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
                                     </div>
                                     CINEMA (10/10)
                                 </div>
                                 <div class="upgrade_option_cancel upgrade_option"
-                                     onclick="skylab.chooseUpgradeOption('cancel', 'prometiumCollector')">
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'xenoModule')">
                                     <div class="option_state">
                                         <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
                                     </div>
@@ -1328,19 +1543,18 @@
 
                                 <br class="clearMe">
 
-                                <div class="upgrade_options_text" id="upgrade_text_instant_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_instant_xenoModule">
                                     Instantly finish the upgrade for 750 Uridium
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cinema_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_xenoModule">
                                     You can skip 45 minutes by watching a full video.
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_xenoModule">
                                     There is currently no video available.
                                 </div>
-                                <div class="upgrade_options_text" id="upgrade_text_cancel_prometiumCollector">
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_xenoModule">
                                     Warning: If you cancel this upgrade, all invested resources will be lost.
                                 </div>
-                                <input type="hidden" id="upgrade_option_prometiumCollector" value="">
                             </div>
 
                             <div class="upgrade_option_confirm" style="display: none">
@@ -1665,7 +1879,7 @@
                                     if ($robots[$i]['TYPE'] == 'CRE_ROBOT') {
                                         ?>
                                         <div class="container_robot_small">
-                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="39" height="34">
                                             <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                         </div>
                                         <?php
@@ -1673,7 +1887,7 @@
                                     else if ($robots[$i]['TYPE'] == 'URI_ROBOT') {
                                         ?>
                                         <div class="container_robot_small">
-                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="39" height="34">
                                             <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                         </div>
                                     <?php
@@ -1682,7 +1896,7 @@
                                 else {
                                     ?>
                                     <div class="container_robot_small">
-                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png" width="39" height="34">
                                         <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                     </div>
                                     <?php
@@ -1714,14 +1928,14 @@
 
                     <div class="productivity_robotShop">
                         <div class="productivity_robotShop_credits">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=29d973635304fd6902b88e3678b88400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="66" height="57">
                             <div class="skylab_robot_price">250 Credits</div>
                             <div class="button_standard" style="margin: auto;">
                                 <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '1','PROMETIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
                             </div>
                         </div>
                         <div class="productivity_robotShop_uridium">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=8d70dd00ac084d814c347beb80267400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="66" height="57">
                             <div class="skylab_robot_price">50 Uridium</div>
                             <div class="button_standard" style="margin: auto;">
                                 <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '2','PROMETIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
@@ -1756,7 +1970,7 @@
                     $buttonType = 'on';
                 }
                 ?>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/power_<?=$buttonType ?>.png?__cv=4eeda785991deb1830052b0d935d3d00" width="14" height="14" onclick="skylab.toggle(null, '<?=$module?>', '<?=$buttonType?>')" style="cursor: pointer">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/power_<?=$buttonType ?>.png" width="14" height="14" onclick="skylab.toggle(null, '<?=$module?>', '<?=$buttonType?>')" style="cursor: pointer">
             </div>
 
             <div class="module_info_level module_infobox_info">
@@ -1839,76 +2053,175 @@
 
             <div id="module_infobox_enduriumCollector_upgrade_large" class="tabContent skylab_standard" style="display: none;">
 
-                <?php $module = 'ENDURIUM_COLLECTOR'; ?>
 
-                <table class="module_infobox_upgrade" cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                <?php
+                $module = 'ENDURIUM_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
+
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_enduriumCollector"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'enduriumCollector',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_enduriumCollector" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_enduriumCollector"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_enduriumCollector">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'enduriumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'enduriumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'enduriumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_enduriumCollector">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_enduriumCollector">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_enduriumCollector">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_enduriumCollector">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
             <div id="module_infobox_enduriumCollector_productivity_large" class="tabContent skylab_standard" style="display: none;">
 
@@ -1944,7 +2257,7 @@
                                 if ($robots[$i]['TYPE'] == 'CRE_ROBOT') {
                                     ?>
                                     <div class="container_robot_small">
-                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="39" height="34">
                                         <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                     </div>
                                     <?php
@@ -1952,7 +2265,7 @@
                                 else if ($robots[$i]['TYPE'] == 'URI_ROBOT') {
                                     ?>
                                     <div class="container_robot_small">
-                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="39" height="34">
                                         <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                     </div>
                                     <?php
@@ -1961,7 +2274,7 @@
                             else {
                                 ?>
                                 <div class="container_robot_small">
-                                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png" width="39" height="34">
                                     <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                 </div>
                                 <?php
@@ -1970,7 +2283,7 @@
                         ?>
                     </div>
 
-                    <table cellpadding="0" cellspacing="1">
+                    <table>
                         <tbody><tr>
                             <td colspan="2">Efficiency:</td>
                             <td>Bonus:</td>
@@ -1992,17 +2305,17 @@
 
                     <div class="productivity_robotShop">
                         <div class="productivity_robotShop_credits">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=29d973635304fd6902b88e3678b88400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="66" height="57">
                             <div class="skylab_robot_price">250 Credits</div>
                             <div class="button_standard" style="margin: auto;">
-                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot('1','ENDURIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
+                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '1','ENDURIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
                             </div>
                         </div>
                         <div class="productivity_robotShop_uridium">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=8d70dd00ac084d814c347beb80267400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="66" height="57">
                             <div class="skylab_robot_price">50 Uridium</div>
                             <div class="button_standard" style="margin: auto;">
-                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot('2','ENDURIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
+                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '2','ENDURIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
                             </div>
                         </div>
                     </div>
@@ -2034,7 +2347,7 @@
                     $buttonType = 'on';
                 }
                 ?>
-                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/power_<?=$buttonType ?>.png?__cv=4eeda785991deb1830052b0d935d3d00" width="14" height="14" onclick="skylab.toggle(null, '<?=$module?>', '<?=$buttonType?>')" style="cursor: pointer">
+                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/power_<?=$buttonType ?>.png" width="14" height="14" onclick="skylab.toggle(null, '<?=$module?>', '<?=$buttonType?>')" style="cursor: pointer">
             </div>
 
             <div class="module_info_level module_infobox_info">
@@ -2116,77 +2429,177 @@
 
             <div id="module_infobox_terbiumCollector_upgrade_large" class="tabContent skylab_standard" style="display: none;">
 
-                <?php $module = 'TERBIUM_COLLECTOR'; ?>
 
-                <table class="module_infobox_upgrade">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('TERBIUM_COLLECTOR'), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                <?php
+                $module = 'TERBIUM_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
+
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_terbiumCollector"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'terbiumCollector',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_terbiumCollector" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_terbiumCollector"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_terbiumCollector">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'terbiumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'terbiumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'terbiumCollector')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_terbiumCollector">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_terbiumCollector">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_terbiumCollector">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_terbiumCollector">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
+
             <div id="module_infobox_terbiumCollector_productivity_large" class="tabContent skylab_standard" style="display: none;">
 
                 <script>
@@ -2220,7 +2633,7 @@
                                 if ($robots[$i]['TYPE'] == 'CRE_ROBOT') {
                                     ?>
                                     <div class="container_robot_small">
-                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="39" height="34">
                                         <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                     </div>
                                     <?php
@@ -2228,7 +2641,7 @@
                                 else if ($robots[$i]['TYPE'] == 'URI_ROBOT') {
                                     ?>
                                     <div class="container_robot_small">
-                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                        <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="39" height="34">
                                         <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                     </div>
                                     <?php
@@ -2237,7 +2650,7 @@
                             else {
                                 ?>
                                 <div class="container_robot_small">
-                                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png?__cv=f7ff82658232a01263ae70afb4011400" width="39" height="34">
+                                    <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_empty.png" width="39" height="34">
                                     <div style="width:33px;text-align:center;margin-left:5px;"><br></div>
                                 </div>
                                 <?php
@@ -2246,7 +2659,7 @@
                         ?>
                     </div>
 
-                    <table cellpadding="0" cellspacing="1">
+                    <table>
                         <tbody><tr>
                             <td colspan="2">Efficiency:</td>
                             <td>Bonus:</td>
@@ -2268,17 +2681,17 @@
 
                     <div class="productivity_robotShop">
                         <div class="productivity_robotShop_credits">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png?__cv=29d973635304fd6902b88e3678b88400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big.png" width="66" height="57">
                             <div class="skylab_robot_price">250 Credits</div>
                             <div class="button_standard" style="margin: auto;">
-                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot('1','TERBIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
+                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '1','TERBIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
                             </div>
                         </div>
                         <div class="productivity_robotShop_uridium">
-                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png?__cv=8d70dd00ac084d814c347beb80267400" width="66" height="57">
+                            <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/icon_robot_big_elite.png" width="66" height="57">
                             <div class="skylab_robot_price">50 Uridium</div>
                             <div class="button_standard" style="margin: auto;">
-                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot('2','TERBIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
+                                <a style="display: block;" onfocus="this.blur()" onclick="skylab.buySkylabRobot(null, '2','TERBIUM_COLLECTOR');" href="javascript:void(0);">Buy</a>
                             </div>
                         </div>
                     </div>
@@ -2386,170 +2799,193 @@
         <div id="module_infobox_prometidRefinery_content" class="skylab_module_content">
             <div id="module_infobox_prometidRefinery_overview_large" class="tabContent skylab_standard">
                 <div style="height:135px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/bg_refinery_3.png); background-repeat:no-repeat;background-position: center 25px">
+                    <?php
+                    $efficiency = $System->User->Skylab->getEfficiency($module);
+                    ?>
                     <div style="position:absolute;left:75px;top:90px;" class="ore_prometium"><strong>Prometium<br>
                             2200</strong></div>
                     <div style="position:absolute;left:235px;top:90px;text-align:right;" class="ore_endurium"><strong>Endurium<br>
                             1100</strong></div>
-                    <div style="position:absolute;left:100px;top:150px;">100%</div>
+                    <div style="position:absolute;left:100px;top:150px;"><?=$efficiency ?>%</div>
                     <div style="position:absolute;left:155px;top:185px;" class="ore_prometid"><strong>Prometid<br>
                             110</strong></div>
-                    <?php
-                    $efficiency = $System->User->Skylab->getEfficiency($module);
-                    ?>
                     <div class="icon_efficiency icon_efficiency_<?=$efficiency ?>"></div>
+                    <?php if ($efficiency == 0) { ?>
                     <div class="icon_attention"></div>
+                    <?php } ?>
                 </div>
             </div>
 
             <div id="module_infobox_prometidRefinery_upgrade_large" class="tabContent skylab_standard" style="display: none">
 
+
                 <?php
-                $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+                $module = 'PROMETID_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
 
-                if (!$isUpgrading) {
-                ?>
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
 
-                <table class="module_infobox_upgrade">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_prometidRefinery"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'prometidRefinery',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_prometidRefinery" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_prometidRefinery"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_prometidRefinery">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
 
-                <?php }  else  { ?>
-                <div class="upgrade_container">
-                    <div>
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'prometidRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'prometidRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'prometidRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
 
-                        <div id="timers_prometidRefinery"></div>
-                        <script language="javascript">
-                            $(document).ready(function() {
-                                var tmp = new SkylabTimer();
-                                tmp.init(
-                                    'prometidRefinery',
-                                    <?=time() ?>,
-                                    <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
-                                    <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
-                                );
-                                tmp = undefined;
-                            });
-                        </script>
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_prometidRefinery">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_prometidRefinery">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_prometidRefinery">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_prometidRefinery">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
                     </div>
-
-                    <div class="module_progressBGWrapper">
-                        <div class="module_progressBG_left"></div>
-                        <div id="progressBG_module_prometidRefinery" class="module_progressBG">
-                            <div class="progress_timer" id="progress_timer_prometidRefinery"></div>
-                            <div class="module_progressBarWrapper" id="module_progressBarWrapper_prometidRefinery">
-                                <div class="module_progressBar_left"></div>
-                                <div class="module_progressBar_right"></div>
-                            </div>
-                        </div>
-                        <div class="module_progressBG_right"></div>
-                    </div>
-
-                    <div class="upgrade_options_wrapper">
-                        <div class="upgrade_option_instant upgrade_option" onclick="skylab.chooseUpgradeOption('instant', 'prometidRefinery')">
-                            <div class="option_state">
-                                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
-                            </div>
-                            INSTANT
-                        </div>
-                        <div class="upgrade_option_cinema upgrade_option" onclick="skylab.chooseUpgradeOption('cinema', 'prometidRefinery')">
-                            <div class="option_state">
-                                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
-                            </div>
-                            CINEMA (10/10)
-                        </div>
-                        <div class="upgrade_option_cancel upgrade_option" onclick="skylab.chooseUpgradeOption('cancel', 'prometidRefinery')">
-                            <div class="option_state">
-                                <img src="<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
-                            </div>
-                            CANCEL
-                        </div>
-
-                        <br class="clearMe">
-
-                        <div class="upgrade_options_text" id="upgrade_text_instant_prometidRefinery">
-                            Instantly finish the upgrade for 750 Uridium
-                        </div>
-                        <div class="upgrade_options_text" id="upgrade_text_cinema_prometidRefinery">
-                            You can skip 45 minutes by watching a full video.
-                        </div>
-                        <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_prometidRefinery">
-                            There is currently no video available.
-                        </div>
-                        <div class="upgrade_options_text" id="upgrade_text_cancel_prometidRefinery">
-                            Warning: If you cancel this upgrade, all invested resources will be lost.
-                        </div>
-                        <input type="hidden" id="upgrade_option_prometidRefinery" value="">
-                    </div>
-
-                    <div class="upgrade_option_confirm" style="display: none">
-                        <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
-                    </div>
-                </div>
                 <?php } ?>
             </div>
 
@@ -2654,89 +3090,193 @@
         <div id="module_infobox_duraniumRefinery_content" class="skylab_module_content">
             <div id="module_infobox_duraniumRefinery_overview_large" class="tabContent skylab_standard">
                 <div style="height:135px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/bg_refinery_3.png); background-repeat:no-repeat;background-position: center 25px">
+                    <?php
+                    $efficiency = $System->User->Skylab->getEfficiency($module);
+                    ?>
                     <div style="position:absolute;left:75px;top:90px;" class="ore_endurium"><strong>Endurium<br>
                             1100</strong></div>
                     <div style="position:absolute;left:235px;top:90px;text-align:right;" class="ore_terbium"><strong>Terbium<br>
                             2200</strong></div>
-                    <div style="position:absolute;left:100px;top:150px;">100%</div>
+                    <div style="position:absolute;left:100px;top:150px;"><?=$efficiency?>%</div>
                     <div style="position:absolute;left:155px;top:185px;" class="ore_duranium"><strong>Duranium<br>
                             110</strong></div>
-                    <div class="icon_efficiency icon_efficiency_100"></div>
+
+                    <div class="icon_efficiency icon_efficiency_<?=$efficiency ?>"></div>
+                    <?php if ($efficiency == 0) { ?>
+                        <div class="icon_attention"></div>
+                    <?php } ?>
                 </div>
             </div>
 
             <div id="module_infobox_duraniumRefinery_upgrade_large" class="tabContent skylab_standard" style="display: none;">
+                <?php
+                $module = 'DURANIUM_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
 
-                <?php $module = 'DURANIUM_COLLECTOR'; ?>
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
 
-                <table class="module_infobox_upgrade" cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_duraniumCollector"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'duraniumRefinery',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_duraniumRefinery" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_duraniumRefinery"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_duraniumRefinery">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'duraniumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'duraniumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'duraniumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_duraniumRefinery">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_duraniumRefinery">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_duraniumRefinery">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_duraniumRefinery">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
 
             <div id="module_infobox_duraniumRefinery_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning">
@@ -2784,40 +3324,48 @@
 </script>
 
 
-<div id="module_promeriumRefinery_small" class="module module_small" onclick="skylab.showModule('promeriumRefinery');" "="">
+    <?php
+    $module = 'PROMERIUM_COLLECTOR';
+    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+    ?>
+    <div id="module_promeriumRefinery_small" class="module module_small <?=$isUpgrading == true ? 'upgrading' : '' ?>" onclick="skylab.showModule('promeriumRefinery');" "="">
 
-<table>
-    <tbody><tr>
-        <td id="corner_small_top_left_active">
-            <div class="name">Promerium refinery</div>
-        </td>
-        <td id="corner_small_top_right_active"></td>
-    </tr>
-    <tr>
-        <td id="corner_small_bottom_left_active">
-            <table cellpadding="0" cellspacing="0">
-                <tbody><tr>
-                    <td>
-                        <div class="level_icon"></div>
-                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('PROMERIUM_COLLECTOR') ?></div>
-                    </td>
-                    <td class="cellview">
-                        <div class="power_icon"></div>
-                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption('PROMERIUM_COLLECTOR') ?></div>
-                    </td>
-                    <td class="cellview">
-                        <div class="efficiency_icon"></div>
-                        <div class="efficiency skylab_font_efficiency">100%</div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </td>
-        <td id="corner_small_bottom_right_active"></td>
-    </tr>
-    </tbody></table>
+    <table>
+        <tbody><tr>
+            <td id="corner_small_top_left_active">
+                <div class="name">Promerium refinery</div>
+            </td>
+            <td id="corner_small_top_right_active"></td>
+        </tr>
+        <tr>
+            <td id="corner_small_bottom_left_active">
+                <table>
+                    <tbody><tr>
+                        <td>
+                            <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                            <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
+                        </td>
+                        <td class="cellview">
+                            <div class="power_icon"></div>
+                            <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption($module) ?></div>
+                        </td>
+                        <td class="cellview">
+                            <div class="efficiency_icon"></div>
+                            <div class="efficiency skylab_font_efficiency"><?=$System->User->Skylab->getEfficiency($module)?>%</div>
+                        </td>
+                        <?php if ($isUpgrading) { ?>
+                            <td>
+                                <div class="state_icon"></div>
+                            </td>
+                        <?php } ?>
+                    </tr>
+                    </tbody></table>
+            </td>
+            <td id="corner_small_bottom_right_active"></td>
+        </tr>
+        </tbody></table>
 
-</div>
+    </div>
 
 <div id="module_promeriumRefinery_large" class="module module_large" style="display: none;">
     <div class="skylab_module_header">
@@ -2834,99 +3382,202 @@
         <div id="module_infobox_promeriumRefinery_content" class="skylab_module_content">
             <div id="module_infobox_promeriumRefinery_overview_large" class="tabContent skylab_standard">
                 <div style="height:135px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/bg_refinery_4.png); background-repeat:no-repeat;background-position: 115px 25px">
+                    <?php
+                    $efficiency = $System->User->Skylab->getEfficiency($module);
+                    ?>
                     <div style="position:absolute;left:75px;top:90px;" class="ore_prometid"><strong>Prometid<br>
                             0</strong></div>
                     <div style="position:absolute;left:235px;top:90px;text-align:right;" class="ore_duranium"><strong>Duranium<br>
                             0</strong></div>
                     <div style="position:absolute;left:260px;top:136px;text-align:right;" class="ore_xenomit"><strong>Xenomit<br>
                             0</strong></div>
-                    <div style="position:absolute;left:100px;top:150px;">0%</div>
+                    <div style="position:absolute;left:100px;top:150px;"><?=$efficiency ?>%</div>
                     <div style="position:absolute;left:160px;top:190px;" class="ore_promerium"><strong>Promerium<br>
                             0</strong></div>
-                    <div class="icon_efficiency icon_efficiency_0"></div>
-                    <div class="icon_attention"></div>
+
+                    <div class="icon_efficiency icon_efficiency_<?=$efficiency ?>"></div>
+                    <?php if ($efficiency == 0) { ?>
+                        <div class="icon_attention"></div>
+                    <?php } ?>
                 </div>
 
             </div>
 
             <div id="module_infobox_promeriumRefinery_upgrade_large" class="tabContent skylab_standard" style="display: none;">
+                <?php
+                $module = 'PROMERIUM_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
 
-                <?php $module = 'PROMERIUM_COLLECTOR'; ?>
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
 
-                <table class="module_infobox_upgrade" cellpadding="0" cellspacing="0">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_promeriumRefinery"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'promeriumRefinery',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_promeriumRefinery" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_promeriumRefinery"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_promeriumRefinery">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'promeriumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'promeriumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'promeriumRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_promeriumRefinery">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_promeriumRefinery">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_promeriumRefinery">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_promeriumRefinery">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
 
             <div id="module_infobox_promeriumRefinery_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning">
                 <div id="module_infobox_promeriumRefinery_infomessage" class="module_resourceWarning_text"></div>
                 <div class="button_standard module_resourceWarning_button">
-                    <a style="display: block;" onfocus="this.blur()" onclick="jQuery('#module_infobox_promeriumRefinery_resourceWarning_large').hide();" href="#">
+                    <a style="display: block;" onfocus="this.blur()" onclick="$('#module_infobox_promeriumRefinery_resourceWarning_large').hide();" href="#">
                         <strong>OK</strong>
                     </a>
                 </div>
@@ -2966,12 +3617,21 @@
 
 </div>
 <script type="text/javascript">
+    <?php
+    if ($System->User->Skylab->getModuleLevel('PROMETID_COLLECTOR') <= 0 || $System->User->Skylab->getModuleLevel('DURANIUM_COLLECTOR') <= 0) {
+    ?>
     $('#module_infobox_promeriumRefinery_infomessage').html("Before you upgrade your Promerium refinery, you should build Prometid and Duranium refineries as well as a Xeno module so that you'll have enough resources to refine. These refineries are located on the right in the Skylab.");
     $('#module_infobox_promeriumRefinery_resourceWarning_large').show();
+
+    <?php } ?>
 </script>
 
 
-<div id="module_sepromRefinery_small" class="module module_small" onclick="skylab.showModule('sepromRefinery');" "="">
+    <?php
+    $module = 'SEPROM_COLLECTOR';
+    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
+    ?>
+<div id="module_sepromRefinery_small" class="module module_small <?=$isUpgrading == true ? 'upgrading' : '' ?>" onclick="skylab.showModule('sepromRefinery');" "="">
 
 <table>
     <tbody><tr>
@@ -2985,17 +3645,22 @@
             <table>
                 <tbody><tr>
                     <td>
-                        <div class="level_icon"></div>
-                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel('SEPROM_COLLECTOR') ?></div>
+                        <div class="level_icon<?=$isUpgrading == true ? '_upgrade' : '' ?>"></div>
+                        <div class="level skylab_font_level"><?=$System->User->Skylab->getModuleLevel($module) ?></div>
                     </td>
                     <td class="cellview">
                         <div class="power_icon"></div>
-                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption('SEPROM_COLLECTOR') ?></div>
+                        <div class="power skylab_font_power"><?=$System->User->Skylab->getConsumption($module) ?></div>
                     </td>
                     <td class="cellview">
                         <div class="efficiency_icon"></div>
-                        <div class="efficiency skylab_font_efficiency">100%</div>
+                        <div class="efficiency skylab_font_efficiency"><?=$System->User->Skylab->getEfficiency($module)?>%</div>
                     </td>
+                    <?php if ($isUpgrading) { ?>
+                        <td>
+                            <div class="state_icon"></div>
+                        </td>
+                    <?php } ?>
                 </tr>
                 </tbody></table>
         </td>
@@ -3019,96 +3684,198 @@
 
         <div id="module_infobox_sepromRefinery_content" class="skylab_module_content">
             <div id="module_infobox_sepromRefinery_overview_large" class="tabContent skylab_standard">
+                <?php
+                $efficiency = $System->User->Skylab->getEfficiency($module);
+                ?>
                 <div style="height:135px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/bg_refinery_2.png?__cv=5a25a0c14d434545e396a7fc9d45e000); background-repeat:no-repeat;background-position: center 25px">
                     <div style="position:absolute;left:75px;top:90px;" class="ore_promerium"><strong>Promerium<br>
                             0</strong></div>
                     <div style="position:absolute;left:100px;top:150px;">0%</div>
                     <div style="position:absolute;left:155px;top:185px;" class="ore_seprom"><strong>Seprom<br>
                             0</strong></div>
-                    <div class="icon_efficiency icon_efficiency_0"></div>
-                    <div class="icon_attention"></div>
+                    <div class="icon_efficiency icon_efficiency_<?=$efficiency ?>"></div>
+                    <?php if ($efficiency == 0) { ?>
+                        <div class="icon_attention"></div>
+                    <?php } ?>
                 </div>
 
             </div>
 
             <div id="module_infobox_sepromRefinery_upgrade_large" class="tabContent skylab_standard" style="display: none;">
+                <?php
+                $module = 'SEPROM_COLLECTOR';
+                $reachedMaxLevel = $System->User->Skylab->getModuleLevel($module) >= 20;
 
-                <?php $module = 'SEPROM_COLLECTOR'; ?>
+                if (!$reachedMaxLevel) {
+                    $isUpgrading = $System->User->Skylab->getIsUpgrading($module);
 
-                <table class="module_infobox_upgrade">
-                    <tbody><tr>
-                        <td class="firstRow"><br></td>
-                        <td class="secondRow">Instant</td>
-                        <td class="thirdRow skylab_price_normal" style="width:1px;">
-                            <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
-                            <br>
-                        </td>
-                        <td>Normal</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Uridium</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal">0</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Credits</td>
-                        <td class="secondRow"><?=number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',')?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=number_format($System->User->Skylab->getCreditsCost('PROMETIUM_COLLECTOR'), 0, '.', ',')?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Time</td>
-                        <td class="secondRow">0:00</td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getTimeCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Prometium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Endurium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td class="firstRow">Terbium</td>
-                        <td class="secondRow"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                        <td><br></td>
-                        <td class="thirdRow skylab_price_normal"><?=$System->User->Skylab->getPETCost($module) ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" style="padding:8px 3px">
-                            <div class="button_standard" style="float:right;">
-                                <a style="display:block;" onfocus="this.blur()" onclick="skylab.instantUpgradePopup()">Instant build</a>
+                    if (!$isUpgrading) {
+                        ?>
+
+                        <table class="module_infobox_upgrade">
+                            <tbody>
+                            <tr>
+                                <td class="firstRow"><br></td>
+                                <td class="secondRow">Instant</td>
+                                <td class="thirdRow skylab_price_normal" style="width:1px;">
+                                    <div style="position:absolute;width:1px;height:124px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_vertical.jpg?__cv=0f3388b877b7ef4dd20df64be8699800);"></div>
+                                    <br>
+                                </td>
+                                <td>Normal</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Uridium</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getUridiumCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal">0</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Credits</td>
+                                <td class="secondRow"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= number_format($System->User->Skylab->getCreditsCost($module), 0, '.', ',') ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Time</td>
+                                <td class="secondRow">0:00</td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getTimeCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Prometium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Endurium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td class="firstRow">Terbium</td>
+                                <td class="secondRow"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                                <td><br></td>
+                                <td class="thirdRow skylab_price_normal"><?= $System->User->Skylab->getPETCost($module) ?></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"
+                                    style="height:1px;background-image: url(<?= PROJECT_HTTP_ROOT ?>resources/images/internalSkylab/lab/seperator_horizontal.jpg?__cv=b7a2175510ce6023a12e11870f954500);background-repeat:no-repeat;background-position: 65px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding:8px 3px">
+                                    <div class="button_standard" style="float:right;">
+                                        <a style="display:block;" onfocus="this.blur()"
+                                           onclick="skylab.instantUpgradePopup()">Instant build</a>
+                                    </div>
+                                </td>
+                                <td colspan="2" style="padding:8px 5px">
+                                    <div class="button_standard">
+                                        <a style="display:block" onfocus="this.blur()"
+                                           onclick="skylab.buildUpgrade(null, '<?= $module ?>')">Build</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    <?php } else { ?>
+                        <div class="upgrade_container">
+                            <div>
+
+                                <div id="timers_sepromRefinery"></div>
+                                <script language="javascript">
+                                    $(document).ready(function () {
+                                        var tmp = new SkylabTimer();
+                                        tmp.init(
+                                            'sepromRefinery',
+                                            <?=time() ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeStart($module) ?>,
+                                            <?=$System->User->Skylab->getUpgradeTimeEnd($module) ?>,
+                                        );
+                                        tmp = undefined;
+                                    });
+                                </script>
                             </div>
-                        </td>
-                        <td colspan="2" style="padding:8px 5px">
-                            <div class="button_standard">
-                                <a style="display:block" onfocus="this.blur()" onclick="skylab.buildUpgrade(null, '<?=$module ?>')">Build</a>
+
+                            <div class="module_progressBGWrapper">
+                                <div class="module_progressBG_left"></div>
+                                <div id="progressBG_module_sepromRefinery" class="module_progressBG">
+                                    <div class="progress_timer" id="progress_timer_sepromRefinery"></div>
+                                    <div class="module_progressBarWrapper"
+                                         id="module_progressBarWrapper_sepromRefinery">
+                                        <div class="module_progressBar_left"></div>
+                                        <div class="module_progressBar_right"></div>
+                                    </div>
+                                </div>
+                                <div class="module_progressBG_right"></div>
                             </div>
-                        </td>
-                    </tr>
-                    </tbody></table>
+
+                            <div class="upgrade_options_wrapper">
+                                <div class="upgrade_option_instant upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('instant', 'sepromRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_instantfinish.png">
+                                    </div>
+                                    INSTANT
+                                </div>
+                                <div class="upgrade_option_cinema upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cinema', 'sepromRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cinema.png">
+                                    </div>
+                                    CINEMA (10/10)
+                                </div>
+                                <div class="upgrade_option_cancel upgrade_option"
+                                     onclick="skylab.chooseUpgradeOption('cancel', 'sepromRefinery')">
+                                    <div class="option_state">
+                                        <img src="./resources/images/internalSkylab/lab/modules_large/icon_cancel.png">
+                                    </div>
+                                    CANCEL
+                                </div>
+
+                                <br class="clearMe">
+
+                                <div class="upgrade_options_text" id="upgrade_text_instant_sepromRefinery">
+                                    Instantly finish the upgrade for 750 Uridium
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_sepromRefinery">
+                                    You can skip 45 minutes by watching a full video.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cinema_noVideo_sepromRefinery">
+                                    There is currently no video available.
+                                </div>
+                                <div class="upgrade_options_text" id="upgrade_text_cancel_sepromRefinery">
+                                    Warning: If you cancel this upgrade, all invested resources will be lost.
+                                </div>
+                            </div>
+
+                            <div class="upgrade_option_confirm" style="display: none">
+                                <button type="button" class="btn btn-primary" style="margin-left: 111px;">OK</button>
+                            </div>
+                        </div>
+                    <?php }
+                } else {?>
+
+                    <div class="upgrade_container_max">
+                        Maximum upgrade level attained
+                    </div>
+                <?php } ?>
             </div>
 
-            <div id="module_infobox_sepromRefinery_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning" style="display: block;">
+            <div id="module_infobox_sepromRefinery_resourceWarning_large" class="tabContent skylab_standard module_resourceWarning" style="display: none;">
                 <div id="module_infobox_sepromRefinery_infomessage" class="module_resourceWarning_text">Before you upgrade your Seprom refinery, you should build a Promerium refinery so that you'll have enough resources to refine. This refinery is located on the right in the Skylab.</div>
                 <div class="button_standard module_resourceWarning_button">
-                    <a style="display: block;" onfocus="this.blur()" onclick="jQuery('#module_infobox_sepromRefinery_resourceWarning_large').hide();" href="#">
+                    <a style="display: block;" onfocus="this.blur()" onclick="$('#module_infobox_sepromRefinery_resourceWarning_large').hide();" href="#">
                         <strong>OK</strong>
                     </a>
                 </div>
@@ -3148,8 +3915,12 @@
 
 </div>
 <script type="text/javascript">
+    <?php if ($System->User->Skylab->getModuleLevel('PROMERIUM_COLLECTOR') <= 0) { ?>
     $('#module_infobox_sepromRefinery_infomessage').html("Before you upgrade your Seprom refinery, you should build a Promerium refinery so that you'll have enough resources to refine. This refinery is located on the right in the Skylab.");
     $('#module_infobox_sepromRefinery_resourceWarning_large').show();
+    <?php
+        }
+    ?>
 </script>
 
 </div>

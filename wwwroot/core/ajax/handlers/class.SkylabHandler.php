@@ -28,6 +28,7 @@ class SkylabHandler extends AbstractHandler
 
     public function exec_load() {
         global $System;
+        $System->User->Skylab->refresh();
         die(json_encode(
             [
                 'PROMETIUM_COLLECTOR'   => ['READY' => $System->User->Skylab->moduleExists('PROMETIUM_COLLECTOR'),
