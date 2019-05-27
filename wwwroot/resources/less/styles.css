@@ -7293,62 +7293,42 @@ body.internalShop .shop-body .shop-inner .item-list .item .item-price {
   text-align: center;
   width: 100%;
 }
-body.internalAdmin .page-content {
-  background: rgba(145, 145, 145, 0.21);
+body.internalAdmin .key-verification {
+  margin-top: 35%;
 }
-body.internalAdmin .page-content .admin-menu-container {
-  padding: 30px;
+body.internalAdmin .submit-button {
+  margin-left: 42%;
 }
-body.internalAdmin .page-content .admin-menu-container ul {
-  border-bottom: none;
+body.internalAdmin #verify-btn {
+  width: 200px;
 }
-body.internalAdmin .page-content .admin-menu-container ul li {
-  display: block;
+body.internalAdmin .upper-box {
+  margin-top: 40px;
+  text-align: center;
+}
+body.internalAdmin .box {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid white;
   width: 100%;
-  border-bottom: 1px solid #ffffff;
+  margin: auto;
+  margin-top: 5px;
 }
-body.internalAdmin .page-content .admin-menu-container ul li.active a,
-body.internalAdmin .page-content .admin-menu-container ul li:hover a {
-  color: rgba(81, 81, 81, 0.8);
+body.internalAdmin .box div > ul > li a {
+  color: white;
 }
-body.internalAdmin .page-content .admin-menu-container ul li a {
-  color: #ffffff;
-  margin-right: 0;
+body.internalAdmin .box div > ul > li:hover > a {
+  color: black;
 }
-body.internalAdmin .page-content .tab-content {
-  padding: 15px 40px;
+body.internalAdmin .box #main-tab .welcome-msg,
+body.internalAdmin .box #main-tab .tasks {
+  text-align: center;
 }
-body.internalAdmin .page-content .tab-content h3 {
-  padding-bottom: 5px;
-  border-bottom: 1px solid #ffffff;
-}
-body.internalAdmin .page-content .tab-content .invitation-code-list {
-  margin-top: 20px;
-  max-height: 500px;
-}
-body.internalAdmin .page-content .tab-content .invitation-insert-form {
-  margin-top: 15px;
-}
-body.internalAdmin .page-content .tab-content .invitation-insert-form input {
-  margin-bottom: 15px;
-}
-body.internalAdmin .page-content .tab-content .user-look-up-search input.form-control {
-  width: 80%;
-  float: left;
-  display: inline-block;
-}
-body.internalAdmin .page-content .tab-content .user-look-up-search input.btn-primary {
-  width: 20%;
-  float: right;
-  height: 35px;
-  display: inline-block;
-}
-body.internalAdmin .page-content .tab-content .user-look-up-list {
-  max-height: 500px;
-  margin-top: 15px;
-}
-body.internalAdmin .page-content .tab-content .user-look-up-list a {
-  color: #00ff00;
+body.internalAdmin .box #main-tab .list-group {
+  margin: 20px;
+  max-height: 300px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 body.internalSettings .settings-menu-container {
   background-color: #3c3c3c;
@@ -9420,7 +9400,7 @@ body.internalAuction .auc {
   height: 100%;
 }
 body.internalAuction .auction {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(103, 103, 103, 0.3);
 }
 body.internalAuction ::-webkit-scrollbar {
   width: 10px;
@@ -9447,6 +9427,13 @@ body.internalAuction .item_light:hover {
 }
 body.internalAuction tr {
   cursor: pointer;
+}
+body.internalAuction .main-container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+body.internalAuction .item_instantbuy_button {
+  margin-top: 10px;
 }
 body.internalClan .main-clan-info {
   margin-left: 15px;
@@ -9887,6 +9874,10 @@ body.internalGalaxyGates #cross h4 {
 body.internalGalaxyGates #gate-progress-bar {
   background-color: #00000038;
 }
+body.internalPayment {
+  /* -- default theme ------ */
+  /* -- price theme ------ */
+}
 body.internalPayment .settings-menu-container {
   background-color: #3c3c3c;
   height: 100% !important;
@@ -9954,7 +9945,235 @@ body.internalPayment .settings-content > .tab-content {
   padding: 0 15px !important;
   min-height: 570px;
 }
-body.internalPayment .g-recaptcha {
-  display: inline-block;
+body.internalPayment .settings-content > .tab-content #packages {
+  margin-left: 100px;
+  max-height: 535px;
+  margin-bottom: 10px;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+body.internalPayment .settings-content > .tab-content #packages #premium-package {
+  width: 300px;
+  float: left;
+}
+body.internalPayment .settings-content > .tab-content #packages #booster-package {
+  width: 300px;
+  float: left;
+  margin-left: 10px;
+}
+body.internalPayment .settings-content > .tab-content #vouchers .recaptcha {
+  margin-left: 30%;
+}
+body.internalPayment .card {
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+body.internalPayment .card > .card-link {
+  color: #333;
+}
+body.internalPayment .card > .card-link:hover {
+  text-decoration: none;
+}
+body.internalPayment .card > .card-link .card-img img {
+  border-radius: 6px 6px 0 0;
+}
+body.internalPayment .card .card-img {
+  position: relative;
+  padding: 0;
+  display: table;
+}
+body.internalPayment .card .card-img .card-caption {
+  text-shadow: 2px 2px 8px #000000;
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+}
+body.internalPayment .card .card-body {
+  display: table;
+  width: 100%;
+  padding: 12px;
+  background-color: #252525;
+}
+body.internalPayment .card .card-header {
+  border-radius: 6px 6px 0 0;
+  padding: 8px;
+}
+body.internalPayment .card .card-footer {
+  border-radius: 0 0 6px 6px;
+  padding: 8px;
+}
+body.internalPayment .card .card-left {
+  position: relative;
+  float: left;
+  padding: 0 0 8px 0;
+}
+body.internalPayment .card .card-right {
+  position: relative;
+  float: left;
+  padding: 8px 0 0 0;
+}
+body.internalPayment .card .card-body h1:first-child,
+body.internalPayment .card .card-body h2:first-child,
+body.internalPayment .card .card-body h3:first-child,
+body.internalPayment .card .card-body h4:first-child,
+body.internalPayment .card .card-body .h1,
+body.internalPayment .card .card-body .h2,
+body.internalPayment .card .card-body .h3,
+body.internalPayment .card .card-body .h4 {
+  margin-top: 0;
+}
+body.internalPayment .card .card-body .heading {
+  display: block;
+}
+body.internalPayment .card .card-body .heading:last-child {
+  margin-bottom: 0;
+}
+body.internalPayment .card .card-body .lead {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  body.internalPayment .card .card-left {
+    float: left;
+    padding: 0 8px 0 0;
+  }
+  body.internalPayment .card .card-right {
+    float: left;
+    padding: 0 0 0 8px;
+  }
+  body.internalPayment .card .card-4-8 .card-left {
+    width: 33.33333333%;
+  }
+  body.internalPayment .card .card-4-8 .card-right {
+    width: 66.66666667%;
+  }
+  body.internalPayment .card .card-5-7 .card-left {
+    width: 41.66666667%;
+  }
+  body.internalPayment .card .card-5-7 .card-right {
+    width: 58.33333333%;
+  }
+  body.internalPayment .card .card-6-6 .card-left {
+    width: 50%;
+  }
+  body.internalPayment .card .card-6-6 .card-right {
+    width: 50%;
+  }
+  body.internalPayment .card .card-7-5 .card-left {
+    width: 58.33333333%;
+  }
+  body.internalPayment .card .card-7-5 .card-right {
+    width: 41.66666667%;
+  }
+  body.internalPayment .card .card-8-4 .card-left {
+    width: 66.66666667%;
+  }
+  body.internalPayment .card .card-8-4 .card-right {
+    width: 33.33333333%;
+  }
+}
+body.internalPayment .card-default {
+  border-color: #ddd;
+  background-color: #fff;
+  margin-bottom: 24px;
+}
+body.internalPayment .card-default > .card-header,
+body.internalPayment .card-default > .card-footer {
+  color: #333;
+  background-color: #ddd;
+}
+body.internalPayment .card-default > .card-header {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+body.internalPayment .card-default > .card-footer {
+  border-top: 1px solid #ddd;
+  padding: 8px;
+}
+body.internalPayment .card-default > .card-img:first-child img {
+  border-radius: 6px 6px 0 0;
+}
+body.internalPayment .card-default > .card-left {
+  padding-right: 4px;
+}
+body.internalPayment .card-default > .card-right {
+  padding-left: 4px;
+}
+body.internalPayment .card-default p:last-child {
+  margin-bottom: 0;
+}
+body.internalPayment .card-default .card-caption {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+body.internalPayment .card-price {
+  border-color: #999;
+  background-color: #ededed;
+  margin-bottom: 10px;
+}
+body.internalPayment .card-price > .card-heading,
+body.internalPayment .card-price > .card-footer {
+  color: #333;
+  background-color: #fdfdfd;
+}
+body.internalPayment .card-price > .card-heading {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+body.internalPayment .card-price > .card-footer {
+  border-top: 1px solid #ddd;
+  padding: 8px;
+}
+body.internalPayment .card-price > .card-img:first-child img {
+  border-radius: 6px 6px 0 0;
+}
+body.internalPayment .card-price > .card-left {
+  padding-right: 4px;
+}
+body.internalPayment .card-price > .card-right {
+  padding-left: 4px;
+}
+body.internalPayment .card-price .card-caption {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+body.internalPayment .card-price p:last-child {
+  margin-bottom: 0;
+}
+body.internalPayment .card-price .price {
+  text-align: center;
+  color: #ffef00;
+  font-size: 3em;
+  text-transform: uppercase;
+  line-height: 0.7em;
+  margin: 24px 0 16px;
+}
+body.internalPayment .card-price .price small {
+  font-size: 0.4em;
+  color: #ffef00;
+}
+body.internalPayment .card-price .details {
+  list-style: none;
+  margin-bottom: 24px;
+  padding: 0 18px;
+}
+body.internalPayment .card-price .details li {
+  text-align: center;
+  margin-bottom: 8px;
+}
+body.internalPayment .card-price .buy-now {
+  text-transform: uppercase;
+}
+body.internalPayment .card-price table .price {
+  font-size: 1.2em;
+  font-weight: 700;
+  text-align: left;
+}
+body.internalPayment .card-price table .note {
+  color: #666;
+  font-size: 0.8em;
 }
 /*# sourceMappingURL=styles.css.map */

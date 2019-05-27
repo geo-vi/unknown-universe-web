@@ -274,14 +274,16 @@ class GalaxyGates
 
     function prepareGate($id) {
         $equalGate = $this->getEquivalentGate($id);
-        $gateLives = str_replace('PARTS', 'LIVES', $equalGate);
-        $gateWave = str_replace('PARTS', 'WAVE', $equalGate);
-        $gatePrepared = str_replace('PARTS', 'PREPARED', $equalGate);
-        $this->mysql->QUERY('UPDATE player_galaxy_gates SET '.$gatePrepared.' = 1, '.$equalGate.' = NULL, '.$gateLives.' = 5, '.$gateWave.' = 1 WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $this->user->__get('USER_ID'),
-                $this->user->__get('PLAYER_ID')
-            ]);
+        if (sizeof($this->getParts($id)) == $this->GATE_PARTS[$equalGate]) {
+            $gateLives = str_replace('PARTS', 'LIVES', $equalGate);
+            $gateWave = str_replace('PARTS', 'WAVE', $equalGate);
+            $gatePrepared = str_replace('PARTS', 'PREPARED', $equalGate);
+            $this->mysql->QUERY('UPDATE player_galaxy_gates SET ' . $gatePrepared . ' = 1, ' . $equalGate . ' = NULL, ' . $gateLives . ' = 5, ' . $gateWave . ' = 1 WHERE USER_ID = ? AND PLAYER_ID = ?',
+                [
+                    $this->user->__get('USER_ID'),
+                    $this->user->__get('PLAYER_ID')
+                ]);
+        }
     }
 
     function buyLife($id) {
