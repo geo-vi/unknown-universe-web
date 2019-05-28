@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 04, 2019 at 10:29 AM
+-- Generation Time: May 28, 2019 at 12:56 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.1
 
@@ -157,8 +157,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`USER_ID`, `USERNAME`, `EMAIL`, `SESSION_ID`, `PW_HASH`, `LAST_SERVER`, `IP`, `VERFIED`, `ONLINE`, `WAS_TESTER`, `BANNED`, `FIRST_NAME`, `LAST_NAME`, `COUNTRY_NAME`, `GENDER`, `BIRTHDATE`, `LANGUAGE`, `DISCORD_ID`) VALUES
-(58, 'general_Rejection', 'ic3.sh0ck@gmail.com', '13f65af19d8e639d430f3b0d63ac68c9', '$2y$10$72FZyT8yM3XPE1RM2QTO4OtXu2A5tUauuj/Q/jvZnrlVvsxkegZ4q', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', 'Fat', 'Nigger', 'AF', 1, '2000-02-01 00:00:00', 0, 2147483647),
-(59, 'Shock', 'wehaveskillas@gmail.com', '13f65af19d8e639d430f3b0d63ac68c9', '$2y$10$OltsZ3vaMfa3F3L80tWMCOjQePICmFwniICTEn0ANzHTL7p0s.Iru', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', '', '', '', 0, NULL, 0, 0),
+(58, 'general_Rejection', 'ic3.sh0ck@gmail.com', 'edb22fe2341f91141d3fee59ffd8ce05', '$2y$10$72FZyT8yM3XPE1RM2QTO4OtXu2A5tUauuj/Q/jvZnrlVvsxkegZ4q', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', 'Fat', 'Nigger', 'AF', 1, '2000-02-01 00:00:00', 0, 2147483647),
+(59, 'Shock', 'wehaveskillas@gmail.com', '1cc748383cdb8648e049dc1dd4f049dc', '$2y$10$OltsZ3vaMfa3F3L80tWMCOjQePICmFwniICTEn0ANzHTL7p0s.Iru', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', '', '', '', 0, NULL, 0, 0),
 (60, 'TestAccount1', 'testacc@pass.com', '', '$2y$10$gDgMM260tX8c6/tMAt96yOVWdp/w8UtRAi81QkuPAu7GyCXtVuIAW', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', '', '', '', 0, NULL, 0, 0),
 (61, 'TestAcc', 'testacc@gmail.com', '8b8ce714007990c468599aeb0ee44902', '$2y$10$FAi1Ozbf.otaLtdomj0YxepE27hsLeYuHfDLmPOJOdMfIa1osi3lO', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', '', '', '', 0, NULL, 0, 0),
 (62, 'Kurec', 'kur@zalevski.com', '13f65af19d8e639d430f3b0d63ac68c9', '$2y$10$u6GVdyeIiKuEZe8/SQkofORd9pXWpDL9H3/Pf2fvoYSSc0PeybBse', 'GE1', '172.18.0.1', 0, 0, 0, '0000-00-00 00:00:00', '', '', '', 0, NULL, 0, 0);
