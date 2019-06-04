@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\User;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-/** TODO: Change "SESSION_ID" to "remember_token" in table for laravel's authentication system **/
 /** TODO: Migrate GG, Settings, etc. **/
 
 
@@ -85,6 +84,8 @@ class User extends Authenticatable
     {
         return $this->PW_HASH;
     }
+
+
 
 
 
