@@ -21,6 +21,10 @@ class User extends Authenticatable
         '4' => 'Other',
     ];
 
+    /** define the used session_id column of the table "users". */
+    protected $rememberTokenName = "SESSION_ID";
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -49,5 +53,40 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'BANNED' => 'datetime',
+        'BIRTHDATE' => 'datetime',
+        'VERFIED' => 'boolean',
+        'ONLINE' => 'boolean',
+        'WAS_TESTER' => 'boolean',
     ];
+
+    /**
+     * If the cast is an empty array, it will return an empty array instead of null.
+     *
+     * @param string $key
+     * @param mixed $value
+     * @return array|mixed
+     */
+    protected function castAttribute($key, $value)
+    {
+        if($this->getCastType($key) == 'array' && is_null($value)) {
+            return [];
+        }
+        return parent::castAttribute($key, $value);
+    }
+
+    /**
+     * laravel uses the column "password" for the password of the user.
+     * this magic function sets the column to "PW_HASH".
+     *
+     * @return mixed|string
+     */
+    public function getAuthPassword()
+    {
+        return $this->PW_HASH;
+    }
+
+
+
+
 }
