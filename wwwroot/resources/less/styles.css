@@ -5169,6 +5169,15 @@ body footer .footer-inner span {
   font-size: 15px;
   font-weight: 300;
 }
+body.mmo:not(.external):not(.internalHangar) {
+  background: url("../images/backgrounds/bg_standard_mmo.jpg") fixed;
+}
+body.eic:not(.external):not(.internalHangar) {
+  background: url("../images/backgrounds/bg_standard_eic.jpg") fixed;
+}
+body.vru:not(.external):not(.internalHangar) {
+  background: url("../images/backgrounds/bg_standard_vru.jpg") fixed;
+}
 body.xmas:not(.external) #tv-box {
   background: url("../images/internalStart/tv/xmas-tv-overlay.png") !important;
   height: 301px !important;
@@ -5603,8 +5612,8 @@ body.internalStart #player-info-profile-body {
 body.internalStart #player-info-profile-body ul {
   width: 160px;
   text-align: center;
-  font-size: 15.3px;
-  margin-top: 15px;
+  font-size: 14px;
+  margin-top: 7px;
 }
 body.internalStart #player-info-profile-body ul p {
   margin: 0;
@@ -5627,7 +5636,7 @@ body.internalStart #player-info-name > p {
   margin-bottom: 0;
   -webkit-text-fill-color: rgba(255, 255, 255, 0);
   -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: rgba(255, 255, 255, 0.65);
+  -webkit-text-stroke-color: rgba(255, 255, 255);
   -webkit-animation: player-name-fade 3s linear 0s infinite normal;
   animation: player-name-fade 3s linear 0s infinite normal;
 }
@@ -5747,6 +5756,7 @@ body.internalStart #tv-state #tv-on {
   height: 100%;
   z-index: 3;
   position: absolute;
+  background-color: #ffffff57;
 }
 body.internalStart #tv-state #tv-on .tv-buttons {
   margin-left: 140px;
@@ -5874,6 +5884,7 @@ body.internalStart #level-progress span {
   position: absolute;
   left: 215px;
   top: 9px;
+  color: #4e4e4e;
 }
 body.internalStart .progress {
   overflow: hidden;
@@ -5887,7 +5898,7 @@ body.internalStart .progress-bar {
   height: 100%;
   max-width: 485px;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255);
   -webkit-box-shadow: none;
   box-shadow: none;
   -webkit-transition: width 0.6s ease;
@@ -9949,7 +9960,7 @@ body.internalPayment .settings-content > .tab-content #packages {
   margin-left: 100px;
   max-height: 535px;
   margin-bottom: 10px;
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
 }
 body.internalPayment .settings-content > .tab-content #packages #premium-package {

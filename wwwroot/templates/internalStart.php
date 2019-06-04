@@ -26,8 +26,11 @@ include_once('internalModal.php');
 
                 <ul class="pull-right">
                     <li><p><?= $System->User->__get('PLAYER_NAME') ?></p></li>
-                    <li><p><?=$System->User->getCurrentClan('NAME') ?><span class="bold"> [<?=$System->User->getCurrentClan('TAG') ?>]</span></p></li>
+                    <?php if ($System->User->__get('CLAN_ID') != 0) {  ?>
+                        <li><p><?=$System->User->getCurrentClan('NAME') ?><span class="bold"> [<?=$System->User->getCurrentClan('TAG') ?>]</span></p></li>
+                    <?php } ?>
                     <li><p class="bold">TOP <?= $System->User->__get('RANKING') ?></p></li>
+                    <li><p>General</p></li>
                 </ul>
             </div><!-- /player-info-profile-body -->
 

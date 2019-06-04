@@ -51,11 +51,11 @@ $System->routing->add("internalCompanyChoose", "internalCompanyChoose", true, fa
 $System->routing->add("internalClan", "internalClan", true);
 $System->routing->add("internalSettings", "internalSettings", true);
 $System->routing->add("internalSkylab", "internalSkylab", true, true,false);
-$System->routing->add("internalAuction", "internalAuction", true);
+//$System->routing->add("internalAuction", "internalAuction", true);
 $System->routing->add("internalMessaging", "internalMessaging", true);
 $System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
 //$System->routing->add("internalCalendar", "internalCalendar", true);
-$System->routing->add("internalPayment", "internalPayment", true);
+//$System->routing->add("internalPayment", "internalPayment", true);
 
 //ADMIN PAGES
 $System->routing->add("internalAdmin", "internalAdmin", true, false, false, 21);

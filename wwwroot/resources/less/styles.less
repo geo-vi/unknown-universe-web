@@ -281,6 +281,18 @@ body {
     }
   }
 
+  &.mmo:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_mmo.jpg") fixed;
+  }
+
+  &.eic:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_eic.jpg") fixed;
+  }
+
+  &.vru:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_vru.jpg") fixed;
+  }
+
   &.xmas:not(.external) {
 
     #tv-box {
@@ -740,8 +752,8 @@ body {
     #player-info-profile-body ul {
       width: 160px;
       text-align: center;
-      font-size: 15.3px;
-      margin-top: 15px;
+      font-size: 14px;
+      margin-top: 7px;
     }
 
     #player-info-profile-body ul p {
@@ -766,7 +778,7 @@ body {
         margin-bottom: 0;
         -webkit-text-fill-color: rgba(255, 255, 255, 0);
         -webkit-text-stroke-width: .5px;
-        -webkit-text-stroke-color: rgba(255, 255, 255, .65);
+        -webkit-text-stroke-color: rgba(255, 255, 255);
 
         -webkit-animation: player-name-fade 3s linear 0s infinite normal;
         animation: player-name-fade 3s linear 0s infinite normal;
@@ -907,6 +919,7 @@ body {
         height: 100%;
         z-index: 3;
         position: absolute;
+        background-color: #ffffff57;
 
         .tv-buttons {
           margin-left: 140px;
@@ -1057,6 +1070,7 @@ body {
       position: absolute;
       left: 215px;
       top: 9px;
+      color: #4e4e4e;
     }
 
     .progress {
@@ -1072,7 +1086,7 @@ body {
       height: 100%;
       max-width: 485px;
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.10);
+      background-color: rgba(255, 255, 255);
       -webkit-box-shadow: none;
       box-shadow: none;
       -webkit-transition: width .6s ease;
@@ -5874,7 +5888,7 @@ body {
           margin-left:100px;
           max-height: 535px;
           margin-bottom: 10px;
-          overflow:scroll;
+          overflow-y:scroll;
           -webkit-overflow-scrolling: touch;
 
           #premium-package {

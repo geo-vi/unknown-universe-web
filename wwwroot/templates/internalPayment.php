@@ -1,3 +1,4 @@
+<script src="https://www.paypal.com/sdk/js?client-id=AYbOdz78mqE9cptFiKLCS_yyVHoapSbnfasw9XQLwbaWHAIOKNV2oEczOKc8n3ivT25nkM-v0VLy5BYm&currency=EUR"></script>
 <script src="<?= PROJECT_HTTP_ROOT ?>resources/js/payment.js"></script>
 <script>
     $(document).ready(function () {
@@ -7,6 +8,34 @@
         );
     });
 </script>
+
+<div class="modal fade" id="gateway" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content" style="color:black;background-color:rgba(0, 0, 0, 0.7);">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Payment Gateways</h4>
+            </div>
+            <div class="modal-body">
+                <p>Buying <span id="buying-item">0 Uridium</span></p>
+                <p>Total due: <span id="due-amount">0,00</span></p>
+                <div class="possible-options">
+<!--                    <div class="btn-group">-->
+<!--                        <button type="button" class="btn btn-success" onclick="swal('Contact Shock','','success')">Paypal</button>-->
+<!--                        <button type="button" class="btn btn-danger" onclick="swal('Contact Shock', '', 'warning')">PaySafeCard</button>-->
+<!--                        <button type="button" class="btn btn-danger" onclick="swal('Contact Shock', '', 'warning')">BTC</button>-->
+<!--                    </div>-->
+                    <div id="paypal-button-container">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="payment-container">
     <div class="col-xs-3 settings-menu-container">
@@ -39,6 +68,7 @@
     <div class="col-xs-9 settings-content">
         <div class="settings-header">
             <h3 class="settings-username pull-right">welcome, <?= $System->User->__get('PLAYER_NAME') ?>!</h3>
+            <button id="cancel-payment" type="button" class="btn btn-primary" style="display: none;">Cancel payment</button>
         </div>
 
         <div class="tab-content">
@@ -99,7 +129,7 @@
                         <div class="price" contenteditable="true">0.01€</div>
                         <div id="uridium-amount" class="lead">275 Uridium</div>
                         <p class="details">Buy the amount Uridium for your needs!</p>
-                        <a href="#" class="btn btn-primary btn-lg btn-block buy-now">
+                        <a href="#" class="btn btn-primary btn-lg btn-block buy-now" data-total="0.01">
                             Buy now <span class="glyphicon glyphicon-triangle-right"></span>
                         </a>
                     </div>
@@ -118,6 +148,7 @@
                 </div>
             </div>
             <div role="tabpanel" class="tab-pane" id="logs">
+
             </div>
         </div>
     </div>
