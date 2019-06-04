@@ -275,7 +275,7 @@ class GalaxyGates
     function prepareGate($id) {
         $equalGate = $this->getEquivalentGate($id);
         $parts = $this->getParts($id);
-        if (sizeof($parts) == $this->GATE_PARTS[$equalGate] && $parts != 0) {
+        if (count($parts) == $this->GATE_PARTS[$equalGate] && $parts != 0) {
             $gateLives = str_replace('PARTS', 'LIVES', $equalGate);
             $gateWave = str_replace('PARTS', 'WAVE', $equalGate);
             $gatePrepared = str_replace('PARTS', 'PREPARED', $equalGate);
