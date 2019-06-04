@@ -20,25 +20,26 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('External')->group(function () {
-    Rout::get('chattool', 'External\BaseController@index')->name('chattool');
+    /** Assets found in public/chattool **/
+    Route::get('chattool', 'BaseController@index')->name('chattool');
 });
 
 Route::namespace('Internal')->group(function() {
-    Route::get('internalShop', 'Internal\ShopController@index')->name('internalShop');
-    Route::get('internalStart', 'Internal\ShopController@index')->name('internalStart');
-    Route::get('internalHangar', 'Internal\ShopController@index')->name('internalHangar');
-    Route::get('internalSkillTree', 'Internal\SkillTreeController@index')->name('internalSkillTree');
-    Route::get('internalMapRevolution', 'Internal\SkillTreeController@index')->name('internalMapRevolution');
-    Route::get('internalCompanyChoose', 'Internal\SkillTreeController@index')->name('internalCompanyChoose');
-    Route::get('internalClan', 'Internal\SkillTreeController@index')->name('internalClan');
-    Route::get('internalSettings', 'Internal\SkillTreeController@index')->name('internalSettings');
-    Route::get('internalSkylab', 'Internal\SkillTreeController@index')->name('internalSkylab');
-    //Route::get('internalAuction', 'Internal\SkillTreeController@index')->name('internalAuction');
-    Route::get('internalMessaging', 'Internal\SkillTreeController@index')->name('internalMessaging');
-    Route::get('internalGalaxyGates', 'Internal\SkillTreeController@index')->name('internalGalaxyGates');
-    //Route::get('internalCalendar', 'Internal\SkillTreeController@index')->name('internalCalendar');
-    //Route::get('internalPayment', 'Internal\SkillTreeController@index')->name('internalPayment');
+    Route::get('internalShop', 'ShopController@index')->name('internalShop');
+    Route::get('internalStart', 'ShopController@index')->name('internalStart');
+    Route::get('internalHangar', 'ShopController@index')->name('internalHangar');
+    Route::get('internalSkillTree', 'SkillTreeController@index')->name('internalSkillTree');
+    Route::get('internalMapRevolution', 'SkillTreeController@index')->name('internalMapRevolution');
+    Route::get('internalCompanyChoose', 'SkillTreeController@index')->name('internalCompanyChoose');
+    Route::get('internalClan', 'SkillTreeController@index')->name('internalClan');
+    Route::get('internalSettings', 'SkillTreeController@index')->name('internalSettings');
+    Route::get('internalSkylab', 'SkillTreeController@index')->name('internalSkylab');
+    //Route::get('internalAuction', 'SkillTreeController@index')->name('internalAuction');
+    Route::get('internalMessaging', 'SkillTreeController@index')->name('internalMessaging');
+    Route::get('internalGalaxyGates', 'SkillTreeController@index')->name('internalGalaxyGates');
+    //Route::get('internalCalendar', 'SkillTreeController@index')->name('internalCalendar');
+    //Route::get('internalPayment', 'SkillTreeController@index')->name('internalPayment');
 
     // Admin-Pages
-    Route::get('internalAdmin', 'Internal\SkillTreeController@index')->name('internalAdmin');
+    Route::get('internalAdmin', 'SkillTreeController@index')->name('internalAdmin');
 });

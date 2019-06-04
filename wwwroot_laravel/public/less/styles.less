@@ -1,0 +1,6007 @@
+// import external documents
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css");
+// reference theme variables
+@import (reference) "theme.less";
+// import fonts, apply mixins
+@import "fonts.less";
+@import "mixins.less";
+// import additional style
+@import "chosen.less";
+@import "custom.less";
+
+h1, h2, h3, h4, h5 {
+  color: #FFFFFF !important;
+}
+
+* {
+  outline: none !important;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border-radius: 0 !important;
+  -webkit-transition: background-color .3s;
+  -moz-transition: background-color .3s;
+  -ms-transition: background-color .3s;
+  -o-transition: background-color .3s;
+  transition: background-color .3s;
+
+  &::-webkit-input-placeholder {
+    color: @placeholder-color;
+  }
+
+  &:-moz-placeholder {
+    /* FF 4-18 */
+    color: @placeholder-color;
+  }
+
+  &::-moz-placeholder {
+    /* FF 19+ */
+    color: @placeholder-color;
+  }
+
+  &:-ms-input-placeholder {
+    /* IE 10+ */
+    color: @placeholder-color
+  }
+
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
+ul {
+  padding-left: 0;
+  list-style: none;
+}
+
+body {
+  background-position-x: center;
+  background-size: cover;
+  background: url("../images/backgrounds/external.png") fixed;
+  height: 100%;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  overflow-x: hidden;
+
+  header {
+    #userinfo-nav {
+      height: 22px;
+      font-size: 12.5px;
+      line-height: 1.8;
+      background: rgba(255, 255, 255, 0.05);
+
+      ul {
+        list-style: none;
+
+        li {
+          display: inline;
+          color: #ffffff;
+
+          a {
+            color: #ffffff;
+          }
+        }
+
+        &.pull-left {
+          margin-left: 10px;
+
+          li {
+            margin-right: 24px;
+          }
+        }
+
+        &.pull-right {
+          li {
+            margin-right: 41px;
+          }
+        }
+      }
+    }
+
+    #main-nav {
+      height: 127px;
+      clear: both;
+      margin-top: 29px;
+
+      ul {
+        padding-left: 0;
+        list-style: none;
+
+        li {
+          width: 190px;
+          text-align: center;
+          margin-bottom: 1px;
+
+          a {
+            display: block;
+            opacity: 0.45;
+            width: 149px;
+            height: 38px;
+            line-height: 1.5;
+            margin: 0 auto;
+            font-size: 17px;
+            color: #fff;
+            font-weight: 800;
+            padding: 5.5px;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
+
+          &.header_button {
+            background: url('../images/buttons/header_sprites_buttons.png') no-repeat;
+            width: 190px;
+            height: 37px;
+
+            &:hover {
+              background-position: -1px -40px !important;
+            }
+
+            &.header_normal_button {
+              background-position: -1px -79px;
+            }
+
+            &.header_disabled_button {
+              background-position: -1px -1px;
+            }
+          }
+        }
+      }
+
+      .inbox {
+        background: url('../images/icons/icons_mail_sprite.png') no-repeat;
+        padding-left: 24px;
+        position: relative;
+        left: -175px;
+        top: 65px;
+
+      }
+
+      .inbox-empty:hover {
+        background-position: 0 -20px;
+      }
+
+      .inbox-new {
+        background-position: 0 -40px;
+
+        &:hover {
+          background-position: 0 -20px;
+        }
+      }
+    }
+
+    .header-buttons {
+      width: 367px;
+      height: auto;
+      margin-bottom: 0;
+    }
+
+    .main-logo {
+      padding-bottom: 41px;
+      padding-top: 41px;
+      margin-left: 90px;
+
+      &:hover {
+        > img {
+          filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+          -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+        }
+      }
+
+      > img {
+        width: 210px;
+        height: 101px;
+        -webkit-transition: filter .3s;
+        -moz-transition: filter .3s;
+        -ms-transition: filter .3s;
+        -o-transition: filter .3s;
+        transition: filter .3s;
+      }
+    }
+
+    #left-buttons {
+      float: left;
+
+      .main-right-buttons {
+        position: relative;
+        top: 29px;
+        right: 6px;
+      }
+
+      .main-left-buttons {
+        position: relative;
+        top: -28px;
+      }
+    }
+
+    #right-buttons {
+      float: right;
+
+      .main-left-buttons {
+        position: relative;
+        top: 29px;
+        left: 6px;
+      }
+
+      .main-right-buttons {
+        position: relative;
+        top: -28px;
+      }
+    }
+
+    .main-left-buttons {
+      float: left;
+    }
+
+    .main-right-buttons {
+      float: right;
+    }
+  }
+
+  footer {
+    height: 50px;
+
+    .footer-inner {
+      background: rgba(145, 145, 145, 0.21);
+      padding: 10px 20px;
+
+      #footer-logo {
+        margin: 0 auto;
+        width: 132px;
+        height: 34px;
+      }
+
+      #footer-backlink {
+        margin-top: -25px;
+        float: right;
+        text-decoration: none;
+        font-weight: 300;
+
+        a {
+          color: #FFFFFF;
+        }
+      }
+
+      span {
+        float: left;
+        margin-top: 10px;
+        color: #FFFFFF;
+        font-size: 15px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  &.mmo:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_mmo.jpg") fixed;
+  }
+
+  &.eic:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_eic.jpg") fixed;
+  }
+
+  &.vru:not(.external):not(.internalHangar) {
+    background: url("../images/backgrounds/bg_standard_vru.jpg") fixed;
+  }
+
+  &.xmas:not(.external) {
+
+    #tv-box {
+      background: url("../images/internalStart/tv/xmas-tv-overlay.png") !important;
+      height: 301px !important;
+      z-index: 9999999;
+      position: relative;
+    }
+
+    header {
+      #main-nav {
+        #left-buttons {
+          &:before {
+            content: "";
+            width: 450px;
+            height: 247px;
+            position: absolute;
+            background-image: url(../images/header/xmas_btn_left.png);
+            background-repeat: no-repeat;
+            background-position-y: -45px;
+            margin-left: -30px;
+
+          }
+        }
+
+        #right-buttons {
+          &:before {
+            content: "";
+            width: 450px;
+            height: 247px;
+            position: absolute;
+            background-image: url(../images/header/xmas_btn_right.png);
+            background-repeat: no-repeat;
+            background-position-y: -45px;
+            margin-right: -25px;
+
+          }
+        }
+      }
+    }
+  }
+
+  &.external, &.externalRecovery {
+    background: url("../images/backgrounds/external.png");
+
+    main {
+      width: 444px;
+      margin: ~'calc(50vh - 345px)' auto 0;
+
+      #logo {
+        height: 174px;
+        background: url(../images/logos/logo.png) no-repeat;
+        position: relative;
+        left: 24px;
+
+        .logo-U {
+          width: 60px;
+          height: 131px;
+          background: url(../images/logos/logo_U.png) no-repeat;
+          background-size: contain;
+          float: left;
+          position: relative;
+          top: 97px;
+          left: 27px;
+          z-index: 1;
+        }
+
+        .logo-text {
+          width: 286px;
+          height: 119px;
+          background: url(../images/logos/logo_text.png) no-repeat;
+          background-size: contain;
+          float: right;
+          position: relative;
+          top: 54px;
+          left: -59px;
+        }
+      }
+
+      .login-form-wrapper {
+        height: 462px;
+        border: 1px solid #ffffff2e;
+
+        nav {
+          // float: right;
+          // width: 340px;
+          // margin-top: 4px;
+          margin-bottom: 53px;
+          // margin-right: 3px;
+          z-index: -1;
+
+          ul.nav-tabs {
+            border-bottom: 1px solid #54545440;
+
+            > li {
+              > a {
+                border-radius: 0;
+                background-color: #9fa0a314;
+                color: #fff;
+                position: relative;
+                display: block;
+                padding: 8px 0;
+                border: none;
+                .transition(background-color .3s);
+
+                &:focus, &:hover {
+                  text-decoration: none;
+                  background-color: #78797b;
+                }
+              }
+
+              &.active {
+                > a {
+                  border: none;
+                  background-color: #78797b47;
+
+                  &:focus, &:hover {
+                    border: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        form {
+          width: 362px;
+          margin: 0 auto;
+          text-align: center;
+
+          &.login-form {
+            a {
+              color: #fff;
+            }
+          }
+
+          &.register-form {
+            .form-button, .form-input {
+              height: 44px !important;
+              margin-bottom: 8px;
+            }
+          }
+
+          .g-recaptcha {
+            display: inline-block;
+          }
+
+          p {
+            color: #ffffff;
+          }
+
+          .form-input {
+            width: 100%;
+            height: 56px;
+            padding: 0 12px;
+            margin-bottom: 15px;
+            background-color: #7b7b7c00;
+            border: 1px solid #c0c0c036;
+            font-size: 14px;
+            text-align: center;
+            text-transform: none;
+            font-weight: bold;
+
+            &:active {
+              background-color: #7b7b7c57;
+            }
+          }
+
+          .form-button {
+            width: 100%;
+            height: 84px;
+            background-color: #a8a8aa14;
+            border: none;
+            margin-bottom: 45px;
+            .transition(background-color .3s);
+            text-transform: uppercase;
+            color: #ffffff;
+            font-family: "Roboto Condensed", sans-serif;
+
+            &:hover {
+              background-color: #707072;
+            }
+          }
+        }
+      }
+    }
+
+    .dialog-icon-wrapper {
+      text-align: center;
+      font-size: 45px;
+    }
+
+    .dialog-message > p {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    div[role="dialog"] {
+      &.ui-dialog {
+        &.ui-widget-content {
+          width: 400px !important;
+          border-radius: 0 !important;
+          border: none !important;
+          background-color: rgb(23, 21, 21);
+          color: #FFFFFF !important;
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+
+        .ui-dialog-buttonpane {
+          &.ui-widget-content {
+            background-color: rgba(39, 39, 39, 0.81);
+            border-radius: 0 !important;
+            border: none !important;
+            color: #FFFFFF !important;
+            margin-top: 0 !important;
+            margin-bottom: 10px;
+            text-align: center;
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+          }
+
+          button {
+            border-radius: 0 !important;
+            border: 1px solid #FFFFFF;
+            background-color: rgba(81, 81, 81, 0.8);
+            margin-right: 0 !important;
+            color: #FFFFFF !important;
+            width: 100px;
+            font-family: 'Roboto Condensed', sans-serif;
+
+            &:hover {
+              background-color: rgba(39, 39, 39, 0.81);
+            }
+          }
+
+          .ui-dialog-buttonset {
+            float: none;
+          }
+        }
+
+        .ui-dialog-content {
+          background-color: rgba(39, 39, 39, 0.81);
+          color: #FFFFFF !important;
+          font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .ui-widget-header {
+          background: transparent !important;
+          border-radius: 0 !important;
+          border: none !important;
+          color: #FFFFFF !important;
+          padding-top: 20px !important;
+          padding-bottom: 20px !important;
+          text-align: center;
+        }
+
+        .ui-dialog-title {
+          width: 100% !important;
+          font-family: 'Roboto Condensed', sans-serif;
+          font-weight: normal;
+          font-size: 25px;
+        }
+
+        .ui-dialog-titlebar-close {
+          border-radius: 0 !important;
+          color: white;
+          border: none !important;
+          background-color: rgba(39, 39, 39, 0.81);
+        }
+      }
+    }
+  }
+
+  &.e_404_template, &.error_template {
+    .e_404-container {
+      width: 600px;
+      background-color: rgba(0, 0, 0, 0.48);
+      padding: 35px;
+      margin: ~'calc(50vh - 118px)' auto 0;
+    }
+  }
+
+  &.internalCompanyChoose {
+    background-image: none !important;
+    background-color: #0e0e0e;
+
+    .main-story-container {
+      margin-top: ~'calc(50vh - 45px)';
+      text-align: center;
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+      -khtml-user-select: none; /* Konqueror */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently not supported by any browser */
+    }
+
+    .company-choose-container {
+      margin-top: ~'calc(50vh - 300px)';
+      display: none;
+      opacity: 0;
+      text-align: center;
+    }
+
+    .company-choose-header > h1 {
+      color: #FFFFFF;
+      font-size: 40px;
+    }
+
+    .company-choose-select-container {
+      width: 750px;
+      margin: 0 auto;
+
+      .company-choose-select {
+        filter: brightness(50%);
+        margin-top: 40px;
+        width: 245px;
+        height: 465px;
+        background-size: cover;
+        display: inline-block;
+        border: 1px #000000 solid;
+
+        > .select-header {
+          position: relative;
+          top: -30px;
+          color: #FFFFFF;
+        }
+
+        &.selected {
+          -moz-box-shadow: inset 0 0 10px #FFFFFF;
+          -webkit-box-shadow: inset 0 0 10px #FFFFFF;
+          box-shadow: inset 0 0 10px #FFFFFF;
+          opacity: 1;
+          filter: brightness(100%);
+        }
+
+        &.mmo {
+          background-image: url("../images/internalCompanyChoose/bg_character_mmo.jpg");
+        }
+
+        &.eic {
+          background-image: url("../images/internalCompanyChoose/bg_character_eic.jpg");
+        }
+
+        &.vru {
+          background-image: url("../images/internalCompanyChoose/bg_character_vru.jpg");
+        }
+
+        &:hover {
+          -moz-box-shadow: inset 0 0 10px #FFFFFF;
+          -webkit-box-shadow: inset 0 0 10px #FFFFFF;
+          box-shadow: inset 0 0 10px #FFFFFF;
+          border: 1px white solid;
+          opacity: 1;
+          filter: brightness(100%);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .story {
+      display: none;
+      opacity: 0;
+      font-size: 27px;
+      color: #FFFFFF;
+
+      &:last-child {
+        font-size: 32px !important;
+      }
+    }
+
+    .visible {
+      display: block !important;
+    }
+
+    .company-story {
+      margin-top: 20px;
+      display: none;
+      opacity: 0;
+      color: #FFFFFF;
+    }
+
+    .skip-story-button {
+      margin-top: 20px;
+      justify-content: center;
+      display: block;
+      background: #ffffff00;
+    }
+
+    .join-button-container {
+      display: none;
+      margin: 30px auto;
+      width: 205px;
+      height: 65px;
+      padding-top: 18px;
+      color: #FFFFFF;
+      background-repeat: no-repeat;
+      background-image: url("../images/internalCompanyChoose/company_choose_btn.png");
+
+      &:hover {
+        cursor: pointer;
+        border: none !important;
+        background-repeat: no-repeat;
+        color: #000000;
+        background-image: url("../images/internalCompanyChoose/company_choose_glow_btn.png");
+      }
+    }
+
+    #xmas-main-overlay {
+      display: none !important;
+    }
+
+    #snow {
+      display: none !important;
+    }
+  }
+
+  &.internalStart {
+    #playerInfo-tv-container {
+      display: inline-block;
+      width: 100%;
+    }
+
+    /* Player info profile */
+
+    #player-info {
+      width: 272px;
+      margin-left: 43px;
+      float: left;
+    }
+
+    #player-info-profile {
+      width: 260px;
+      height: 120px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      .transition(opacity .6s);
+    }
+
+    #player-info-profile-header {
+      text-align: right;
+      font-size: 16px;
+    }
+
+    #player-info-profile-header span {
+      margin-right: 21px;
+    }
+
+    #player-info-profile-body {
+      background: rgba(255, 255, 255, 0.1);
+      width: 254px;
+      height: 94px;
+      margin: 0 auto;
+    }
+
+    #player-info-profile-body ul {
+      width: 160px;
+      text-align: center;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+
+    #player-info-profile-body ul p {
+      margin: 0;
+    }
+
+    #player-title .dropdown {
+      max-width: 100px;
+    }
+
+    /* @end player info profile */
+
+    #player-info-name {
+      font-size: 41.67px;
+      text-align: center;
+      /* In the psd are 20px but looks excesive */
+      margin-top: 7px;
+      .transition(opacity .6s);
+
+      > p {
+        opacity: 0.65;
+        margin-bottom: 0;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0);
+        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-color: rgba(255, 255, 255);
+
+        -webkit-animation: player-name-fade 3s linear 0s infinite normal;
+        animation: player-name-fade 3s linear 0s infinite normal;
+      }
+
+      @-webkit-keyframes player-name-fade {
+        0% {
+          opacity: .65;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: .65;
+        }
+      }
+
+      @keyframes player-name-fade {
+        0% {
+          opacity: .65;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: .65;
+        }
+      }
+    }
+
+    #player-info-equipment {
+      width: 260px;
+      height: 118px;
+      margin: 0 auto 15px;
+      clear: both;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      .transition(opacity .6s);
+    }
+
+    #player-info-equipment-body {
+      background: rgba(255, 255, 255, 0.1);
+      width: 254px;
+      height: 112px;
+      margin: 2px auto 0;
+      text-align: center;
+      padding: 9px;
+    }
+
+    #player-info-equipment-body > p {
+      margin-top: 2px;
+      margin-bottom: 3px;
+    }
+
+    /* Player ship box */
+
+    #player-ship-box {
+      width: 360px;
+      float: left;
+      margin-top: 65px;
+      margin-bottom: 25px;
+      //height: 250px;
+
+      #ship {
+        margin: 0 auto;
+        display: block;
+        width: auto;
+        height: auto;
+        cursor: pointer;
+        -webkit-transition: filter .6s;
+        -moz-transition: filter .6s;
+        -ms-transition: filter .6s;
+        -o-transition: filter .6s;
+        transition: filter .6s;
+      }
+
+      #drone {
+        display: block;
+        max-width: 50px;
+        max-height: 60px;
+        width: auto;
+        height: auto;
+        float: left;
+        /* this value is for the goliath enforcer... each ship moves the fucking pet */
+        margin-top: -13px;
+        margin-left: 60px;
+      }
+
+      #pet {
+        display: block;
+        max-width: 76px;
+        max-height: 86px;
+        width: auto;
+        height: auto;
+        float: right;
+        /* this value is for the goliath enforcer... each ship moves the fucking pet */
+        margin-top: -13px;
+        margin-right: 55px;
+      }
+
+      &:hover {
+        #ship {
+          filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+          -webkit-filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.7));
+        }
+      }
+    }
+
+    /* @end player ship box */
+
+    /* TV box */
+
+    #tv-box {
+      background: url("../images/internalStart/tv/tv_border.png");
+      width: 452px;
+      height: 290px;
+      float: right;
+      margin-top: -22px;
+    }
+
+    #tv-state {
+      width: 447.5px;
+      height: 235px;
+      position: relative;
+      top: 53px;
+      left: 2px;
+      cursor: pointer;
+
+      #tv-off {
+        background: url("../images/internalStart/tv/tv_off.png") no-repeat center center;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        position: absolute;
+      }
+
+      #tv-on {
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        position: absolute;
+        background-color: #ffffff57;
+
+        .tv-buttons {
+          margin-left: 140px;
+          margin-top: 90px;
+          text-align: center;
+
+          div {
+            p {
+              font-size: 10px;
+              color: black;
+              line-height: 0;
+              margin-top: 10px;
+            }
+
+            span {
+              font-size: 30px;
+              line-height: 20px;
+              color: black;
+            }
+          }
+        }
+
+        .tv-button {
+          width: 50px;
+          height: 50px;
+          background: white;
+          margin-left: 5px;
+
+          &:hover {
+            background: black !important;
+            border: 1px solid white;
+
+            span, p {
+              color: white !important;
+            }
+          }
+        }
+
+        #news, #videos, #live {
+          background: white;
+          float: left;
+        }
+      }
+    }
+
+    /* @end TV box */
+
+    #page-container {
+      background: rgba(255, 255, 255, 0.02);
+      clear: both;
+      position: relative;
+      top: 12px;
+      padding: 13px 28px 0;
+      width: 992px;
+      margin: 0 auto;
+    }
+
+    #tabs-container {
+      background: rgba(192, 192, 192, 0.1);
+      padding: 13px;
+    }
+
+    .nav-tabs {
+      border-bottom: none;
+      padding-top: 5px;
+    }
+
+    .nav-tabs > li.active > a,
+    .nav-tabs > li.active > a:focus,
+    .nav-tabs > li > a:hover {
+      color: #fff;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      opacity: 1 !important;
+    }
+
+    .nav-tabs > li > a {
+      margin-right: 2px;
+      line-height: 1.42857143;
+      border: none;
+      border-radius: 0;
+      font-size: 17px;
+      color: #FFFFFF;
+      opacity: 0.5;
+      .transition(opacity .3s)
+    }
+
+    .nav > li > a {
+      position: relative;
+      display: block;
+      padding: 0 3px 10px;
+      opacity: 0.5;
+    }
+
+    /* TAB HOVER */
+
+    .nav-tabs > li > a:hover {
+      border-color: transparent;
+    }
+
+    .nav > li > a:focus, .nav > li > a:hover, .active {
+      text-decoration: none;
+      background-color: transparent;
+
+    }
+
+    /* CENTER TABS*/
+
+    .nav-tabs > li, .nav-pills > li {
+      float: none;
+      display: inline-block;
+      *display: inline;
+      /* ie7 fix */
+      zoom: 1;
+      /* hasLayout ie7 trigger */
+    }
+
+    .nav-tabs, .nav-pills {
+      text-align: center;
+    }
+
+    #tabs-content {
+      background: rgba(0, 0, 0, 0.1);
+      height: 200px;
+    }
+
+    /* STATS TAB */
+
+    #stats table {
+      text-align: center;
+      margin: 10px auto 0;
+    }
+
+    #stats table th, #stats table td {
+      padding-right: 37.5px;
+      padding-left: 37.5px;
+    }
+
+    #level-progress {
+      width: 485px;
+      height: 39px;
+      margin: 28px auto 0;
+      position: relative;
+    }
+
+    #level-progress span {
+      position: absolute;
+      left: 215px;
+      top: 9px;
+      color: #4e4e4e;
+    }
+
+    .progress {
+      overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+
+    .progress-bar {
+      float: left;
+      height: 100%;
+      max-width: 485px;
+      text-align: center;
+      background-color: rgba(255, 255, 255);
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      -webkit-transition: width .6s ease;
+      -o-transition: width .6s ease;
+      transition: width .6s ease;
+    }
+
+    /* @end STATS TAB */
+
+    /* EVENTS */
+
+    #events {
+      padding: 0 25px;
+    }
+
+    #events table {
+      width: 100%;
+      margin: 0 auto;
+      table-layout: fixed;
+      opacity: 0.5;
+    }
+
+    #events th, #events td {
+      border-style: solid;
+      border-color: white;
+      border-width: 0 0 1px 0;
+      text-align: center;
+    }
+
+    #events td {
+      font-size: 14px;
+    }
+
+    #events th {
+      font-size: 16.67px;
+    }
+
+    #event-days th {
+      font-size: 20.83px;
+    }
+
+    .active-event {
+      background: #ffffff30;
+    }
+
+    /* @end EVENTS */
+
+    /* PILOT PROFILE */
+
+    #pilot-profile {
+      height: 114px;
+      color: #c0c0c0;
+      margin: 15px auto 0;
+      padding: 0 40px;
+      position: relative;
+    }
+
+    #pilot-profile-user {
+      background: rgba(0, 0, 0, 0.2);
+      width: auto;
+      height: 114px;
+      display: block;
+      float: left;
+      padding: 10px 0;
+    }
+
+    #pilot-profile-user img {
+      margin-left: 16px;
+      margin-right: 22px;
+      border: 1px solid white;
+    }
+
+    .pilot-profile-column {
+      font-size: 16.67px;
+    }
+
+    .pilot-profile-column th {
+      padding: 0 24px 0 0;
+      font-weight: bold;
+    }
+
+    .pilot-profile-column td {
+      font-weight: 300;
+    }
+
+    #pilot-profile-user-column1 {
+      float: left;
+      margin-right: 25px;
+    }
+
+    #pilot-profile-user-column2 {
+      float: right;
+      margin-right: 25px;
+    }
+
+    #pilot-profile-skills-text {
+      position: absolute;
+      font-size: 20.83px;
+      top: -30px;
+      right: 85px;
+    }
+
+    #pilot-profile-skills-text a {
+      display: block;
+      font-size: 18.75px;
+      opacity: 0.9;
+      color: #FFFFFF;
+      .text-shadow(1px 1px 1px rgba(0, 0, 0, 1));
+    }
+
+    #pilot-profile-skills {
+      background: rgba(0, 0, 0, 0.5);
+      display: block;
+      width: 345px;
+      height: 114px;
+      float: right;
+      overflow: auto;
+      padding: 14px 0 14px 25px;
+    }
+
+    .skill {
+      width: 74px;
+      height: 85px;
+      background-image: url('../images/internalSkillTree/skilltree_texture.png');
+      cursor: pointer;
+      display: block;
+      float: left;
+      margin: 0 11px;
+    }
+
+    .skill .skill_effect_inactive {
+      background-image: url('../images/internalSkillTree/skilltree_texture.png');
+      background-position: -222px 0;
+      cursor: default;
+      width: 74px;
+      height: 85px;
+    }
+
+    .skillPoints {
+      position: relative;
+      text-align: center;
+      top: 66px;
+      width: 74px;
+      font-size: 11px;
+    }
+
+    /* Skill positions */
+
+    #skill_1 {
+      background-position: -296px 0
+    }
+
+    #skill_small_1 {
+      background-position: 0 0
+    }
+
+    #skill_2 {
+      background-position: -370px 0
+    }
+
+    #skill_small_2 {
+      background-position: -22px 0
+    }
+
+    #skill_4 {
+      background-position: -444px 0
+    }
+
+    #skill_small_4 {
+      background-position: -44px 0
+    }
+
+    #skill_5a {
+      background-position: -518px 0
+    }
+
+    #skill_small_5a {
+      background-position: -66px 0
+    }
+
+    #skill_5b {
+      background-position: -592px 0
+    }
+
+    #skill_small_5b {
+      background-position: -88px 0
+    }
+
+    #skill_6 {
+      background-position: -666px 0
+    }
+
+    #skill_small_6 {
+      background-position: -110px 0
+    }
+
+    #skill_8 {
+      background-position: -740px 0
+    }
+
+    #skill_small_8 {
+      background-position: -132px 0
+    }
+
+    #skill_9 {
+      background-position: -814px 0
+    }
+
+    #skill_small_9 {
+      background-position: -154px 0
+    }
+
+    #skill_11 {
+      background-position: -888px 0
+    }
+
+    #skill_small_11 {
+      background-position: -176px 0
+    }
+
+    #skill_13 {
+      background-position: -962px 0
+    }
+
+    #skill_small_13 {
+      background-position: -198px 0
+    }
+
+    #skill_14 {
+      background-position: -1036px 0
+    }
+
+    #skill_small_14 {
+      background-position: -220px 0
+    }
+
+    #skill_15 {
+      background-position: -1110px 0
+    }
+
+    #skill_small_15 {
+      background-position: -242px 0
+    }
+
+    #skill_16a {
+      background-position: -1184px 0
+    }
+
+    #skill_small_16a {
+      background-position: -264px 0
+    }
+
+    #skill_16b {
+      background-position: -1258px 0
+    }
+
+    #skill_small_16b {
+      background-position: -286px 0
+    }
+
+    #skill_17 {
+      background-position: -1332px 0
+    }
+
+    #skill_small_17 {
+      background-position: -305px 0
+    }
+
+    #skill_18a {
+      background-position: -1406px 0
+    }
+
+    #skill_small_18a {
+      background-position: -330px 0
+    }
+
+    #skill_18b {
+      background-position: -1480px 0
+    }
+
+    #skill_small_18b {
+      background-position: -352px 0
+    }
+
+    #skill_19 {
+      background-position: -1554px 0
+    }
+
+    #skill_small_19 {
+      background-position: -374px 0
+    }
+
+    #skill_20 {
+      background-position: -1628px 0
+    }
+
+    #skill_small_20 {
+      background-position: -396px 0
+    }
+
+    #skill_21a {
+      background-position: -1702px 0
+    }
+
+    #skill_small_21a {
+      background-position: -418px 0
+    }
+
+    #skill_21b {
+      background-position: -1776px 0
+    }
+
+    #skill_small_21b {
+      background-position: -440px 0
+    }
+
+    #skill_22a {
+      background-position: -1850px 0
+    }
+
+    #skill_small_22a {
+      background-position: -462px 0
+    }
+
+    #skill_22b {
+      background-position: -1924px 0
+    }
+
+    #skill_small_22b {
+      background-position: -484px 0
+    }
+
+    #skill_23a {
+      background-position: -1998px 0
+    }
+
+    #skill_small_23a {
+      background-position: -506px 0
+    }
+
+    #skill_23b {
+      background-position: -2072px 0
+    }
+
+    #skill_small_23b {
+      background-position: -528px 0
+    }
+
+    /* @end PILOT PROFILE */
+
+    #stats-corner {
+      height: 265px;
+      background: rgba(192, 192, 192, 0.1);
+      padding: 25px 15px 20px;
+    }
+
+    #best-pilots {
+      height: 213px;
+      overflow: auto;
+      position: relative;
+      float: left;
+    }
+
+    /* Scrollbar for best pilots fix */
+
+    .mCSB_inside > .mCSB_container {
+      margin-right: 0
+    }
+
+    .mCS-dark-3.mCSB_scrollTools .mCSB_draggerRail, .mCS-light-3.mCSB_scrollTools .mCSB_draggerRail {
+      width: 6px;
+      background-color: #c0c0c0;
+      opacity: 0.1;
+    }
+
+    .pilot-entry {
+      background: rgba(192, 192, 192, 0.04);
+      padding: 0 10px;
+      margin-bottom: 1px;
+    }
+
+    #logbook {
+      float: right;
+      height: 213px;
+      text-align: center;
+    }
+
+    /* This is the shit that caused the black bottom bug */
+
+    #logbook-bg {
+      font-size: 75px;
+      position: relative;
+      top: 31px;
+      left: 15px;
+      opacity: 0.03;
+    }
+
+    #logbook-entries {
+      position: relative;
+      height: 213px;
+      overflow: auto;
+      font-size: 17px;
+      color: #c0c0c0;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .log-entry-date {
+      direction: ltr;
+    }
+
+    .log-entry-body {
+      font-weight: 300;
+      direction: ltr;
+      font-size: 16px;
+      padding: 0 15px;
+    }
+
+    .ranking-icon {
+      margin-top: 3px;
+      margin-right: 5px;
+    }
+
+    .pilot-entry > span > span {
+      margin-right: 10px;
+    }
+
+    /* modals start */
+
+    #modalTitle {
+      color: black !important;
+    }
+
+    #skillTreeContent {
+
+    }
+
+    #titleChangerContent {
+
+    }
+  }
+
+  &.internalHangar {
+    background: url('../images/backgrounds/internalHangar_background.png');
+
+    .loading-screen {
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+      -khtml-user-select: none; /* Konqueror */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently not supported by any browser */
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.90);
+      position: absolute;
+      z-index: 9999;
+      display: none;
+
+      .loading-screen-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .loading-screen-caption {
+          position: absolute;
+          width: auto;
+          top: 50%;
+          left: 0;
+          right: 0;
+          transform: translateY(-50%);
+          margin: 0 auto;
+          font-size: 40px;
+          text-align: center;
+        }
+      }
+
+      &.loading {
+        display: block;
+      }
+    }
+
+    .equipment-slot {
+      display: inline-block;
+      height: 31px;
+      width: 31px;
+      background: rgba(0, 0, 0, 0.70);
+      background-size: cover;
+      margin: 0 3px 5px 0;
+    }
+
+    #hangar-info-container {
+      margin-top: 20px;
+      background: rgba(0, 0, 0, 0.20);
+    }
+
+    .hangar-container {
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .hangar-slot {
+      width: 70px;
+      height: 70px;
+      margin: 1px;
+      background: rgba(0, 0, 0, 0.50);
+      padding: 7px 0;
+      text-align: center;
+
+      > img {
+        height: 55px;
+        width: auto;
+        margin: auto;
+        cursor: pointer;
+        -webkit-transition: filter .3s;
+        -moz-transition: filter .3s;
+        -ms-transition: filter .3s;
+        -o-transition: filter .3s;
+        transition: filter .3s;
+      }
+
+      &:hover, &.active {
+        background: rgba(73, 73, 73, 0.50);
+
+        > img {
+          filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
+          -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .player-ship-view {
+      margin-top: 30px;
+    }
+
+    .player-ship-info {
+      margin-top: 85px;
+      padding-left: 35px;
+
+      > .ship-info {
+        display: block;
+        vertical-align: middle;
+        opacity: .7;
+
+        > span {
+          float: right;
+          vertical-align: middle;
+          line-height: 24px;
+          margin-right: 50px;
+        }
+
+        > h3 {
+          display: inline-block;
+          margin-top: 0;
+          line-height: 24px;
+        }
+      }
+    }
+
+    .ship-box, .drone-box, .pet-box {
+      &:hover, &.active {
+        > img {
+          filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7));
+          -webkit-filter: drop-shadow(0px 0px 5px rgba(255, 255, 255, 0.7));
+        }
+      }
+
+      > img {
+        -webkit-transition: filter .3s;
+        -moz-transition: filter .3s;
+        -ms-transition: filter .3s;
+        -o-transition: filter .3s;
+        transition: filter .3s;
+      }
+    }
+
+    .ship-box {
+      text-align: center;
+      cursor: pointer;
+      z-index: 9;
+
+      > img {
+        min-height: 85px;
+        max-height: 170px;
+        width: auto;
+      }
+    }
+
+    .drone-box {
+      position: absolute;
+      left: 15px;
+      margin-top: 120px;
+      cursor: pointer;
+      z-index: 999;
+
+      > img {
+        height: 55px;
+        width: auto;
+      }
+    }
+
+    .pet-box {
+      position: absolute;
+      margin-left: 230px;
+      top: 120px;
+      cursor: pointer;
+      z-index: 999;
+
+      > img {
+        height: 80px;
+        width: auto;
+      }
+    }
+
+    #design-select {
+      display: inline-block;
+      width: 155px !important;
+      color: white;
+      background: rgb(39, 39, 39) !important;
+    }
+
+    #filter-select {
+      display: inline-block;
+      color: white;
+      background: rgb(39, 39, 39) !important;
+      margin-bottom: 6px;
+    }
+
+    #config-navbar {
+      float: right;
+      right: 100px;
+
+      > .config-navbar {
+        float: right;
+
+        > li {
+          display: inline;
+          height: 50px;
+          width: auto;
+          margin-left: 5px;
+
+          &.button {
+            border: 1px solid #ffffff;
+            padding: 5px;
+            margin-right: 2px;
+          }
+
+          > img {
+            display: inline;
+            height: 30px;
+            width: auto;
+            -webkit-filter: brightness(0) invert(1);
+            -moz-filter: brightness(0) invert(1);
+            -ie-filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1);
+          }
+
+          &:first-child {
+            > img {
+              display: inline;
+              height: 20px !important;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+
+    #hangar-equipment-container {
+      background: rgba(0, 0, 0, 0.70);
+      display: flex;
+      position: relative;
+    }
+
+    #config-tabs-container {
+      padding: 20px;
+    }
+
+    #config-tabs-content {
+      > .nav.nav-tabs {
+        border: none !important;
+
+        > li {
+          margin-bottom: -2px;
+
+          a {
+            color: #ffffff;
+          }
+
+          &.active > a {
+            background: rgb(39, 39, 39) !important;
+            color: #ffffff !important;
+            border: none !important;
+            border-radius: 0 !important;
+            font-weight: normal !important;
+          }
+
+          > a:hover {
+            border-radius: 0 !important;
+            background: rgb(66, 66, 66) !important;
+            color: #ffffff !important;
+            font-weight: normal !important;
+          }
+        }
+      }
+    }
+
+    .config-tab-content {
+      background: rgb(39, 39, 39) !important;
+      padding-top: 40px;
+      min-height: 300px;
+    }
+
+    .equipment-slot, .equiped-item {
+      display: inline-block;
+      height: 31px;
+      width: 31px;
+      background: rgba(0, 0, 0, 0.70);
+      background-size: cover;
+    }
+
+    .equiped-item {
+      border: 1px solid #111111;
+      margin: 0 3px 5px 0;
+    }
+
+    .pet-equipment-box,
+    .ship-equipment-box {
+      padding-left: 35px;
+      max-height: 1px;
+
+      img {
+        width: 100px;
+      }
+    }
+
+    .ship-equipment-slots, .pet-equipment-slots {
+      padding-left: 150px;
+      padding-right: 180px;
+      margin-bottom: 20px;
+      font-size: 0 !important; /* dont remove this , this is a fix for a "white space - bug " */
+
+      &:before {
+        display: inline-block;
+        margin-top: 7px;
+        font-size: 14px;
+        position: absolute;
+        transform: translateX(~"calc(-100% - 7px)");
+      }
+
+      &.laser-slots {
+        &:before {
+          content: "Laser";
+        }
+      }
+
+      &.heavy-slots {
+        &:before {
+          content: "Heavy";
+        }
+      }
+
+      &.generator-slots {
+        &:before {
+          content: "Generator";
+        }
+      }
+
+      &.extra-slots {
+        &:before {
+          content: "Extras";
+        }
+      }
+
+      &.gear-slots {
+        &:before {
+          content: "Gears";
+        }
+      }
+
+      &.protocols-slots {
+        &:before {
+          content: "Protocols";
+        }
+      }
+    }
+
+    .pet-equipment-name {
+      width: 200px;
+      text-align: center;
+      padding-right: 30px;
+      padding-left: 25px;
+      padding-bottom: 15px;
+    }
+
+    .pet-equipment-name-change-btn {
+      padding-left: 25px;
+      float: left;
+    }
+
+    .ship-inventory-container {
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Chrome/Safari/Opera */
+      -khtml-user-select: none; /* Konqueror */
+      -moz-user-select: none; /* Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently not supported by any browser */
+      padding: 20px;
+      padding-left: 0 !important;
+      max-height: 396px;
+
+      > .ship-inventory-content {
+        background: rgba(0, 0, 0, 0.70);
+        height: 100%;
+        padding: 20px 55px;
+        font-size: 0 !important; /* dont remove this , this is a fix for a "white space - bug " */
+      }
+    }
+
+    .inventory-item {
+      display: inline-flex;
+      height: 31px;
+      width: 31px;
+      background: rgba(0, 0, 0, 0.70);
+      background-size: cover;
+      margin: 2px;
+
+    }
+
+    .mCSB_container {
+      min-height: 100% !important;
+    }
+
+    .drone-equipment-container {
+      height: 356px;
+      padding-bottom: 30px;
+    }
+
+    .drone-container {
+      width: 300px;
+      height: 77px;
+      background-color: #252525;
+      margin: 0 auto 5px;
+      position: relative;
+
+      &:last-child {
+        margin-bottom: 55px;
+      }
+
+      > .drone-image {
+        height: 77px;
+        width: 77px;
+        background-color: #5c5c5c;
+        display: inline-flex;
+
+        > img {
+          height: 65px;
+          margin-left: auto;
+          margin-right: auto;
+          width: auto;
+          margin-top: 4px;
+        }
+      }
+
+      > .drone-equipment-slots {
+        vertical-align: top;
+        margin-top: 5px;
+        margin-left: 15px;
+        display: inline-flex;
+      }
+
+      > .drone-equipment-slots.drone_design-slots {
+        vertical-align: bottom;
+        margin-top: 0;
+        display: inline-block !important;
+        position: absolute;
+        bottom: 0;
+        left: 76px;
+      }
+    }
+
+    .ui-selected {
+      border: 1px solid gold !important;
+    }
+
+    .ui-selecting {
+      border: 1px solid white !important;
+    }
+
+    #dialog-box-hangar {
+      display: none;
+      padding-bottom: 0 !important;
+    }
+
+    div[role="dialog"][aria-describedby="dialog-box-hangar"].ui-dialog.ui-widget-content {
+      width: 400px !important;
+    }
+
+    div.ui-dialog-buttonset > button {
+      margin-left: 5px !important;
+      margin-right: 5px !important;
+    }
+
+    .inventory-item, .equiped-item {
+      background-size: cover;
+      width: 31px;
+      height: 31px;
+      display: inline-block;
+      position: relative;
+
+      > span {
+        position: absolute;
+        font-size: 8px;
+        color: #00ffe9;
+        bottom: 0;
+        right: 2px;
+        line-height: 1;
+      }
+
+      /* Inventory Items */
+
+      &[data-item-name="lf-4"], &[data-item-name="lf-4"] {
+        background-image: url("../images/items/equipment/weapon/laser/lf-4_30x30.png");
+      }
+
+      &[data-item-name="lf-3"], &[data-item-name="lf-3"] {
+        background-image: url("../images/items/equipment/weapon/laser/lf-3_30x30.png");
+      }
+
+      &[data-item-name="lf-2"], &[data-item-name="lf-2"] {
+        background-image: url("../images/items/equipment/weapon/laser/lf-2_30x30.png");
+      }
+
+      &[data-item-name="lf-1"], &[data-item-name="lf-1"] {
+        background-image: url("../images/items/equipment/weapon/laser/lf-1_30x30.png");
+      }
+
+      &[data-item-name="mp-1"], &[data-item-name="mp-1"] {
+        background-image: url("../images/items/equipment/weapon/laser/mp-1_30x30.png");
+      }
+
+      &[data-item-name="hst-01"], &[data-item-name="hst-01"] {
+        background-image: url("../images/items/equipment/weapon/rocketlauncher/hst-1_30x30.png");
+      }
+
+      &[data-item-name="hst-02"], &[data-item-name="hst-02"] {
+        background-image: url("../images/items/equipment/weapon/rocketlauncher/hst-2_30x30.png");
+      }
+
+      &[data-item-name="sg3n-b02"], &[data-item-name="sg3n-b02"] {
+        background-image: url("../images/items/equipment/generator/shield/sg3n-b02_30x30.png");
+      }
+
+      &[data-item-name="sg3n-b01"], &[data-item-name="sg3n-b01"] {
+        background-image: url("../images/items/equipment/generator/shield/sg3n-b01_30x30.png");
+      }
+
+      &[data-item-name="sg3n-a03"], &[data-item-name="sg3n-a03"] {
+        background-image: url("../images/items/equipment/generator/shield/sg3n-a03_30x30.png");
+      }
+
+      &[data-item-name="sg3n-a02"], &[data-item-name="sg3n-a02"] {
+        background-image: url("../images/items/equipment/generator/shield/sg3n-a02_30x30.png");
+      }
+
+      &[data-item-name="sg3n-a01"], &[data-item-name="sg3n-a01"] {
+        background-image: url("../images/items/equipment/generator/shield/sg3n-a01_30x30.png");
+      }
+
+      &[data-item-name="g3n-7900"], &[data-item-name="g3n-7900"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-7900_30x30.png");
+      }
+
+      &[data-item-name="g3n-6900"], &[data-item-name="g3n-6900"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-6900_30x30.png");
+      }
+
+      &[data-item-name="g3n-3310"], &[data-item-name="g3n-3310"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-3310_30x30.png");
+      }
+
+      &[data-item-name="g3n-3210"], &[data-item-name="g3n-3210"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-3210_30x30.png");
+      }
+
+      &[data-item-name="g3n-2010"], &[data-item-name="g3n-2010"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-2010_30x30.png");
+      }
+
+      &[data-item-name="g3n-1010"], &[data-item-name="g3n-1010"] {
+        background-image: url("../images/items/equipment/generator/speed/g3n-1010_30x30.png");
+      }
+
+      &[data-item-name="havoc"], &[data-item-name="havoc"] {
+        background-image: url("../images/items/drone/designs/havoc_30x30.png");
+      }
+
+      &[data-item-name="hercules"], &[data-item-name="hercules"] {
+        background-image: url("../images/items/drone/designs/hercules_30x30.png");
+      }
+
+      &[data-item-name="rep-4"], &[data-item-name="rep-4"] {
+        background-image: url("../images/items/equipment/extra/repbot/rep-4_30x30.png");
+      }
+
+      &[data-item-name="lgf"], &[data-item-name="lgf"] {
+        background-image: url("../images/items/resource/logfile_30x30.png");
+      }
+
+      &[data-item-name="bk-100"], &[data-item-name="bk-100"] {
+        background-image: url("../images/items/resource/booty-key_30x30.png");
+      }
+
+      &[data-item-name="rep-3"], &[data-item-name="rep-3"] {
+        background-image: url("../images/items/equipment/extra/repbot/rep-3_30x30.png");
+      }
+
+      &[data-item-name="rep-1"], &[data-item-name="rep-1"] {
+        background-image: url("../images/items/equipment/extra/repbot/rep-1_30x30.png");
+      }
+
+      &[data-item-name="rep-2"], &[data-item-name="rep-2"] {
+        background-image: url("../images/items/equipment/extra/repbot/rep-2_30x30.png");
+      }
+
+      &[data-item-name="dro-02"], &[data-item-name="dro-02"] {
+        background-image: url("../images/items/equipment/extra/cpu/dr-02_30x30.png");
+      }
+
+      &[data-item-name="dro-01"], &[data-item-name="dro-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/dr-01_30x30.png");
+      }
+
+      &[data-item-name="nc-rrb"], &[data-item-name="nc-rrb"] {
+        background-image: url("../images/items/equipment/extra/cpu/nc-rrb-x_30x30.png");
+      }
+
+      &[data-item-name="min-t02"], &[data-item-name="min-t02"] {
+        background-image: url("../images/items/equipment/extra/cpu/min-t02_30x30.png");
+      }
+
+      &[data-item-name="min-t01"], &[data-item-name="min-t01"] {
+        background-image: url("../images/items/equipment/extra/cpu/min-t01_30x30.png");
+      }
+
+      &[data-item-name="arol-x"], &[data-item-name="arol-x"] {
+        background-image: url("../images/items/equipment/extra/cpu/arol-x_30x30.png");
+      }
+
+      &[data-item-name="cl04k-mod"], &[data-item-name="cl04k-mod"] {
+        background-image: url("../images/items/equipment/extra/cpu/cl04k-xs_30x30.png");
+      }
+
+      &[data-item-name="cl04k"], &[data-item-name="cl04k"] {
+        background-image: url("../images/items/equipment/extra/cpu/cl04k-m_30x30.png");
+      }
+
+      &[data-item-name="cl04k-xl"], &[data-item-name="cl04k-xl"] {
+        background-image: url("../images/items/equipment/extra/cpu/cl04k-xl_30x30.png");
+      }
+
+      &[data-item-name="gem-xi"], &[data-item-name="gem-xi"] {
+        background-image: url("../images/items/equipment/extra/cpu/g3x-crgo-x_30x30.png");
+      }
+
+      &[data-item-name="jp-01"], &[data-item-name="jp-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/jp-01_30x30.png");
+      }
+
+      &[data-item-name="jp-02"], &[data-item-name="jp-02"] {
+        background-image: url("../images/items/equipment/extra/cpu/jp-02_30x30.png");
+      }
+
+      &[data-item-name="aim-02"], &[data-item-name="aim-02"] {
+        background-image: url("../images/items/equipment/extra/cpu/aim-02_30x30.png");
+      }
+
+      &[data-item-name="aim-01"], &[data-item-name="aim-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/aim-01_30x30.png");
+      }
+
+      &[data-item-name="rl-lb1"], &[data-item-name="rl-lb1"] {
+        background-image: url("../images/items/equipment/extra/cpu/rllb-x_30x30.png");
+      }
+
+      &[data-item-name="smb-01"], &[data-item-name="smb-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/smb-01_30x30.png");
+      }
+
+      &[data-item-name="ish-01"], &[data-item-name="ish-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/ish-01_30x30.png");
+      }
+
+      &[data-item-name="sle-04"], &[data-item-name="sle-04"] {
+        background-image: url("../images/items/equipment/extra/cpu/sle-04_30x30.png");
+      }
+
+      &[data-item-name="sle-03"], &[data-item-name="sle-03"] {
+        background-image: url("../images/items/equipment/extra/cpu/sle-03_30x30.png");
+      }
+
+      &[data-item-name="sle-02"], &[data-item-name="sle-02"] {
+        background-image: url("../images/items/equipment/extra/cpu/sle-02_30x30.png");
+      }
+
+      &[data-item-name="sle-01"], &[data-item-name="sle-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/sle-01_30x30.png");
+      }
+
+      &[data-item-name="rok-t01"], &[data-item-name="rok-t01"] {
+        background-image: url("../images/items/equipment/extra/cpu/rok-t01_30x30.png");
+      }
+
+      &[data-item-name="ajp-01"], &[data-item-name="ajp-01"] {
+        background-image: url("../images/items/equipment/extra/cpu/ajp-01_30x30.png");
+      }
+
+      &[data-item-name="cgm-02"], &[data-item-name="cgm-02"] {
+        background-image: url("../images/items/equipment/petgear/cgm-02_30x30.png");
+      }
+
+      &[data-item-name="csr-02"], &[data-item-name="csr-02"] {
+        background-image: url("../images/items/equipment/petgear/csr-02_30x30.png");
+      }
+
+      &[data-item-name="g-al1"], &[data-item-name="g-al1"] {
+        background-image: url("../images/items/equipment/petgear/g-al1_30x30.png");
+      }
+
+      &[data-item-name="g-ar1"], &[data-item-name="g-ar1"] {
+        background-image: url("../images/items/equipment/petgear/g-ar1_30x30.png");
+      }
+
+      &[data-item-name="g-el1"], &[data-item-name="g-el1"] {
+        background-image: url("../images/items/equipment/petgear/g-el1_30x30.png");
+      }
+
+      &[data-item-name="g-ex1"], &[data-item-name="g-ex1"] {
+        background-image: url("../images/items/equipment/petgear/g-ex1_30x30.png");
+      }
+
+      &[data-item-name="g-kk1"], &[data-item-name="g-kk1"] {
+        background-image: url("../images/items/equipment/petgear/g-kk1_30x30.png");
+      }
+
+      &[data-item-name="g-pd1"], &[data-item-name="g-pd1"] {
+        background-image: url("../images/items/equipment/petgear/g-pd1_30x30.png");
+      }
+
+      &[data-item-name="g-rep1"], &[data-item-name="g-rep1"] {
+        background-image: url("../images/items/equipment/petgear/g-rep1_30x30.png");
+      }
+
+      &[data-item-name="g-rl1"], &[data-item-name="g-rl1"] {
+        background-image: url("../images/items/equipment/petgear/g-rl1_30x30.png");
+      }
+
+      &[data-item-name="g-tra1"], &[data-item-name="g-tra1"] {
+        background-image: url("../images/items/equipment/petgear/g-tra1_30x30.png");
+      }
+
+      &[data-item-name="ai-aim1"], &[data-item-name="ai-aim1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-aim1_30x30.png");
+      }
+
+      &[data-item-name="ai-al1"], &[data-item-name="ai-al1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-al1_30x30.png");
+      }
+
+      &[data-item-name="ai-cr1"], &[data-item-name="ai-cr1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-cr1_30x30.png");
+      }
+
+      &[data-item-name="ai-e1"], &[data-item-name="ai-e1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-e1_30x30.png");
+      }
+
+      &[data-item-name="ai-eco1"], &[data-item-name="ai-eco1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-eco1_30x30.png");
+      }
+
+      &[data-item-name="ai-hp1"], &[data-item-name="ai-hp1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-hp1_30x30.png");
+      }
+
+      &[data-item-name="ai-lm1"], &[data-item-name="ai-lm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-lm1_30x30.png");
+      }
+
+      &[data-item-name="ai-pm1"], &[data-item-name="ai-pm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-pm1_30x30.png");
+      }
+
+      &[data-item-name="ai-r1"], &[data-item-name="ai-r1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-r1_30x30.png");
+      }
+
+      &[data-item-name="ai-s1"], &[data-item-name="ai-s1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-s1_30x30.png");
+      }
+
+      &[data-item-name="ai-sm1"], &[data-item-name="ai-sm1"] {
+        background-image: url("../images/items/equipment/aiprotocol/ai-sm1_30x30.png");
+      }
+    }
+  }
+
+  &.internalMapRevolution {
+  }
+
+  &.internalShop {
+    .shop-body {
+      background: rgba(145, 145, 145, 0.21);
+      padding: 40px;
+
+      .shop-header {
+        background: rgba(0, 0, 0, 0.61);
+        height: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 5px 0;
+
+        ul.nav {
+          li {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 20px;
+            font-weight: 200;
+
+            &.category-ships {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/ships.png");
+                  width: 26px;
+                }
+              }
+            }
+
+            &.category-designs {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/designs.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-equipables {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/weapons.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-extras {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/extra.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-generator {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/generator.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-drones {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/drones.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-ammo {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/ammo.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-booster {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/booster.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-pet {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/pet.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-adminitem {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/tetrathrin.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            &.category-adminship {
+              a {
+                &:before {
+                  background-image: url("../images/internalShop/indoctrineoil.png");
+                  width: 40px;
+                }
+              }
+            }
+
+            a {
+              padding-left: 0;
+              padding-right: 0;
+              padding-top: 45px;
+              color: #ffffff;
+              -webkit-transition: filter .3s;
+              -moz-transition: filter .3s;
+              -ms-transition: filter .3s;
+              -o-transition: filter .3s;
+              transition: filter .3s;
+
+              &:before {
+                content: '';
+                display: inline-block;
+                background-size: contain;
+                background-repeat: no-repeat;
+                position: absolute;
+                left: 0;
+                right: 0;
+                margin: -37px auto !important;
+                height: 35px;
+                background-position: bottom;
+              }
+
+              &:hover, &:focus {
+                background-color: transparent;
+                filter: drop-shadow(0px 0px, 2px rgba(255, 255, 255, 0.7));
+                -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
+              }
+            }
+          }
+        }
+      }
+
+      .shop-inner {
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.61);
+
+        .single-item {
+          padding: 0 115px;
+          margin-top: 25px;
+
+          .single-item-inner {
+            display: inline-block;
+            float: left;
+
+            .single-item-image {
+              width: 200px;
+              height: 200px;
+              float: left;
+              display: inline-block;
+              border: 1px solid rgba(255, 255, 255, 0.51);
+
+              img {
+                width: 200px;
+                filter: drop-shadow(0px 0px, 30px rgba(255, 255, 255, 0.7));
+                -webkit-transform: translateY(10%);
+                -moz-transform: translateY(10%);
+                -ms-transform: translateY(10%);
+                -o-transform: translateY(10%);
+                transform: translateY(10%);
+                -webkit-filter: drop-shadow(0px 0px 30px rgba(255, 255, 255, 0.7));
+              }
+            }
+
+            .single-item-content {
+              display: inline-block;
+              width: 600px;
+              height: 200px;
+              max-height: 200px;
+              padding-left: 15px;
+              border: 1px solid rgba(204, 204, 204, 0.51);
+              border-left: none;
+            }
+
+            .single-item-description {
+              padding-right: 45px;
+
+              h3 {
+                border-bottom: 1px solid;
+                padding-bottom: 5px;
+              }
+
+              ul {
+                -moz-column-count: 2;
+                -moz-column-gap: 20px;
+                -webkit-column-count: 2;
+                -webkit-column-gap: 20px;
+                column-count: 2;
+                column-gap: 20px;
+                font-size: 13px;
+              }
+
+              p {
+                font-size: 13px;
+              }
+            }
+
+            .single-item-buy-menu {
+              max-height: 200px;
+              min-height: 200px;
+              position: relative;
+              padding: 15px;
+
+              .add-button {
+                text-align: center;
+                color: #ffffff;
+                margin-right: 5px;
+                margin-bottom: 2px;
+                display: inline-block;
+                cursor: pointer;
+              }
+
+              .item-quantity {
+                background-color: #7b7b7c57;
+                border: 1px solid #ffffff !important;
+                color: #ffffff;
+              }
+
+              .item-quantity-label {
+                font-size: 10px;
+                font-weight: 200;
+              }
+
+              .item-price {
+                position: absolute;
+                bottom: 50px;
+                text-align: center;
+                left: 15px;
+                right: 15px;
+                font-size: 20px;
+              }
+
+              .buy-btn {
+                padding: 5px 30px;
+                position: absolute;
+                bottom: 15px;
+                text-align: center;
+                left: 15px;
+                right: 15px;
+              }
+
+              .lvl-btn {
+                width: 100%;
+                height: 35px;
+              }
+
+              .selected {
+                color: white !important;
+              }
+            }
+          }
+        }
+
+        .item-list {
+          margin-top: 25px;
+          max-height: 380px;
+          padding: 0 45px;
+          margin-bottom: 30px;
+
+          .item {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+            -webkit-transition: filter .3s;
+            -moz-transition: filter .3s;
+            -ms-transition: filter .3s;
+            -o-transition: filter .3s;
+            transition: filter .3s;
+
+            &:hover {
+              cursor: pointer;
+              filter: brightness(.6);
+            }
+
+            .item-image {
+              background-size: 100% 100%;
+              width: 100%;
+              height: 100%;
+            }
+
+            .item-price {
+              position: absolute;
+              bottom: 2px;
+              text-align: center;
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.internalAdmin {
+    .key-verification {
+      margin-top:35%;
+    }
+    .submit-button {
+      margin-left:42%;
+    }
+    #verify-btn {
+      width:200px;
+    }
+
+    .upper-box {
+      margin-top: 40px;
+      text-align: center;
+    }
+    .box {
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid white;
+      width: 100%;
+      margin: auto;
+      margin-top: 5px;
+
+      div > ul > li {
+        a {
+          color: white;
+        }
+
+        &:hover > a {
+          color: black;
+        }
+      }
+
+      #main-tab {
+        .welcome-msg,
+        .tasks {
+          text-align: center;
+        }
+
+        .list-group {
+          margin: 20px;
+          max-height: 300px;
+          margin-bottom: 10px;
+          overflow:scroll;
+          -webkit-overflow-scrolling: touch;
+        }
+      }
+    }
+  }
+
+  &.internalSettings {
+    @background_color_1: #3c3c3c;
+    @background_color_2: #2b2b2b;
+    @background_color_3: #353535;
+    @background_color_4: #2d2e30;
+    @background_color_5: #2f2f2f;
+
+    .settings-menu-container {
+      background-color: @background_color_1;
+      height: 100% !important;
+      min-height: 655px !important;
+      padding: 15px 0 !important;
+    }
+
+    ul.nav-tabs {
+      > li.active {
+        > a {
+          &:active {
+            background-color: @background_color_2;
+          }
+
+          &:focus {
+            background-color: @background_color_2;
+          }
+
+          &:hover {
+            background-color: @background_color_2;
+          }
+
+          background-color: @background_color_2;
+        }
+      }
+
+      > li {
+        > a {
+          &:hover {
+            background-color: @background_color_3;
+          }
+
+          border: none !important;
+          color: #ffffff;
+          text-align: center;
+          margin-right: 0 !important;
+          font-family: "Roboto Condensed", sans-serif;
+          font-weight: 300 !important;
+          font-size: 17px !important;
+          text-transform: uppercase;
+        }
+
+        display: block;
+        height: 46px !important;
+        width: 100%;
+      }
+
+      border: none !important;
+    }
+
+    .menu-header {
+      padding-bottom: 17px;
+      padding-top: 5px;
+
+      > h1 {
+        font-size: 17px !important;
+        text-align: center;
+        margin: 0 !important;
+        text-transform: uppercase;
+      }
+    }
+
+    .settings-header {
+      > h3 {
+        font-size: 17px !important;
+        text-transform: uppercase;
+      }
+
+      height: 55px !important;
+      //background-color: @background_color_4 !important;
+      padding: 0 15px !important;
+    }
+
+    .settings-content {
+      background-color: #2b2b2b60;
+      padding: 0 !important;
+      height: 100% !important;
+      min-height: 655px !important;
+
+      > .tab-content {
+        padding: 0 15px !important;
+        min-height: 570px;
+
+        > div {
+          //background-color: @background_color_5 !important;
+        }
+      }
+    }
+  }
+
+  &.internalMessaging {
+    @background_color_1: #3c3c3c;
+    @background_color_2: #2b2b2b;
+    @background_color_3: #353535;
+    @background_color_4: #2d2e30;
+    @background_color_5: #2f2f2f;
+
+    .msg-menu-container {
+      background-color: @background_color_1;
+      height: 100% !important;
+      min-height: 655px !important;
+      padding: 15px 0 !important;
+    }
+
+    ul.nav-tabs {
+      > li.active {
+        > a {
+          &:active {
+            background-color: @background_color_2;
+          }
+
+          &:focus {
+            background-color: @background_color_2;
+          }
+
+          &:hover {
+            background-color: @background_color_2;
+          }
+
+          background-color: @background_color_2;
+        }
+      }
+
+      > li {
+        > a {
+          &:hover {
+            background-color: @background_color_3;
+          }
+
+          border: none !important;
+          color: #ffffff;
+          text-align: center;
+          margin-right: 0 !important;
+          font-family: "Roboto Condensed", sans-serif;
+          font-weight: 300 !important;
+          font-size: 17px !important;
+          text-transform: uppercase;
+        }
+
+        display: block;
+        height: 46px !important;
+        width: 100%;
+      }
+
+      border: none !important;
+    }
+
+    .menu-header {
+      padding-bottom: 17px;
+      padding-top: 5px;
+
+      > h1 {
+        font-size: 17px !important;
+        text-align: center;
+        margin: 0 !important;
+        text-transform: uppercase;
+      }
+    }
+
+    .msg-header {
+      > h3 {
+        font-size: 17px !important;
+        text-transform: uppercase;
+      }
+
+      height: 55px !important;
+      background-color: @background_color_4 !important;
+      padding: 0 15px !important;
+    }
+
+    .msg-content {
+      background-color: @background_color_2;
+      padding: 0 !important;
+
+      > .tab-content {
+        padding: 0 !important;
+        min-height: 600px;
+
+        > div {
+          background-color: @background_color_5 !important;
+        }
+      }
+    }
+
+    .message-details {
+      padding: 40px;
+
+      input {
+        color: #000;
+      }
+
+
+      .ck-editor__editable {
+        min-height: 200px;
+
+        > * {
+          color: #000;
+        }
+
+      }
+
+      .reply-btn {
+        color: #FFFFFF;
+        text-transform: uppercase;
+      }
+    }
+
+    .msg-read {
+      color: white;
+    }
+
+    .msg-unread {
+      color: #337ab7;
+    }
+  }
+
+  &.internalSkylab {
+    .box {
+      background-color: rgba(0, 0, 0, 0.3);
+      border: 1px solid white;
+      width: 776px;
+      margin: auto;
+      margin-top: 60px;
+
+      div > ul > li {
+        a {
+          color: white;
+        }
+
+        &:hover > a {
+          color: black;
+        }
+      }
+    }
+
+    #skylab {
+      position: relative;
+      left: 1px;
+      top: 0px;
+      width: 772px;
+      height: 407px;
+      background-image: url(../images/internalSkylab/lab/background.jpg?__cv=f4b44b08b683b3404bec38921eb92e00);
+      background-repeat: no-repeat;
+      font-size: 11px;
+      color: #f2b05a;
+    }
+
+    #subnav {
+      position: absolute;
+      top: -26px;
+      left: 4px;
+    }
+
+    #skylabContent {
+      /*    position: relative;*/
+      left: 16px;
+      top: 21px;
+      width: 772px;
+      height: 401px;
+      background-image: url(../images/internalSkylab/lab/background.jpg?__cv=f4b44b08b683b3404bec38921eb92e00);
+      background-repeat: no-repeat;
+    }
+
+    #backgroundPrometiumCollector {
+      position: absolute;
+      left: 207px;
+      top: 141px;
+      width: 112px;
+      height: 66px;
+      background-image: url(../images/internalSkylab/lab/prometium_collector_layer.gif?__cv=0a4f9247291dc33a22a69ac16eb6c800);
+    }
+
+    #uplinkPrometiumCollector {
+      position: absolute;
+      left: 223px;
+      top: 81px;
+      width: 33px;
+      height: 70px;
+      background-image: url(../images/internalSkylab/lab/uplink_prometiumCollector.png?__cv=3c4ce0eebdb2fe9a8d75729ce4b93d00);
+    }
+
+    #backgroundEnduriumCollector {
+      position: absolute;
+      left: 126px;
+      top: 192px;
+      width: 73px;
+      height: 87px;
+      background-image: url(../images/internalSkylab/lab/endurium_collector_layer.gif?__cv=4a0ce8fdfbf38d9dae3472d36b787900);
+    }
+
+    #uplinkEnduriumCollector {
+      position: absolute;
+      left: 161px;
+      top: 132px;
+      width: 20px;
+      height: 58px;
+      background-image: url(../images/internalSkylab/lab/uplink_enduriumCollector.png?__cv=b3ab3ee34873232d8519bd623fce0f00);
+    }
+
+    #backgroundTerbiumCollector {
+      position: absolute;
+      left: 54px;
+      top: 244px;
+      width: 73px;
+      height: 78px;
+      background-image: url(../images/internalSkylab/lab/terbium_collector_layer.gif?__cv=c1462ad34e1f4027de3fa4de3a106c00);
+    }
+
+    #uplinkTerbiumCollector {
+      position: absolute;
+      left: 66px;
+      top: 215px;
+      width: 4px;
+      height: 30px;
+      background-image: url(../images/internalSkylab/lab/uplink_terbiumCollector.png?__cv=6ba88a6910f3d1a74b4b37355679c000);
+    }
+
+    #backgroundPrometidRefinery {
+      position: absolute;
+      left: 389px;
+      top: 181px;
+      width: 79px;
+      height: 62px;
+      background-image: url(../images/internalSkylab/lab/prometid_refinery_layer.gif?__cv=5083137a50be7d6cb576d4a3a2058300);
+    }
+
+    #uplinkPrometidRefinery {
+      position: absolute;
+      left: 458px;
+      top: 90px;
+      width: 63px;
+      height: 113px;
+      background-image: url(../images/internalSkylab/lab/uplink_prometidRefinery.png?__cv=b3d160729bcb45b7717035fd163f9800);
+    }
+
+    #backgroundDuraniumRefinery {
+      position: absolute;
+      left: 452px;
+      top: 195px;
+      width: 82px;
+      height: 64px;
+      background-image: url(../images/internalSkylab/lab/duranium_refinery_layer.gif?__cv=4cbb2cccb8f78afc45e723b3bbd1f500);
+    }
+
+    #uplinkDuraniumRefinery {
+      position: absolute;
+      left: 506px;
+      top: 137px;
+      width: 86px;
+      height: 76px;
+      background-image: url(../images/internalSkylab/lab/uplink_duraniumRefinery.png?__cv=f9c76ba85647f334d9b39a27a4bfbf00);
+    }
+
+    #backgroundPromeriumRefinery {
+      position: absolute;
+      left: 387px;
+      top: 258px;
+      width: 75px;
+      height: 56px;
+      background-image: url(../images/internalSkylab/lab/promerium_refinery_layer.gif?__cv=3e7177491565c58911d6417411a2ee00);
+    }
+
+    #uplinkPromeriumRefinery {
+      position: absolute;
+      left: 458px;
+      top: 208px;
+      width: 138px;
+      height: 70px;
+      background-image: url(../images/internalSkylab/lab/uplink_promeriumRefinery.png?__cv=0c10b8669a2925d9a00ede87aafe6a00);
+    }
+
+    #backgroundSepromRefinery {
+      position: absolute;
+      left: 387px;
+      top: 313px;
+      width: 74px;
+      height: 57px;
+      background-image: url(../images/internalSkylab/lab/seprom_refinery_layer.gif?__cv=841f7a3b0f8a6bf18bd0e027a5824300);
+    }
+
+    #uplinkSepromRefinery {
+      position: absolute;
+      left: 475px;
+      top: 355px;
+      width: 120px;
+      height: 46px;
+      background-image: url(../images/internalSkylab/lab/uplink_sepromRefinery.png?__cv=2a40245e8fcd728ad9c0397ecdf61000);
+    }
+
+    #backgroundXenoModule {
+      position: absolute;
+      left: 450px;
+      top: 267px;
+      width: 64px;
+      height: 62px;
+      background-image: url(../images/internalSkylab/lab/xeno_module_layer.gif?__cv=c3a7f5faf6a97561e7f44380535da900);
+    }
+
+    #uplinkXenoModule {
+      position: absolute;
+      left: 526px;
+      top: 301px;
+      width: 116px;
+      height: 23px;
+      background-image: url(../images/internalSkylab/lab/uplink_xenoModule.png?__cv=9f67c91a0be3a1b6e2b749ebce57c200);
+    }
+
+    #skylab #modules {
+      position: absolute;
+      left: 16px;
+      top: 50px;
+      width: 772px;
+      height: 364px;
+    }
+
+    #skylab .module_large {
+      z-index: 20;
+      left: 195px;
+      top: -20px;
+      width: 359px;
+    }
+
+    .skylab_module_header {
+      width: inherit;
+      height: 39px;
+      background: url(../images/internalSkylab/lab/modules_large/popup_header.png?__cv=57187cad6e380a0957fc186fd7b20b00) no-repeat center;
+    }
+
+    .skylab_module_close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      width: 24px;
+      height: 24px;
+      background: url(../images/internalSkylab/lab/modules_large/close_button_sprite.png?__cv=fa1f7ef0f89ab04212dbf02f3424d700) no-repeat center -24px;
+    }
+
+    .skylab_module_close:hover {
+      background-position: center 0;
+    }
+
+    .skylab_module_close:active {
+      background-position: center -48px;
+    }
+
+    .skylab_module_middle {
+      width: inherit;
+      background: url(../images/internalSkylab/lab/modules_large/popup_middle.png?__cv=56226ac40551323a9a89453ad36fc500) repeat-y center top;
+      padding-top: 15px;
+    }
+
+    .skylab_module_tabs {
+      width: 326px;
+      margin: 0 auto 0;
+      height: 18px;
+    }
+
+    .skylab_module_tab {
+      width: 76px;
+      height: 16px;
+      background: url(../images/internalSkylab/lab/modules_large/subtab_sprite_76x16px.png?__cv=8c0cb75900b3615c37d5625304e6b700) no-repeat 0 0;
+      text-align: center;
+      float: left;
+      cursor: pointer;
+      padding-top: 2px;
+      color: #BFBFBF;
+    }
+
+    .skylab_module_tab.tab_third {
+      background-image: url(../images/internalSkylab/lab/modules_large/subtab_sprite_120x16px.png?__cv=19c918e831cc866272f6137b4bc04800);
+      width: 120px;
+    }
+
+    .skylab_module_tab:hover {
+      background-position: 0 -36px;
+    }
+
+    .skylab_module_tab.tab_active {
+      background-position: 0 -18px;
+      color: #FFFFFF;
+    }
+
+    .skylab_module_content {
+      background: url(../images/internalSkylab/lab/modules_large/content_bg_326x243px.png?__cv=cc7773e80cabf70a9defe5585b40a300) no-repeat center;
+      width: 326px;
+      height: 243px;
+      margin: 0 auto;
+    }
+
+    .skylab_module_footer {
+      width: inherit;
+      height: 49px;
+      background: url(../images/internalSkylab/lab/modules_large/popup_footer.png?__cv=bda06559499f3631035304b343035900) no-repeat center;
+    }
+
+
+    #skylab .module_small {
+      /*background-image:  url(../images/internalSkylab/lab/module_bg_small.png?__cv=e5df8b303b394f28609d3aa3dcf44d00);
+      width: 170px;
+      height: 36px;*/
+    }
+
+    #skylab .module {
+      position: absolute;
+    }
+
+    #skylab .module #corner_small_top_left_active {
+      padding: 2px 0px 0px 4px;
+      background-image: url(../images/internalSkylab/lab/box_small_left_top_active.png?__cv=adec8c2caa1bdf2e5eaea026cd290b00);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module #corner_small_top_right_active {
+      background-image: url(../images/internalSkylab/lab/box_small_right_top_active.png?__cv=e3e2ae780c910feec5c2d9e8fb536d00);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module #corner_small_bottom_left_active {
+      padding: 3px 0px 3px 4px;
+      background-image: url(../images/internalSkylab/lab/box_small_left_bottom_active.png?__cv=bc43e0b9c35851f214dfcba695247c00);
+      background-repeat: no-repeat;
+      background-position: left bottom;
+    }
+
+    #skylab .module #corner_small_bottom_right_active {
+      width: 5px;
+      background-image: url(../images/internalSkylab/lab/box_small_right_bottom_active.png?__cv=33fab77ecffc0da765194378e167e700);
+      background-repeat: no-repeat;
+      background-position: right bottom;
+    }
+
+    #skylab .module #corner_small_top_left_inactive {
+      padding: 2px 0px 0px 4px;
+      background-image: url(../images/internalSkylab/lab/box_small_left_top_inactive.png?__cv=6414dfd6b9a98c5f37316e5a6b621800);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module #corner_small_top_right_inactive {
+      background-image: url(../images/internalSkylab/lab/box_small_right_top_inactive.png?__cv=96c4bb0646f71d332d6b0c6c3e716800);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module #corner_small_bottom_left_inactive {
+      padding: 3px 0px 3px 4px;
+      background-image: url(../images/internalSkylab/lab/box_small_left_bottom_inactive.png?__cv=9ba05c9c073ddadd2924d3bd2763cf00);
+      background-repeat: no-repeat;
+      background-position: left bottom;
+    }
+
+    #skylab .module #corner_small_bottom_right_inactive {
+      width: 5px;
+      background-image: url(../images/internalSkylab/lab/box_small_right_bottom_inactive.png?__cv=f49da71b06b8917d5ebeeeb70f9ff700);
+      background-repeat: no-repeat;
+      background-position: right bottom;
+    }
+
+
+    #skylab .module .name {
+      font-weight: bold;
+      color: #f5ffff;
+      white-space: nowrap;
+    }
+
+    .skylab_module_header .name {
+      font-weight: normal !important;
+      color: #ffcc00 !important;
+      white-space: nowrap;
+      text-align: center;
+      padding-top: 9px;
+      font-size: 14px;
+    }
+
+    #skylab .module .name_hint {
+      font-weight: bold;
+      color: #a9a9a9;
+      white-space: nowrap;
+    }
+
+    #skylab .module .name_inactive {
+      font-weight: bold;
+      color: #444444;
+      white-space: nowrap;
+    }
+
+    #skylab .module_infobox {
+      position: relative;
+      left: 0px;
+      top: 0px;
+      z-index: 2;
+      width: 270px;
+    }
+
+    #skylab .module .cellview {
+      padding-left: 10px;
+    }
+
+    #skylab .module .level_icon {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-image: url(../images/internalSkylab/lab/icon_level.png?__cv=c5bbdd1dac33d888d7141d2e51405000);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module .level_icon_inactive {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-image: url(../images/internalSkylab/lab/icon_level_inactive.png?__cv=62ec9e957c7b407554dca92d18fccc00);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module .level_icon_upgrade {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-image: url(../images/internalSkylab/lab/modules_large/upgrade_icon.gif?__cv=cea0b317a17bcacbc8e66ccead585a00);
+      background-repeat: no-repeat;
+    }
+
+    #skylab .module .level {
+      float: left;
+    }
+
+    #skylab .module .efficiency_icon {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-image: url(../images/internalSkylab/lab/efficiency.png?__cv=8611ac9328986d0ad1f830f71e4ac500);
+    }
+
+    #skylab .module .efficiency {
+      float: left;
+      white-space: nowrap;
+    }
+
+    #skylab .module .power_icon {
+      float: left;
+      width: 14px;
+      height: 14px;
+      background-image: url(../images/internalSkylab/lab/power.png?__cv=81958f36b34ae36633e37bddedcdc500);
+    }
+
+    #skylab .module .power {
+      float: left;
+      white-space: nowrap;
+    }
+
+    #skylab .module .state_icon {
+      width: 14px;
+      height: 14px;
+      background: url(../images/internalSkylab/lab/cinema_icon.gif?__cv=51d71e8a1e713f9abf9b652338bae900) no-repeat;
+      margin-left: 10px;
+    }
+
+    #skylab #module_baseModule_small {
+      left: 400px;
+      top: 315px;
+      cursor: pointer;
+    }
+
+    #skylab #module_solarModule_small {
+      left: 262px;
+      top: 12px;
+      cursor: pointer;
+    }
+
+    #skylab #module_storageModule_small {
+      left: 96px;
+      top: 314px;
+      cursor: pointer;
+    }
+
+    #skylab #module_transportModule_small {
+      left: 3px;
+      top: 274px;
+      cursor: pointer;
+    }
+
+    #skylab #module_prometiumCollector_small {
+      left: 65px;
+      top: 13px;
+      cursor: pointer;
+    }
+
+    #skylab #module_enduriumCollector_small {
+      left: 7px;
+      top: 61px;
+      cursor: pointer;
+    }
+
+    #skylab #module_terbiumCollector_small {
+      left: 7px;
+      top: 124px;
+      cursor: pointer;
+    }
+
+    #skylab #module_prometidRefinery_small {
+      left: 505px;
+      top: 15px;
+      cursor: pointer;
+    }
+
+    #skylab #module_duraniumRefinery_small {
+      left: 576px;
+      top: 57px;
+      cursor: pointer;
+    }
+
+    #skylab #module_promeriumRefinery_small {
+      left: 580px;
+      top: 128px;
+      cursor: pointer;
+    }
+
+    #skylab #module_sepromRefinery_small {
+      left: 580px;
+      top: 315px;
+      cursor: pointer;
+    }
+
+    #skylab #module_xenoModule_small {
+      left: 586px;
+      top: 198px;
+      cursor: pointer;
+    }
+
+    #skylab #resources {
+      /*width: 768px;*/
+      height: 24px;
+      color: #e2e2e2;
+      font-weight: bold;
+      font-size: 9px;
+      position: absolute;
+      top: 24px;
+      left: 20px;
+    }
+
+    #skylab #resources .highlight {
+      color: #bcd3e3;
+    }
+
+    .view_generally {
+      position: absolute;
+      text-align: center;
+      color: #e2e2e2;
+      font-weight: bold;
+      font-size: 9px;
+      top: 12px;
+    }
+
+    .view_generally_maximal_bg {
+      position: absolute;
+      height: 10px;
+      background-color: #a9a9a9;
+      margin-top: 3px;
+    }
+
+    .view_generally_maximal_number {
+      position: absolute;
+      margin-top: 2px;
+      color: #5f5f5f;
+      text-align: center;
+    }
+
+    #view_prometium {
+      width: 87px;
+      left: 4px;
+    }
+
+    #view_prometium_stock {
+    }
+
+    #view_prometium_maximal {
+      text-align: left
+    }
+
+    .view_prometium_maximal_number {
+      width: 100%;
+    }
+
+    #view_endurium {
+      width: 87px;
+      left: 101px;
+    }
+
+    #view_endurium_stock {
+    }
+
+    #view_endurium_maximal {
+      text-align: left
+    }
+
+    .view_endurium_maximal_number {
+      width: 100%;
+    }
+
+    #view_terbium {
+      width: 87px;
+      left: 197px;
+    }
+
+    #view_terbium_stock {
+    }
+
+    #view_terbium_maximal {
+      text-align: left
+    }
+
+    .view_terbium_maximal_number {
+      width: 100%;
+    }
+
+    #view_prometid {
+      width: 87px;
+      left: 293px;
+    }
+
+    #view_prometid_stock {
+    }
+
+    #view_prometid_maximal {
+      text-align: left
+    }
+
+    .view_prometid_maximal_number {
+      width: 100%;
+    }
+
+    #view_duranium {
+      width: 87px;
+      left: 390px;
+    }
+
+    #view_duranium_stock {
+    }
+
+    #view_duranium_maximal {
+      text-align: left
+    }
+
+    .view_duranium_maximal_number {
+      width: 100%;
+    }
+
+    #view_xenomit {
+      width: 87px;
+      left: 486px;
+    }
+
+    #view_xenomit_stock {
+    }
+
+    #view_xenomit_maximal {
+      text-align: left
+    }
+
+    .view_xenomit_maximal_number {
+      width: 100%;
+    }
+
+    #view_promerium {
+      width: 87px;
+      left: 583px;
+    }
+
+    #view_promerium_stock {
+    }
+
+    #view_promerium_maximal {
+      text-align: left
+    }
+
+    .view_promerium_maximal_number {
+      width: 100%;
+    }
+
+    #view_seprom {
+      width: 87px;
+      left: 678px;
+    }
+
+    #view_seprom_stock {
+    }
+
+    #view_seprom_maximal {
+      text-align: left
+    }
+
+    .view_seprom_maximal_number {
+      width: 100%;
+    }
+
+
+    #skylab #resources tr {
+    }
+
+    #skylab #resources td {
+      width: 95px;
+      text-align: center;
+    }
+
+    .resource_view {
+      position: absolute;
+    }
+
+    .resource_view_max_bg {
+      position: absolute;
+      margin-top: 3px;
+      height: 10px;
+    }
+
+    .resource_view_max_number {
+      position: absolute;
+      margin-top: 2px;
+      width: 89px;
+      text-align: center;
+    }
+
+    #skylab .tabs {
+      height: 18px;
+      border-left: 3px solid #b1b1b1;
+      cursor: pointer;
+    }
+
+    #skylab .tabs .tab_first, #skylab .tabs .tab_middle, #skylab .tabs .tab_end {
+      border-top: 2px solid #b1b1b1;
+      /*width: 82px;
+      text-align:center;
+      cursor: pointer;*/
+      padding: 0px 5px;
+    }
+
+    #skylab .tabs .tab_first {
+      background-color: #3c3e3f;
+    }
+
+    #skylab .tabs .tab_end, #skylab .tabs .tab_middle {
+      background-color: #1f2021;
+    }
+
+    #skylab .tabs .tab_separator {
+      border-top: 2px solid #b1b1b1;
+      width: 19px;
+      background-image: url(../images/internalSkylab/lab/tab_select_left.jpg?__cv=24ea6c162c0fed6e9247d8819aee1a00);
+    }
+
+    #skylab .tabs .tab_separator_middle_unselected {
+      border-top: 2px solid #b1b1b1;
+      width: 19px;
+      background-image: url(../images/internalSkylab/lab/tab_middle_unselected.jpg?__cv=57e01d4bbab1850c59bd6f25c8110700);
+    }
+
+    #skylab .tabs .tab_endseparator {
+      width: 19px;
+      background-image: url(../images/internalSkylab/lab/tab_end_unselect.png?__cv=7fff1778b2b6e6af36e01705b71c8200);
+    }
+
+    #skylab .tabContent {
+      padding-top: 15px;
+    }
+
+    #skylab #module_infobox_transportModule_overview_large {
+      padding: 0 0 0 20px;
+    }
+
+    #skylab #module_infobox_solarModule_overview_large {
+      padding: 30px 0 0 35px;
+    }
+
+    #skylab #module_infobox_baseModule_overview_large {
+      padding: 25px 0 0 28px;
+    }
+
+    #skylab #module_infobox_storageModule_overview_large,
+    #skylab #module_infobox_xenoModule_overview_large {
+      padding: 30px 0 0 25px;
+    }
+
+    #skylab .tabContentHead {
+      background-image: url(../images/internalSkylab/lab/infobox_bg_top.jpg?__cv=8e294409e8e2446153c9780504e01700);
+      height: 10px;
+      border-top: 3px solid #b1b1b1;
+      border-left: 3px solid #b1b1b1;
+      border-right: 3px solid #b1b1b1;
+    }
+
+    #skylab .tabContentHeadClose {
+      position: absolute;
+      z-index: 10;
+      left: 243px;
+      top: 21px;
+      width: 24px;
+      height: 24px;
+      background-image: url(../images/internalSkylab/lab/close_button_48x24.png?__cv=d5b95efd5d93ece519888ef3bca64d00);
+      background-position: 0 0;
+    }
+
+    #skylab .tabContentHeadClose:hover {
+      background-position: 24px 0;
+      cursor: pointer;
+    }
+
+    #skylab .iteminfo_overview_progressbar {
+      position: absolute;
+      float: left;
+      margin-top: -4px;
+      background-color: #21a7c3;
+      height: 7px;
+    }
+
+    #skylab .iteminfo_overview_progressgrid {
+      margin-top: -4px;
+      position: absolute;
+      width: 61px;
+      height: 7px;
+      background-image: url(../images/internalSkylab/lab/construction_grid.png?__cv=a37823e00ed44ae05ff382bd78757500);
+    }
+
+
+    #skylab .module_infobox_upgrade {
+      margin: 0 auto;
+      padding-top: 15px;
+    }
+
+    #skylab .module_infobox_upgrade .firstRow {
+      padding: 0 15px 0 6px;
+      height: 14px;
+      font-weight: bold;
+    }
+
+    #skylab .module_infobox_upgrade .secondRow {
+      text-align: right;
+      padding-right: 15px;
+      font-weight: bold;
+    }
+
+    #skylab .module_infobox_upgrade .thirdRow {
+      text-align: right;
+      padding-right: 30px;
+      font-weight: bold;
+    }
+
+    #skylab .module_infobox_xenoModule .firstRow {
+      width: 99px;
+      height: 23px;
+      padding-left: 6px;
+      height: 14px;
+    }
+
+    #skylab .module_infobox_xenoModule .secondRow {
+      width: 75px;
+      height: 23px;
+      text-align: center;
+      padding-right: 15px;
+    }
+
+    #skylab .module_infobox_xenoModule .thirdRow {
+      width: 81px;
+      height: 23px;
+      text-align: center;
+      padding-right: 30px;
+    }
+
+    #skylab .table_infobar {
+      border-left: 3px solid #b1b1b1;
+      border-right: 3px solid #b1b1b1;
+      border-bottom: 3px solid #b1b1b1;
+      background-image: url(../images/internalSkylab/lab/infobox_bg_pattern.jpg?__cv=48c625e0613ed628ddb69fe7941ac100);
+    }
+
+    #skylab .table_infobar td {
+      text-align: center;
+    }
+
+    #skylab .table_infobar td img {
+      padding-top: 3px;
+    }
+
+    #skylab .collector_info {
+      min-height: 127px;
+      background-repeat: no-repeat;
+      background-position: center 55px;
+      text-align: center;
+    }
+
+    #skylab .collector_info_prometiumCollector {
+      background-image: url(../images/internalSkylab/lab/prometiumCollector.png?__cv=b54041d4e037cf64617e29e00bf0fb00);
+    }
+
+    #skylab .collector_info_enduriumCollector {
+      background-image: url(../images/internalSkylab/lab/enduriumCollector.png?__cv=0ac0e53364a9089e28ab108d2725ad00);
+    }
+
+    #skylab .collector_info_terbiumCollector {
+      background-image: url(../images/internalSkylab/lab/terbiumCollector.png?__cv=c7e5c850c82dce1ccea3e21aa7563e00);
+    }
+
+    #transport_left {
+      float: left;
+      width: 140px;
+    }
+
+    #transport_right {
+      float: left;
+      width: 124px;
+      margin-left: 20px;
+    }
+
+    #transport_right td {
+      text-align: center;
+    }
+
+    .module_infobox_transportModule {
+      font-weight: bold;
+    }
+
+    .module_infobox_transportModule input {
+      width: 49px;
+      height: 11px;
+      background-color: #626262;
+      border: 1px solid #b1b1b1;
+    }
+
+
+    #skylab .button_standard {
+      width: 107px;
+      height: 17px;
+      background-image: url(../images/internalSkylab/lab/bg_button.png?__cv=4d69e41bfccdfddc1a8b2b2ec836aa00);
+      line-height: 17px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #skylab .icon_efficiency {
+      position: absolute;
+      left: 154px;
+      top: 100px;
+      width: 55px;
+      height: 52px;
+    }
+
+    #skylab .icon_efficiency_100 {
+      background-image: url(../images/internalSkylab/lab/cog_anim_100.gif?__cv=cd1b780d03891c70cc805da851b17b00);
+    }
+
+    #skylab .icon_efficiency_75 {
+      background-image: url(../images/internalSkylab/lab/cog_anim_75.gif?__cv=1ef2d1344469ec0b61b275914a40b200);
+    }
+
+    #skylab .icon_efficiency_50 {
+      background-image: url(../images/internalSkylab/lab/cog_anim_50.gif?__cv=d9f765dc634b091e55077e5b3e7e1100);
+    }
+
+    #skylab .icon_efficiency_25 {
+      background-image: url(../images/internalSkylab/lab/cog_anim_25.gif?__cv=1f8d8569a6e2d656ebcf39c49ad6b500);
+    }
+
+    #skylab .icon_efficiency_0 {
+      background-image: url(../images/internalSkylab/lab/cog_anim_0.gif?__cv=69ad425c6dab3540b44b92d882a1a400);
+    }
+
+    #skylab .icon_attention {
+      width: 18px;
+      height: 16px;
+      position: absolute;
+      top: 115px;
+      left: 172px;
+      background-image: url(../images/internalSkylab/lab/icon_attention.png?__cv=1923bb45b23859edbc0da637947f6800);
+    }
+
+    #skylab #solarModul_overview_content {
+    }
+
+    #skylab #solarModul_overview_content .firstRow {
+      padding-left: 20px;
+    }
+
+    #skylab #solarModul_overview_content .secondRow {
+      padding-left: 10px;
+      color: #f1ec63;
+    }
+
+    #skylab #solarModul_overview_content .inactive {
+      color: #7b8181;
+    }
+
+    #skylab #solarModul_overview_content .label {
+      font-weight: bold;
+    }
+
+    #skylab #solarModul_overview_content .value {
+      font-weight: bold;
+    }
+
+
+    .skylab_standard {
+      font-size: 10px;
+      font-weight: normal;
+      color: #E2E2E2
+    }
+
+    .skylab_standard b {
+      font-weight: bold;
+    }
+
+    .skylab_standard a {
+      color: #E2E2E2;
+      text-decoration: none;
+    }
+
+    .skylab_standard a:link {
+      color: #E2E2E2;
+    }
+
+    .skylab_standard a:visited {
+      color: #E2E2E2;
+    }
+
+    .skylab_standard a:hover {
+      color: #E2E2E2;
+      cursor: pointer;
+    }
+
+    .skylab_price_normal {
+      font-size: 10px;
+      font-weight: normal;
+      color: #b5bdbd
+    }
+
+    .skylab_price_normal b {
+      font-weight: bold;
+    }
+
+    .skylab_price_normal a {
+      color: #b5bdbd;
+      text-decoration: none;
+    }
+
+    .skylab_price_normal a:link {
+      color: #b5bdbd;
+    }
+
+    .skylab_price_normal a:visited {
+      color: #b5bdbd;
+    }
+
+    .skylab_price_normal a:hover {
+      color: #b5bdbd;
+      cursor: pointer;
+    }
+
+    .skylab_font_tab_selected {
+      font-size: 10px;
+      font-weight: bold;
+      color: #E2E2E2
+    }
+
+    .skylab_font_tab_unselected {
+      font-size: 10px;
+      font-weight: bold;
+      color: #7b8181
+    }
+
+    .skylab_font_power {
+      font-size: 10px;
+      font-weight: bold;
+      color: #f1ec63;
+    }
+
+    .skylab_font_efficiency {
+      font-size: 10px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .skylab_font_level {
+      font-size: 10px;
+      font-weight: bold;
+      color: #65aae1;
+    }
+
+    .skylab_font_level_inactive {
+      font-size: 10px;
+      font-weight: bold;
+      color: #a9a9a9;
+    }
+
+    #skylab .ore_prometium {
+      color: #b32f2f;
+    }
+
+    #skylab .ore_endurium {
+      color: #59aae3;
+    }
+
+    #skylab .ore_terbium {
+      color: #f4e53f;
+    }
+
+    #skylab .ore_prometid {
+      color: #d58989;
+    }
+
+    #skylab .ore_duranium {
+      color: #3dcd6c;
+    }
+
+    #skylab .ore_promerium {
+      color: #dfa33b;
+    }
+
+    #skylab .ore_xenomit {
+      color: #949ba9;
+    }
+
+    #skylab .ore_seprom {
+      color: #9e1cc3;
+    }
+
+
+    #skylab #skylabReloader {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 15px;
+      top: 66px;
+      background-image: url(../images/internalSkylab/lab/reload_btn_std.png?__cv=937c692daea4ef282e5e6f7427a85300);
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    #skylab #skylabReloader:hover {
+      background-image: url(../images/internalSkylab/lab/reload_btn_mo.png?__cv=37bd66fc290afc4462a47b8eb40eb100);
+    }
+
+    #skylab #skylabHelp {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      left: 742px;
+      top: 66px;
+      background-image: url(../images/internalSkylab/lab/help_btn_std.png?__cv=d0f1983575faf6e5ae96a5769f181100);
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    #skylab #skylabHelp:hover {
+      background-image: url(../images/internalSkylab/lab/help_btn_mo.png?__cv=e0b8b450980f4c85fddea75433c31000);
+    }
+
+    .upgrade_container {
+      padding: 0 0 0 20px;
+    }
+
+    .upgrade_container_max {
+      text-align: center;
+      padding: 25px 10px;
+    }
+
+    #productivity_container {
+      padding: 15px 0 0 35px;
+      font-weight: bold;
+    }
+
+
+    #skylab .baseModul_level {
+      background-repeat: no-repeat;
+      background-position: 2px;
+      padding-left: 17px;
+    }
+
+    #skylab .baseModul_level_ACTIVE {
+      background-image: url(../images/internalSkylab/lab/icon_level.png?__cv=c5bbdd1dac33d888d7141d2e51405000);
+    }
+
+    #skylab .baseModul_level_UPGRADE {
+      background-image: url(../images/internalSkylab/lab/icon_upgrade.gif?__cv=cea0b317a17bcacbc8e66ccead585a00);
+    }
+
+    .productivity_robotShop_credits {
+      float: left;
+      width: 125px;
+      text-align: center;
+      height: 60px;
+    }
+
+    .productivity_robotShop_uridium {
+      float: left;
+      width: 125px;
+      text-align: center;
+      height: 60px;
+    }
+
+    .productivity_robotShop_credits img, .productivity_robotShop_uridium img {
+      margin-bottom: 5px;
+    }
+
+    .showActiveRobots {
+      z-index: 20;
+      position: absolute;
+      top: 30px;
+      left: 7px;
+      float: left;
+      width: 247px;
+      height: 105px;
+      background-color: black;
+    }
+
+    .container_robot_small {
+      float: left;
+      margin: 5px 0 0 1px;
+    }
+
+    .skylab_robot_price {
+      margin-top: -5px;
+      padding-left: 10px;
+    }
+
+    .module_infobox_info {
+      float: left;
+      width: 60px;
+      margin-left: 10px;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .module_info_active_state {
+      margin-left: 50px
+    }
+
+    .module_info_level .level_icon,
+    .module_info_level .level_icon_upgrade {
+      color: #65aae1;
+      background-position: 0 center;
+      padding-left: 15px;
+      width: 45px;
+    }
+
+    .module_info_power_usage {
+      color: #f1ec63;
+      background: url(../images/internalSkylab/lab/modules_large/power.png?__cv=81958f36b34ae36633e37bddedcdc500) no-repeat 0 center;
+      padding-left: 15px;
+      width: 45px;
+      height: 14px;
+    }
+
+    .module_info_efficiency {
+      color: #FFFFFF;
+      background: url(../images/internalSkylab/lab/efficiency.png?__cv=8611ac9328986d0ad1f830f71e4ac500) no-repeat 0 center;
+      width: 45px;
+      padding-left: 15px;
+      height: 14px;
+    }
+
+    #skylab_shadow {
+      width: 772px;
+      height: 407px;
+      position: absolute;
+      z-index: 5;
+      background: black;
+      opacity: 0.6;
+      display: none;
+    }
+
+    .module_progressBGWrapper {
+      width: 285px;
+      height: 27px;
+    }
+
+    .module_progressBG_left {
+      background: url(../images/internalSkylab/lab/modules_large/display_01.png?__cv=71938437b04ff53377ac47e197903b00) no-repeat left center;
+      width: 10px;
+      height: 27px;
+      float: left;
+    }
+
+    .module_progressBG {
+      background: url(../images/internalSkylab/lab/modules_large/display_02.png?__cv=690620c1d6a3a718d58d9a4952400500) repeat-x left center;
+      width: 260px;
+      height: 27px;
+      float: left;
+    }
+
+    .module_progressBG .progress_timer {
+      color: #FFFFFF;
+      font-weight: bold;
+      text-align: center;
+      width: 257px;
+      position: absolute;
+      margin: 6px 0 0 0;
+      z-index: 2;
+
+    }
+
+    .module_progressBG_right {
+      background: url(../images/internalSkylab/lab/modules_large/display_03.png?__cv=4fb872aec617038932b859c0efd72b00) no-repeat left center;
+      width: 10px;
+      height: 27px;
+      float: left;
+    }
+
+    .module_progressBarWrapper {
+      position: absolute;
+      height: 23px;
+      width: 20px; /* min = 20 | max = 272*/
+      background: url(../images/internalSkylab/lab/modules_large/progressbar_02.png?__cv=6dd1fa01afc0fe312e43900ba1c7e800) repeat-x 0 center;
+      margin: 2px 0 0 -6px;
+    }
+
+    .module_progressBar_left {
+      width: 10px;
+      height: 23px;
+      float: left;
+      background: url(../images/internalSkylab/lab/modules_large/progressbar_01.png?__cv=73d45b191839cd30b2eecf7795e1d400) no-repeat left center;
+      margin-left: -2px;
+    }
+
+    .module_progressBar_right {
+      width: 10px;
+      height: 23px;
+      float: right;
+      background: url(../images/internalSkylab/lab/modules_large/progressbar_03.png?__cv=6b0f3949484bcf8d210a1a666aade200) no-repeat left center;
+      margin-right: -2px;
+    }
+
+    .upgrade_options_wrapper {
+      width: 275px;
+      margin: 5px 15px 0 2px;
+    }
+
+    .upgrade_option {
+      float: left;
+      width: 85px;
+      height: 109px;
+      background: url(../images/internalSkylab/lab/modules_large/price-display.png?__cv=4eb4daed1640c55254da72628e8afb00) no-repeat center top;
+      margin-left: 10px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 8px;
+    }
+
+    .upgrade_option_instant {
+      margin-left: 0;
+    }
+
+    .upgrade_option .option_state {
+      background: url(../images/internalSkylab/lab/modules_large/icon_bg_normal.png?__cv=26465c30c888074460711c8090f15f00) no-repeat center;
+      width: 71px;
+      height: 70px;
+      margin: 8px auto 9px;
+      padding-top: 13px;
+    }
+
+    .upgrade_option .option_state:hover {
+      background-image: url(../images/internalSkylab/lab/modules_large/icon_bg_hover.png?__cv=1dc73fbf249706143d1851cc550c7f00);
+    }
+
+    .upgrade_option .option_state.upgrade_option_active {
+      background-image: url(../images/internalSkylab/lab/modules_large/icon_bg_active.png?__cv=c1638019f800e46b4d2ccca8ea066c00);
+    }
+
+    .option_state img {
+      display: block;
+      width: 44px;
+      height: 44px;
+      margin: 0 auto;
+    }
+
+    .upgrade_options_text, .transport_hint_wrapper {
+      clear: both;
+      padding-top: 5px;
+      text-align: center;
+      display: none;
+    }
+
+    .transport_hint_wrapper {
+      display: block;
+    }
+
+    .transport_option_confirm {
+      display: block;
+      margin-top: 15px;
+      height: 25px;
+      padding-top: 8px;
+      font-weight: bold;
+    }
+
+    #skylab .module_resourceWarning {
+      display: none;
+      position: absolute;
+      top: 74px;
+      left: 17px;
+      width: 324px;
+      height: 239px;
+      background: #000000;
+      opacity: 0.85;
+      padding: 0;
+    }
+
+    .module_resourceWarning_text {
+      width: 270px;
+      margin: 0 auto 40px;
+      padding-top: 30px;
+    }
+
+    .module_resourceWarning_button {
+      width: 200px;
+      margin: 0 auto;
+    }
+
+    #tech-factory {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: 772px;
+      height: 401px;
+      background-image: url(../images/internalSkylab/nanotech/background.jpg?__cv=fffe6d0…);
+      background-repeat: no-repeat;
+    }
+
+    #nanoTechFactory {
+      font-size: 11px;
+      color: #f2b05a;
+    }
+
+    #subnav {
+      position: absolute;
+      top: 2px;
+      left: 45px;
+    }
+
+    .nanoTechFactory {
+      position: relative;
+      top: 0px;
+      left: 0px;
+      width: 772px;
+      height: 401px;
+      background-image: url(../images/internalSkylab/nanotech/background.jpg?__cv=fffe6d01a619fb57020285d2766a0400);
+      background-repeat: no-repeat;
+    }
+
+    #ntf_left {
+      position: absolute;
+      top: 5px;
+      left: 0px;
+      width: 145px;
+      height: 394px;
+      background-image: url(../images/internalSkylab/nanotech/bg_left.png?__cv=6b89b4099222a7f3f98b336bfa2ab800);
+    }
+
+    #ntf_right_tech {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      width: 150px;
+      height: 394px;
+      background-image: url(../images/internalSkylab/nanotech/bg_right.png?__cv=2cc4aa247a0f6633ed8a7ebc01025d00);
+    }
+
+    #ntf_right_factory {
+      position: absolute;
+      top: 5px;
+      right: 0px;
+      float: left;
+      width: 150px;
+      height: 394px;
+      background-image: url(../images/internalSkylab/nanotech/bg_right_progress.png?__cv=b8c8aabaf5fc8b73df223c77f3dc5e00);
+    }
+
+    #title_buff {
+      width: 125px;
+      height: 17px;
+      text-align: center;
+      color: white;
+      margin-top: 102px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    #title_factory_left {
+      width: 144px;
+      height: 17px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    #title_factory_right {
+      margin-top: 3px;
+      width: 164px;
+      height: 17px;
+      text-align: center;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    #title_buff {
+      margin-left: 10px;
+    }
+
+    #title_factory {
+      margin-left: 19px;
+    }
+
+    /* arrow-navi */
+
+    .scroll_top {
+      position: absolute;
+      width: 119px;
+      height: 19px;
+      background-image: url(../images/internalSkylab/nanotech/arrows.png?__cv=9df11d3e5cde1e305fe1dacba68e8e00);
+      background-position: 0px 0px;
+      cursor: pointer;
+    }
+
+    .scroll_top:hover {
+      background-position: -130px 0px;
+    }
+
+    .scroll_top:active {
+      background-position: -260px 0px;
+    }
+
+    #scroll_top_buff {
+      top: 18px;
+      left: 13px;
+    }
+
+    #scroll_top_hall {
+      top: 18px;
+      left: 20px;
+    }
+
+    .scroll_bottom {
+      position: absolute;
+      width: 119px;
+      height: 19px;
+      background-image: url(../images/internalSkylab/nanotech/arrows.png?__cv=9df11d3e5cde1e305fe1dacba68e8e00);
+      background-position: 0px 25px;
+      cursor: pointer;
+    }
+
+    .scroll_bottom:hover {
+      background-position: -130px 25px;
+    }
+
+    .scroll_bottom:active {
+      background-position: -260px 25px;
+    }
+
+    #scroll_bottom_buff {
+      top: 372px;
+      left: 13px;
+    }
+
+    #scroll_bottom_hall {
+      top: 372px;
+      left: 20px;
+    }
+
+    /* arrow-navi */
+
+    /* buffs */
+
+    #buff_list_main {
+      position: absolute;
+      top: 164px;
+      left: 0px;
+      width: 135px;
+      height: 330px;
+    }
+
+    .buff {
+      width: 56px;
+      height: 60px;
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_small.png?__cv=9cf5c3994dbaa3fdc7d084cd81fca200);
+      float: left;
+      margin: 5px 0 0 10px;
+      cursor: pointer;
+    }
+
+    .buff_hover {
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_small.png?__cv=9cf5c3994dbaa3fdc7d084cd81fca200);
+      background-position: 0 0;
+      width: 56px;
+      height: 60px;
+    }
+
+    .buff_hover:hover {
+      background-image: none;
+    }
+
+    .buff_hover:active {
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_small.png?__cv=9cf5c3994dbaa3fdc7d084cd81fca200);
+      background-position: -56px 0px;
+    }
+
+
+    #buff_ECI_1 {
+      background-position: -112px 0px;
+    }
+
+    #buff_ELA_1 {
+      background-position: -168px 0px;
+    }
+
+    #buff_SBU_1 {
+      background-position: -224px 0px;
+    }
+
+    #buff_RPM_1 {
+      background-position: -280px 0px;
+    }
+
+    #buff_BRB_1 {
+      background-position: -336px 0px;
+    }
+
+    /* buffs */
+
+    #factory_list_main {
+      position: absolute;
+      float: left;
+      top: 28px;
+      left: 0px;
+      width: 135px;
+      height: 70px;
+    }
+
+    #factory_apis {
+      background-image: url(../images/internalSkylab/nanotech/factory_icons_apis_sprite.png?__cv=e7b316d553b490ec04bca5d583b68a00);
+      background-position: -160px 0;
+      background-repeat: no-repeat;
+      margin-left: 16px;
+      margin-top: 8px;
+    }
+
+    #factory_zeus {
+      background-image: url(../images/internalSkylab/nanotech/factory_icons_zeus_sprite.png?__cv=ed666a0d66025ebeb3d36b6d0574b600);
+      background-position: -160px 0;
+      background-repeat: no-repeat;
+      margin-left: 75px;
+      margin-top: -60px;
+    }
+
+    #factory_empty {
+      background-image: url(../images/internalSkylab/nanotech/factory_icons_apis_sprite.png?__cv=e7b316d553b490ec04bca5d583b68a00);
+      background-position: 0px 0;
+      background-repeat: no-repeat;
+      margin-left: 16px;
+      margin-top: 8px;
+      position: absolute;
+      left: 60px;
+    }
+
+    .factory_apis_hover, .factory_zeus_hover {
+      height: 51px;
+      width: 51px;
+    }
+
+    .factory_apis_hover:hover {
+      background-image: url(../images/internalSkylab/nanotech/factory_icons_apis_sprite.png?__cv=e7b316d553b490ec04bca5d583b68a00);
+      background-position: -107px 0;
+      background-repeat: no-repeat;
+    }
+
+    .factory_zeus_hover:hover {
+      background-image: url(../images/internalSkylab/nanotech/factory_icons_zeus_sprite.png?__cv=ed666a0d66025ebeb3d36b6d0574b600);
+      background-position: -107px 0;
+      background-repeat: no-repeat;
+    }
+
+    .factory_hover:hover {
+      background-position: -54px 0;
+    }
+
+
+    .factory_hover:active {
+      background-position: -107px 0;
+    }
+
+    #factory_progress_main {
+      height: 235px;
+      left: 62px;
+      position: absolute;
+      top: 75px;
+      width: 30px;
+    }
+
+    #factory_progress_bar {
+      background-image: url(../images/internalSkylab/nanotech/progressbar_bg.png?__cv=795f38e8560d38b07bc0e5dbbc402000);
+      width: 21px;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    #ntf_center_factory {
+      position: absolute;
+      top: 5px;
+      left: 165px;
+      width: 455px;
+      height: 374px;
+      background-image: url(../images/internalSkylab/nanotech/bg_apis.png?__cv=8ce453888e0b1da286f18325e6c2c800);
+      color: #bcd3e3;
+      padding-top: 10px;
+    }
+
+    #ntf_center_factory a {
+      /*color: #bcd3e3;*/
+      color: #F1C839;
+      text-decoration: none;
+    }
+
+    #ntf_center_factory a:hover {
+      color: #bcd3e3;
+    }
+
+
+    /* factory hall */
+
+    #hall_list_main {
+      position: absolute;
+      top: 45px;
+      left: 32px;
+      text-align: center;
+    }
+
+    .hall_list {
+      width: 92px;
+      height: 110px;
+    }
+
+    .hall_singleView {
+      width: 74px;
+      height: 80px;
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_big.png?__cv=b052eca3b3d2147cdb6a09b89fd15100);
+      margin: auto;
+    }
+
+    .hall_info {
+      color: #8a8a8a;
+      margin-top: 1px;
+    }
+
+    .hall_inactive {
+      background-position: -76px 0px;
+    }
+
+    .hall_active {
+      background-position: 0px 0px;
+    }
+
+    .hall_underConstruction {
+      background-position: 0px 0px;
+    }
+
+    .hall_buy {
+      width: 126px;
+      height: 25px;
+      background-image: url(../images/internalSkylab/nanotech/but_buy_hall.png?__cv=6e38b416020df32fcb09b6a4ebc57900);
+      line-height: 25px;
+      text-align: center;
+      margin: -3px 0 0 -14px;
+      color: #FFFFFF;
+      cursor: pointer;
+    }
+
+    .hall_build_progress {
+      font-size: 15px;
+      color: #8a8a8a;
+      font-weight: bold;
+      text-align: center;
+      line-height: 80px;
+    }
+
+    .hall_buff_in_progress {
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_big.png?__cv=b052eca3b3d2147cdb6a09b89fd15100);
+      width: 76px;
+      height: 80px;
+      background-position: -152px 0px;
+    }
+
+    .hall_buff {
+      background-image: url(../images/internalSkylab/nanotech/buffs_sprite_big.png?__cv=b052eca3b3d2147cdb6a09b89fd15100);
+      width: 76px;
+      height: 80px;
+      cursor: pointer;
+    }
+
+    .hall_buff_ECI_1 {
+      background-position: -228px 0px;
+    }
+
+    .hall_buff_ELA_1 {
+      background-position: -304px 0px;
+    }
+
+    .hall_buff_SBU_1 {
+      background-position: -380px 0px;
+    }
+
+    .hall_buff_RPM_1 {
+      background-position: -456px 0px;
+    }
+
+    .hall_buff_BRB_1 {
+      background-position: -532px 0px;
+    }
+
+    .hall_stackBuffBG {
+      background-image: url(../images/internalSkylab/nanotech/bg_stack.png?__cv=1c05953f556f2904ff4158ac65c6b700);
+      width: 76px;
+      height: 80px;
+      position: absolute;
+    }
+
+    .hall_stackBuffNumber {
+      position: relative;
+      top: 54px;
+      right: -15px;
+      width: 80px;
+      height: 20px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* factory hall */
+
+    /* SinlgeBuff */
+
+    #ntf_center {
+      position: absolute;
+      top: 36px;
+      left: 187px;
+      width: 394px;
+      height: 347px;
+      background-image: url(../images/internalSkylab/nanotech/bg_singleBuff.png?__cv=5ef37ca867c13a1b54c36b8c2a5a4b00);
+      color: #bcd3e3;
+      padding-top: 15px;
+    }
+
+    #ntf_center a {
+      /*color: #bcd3e3;*/
+      color: #F1C839;
+      text-decoration: none;
+    }
+
+    #ntf_center a:hover {
+      color: #bcd3e3;
+    }
+
+    #ntf_buff_scroll {
+      width: 383px;
+      height: 247px;
+      overflow: auto;
+    }
+
+    #ntf_factory_scroll {
+      height: 159px;
+      margin-left: 52px;
+      margin-top: 14px;
+      overflow: auto;
+      width: 358px;
+    }
+
+    .ntf_seperator {
+      width: 345px;
+      height: 2px;
+      background-image: url(../images/internalSkylab/nanotech/seperator.png?__cv=6e17cba788794489070db3b12924ab00);
+      margin: 5px 0 10px 21px;
+    }
+
+    #ntf_buff_name, #ntf_buff_descr, #ntf_buff_cost, #ntf_buff_info, #ntf_help_content {
+      width: 335px;
+      margin-left: 30px;
+    }
+
+    #ntf_drone_name {
+      width: 335px;
+      margin-left: 111px;
+      padding-bottom: 5px;
+    }
+
+    .ntf_drone_parts {
+      background-repeat: no-repeat;
+      height: 113px;
+      left: 159px;
+      position: absolute;
+      top: 186px;
+      width: 136px;
+    }
+
+    #ntf_drone_parts_apisPart_1 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess1.png?__cv=76b8796707e1a7faa841b77c73139800);
+    }
+
+    #ntf_drone_parts_apisPart_2 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess2.png?__cv=5dacdcc5b1b87c29ec777a3c10ff0200);
+    }
+
+    #ntf_drone_parts_apisPart_3 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess3.png?__cv=7c2cdf42a4330258d55169f45e32c400);
+    }
+
+    #ntf_drone_parts_apisPart_4 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess4.png?__cv=c9f0d31c8c3b3d8ed94be99d3a0fc300);
+    }
+
+    #ntf_drone_parts_apisPart_5 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess5.png?__cv=20b501a0c60db20c07b33f3f2184bd00);
+    }
+
+    #ntf_drone_parts_apisPart_6 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess6.png?__cv=5ce0d0246139bfa5939bd98f8df1d200);
+    }
+
+    #ntf_drone_parts_apisPart_7 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess7.png?__cv=1a84d883bd03a88851b0331c4eb1a600);
+    }
+
+    #ntf_drone_parts_apisPart_8 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess8.png?__cv=cd0a461b2013e5290da04a27737a8300);
+    }
+
+    #ntf_drone_parts_apisPart_9 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess9.png?__cv=cc6e20c7e53b2f6e198e1fb5d417ec00);
+    }
+
+    #ntf_drone_parts_apisPart_10 {
+      background-image: url(../images/internalSkylab/nanotech/apis_progess10.png?__cv=e3832d6593e7015e8442dc00e5645a00);
+    }
+
+    #ntf_drone_parts_zeusPart_1 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress1.png?__cv=c72b2b6b2d94c241300702aed3e88800);
+    }
+
+    #ntf_drone_parts_zeusPart_2 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress2.png?__cv=b07e5a8fa6945d13bf1bfa6c92b3f500);
+    }
+
+    #ntf_drone_parts_zeusPart_3 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress3.png?__cv=6cd4e8a1ffd6ef9fa370ddc4fb00ed00);
+    }
+
+    #ntf_drone_parts_zeusPart_4 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress4.png?__cv=c47fc59deb6197316bd10cd07c2a4900);
+    }
+
+    #ntf_drone_parts_zeusPart_5 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress5.png?__cv=d7f3167d81c5bf7578ec1f7ee020cf00);
+    }
+
+    #ntf_drone_parts_zeusPart_6 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress6.png?__cv=6c674e4b7471cee61ccb006b90435600);
+    }
+
+    #ntf_drone_parts_zeusPart_7 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress7.png?__cv=0a5d8548db14032fdba7ea2136382100);
+    }
+
+    #ntf_drone_parts_zeusPart_8 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress8.png?__cv=2974cb8210f5e7d8c95d5976f4730a00);
+    }
+
+    #ntf_drone_parts_zeusPart_9 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress9.png?__cv=e222a4353c8c99f9ff8020b1155af700);
+    }
+
+    #ntf_drone_parts_zeusPart_10 {
+      background-image: url(../images/internalSkylab/nanotech/zeus_progress10.png?__cv=b6d59490d78017dc402a6057e8466b00);
+    }
+
+
+    #ntf_table_cost, #ntf_table_info {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .ntf_center {
+      text-align: center;
+    }
+
+    .ntf_resource_ok {
+      color: #0e960e;
+    }
+
+    .ntf_resource_fail {
+      color: #c41212;
+      cursor: help;
+    }
+
+    #ntf_buff_build_instant {
+      position: absolute;
+      top: 262px;
+      left: 14px;
+    }
+
+    #ntf_buff_build_instant:hover {
+      background-position: -186px 0px;
+    }
+
+    #ntf_buff_build {
+      position: absolute;
+      top: 262px;
+      left: 198px;
+    }
+
+    #ntf_buff_build:hover {
+      background-position: -186px 0px;
+    }
+
+    #ntf_drone_build_instant {
+      left: 45px;
+      position: absolute;
+      top: 335px;
+    }
+
+    #ntf_drone_build_instant:hover {
+      background-position: -186px 0px;
+    }
+
+    #ntf_drone_build {
+      left: 230px;
+      position: absolute;
+      top: 335px;
+    }
+
+    #ntf_drone_build:hover {
+      background-position: -186px 0px;
+    }
+
+    #ntf_buff_buy {
+      position: absolute;
+      top: 307px;
+      left: 70px;
+    }
+
+    #ntf_buff_buy:hover {
+      background-position: -186px 0px;
+    }
+
+    #ntf_buff_build, #ntf_buff_build_instant, #ntf_buff_buy {
+      text-align: center;
+    }
+
+    #ntf_drone_build, #ntf_drone_build_instant, #ntf_drone_buy {
+      text-align: center;
+    }
+
+    #button_build, #button_build_instant, #button_buy {
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #button_build, #button_build_instant {
+      height: 34px;
+      width: 182px;
+      padding-top: 10px;
+    }
+
+    #button_buy {
+      height: 34px;
+      width: 266px;
+      padding-top: 10px;
+    }
+
+    #button_build, #button_build_instant {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_build.png?__cv=adb1a3462df5b581f2fccfdef67c2000);
+      background-position: 0px 0px;
+    }
+
+    #button_buy {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_buy.png?__cv=2e95ffe8db43956aec790bacdfd2ab00);
+      background-position: 0px 0px;
+    }
+
+    #button_build:hover, #button_build_instant:hover {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_build.png?__cv=adb1a3462df5b581f2fccfdef67c2000);
+      background-position: -182px 0px;
+    }
+
+    #button_buy:hover {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_buy.png?__cv=2e95ffe8db43956aec790bacdfd2ab00);
+      background-position: -266px 0px;
+    }
+
+    #button_build a, #button_build_instant a, #button_buy a {
+      color: #FFFFFF;
+      text-decoration: none;
+      display: block;
+    }
+
+    .buildlink_inactive, .buylink_inactive {
+      color: #8e9398;
+    }
+
+    .but_build_instant_a {
+      display: block;
+      height: 45px;
+      margin-top: -10px;
+      padding-top: 10px;
+    }
+
+    #button_build_inactive, #button_build_instant_inactive, #button_buy_inactive {
+      font-size: 12px;
+      font-weight: bold;
+      cursor: auto;
+      text-align: center;
+    }
+
+    #button_build_inactive, #button_build_instant_inactive {
+      width: 182px;
+      height: 34px;
+      padding-top: 10px;
+      text-align: center;
+    }
+
+    #button_buy_inactive {
+      width: 266px;
+      height: 34px;
+      padding-top: 10px;
+      text-align: center;
+    }
+
+    #button_build_inactive, #button_build_instant_inactive {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_build.png?__cv=adb1a3462df5b581f2fccfdef67c2000);
+      background-position: -364px 0px;
+    }
+
+    #button_buy_inactive {
+      background-image: url(../images/internalSkylab/nanotech/but_buff_buy.png?__cv=2e95ffe8db43956aec790bacdfd2ab00);
+      background-position: -532px 0px;
+    }
+
+    /* SinlgeBuff */
+
+    /* Help */
+
+    #ntf_help_scroll {
+      width: 383px;
+      height: 335px;
+      overflow-x: hidden;
+    }
+
+    #ntf_help_list li {
+      margin-bottom: 10px;
+      list-style-type: none;
+    }
+
+    #ntf_help_list ul {
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    #ntf_help_list ul li {
+      margin-left: 10px;
+      margin-bottom: 0px;
+      list-style-type: disc;
+    }
+
+    /* Help */
+
+    .linecountSix {
+      margin-bottom: 150px;
+    }
+
+    .text_headline {
+    }
+
+    .text_subheadline {
+      color: #FFFFFF;
+    }
+
+    #ntf_help_content .text_headline, .text_info {
+      font-weight: bold;
+      color: #F1C839;
+    }
+
+    #ntf_help_content p {
+      margin-bottom: 20px;
+    }
+
+    #ntf_help_content ol {
+      margin: -10px 0 10px 25px;
+    }
+
+    #ntf_help_content ol li {
+      list-style-type: decimal;
+    }
+
+    .scroll-track {
+      height: 10px;
+      width: 16px;
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/bg.png?__cv=000cfa7c72a8a047af40093042ef6600);
+    }
+
+    .scroll-handle {
+      border: 1px solid black;
+      height: 10px;
+      width: 15px;
+      left: -1px;
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/bar.png?__cv=6bc46b5f6b3b91f3f76cb00831cecc00);
+      cursor: pointer;
+    }
+
+    .scroll-track-top {
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/arrow_up.png?__cv=abcf286c198aff708ba0e922d8854100);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+    }
+
+    .scroll-track-bot {
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/arrow_down.png?__cv=04d0ed94ef193c5199b4c83e2ec38300);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+    }
+
+    .scroll-track-top-active {
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/arrow_up_active.png?__cv=486293d4de491f5ce795552b0911e100);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+    }
+
+    .scroll-track-bot-active {
+      background-image: url(../images/internalSkylab/incentives/scrollbar/vertical/arrow_down_active.png?__cv=ca13238fd3d58410c4735c8c8256c700);
+      background-repeat: no-repeat;
+      height: 16px;
+      width: 16px;
+    }
+
+
+    .dronePartsDisplay {
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 15px;
+      left: 45px;
+      position: absolute;
+      top: 334px;
+      width: 70px;
+    }
+
+    .errorMessageDroneAlreadyInUse {
+      position: absolute;
+    }
+
+    #errorMessageDroneAlreadyInUse {
+      background: url(/do_img/global/bg_opacity80.png?__cv=b885e71a875650126ae5b0f287db5400) repeat scroll 0 0 transparent;
+      /*color: white;
+      display: none;
+      font-family: Verdana;
+      font-size: 12px;*/
+      position: absolute;
+      left: 144px;
+      height: 384px;
+      padding-top: 10px;
+      top: 5px;
+      width: 484px;
+      z-index: 2;
+    }
+
+    #errorText {
+      position: absolute;
+      top: 167px;
+      width: 300px;
+      left: 100px;
+      color: #A0A0A0;
+      font-weight: bold;
+      font-size: 12px;
+    }
+  }
+
+  &.internalAuction {
+    .item_box {
+      margin: 15px;
+      height: 95%;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .item_img {
+      width: 105px;
+      height: 105px;
+      display: inline-block;
+      margin: 5px;
+      background-color: rgba(145, 145, 145, 0.21);
+      border: 2px solid rgba(0, 0, 0, 0.3);
+    }
+
+    .item_img:hover {
+      filter: brightness(0.6);
+    }
+
+    .uu_input {
+      background: rgba(145, 145, 145, 0.21);
+      border: none;
+      width: 90%;
+      padding: 10px;
+    }
+
+    .uu_button {
+      background-color: rgba(145, 145, 145, 0.21);
+      outline: none;
+      color: white;
+      border: none;
+      height: auto;
+      width: auto;
+      padding: 5px 30px;
+      text-align: center;
+
+    }
+
+    .uu_button2 {
+      background-color: rgba(145, 145, 145, 0.21);
+      outline: none;
+      color: white;
+      border: none;
+      height: auto;
+      margin: 5px;
+      width: auto;
+      padding: 5px 30px;
+      text-align: center;
+    }
+
+    .auc {
+      height: 100%;
+    }
+
+    .auction {
+      background: rgba(103, 103, 103, 0.3);
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    .item_dark {
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .item_light {
+      background: rgba(145, 145, 145, 0.21);
+    }
+
+    .item_dark:hover {
+      filter: brightness(0.6);
+    }
+
+    .item_light:hover {
+      filter: brightness(0.6);
+    }
+
+    tr {
+      cursor: pointer;
+    }
+
+    .main-container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    .item_instantbuy_button {
+      margin-top: 10px;
+    }
+  }
+
+  &.internalClan {
+    .main-clan-info {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .clan-textbox {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: none !important;
+    }
+
+    .clan-header {
+      background: rgba(0, 0, 0, 0.4);
+      height: 40px;
+
+      ul > li {
+        text-align: center;
+        text-transform: none;
+        position: relative;
+
+        a {
+          color: white;
+
+          &:hover {
+            color: black;
+          }
+        }
+      }
+    }
+
+    .clan-body {
+      background: #ffffff1c;
+
+      .loading-screen {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Chrome/Safari/Opera */
+        -khtml-user-select: none; /* Konqueror */
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none; /* Non-prefixed version, currently not supported by any browser */
+        width: 100%;
+        height: 100%;
+        background: rgba(17, 17, 17, 0.90);
+        position: absolute;
+        z-index: 9999;
+        display: none;
+
+        .loading-screen-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+
+          .loading-screen-caption {
+            position: absolute;
+            width: auto;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            margin: 0 auto;
+            font-size: 40px;
+            text-align: center;
+          }
+        }
+
+        &.loading {
+          display: block;
+        }
+      }
+    }
+
+    .clan-top-header, .clan-bottom-header {
+      left: 20px;
+      position: relative;
+    }
+
+    .table > tbody > tr > td {
+      font-family: Arial, Helvetica, sans-serif;
+      text-transform: none !important;
+    }
+
+    #clan-inner {
+      #clan-info {
+        position: relative;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 50px;
+      }
+    }
+
+    #clan-details {
+      h3 {
+        text-align: center;
+      }
+
+      table > tbody > tr > th {
+        padding-right: 10px;
+        padding-left: 30px;
+
+      }
+    }
+
+    .edit-clan {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    #clan-members {
+      h3 {
+        text-align: center;
+      }
+
+      table {
+        width: 100%;
+        max-height: 500px;
+        overflow-y: scroll;
+
+        tbody > tr {
+          height: 65px;
+          text-align: center;
+          background-color: #0000003d;
+
+          th {
+            text-align: center;
+            padding-right: 10px;
+            padding-left: 30px;
+          }
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+          }
+        }
+
+        thead > tr > th {
+          text-align: center;
+          padding-right: 0;
+        }
+      }
+
+      #player-avatar {
+        background: url("../images/avatars/default.png") no-repeat;
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        margin-left: 15px;
+        border: 1px solid white;
+      }
+    }
+
+    #clan-avatar {
+      background: url("../images/avatars/default.png") no-repeat;
+      background-size: cover;
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 20px;
+      border: 1px solid white;
+    }
+
+    #diplomacy {
+      height: 450px;
+
+      .diplomacies {
+        height: 330px;
+        overflow: auto;
+        display: block;
+        margin: 15px;
+      }
+
+      #usr {
+        width: 300px;
+      }
+    }
+
+    #administration {
+      height: 450px;
+
+      .container {
+        margin-top: 150px;
+        left: 200px;
+      }
+    }
+  }
+
+  &.internalSkillTree {
+    @skillTreeTexture: url('../images/internalSkillTree/skilltree_texture.png');
+
+    .skill-body {
+      background: rgba(0, 0, 0, 0.61);
+      padding: 15px;
+
+      .tree-content {
+        display: inline-block;
+        width: 1110px;
+        height: 300px;
+        max-width: 1110px;
+        max-height: 800px;
+        text-transform: none;
+      }
+
+      .skill-row {
+        display: block;
+        margin: 0 auto;
+        clear: both;
+      }
+
+      .single-item {
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        margin-left: 30px;
+        margin-bottom: 30px;
+        text-transform: none;
+
+        .single-item-header {
+
+          display: inline-block;
+          position: relative;
+          height: 140px;
+          width: 120px;
+          margin-left: 30px;
+          border: 1px solid rgba(255, 255, 255, 0.51);
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .single-item-header span {
+          height: 1.42857px;
+          text-indent: -5000px;
+          width: 9px;
+          color: white;
+          filter: drop-shadow(0px 0px, 1px rgba(255, 255, 255, 0.7));
+          -webkit-transform: translateY(10%);
+          -moz-transform: translateY(10%);
+          -ms-transform: translateY(10%);
+          -o-transform: translateY(10%);
+          transform: translateY(10%);
+          -webkit-filter: drop-shadow(0px 0px 1px rgba(255, 255, 255, 0.7));
+        }
+
+        .single-item-header:hover {
+          filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
+          -webkit-filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.7));
+          cursor: pointer;
+        }
+
+        .single-item-header h3 {
+          display: inline-block;
+          margin-top: 0;
+          line-height: 24px;
+          font-size: 14px;
+          text-align: center;
+          padding-bottom: 5px;
+        }
+      }
+    }
+
+    .skill {
+      width: 74px;
+      height: 85px;
+      background-image: @skillTreeTexture;
+      cursor: pointer;
+      display: block;
+      float: left;
+      margin: 0 11px;
+
+      .skill-effect {
+        height: 100%;
+
+        &:hover {
+          background-image: @skillTreeTexture;
+          background-position: -74px 0;
+        }
+
+        &:active {
+          background-image: @skillTreeTexture;
+          background-position: -148px 0;
+        }
+      }
+
+      .skillPoints {
+        position: relative;
+        text-align: center;
+        top: 66px;
+        width: 74px;
+        font-size: 11px;
+      }
+    }
+
+    .skill_inactive {
+      background-image: @skillTreeTexture;
+      background-position: -222px 0;
+      cursor: default;
+      display: block;
+      float: left;
+      margin: 0 11px;
+      width: 74px;
+      height: 85px;
+
+      .skill-effect:hover {
+        background-image: @skillTreeTexture;
+        background-position: 0 0;
+      }
+    }
+
+    #skill_1 {
+      background-position: -1406px 0;
+    }
+
+    #skill_2 {
+      background-position: -962px 0;
+    }
+
+    #skill_3 {
+      background-position: -1332px 0;
+    }
+
+    #skill_4 {
+      background-position: -370px 0;
+    }
+
+    #skill_5 {
+      background-position: -444px 0;
+    }
+
+    #skill_6 {
+      background-position: -518px 0;
+    }
+
+    #skill_7 {
+      background-position: -296px 0;
+    }
+
+    #skill_8 {
+      background-position: -1628px 0;
+    }
+
+    #skill_9 {
+      background-position: -1184px 0;
+    }
+
+    #skill_10 {
+      background-position: -1480px 0;
+    }
+
+    #skill_11 {
+      background-position: -1998px 0;
+    }
+
+    #skill_12 {
+      background-position: -1702px 0;
+    }
+
+    #skill_13 {
+      background-position: -1036px 0;
+    }
+
+    #skill_14 {
+      background-position: -1850px 0;
+    }
+
+    #skill_15 {
+      background-position: -666px 0;
+    }
+
+    #skill_16 {
+      background-position: -888px 0;
+    }
+
+    #skill_17 {
+      background-position: -740px 0;
+    }
+
+    #skill_18 {
+      background-position: -1258px 0;
+    }
+
+    #skill_19 {
+      background-position: -814px 0;
+    }
+
+    #skill_20 {
+      background-position: -1110px 0;
+    }
+
+    #skill_21 {
+      background-position: -1776px 0;
+    }
+
+    #skill_22 {
+      background-position: -2072px 0;
+    }
+
+    #skill_23 {
+      background-position: -592px 0;
+    }
+
+    #skill_24 {
+      background-position: -1554px 0;
+    }
+
+    #skill_25 {
+      background-position: -1924px 0;
+    }
+
+  }
+
+  &.internalGalaxyGates {
+    @background_color_1: #4a4a4a7d;
+
+    #gate-container {
+      width: 100%;
+      display: inline-flex;
+      height: 500px;
+    }
+
+    #galaxygate-choice {
+      width: 250px;
+      height: 100%;
+      background-color: @background_color_1;
+    }
+
+    #gate-info {
+      width: 625px;
+      height: 100%;
+      background-color: #2f2f2f2e;
+    }
+
+    #user-info {
+      width: 265px;
+      height: 100%;
+      background-color: @background_color_1;
+      text-align: center;
+
+      #stats {
+        height: 75px;
+        margin-top: 25px;
+      }
+
+      #buttons {
+        display: inline-flex;
+
+        button {
+          margin: 5px;
+        }
+      }
+
+      #log {
+        overflow-y: scroll;
+        height: 252px;
+
+        ul > li {
+          background-color: white;
+          margin: 6px;
+          color: black;
+        }
+
+        .old {
+          background-color: transparent;
+          color: white;
+        }
+      }
+    }
+
+    .gate-separator {
+      margin-top: 15px;
+
+      li {
+        height: 38px;
+        margin-top: 5px;
+        width: 200px;
+        margin-left: 25px;
+        text-align: center;
+        line-height: 38px;
+
+        &:active {
+          background-color: white;
+        }
+      }
+    }
+
+    .selected {
+      background-color: #00ffbb94;
+    }
+
+    #gate-info {
+      padding-top: 100px;
+      padding-left: 240px;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+    }
+
+    #gate-preparation {
+      padding-top: 80px;
+      padding-left: 30px;
+    }
+
+    #gate-button {
+      height: 35px;
+      display: inline-flex;
+    }
+
+    #lives-left, #current-wave {
+      margin: 10px;
+    }
+
+    #collected-parts {
+      margin-left: 20px;
+      margin-top: 5px;
+    }
+
+    #gate-smoke {
+      margin-top: -25px;
+      margin-left: -35px;
+      width: 236px;
+      height: 290px;
+    }
+
+    #gate-multiply {
+      height: 100px;
+    }
+
+    #multiply-label {
+      display: inline-flex;
+    }
+
+    #cross {
+      width: 25px;
+      height: 25px;
+      background-color: gray;
+      margin: -3px 5px 5px;
+      border: 1px solid white;
+
+      h4 {
+        margin-top: 0px;
+        line-height: 25px;
+      }
+    }
+
+    #gate-progress-bar {
+      background-color: #00000038;
+    }
+  }
+
+  &.internalPayment {
+    @background_color_1: #3c3c3c;
+    @background_color_2: #2b2b2b;
+    @background_color_3: #353535;
+    @background_color_4: #2d2e30;
+    @background_color_5: #2f2f2f;
+
+    .settings-menu-container {
+      background-color: @background_color_1;
+      height: 100% !important;
+      min-height: 655px !important;
+      padding: 15px 0 !important;
+    }
+
+    ul.nav-tabs {
+      > li.active {
+        > a {
+          &:active {
+            background-color: @background_color_2;
+          }
+
+          &:focus {
+            background-color: @background_color_2;
+          }
+
+          &:hover {
+            background-color: @background_color_2;
+          }
+
+          background-color: @background_color_2;
+        }
+      }
+
+      > li {
+        > a {
+          &:hover {
+            background-color: @background_color_3;
+          }
+
+          border: none !important;
+          color: #ffffff;
+          text-align: center;
+          margin-right: 0 !important;
+          font-family: "Roboto Condensed", sans-serif;
+          font-weight: 300 !important;
+          font-size: 17px !important;
+          text-transform: uppercase;
+        }
+
+        display: block;
+        height: 46px !important;
+        width: 100%;
+      }
+
+      border: none !important;
+    }
+
+    .menu-header {
+      padding-bottom: 17px;
+      padding-top: 5px;
+
+      > h1 {
+        font-size: 17px !important;
+        text-align: center;
+        margin: 0 !important;
+        text-transform: uppercase;
+      }
+    }
+
+    .settings-header {
+      > h3 {
+        font-size: 17px !important;
+        text-transform: uppercase;
+      }
+
+      height: 55px !important;
+      //background-color: @background_color_4 !important;
+      padding: 0 15px !important;
+    }
+
+    .settings-content {
+      background-color: #2b2b2b60;
+      padding: 0 !important;
+      height: 100% !important;
+      min-height: 655px !important;
+
+      > .tab-content {
+        padding: 0 15px !important;
+        min-height: 570px;
+
+        #packages {
+          margin-left:100px;
+          max-height: 535px;
+          margin-bottom: 10px;
+          overflow-y:scroll;
+          -webkit-overflow-scrolling: touch;
+
+          #premium-package {
+            width: 300px;
+            float:left;
+          }
+          #booster-package {
+            width: 300px;
+            float: left;
+            margin-left: 10px;
+          }
+        }
+
+        #vouchers {
+          .recaptcha {
+            margin-left: 30%;
+          }
+        }
+      }
+    }
+    .card{ background-color: #fff; border: 1px solid transparent; border-radius: 6px; }
+    .card > .card-link{ color: #333; }
+    .card > .card-link:hover{  text-decoration: none; }
+    .card > .card-link .card-img img{ border-radius: 6px 6px 0 0; }
+    .card .card-img{ position: relative; padding: 0; display: table; }
+    .card .card-img .card-caption{
+      text-shadow: 2px 2px 8px #000000;
+      position: absolute;
+      right: 0;
+      bottom: 16px;
+      left: 0;
+    }
+    .card .card-body{ display: table; width: 100%; padding: 12px; background-color: #252525; }
+    .card .card-header{ border-radius: 6px 6px 0 0; padding: 8px; }
+    .card .card-footer{ border-radius: 0 0 6px 6px; padding: 8px; }
+    .card .card-left{ position: relative; float: left; padding: 0 0 8px 0; }
+    .card .card-right{ position: relative; float: left; padding: 8px 0 0 0; }
+    .card .card-body h1:first-child,
+    .card .card-body h2:first-child,
+    .card .card-body h3:first-child,
+    .card .card-body h4:first-child,
+    .card .card-body .h1,
+    .card .card-body .h2,
+    .card .card-body .h3,
+    .card .card-body .h4{ margin-top: 0; }
+    .card .card-body .heading{ display: block;  }
+    .card .card-body .heading:last-child{ margin-bottom: 0; }
+
+    .card .card-body .lead{ text-align: center; }
+
+    @media( min-width: 768px ){
+      .card .card-left{ float: left; padding: 0 8px 0 0; }
+      .card .card-right{ float: left; padding: 0 0 0 8px; }
+
+      .card .card-4-8 .card-left{ width: 33.33333333%; }
+      .card .card-4-8 .card-right{ width: 66.66666667%; }
+
+      .card .card-5-7 .card-left{ width: 41.66666667%; }
+      .card .card-5-7 .card-right{ width: 58.33333333%; }
+
+      .card .card-6-6 .card-left{ width: 50%; }
+      .card .card-6-6 .card-right{ width: 50%; }
+
+      .card .card-7-5 .card-left{ width: 58.33333333%; }
+      .card .card-7-5 .card-right{ width: 41.66666667%; }
+
+      .card .card-8-4 .card-left{ width: 66.66666667%; }
+      .card .card-8-4 .card-right{ width: 33.33333333%; }
+    }
+
+    /* -- default theme ------ */
+    .card-default{
+      border-color: #ddd;
+      background-color: #fff;
+      margin-bottom: 24px;
+    }
+    .card-default > .card-header,
+    .card-default > .card-footer{ color: #333; background-color: #ddd; }
+    .card-default > .card-header{ border-bottom: 1px solid #ddd; padding: 8px; }
+    .card-default > .card-footer{ border-top: 1px solid #ddd; padding: 8px; }
+    .card-default > .card-body{  }
+    .card-default > .card-img:first-child img{ border-radius: 6px 6px 0 0; }
+    .card-default > .card-left{ padding-right: 4px; }
+    .card-default > .card-right{ padding-left: 4px; }
+    .card-default p:last-child{ margin-bottom: 0; }
+    .card-default .card-caption { color: #fff; text-align: center; text-transform: uppercase; }
+
+
+    /* -- price theme ------ */
+    .card-price{ border-color: #999; background-color: #ededed; margin-bottom: 10px; }
+    .card-price > .card-heading,
+    .card-price > .card-footer{ color: #333; background-color: #fdfdfd; }
+    .card-price > .card-heading{ border-bottom: 1px solid #ddd; padding: 8px; }
+    .card-price > .card-footer{ border-top: 1px solid #ddd; padding: 8px; }
+    .card-price > .card-img:first-child img{ border-radius: 6px 6px 0 0; }
+    .card-price > .card-left{ padding-right: 4px; }
+    .card-price > .card-right{ padding-left: 4px; }
+    .card-price .card-caption { color: #fff; text-align: center; text-transform: uppercase; }
+    .card-price p:last-child{ margin-bottom: 0; }
+
+    .card-price .price{
+      text-align: center;
+      color: #ffef00;
+      font-size: 3em;
+      text-transform: uppercase;
+      line-height: 0.7em;
+      margin: 24px 0 16px;
+    }
+    .card-price .price small{ font-size: 0.4em; color: #ffef00; }
+    .card-price .details{ list-style: none; margin-bottom: 24px; padding: 0 18px; }
+    .card-price .details li{ text-align: center; margin-bottom: 8px; }
+    .card-price .buy-now{ text-transform: uppercase; }
+    .card-price table .price{ font-size: 1.2em; font-weight: 700; text-align: left; }
+    .card-price table .note{ color: #666; font-size: 0.8em; }
+  }
+}
