@@ -1,0 +1,62 @@
+.sys {
+    fontFamily: Tahoma;
+    fontWeight: bold;
+    fontSize: 12;
+    color: #0000ff;
+}
+
+.mod {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #000000;
+}
+
+.usr {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #000000;
+}
+
+.iusr {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #a0a0a0;
+}
+
+.background {
+    color: #ffffff;
+}
+
+.sys2 {
+    fontFamily: Tahoma;
+    fontWeight: bold;
+    fontSize: 12;
+    color: #0000ff;
+}
+
+.usr2 {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #000000;
+}
+
+.uid {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #00772F;
+}
+
+.time {
+    fontFamily: Tahoma;
+    fontWeight: normal;
+    fontSize: 12;
+    color: #0000ff
+}
+
+
+

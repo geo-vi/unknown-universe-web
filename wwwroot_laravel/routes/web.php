@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::namespace('External')->group(function () {
+    Rout::get('chattool', 'External\BaseController@index')->name('chattool');
+});
+
 Route::namespace('Internal')->group(function() {
     Route::get('internalShop', 'Internal\ShopController@index')->name('internalShop');
     Route::get('internalStart', 'Internal\ShopController@index')->name('internalStart');

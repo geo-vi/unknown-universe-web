@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language>
+    <item name="globalchat.login.username"><![CDATA[Username]]></item>
+    <item name="globalchat.login.password"><![CDATA[Passwort]]></item>
+    <item name="globalchat.login.version"><![CDATA[Version]]></item>
+    <item name="globalchat.login.accessLevel"><![CDATA[Zugriffslevel]]></item>
+    <item name="globalchat.logout.ask"><![CDATA[Möchtest Du Dich wirklich ausloggen?]]></item>
+    <item name="globalchat.chat.noMoreAccess">
+        <![CDATA[Du hast für diesen Bereich keine Zugriffsberechtigung mehr.]]></item>
+    <item name="globalchat.chat.wrongClientVersion">
+        <![CDATA[Du benutzt eine alte Version des ChatTools. Deine Version ist %YOURVERSION. Benötigt wird jedoch Version: %RIGHTVERSION. Bitte leere Deinen Browsercache und aktualisiere diese Seite.]]></item>
+    <item name="globalchat.main.stringExist"><![CDATA[Die Bezeichnung %STRING existiert bereits!]]></item>
+    <item name="globalchat.main.accountExist"><![CDATA[Ein Account mit diesem Namen existiert bereits!]]></item>
+    <item name="globalchat.chat.optionsPanel.fontSize"><![CDATA[Schriftgröße]]></item>
+    <item name="globalchat.chat.optionsPanel.myColor"><![CDATA[Meine Textfarbe]]></item>
+    <item name="globalchat.chat.optionsPanel.chatColor"><![CDATA[Chat-Textfarbe]]></item>
+    <item name="globalchat.chat.optionsPanel.bgColor"><![CDATA[Hintergrundfarbe]]></item>
+    <item name="globalchat.chat.kickmsg"><![CDATA[Du wurdest von %ADMIN gekickt!]]></item>
+    <item name="globalchat.chat.roomExplorerHeader"><![CDATA[Raumliste]]></item>
+    <item name="globalchat.chat.activeRoomlistHeader"><![CDATA[aktive Räume]]></item>
+    <item name="globalchat.chat.banmsg"><![CDATA[Du wurdest von %ADMIN gebannt!]]></item>
+    <item name="globalchat.chat.messageWindow.header.warning"><![CDATA[Warnung]]></item>
+    <item name="globalchat.chat.messageWindow.header.error"><![CDATA[Fehler]]></item>
+    <item name="globalchat.chat.messageWindow.header.info"><![CDATA[Info]]></item>
+    <item name="globalchat.chat.messageWindow.header.help"><![CDATA[Hilfe]]></item>
+    <item name="globalchat.chat.unknown"><![CDATA[unbekannt]]></item>
+    <item name="globalchat.chat.nocomment"><![CDATA[kein Kommentar]]></item>
+    <item name="globalchat.chat.autoban"><![CDATA[System]]></item>
+    <item name="globalchat.chat.all"><![CDATA[Alle]]></item>
+    <item name="globalchat.chat.accessDenied"><![CDATA[Für diesen Bereich hast Du keine Zugriffsberechtigung.]]></item>
+    <item name="globalchat.chat.label.options"><![CDATA[Optionen]]></item>
+    <item name="globalchat.chat.roomDeleted">
+        <![CDATA[Der Raum, in dem Du gerade aktiv chattest, wurde gelöscht.]]></item>
+    <item name="globalchat.chat.button.send"><![CDATA[Senden]]></item>
+    <item name="globalchat.chat.button.joinRoom"><![CDATA[Raum betreten]]></item>
+    <item name="globalchat.chat.button.leaveRoom"><![CDATA[Raum verlassen]]></item>
+    <item name="globalchat.chat.button.roomLog"><![CDATA[Raum-Log]]></item>
+    <item name="globalchat.chat.userlink.notfound"><![CDATA[User ist in diesem Raum nicht mehr aktiv.]]></item>
+    <item name="globalchat.chat.noLogFound"><![CDATA[Es wurde kein Log gefunden.]]></item>
+    <item name="globalchat.chat.filterUsername"><![CDATA[Username filtern]]></item>
+    <item name="globalchat.roomSelector.button.assign"><![CDATA[Zuweisen]]></item>
+    <item name="globalchat.roomSelector.button.delete"><![CDATA[Löschen]]></item>
+    <item name="globalchat.roomSelector.error.noAccountSelected">
+        <![CDATA[Du musst zunächst einen Account anwählen, bevor Du ihm Räume zuweisen kannst.]]></item>
+    <item name="globalchat.roomSelector.header"><![CDATA[Raum-Zugriff]]></item>
+    <item name="globalchat.accountScreen.label.accessLevel"><![CDATA[Zugriffslevel]]></item>
+    <item name="globalchat.accountScreen.button.newAccount"><![CDATA[Neuer Account]]></item>
+    <item name="globalchat.accountScreen.button.saveAccount"><![CDATA[Speichern]]></item>
+    <item name="globalchat.accountScreen.button.deleteAccount"><![CDATA[Account löschen]]></item>
+    <item name="globalchat.accountScreen.button.changeAccount"><![CDATA[Account updaten]]></item>
+    <item name="globalchat.accountScreen.label.availableRooms"><![CDATA[Verfügbare Räume]]></item>
+    <item name="globalchat.accountScreen.label.assignedRooms"><![CDATA[Zugewiesene Räume]]></item>
+    <item name="globalchat.accountScreen.header.accounts"><![CDATA[Accounts]]></item>
+    <item name="globalchat.accountScreen.header.options"><![CDATA[Optionen]]></item>
+    <item name="globalchat.accountScreen.checkBox.createdAccounts"><![CDATA[Eigene]]></item>
+    <item name="globalchat.accountScreen.checkBox.showPasswords"><![CDATA[Passwörter]]></item>
+    <item name="globalchat.accountScreen.error.norooms">
+        <![CDATA[Die User, die Du entbannen darfst, sind abhängig von den Dir zugeteilten Räumen. Deinem Account sind jedoch keine Räume zugewiesen. Bitte wende Dich an Deinen Accountersteller "%CREATOR", damit er Dir Räume zuteilen kann.]]></item>
+    <item name="globalchat.accountScreen.label.label0"><![CDATA[ROOMS Zugriff]]></item>
+    <item name="globalchat.accountScreen.label.label1"><![CDATA[Spiel erstellen]]></item>
+    <item name="globalchat.accountScreen.label.label2"><![CDATA[Spiel aktualisieren]]></item>
+    <item name="globalchat.accountScreen.label.label3"><![CDATA[Spiel löschen]]></item>
+    <item name="globalchat.accountScreen.label.label4"><![CDATA[Instanz erstellen]]></item>
+    <item name="globalchat.accountScreen.label.label5"><![CDATA[Instanz aktualisieren]]></item>
+    <item name="globalchat.accountScreen.label.label6"><![CDATA[Instanz löschen]]></item>
+    <item name="globalchat.accountScreen.label.label7"><![CDATA[Sprache erstellen]]></item>
+    <item name="globalchat.accountScreen.label.label8"><![CDATA[Sprache aktualisieren]]></item>
+    <item name="globalchat.accountScreen.label.label9"><![CDATA[Sprache löschen]]></item>
+    <item name="globalchat.accountScreen.label.label10"><![CDATA[Raum erstellen]]></item>
+    <item name="globalchat.accountScreen.label.label11"><![CDATA[Raum aktualisieren]]></item>
+    <item name="globalchat.accountScreen.label.label12"><![CDATA[Raum löschen]]></item>
+    <item name="globalchat.accountScreen.label.label13"><![CDATA[WORDFILTER betreten]]></item>
+    <item name="globalchat.accountScreen.label.label14"><![CDATA[BadWord erstellen]]></item>
+    <item name="globalchat.accountScreen.label.label15"><![CDATA[BadWord aktualisieren]]></item>
+    <item name="globalchat.accountScreen.label.label16"><![CDATA[BadWord löschen]]></item>
+    <item name="globalchat.accountScreen.label.label17"><![CDATA[SUPPORT betreten]]></item>
+    <item name="globalchat.accountScreen.label.label18"><![CDATA[ACCOUNTS betreten]]></item>
+    <item name="globalchat.accountScreen.label.label19"><![CDATA[Entbannen]]></item>
+    <item name="globalchat.accountScreen.label.label20"><![CDATA[IP-Adresse im Log anzeigen]]></item>
+    <item name="globalchat.waitWindow.header"><![CDATA[Info]]></item>
+    <item name="globalchat.waitWindow.label.loadingLog"><![CDATA[Lade Log vom Server ...]]></item>
+    <item name="globalchat.waitWindow.label.loadingRoomlist"><![CDATA[Lade Raumliste vom GlobalChat-Server...]]></item>
+    <item name="globalchat.loginScreen.button.login"><![CDATA[Einloggen]]></item>
+    <item name="globalchat.loginScreen.button.about"><![CDATA[Info]]></item>
+    <item name="globalchat.loginScreen.button.changelog"><![CDATA[ChangeLog]]></item>
+    <item name="globalchat.changelogWindow.header"><![CDATA[ChangeLog]]></item>
+    <item name="globalchat.settingsScreen.header"><![CDATA[User-Einstellungen]]></item>
+    <item name="globalchat.settingsScreen.button.changePassword"><![CDATA[Passwort ändern]]></item>
+    <item name="globalchat.settingsScreen.label.username"><![CDATA[Benutzername:]]></item>
+    <item name="globalchat.settingsScreen.label.password"><![CDATA[Passwort:]]></item>
+    <item name="globalchat.settingsScreen.label.creator"><![CDATA[Account-Ersteller:]]></item>
+    <item name="globalchat.settingsScreen.label.accessLevel"><![CDATA[Zugriff:]]></item>
+    <item name="globalchat.chat.newAccountLevel">
+        <![CDATA[Dein neuer Zugriffslevel wurde geändert auf:%LEVEL. Du wirst jetzt automatisch ausgeloggt. Bitte logge Dich anschließend neu ein.]]></item>
+    <item name="globalchat.roomsScreen.label.clanRooms"><![CDATA[Clan-Räume]]></item>
+    <item name="globalchat.roomsScreen.label.privateRooms"><![CDATA[Private Räume]]></item>
+    <item name="globalchat.chat.userpanel.header"><![CDATA[Userliste]]></item>
+    <item name="globalchat.chat.userpanel.button.kickUser"><![CDATA[Kick]]></item>
+    <item name="globalchat.chat.userpanel.button.banUser"><![CDATA[Bann]]></item>
+    <item name="globalchat.chat.userpanel.button.userLog"><![CDATA[User-Log]]></item>
+    <item name="globalchat.chat.userpanel.textfield.username"><![CDATA[Username:]]></item>
+    <item name="globalchat.chat.userpanel.textfield.userId"><![CDATA[UserId:]]></item>
+    <item name="globalchat.chat.userpanel.textfield.clan"><![CDATA[Clan:]]></item>
+    <item name="globalchat.accountScreen.deleteAccountWarning">
+        <![CDATA[Möchtest Du diesen Account wirklich löschen?]]></item>
+    <item name="globalchat.accountScreen.wrongCreator">
+        <![CDATA[Du kannst nur Accounts löschen, die Du selbst erstellt hast.]]></item>
+    <item name="globalchat.accountScreen.noHigherLevelsSelectable">
+        <![CDATA[Du kannst keine Accounts anlegen, deren Zugriffsberechtigung höher oder genauso hoch wie Deine eigene ist.]]></item>
+    <item name="globalchat.accountScreen.settingsSaved"><![CDATA[Die Einstellungen wurden gespeichert.]]></item>
+    <item name="globalchat.chat.roomalreadyjoined"><![CDATA[Du bist bereits in diesem Raum!]]></item>
+    <item name="globalchat.chat.cannotkickyourself"><![CDATA[Du kannst Dich nicht selbst kicken!]]></item>
+    <item name="globalchat.chat.nouserselected"><![CDATA[Du musst zunächst einen User auswählen!]]></item>
+    <item name="globalchat.chat.noentrys"><![CDATA[Es befinden sich keine Einträge in der Liste.]]></item>
+    <item name="globalchat.chat.noroomselected"><![CDATA[Du musst zunächst einen Raum auswählen!]]></item>
+    <item name="globalchat.chat.noactiveroom"><![CDATA[Du bist in keinem aktiven Raum!]]></item>
+    <item name="globalchat.chat.kickerrorsameuserid"><![CDATA[Du kannst Dich nicht selbst kicken!]]></item>
+    <item name="globalchat.chat.roomjoined"><![CDATA[Du hast den %ROOM mit der ID:%ID betreten ...]]></item>
+    <item name="globalchat.chat.noResult"><![CDATA[Die Anfrage lieferte keine Ergebnisse.]]></item>
+    <item name="globalchat.main.userIdHasWrongFormat"><![CDATA[Die angegebene User-ID hat das falsche Format.]]></item>
+    <item name="globalchat.main.userAlreadyBanned">
+        <![CDATA[User mit der ID %UUID befindet sich bereits in der Bann-Liste!]]></item>
+    <item name="globalchat.main.modsCannotBanned">
+        <![CDATA[Du kannst weder Dich selbst noch andere Mods bannen!]]></item>
+    <item name="globalchat.main.longnameTooLong"><![CDATA[Die ausgeschriebene Bezeichnung ist zu lang!]]></item>
+    <item name="globalchat.main.longnameTooShort"><![CDATA[Die ausgeschriebene Bezeichnung ist zu kurz!]]></item>
+    <item name="globalchat.main.shortnameTooLong"><![CDATA[Die Abkürzung ist zu lang!]]></item>
+    <item name="globalchat.main.shortnameTooShort"><![CDATA[Die Abkürzung ist zu kurz!]]></item>
+    <item name="globalchat.chat.roomleft"><![CDATA[Du hast den Raum %ROOM verlassen ...]]></item>
+    <item name="globalchat.chat.roomswitch"><![CDATA[Du hast zum Raum %ROOM mit der ID:%ID gewechselt]]></item>
+    <item name="globalchat.chat.kickwindow.kickmsg0"><![CDATA[Spam| Du solltest hier nicht rumspammen!]]></item>
+    <item name="globalchat.chat.kickwindow.kickmsg1">
+        <![CDATA[Kraftausdruck| Kraftausdrücke sind hier unerwünscht!]]></item>
+    <item name="globalchat.chat.kickwindow.kickmsg2"><![CDATA[Zu schnell| Du tippst ständig das Gleiche!]]></item>
+    <item name="globalchat.chat.kickwindow.comment"><![CDATA[Kommentar]]></item>
+    <item name="globalchat.chat.kickwindow.textmodules"><![CDATA[Text-Module]]></item>
+    <item name="globalchat.chat.kickwindow.kicktime"><![CDATA[Kickzeit in Minuten]]></item>
+    <item name="globalchat.chat.banwindow.header"><![CDATA[User bannen]]></item>
+    <item name="globalchat.chat.kickwindow.header"><![CDATA[User kicken]]></item>
+    <item name="globalchat.chat.banwindow.comment"><![CDATA[Kommentar (sichtbar für User)]]></item>
+    <item name="globalchat.chat.banwindow.textmodules"><![CDATA[Text-Module]]></item>
+    <item name="globalchat.chat.banwindow.minutes"><![CDATA[Minuten]]></item>
+    <item name="globalchat.chat.banwindow.hours"><![CDATA[Stunden]]></item>
+    <item name="globalchat.chat.banwindow.days"><![CDATA[Tage]]></item>
+    <item name="globalchat.chat.banwindow.unlimited"><![CDATA[Für immer]]></item>
+    <item name="globalchat.chat.banwindow.username"><![CDATA[username]]></item>
+    <item name="globalchat.chat.banwindow.userId"><![CDATA[userId]]></item>
+    <item name="globalchat.chat.banwindow.header.userLog"><![CDATA[BannLog (sichtbar in der Bannliste)]]></item>
+    <item name="globalchat.chat.banwindow.bantime"><![CDATA[Bann-Dauer]]></item>
+    <item name="globalchat.chat.banwindow.button.copySelected"><![CDATA[Kopiere markiertes]]></item>
+    <item name="globalchat.chat.banwindow.button.copyAll"><![CDATA[Kopiere alles]]></item>
+    <item name="globalchat.chat.accountDeleted">
+        <![CDATA[Dein Account wurde gelöscht. Bitte wende Dich an die Person, die Deinen Account erstellt hat.]]></item>
+    <item name="globalchat.chat.changePasswordWindow.header"><![CDATA[Passwort ändern]]></item>
+    <item name="globalchat.chat.changePasswordWindow.username"><![CDATA[Username]]></item>
+    <item name="globalchat.chat.changePasswordWindow.oldPassword"><![CDATA[altes Passwort]]></item>
+    <item name="globalchat.chat.changePasswordWindow.newPassword"><![CDATA[neues Passwort]]></item>
+    <item name="globalchat.chat.changePasswordWindow.confirmPassword"><![CDATA[Passwort bestätigen]]></item>
+    <item name="globalchat.chat.changePasswordWindow.error.wrongOldPass">
+        <![CDATA[Das alte Passwort ist falsch.]]></item>
+    <item name="globalchat.chat.changePasswordWindow.error.wrongConfirmation">
+        <![CDATA[Das neue Passwort konnte nicht bestätigt werden. Bitte überprüfe Deine Eingabe.]]></item>
+    <item name="globalchat.chat.changePasswordWindow.error.passwordTooShort">
+        <![CDATA[Das eingegebene Passwort muss mindestens aus 8 Zeichen bestehen!]]></item>
+    <item name="globalchat.chat.changePasswordWindow.passwordChanged">
+        <![CDATA[Dein Passwort wurde erfolgreich geändert.]]></item>
+    <item name="globalchat.chat.changefontsize"><![CDATA[Schriftgöße geändert auf %SIZE Pixel]]></item>
+    <item name="globalchat.chat.userkick"><![CDATA[Versuche %USER vom Raum %ROOM zu kicken]]></item>
+    <item name="globalchat.chat.username"><![CDATA[Benutzername]]></item>
+    <item name="globalchat.chat.activeroom"><![CDATA[aktiver Raum]]></item>
+    <item name="globalchat.chat.usercount"><![CDATA[Useranzahl:]]></item>
+    <item name="globalchat.wordfilter.nowordselected">
+        <![CDATA[Du musst zunächst ein Wort aus der Liste anwählen, um es ändern zu können.]]></item>
+    <item name="globalchat.wordfilter.wordtooshort"><![CDATA[Das eingetragene Wort ist zu kurz.]]></item>
+    <item name="globalchat.wordfilter.newlanguage.header"><![CDATA[Neue Landessprache]]></item>
+    <item name="globalchat.wordfilter.newlanguage.language"><![CDATA[Bezeichnung]]></item>
+    <item name="globalchat.wordfilter.newlanguage.short"><![CDATA[Sprachkürzel]]></item>
+    <item name="globalchat.chat.userenterroom"><![CDATA[%USERNAME betritt den Raum ...]]></item>
+    <item name="globalchat.chat.meenterroom"><![CDATA[Du betrittst den Raum %ROOM ...]]></item>
+    <item name="globalchat.chat.userleaveroom"><![CDATA[%USERNAME verlässt den Raum ...]]></item>
+    <item name="globalchat.roomcreator.header.games"><![CDATA[Spiele]]></item>
+    <item name="globalchat.roomcreator.header.instances"><![CDATA[Instanzen]]></item>
+    <item name="globalchat.roomcreator.header.languages"><![CDATA[Sprachen]]></item>
+    <item name="globalchat.roomcreator.header.rooms"><![CDATA[Räume]]></item>
+    <item name="globalchat.roomcreator.header.projects"><![CDATA[Projekte]]></item>
+    <item name="globalchat.roomcreator.companyroom"><![CDATA[Firmenraum]]></item>
+    <item name="globalchat.roomcreator.companyIdNotAvailable"><![CDATA[Diese Firmen-ID ist bereits vergeben.]]></item>
+    <item name="globalchat.roomcreator.button.newGame"><![CDATA[Neues Spiel]]></item>
+    <item name="globalchat.roomcreator.button.updateGame"><![CDATA[Spiel updaten]]></item>
+    <item name="globalchat.roomcreator.button.deleteGame"><![CDATA[Spiel löschen]]></item>
+    <item name="globalchat.roomcreator.button.newInstance"><![CDATA[Neue Instanz]]></item>
+    <item name="globalchat.roomcreator.button.updateInstance"><![CDATA[Instanz updaten]]></item>
+    <item name="globalchat.roomcreator.button.deleteInstance"><![CDATA[Instanz löschen]]></item>
+    <item name="globalchat.roomcreator.button.newLanguage"><![CDATA[Neues Sprache]]></item>
+    <item name="globalchat.roomcreator.button.updateLanguage"><![CDATA[Sprache updaten]]></item>
+    <item name="globalchat.roomcreator.button.deleteLanguage"><![CDATA[Sprache löschen]]></item>
+    <item name="globalchat.roomcreator.button.newProject"><![CDATA[Neues Projekt]]></item>
+    <item name="globalchat.roomcreator.button.updateProject"><![CDATA[Projekt updaten]]></item>
+    <item name="globalchat.roomcreator.button.deleteProject"><![CDATA[Projekt löschen]]></item>
+    <item name="globalchat.roomcreator.button.newRoom"><![CDATA[Neuer Raum]]></item>
+    <item name="globalchat.roomcreator.button.updateRoom"><![CDATA[Raum updaten]]></item>
+    <item name="globalchat.roomcreator.button.deleteRoom"><![CDATA[Raum löschen]]></item>
+    <item name="globalchat.roomcreator.newitem.game"><![CDATA[Neues Game]]></item>
+    <item name="globalchat.roomcreator.newitem.instance"><![CDATA[Neue Instanz]]></item>
+    <item name="globalchat.roomcreator.newitem.language"><![CDATA[Neue Sprache]]></item>
+    <item name="globalchat.roomcreator.newitem.newAccount"><![CDATA[Neuer Account]]></item>
+    <item name="globalchat.roomcreator.newitem.changeAccount"><![CDATA[Account ändern]]></item>
+    <item name="globalchat.roomcreator.newitem.longname"><![CDATA[Ausgeschrieben]]></item>
+    <item name="globalchat.roomcreator.newitem.shortname"><![CDATA[Kürzel]]></item>
+    <item name="globalchat.roomcreator.deleteLog"><![CDATA[Raum-Log löschen]]></item>
+    <item name="globalchat.roomcreator.updateitem.game"><![CDATA[Game aktualisieren]]></item>
+    <item name="globalchat.roomcreator.updateitem.instance"><![CDATA[Instanz aktualisieren]]></item>
+    <item name="globalchat.roomcreator.updateitem.language"><![CDATA[Sprache aktualisieren]]></item>
+    <item name="globalchat.roomcreator.selectgame"><![CDATA[Du musst zuerst ein Game aus der Liste auswählen.]]></item>
+    <item name="globalchat.roomcreator.selectinstance">
+        <![CDATA[Du musst zuerst eine Instanz aus der Liste auswählen.]]></item>
+    <item name="globalchat.roomcreator.selectlanguage">
+        <![CDATA[Du musst zuerst eine Sprache aus der Liste auswählen.]]></item>
+    <item name="globalchat.roomcreator.selectproject">
+        <![CDATA[Du musst zuerst ein Projekt aus der Liste auswählen.]]></item>
+    <item name="globalchat.roomcreator.deletegame">
+        <![CDATA[Möchtest Du das Game %GAME wirklich löschen? Alle Räume, die zu diesem Game gehören, werden ebenfalls gelöscht!]]></item>
+    <item name="globalchat.roomcreator.deleteinstance">
+        <![CDATA[Möchtest Du die Instanz %INSTANCE wirklich löschen?]]></item>
+    <item name="globalchat.roomcreator.deletelanguage">
+        <![CDATA[Möchtest Du die Sprache %LANGUAGE wirklich löschen?]]></item>
+    <item name="globalchat.roomcreator.deleteproject"><![CDATA[Möchtest du das Projekt wirklich löschen?]]></item>
+    <item name="globalchat.roomcreator.projectAlreadyExist">
+        <![CDATA[Ein Projekt mit dieser Projekt-ID exstiert bereits.]]></item>
+    <item name="globalchat.roomcreator.projectNameTooShort"><![CDATA[Der Projektname ist zu kurz]]></item>
+    <item name="globalchat.roomcreator.companyIdNotAvailable"><![CDATA[Diese Firmen-ID ist bereits vergeben.]]></item>
+    <item name="globalchat.roomcreator.newroom.header"><![CDATA[Neuer Raum]]></item>
+    <item name="globalchat.roomcreator.updateroom.header"><![CDATA[Raum aktualisieren]]></item>
+    <item name="globalchat.roomcreator.newproject.header"><![CDATA[Neues Projekt]]></item>
+    <item name="globalchat.roomcreator.updateproject.header"><![CDATA[Projekt aktualisieren]]></item>
+    <item name="globalchat.roomcreator.newroom.game"><![CDATA[Game]]></item>
+    <item name="globalchat.roomcreator.newroom.instance"><![CDATA[Instanz]]></item>
+    <item name="globalchat.roomcreator.newroom.language"><![CDATA[Sprache]]></item>
+    <item name="globalchat.roomcreator.newroom.roomname"><![CDATA[Raumname]]></item>
+    <item name="globalchat.roomcreator.newproject.projectId"><![CDATA[Projekt-ID]]></item>
+    <item name="globalchat.roomcreator.selectroom">
+        <![CDATA[Du musst zuerst einen Raum aus der Liste auswählen.]]></item>
+    <item name="globalchat.roomcreator.deleteroom"><![CDATA[Möchtest Du den Raum %ROOM wirklich löschen?]]></item>
+    <item name="globalchat.roomcreator.selectProject">
+        <![CDATA[Du musst zuerst ein Projekt aus der Liste auswählen.]]></item>
+    <item name="globalchat.wordfilter.header.languages"><![CDATA[Sprachen]]></item>
+    <item name="globalchat.wordfilter.header.wordlist"><![CDATA[Wortliste]]></item>
+    <item name="globalchat.wordfilter.header.wordLevel"><![CDATA[Konsequenz]]></item>
+    <item name="globalchat.wordfilter.header.word"><![CDATA[Wort]]></item>
+    <item name="globalchat.wordfilter.importWindow.importWords"><![CDATA[Wörterliste importieren]]></item>
+    <item name="globalchat.wordfilter.importWindow.header"><![CDATA[Import]]></item>
+    <item name="globalchat.wordfilter.wordExist"><![CDATA[Das Wort exstiert bereits.]]></item>
+    <item name="globalchat.wordfilter.button.newWord"><![CDATA[Wort hinzufügen]]></item>
+    <item name="globalchat.wordfilter.button.updateWord"><![CDATA[Wort aktualisieren]]></item>
+    <item name="globalchat.wordfilter.button.deleteWord"><![CDATA[Wort löschen]]></item>
+    <item name="globalchat.wordfilter.button.importList"><![CDATA[Liste importieren]]></item>
+    <item name="globalchat.wordfilter.comboBoxElement1"><![CDATA[Harmlos - Kick]]></item>
+    <item name="globalchat.wordfilter.comboBoxElement2"><![CDATA[Mittel - Bann %DURATION %TIME]]></item>
+    <item name="globalchat.wordfilter.comboBoxElement3"><![CDATA[Schwer - Bann %DURATION %TIME]]></item>
+    <item name="globalchat.wordfilter.comboBoxElement4"><![CDATA[Inakzeptabel - Bann %DURATION %TIME]]></item>
+    <item name="globalchat.wordfilter.noLanguages">
+        <![CDATA[Im System wurden noch keine Sprachen eingepflegt. Daher ist ein Wechsel zum Word-Filter nicht möglich.]]></item>
+    <item name="globalchat.wordfilter.days"><![CDATA[Tag(e)]]></item>
+    <item name="globalchat.wordfilter.hours"><![CDATA[Stunde(n)]]></item>
+    <item name="globalchat.wordfilter.minutes"><![CDATA[Minute(n)]]></item>
+    <item name="globalchat.wordfilter.deletelanguage">
+        <![CDATA[Möchtest Du die Sprache %LANGUAGE wirklich löschen?]]></item>
+    <item name="globalchat.wordfilter.selectlanguage">
+        <![CDATA[Du musst zuerst eine Sprache aus der Liste auswählen.]]></item>
+    <item name="globalchat.wordfilter.invalidChars"><![CDATA[Unerlaubte Zeichen im Wort!]]></item>
+    <item name="globalchat.loginerror.blocked">
+        <![CDATA[Du wurdest am %BEGINDATE um %BEGINTIME für %PERIOD %TIME %BLOCKED. Du kannst Dich wieder am %ENDDATE um %ENDTIME einloggen.]]></item>
+    <item name="globalchat.loginerror.banned">
+        <![CDATA[Du wurdest am %BEGINDATE um %BEGINTIME für %PERIOD %TIME gebannt. Du kannst Dich wieder am %ENDDATE um %ENDTIME einloggen.]]></item>
+    <item name="globalchat.loginerror.kicked">
+        <![CDATA[Du wurdest am %BEGINDATE um %BEGINTIME für %PERIOD %TIME gekickt. Du kannst Dich wieder am %ENDDATE um %ENDTIME einloggen.]]></item>
+    <item name="globalchat.loginerror.minutes"><![CDATA[Minuten]]></item>
+    <item name="globalchat.loginerror.hours"><![CDATA[Stunden]]></item>
+    <item name="globalchat.loginerror.days"><![CDATA[Tage]]></item>
+    <item name="globalchat.main.connectionlost"><![CDATA[Die Verbindung wurde unterbrochen!]]></item>
+    <item name="globalchat.main.reconnect"><![CDATA[Verbinde in %SECONDS Sekunde(n) erneut ...]]></item>
+    <item name="globalchat.main.connecting"><![CDATA[Verbinde ...]]></item>
+    <item name="globalchat.main.connected"><![CDATA[Verbunden]]></item>
+    <item name="globalchat.roomlog.nonumber"><![CDATA[Die angegebene User-ID muss eine Zahl sein.]]></item>
+    <item name="globalchat.roomlog.nonegative"><![CDATA[Die angegebene User-ID muss größer als 0 sein.]]></item>
+    <item name="globalchat.roomlog.noitems"><![CDATA[Keine Einträge gefunden!]]></item>
+    <item name="globalchat.roomlog.page"><![CDATA[Seite %PAGENUMBER von %MAXPAGES]]></item>
+    <item name="globalchat.roomlog.table"><![CDATA[Tabelle]]></item>
+    <item name="globalchat.roomlog.text"><![CDATA[Text]]></item>
+    <item name="globalchat.login.notregistered">
+        <![CDATA[Kein übereinstimmender Benutzername oder Passwort gefunden.]]></item>
+    <item name="globalchat.banlistScreen.header"><![CDATA[gebannte User]]></item>
+    <item name="globalchat.banlistScreen.button.refresh"><![CDATA[Aktualisieren]]></item>
+    <item name="globalchat.banlistScreen.button.deban"><![CDATA[Entbannen]]></item>
+    <item name="globalchat.banlistScreen.label.username"><![CDATA[Username]]></item>
+    <item name="globalchat.banlistScreen.label.userId"><![CDATA[UserId]]></item>
+    <item name="globalchat.banlistScreen.label.word"><![CDATA[Wort]]></item>
+    <item name="globalchat.banlistScreen.label.maxEntrys"><![CDATA[max. Einträge]]></item>
+    <item name="globalchat.banlistScreen.label.game"><![CDATA[Spiel]]></item>
+    <item name="globalchat.banlistScreen.label.instance"><![CDATA[Instanz]]></item>
+    <item name="globalchat.banlistScreen.label.language"><![CDATA[Sprache]]></item>
+    <item name="globalchat.banlistScreen.label.room"><![CDATA[Raum]]></item>
+    <item name="globalchat.banlistScreen.label.comment"><![CDATA[Kommentar]]></item>
+    <item name="globalchat.banlistScreen.forever"><![CDATA[Für immer]]></item>
+    <item name="globalchat.banlistScreen.label.bannedUsers"><![CDATA[gebannte User]]></item>
+    <item name="globalchat.banlistScreen.label.debannedUsers"><![CDATA[entbannte User]]></item>
+    <item name="globalchat.banlistScreen.banlistResultLimited">
+        <![CDATA[Die Anfrage lieferte zuviele Ergebnisse zurück. Bitte schränken Sie ihre Anfrage mit den zur Verfügung stehenden Filtern ein.]]></item>
+    <item name="globalchat.supportScreen.header.supportMessage"><![CDATA[Support-Nachricht]]></item>
+    <item name="globalchat.supportScreen.header.supportMessages"><![CDATA[Nachrichten]]></item>
+    <item name="globalchat.supportScreen.messageLock"><![CDATA[Sperren]]></item>
+    <item name="globalchat.supportScreen.messageUnlock"><![CDATA[Entsperren]]></item>
+    <item name="globalchat.supportScreen.buttonSend"><![CDATA[Sende]]></item>
+    <item name="globalchat.supportScreen.unlockWarning">
+        <![CDATA[Die Supportanfrage wurde von Dir bearbeitet, aber noch nicht verschickt. Möchtest Du wirklich das Element entsperren? Dadurch wird eine bereits geschriebene Antwort von Dir verworfen und das Element für andere Supporter freigegeben.]]></item>
+    <item name="globalchat.supportScreen.userLogout">
+        <![CDATA[Der Benutzer, dessen Support-Anfrage Du gerade bearbeitest, ist nicht mehr online.]]></item>
+    <item name="globalchat.supportScreen.noGamesLanguages">
+        <![CDATA[Im System wurden noch keine Spiele oder Sprachen eingepflegt. Daher existieren noch keine Räume und somit auch keine Support-Messages. Ein Wechsel zum Support-Screen ist nicht möglich]]></item>
+    <item name="globalchat.help._help0">
+        <![CDATA[Hier siehst Du alle Games, die den GlobalChat nutzen. Die Spalte "count" gibt an, wie viele Supportanfragen für das aktuelle Spiel verfügbar sind. Die Spalte "locks" gibt an, wie viele Anfragen Du bereits für eine Bearbeitung gesperrt hast. Wenn Du Dich ausloggst, werden Deine Sperren automatisch aufgehoben. Andere Supporter können dann die Supportanfrage bearbeiten.]]></item>
+    <item name="globalchat.help._help1">
+        <![CDATA[Hier siehst Du alle Sprachen, die den GlobalChat nutzen. Die Liste der Sprachen ist abhängig vom Game, das in der Game-Liste selektiert wurde. Die Spalte "count" gibt an, wie viele Support-Anfragen für das aktuelle Spiel verfügbar sind. Die Spalte "locks" gibt an, wie viele Anfragen Du bereits für eine Bearbeitung gesperrt hast. Wenn Du Dich ausloggst, werden Deine Sperren automatisch aufgehoben. Andere Supporter können dann die Supportanfrage bearbeiten.]]></item>
+    <item name="globalchat.help._help2">
+        <![CDATA[Um eine Nachricht bearbeiten zu können, musst Du diese zunächst für andere Supporter sperren. Anschließend kannst Du die Support-Anfrage an den User senden oder wieder entsperren. Durch das Entsperren verwirfst Du jedoch Deine bereits verfasste Antwort und machst die Nachricht wieder für andere Supporter verfügbar.]]></item>
+    <item name="globalchat.help._help3">
+        <![CDATA[Hier siehst Du alle Support-Anfragen für das gewählte Game und die gewählte Sprache. Die Spalte "lockowner" gibt an, von welchem Supporter die Anfrage gesperrt wurde. Diese Anfragen kannst Du zwar lesen, aber solange nicht beantworten, bis der Supporter diese freigegeben hat. Die Nachricht verschwindet, wenn Du (oder ein anderer Supporter) die Anfrage beantwortest und an den User schickst oder der User sich ausloggt.]]></item>
+    <item name="globalchat.help._help4">
+        <![CDATA[Dies ist das Chat-Fenster. Im Grunde genommen siehst Du hier genau das, was der User auch sieht.]]></item>
+    <item name="globalchat.help._help5">
+        <![CDATA[Hier siehst Du die Hierarchie für das Spiel, das Dir zugeteilt wurde. Wenn Du Dich tiefer in die Hierachie klickst, siehst Du, dass eine Zeichenfolge zusammengesetzt wird, z.B: do_int1_de_global. Dies ist im Wesentlichen spiel_instanz_sprache_raumname. Mit einem Doppelklick auf den Raumnamen kannst Du Dich mit dem Raum verbinden. Oder Du klickst auf "Raum betreten".]]></item>
+    <item name="globalchat.help._help6">
+        <![CDATA[Alle Räume, mit denen Du Dich verbunden hast, werden hier noch einmal aufgelistet. Mit einem einfachen Klick kannst Du zwischen den Räumen wechseln, um darin zu schreiben. Das heißt konkret, dass Du zwar in allen Räumen gleichzeitig anwesend bist, aber nur in einem der Räume aktiv arbeiten kannst bzw. nur die Ausgabe des jeweiligen Raumes siehst.]]></item>
+    <item name="globalchat.help._help7">
+        <![CDATA[Hier siehst Du User, die gebannt wurden; diese können nur von Dir oder automatisch vom System entbannt werden. Entbannte User können für den Zeitraum von in der Regel 1 Monat noch eingesehen werden. Danach werden sie automatisch vom System entfernt. Die User siehst Du nur, wenn Du zunächst auf den Button "Aktualisieren" klickst. Es ist jedoch von Vorteil Deine Suche mit den verfügbaren Filtern vor dem Aktualisieren einzuschränken. Wenn Du Super-/Chat-Mod bist, kannst Du nur User sehen, die der Landessprache der Räume entsprechen, die Dir von Deinem Supporter zugeteilt wurden.]]></item>
+    <item name="globalchat.help._help8">
+        <![CDATA[Hier siehst Du die Sprachen, die im System existieren. Für jede dieser Sprachen kannst Du eine eigene BadWord-Liste führen. Um die Liste einheitlich zu halten, sollte für "longname" immer der englische Begriff benutzt werden.]]></item>
+    <item name="globalchat.help._help9">
+        <![CDATA[Hier kannst Du neue "BadWords" hinzufügen, löschen oder aktualisieren. Die Skala gibt an, wie drastisch die Benutzung des Worts vom System bestraft wird. Du kannst auch eine bereits existierende Liste per Copy+Paste über den Button "Import" einpflegen."]]></item>
+    <item name="globalchat.help._help10">
+        <![CDATA[In der Userliste siehst Du alle User, die in Deinem aktiven Raum eingeloggt sind. Du kannst hier User kicken, bannen oder Dir das Log anschauen.]]></item>
+    <item name="globalchat.help._help11">
+        <![CDATA[Hier hast Du einen Überblick auf alle Accounts, die im Globalchat angemeldet sind. Je nachdem, was für einen Account Du selbst besitzt, gibt es auch hier Zugriffsbeschränkungen. So kann der Entwickler/SupportLead alle Passwörter sehen. Der Supporter hingegen sieht nur das Passwort von Accounts, die er selbst erstellt hat. Ein SuperMod/ChatMod hat auf diese Seite überhaupt keinen Zugriff. Zusätzlich kannst Du hier erkennen, wer welchen Account erstellt hat.]]></item>
+    <item name="globalchat.help._help12">
+        <![CDATA[Hier kannst Du Zugriffsrechte für den Account vergeben, den Du erstellt hast. Du hast die Möglichkeit, in der ComboBox einen vordefinierten Zugriffslevel auszuwählen. Oder Du vergibst die Rechte individuell. Dadurch ändert sich der Zugriffslevel auf CUSTOM. Beachte, dass Du nur Rechte vergeben kannst, die für Deinen eigenen Account verfügbar sind. So kannst Du z.B. als Supporter keine Entwickler-/SupportLead-Accounts erstellen.]]></item>
+    <item name="globalchat.help._help13">
+        <![CDATA[Hier kannst Du den Zugriff von Super-/Chat-Accounts auf bestimmte Räume beschränken. Entwickler, Support-Leads und Supporter haben grundsätzlich Zugriff auf alle Spiele. Diesen brauchst Du also keine Räume zuzuweisen.]]></item>
+    <item name="globalchat.help._help14">
+        <![CDATA[Hier kannst Du Spiele erstellen, löschen und updaten. Wenn Du ein Spiel selektiert hast und den Filter einschaltest, werden in der Raumliste nur Räume angezeigt, die diesem Spiel zugewiesen wurden. Beachte, dass, wenn Du ein Spiel löschst, auch alle Räume gelöscht werden, die diesem Spiel zugeteilt worden sind.]]></item>
+    <item name="globalchat.help._help15">
+        <![CDATA[Hier kannst Du Instanzen erstellen, löschen und updaten. Wenn Du eine Instanz selektiert hast und den Filter einschaltest, werden in der Raumliste nur Räume angezeigt, die dieser Instanz zugewiesen wurden. Beachte, dass, wenn Du eine Instanz löschst, auch alle Räume gelöscht werden, die dieser Instanz zugeteilt worden sind.]]></item>
+    <item name="globalchat.help._help16">
+        <![CDATA[Hier kannst Du Sprachen erstellen, löschen und updaten. Wenn Du eine Sprache selektiert hast und den Filter einschaltest, werden in der Raumliste nur Räume angezeigt, die dieser Sprache zugewiesen wurden. Beachte, dass, wenn Du eine Sprache löschst, auch alle Räume gelöscht werden, die dieser Sprache zugeteilt worden sind.]]></item>
+    <item name="globalchat.help._help17">
+        <![CDATA[Hier kannst Du Räume erstellen, löschen und updaten. Zusätzlich kannst Du Dir das zugehörige Raum-Log anschauen, sofern eines existiert. Welche Räume angezeigt werden, ist davon abhängig, welche Filter Du aktiviert hast. Die Filter findest Du als CheckBox im Spiele-, Instanz- und Sprache-Panel.]]></item>
+    <item name="globalchat.help._help18">
+        <![CDATA[Hier kannst Du Projekt-IDs erstellen. Eine Projekt-ID fasst Game & Instanz zusammen. Die Projekt-ID muss dem Chat-Client übergeben werden.]]></item>
+    <item name="globalchat.channels.darkorbitGlobal"><![CDATA[Global]]></item>
+    <item name="globalchat.channels.darkorbitCompany1"><![CDATA[MMO]]></item>
+    <item name="globalchat.channels.darkorbitCompany2"><![CDATA[EIC]]></item>
+    <item name="globalchat.channels.darkorbitCompany3"><![CDATA[VRU]]></item>
+    <item name="globalchat.channels.darkorbitClansearch"><![CDATA[Clansuche]]></item>
+    <item name="globalchat.chat.systemMessage.userKicked"><![CDATA[%USER wurde von %ADMIN gekickt!]]></item>
+    <item name="globalchat.chat.systemMessage.userBanned"><![CDATA[%USER wurde von %ADMIN gebannt!]]></item>
+    <item name="globalchat.chat.systemMessage.userKickedBySystem">
+        <![CDATA[%USER wurde vom System gekickt. Begründung: Schimpfwort benutzt (%MSG)]]></item>
+    <item name="globalchat.chat.systemMessage.userBannedBySystem">
+        <![CDATA[%USER wurde vom System gebannt. Begründung: Schimpfwort benutzt (%MSG)]]></item>
+    <item name="globalchat.chat.noLogFound"><![CDATA[Es wurde kein Log gefunden.]]></item>
+    <item name="globalchat.chat.filterUsername"><![CDATA[Username filtern]]></item>
+    <item name="globalchat.wordfilter.invalidChars"><![CDATA[Unerlaubte Zeichen im Wort!]]></item>
+    <item name="globalchat.waitWindow.label.loadingRoomlist"><![CDATA[Lade Raumliste vom GlobalChat-Server...]]></item>
+    <item name="globalchat.roomcreator.newroom.tabOrder"><![CDATA[Reihenfolge]]></item>
+    <item name="globalchat.chat.moderatorcount"><![CDATA[Moderatoren]]></item>
+    <item name="globalchat.chat.moderatorpanel.header"><![CDATA[Moderatorenliste]]></item>
+    <item name="globalchat.chat.currentlyDeactivated"><![CDATA[Diese Funktion ist zur Zeit deaktiviert]]></item>
+    <item name="globalchat.chat.button.getServerStatistics"><![CDATA[Statistik]]></item>
+    <item name="globalchat.changelogWindow.serverStatistics"><![CDATA[Server Statistik]]></item>
+    <item name="globalchat.roomlog.showDate"><![CDATA[Datum anzeigen]]></item>
+    <item name="globalchat.chat.button.addToFavorites"><![CDATA[Favorisieren]]></item>
+    <item name="globalchat.chat.button.removeFromFavorites"><![CDATA[Entfernen]]></item>
+    <item name="globalchat.chat.msg.addedToFavorites"><![CDATA[Der Raum %ROOM wurde zu Favoriten hinzugefügt]]></item>
+    <item name="globalchat.chat.copyInstance.header"><![CDATA[Instanz kopieren]]></item>
+    <item name="globalchat.chat.copyInstance.game"><![CDATA[Spiel]]></item>
+    <item name="globalchat.chat.copyInstance.sourceInstance"><![CDATA[Quell Instanz]]></item>
+    <item name="globalchat.chat.copyInstance.destinationInstance"><![CDATA[Ziel Instanz]]></item>
+    <item name="globalchat.roomcreator.button.copyInstance"><![CDATA[Instanz kopieren]]></item>
+    <item name="globalchat.accountScreen.button.reset"><![CDATA[Zurücksetzen]]></item>
+    <item name="globalchat.accountScreen.cmCannotCreateAccount">
+        <![CDATA[ChatModeratoren können keine Accounts erstellen. Um einen Account zu erstellen musst du als SuperModerator, oder höher eingestuft sein.]]></item>
+    <item name="globalchat.newTextModule"><![CDATA[Neu]]></item>
+    <item name="globalchat.deleteTextModule"><![CDATA[Löschen]]></item>
+    <item name="globalchat.newTextModuleHeader"><![CDATA[Neues Textmodul]]></item>
+    <item name="globalchat.newTextModuleDescription"><![CDATA[Beschreibung]]></item>
+    <item name="globalchat.newTextModuleText"><![CDATA[Inhalt]]></item>
+    <item name="globalchat.noMoreTextModulesAllowed"><![CDATA[Keine weiteren TextModule mehr erlaubt!]]></item>
+    <item name="globalchat.chat.button.closeRoom"><![CDATA[Raum schließen]]></item>
+    <item name="globalchat.chatscreen.checkboxAutoScroll"><![CDATA[autoScroll]]></item>
+    <item name="globalchat.chatscreen.checkboxAutoPopup"><![CDATA[autoPopup]]></item>
+    <item name="globalchat.chatscreen.checkboxMultiselect"><![CDATA[multiSelect]]></item>
+    <item name="globalchat.chat.optionsPanel.chatBgColor"><![CDATA[Chat Hintergrund]]></item>
+    <item name="globalchat.unmark"><![CDATA[Markierung aufheben]]></item>
+    <item name="globalchat.copyUsernameToClipboard"><![CDATA[Username kopieren]]></item>
+    <item name="globalchat.copyUserIdToClipboard"><![CDATA[UserId kopieren]]></item>
+    <item name="globalchat.copyClanToClipboard"><![CDATA[Clantag kopieren]]></item>
+    <item name="globalchat.closePopup"><![CDATA[Popup schließen]]></item>
+    <item name="globalchat.chat.optionsPanel.inactiveUserColor"><![CDATA[inaktiver User]]></item>
+</language>
