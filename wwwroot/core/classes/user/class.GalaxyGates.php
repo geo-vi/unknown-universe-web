@@ -74,24 +74,24 @@ class GalaxyGates
 
         for ($i = 0; $i < $times; $i++) {
             $PROBABILITY = rand(0, 100);
-            if (!$multiplierActive && $PROBABILITY % 10 == 0 || $multiplierActive && $PROBABILITY % (10 / $MULTIPLY) == 0 ) {
+            if (!$multiplierActive && $PROBABILITY % 6 == 0 || $multiplierActive && $PROBABILITY % (7 - $MULTIPLY) == 0 ) {
                 $this->addGGPart($selectedGG);
                 $RESULT = $this->addItemsToResult($RESULT, 'GG PART', 1);
-            } else if ($PROBABILITY % 8 == 0) {
+            } else if ($PROBABILITY % 5 == 0) {
                 $this->addAmmo('UBR_100', 15);
                 $RESULT = $this->addItemsToResult($RESULT, 'UBR 100', 15);
-            } else if ($PROBABILITY % 5 == 0) {
+            } else if ($PROBABILITY % 4 == 0) {
                 $this->addAmmo('UCB_100', 65);
                 $RESULT = $this->addItemsToResult($RESULT, 'UCB 100', 65);
-            } else if ($PROBABILITY % 4 == 0) {
+            } else if ($PROBABILITY % 3 == 0) {
                 $this->addAmmo('MIN_100', 3);
                 $RESULT = $this->addItemsToResult($RESULT, 'MIN 01', 3);
             } else if ($PROBABILITY % 2 == 0) {
                 $this->addAmmo('MCB_25', 125);
                 $RESULT = $this->addItemsToResult($RESULT, 'MCB 25', 125);
             } else {
-                $this->addAmmo('LCB_10', 180);
-                $RESULT = $this->addItemsToResult($RESULT, 'LCB 10', 180);
+                $this->addAmmo('PLT_2021', 180);
+                $RESULT = $this->addItemsToResult($RESULT, 'PLT 2021', 18);
             }
         }
 
@@ -274,14 +274,17 @@ class GalaxyGates
 
     function prepareGate($id) {
         $equalGate = $this->getEquivalentGate($id);
-        $gateLives = str_replace('PARTS', 'LIVES', $equalGate);
-        $gateWave = str_replace('PARTS', 'WAVE', $equalGate);
-        $gatePrepared = str_replace('PARTS', 'PREPARED', $equalGate);
-        $this->mysql->QUERY('UPDATE player_galaxy_gates SET '.$gatePrepared.' = 1, '.$equalGate.' = NULL, '.$gateLives.' = 5, '.$gateWave.' = 1 WHERE USER_ID = ? AND PLAYER_ID = ?',
-            [
-                $this->user->__get('USER_ID'),
-                $this->user->__get('PLAYER_ID')
-            ]);
+        $parts = $this->getParts($id);
+        if (count($parts) == $this->GATE_PARTS[$equalGate] && $parts != 0) {
+            $gateLives = str_replace('PARTS', 'LIVES', $equalGate);
+            $gateWave = str_replace('PARTS', 'WAVE', $equalGate);
+            $gatePrepared = str_replace('PARTS', 'PREPARED', $equalGate);
+            $this->mysql->QUERY('UPDATE player_galaxy_gates SET ' . $gatePrepared . ' = 1, ' . $equalGate . ' = NULL, ' . $gateLives . ' = 5, ' . $gateWave . ' = 1 WHERE USER_ID = ? AND PLAYER_ID = ?',
+                [
+                    $this->user->__get('USER_ID'),
+                    $this->user->__get('PLAYER_ID')
+                ]);
+        }
     }
 
     function buyLife($id) {

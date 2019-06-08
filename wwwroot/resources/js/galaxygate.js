@@ -8,7 +8,7 @@ class galaxygate {
         galaxygate.GG_ENERGY = 0;
         galaxygate.URIDIUM = 0;
         galaxygate.MULTIPLIER = 0;
-        galaxygate.MULTIPLY = true;
+        galaxygate.MULTIPLY = false;
         galaxygate.render();
     }
 
@@ -48,6 +48,8 @@ class galaxygate {
                 galaxygate.updateButton();
                 $('#energy-amount-selector').text('x' + galaxygate.ENERGY_AMOUNT);
             });
+
+            $('#cross > h4').hide();
 
             $('#cross').click(function() {
                 galaxygate.toggleMultiply();
@@ -135,10 +137,11 @@ class galaxygate {
 
     static click(data = null) {
         if (data === null) {
+            var multiplier = galaxygate.MULTIPLY == true ? 1 : 0;
             let params = {
                 "AMOUNT" : galaxygate.ENERGY_AMOUNT,
                 "SELECTED_GG" : galaxygate.SELECTED_GATE,
-                "USE_MULTIPLIER" : galaxygate.MULTIPLY
+                "USE_MULTIPLIER" : multiplier
             };
             this.sendRequest('click', 'click', params);
         }

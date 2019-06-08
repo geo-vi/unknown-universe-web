@@ -50,7 +50,7 @@ $System->routing->add("internalMapRevolution", "internalMapRevolution", true, fa
 $System->routing->add("internalCompanyChoose", "internalCompanyChoose", true, false, false);
 $System->routing->add("internalClan", "internalClan", true);
 $System->routing->add("internalSettings", "internalSettings", true);
-$System->routing->add("internalSkylab", "internalSkylab", true);
+$System->routing->add("internalSkylab", "internalSkylab", true, true,false);
 //$System->routing->add("internalAuction", "internalAuction", true);
 $System->routing->add("internalMessaging", "internalMessaging", true);
 $System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
@@ -58,10 +58,7 @@ $System->routing->add("internalGalaxyGates", "internalGalaxyGates", true);
 //$System->routing->add("internalPayment", "internalPayment", true);
 
 //ADMIN PAGES
-$System->routing->add("internalAdmin", "internalAdmin", true, true, true, 21);
-$System->routing->add("internalAdminEdit", "internalAdminEdit", true, true, true, 21);
-$System->routing->add("internalAdminEditItems", "internalAdminEditItems", true, true, true, 21);
-$System->routing->add("internalMapEditor", "internalMapEditor", true, true, true, 21);
+$System->routing->add("internalAdmin", "internalAdmin", true, false, false, 21);
 
 $System->routing->route();
 

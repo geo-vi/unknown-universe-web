@@ -10,15 +10,21 @@ if ($System->routing->login_req) {
     include_once( './core/guard.php' );
 }
 
+$factionCode = '';
+
 //ADMIN ACCESS LVL
 if ($System->routing->AdminLVL != 0) {
     if ($System->User->__get('RANK') != 21) {
         $System->error_handler->throwError(ErrorID::ACCESS_DENIED);
     }
 }
+
+if ($System->isLoggedIn()) {
+    $factionCode = strtolower($System->User->getFactionName());
+}
 ?>
 
-    <body class="<?= $System->Server['XMAS'] ? 'xmas' : '' ?> <?= $System->routing->template ?>">
+    <body class="<?= $System->Server['XMAS'] ? 'xmas '. $factionCode : ''. $factionCode . '' ?> <?= $System->routing->template ?>">
     <?php
     //Load nav
     if ($System->routing->includeNav) {

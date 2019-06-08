@@ -816,6 +816,24 @@ class equipment {
                 }
             });
         });
+
+        //RESET
+        $('#reset-config').click(function(event) {
+           swal('Are you sure you would like to reset your config?', {
+               buttons: {
+                   reset: {
+                       text: "Reset config"
+                   },
+                   cancel: true
+               }
+           }).then((value) => {
+               switch (value) {
+                   case "reset":
+                       equipment.resetCurrentConfig(null);
+                       break;
+               }
+           });
+        });
     }
 
     /**
@@ -892,6 +910,12 @@ class equipment {
         }
     }
 
+    /**
+     * sellPet Function
+     * sends request to sell your P.E.T
+     *
+     * @param data
+     */
     static sellPet(data = null) {
         if (data !== null) {
             if (!data.error) {
@@ -906,6 +930,13 @@ class equipment {
         }
     }
 
+    /**
+     * changeName Function
+     * sends request to change the PET's name
+     *
+     * @param data
+     * @param newName - new PET name
+     */
     static changeName(data = null, newName) {
         if (data == null && newName !== undefined) {
             if (newName.length > 15) {
@@ -928,6 +959,28 @@ class equipment {
                 swal('Success!', 'Pet name changed successfully!', 'success');
                 equipment.reload();
             }
+        }
+    }
+
+    /**
+    * resetCurrentConfig Function
+    * sends request to reset the current selected config
+    *
+    * @param data
+    */
+    static resetCurrentConfig(data = null) {
+        if (data !== null) {
+            if (!data.error) {
+                equipment.reload();
+            } else {
+                swal('Error!', data.error_msg, 'error');
+            }
+        } else {
+            $(".loading-screen").show();
+            let params = {
+                'CONFIG_ID': equipment.config
+            };
+            equipment.sendRequest('resetCurrentConfig', 'reset_config', params);
         }
     }
 

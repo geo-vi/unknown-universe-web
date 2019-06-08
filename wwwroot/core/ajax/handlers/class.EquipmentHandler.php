@@ -25,6 +25,7 @@ class EquipmentHandler extends AbstractHandler
         $this->addAction('sell_item', ['ITEM_ID']);
         $this->addAction('sell_items', ['ITEMS']);
         $this->addAction('change_pet_name', ['NEW_PET_NAME']);
+        $this->addAction('reset_config', ['CONFIG_ID']);
     }
 
     public function handle() : void
@@ -461,5 +462,13 @@ class EquipmentHandler extends AbstractHandler
                 "new_name" => $NEW_NAME,
             ]
         ));
+    }
+
+    public function exec_reset_config() {
+        global $System;
+        $CONFIG_ID = $this->params['CONFIG_ID'];
+        $a = $System->User->Inventory->resetConfig($CONFIG_ID);
+        die(json_encode($a));
+        Utils::dieM('Successfully reset your config!');
     }
 }

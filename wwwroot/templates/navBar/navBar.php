@@ -118,7 +118,7 @@
 
         <ul id="right-buttons" class="header-buttons bold">
             <ul class="main-left-buttons">
-                <li class="header_button header_disabled_button">
+                <li class="header_button header_normal_button">
                     <a href="internalPayment"><?= $System->__('NAV_TEXT_PREMIUM') ?></a>
                 </li>
                 <li class="header_button header_normal_button">
@@ -130,8 +130,8 @@
                 <li class="header_button header_normal_button">
                     <a href="internalShop"><?= $System->__('NAV_TEXT_SHOP') ?></a>
                 </li>
-                <li class="header_button header_disabled_button">
-                    <a href="#"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
+                <li class="header_button header_normal_button">
+                    <a href="internalAuction"><?= $System->__('NAV_TEXT_AUCTION') ?></a>
                 </li>
             </ul>
         </ul>

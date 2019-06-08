@@ -66,6 +66,7 @@ class shop {
             shop.preRender();
 
             let ITEMS = shop.data;
+
             ITEMS.forEach(function (ITEM, INDEX) {
                 if (ITEM.SHOW_FUEL ||
                     ITEM.SHOW_CATS ||
@@ -80,10 +81,6 @@ class shop {
                     let ItemDIV = $('<div>').addClass('item').attr('data-item-id', INDEX),
                         ItemIMG = $('<div>').addClass('item-image'),
                         ItemPRICE = $('<span>').addClass('item-price');
-
-                    if (ITEM.CATEGORY == 'eventammo') {
-                        ItemPRICE.addClass('discounted-item');
-                    }
 
                     let IMG_URL = ITEM.IMAGE_URL;
                     $(ItemIMG).attr('style', 'background-image: url("' + IMG_URL + '")');
@@ -194,7 +191,6 @@ class shop {
                 if (!shop.data[ITEM_ID].LEVEL_SELECTABLE) {
                     ITEM_LVL = 1;
                 }
-                if (ITEM_ID === 13 || ITEM_ID === 94) shop.category = 'DRONES';
                 shop.buyItem(shop.data[ITEM_ID].ID, $('.amount-select .item-quantity').val(), ITEM_LVL);
             }
         });

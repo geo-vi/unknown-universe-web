@@ -573,4 +573,16 @@ class Inventory
         ];
         return $PetInfo;
     }
+
+    public function resetConfig($CONFIG_ID)
+    {
+        $ITEMS = $this->getItems();
+        foreach ($ITEMS as $ITEM_OBJ) {
+           $ITEM = new Item($ITEM_OBJ, $this->mysql);
+            if ($ITEM->isInUse($this->user->Hangars->CURRENT_HANGAR->ID, $CONFIG_ID)){
+                $ITEM->moveToInventory($this->user->Hangars->CURRENT_HANGAR->ID, $CONFIG_ID);
+            }
+        }
+        return false;
+    }
 }

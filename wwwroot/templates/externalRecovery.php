@@ -27,7 +27,7 @@
                        name="email"
                        placeholder="Email"
                        required>
-                <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>"></div>
+                <div class="g-recaptcha" data-sitekey="<?= GOOGLE_CLIENT_CAPTCHA_KEY ?>" data-theme="dark"></div>
                 <input type="button" class="form-button" value="Recover my Account">
             </form>
         </div>

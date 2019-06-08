@@ -10,9 +10,10 @@ class User
     public $Hangars;
     /** @var  SkillTree */
     public $SkillTree;
-
     /** @var GalaxyGates */
     public $GalaxyGates;
+    /** @var Skylab */
+    public $Skylab;
 
     protected $AccountData;
     protected $PlayerData;
@@ -197,6 +198,8 @@ class User
 
         //LOAD GG
         $this->GalaxyGates = new GalaxyGates($this);
+
+        $this->Skylab = new Skylab($this);
     }
 
     /**
@@ -337,6 +340,14 @@ class User
 
                 //INSERT player_galaxy_gates
                 $this->mysql->QUERY("INSERT INTO player_galaxy_gates(USER_ID,PLAYER_ID) VALUES(?,?)",
+                    [
+                        $this->__get('USER_ID'),
+                        $this->__get('PLAYER_ID'),
+                    ]
+                );
+
+                //INSERT player_skylab
+                $this->mysql->QUERY("INSERT INTO player_skylab(USER_ID,PLAYER_ID) VALUES(?,?)",
                     [
                         $this->__get('USER_ID'),
                         $this->__get('PLAYER_ID'),
