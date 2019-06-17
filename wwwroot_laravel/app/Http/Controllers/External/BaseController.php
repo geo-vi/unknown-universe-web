@@ -9,6 +9,6 @@ class BaseController extends Controller
 {
 
     public function index() {
-        return view('chat_tool.index');
+        return view('auth.login');
     }
 }

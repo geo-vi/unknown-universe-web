@@ -29,7 +29,7 @@
     <script src="{{ asset('js/jQuery/jquery.mCustomScrollbar.concat.min.js') }}"></script>
     <script src="{{ asset('js/jQuery/visibility.min.js') }}"></script>
     <script src="{{ asset('js/jQuery/jquery.tools.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap/bootstrap.js"') }}"></script>
+    <script src="{{ asset('js/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/ajax.js') }}"></script>
     <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>

@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 // Authentication Routes...
 Route::get('', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('', 'Auth\LoginController@login');
+Route::post('', 'Auth\LoginController@login')->name('login_action');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // Registration Routes...
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::post('register', 'Auth\RegisterController@register')->name('register_action');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
@@ -35,6 +35,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::namespace('External')->group(function () {
     /** Assets found in public/chattool **/
     Route::get('chattool', 'BaseController@index')->name('chattool');
+    Route::get('externalRecovery', 'BaseController@index')->name('forgot_password');
 });
 
 Route::namespace('Internal')->group(function() {
